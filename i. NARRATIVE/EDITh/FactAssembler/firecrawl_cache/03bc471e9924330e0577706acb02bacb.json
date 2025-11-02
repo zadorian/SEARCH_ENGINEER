@@ -1,0 +1,38 @@
+{
+  "markdown": "[Skip to main content](https://www.experian.com/search/?q=qwertasdfzxcv123456789xyz#main)\n\n# We couldn’t find that page\n\nLet us help you find what you are looking for.\n\nSearch\n\nDon’t enter personal info like your SSN, email or phone number",
+  "metadata": {
+    "twitter:image": "/static/exp/social/social-experian-generic.webp",
+    "ogUrl": "https://www.experian.com/credit/credit-monitoring/",
+    "description": "Let us help you find what you are looking for. Please visit one of the links below or search.",
+    "ogDescription": "Let us help you find what you are looking for. Please visit one of the links below or search.",
+    "og:url": "https://www.experian.com/credit/credit-monitoring/",
+    "og:description": "Let us help you find what you are looking for. Please visit one of the links below or search.",
+    "generator": "Gatsby 5.14.6",
+    "twitter:description": "Let us help you find what you are looking for. Please visit one of the links below or search.",
+    "og:image": "/static/exp/social/social-experian-generic.webp",
+    "robots": "noindex",
+    "language": "en-us",
+    "ogTitle": "Experian - Page Not Found",
+    "title": "Experian - Page Not Found",
+    "favicon": "https://www.experian.com/favicon.ico",
+    "ogImage": "/static/exp/social/social-experian-generic.webp",
+    "viewport": [
+      "width=device-width, initial-scale=1, shrink-to-fit=no",
+      "width=device-width, initial-scale=1.0"
+    ],
+    "twitter:title": "Experian - Page Not Found",
+    "og:title": "Experian - Page Not Found",
+    "scrapeId": "3b037e5d-247b-4fd2-835a-ac7a88f5cb8d",
+    "sourceURL": "https://www.experian.com/search/?q=qwertasdfzxcv123456789xyz",
+    "url": "https://www.experian.com/search/?q=qwertasdfzxcv123456789xyz",
+    "statusCode": 403,
+    "error": "Forbidden",
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:45:38.761463"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:45:38.761483",
+  "url": "https://www.experian.com/search/?q=qwertasdfzxcv123456789xyz"
+}

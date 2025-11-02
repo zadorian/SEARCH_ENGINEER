@@ -1,0 +1,18 @@
+{
+  "markdown": "- [SEC Home](https://www.sec.gov/index.htm) »\n- [Company Search](https://www.sec.gov/edgar/searchedgar/companysearch.html) »\n- Current Page\n\nNo matching companies.",
+  "metadata": {
+    "title": "EDGAR Search Results",
+    "language": "ENG",
+    "scrapeId": "1cd832e2-b39c-4725-8f97-edf6541a16ae",
+    "sourceURL": "http://www.sec.gov/cgi-bin/browse-edgar?company=qwertasdfzxcv123456789xyz&CIK=&filenum=&State=&SIC=&owner=include&action=getcompany",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?company=qwertasdfzxcv123456789xyz&CIK=&filenum=&State=&SIC=&owner=include&action=getcompany",
+    "statusCode": 200,
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:38:27.481120"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:38:27.481384",
+  "url": "http://www.sec.gov/cgi-bin/browse-edgar?company=qwertasdfzxcv123456789xyz&CIK=&filenum=&State=&SIC=&owner=include&action=getcompany"
+}

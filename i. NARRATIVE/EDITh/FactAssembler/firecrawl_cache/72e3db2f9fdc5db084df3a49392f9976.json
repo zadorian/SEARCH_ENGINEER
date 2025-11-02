@@ -1,0 +1,20 @@
+{
+  "markdown": "#### Site Not Found\n\nWe can't find the site you're looking for.\n\n\nIf you are trying to reach a specific Dozuki site,\ncheck the url for typos or misspellings.\n\n\nIf you still need help finding the site or want more\ninformation about Dozuki, we can help you with that.\n\n\n[Contact the support team](https://www.dozuki.com/contact)",
+  "metadata": {
+    "title": "Dozuki · Site not found!",
+    "language": "en",
+    "viewport": "width=device-width,initial-scale=1,user-scalable=no",
+    "scrapeId": "ea323958-a672-479e-a78a-befbc435dddc",
+    "sourceURL": "https://duet3d.dozuki.com/Search?query=bank",
+    "url": "https://duet3d.dozuki.com/Search?query=bank",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:53:24.332065"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:53:24.332120",
+  "url": "https://duet3d.dozuki.com/Search?query=bank"
+}

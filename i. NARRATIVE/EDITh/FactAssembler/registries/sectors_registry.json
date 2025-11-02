@@ -1,0 +1,173 @@
+{
+  "energy": {
+    "name": "Energy",
+    "description": "Oil, gas, renewables, nuclear",
+    "subcategories": [
+      "oil_gas",
+      "renewables",
+      "nuclear",
+      "coal",
+      "electricity"
+    ],
+    "count": 7,
+    "last_used": "2025-06-09T16:12:18.559253"
+  },
+  "finance": {
+    "name": "Finance",
+    "description": "Banking, investment, insurance",
+    "subcategories": [
+      "banking",
+      "investment",
+      "insurance",
+      "private_equity",
+      "hedge_funds"
+    ],
+    "count": 7,
+    "last_used": "2025-06-09T16:12:18.560070"
+  },
+  "technology": {
+    "name": "Technology",
+    "description": "Software, hardware, IT services",
+    "subcategories": [
+      "software",
+      "hardware",
+      "cybersecurity",
+      "ai_ml",
+      "blockchain"
+    ],
+    "count": 0,
+    "last_used": null
+  },
+  "defense": {
+    "name": "Defense",
+    "description": "Military, weapons, security",
+    "subcategories": [
+      "military_equipment",
+      "aerospace",
+      "security_services",
+      "weapons"
+    ],
+    "count": 0,
+    "last_used": null
+  },
+  "mining": {
+    "name": "Mining",
+    "description": "Metals, minerals, extraction",
+    "subcategories": [
+      "precious_metals",
+      "base_metals",
+      "rare_earth",
+      "coal_mining"
+    ],
+    "count": 0,
+    "last_used": null
+  },
+  "real_estate": {
+    "name": "Real Estate",
+    "description": "Property development, management",
+    "subcategories": [
+      "commercial",
+      "residential",
+      "industrial",
+      "hospitality"
+    ],
+    "count": 7,
+    "last_used": "2025-06-09T16:12:18.560685"
+  },
+  "transportation": {
+    "name": "Transportation",
+    "description": "Shipping, logistics, aviation",
+    "subcategories": [
+      "shipping",
+      "aviation",
+      "rail",
+      "trucking",
+      "logistics"
+    ],
+    "count": 7,
+    "last_used": "2025-06-09T16:12:18.562153"
+  },
+  "telecommunications": {
+    "name": "Telecommunications",
+    "description": "Telecom services, infrastructure",
+    "subcategories": [
+      "mobile",
+      "broadband",
+      "satellites",
+      "infrastructure"
+    ],
+    "count": 0,
+    "last_used": null
+  },
+  "manufacturing": {
+    "name": "Manufacturing",
+    "description": "Industrial production",
+    "subcategories": [
+      "automotive",
+      "chemicals",
+      "textiles",
+      "machinery"
+    ],
+    "count": 7,
+    "last_used": "2025-06-09T16:12:18.561678"
+  },
+  "retail": {
+    "name": "Retail",
+    "description": "Consumer goods, e-commerce",
+    "subcategories": [
+      "e_commerce",
+      "luxury_goods",
+      "consumer_goods",
+      "food_retail"
+    ],
+    "count": 0,
+    "last_used": null
+  },
+  "healthcare": {
+    "name": "Healthcare",
+    "description": "Medical services, pharma",
+    "subcategories": [
+      "hospitals",
+      "pharmaceuticals",
+      "medical_devices",
+      "biotech"
+    ],
+    "count": 0,
+    "last_used": null
+  },
+  "agriculture": {
+    "name": "Agriculture",
+    "description": "Farming, food production",
+    "subcategories": [
+      "crops",
+      "livestock",
+      "agritech",
+      "food_processing"
+    ],
+    "count": 0,
+    "last_used": null
+  },
+  "media": {
+    "name": "Media & Entertainment",
+    "description": "News, entertainment, publishing",
+    "subcategories": [
+      "news_media",
+      "entertainment",
+      "publishing",
+      "social_media"
+    ],
+    "count": 0,
+    "last_used": null
+  },
+  "sports": {
+    "name": "Sports",
+    "description": "Professional sports, sports business",
+    "subcategories": [
+      "professional_sports",
+      "sports_sponsorship",
+      "sports_facilities"
+    ],
+    "count": 7,
+    "last_used": "2025-06-09T16:12:18.561204"
+  }
+}

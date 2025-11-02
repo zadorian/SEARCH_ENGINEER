@@ -1,0 +1,18 @@
+{
+  "markdown": "## Not Found\n\n* * *\n\nHTTP Error 404. The requested resource is not found.",
+  "metadata": {
+    "title": "Not Found",
+    "scrapeId": "88cceade-9196-425a-a255-863b5cd7f952",
+    "sourceURL": "http://www.centralniregistr.cz/Hledani/s17_0/?hledat=bank",
+    "url": "http://www.centralniregistr.cz/Hledani/s17_0/?hledat=bank",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=us-ascii",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:32:41.070662"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:32:41.070899",
+  "url": "http://www.centralniregistr.cz/Hledani/s17_0/?hledat=bank"
+}

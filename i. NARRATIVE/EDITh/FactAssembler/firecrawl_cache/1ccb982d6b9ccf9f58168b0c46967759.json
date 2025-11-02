@@ -1,0 +1,18 @@
+{
+  "markdown": "## 404 - File or directory not found.\n\n### The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+  "metadata": {
+    "title": "404 - File or directory not found.",
+    "scrapeId": "258dc4d6-b84c-417c-a538-03c02e7c3911",
+    "sourceURL": "http://encore.palatinelibrary.org/iii/encore/search?target=group",
+    "url": "http://encore.palatinelibrary.org/iii/encore/search?target=group",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:22:02.705748"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:22:02.705883",
+  "url": "http://encore.palatinelibrary.org/iii/encore/search?target=group"
+}

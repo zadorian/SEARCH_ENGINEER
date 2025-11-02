@@ -1,0 +1,18 @@
+{
+  "markdown": "## HTTP ERROR 404 Not Found\n\n| URI: | https://apps.db.ripe.net/search/query.html?searchtext=xyzzyplugh9876543210abcdef&search:doSearch=Search |\n| STATUS: | 404 |\n| MESSAGE: | Not Found |\n\n* * *\n\n[Powered by Jetty:// 12.0.22](https://jetty.org/)\n\n* * *",
+  "metadata": {
+    "title": "Error 404 Not Found",
+    "scrapeId": "ef4848a8-51be-4c18-9adb-740588cc6d99",
+    "sourceURL": "https://apps.db.ripe.net/search/query.html?searchtext=xyzzyplugh9876543210abcdef&search:doSearch=Search#resultsAnchor",
+    "url": "https://apps.db.ripe.net/search/query.html?searchtext=xyzzyplugh9876543210abcdef&search:doSearch=Search#resultsAnchor",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html;charset=iso-8859-1",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:41:03.926593"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:41:03.926755",
+  "url": "https://apps.db.ripe.net/search/query.html?searchtext=xyzzyplugh9876543210abcdef&search:doSearch=Search#resultsAnchor"
+}

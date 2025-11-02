@@ -1,0 +1,22 @@
+{
+  "markdown": "# [4chan](https://www.4chan.org/ \"Home\")\n\n## 404 Not Found\n\n![404](https://s.4cdn.org/image/error/404/404-Anonymous-3.jpg)\n\n[About](https://www.4chan.org/faq#what4chan) • [Feedback](https://www.4chan.org/feedback) • [Legal](https://www.4chan.org/legal) • [Contact](https://www.4chan.org/contact)\n\nCopyright © 2003-2025 4chan community support LLC. All rights reserved.",
+  "metadata": {
+    "title": "4chan - 404 Not Found",
+    "viewport": "width=device-width, initial-scale=1.0",
+    "robots": "noarchive",
+    "favicon": "https://s.4cdn.org/image/favicon-status.ico",
+    "keywords": "imageboard,image board,anime,manga,ecchi,hentai,video games,english,japan",
+    "scrapeId": "ce9a1d22-4520-4f97-99c0-1f467213f8d1",
+    "sourceURL": "https://boards.4chan.org/bank/catalog",
+    "url": "https://boards.4chan.org/bank/catalog",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:44:37.455119"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:44:37.455188",
+  "url": "https://boards.4chan.org/bank/catalog"
+}

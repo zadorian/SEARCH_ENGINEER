@@ -1,0 +1,17 @@
+{
+  "markdown": "<!DOCTYPE html><html><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n\n\n</body></html>",
+  "metadata": {
+    "title": "404 Not Found",
+    "scrapeId": "59d4751e-e204-48fc-99a4-40a02a8a183e",
+    "sourceURL": "https://www.govinfo.gov/app/search?query=xyzzyplugh9876543210abcdef",
+    "url": "https://www.govinfo.gov/app/search?query=xyzzyplugh9876543210abcdef",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=iso-8859-1",
+    "proxyUsed": "basic",
+    "creditsUsed": 1
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:47:42.691436",
+  "url": "https://www.govinfo.gov/app/search?query=xyzzyplugh9876543210abcdef"
+}

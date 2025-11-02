@@ -1,0 +1,18 @@
+{
+  "markdown": "```\nsource [dns] resolving failed: openpgpkey draft 6 query generation failed: could not split email [xyzzyplugh9876543210abcdef]\n```",
+  "metadata": {
+    "color-scheme": "light dark",
+    "scrapeId": "8d333bce-98c8-4601-a304-7dc8bf8cd267",
+    "sourceURL": "https://api.posteo.de/v1/public-keys/xyzzyplugh9876543210abcdef?type=smime",
+    "url": "https://api.posteo.de/v1/public-keys/xyzzyplugh9876543210abcdef?type=smime",
+    "statusCode": 500,
+    "error": "Internal Server Error",
+    "contentType": "text/plain; charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:40:30.598838"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:40:30.598866",
+  "url": "https://api.posteo.de/v1/public-keys/xyzzyplugh9876543210abcdef?type=smime"
+}

@@ -1,0 +1,20 @@
+{
+  "markdown": "404\n\nNot Found",
+  "metadata": {
+    "viewport": "width=device-width, initial-scale=1",
+    "title": "Not Found",
+    "language": "en",
+    "scrapeId": "a493a141-ccd3-45f4-929b-0c83ff9717ac",
+    "sourceURL": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=holding",
+    "url": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=holding",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:12:11.649195"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:12:11.649243",
+  "url": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=holding"
+}

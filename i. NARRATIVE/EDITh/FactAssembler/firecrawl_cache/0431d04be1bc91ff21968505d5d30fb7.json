@@ -1,0 +1,18 @@
+{
+  "markdown": "## 404 - File or directory not found.\n\n### The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+  "metadata": {
+    "title": "404 - File or directory not found.",
+    "scrapeId": "c0e118db-63c7-457e-a298-882055976166",
+    "sourceURL": "http://encore.palatinelibrary.org/iii/encore/search?target=holding",
+    "url": "http://encore.palatinelibrary.org/iii/encore/search?target=holding",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:21:58.981299"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:21:58.981452",
+  "url": "http://encore.palatinelibrary.org/iii/encore/search?target=holding"
+}

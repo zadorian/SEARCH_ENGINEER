@@ -1,0 +1,18 @@
+{
+  "markdown": "## HTTP ERROR 404 Not Found\n\n| URI: | https://apps.db.ripe.net/search/query.html?searchtext=bank&search:doSearch=Search |\n| STATUS: | 404 |\n| MESSAGE: | Not Found |\n\n* * *\n\n[Powered by Jetty:// 12.0.22](https://jetty.org/)\n\n* * *",
+  "metadata": {
+    "title": "Error 404 Not Found",
+    "scrapeId": "e56510d5-5ec0-4bca-be58-e9461e8aa66e",
+    "sourceURL": "https://apps.db.ripe.net/search/query.html?searchtext=bank&search:doSearch=Search#resultsAnchor",
+    "url": "https://apps.db.ripe.net/search/query.html?searchtext=bank&search:doSearch=Search#resultsAnchor",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html;charset=iso-8859-1",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:41:16.399434"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:41:16.399651",
+  "url": "https://apps.db.ripe.net/search/query.html?searchtext=bank&search:doSearch=Search#resultsAnchor"
+}

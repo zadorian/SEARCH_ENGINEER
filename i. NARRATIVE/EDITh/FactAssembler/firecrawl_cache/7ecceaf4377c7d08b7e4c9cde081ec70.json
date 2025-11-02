@@ -1,0 +1,20 @@
+{
+  "markdown": "404\n\nNot Found",
+  "metadata": {
+    "title": "Not Found",
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=1",
+    "scrapeId": "d01cc1db-e379-4ee6-88b1-6ccc1f1e88ae",
+    "sourceURL": "https://www.fowtcg.com/cards?w=group",
+    "url": "https://www.fowtcg.com/cards?w=group",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:47:10.244534"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:47:10.244563",
+  "url": "https://www.fowtcg.com/cards?w=group"
+}

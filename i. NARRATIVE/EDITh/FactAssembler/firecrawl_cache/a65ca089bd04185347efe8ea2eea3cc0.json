@@ -1,0 +1,17 @@
+{
+  "markdown": "`AccessDenied` Access Denied\n\n<Error>\n\n<Code>AccessDenied</Code>\n\n<Message>Access Denied</Message>\n\n...\n\n</Error>",
+  "metadata": {
+    "scrapeId": "8cf25767-fe23-4aba-8a93-66d7dc7db3fd",
+    "sourceURL": "https://search.nzqa.govt.nz/apps/search/?q=bank",
+    "url": "https://search.nzqa.govt.nz/apps/search/?q=bank",
+    "statusCode": 403,
+    "error": "Forbidden",
+    "contentType": "application/xml",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:15:09.243244"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:15:09.243350",
+  "url": "https://search.nzqa.govt.nz/apps/search/?q=bank"
+}

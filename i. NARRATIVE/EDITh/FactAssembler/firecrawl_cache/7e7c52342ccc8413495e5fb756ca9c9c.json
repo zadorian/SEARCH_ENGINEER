@@ -1,0 +1,28 @@
+{
+  "markdown": "![Dimensions logo](https://app.dimensions.ai/images/logo_small.png)\n\n# Sign in\n\nNext\n\nNeed an account? [Register for free](https://app.dimensions.ai/auth/base/register?redirect=%2Fdiscover%2Fpublication%3Fsearch_text%3Dbank%26search_type%3Dkws%26search_field%3Dfull_search)\n\n# Free access to the Dimensions linked research database\n\n- Search all publications and datasets\n- Access millions of Open Access publications\n- Seamlessly export data and set alerts\n- Track citation counts and other publication metrics\n\n[Register for free](https://app.dimensions.ai/auth/base/register?redirect=%2Fdiscover%2Fpublication%3Fsearch_text%3Dbank%26search_type%3Dkws%26search_field%3Dfull_search)",
+  "metadata": {
+    "description": "Re-imagining discovery and access to research: grants, datasets, publications, citations, clinical trials, patents and policy documents in one place.",
+    "ogDescription": "Re-imagining discovery and access to research: grants, datasets, publications, citations, clinical trials, patents and policy documents in one place. With more than 100 million publications and 1 billion citations freely available for personal use, Dimensions provides students and researchers access to the data and information they need - with the lowest barriers possible.",
+    "language": "en",
+    "title": "Sign in - Dimensions",
+    "twitter:description": "Re-imagining discovery and access to research: grants, datasets, publications, citations, clinical trials, patents and policy documents in one place. With more than 100 million publications...",
+    "viewport": "width=device-width, initial-scale=1",
+    "robots": "noarchive",
+    "og:url": "https://app.dimensions.ai/auth/base/landing?redirect=%2Fdiscover%2Fpublication%3Fsearch_text%3Dbank%26search_type%3Dkws%26search_field%3Dfull_search",
+    "favicon": "https://cdn-app.dimensions.ai/static/4f0659de93cc122e0b29.png",
+    "ogUrl": "https://app.dimensions.ai/auth/base/landing?redirect=%2Fdiscover%2Fpublication%3Fsearch_text%3Dbank%26search_type%3Dkws%26search_field%3Dfull_search",
+    "og:description": "Re-imagining discovery and access to research: grants, datasets, publications, citations, clinical trials, patents and policy documents in one place. With more than 100 million publications and 1 billion citations freely available for personal use, Dimensions provides students and researchers access to the data and information they need - with the lowest barriers possible.",
+    "theme-color": "#ffffff",
+    "scrapeId": "fda934a6-1684-4122-ae85-f77f448106f5",
+    "sourceURL": "https://app.dimensions.ai/discover/publication?search_text=bank&search_type=kws&search_field=full_search",
+    "url": "https://app.dimensions.ai/auth/base/landing?redirect=%2Fdiscover%2Fpublication%3Fsearch_text%3Dbank%26search_type%3Dkws%26search_field%3Dfull_search",
+    "statusCode": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:40:53.689372"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:40:53.689731",
+  "url": "https://app.dimensions.ai/discover/publication?search_text=bank&search_type=kws&search_field=full_search"
+}

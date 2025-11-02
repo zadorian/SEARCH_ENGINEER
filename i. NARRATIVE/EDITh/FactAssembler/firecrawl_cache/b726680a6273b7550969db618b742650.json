@@ -1,0 +1,21 @@
+{
+  "markdown": "Search\n\n- [Home](https://doc.qt.io/)\n- Page Not Found\n\n# 404 - Page Not Found\n\nLooks like the resource you're looking for has gone missing.\n\nClick here to find your way back, or try searching for your page.",
+  "metadata": {
+    "favicon": "https://d33sqmjvzgs8hq.cloudfront.net/wp-content/themes/oneqt/assets/images/favicon-32x32.png",
+    "title": "Qt Documentation | Page Not Found",
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=1",
+    "scrapeId": "95f3cd47-0f09-475d-af31-8de938907d67",
+    "sourceURL": "https://doc.qt.io/qt-5/search-results.html?q=xyzzyplugh9876543210abcdef",
+    "url": "https://doc.qt.io/archives/qt-5.15/search-results.html",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:50:04.023667"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:50:04.023774",
+  "url": "https://doc.qt.io/qt-5/search-results.html?q=xyzzyplugh9876543210abcdef"
+}

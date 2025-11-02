@@ -1,0 +1,18 @@
+{
+  "markdown": "<!DOCTYPE html><html lang=\"en\">\n<body bgcolor=\"white\">\nThe requested document does not exist on this server.\n<hr noshade=\"1\" size=\"1\">\n<a>Okay</a>\n\n\n\n</body></html>",
+  "metadata": {
+    "favicon": "https://freerepublic.com/favicon.ico",
+    "title": "404 Not Found",
+    "language": "en",
+    "scrapeId": "c91bef84-83b7-4f0b-8b7e-99abaadb2626",
+    "sourceURL": "https://www.freerepublic.com/tag/xyzzyplugh9876543210abcdef/index?tab=articles",
+    "url": "https://freerepublic.com/tag/xyzzyplugh9876543210abcdef/index?tab=articles",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:43:45.441126",
+  "url": "https://www.freerepublic.com/tag/xyzzyplugh9876543210abcdef/index?tab=articles"
+}

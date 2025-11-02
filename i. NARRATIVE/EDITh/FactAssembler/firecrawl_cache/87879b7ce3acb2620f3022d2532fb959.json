@@ -1,0 +1,23 @@
+{
+  "markdown": "|     |     |     |\n| --- | --- | --- |\n| [![Main page](https://oid-base.com/images/treewall.jpg)](https://oid-base.com/) |  | |     |\n| --- |\n| OID Repository<br>https://oid-base.com |\n| [Home](https://oid-base.com/) [Tree display](https://oid-base.com/cgi-bin/display?tree=) [Search](https://oid-base.com/basic-search.htm) [FAQ](https://oid-base.com/faq.htm) |\n| Display OID: | |\n\n|     |     |     |\n| --- | --- | --- |\n| # Sorry... |  |  |\n\n|     |\n| --- |\n|  |\n| ![](https://oid-base.com/images/separation.png) |\n|  |\n\n![](https://oid-base.com/images/err_lin1.gif)\n\n|     |     |\n| --- | --- |\n| ![](https://oid-base.com/images/warning.png) | Error: |\n|  | - \" `xyzzyplugh9876543210abcdef`\" is not a [standardized identifier](https://oid-base.com/name-forms.htm): it has to be followed by its associated number between parentheses: `xyzzyplugh9876543210abcdef(n)` |\n\n![](https://oid-base.com/images/err_lin2.gif)\n\n![](https://oid-base.com/images/err_lin1.gif)\n\n|     |     |\n| --- | --- |\n| ![](https://oid-base.com/images/warning.png) | Warning: |\n|  | - if you are searching for OIDs identifying \"xyzzyplugh9876543210abcdef\", please [use the search feature](https://oid-base.com/cgi-bin/display?a=basic-search&keywords=xyzzyplugh9876543210abcdef) |\n\n![](https://oid-base.com/images/err_lin2.gif)",
+  "metadata": {
+    "keywords": "object identifier,OID,oid-info,oid-base,ASN.1,browser,check,database,decoder,explorer,find,finder,info,ISO,ITU,list,lookup,MIB,number,oidref,reference,registration authority,registry,repository,root,search,SNMP,translator,tree,view,viewer",
+    "description": "OID repository - Sorry...",
+    "viewport": "width=device-width, initial-scale=1.0",
+    "language": "en-us",
+    "title": "OID repository - Sorry...",
+    "favicon": "https://oid-base.com/images/favicon.png",
+    "scrapeId": "85ae95d0-543f-4388-bec5-efec583e06ba",
+    "sourceURL": "https://oid-base.com/cgi-bin/display?oid=xyzzyplugh9876543210abcdef&submit=Display&action=display",
+    "url": "https://oid-base.com/cgi-bin/display?oid=xyzzyplugh9876543210abcdef&submit=Display&action=display",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:08:24.253466"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:08:24.253604",
+  "url": "https://oid-base.com/cgi-bin/display?oid=xyzzyplugh9876543210abcdef&submit=Display&action=display"
+}

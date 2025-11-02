@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entity Extraction Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+        .entity {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #e3f2fd;
+            border-radius: 4px;
+            border: 1px solid #90caf9;
+        }
+        .entity-type {
+            font-weight: bold;
+            color: #1976d2;
+        }
+        .error {
+            color: #d32f2f;
+            background-color: #ffebee;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .loading {
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Entity Extraction Test</h1>
+        <p>Test the entity extraction service with GPT-4.1-nano</p>
+        
+        <h2>Input Text</h2>
+        <textarea id="inputText" placeholder="Enter text to extract entities from...">
+Yesterday, John Smith, CEO of TechCorp Industries, announced a major partnership with Google Cloud during a press conference in San Francisco. The deal, valued at $500 million, will enable TechCorp to leverage Google's AI infrastructure. Microsoft and Amazon Web Services were also considered for the partnership. The announcement came shortly after Apple revealed similar cloud initiatives in Cupertino.
+
+Sarah Johnson, CTO at TechCorp, mentioned that the integration will begin in January 2024, with initial deployments in New York and London offices. The European Union has already approved the necessary regulatory requirements.
+        </textarea>
+        
+        <button id="extractBtn" onclick="extractEntities()">Extract Entities</button>
+        
+        <div id="results" class="results" style="display: none;">
+            <h2>Extracted Entities</h2>
+            <div id="entityList"></div>
+        </div>
+        
+        <div id="error" class="error" style="display: none;"></div>
+    </div>
+
+    <script>
+        async function extractEntities() {
+            const btn = document.getElementById('extractBtn');
+            const inputText = document.getElementById('inputText').value;
+            const resultsDiv = document.getElementById('results');
+            const entityListDiv = document.getElementById('entityList');
+            const errorDiv = document.getElementById('error');
+            
+            // Reset display
+            resultsDiv.style.display = 'none';
+            errorDiv.style.display = 'none';
+            entityListDiv.innerHTML = '<div class="loading">Extracting entities...</div>';
+            resultsDiv.style.display = 'block';
+            
+            // Disable button
+            btn.disabled = true;
+            btn.textContent = 'Extracting...';
+            
+            try {
+                const response = await fetch('/api/extract-entities', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        content: inputText
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to extract entities');
+                }
+                
+                // Display results
+                displayEntities(data);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                errorDiv.textContent = `Error: ${error.message}`;
+                errorDiv.style.display = 'block';
+                resultsDiv.style.display = 'none';
+            } finally {
+                // Re-enable button
+                btn.disabled = false;
+                btn.textContent = 'Extract Entities';
+            }
+        }
+        
+        function displayEntities(data) {
+            const entityListDiv = document.getElementById('entityList');
+            
+            if (!data.success) {
+                entityListDiv.innerHTML = '<p>Failed to extract entities</p>';
+                return;
+            }
+            
+            if (!data.entities || data.entities.length === 0) {
+                entityListDiv.innerHTML = '<p>No entities found</p>';
+                return;
+            }
+            
+            // Group entities by type
+            const groupedEntities = {};
+            data.entities.forEach(entity => {
+                if (!groupedEntities[entity.type]) {
+                    groupedEntities[entity.type] = [];
+                }
+                groupedEntities[entity.type].push(entity);
+            });
+            
+            // Display grouped entities
+            let html = '';
+            for (const [type, entities] of Object.entries(groupedEntities)) {
+                html += `<h3>${type}</h3>`;
+                html += '<div>';
+                entities.forEach(entity => {
+                    html += `<div class="entity">`;
+                    html += `<span class="entity-type">${entity.name}</span>`;
+                    if (entity.confidence) {
+                        html += ` <small>(${(entity.confidence * 100).toFixed(0)}%)</small>`;
+                    }
+                    html += '</div>';
+                });
+                html += '</div>';
+            }
+            
+            entityListDiv.innerHTML = html;
+            
+            // Also log to console for debugging
+            console.log('Extracted entities:', data);
+        }
+    </script>
+</body>
+</html>

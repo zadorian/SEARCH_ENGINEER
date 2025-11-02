@@ -1,0 +1,21 @@
+{
+  "markdown": "[Docs.rs](https://docs.rs/)\n\n- [docs.rs](https://docs.rs/xyzzyplugh9876543210abcdef#)  - [About docs.rs](https://docs.rs/about)\n  - [Badges](https://docs.rs/about/badges)\n  - [Builds](https://docs.rs/about/builds)\n  - [Metadata](https://docs.rs/about/metadata)\n  - [Shorthand URLs](https://docs.rs/about/redirections)\n  - [Download](https://docs.rs/about/download)\n  - [Rustdoc JSON](https://docs.rs/about/rustdoc-json)\n  - [Build queue](https://docs.rs/releases/queue)\n  - [Privacy policy](https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs)\n\n- [Rust](https://docs.rs/xyzzyplugh9876543210abcdef#)  - [Rust website](https://www.rust-lang.org/)\n  - [The Book](https://doc.rust-lang.org/book/)\n  - [Standard Library API Reference](https://doc.rust-lang.org/std/)\n  - [Rust by Example](https://doc.rust-lang.org/rust-by-example/)\n  - [The Cargo Guide](https://doc.rust-lang.org/cargo/guide/)\n  - [Clippy Documentation](https://doc.rust-lang.org/nightly/clippy)\n\n# The requested crate does not exist\n\nno such crate",
+  "metadata": {
+    "title": "Docs.rs",
+    "language": "en",
+    "generator": "docs.rs 0.6.0 (e18d034e 2025-07-29)",
+    "viewport": "width=device-width, initial-scale=1",
+    "scrapeId": "299cac3a-f1e0-45d0-bc4c-df07966de759",
+    "sourceURL": "https://docs.rs/xyzzyplugh9876543210abcdef",
+    "url": "https://docs.rs/xyzzyplugh9876543210abcdef",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:52:08.516991"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:52:08.517012",
+  "url": "https://docs.rs/xyzzyplugh9876543210abcdef"
+}

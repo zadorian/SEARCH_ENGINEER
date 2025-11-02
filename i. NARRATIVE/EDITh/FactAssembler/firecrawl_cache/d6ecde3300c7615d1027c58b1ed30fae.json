@@ -1,0 +1,49 @@
+{
+  "markdown": "[Skip to main content](https://www.bbb.org/search?find_text=xyzzyplugh9876543210abcdef#content)\n\nclose\n\n# Error\n\nOops! We'll be right back.\n\nSorry, something went wrong. Rest assured, we are working hard to fix the problem as soon as possible.\n\nIn the meantime, try refreshing this page or visiting our homepage.\n\n![](https://m.bbb.org/terminuscontent/dist/img/500-female-worker.png?tx=w_320)![](https://m.bbb.org/terminuscontent/dist/img/500-male-worker.png?tx=w_240)\n\nreCAPTCHA\n\nRecaptcha requires verification.\n\n[Privacy](https://www.google.com/intl/en/policies/privacy/) \\- [Terms](https://www.google.com/intl/en/policies/terms/)\n\nprotected by **reCAPTCHA**\n\n[Privacy](https://www.google.com/intl/en/policies/privacy/) \\- [Terms](https://www.google.com/intl/en/policies/terms/)\n\nContact us via LiveChat!",
+  "metadata": {
+    "description": "Sorry we didn't find any businesses or charities that match your search. Please search again., Have any questions? Talk with us directly using LiveChat.",
+    "ogUrl": "https://www.bbb.org/",
+    "language": "en",
+    "favicon": "https://www.bbb.org/favicon.ico",
+    "og:url": "https://www.bbb.org/",
+    "title": "Error | Better Business Bureau&#174;",
+    "fb:app_id": "1.632730786749034e+15",
+    "theme-color": "#000000",
+    "twitter:image": "https://cdn.livechatinc.com/direct-link/livechat-chat-with-us.png",
+    "ogTitle": "Search Again, No Results Found | Better Business Bureau",
+    "og:type": [
+      "website",
+      "website"
+    ],
+    "og:image": [
+      "https://m.bbb.org/terminuscontent/dist/img/fb-opengraph-bbblogo__300w_300h__300w.png",
+      "https://cdn.livechatinc.com/direct-link/livechat-chat-with-us.png"
+    ],
+    "twitter:card": "summary_large_image",
+    "ogImage": "https://m.bbb.org/terminuscontent/dist/img/fb-opengraph-bbblogo__300w_300h__300w.png",
+    "ogDescription": "Sorry we didn't find any businesses or charities that match your search. Please search again.",
+    "viewport": [
+      "width=device-width, initial-scale=1.0",
+      "width=device-width,initial-scale=1,shrink-to-fit=no"
+    ],
+    "og:description": [
+      "Sorry we didn't find any businesses or charities that match your search. Please search again.",
+      "Have any questions? Talk with us directly using LiveChat."
+    ],
+    "og:title": [
+      "Search Again, No Results Found | Better Business Bureau",
+      "Contact us via LiveChat!"
+    ],
+    "scrapeId": "30013bf4-f05e-4d48-bf68-5557f29ef2f9",
+    "sourceURL": "https://www.bbb.org/search?find_text=xyzzyplugh9876543210abcdef",
+    "url": "https://www.bbb.org/search?find_text=xyzzyplugh9876543210abcdef",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:29:42.436846"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:29:42.436895",
+  "url": "https://www.bbb.org/search?find_text=xyzzyplugh9876543210abcdef"
+}

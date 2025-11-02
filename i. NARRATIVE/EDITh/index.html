@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDITh - Minimalist Markdown Editor</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/z-index-hierarchy.css">
+    <link rel="stylesheet" href="assets/css/text-editor-tool.css">
+    <link rel="stylesheet" href="assets/css/apple-minimalist.css">
+</head>
+<body>
+    <button id="menu-button" class="menu-button" aria-label="Menu">≡</button>
+    
+    <!-- Narrative Search Bar (visible in narrative mode; hidden in full mode) -->
+    <div id="narrative-search-bar" class="narrative-search-bar" role="search">
+        <input id="narrative-search-input" type="text" placeholder="Search the web or type to ask (Enter)" autocomplete="off" aria-label="Narrative search">
+        <button id="narrative-search-btn" title="Search">Search</button>
+    </div>
+    
+    <!-- Minimalist Corner Menus -->
+    <div id="menu-top-left" class="corner-menu" style="display:none">
+        <button class="menu-item" data-action="load">Load Document</button>
+        <button class="menu-item" data-action="api-config">API Configuration</button>
+        <button class="menu-item" data-action="doc-settings">Document Settings</button>
+        <button class="menu-item" data-action="insert-footnote">Insert Footnote</button>
+    </div>
+    <div id="menu-top-right" class="corner-menu" style="display:none">
+        <button class="menu-item" data-action="blueprint-mode">Blueprint Mode</button>
+        <button class="menu-item" data-action="context-panel">Context Panel</button>
+        <button class="menu-item" data-action="ai-command">AI Command</button>
+    </div>
+    <div id="menu-bottom-left" class="corner-menu" style="display:none">
+        <button class="menu-item" data-action="extract-entities">Extract Entities</button>
+        <button class="menu-item" data-action="extract-facts">Extract Facts</button>
+        <button class="menu-item" data-action="extract-arguments">Extract Arguments</button>
+        <button class="menu-item" data-action="extract-all">Extract All</button>
+    </div>
+    <div id="menu-bottom-right" class="corner-menu" style="display:none">
+        <button class="menu-item" data-action="cutting-room">Cutting Room Floor</button>
+        <button class="menu-item" data-action="restore-from-cutting">Restore From Cutting Room</button>
+        <button class="menu-item" data-action="bulk-actions">Bulk Actions</button>
+        <button class="menu-item" data-action="keyboard-shortcuts">Keyboard Shortcuts</button>
+    </div>
+    <button id="new-file-button" class="new-file-button" aria-label="New File">+</button>
+    
+    <!-- Top Panel Toggle Button -->
+    <button id="top-panel-toggle" class="top-panel-toggle" title="Open Top Panel">▼</button>
+    
+    <div id="hover-panel" class="hover-panel">
+        <button id="undo-btn" class="panel-btn" aria-label="Undo" title="Undo">↺</button>
+        <button id="redo-btn" class="panel-btn" aria-label="Redo" title="Redo">↻</button>
+        <button id="version-history-button" class="panel-btn" aria-label="Version History" title="Version History">H</button>
+        <button id="add-to-context-btn" class="panel-btn" aria-label="Add to Context" title="Add to Context">C</button>
+        <button id="meta-mode-btn" class="panel-btn meta-btn" aria-label="Blueprint Mode" title="Blueprint Mode">B</button>
+        <button id="command-btn" class="panel-btn command-btn" aria-label="AI Command" title="AI Command">⌘</button>
+        <button id="fullscreen-toggle-btn" class="panel-btn" aria-label="Fullscreen" title="Toggle Fullscreen">□</button>
+    </div>
+    
+    <div id="menu-dropdown" class="menu-dropdown">
+        <button class="menu-item" data-action="load">
+            Load Document
+        </button>
+        <button class="menu-item" data-action="footnotes">
+            Footnote Index
+        </button>
+        <button class="menu-item" data-action="insert-footnote">
+            Insert Footnote (Cmd/Ctrl+;)
+        </button>
+        <button class="menu-item" data-action="renumber-footnotes">
+            Renumber Footnotes
+        </button>
+        <button class="menu-item" data-action="entities">
+            Entity Profiles
+        </button>
+        <button class="menu-item" data-action="cutting-room">
+            Cutting Room Floor
+        </button>
+        <button class="menu-item" data-action="restore-from-cutting">
+            Restore From Cutting Room (Ctrl+←)
+        </button>
+        <button class="menu-item" data-action="ai-command">
+            AI Command
+        </button>
+        <button class="menu-item" data-action="bulk-actions">
+            Bulk Actions
+        </button>
+        <button class="menu-item" data-action="quick-replace">
+            Quick Replace (Alt+Shift+R)
+        </button>
+        <button class="menu-item" data-action="quick-style">
+            Quick Style (Alt+Shift+S)
+        </button>
+        <button class="menu-item" data-action="context-panel">
+            Context Panel
+        </button>
+        <button class="menu-item" data-action="blueprint-mode">
+            Blueprint Mode
+        </button>
+        <button class="menu-item" data-action="predictive-toggle">
+            Toggle Predictive Text (Ctrl+Shift+K)
+        </button>
+        <button class="menu-item" data-action="text-editor-tool">
+            Text Editor Tool
+        </button>
+        <button class="menu-item" data-action="api-config">
+            API Configuration
+        </button>
+        <button class="menu-item" data-action="fact-verification">
+            Fact Verification
+        </button>
+        <button class="menu-item" data-action="argument-tracking">
+            Argument Tracking
+        </button>
+        <div class="menu-divider"></div>
+        <button class="menu-item" data-action="extract-facts">
+            Extract Facts (Ctrl+Shift+F)
+        </button>
+        <button class="menu-item" data-action="accept-suggestion">
+            Accept Suggestion (Tab)
+        </button>
+        <button class="menu-item" data-action="extract-entities">
+            Extract Entities (Ctrl+I)
+        </button>
+        <button class="menu-item" data-action="extract-arguments">
+            Extract Arguments (Ctrl+Shift+A)
+        </button>
+        <button class="menu-item" data-action="extract-all">
+            Extract All (Ctrl+Alt+I)
+        </button>
+        <div class="menu-divider"></div>
+        <!-- REMOVED: Insert Page Break button - Pagination system removed to prevent data loss -->
+        <button class="menu-item" data-action="keyboard-shortcuts">
+            Keyboard Shortcuts
+        </button>
+    </div>
+    
+    <!-- Info Panel (Left Side) with Tabs -->
+    <div id="info-panel" class="info-panel">
+        <div class="info-panel-header">
+            <div class="info-tabs">
+                <button class="info-tab active" data-tab="entities">Entities</button>
+                <button class="info-tab" data-tab="arguments">Arguments</button>
+                <button class="info-tab" data-tab="footnotes">Footnotes</button>
+            </div>
+            <button id="close-info-panel" class="close-panel-btn" aria-label="Close">×</button>
+        </div>
+        
+        <!-- Entities Tab Content -->
+        <div id="entities-tab" class="tab-content active">
+            <div class="entity-index-controls">
+                <input type="text" id="entity-index-search" class="entity-index-search" placeholder="Search entities...">
+            </div>
+            <div id="entity-index-list" class="entity-index-list">
+                <!-- Entity groups will be populated here -->
+            </div>
+        </div>
+        
+        <!-- Arguments Tab Content -->
+        <div id="arguments-tab" class="tab-content">
+            <div class="arguments-controls">
+                <input type="text" id="arguments-search" class="arguments-search" placeholder="Search arguments...">
+            </div>
+            <div id="arguments-list" class="arguments-list">
+                <!-- Arguments will be populated here -->
+            </div>
+        </div>
+        
+        <!-- Footnotes Tab Content -->
+        <div id="footnotes-tab" class="tab-content">
+            <div class="footnotes-controls">
+                <input type="text" id="footnotes-search" class="footnotes-search" placeholder="Search footnotes...">
+            </div>
+            <div id="footnotes-list" class="footnotes-list">
+                <!-- Footnotes will be populated here -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="editor-container" id="editor-container">
+        <input type="text" 
+               id="title-field" 
+               class="title-field" 
+               placeholder="Document Title" 
+               autocomplete="off">
+        
+        <div class="main-editor-wrapper">
+            <div id="editor" 
+                 class="editor-content" 
+                 contenteditable="true" 
+                 placeholder="Start writing..."></div>
+            
+            <!-- Selection Action Icons -->
+            <div id="selection-actions" class="selection-actions">
+                <button id="cut-to-floor-btn" class="selection-btn" title="Cut to Cutting Room Floor" aria-label="Cut">Cut</button>
+                <button id="open-cutting-room-btn" class="selection-btn" title="Open Cutting Room Floor" aria-label="Cutting Room">Floor</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="status" class="status-bar"></div>
+    
+    <button id="delete-button" class="delete-button" aria-label="Delete File" title="Delete">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+            <path d="M10 11v6"></path>
+            <path d="M14 11v6"></path>
+            <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
+        </svg>
+    </button>
+    
+    <div id="footnote-browser" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Footnote Index</h2>
+                <button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="footnote-search" placeholder="Search footnotes...">
+                <div class="footnote-list"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="document-loader" class="document-loader">
+        <input type="text" 
+               id="document-search" 
+               class="document-search" 
+               placeholder="Type to filter documents..." 
+               autocomplete="off">
+        <div id="document-list" class="document-list"></div>
+    </div>
+    
+    <div id="version-history-panel" class="version-history-panel">
+        <div class="panel-header">
+            <h3>Version History</h3>
+            <button id="close-version-panel" class="close-panel-btn">&times;</button>
+        </div>
+        <div class="panel-content">
+            <div id="version-timeline" class="version-timeline"></div>
+        </div>
+        <div class="panel-footer">
+            <button id="delete-selected-versions" class="delete-versions-btn" disabled>Delete Selected</button>
+        </div>
+    </div>
+    
+    <!-- Entity Profiles Browser (Keep for menu access) -->
+    <div id="entity-browser" class="modal">
+        <div class="modal-content entity-modal">
+            <div class="modal-header">
+                <h3>Entity Profiles</h3>
+                <button class="close-button" aria-label="Close">&times;</button>
+            </div>
+            <div class="entity-browser-content">
+                <div class="entity-search-section">
+                    <input type="text" class="entity-search" placeholder="Search entities...">
+                </div>
+                <div class="entity-panels">
+                    <div class="entity-list-panel">
+                        <h4>Entities Found</h4>
+                        <div class="entity-list"></div>
+                    </div>
+                    <div class="entity-detail-panel">
+                        <div class="entity-detail-header">
+                            <h4 class="selected-entity-name">Select an entity</h4>
+                            <span class="entity-type-badge"></span>
+                        </div>
+                        <div class="entity-snippets">
+                            <h5>Mentions in Document</h5>
+                            <div class="snippets-list"></div>
+                        </div>
+                        <div class="entity-commands">
+                            <h5>Bulk Actions</h5>
+                            <input type="text" class="entity-command-input" placeholder="e.g., 'rename to John' or 'make his hair grey'">
+                            <button class="execute-entity-command">Execute</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Entity Profile Mode (Full View) -->
+    <div id="entity-profile-view" class="entity-profile-view">
+        <div class="entity-profile-header">
+            <button id="back-to-editor" class="back-to-editor-btn" aria-label="Back to Editor">← Back</button>
+            <h2 class="entity-profile-title">
+                <span class="profile-entity-name"></span>
+                <span class="profile-entity-type"></span>
+            </h2>
+            <div class="entity-profile-stats">
+                <span class="mention-count"></span> mentions
+            </div>
+        </div>
+        <div class="entity-profile-content">
+            <div id="entity-snippets-container" class="entity-snippets-container">
+                <!-- Interactive snippets will be populated here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cutting Room Floor Panel -->
+    <div id="cutting-room-panel" class="cutting-room-panel">
+        <div class="cutting-room-header">
+            <h3>Cutting Room Floor</h3>
+            <button id="close-cutting-room" class="close-cutting-btn">×</button>
+        </div>
+        <div class="cutting-room-hint">
+            Select text and press Ctrl/Cmd + ← to move back to main editor
+        </div>
+        <div class="cutting-room-toolbar">
+            <button id="move-back-to-editor" class="move-back-btn" title="Restore selected text to original position">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5"></path>
+                    <path d="M12 5l-7 7 7 7"></path>
+                </svg>
+                <span>Restore</span>
+            </button>
+        </div>
+        <div id="cutting-room-content" class="cutting-room-content" contenteditable="true">
+            <!-- Cut content appears here -->
+        </div>
+    </div>
+    
+    <!-- AI Chat Panel (supports search: commands) -->
+    <div id="chat-panel" class="command-chatbox hidden">
+        <div class="chatbox-header">
+            <span class="chatbox-title">AI Assistant</span>
+            <div class="chatbox-controls">
+                <button id="accept-all-changes" class="accept-all-btn" disabled>Accept All</button>
+                <button id="close-chat" class="close-chatbox-btn">&times;</button>
+            </div>
+        </div>
+        <div class="chatbox-messages" id="chat-messages"></div>
+        <div class="chatbox-input-area">
+            <button id="context-toggle" class="context-toggle-btn" title="Toggle Context reference">C</button>
+            <input type="text" id="chat-input" placeholder="Type search: to search web, or ask questions..." autocomplete="off">
+            <button id="custom-cmd-btn" class="custom-cmd-btn" title="Custom commands">Custom</button>
+            <button id="send-chat" class="send-btn">Send</button>
+        </div>
+    </div>
+    
+    <!-- Chat Toggle Button -->
+    <button id="toggle-chat" class="toggle-chat-btn" title="Open Assistant" aria-label="Toggle Chat">Assistant</button>
+    
+    <!-- API Configuration Modal -->
+    <div id="api-config-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>API Configuration</h3>
+                <button id="close-api-config" class="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Configure your API keys for web search functionality:</p>
+                
+                <div class="config-field">
+                    <label for="firecrawl-api-key">Firecrawl API Key:</label>
+                    <input type="password" id="firecrawl-api-key" placeholder="fc-..." autocomplete="off">
+                    <small>For web content extraction. Get yours at <a href="https://firecrawl.dev" target="_blank" rel="noopener">firecrawl.dev</a></small>
+                </div>
+                
+                <div class="config-field">
+                    <label for="exa-api-key">Exa API Key:</label>
+                    <input type="password" id="exa-api-key" placeholder="..." autocomplete="off">
+                    <small>For neural search. Get yours at <a href="https://exa.ai" target="_blank" rel="noopener">exa.ai</a></small>
+                </div>
+                
+                <div class="config-status">
+                    <p id="api-status">Status: No API keys configured</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-api-config" class="save-config-btn">Save Configuration</button>
+                <button id="test-api-config" class="test-config-btn">Test APIs</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- File Popup Overlay -->
+    <div id="file-popup-overlay" class="file-popup-overlay">
+        <div class="file-popup">
+            <div class="file-popup-header">
+                <h3 id="popup-file-title">File Title</h3>
+                <button id="close-file-popup" class="close-popup-btn">×</button>
+            </div>
+            <div class="file-popup-content">
+                <textarea id="popup-file-editor" class="popup-file-editor" aria-label="Popup file editor" placeholder="Edit file contents here..."></textarea>
+            </div>
+            <div class="file-popup-footer">
+                <button id="save-file-popup" class="save-popup-btn">Save Changes</button>
+                <span id="popup-status" class="popup-status"></span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Context Panel Tab -->
+    <div id="context-panel-tab" class="context-panel-tab" title="Open Context Panel (Ctrl/Cmd+K)">
+        <span class="tab-icon">C</span>
+        <span class="tab-text">Context</span>
+    </div>
+    
+    <!-- Context Panel for Gemini Gap Filling -->
+    <div id="context-panel" class="context-panel">
+        <div class="context-panel-header">
+            <h3>Context for Gap Filling</h3>
+            <div class="context-panel-controls">
+                <button id="pin-context-panel" class="pin-context-btn" title="Pin panel open">Pin</button>
+                <button id="close-context-panel" class="close-context-btn">×</button>
+            </div>
+        </div>
+        <div class="context-panel-search">
+            <input type="text" 
+                   id="context-search-input" 
+                   class="context-search-input" 
+                   placeholder="Search Cloud Vault by title or #hashtag..." 
+                   autocomplete="off">
+            <div id="context-search-results" class="context-search-results"></div>
+        </div>
+        <div class="context-panel-selected">
+            <h4>Context Files 
+                <span id="context-token-count" class="token-count">(0 tokens)</span>
+                <span id="ai-selector" class="ai-selector">AI: <span class="ai-type">GPT-4.1</span></span>
+            </h4>
+            <div id="selected-context-list" class="selected-context-list">
+                <!-- Selected files will appear here as snippets -->
+                <div id="drop-zone" class="drop-zone">
+                    <div class="drop-zone-content">
+                        <span class="drop-icon">•</span>
+                        <span class="drop-text">Drop files here or use search above</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="context-panel-manual">
+            <h4>Additional Context</h4>
+            <textarea id="manual-context-input" 
+                      class="manual-context-input" 
+                      placeholder="Paste or type additional context here..."
+                      rows="6"></textarea>
+        </div>
+        <div class="context-panel-footer">
+            <button id="clear-context-btn" class="clear-context-btn">Clear All</button>
+            <span class="context-status">Context will be used for [?] gap filling</span>
+        </div>
+    </div>
+    
+    <!-- Smart Note Panel -->
+    <div id="smart-note-panel" class="smart-note-panel">
+        <div class="smart-note-header">
+            <h3>Smart Note</h3>
+            <div class="smart-note-controls">
+                <button id="smart-note-settings" class="smart-note-settings-btn" title="Settings">Settings</button>
+                <button id="close-smart-note-panel" class="close-smart-note-btn">×</button>
+            </div>
+        </div>
+        
+        <div class="smart-note-status">
+            <div class="processing-indicator hidden" id="smart-note-processing">
+                <span class="processing-spinner">•</span>
+                <span class="processing-text">Processing with Claude...</span>
+            </div>
+            <div class="note-stats" id="smart-note-stats">
+                <span class="stats-item">Notes: <span id="total-notes-count">0</span></span>
+                <span class="stats-item">Topics: <span id="total-topics-count">0</span></span>
+                <span class="stats-item">Last processed: <span id="last-processed">Never</span></span>
+            </div>
+        </div>
+        
+        <div class="smart-note-input-section">
+            <div class="input-controls">
+                <button id="process-now-btn" class="process-btn" title="Process current text">Process Now</button>
+                <button id="auto-process-toggle" class="auto-process-btn" title="Toggle auto-processing">Auto: OFF</button>
+            </div>
+            <textarea id="smart-note-input" 
+                      class="smart-note-textarea" 
+                      placeholder="Start writing your stream of consciousness here... Tell me about your day, thoughts, ideas, people you met, anything on your mind. I'll automatically organize it into topics and help you find it later."
+                      rows="15"></textarea>
+            <div class="input-stats">
+                <span id="char-count">0 characters</span>
+                <span id="word-count">0 words</span>
+                <span id="auto-save-status">Auto-saved</span>
+            </div>
+        </div>
+        
+        <div class="smart-note-query-section">
+            <h4>Find Your Notes</h4>
+            <div class="query-controls">
+                <input type="text" 
+                       id="smart-note-query" 
+                       class="query-input" 
+                       placeholder="Search by person, topic, or keyword (e.g., 'John Smith', 'meeting notes', 'project ideas')">
+                <button id="execute-query-btn" class="query-btn">Search</button>
+            </div>
+            <div id="query-results" class="query-results">
+                <!-- Query results will appear here -->
+                <div class="query-placeholder">
+                    <span class="placeholder-icon">•</span>
+                    <span class="placeholder-text">Ask me anything like "everything about John" or "my thoughts on the project"</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="smart-note-organization">
+            <h4>Your Organized Notes</h4>
+            <div class="organization-tabs">
+                <button class="org-tab active" data-view="topics">Topics</button>
+                <button class="org-tab" data-view="people">People</button>
+                <button class="org-tab" data-view="timeline">Timeline</button>
+                <button class="org-tab" data-view="documents">Documents</button>
+            </div>
+            <div id="organization-content" class="organization-content">
+                <!-- Organized content will appear here -->
+                <div class="organization-placeholder">
+                    <span class="placeholder-icon">•</span>
+                    <span class="placeholder-text">Your organized notes will appear here after processing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="archive/gap-filler-variants/gap-filler-enhanced.js"></script>
+    <!-- Use optimized module loader for better performance -->
+    <script src="debug.js"></script>
+    <script src="assets/js/modules/FootnoteRegistry.js"></script>
+    <script src="dist/bundle.js"></script>
+    <script src="assets/js/command_palette.js"></script>
+    <script src="assets/js/narrative_mode.js"></script>
+    <script src="assets/js/ui_enhancements.js"></script>
+    <!-- Fallback to original if needed: <script src="app.js"></script> -->
+</body>
+</html>

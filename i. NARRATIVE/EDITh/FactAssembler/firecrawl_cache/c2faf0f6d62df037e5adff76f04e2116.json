@@ -1,0 +1,28 @@
+{
+  "markdown": "[Skip to main content](https://pacer.uscourts.gov/search?query=xyzzyplugh9876543210abcdef#main-content-jump)\n\n# Page Not Found\n\nWe can’t find the page you’re looking for. Please use our search or browse our navigation menu.\n\nSearch pacer.uscourts.gov. To search for federal court records, go to [\"Find a Case.\"](https://pacer.uscourts.gov/find-a-case)\n\nSearch\n\nStill can't find what you're looking for? Contact the [PACER Service Center](https://pacer.uscourts.gov/node/302).",
+  "metadata": {
+    "favicon": "https://pacer.uscourts.gov/themes/pacer/assets/img/favicons/favicon-32x32.png",
+    "viewport": "width=device-width, initial-scale=1.0",
+    "msapplication-config": "/themes/pacer/assets/img/favicons/browserconfig.xml",
+    "Generator": "Drupal 10 (https://www.drupal.org)",
+    "MobileOptimized": "width",
+    "HandheldFriendly": "true",
+    "msapplication-TileColor": "#2b5797",
+    "theme-color": "#ffffff",
+    "language": "en",
+    "format-detection": "telephone=no",
+    "title": "Page Not Found | PACER: Federal Court Records",
+    "scrapeId": "5ebc76c2-5440-4965-90f0-001188820205",
+    "sourceURL": "https://pacer.uscourts.gov/search?query=xyzzyplugh9876543210abcdef",
+    "url": "https://pacer.uscourts.gov/search?query=xyzzyplugh9876543210abcdef",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:09:09.077079"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:09:09.077138",
+  "url": "https://pacer.uscourts.gov/search?query=xyzzyplugh9876543210abcdef"
+}

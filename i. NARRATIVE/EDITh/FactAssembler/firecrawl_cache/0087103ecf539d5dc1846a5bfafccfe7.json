@@ -1,0 +1,18 @@
+{
+  "markdown": "## 404 - File or directory not found.\n\n### The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+  "metadata": {
+    "title": "404 - File or directory not found.",
+    "scrapeId": "489fd9f7-8ef1-4151-a046-a9dcb42050d8",
+    "sourceURL": "http://encore.palatinelibrary.org/iii/encore/search?target=qwertasdfzxcv123456789xyz",
+    "url": "http://encore.palatinelibrary.org/iii/encore/search?target=qwertasdfzxcv123456789xyz",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:21:45.582804"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:21:45.582852",
+  "url": "http://encore.palatinelibrary.org/iii/encore/search?target=qwertasdfzxcv123456789xyz"
+}

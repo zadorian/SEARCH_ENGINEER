@@ -1,0 +1,28 @@
+{
+  "markdown": "[Skip to main content](https://pacer.uscourts.gov/search?query=international#main-content-jump)\n\n# Page Not Found\n\nWe can’t find the page you’re looking for. Please use our search or browse our navigation menu.\n\nSearch pacer.uscourts.gov. To search for federal court records, go to [\"Find a Case.\"](https://pacer.uscourts.gov/find-a-case)\n\nSearch\n\nStill can't find what you're looking for? Contact the [PACER Service Center](https://pacer.uscourts.gov/node/302).",
+  "metadata": {
+    "format-detection": "telephone=no",
+    "favicon": "https://pacer.uscourts.gov/themes/pacer/assets/img/favicons/favicon-32x32.png",
+    "title": "Page Not Found | PACER: Federal Court Records",
+    "MobileOptimized": "width",
+    "HandheldFriendly": "true",
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=1.0",
+    "msapplication-config": "/themes/pacer/assets/img/favicons/browserconfig.xml",
+    "msapplication-TileColor": "#2b5797",
+    "Generator": "Drupal 10 (https://www.drupal.org)",
+    "theme-color": "#ffffff",
+    "scrapeId": "3c364b90-b204-4b94-8652-6e56cd458581",
+    "sourceURL": "https://pacer.uscourts.gov/search?query=international",
+    "url": "https://pacer.uscourts.gov/search?query=international",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:09:47.950742"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:09:47.950850",
+  "url": "https://pacer.uscourts.gov/search?query=international"
+}

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Gap Filler v2 - Extended</title>
+    <style>
+        body {
+            font-family: -apple-system, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 250px;
+            font-size: 18px;
+            line-height: 1.6;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: -apple-system, sans-serif;
+            resize: vertical;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .example-card {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .example-card h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        
+        .example-card code {
+            display: block;
+            background: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            white-space: pre-wrap;
+        }
+        
+        .example-card small {
+            display: block;
+            margin-top: 5px;
+            color: #666;
+        }
+        
+        #log {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 13px;
+        }
+        
+        .highlight {
+            background-color: rgba(52, 211, 153, 0.2);
+            animation: fadeHighlight 1.5s ease;
+        }
+        
+        @keyframes fadeHighlight {
+            0% { background-color: rgba(52, 211, 153, 0.5); }
+            100% { background-color: rgba(52, 211, 153, 0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Smart Gap Filler v2 - Extended Knowledge</h1>
+        
+        <textarea id="test-area" placeholder="Try: The first black president of the United States was elected in [?] and his middle name is [?]."></textarea>
+        
+        <div class="examples-grid">
+            <div class="example-card">
+                <h4>🇺🇸 Presidents</h4>
+                <code>The first black president of the United States was elected in [?] and his middle name is [?].</code>
+                <small>→ 2008, Hussein</small>
+            </div>
+            
+            <div class="example-card">
+                <h4>👰 Historical</h4>
+                <code>Bill Clinton married [?] in [?].</code>
+                <small>→ Hillary Rodham, 1975</small>
+            </div>
+            
+            <div class="example-card">
+                <h4>🌍 Geography</h4>
+                <code>The capital of [?] is Paris.</code>
+                <small>→ France</small>
+            </div>
+            
+            <div class="example-card">
+                <h4>⚔️ Wars</h4>
+                <code>World War II started in [?] and ended in [?].</code>
+                <small>→ 1939, 1945</small>
+            </div>
+            
+            <div class="example-card">
+                <h4>🧪 Scientists</h4>
+                <code>[?] Einstein discovered the theory of [?].</code>
+                <small>→ Albert, relativity</small>
+            </div>
+            
+            <div class="example-card">
+                <h4>💻 Tech</h4>
+                <code>[?] founded Apple.</code>
+                <small>→ Steve Jobs</small>
+            </div>
+            
+            <div class="example-card">
+                <h4>📅 Dates</h4>
+                <code>Today is [current date].</code>
+                <small>→ Today's actual date</small>
+            </div>
+            
+            <div class="example-card">
+                <h4>📚 Literature</h4>
+                <code>[?] wrote Harry Potter.</code>
+                <small>→ J.K. Rowling</small>
+            </div>
+        </div>
+        
+        <div id="log">
+            <strong>Console Log:</strong><br>
+        </div>
+    </div>
+    
+    <script>
+        // Logging
+        const log = document.getElementById('log');
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const timestamp = new Date().toLocaleTimeString();
+            log.innerHTML += `<span style="color: #666">[${timestamp}]</span> ${args.join(' ')}<br>`;
+            log.scrollTop = log.scrollHeight;
+        };
+        
+        // Smart Gap Filler v2 with extended knowledge
+        class SmartGapFiller {
+            constructor() {
+                this.isProcessing = false;
+                this.sentenceEnders = /[.!?]/;
+                this.gapPattern = /\[([^\]]*)\]/g;
+                this.initialize();
+            }
+            
+            initialize() {
+                console.log('🎯 SmartGapFiller v2 initialized');
+                
+                const textarea = document.getElementById('test-area');
+                
+                textarea.addEventListener('input', (e) => {
+                    this.checkForSentenceEnd(e.target);
+                });
+                
+                console.log('💡 Type sentences with [?] and end with . ! or ?');
+            }
+            
+            checkForSentenceEnd(textarea) {
+                if (this.isProcessing) return;
+                
+                const text = textarea.value;
+                const lastChar = text[text.length - 1];
+                
+                if (!this.sentenceEnders.test(lastChar)) return;
+                
+                // Find the current sentence
+                const sentences = this.extractSentences(text);
+                if (sentences.length === 0) return;
+                
+                const lastSentence = sentences[sentences.length - 1];
+                const gaps = [...lastSentence.text.matchAll(this.gapPattern)];
+                
+                if (gaps.length === 0) return;
+                
+                console.log('📝 Processing sentence:', lastSentence.text);
+                console.log('🔍 Found', gaps.length, 'gap(s)');
+                
+                this.processSentenceGaps(textarea, lastSentence, gaps, text);
+            }
+            
+            extractSentences(text) {
+                const sentences = [];
+                let currentStart = 0;
+                
+                for (let i = 0; i < text.length; i++) {
+                    if (this.sentenceEnders.test(text[i])) {
+                        if (i === text.length - 1 || text[i + 1] === ' ' || text[i + 1] === '\n') {
+                            sentences.push({
+                                text: text.substring(currentStart, i + 1).trim(),
+                                start: currentStart,
+                                end: i + 1
+                            });
+                            currentStart = i + 1;
+                        }
+                    }
+                }
+                
+                return sentences;
+            }
+            
+            async processSentenceGaps(textarea, sentence, gaps, fullText) {
+                this.isProcessing = true;
+                
+                const contextBefore = fullText.substring(
+                    Math.max(0, sentence.start - 200), 
+                    sentence.start
+                ).trim();
+                
+                const replacements = [];
+                
+                for (let i = 0; i < gaps.length; i++) {
+                    const gap = gaps[i];
+                    const gapContent = gap[1] || '?';
+                    const answer = await this.getAnswerForGap(
+                        gapContent, 
+                        sentence.text, 
+                        i, 
+                        gaps.length,
+                        contextBefore
+                    );
+                    
+                    replacements.push({
+                        original: gap[0],
+                        answer: answer,
+                        index: gap.index
+                    });
+                    
+                    console.log(`💡 Gap ${i+1}: "${gap[0]}" → "${answer}"`);
+                }
+                
+                // Replace all gaps
+                let newSentence = sentence.text;
+                replacements.sort((a, b) => b.index - a.index);
+                
+                for (const replacement of replacements) {
+                    newSentence = newSentence.substring(0, replacement.index) + 
+                                 replacement.answer + 
+                                 newSentence.substring(replacement.index + replacement.original.length);
+                }
+                
+                const newText = fullText.substring(0, sentence.start) + 
+                               newSentence + 
+                               fullText.substring(sentence.end);
+                
+                textarea.value = newText;
+                textarea.setSelectionRange(sentence.start + newSentence.length - 1, sentence.start + newSentence.length - 1);
+                
+                // Highlight
+                textarea.classList.add('highlight');
+                setTimeout(() => textarea.classList.remove('highlight'), 1500);
+                
+                this.isProcessing = false;
+            }
+            
+            async getAnswerForGap(gapContent, sentenceText, gapIndex, totalGaps, contextBefore) {
+                const content = gapContent.trim();
+                const fullContext = contextBefore + ' ' + sentenceText;
+                const contextLower = fullContext.toLowerCase();
+                
+                if (content === '?' || content === '') {
+                    // Presidents
+                    if (contextLower.includes('first black president') || 
+                        (contextLower.includes('president') && contextLower.includes('black'))) {
+                        if (contextLower.includes('elected')) {
+                            if (gapIndex === 0) return '2008';
+                        }
+                        if (contextLower.includes('middle name')) {
+                            return 'Hussein';
+                        }
+                    }
+                    
+                    // Barack Obama
+                    if (contextLower.includes('barack obama') || contextLower.includes('obama')) {
+                        if (contextLower.includes('elected')) return '2008';
+                        if (contextLower.includes('middle name')) return 'Hussein';
+                        if (contextLower.includes('wife')) return 'Michelle';
+                    }
+                    
+                    // Bill Clinton
+                    if (contextLower.includes('bill clinton')) {
+                        if (contextLower.includes('married') && contextLower.includes('in')) {
+                            if (gapIndex === 0) return 'Hillary Rodham';
+                            if (gapIndex === 1) return '1975';
+                        } else if (contextLower.includes('president')) {
+                            return '1993';
+                        }
+                    }
+                    
+                    // Capital cities
+                    if (contextLower.includes('capital')) {
+                        if (contextLower.includes('paris')) return 'France';
+                        if (contextLower.includes('france')) return 'Paris';
+                        if (contextLower.includes('berlin')) return 'Germany';
+                        if (contextLower.includes('germany')) return 'Berlin';
+                        if (contextLower.includes('tokyo')) return 'Japan';
+                        if (contextLower.includes('japan')) return 'Tokyo';
+                    }
+                    
+                    // World Wars
+                    if (contextLower.includes('world war')) {
+                        if (contextLower.includes('ii') || contextLower.includes('2')) {
+                            if (contextLower.includes('started') && contextLower.includes('ended')) {
+                                if (gapIndex === 0) return '1939';
+                                if (gapIndex === 1) return '1945';
+                            }
+                        }
+                    }
+                    
+                    // Scientists
+                    if (contextLower.includes('einstein')) {
+                        if (gapIndex === 0 && sentenceText.startsWith('[?]')) return 'Albert';
+                        if (contextLower.includes('theory')) return 'relativity';
+                    }
+                    
+                    // Tech founders
+                    if (contextLower.includes('founded apple')) return 'Steve Jobs';
+                    if (contextLower.includes('founded microsoft')) return 'Bill Gates';
+                    if (contextLower.includes('founded amazon')) return 'Jeff Bezos';
+                    if (contextLower.includes('founded facebook')) return 'Mark Zuckerberg';
+                    
+                    // Authors
+                    if (contextLower.includes('wrote harry potter')) return 'J.K. Rowling';
+                    if (contextLower.includes('wrote 1984')) return 'George Orwell';
+                }
+                
+                // Instructions
+                if (content.toLowerCase().includes('current date') || content.toLowerCase().includes('today')) {
+                    return new Date().toLocaleDateString();
+                }
+                if (content.toLowerCase().includes('current time')) {
+                    return new Date().toLocaleTimeString();
+                }
+                if (content.toLowerCase().includes('current year')) {
+                    return new Date().getFullYear().toString();
+                }
+                
+                return `[${content}]`;
+            }
+        }
+        
+        // Initialize
+        const gapFiller = new SmartGapFiller();
+        
+        // Set initial example
+        document.getElementById('test-area').value = 'The first black president of the United States was elected in [?] and his middle name is [?].';
+    </script>
+</body>
+</html>

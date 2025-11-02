@@ -1,0 +1,19 @@
+{
+  "markdown": "<!DOCTYPE html><html lang=\"en\" class=\"ui-mobile\">\n<body class=\"ui-mobile-viewport ui-overlay-b\">\n    <div id=\"mediaquery\">\n        <!-- do not delete, used for js media queries-->\n    </div>\n    <div data-role=\"page\" id=\"rcwPage\" data-theme=\"b\" data-url=\"rcwPage\" tabindex=\"0\" class=\"ui-page ui-page-theme-b ui-page-active\" style=\"min-height: 100000px;\">\n        <div id=\"wsl-header\">\n    <div class=\"header-container\">\n        \n    </div>\n    \n</div>\n\n        <div class=\"ui-content\" role=\"main\">\n            <div class=\"container-fluid\" id=\"divContent\">\n                <div class=\"row clearfix hidden-print\">\n                    <div id=\"divPrint\" class=\"col-csm-7 col-csm-push-5 text-right\">\n                        <a id=\"aPrint\" class=\"ui-link\">Print</a>\n                    </div>\n                    <div id=\"divBreadCrumb\" class=\"col-csm-5 col-csm-pull-7\">\n                        <!-- phBreadcrumb start -->\n                        <span class=\"breadCrumbClass\"><a href=\"https://app.leg.wa.gov/RCW/default.aspx\" class=\"ui-link\">RCWs</a> &gt; <a href=\"https://app.leg.wa.gov/RCW/default.aspx?cite=xyzzyplugh9876543210abcdef\" class=\"ui-link\">Title xyzzyplugh9876543210abcdef</a></span><br><br>\n                        <!-- phBreadcrumb end -->\n                    </div>\n                </div>\n                \n    \n\n    <div class=\"row\">\n        <div class=\"col-csm-6 col-csm-push-6 text-right\">             \n            \n        </div>\n        <div class=\"col-csm-6 col-csm-pull-6\">\n            <h2>The Citation you requested cannot be found. Please verify that you have a valid RCW citation and try again or look in the RCW Dispositions for RCW sections that have been repealed, expired, decodified, or recodified.</h2>\n        </div>\n    </div>\n\n    <div class=\"row clearfix\">\n        <div class=\"col-csm-12\">\n            \n        </div>\n    </div>\n\n    \n    <div id=\"ContentPlaceHolder1_pnlListing\">\n\t\n        <div id=\"divChapterDispoLinks\">\n        \n        \n        </div>\n        \n        \n        \n        \n        \n    \n</div>\n    \n    <div id=\"ContentPlaceHolder1_pnlExpanded\">\n\t\n        \n    \n</div>\n\n            </div>\n        </div>\n        <div class=\"block-dark-green\">\n    \n</div>\n<div class=\"block-light-green\">\n    \n</div>\n    </div>\n\n<div class=\"ui-loader ui-corner-all ui-body-a ui-loader-default\" style=\"top: 479px;\"><span class=\"ui-icon-loading\"></span><h1>loading</h1></div>\n</body></html>",
+  "metadata": {
+    "title": "",
+    "favicon": "https://app.leg.wa.gov/RCW/favicon.ico",
+    "viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0",
+    "language": "en",
+    "scrapeId": "62b02333-f33b-4cf4-af22-b5194bebc584",
+    "sourceURL": "http://apps.leg.wa.gov/RCW/default.aspx?cite=xyzzyplugh9876543210abcdef",
+    "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=xyzzyplugh9876543210abcdef",
+    "statusCode": 200,
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:24:31.915098",
+  "url": "http://apps.leg.wa.gov/RCW/default.aspx?cite=xyzzyplugh9876543210abcdef"
+}

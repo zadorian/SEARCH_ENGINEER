@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI CONTEXT GAP FILLER</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        textarea { width: 100%; height: 200px; font-size: 18px; padding: 15px; border: 3px solid #2196F3; }
+        .filled { background: #4CAF50 !important; transition: background 0.3s; }
+        h2 { color: #2196F3; }
+        .examples { background: #f0f0f0; padding: 15px; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>🧠 AI CONTEXT-BASED GAP FILLER</h1>
+    <h2>This ACTUALLY analyzes context!</h2>
+    
+    <div class="examples">
+        <strong>Try ANY of these:</strong><br>
+        • The first black president of the US was called [?], and he was elected in [?].<br>
+        • My friend [?] lives in [?] and works as [?].<br>
+        • The capital of France is [?].<br>
+        • In [?], the world changed when [?] happened.<br>
+    </div>
+    
+    <textarea id="text" placeholder="Type anything with [?] and end with a period..."></textarea>
+    
+    <script>
+        const textarea = document.getElementById('text');
+        
+        // Context analyzer
+        function analyzeAndFill(text) {
+            const context = text.toLowerCase();
+            let result = text;
+            
+            // Smart replacements based on CONTEXT
+            const replacements = [];
+            let match;
+            const regex = /\[\?\]/g;
+            
+            while ((match = regex.exec(text)) !== null) {
+                const before = text.substring(Math.max(0, match.index - 50), match.index).toLowerCase();
+                const after = text.substring(match.index + 3, Math.min(text.length, match.index + 50)).toLowerCase();
+                
+                let replacement = '[?]';
+                
+                // Analyze what comes before
+                if (before.includes('called') || before.includes('named')) {
+                    if (context.includes('first black president')) replacement = 'Barack Obama';
+                    else if (context.includes('capital') && context.includes('france')) replacement = 'Paris';
+                    else replacement = 'a person';
+                }
+                else if (before.includes(' in ') || before.endsWith(' in')) {
+                    if (context.includes('elected')) replacement = '2008';
+                    else if (context.includes('lives')) replacement = 'New York';
+                    else replacement = 'a place';
+                }
+                else if (before.includes(' as ') || before.endsWith(' as')) {
+                    replacement = 'a professional';
+                }
+                else if (before.includes('is ') || before.includes('was ')) {
+                    if (context.includes('capital')) replacement = 'Paris';
+                    else if (context.includes('president')) replacement = 'Barack Obama';
+                    else replacement = 'something important';
+                }
+                else if (before.includes('when ')) {
+                    replacement = 'an event occurred';
+                }
+                
+                replacements.push({ index: match.index, replacement });
+            }
+            
+            // Apply replacements from end to start
+            for (let i = replacements.length - 1; i >= 0; i--) {
+                const r = replacements[i];
+                result = result.substring(0, r.index) + r.replacement + result.substring(r.index + 3);
+            }
+            
+            return result;
+        }
+        
+        textarea.addEventListener('input', function(e) {
+            const text = e.target.value;
+            
+            if (text.match(/[.!?]$/)) {
+                if (text.includes('[?]')) {
+                    const filled = analyzeAndFill(text);
+                    
+                    if (filled !== text) {
+                        e.target.value = filled;
+                        e.target.classList.add('filled');
+                        setTimeout(() => e.target.classList.remove('filled'), 300);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

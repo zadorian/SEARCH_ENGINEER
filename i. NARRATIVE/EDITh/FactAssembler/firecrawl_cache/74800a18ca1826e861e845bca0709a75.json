@@ -1,0 +1,20 @@
+{
+  "markdown": "# [Arch Linux User Repository](https://aur.archlinux.org/ \"Return to the main page\")\n\n- [Home](https://www.archlinux.org/ \"Arch news, packages, projects and more\")\n- [Packages](https://www.archlinux.org/packages/ \"Arch Package Database\")\n- [Forums](https://bbs.archlinux.org/ \"Community forums\")\n- [Wiki](https://wiki.archlinux.org/ \"Community documentation\")\n- [GitLab](https://gitlab.archlinux.org/archlinux \"GitLab\")\n- [Security](https://security.archlinux.org/ \"Arch Linux Security Tracker\")\n- [AUR](https://aur.archlinux.org/ \"Arch Linux User Repository\")\n- [Download](https://www.archlinux.org/download/ \"Get Arch Linux\")\n\nالعربية\n\nAsturianu\n\nCatalà\n\nČeský\n\nDansk\n\nDeutsch\n\nΕλληνικά\n\nEnglish\n\nEspañol\n\nEspañol (Latinoamérica)\n\nSuomi\n\nFrançais\n\nעברית\n\nHrvatski\n\nMagyar\n\nItaliano\n\n日本語\n\nNorsk\n\nNederlands\n\nPolski\n\nPortuguês (Brasil)\n\nPortuguês (Portugal)\n\nRomână\n\nРусский\n\nSlovenčina\n\nSrpski\n\nTürkçe\n\nУкраїнська\n\n简体中文\n\n正體中文\n\n\n- [AUR Home](https://aur.archlinux.org/)\n- [Packages](https://aur.archlinux.org/packages)\n- [Register](https://aur.archlinux.org/register)\n- [Login](https://aur.archlinux.org/login?next=/packages/xyzzyplugh9876543210abcdef)\n\n## 404 - Page Not Found\n\nSorry, the page you've requested does not exist.",
+  "metadata": {
+    "favicon": "https://aur.archlinux.org/static/images/favicon.ico",
+    "language": "en",
+    "title": "AUR (en) - Not Found",
+    "scrapeId": "854780e7-ee9d-4f5b-8671-f4d36132b296",
+    "sourceURL": "https://aur.archlinux.org/packages/xyzzyplugh9876543210abcdef",
+    "url": "https://aur.archlinux.org/packages/xyzzyplugh9876543210abcdef",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:42:51.274220"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:42:51.274304",
+  "url": "https://aur.archlinux.org/packages/xyzzyplugh9876543210abcdef"
+}

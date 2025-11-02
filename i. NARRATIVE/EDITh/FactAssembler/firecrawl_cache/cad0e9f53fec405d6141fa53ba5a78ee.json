@@ -1,0 +1,17 @@
+{
+  "markdown": "# 403 Forbidden",
+  "metadata": {
+    "title": "403 Forbidden",
+    "scrapeId": "9c918c63-b921-4402-854b-d05a54b9969c",
+    "sourceURL": "http://portal.stf.jus.br/processos/listarProcessos.asp?classe=&numeroProcesso=bank",
+    "url": "http://portal.stf.jus.br/processos/listarProcessos.asp?classe=&numeroProcesso=bank",
+    "statusCode": 403,
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:26:13.782654"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:26:13.783227",
+  "url": "http://portal.stf.jus.br/processos/listarProcessos.asp?classe=&numeroProcesso=bank"
+}

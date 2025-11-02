@@ -1,0 +1,21 @@
+{
+  "markdown": "Please enable cookies.\n\n# Sorry, you have been blocked\n\n## You are unable to access cityarts.info\n\n## Why have I been blocked?\n\nThis website is using a security service to protect itself from online attacks. The action you just performed triggered the security solution. There are several actions that could trigger this block including submitting a certain word or phrase, a SQL command or malformed data.\n\n## What can I do to resolve this?\n\nYou can email the site owner to let them know you were blocked. Please include what you were doing when this page came up and the Cloudflare Ray ID found at the bottom of this page.\n\nCloudflare Ray ID: **96dc403ffc4a083d**•\nYour IP:\nClick to reveal195.64.115.57•Performance & security by [Cloudflare](https://www.cloudflare.com/5xx-error-landing)",
+  "metadata": {
+    "viewport": "width=device-width,initial-scale=1",
+    "language": "en-US",
+    "robots": "noindex, nofollow",
+    "title": "Attention Required! | Cloudflare",
+    "scrapeId": "22b7e845-621a-429a-ab8c-7bb00f6f6406",
+    "sourceURL": "http://www.seatalk.info/cgi-bin/nautical-marine-sailing-dictionary/db.cgi?db=db&view_records=1&uid=default&Term=xyzzyplugh9876543210abcdef",
+    "url": "https://cityarts.info/cgi-bin/nautical-marine-sailing-dictionary/db.cgi",
+    "statusCode": 403,
+    "error": "Forbidden",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:38:07.983282"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:38:07.983995",
+  "url": "http://www.seatalk.info/cgi-bin/nautical-marine-sailing-dictionary/db.cgi?db=db&view_records=1&uid=default&Term=xyzzyplugh9876543210abcdef"
+}

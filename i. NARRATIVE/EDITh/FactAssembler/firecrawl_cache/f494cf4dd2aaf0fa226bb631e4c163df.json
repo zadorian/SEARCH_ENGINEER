@@ -1,0 +1,20 @@
+{
+  "markdown": "404\n\nNot Found",
+  "metadata": {
+    "title": "Not Found",
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=1",
+    "scrapeId": "e1f3305b-59c9-4822-9aa4-d3480defdab6",
+    "sourceURL": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=xyzzyplugh9876543210abcdef",
+    "url": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=xyzzyplugh9876543210abcdef",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:11:43.771787"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:11:43.771838",
+  "url": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=xyzzyplugh9876543210abcdef"
+}

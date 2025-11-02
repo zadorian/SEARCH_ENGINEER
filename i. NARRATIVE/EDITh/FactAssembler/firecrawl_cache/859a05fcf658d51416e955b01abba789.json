@@ -1,0 +1,18 @@
+{
+  "markdown": "# Not Found\n\nThe requested URL was not found on this server.\n\n* * *\n\nApache/2.4.29 (Ubuntu) Server at www.imperialassembly.com Port 80",
+  "metadata": {
+    "title": "404 Not Found",
+    "scrapeId": "8c85e5f1-1d3d-4dca-90b3-3801746d57bf",
+    "sourceURL": "http://www.imperialassembly.com/oracle/?quicksearch=1&search_13=gas",
+    "url": "http://www.imperialassembly.com/oracle/?quicksearch=1&search_13=gas",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=iso-8859-1",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:38:21.493554"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:38:21.493600",
+  "url": "http://www.imperialassembly.com/oracle/?quicksearch=1&search_13=gas"
+}

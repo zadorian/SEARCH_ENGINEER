@@ -1,0 +1,18 @@
+{
+  "markdown": "# Not Found\n\nThe requested URL was not found on this server.\n\n* * *\n\nApache/2.4.52 (Ubuntu) Server at www.mednar.com Port 80",
+  "metadata": {
+    "title": "404 Not Found",
+    "scrapeId": "8e393cde-7276-4d25-9393-e31a1395c987",
+    "sourceURL": "http://www.mednar.com/mednar/result-list/fullRecord:qwertasdfzxcv123456789xyz",
+    "url": "http://www.mednar.com/mednar/result-list/fullRecord:qwertasdfzxcv123456789xyz",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=iso-8859-1",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:37:58.671647"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:37:58.671679",
+  "url": "http://www.mednar.com/mednar/result-list/fullRecord:qwertasdfzxcv123456789xyz"
+}

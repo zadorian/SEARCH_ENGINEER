@@ -1,0 +1,18 @@
+{
+  "markdown": "# Gone\n\nThe requested resource\n\n/cgi-bin/sinosrch.cgi\n\nis no longer available on this server and there is no forwarding address.\nPlease remove all references to this resource.",
+  "metadata": {
+    "title": "410 Gone",
+    "scrapeId": "d18460e9-6d1c-4a8e-9e14-98bce19a7c0c",
+    "sourceURL": "https://www.austlii.edu.au/cgi-bin/sinosrch.cgi?query=bank&results=50&submit=Search&mask_world=&mask_path=&callback=on&method=auto&meta=/au",
+    "url": "https://www.austlii.edu.au/cgi-bin/sinosrch.cgi?query=bank&results=50&submit=Search&mask_world=&mask_path=&callback=on&method=auto&meta=/au",
+    "statusCode": 410,
+    "error": "Gone",
+    "contentType": "text/html; charset=iso-8859-1",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:23:42.147153"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:23:42.147211",
+  "url": "https://www.austlii.edu.au/cgi-bin/sinosrch.cgi?query=bank&results=50&submit=Search&mask_world=&mask_path=&callback=on&method=auto&meta=/au"
+}

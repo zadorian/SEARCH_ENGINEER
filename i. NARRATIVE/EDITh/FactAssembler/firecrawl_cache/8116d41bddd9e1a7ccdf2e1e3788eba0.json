@@ -1,0 +1,16 @@
+{
+  "markdown": "<html><body>Not Found (3)\n</body></html>",
+  "metadata": {
+    "scrapeId": "c912bf6a-9e53-45af-a65f-4a83f9b92636",
+    "sourceURL": "http://archive.is/xyzzyplugh9876543210abcdef",
+    "url": "https://archive.is/xyzzyplugh9876543210abcdef",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html;charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:24:31.936416",
+  "url": "http://archive.is/xyzzyplugh9876543210abcdef"
+}

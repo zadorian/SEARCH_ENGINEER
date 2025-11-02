@@ -1,0 +1,20 @@
+{
+  "markdown": "![Error](<Base64-Image-Removed>)\n\n# Application Blocked\n\nThe application you are trying to use has been blocked in accordance with company policy. Please contact your system administrator if you believe this is an error.\n\n**User:** 216.247.232.24\n\n**Application:** web-browsing",
+  "metadata": {
+    "title": "Application Blocked",
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=.85",
+    "scrapeId": "f20b3339-a259-4725-9a6c-629ee256ac2b",
+    "sourceURL": "https://gsearch.vatican.va/search?q=xyzzyplugh9876543210abcdef&btnG=Search+on&site=default_collection&client=default_frontend&output=xml_no_dtd&proxystylesheet=default_frontend&sort=date:D:L:d1&entsp=a__policy_documenti&wc=200&wc_mc=1&oe=UTF-8&ie=UTF-8&ud=1&exclude_apps=1&filter=0",
+    "url": "https://gsearch.vatican.va/search?q=xyzzyplugh9876543210abcdef&btnG=Search+on&site=default_collection&client=default_frontend&output=xml_no_dtd&proxystylesheet=default_frontend&sort=date:D:L:d1&entsp=a__policy_documenti&wc=200&wc_mc=1&oe=UTF-8&ie=UTF-8&ud=1&exclude_apps=1&filter=0",
+    "statusCode": 503,
+    "error": "Service Unavailable",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:56:25.844794"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:56:25.844846",
+  "url": "https://gsearch.vatican.va/search?q=xyzzyplugh9876543210abcdef&btnG=Search+on&site=default_collection&client=default_frontend&output=xml_no_dtd&proxystylesheet=default_frontend&sort=date:D:L:d1&entsp=a__policy_documenti&wc=200&wc_mc=1&oe=UTF-8&ie=UTF-8&ud=1&exclude_apps=1&filter=0"
+}

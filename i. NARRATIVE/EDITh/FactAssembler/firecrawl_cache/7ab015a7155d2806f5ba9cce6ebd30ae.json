@@ -1,0 +1,20 @@
+{
+  "markdown": "## We've detected unusual activity from your computer network\n\nTo continue, please click the box below to let us know you're not a robot.\n\n### Why did this happen?\n\nPlease make sure your browser supports JavaScript and cookies and that you are not\nblocking them from loading.\nFor more information you can review our [Terms of Service](https://www.bloomberg.com/notices/tos)\nand [Cookie Policy](https://www.bloomberg.com/notices/tos).\n\n### Need Help?\n\nFor inquiries related to this message please [contact\\\\\nour support team](https://www.bloomberg.com/feedback) and provide the reference ID below.\n\nBlock reference ID:5c7cfed3-7724-11f0-ba3c-6c0a6c7da977\n\nGet the most important global markets news at your fingertips with a [Bloomberg.com](https://bloomberg.com/) subscription.\n\n [SUBSCRIBE NOW](https://www.bloomberg.com/subscription)",
+  "metadata": {
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=1",
+    "title": "Bloomberg - Are you a robot?",
+    "scrapeId": "07c90ec7-22d5-43bc-a5f9-7533e86ce5dc",
+    "sourceURL": "https://www.bloomberg.com/professional/search/?query=qwertasdfzxcv123456789xyz",
+    "url": "https://www.bloomberg.com/professional/search/?query=qwertasdfzxcv123456789xyz",
+    "statusCode": 403,
+    "error": "Forbidden",
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:30:53.557149"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:30:53.557200",
+  "url": "https://www.bloomberg.com/professional/search/?query=qwertasdfzxcv123456789xyz"
+}

@@ -1,0 +1,22 @@
+{
+  "markdown": "![Loading](https://www.cityofbuckley.com/Common/images/ajax-loader.gif)\n\nLoading\n\n[Skip to Main Content](https://www.cityofbuckley.com/0#contentarea)\n\n![](https://www.cityofbuckley.com/ImageRepository/Document?documentID=957)\n\n1. [Home](https://www.cityofbuckley.com/)\n2. Custom404\n\n|     |\n| --- |\n| |     |\n| --- |\n| We're sorry, but there is not a web page matching your entry. |\n| You entered: https://www.cityofbuckley.com/0 |\n| [Return to the home page](https://www.cityofbuckley.com/) | |\n\nLoading\n\nLoading\n\n\nDo Not Show AgainClose\n\nArrow LeftArrow Right\n\nSlideshow Left ArrowSlideshow Right Arrow",
+  "metadata": {
+    "language": "en",
+    "theme-color": "rgb(2, 84, 0)",
+    "favicon": "https://www.cityofbuckley.com/images/favicon.ico",
+    "title": "Custom404 • Buckley, WA • CivicEngage",
+    "viewport": "width=device-width, initial-scale=1",
+    "scrapeId": "3953fa15-e84e-4531-90e2-50c53e241f9e",
+    "sourceURL": "https://www.cityofbuckley.com/index.asp?keyword=qwertasdfzxcv123456789xyz",
+    "url": "https://www.cityofbuckley.com/0",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:37:04.711584"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:37:04.711603",
+  "url": "https://www.cityofbuckley.com/index.asp?keyword=qwertasdfzxcv123456789xyz"
+}

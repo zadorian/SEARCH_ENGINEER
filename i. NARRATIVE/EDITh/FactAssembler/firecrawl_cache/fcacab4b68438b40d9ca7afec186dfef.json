@@ -1,0 +1,22 @@
+{
+  "markdown": "[Skip to content](https://www.bl.uk/primo_library/libweb/action/search.do?fn=search&vl(freeText0)=qwertasdfzxcv123456789xyz#content)\n\n# 404 Page not found\n\nSorry, we can't find that page. This page isn't available right now or does not exist.\n\n[British Library homepage](https://www.bl.uk/)",
+  "metadata": {
+    "next-size-adjust": "",
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=1",
+    "title": "404 Page not found",
+    "robots": "noindex",
+    "scrapeId": "98e64587-97ac-40b8-b5ee-2f16672fc1f0",
+    "sourceURL": "http://searcharchives.bl.uk/primo_library/libweb/action/search.do?fn=search&vl(freeText0)=qwertasdfzxcv123456789xyz",
+    "url": "https://www.bl.uk/primo_library/libweb/action/search.do?fn=search&vl(freeText0)=qwertasdfzxcv123456789xyz",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:26:14.628786"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:26:14.628832",
+  "url": "http://searcharchives.bl.uk/primo_library/libweb/action/search.do?fn=search&vl(freeText0)=qwertasdfzxcv123456789xyz"
+}

@@ -1,0 +1,23 @@
+{
+  "markdown": "Due to major building activity, some collections are unavailable. Please check your requests before visiting. [Learn more](https://www.library.gov.au/research/access-collection/temporary-changes-collection-access).\n\n## Oops...\n\nThat page does not exist on this server.",
+  "metadata": {
+    "csrf-token": "POz9CgAN3hXnZ8pMxvAEhHyVI3Qbkor70INqhgkAsAp1aX-xQ9qBtz4gotsiBtuBuFf37uT6x1tWOH6-EopVKA",
+    "title": "Catalogue | National Library of Australia",
+    "favicon": "https://catalogue.nla.gov.au/assets/favicon-ca92dd498d33666642d3ed6b42b4bbf0258b5147c3fd080cde0f3aacf37ddc89.ico",
+    "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+    "csrf-param": "authenticity_token",
+    "language": "en",
+    "scrapeId": "723cba11-bf1d-4639-a65c-83876a704cd1",
+    "sourceURL": "https://catalogue.nla.gov.au/Search/Home?lookfor=xyzzyplugh9876543210abcdef",
+    "url": "https://catalogue.nla.gov.au/Search/Home?lookfor=xyzzyplugh9876543210abcdef",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:46:32.665085"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:46:32.665123",
+  "url": "https://catalogue.nla.gov.au/Search/Home?lookfor=xyzzyplugh9876543210abcdef"
+}

@@ -1,0 +1,20 @@
+{
+  "markdown": "404\n\nNot Found",
+  "metadata": {
+    "title": "Not Found",
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=1",
+    "scrapeId": "dfb3ebd3-235a-4c83-a62b-f5a943fbfd32",
+    "sourceURL": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=gas",
+    "url": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=gas",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:12:06.455688"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:12:06.455814",
+  "url": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=gas"
+}

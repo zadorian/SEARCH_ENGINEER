@@ -1,0 +1,19 @@
+{
+  "markdown": "[Federal Aviation Administration](http://www.faa.gov/)\n\nThe [Aircraft Registration](http://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/) or [Airmen Certification](http://www.faa.gov/licenses_certificates/airmen_certification/) application you are attempting to utilize is currently unavailable. Please try again at a later time.\n\n|     |     |\n| --- | --- |\n| Aircraft Registration | Airmen Certification |\n| Phone: (866) 762-9434 | Phone: (866) 878-2498 |\n| Hours: 7:30AM – 4:00PM Central |",
+  "metadata": {
+    "title": "FAA: Civil Aviation Registration Application Servers Currentyly Un-Available",
+    "description": "Apologies Page,  Registry web application servers are un-reachable.",
+    "scrapeId": "86c5d5bb-971f-42c6-b2b2-ca3a4d372421",
+    "sourceURL": "http://registry.faa.gov/aircraftinquiry/NNum_Results.aspx?NNumbertxt=group",
+    "url": "https://registry.faa.gov/aircraftinquiry/NNum_Results.aspx?NNumbertxt=group",
+    "statusCode": 503,
+    "error": "Service Unavailable",
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:32:02.668675"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:32:02.668723",
+  "url": "http://registry.faa.gov/aircraftinquiry/NNum_Results.aspx?NNumbertxt=group"
+}

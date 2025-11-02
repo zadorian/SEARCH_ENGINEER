@@ -1,0 +1,17 @@
+{
+  "markdown": "`AccessDenied` Access Denied\n\n<Error>\n\n<Code>AccessDenied</Code>\n\n<Message>Access Denied</Message>\n\n...\n\n</Error>",
+  "metadata": {
+    "scrapeId": "c8cf6a15-b3f5-47aa-9592-1fbcf10c8f0b",
+    "sourceURL": "https://search.nzqa.govt.nz/apps/search/?q=qwertasdfzxcv123456789xyz",
+    "url": "https://search.nzqa.govt.nz/apps/search/?q=qwertasdfzxcv123456789xyz",
+    "statusCode": 403,
+    "error": "Forbidden",
+    "contentType": "application/xml",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:15:02.325469"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:15:02.325555",
+  "url": "https://search.nzqa.govt.nz/apps/search/?q=qwertasdfzxcv123456789xyz"
+}

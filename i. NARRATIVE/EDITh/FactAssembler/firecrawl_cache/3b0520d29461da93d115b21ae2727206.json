@@ -1,0 +1,17 @@
+{
+  "markdown": "<!DOCTYPE html><html xmlns=\"http://www.w3.org/1999/xhtml\">\n<body>\n\n<div id=\"content\">\n <div class=\"content-container\"><fieldset>\n  <h2>404 - File or directory not found.</h2>\n  <h3>The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable.</h3>\n </fieldset></div>\n</div>\n\n\n\n</body></html>",
+  "metadata": {
+    "title": "404 - File or directory not found.",
+    "scrapeId": "6b25f727-b028-409a-bca3-6674f8df8804",
+    "sourceURL": "http://encore.palatinelibrary.org/iii/encore/search?target=xyzzyplugh9876543210abcdef",
+    "url": "http://encore.palatinelibrary.org/iii/encore/search?target=xyzzyplugh9876543210abcdef",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:24:31.901017",
+  "url": "http://encore.palatinelibrary.org/iii/encore/search?target=xyzzyplugh9876543210abcdef"
+}

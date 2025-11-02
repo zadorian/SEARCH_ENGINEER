@@ -1,0 +1,18 @@
+{
+  "markdown": "# 404 Not Found\n\n* * *\n\nnginx/1.22.1",
+  "metadata": {
+    "title": "404 Not Found",
+    "scrapeId": "b8b8c655-46f3-4540-a2ad-6726bcc52767",
+    "sourceURL": "https://tails.boum.org/ikiwiki.cgi?P=international",
+    "url": "https://tails.net/ikiwiki.cgi/?P=international",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:18:37.891783"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:18:37.891834",
+  "url": "https://tails.boum.org/ikiwiki.cgi?P=international"
+}

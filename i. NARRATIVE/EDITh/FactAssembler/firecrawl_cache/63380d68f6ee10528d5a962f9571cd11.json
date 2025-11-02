@@ -1,0 +1,19 @@
+{
+  "markdown": "<!DOCTYPE html><html>\n\n<body>\n<div id=\"layers\"></div>\n<!--[if lte IE 6]><table id=\"ie6layout\"><tr><th class=\"ie6layout-th\"></th><td id=\"ie6layout-td\"><div id=\"ie6layout-div\"></div><![endif]-->\n<div id=\"layout\">\n\t\n\n\t\t<div id=\"wrapper\" class=\"nosidebar\">\n\t\t<div id=\"toptabs\">\n\t\t\t<div id=\"toptabs-inner\">\n\t\t\t\t<div id=\"toptabs-right\">\n\t\t\t\t\t<a href=\"https://vanillawowdb.com/?account=signin\">Sign in</a>\t\t\t\t\t|<a id=\"toptabs-menu-language\">Language <small>▼</small></a>\n\t\t\t\t\t\n\t\t\t\t</div>\n\t\t\t\t<div id=\"ptewhjkst46\"><dl><dt><a class=\"selected\" style=\"cursor: default;\"><ins><big>D</big>atabase</ins><span></span></a></dt><dt><a style=\"cursor: default;\"><ins><big>T</big>ools</ins><span></span></a></dt></dl></div>\n\t\t\t\t<div class=\"clear\"></div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div id=\"topbar-right\"><div><form action=\"https://vanillawowdb.com/\"><a></a><input name=\"search\" size=\"35\" value=\"\" id=\"oh2345v5ks\" class=\"search-database\" autocomplete=\"off\"></form></div></div>\n\t\t<div id=\"topbar\"><span id=\"kbl34h6b43\" class=\"menu-buttons\"><a href=\"https://vanillawowdb.com/?items\"><span class=\"menuarrowd\">Items</span></a><a href=\"https://vanillawowdb.com/?itemsets\"><span>Item Sets</span></a><a href=\"https://vanillawowdb.com/?npcs\"><span class=\"menuarrowd\">NPCs</span></a><a href=\"https://vanillawowdb.com/?quests\"><span class=\"menuarrowd\">Quests</span></a><a href=\"https://vanillawowdb.com/?zones\"><span class=\"menuarrowd\">Zones</span></a><a href=\"https://vanillawowdb.com/?spells\"><span class=\"menuarrowd\">Spells</span></a><a href=\"https://vanillawowdb.com/?objects\"><span class=\"menuarrowd\">Objects</span></a><a href=\"https://vanillawowdb.com/?factions\"><span class=\"menuarrowd\">Factions</span></a></span><div class=\"clear\"></div></div>\n\t\t<div id=\"main\">\n\t<div id=\"main-precontents\"></div>\n\t<div class=\"main-contents\" id=\"main-contents\">\n\t\t<div class=\"text\">\n\t\t\t<a href=\"http://www.wowhead.com/?search=xyzzyplugh9876543210abcdef\" class=\"button-red\"><div><blockquote><i>Wowhead</i></blockquote><span>Wowhead</span></div></a>\n\t\t\t<h1>No results for <i>xyzzyplugh9876543210abcdef</i></h1>\n\n\t\t\tPlease try some different keywords or check your spelling.\n\t\t</div>\n\t\t\t\t</div>\n\t</div>\n\t\n</div>\n</div>\n<!--[if lte IE 6]></td><th class=\"ie6layout-th\"></th></tr></table><![endif]-->\n<div height=\"1\" width=\"1\" style=\"position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;\" data-original-tag=\"iframe\"></div>\n\n</body></html>",
+  "metadata": {
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "A dedicated wowhead-like world database browser for the Light's Hope Vanilla/Classic WoW community.",
+    "title": "xyzzyplugh9876543210abcdef - Search - WoW Classic & Vanilla DB",
+    "favicon": "https://vanillawowdb.com/templates/wowhead/images/favicon.ico",
+    "scrapeId": "026c4d3f-2e49-43b4-988c-a11f8bc71c63",
+    "sourceURL": "https://vanillawowdb.com/?search=xyzzyplugh9876543210abcdef",
+    "url": "https://vanillawowdb.com/?search=xyzzyplugh9876543210abcdef",
+    "statusCode": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:17:20.638359",
+  "url": "https://vanillawowdb.com/?search=xyzzyplugh9876543210abcdef"
+}

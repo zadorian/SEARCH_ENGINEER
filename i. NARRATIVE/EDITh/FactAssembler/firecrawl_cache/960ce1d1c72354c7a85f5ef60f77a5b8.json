@@ -1,0 +1,22 @@
+{
+  "markdown": "[Skip to content](https://www.bl.uk/primo_library/libweb/action/search.do?fn=search&vl(freeText0)=holding#content)\n\n# 404 Page not found\n\nSorry, we can't find that page. This page isn't available right now or does not exist.\n\n[British Library homepage](https://www.bl.uk/)",
+  "metadata": {
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=1",
+    "next-size-adjust": "",
+    "title": "404 Page not found",
+    "robots": "noindex",
+    "scrapeId": "9fc8e3e6-7d1c-4317-8d39-aa65f8ee13a0",
+    "sourceURL": "http://searcharchives.bl.uk/primo_library/libweb/action/search.do?fn=search&vl(freeText0)=holding",
+    "url": "https://www.bl.uk/primo_library/libweb/action/search.do?fn=search&vl(freeText0)=holding",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=utf-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:31:53.526693"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:31:53.526841",
+  "url": "http://searcharchives.bl.uk/primo_library/libweb/action/search.do?fn=search&vl(freeText0)=holding"
+}

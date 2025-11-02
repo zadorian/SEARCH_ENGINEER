@@ -1,0 +1,20 @@
+{
+  "markdown": "404\n\nNot Found",
+  "metadata": {
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=1",
+    "title": "Not Found",
+    "scrapeId": "c948a989-19e2-402c-b7a0-b64f68bc4e10",
+    "sourceURL": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=international",
+    "url": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=international",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:12:19.783763"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:12:19.783818",
+  "url": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=international"
+}

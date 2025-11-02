@@ -1,0 +1,18 @@
+{
+  "markdown": "# 404 Not Found\n\n* * *\n\nnginx/1.22.1",
+  "metadata": {
+    "title": "404 Not Found",
+    "scrapeId": "b4d2767f-4283-4e20-a2c9-e7ba2941fb73",
+    "sourceURL": "https://tails.boum.org/ikiwiki.cgi?P=gas",
+    "url": "https://tails.net/ikiwiki.cgi/?P=gas",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:18:21.642464"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:18:21.642546",
+  "url": "https://tails.boum.org/ikiwiki.cgi?P=gas"
+}

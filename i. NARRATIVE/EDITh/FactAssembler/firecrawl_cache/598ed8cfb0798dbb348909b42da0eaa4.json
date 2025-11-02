@@ -1,0 +1,18 @@
+{
+  "markdown": "## Not Found\n\n* * *\n\nHTTP Error 404. The requested resource is not found.",
+  "metadata": {
+    "title": "Not Found",
+    "scrapeId": "18017a3d-3ed2-4d08-bf55-28ff14dd7db3",
+    "sourceURL": "http://www.centralniregistr.cz/Hledani/s17_0/?hledat=holding",
+    "url": "http://www.centralniregistr.cz/Hledani/s17_0/?hledat=holding",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=us-ascii",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:32:50.446534"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:32:50.446729",
+  "url": "http://www.centralniregistr.cz/Hledani/s17_0/?hledat=holding"
+}

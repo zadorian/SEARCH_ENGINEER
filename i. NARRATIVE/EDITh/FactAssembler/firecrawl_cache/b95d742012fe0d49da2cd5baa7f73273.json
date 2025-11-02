@@ -1,0 +1,20 @@
+{
+  "markdown": "",
+  "metadata": {
+    "title": "StarCityGames.com 404",
+    "Description": "Selling over 15,000 Magic singles and packing over 8,000 Magic strategy articles, StarCityGames is the finest source for Magic: the Gathering sales, strategy, and humor!",
+    "Keywords": "Magic: the Gathering, Magic singles, Magic boxes, Magic decks, Magic cards, Magic strategy, Magic humor, mtg, online, download, magic, the, gathering, magic the gathering, wizards, coast, wotc, list, mirrodin, darksteel, fifth dawn, onslaught, legions, champions of kamigawa, card, deck, report, strategy, new, news, type two, type 2, extended, vintage, type one, type 1, limited, decks to beat, grab bag, store, price, box, buylist, random, strategy, pack, single, foil, image, spoiler, ",
+    "scrapeId": "1ea3a12c-947a-41fe-9532-273122f991c4",
+    "sourceURL": "https://sales.starcitygames.com/search.php?substring=xyzzyplugh9876543210abcdef",
+    "url": "https://sales.starcitygames.com/search.php?substring=xyzzyplugh9876543210abcdef",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:13:41.885813"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:13:41.885866",
+  "url": "https://sales.starcitygames.com/search.php?substring=xyzzyplugh9876543210abcdef"
+}

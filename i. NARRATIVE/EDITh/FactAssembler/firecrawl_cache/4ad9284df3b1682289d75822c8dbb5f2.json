@@ -1,0 +1,18 @@
+{
+  "markdown": "## HTTP ERROR 404 Not Found\n\n| URI: | https://apps.db.ripe.net/search/query.html?searchtext=qwertasdfzxcv123456789xyz&search:doSearch=Search |\n| STATUS: | 404 |\n| MESSAGE: | Not Found |\n\n* * *\n\n[Powered by Jetty:// 12.0.22](https://jetty.org/)\n\n* * *",
+  "metadata": {
+    "title": "Error 404 Not Found",
+    "scrapeId": "fa356664-ffd1-4e03-bb04-707daeb9442b",
+    "sourceURL": "https://apps.db.ripe.net/search/query.html?searchtext=qwertasdfzxcv123456789xyz&search:doSearch=Search#resultsAnchor",
+    "url": "https://apps.db.ripe.net/search/query.html?searchtext=qwertasdfzxcv123456789xyz&search:doSearch=Search#resultsAnchor",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html;charset=iso-8859-1",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:41:09.912464"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:41:09.912672",
+  "url": "https://apps.db.ripe.net/search/query.html?searchtext=qwertasdfzxcv123456789xyz&search:doSearch=Search#resultsAnchor"
+}

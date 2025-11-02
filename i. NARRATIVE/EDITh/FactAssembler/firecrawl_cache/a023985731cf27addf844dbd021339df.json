@@ -1,0 +1,20 @@
+{
+  "markdown": "404\n\nNot Found",
+  "metadata": {
+    "title": "Not Found",
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=1",
+    "scrapeId": "90d2ce07-2ef1-4369-838e-3f9eaae5d3b9",
+    "sourceURL": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=qwertasdfzxcv123456789xyz",
+    "url": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=qwertasdfzxcv123456789xyz",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:11:50.452882"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:11:50.453077",
+  "url": "https://products.bpiworld.org/companies?title=&field_industry_category_tid=&field_member_id_value=qwertasdfzxcv123456789xyz"
+}

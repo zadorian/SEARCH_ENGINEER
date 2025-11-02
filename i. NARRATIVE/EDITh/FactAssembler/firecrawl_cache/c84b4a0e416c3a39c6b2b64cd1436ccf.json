@@ -1,0 +1,21 @@
+{
+  "markdown": "# This page isn’t working\n\n**rpvs.gov.sk** is currently unable to handle this request.\n\nHTTP ERROR 500\n\nReload\n\n\n**rpvs.gov.sk** is currently unable to handle this request.\n\n![](<Base64-Image-Removed>)![](<Base64-Image-Removed>)",
+  "metadata": {
+    "language": "en",
+    "color-scheme": "light dark",
+    "title": "rpvs.gov.sk",
+    "viewport": "width=device-width, initial-scale=1.0,\n                                 maximum-scale=1.0, user-scalable=no",
+    "theme-color": "#fff",
+    "scrapeId": "53abd671-2192-4238-8965-ecd9aadcd7fe",
+    "sourceURL": "https://rpvs.gov.sk/rpvs/Partner/Partner/Dokument/xyzzyplugh9876543210abcdef",
+    "url": "https://rpvs.gov.sk/rpvs/Partner/Partner/Dokument/xyzzyplugh9876543210abcdef",
+    "statusCode": 500,
+    "error": "Internal Server Error",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:13:40.561926"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:13:40.561981",
+  "url": "https://rpvs.gov.sk/rpvs/Partner/Partner/Dokument/xyzzyplugh9876543210abcdef"
+}

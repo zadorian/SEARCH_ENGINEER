@@ -1,0 +1,39 @@
+{
+  "markdown": "[Skip to content](https://developers.cloudflare.com/search/?query=xyzzyplugh9876543210abcdef&q=xyzzyplugh9876543210abcdef#_top)\n\nProductsTags\n\n## Was this helpful?\n\n- **Resources**\n- [API](https://developers.cloudflare.com/api/)\n- [New to Cloudflare?](https://developers.cloudflare.com/fundamentals/)\n- [Products](https://developers.cloudflare.com/products/)\n- [Sponsorships](https://developers.cloudflare.com/sponsorships/)\n- [Open Source](https://github.com/cloudflare)\n\n- **Support**\n- [Help Center](https://support.cloudflare.com/)\n- [System Status](https://www.cloudflarestatus.com/)\n- [Compliance](https://www.cloudflare.com/trust-hub/compliance-resources/)\n- [GDPR](https://www.cloudflare.com/trust-hub/gdpr/)\n\n- **Company**\n- [cloudflare.com](https://www.cloudflare.com/)\n- [Our team](https://www.cloudflare.com/people/)\n- [Careers](https://www.cloudflare.com/careers/)\n\n- **Tools**\n- [Cloudflare Radar](https://radar.cloudflare.com/)\n- [Speed Test](https://speed.cloudflare.com/)\n- [Is BGP Safe Yet?](https://isbgpsafeyet.com/)\n- [RPKI Toolkit](https://rpki.cloudflare.com/)\n- [Certificate Transparency](https://ct.cloudflare.com/)\n\n- **Community**\n- [X](https://x.com/cloudflare)\n- [Discord](http://discord.cloudflare.com/)\n- [YouTube](https://www.youtube.com/cloudflare)\n- [GitHub](https://github.com/cloudflare/cloudflare-docs)\n\n- © 2025 Cloudflare, Inc.\n- [Privacy Policy](https://www.cloudflare.com/privacypolicy/)\n- [Terms of Use](https://www.cloudflare.com/website-terms/)\n- [Report Security Issues](https://www.cloudflare.com/disclosure/)\n- [Trademark](https://www.cloudflare.com/trademark/)\n- ![privacy options](https://developers.cloudflare.com/_astro/privacyoptions.BWXSiJOZ_22PXh4.svg)Cookie Settings",
+  "metadata": {
+    "ogTitle": "Search",
+    "ogUrl": "https://developers.cloudflare.com/search/",
+    "viewport": "width=device-width, initial-scale=1",
+    "title": "Search | Cloudflare Docs",
+    "image": "https://developers.cloudflare.com/cf-twitter-card.png",
+    "og:image": "https://developers.cloudflare.com/cf-twitter-card.png",
+    "language": "en",
+    "generator": [
+      "Astro v5.12.8",
+      "Starlight v0.35.1"
+    ],
+    "twitter:image": "https://developers.cloudflare.com/cf-twitter-card.png",
+    "og:site_name": "Cloudflare Docs",
+    "og:type": "article",
+    "og:url": "https://developers.cloudflare.com/search/",
+    "twitter:site": "@cloudflare",
+    "favicon": "https://developers.cloudflare.com/favicon.png",
+    "ogImage": "https://developers.cloudflare.com/cf-twitter-card.png",
+    "ogSiteName": "Cloudflare Docs",
+    "ogLocale": "en",
+    "og:title": "Search",
+    "og:locale": "en",
+    "twitter:card": "summary_large_image",
+    "scrapeId": "e509582a-15e4-4ca7-bacb-fb7da2fed21f",
+    "sourceURL": "https://developers.cloudflare.com/search/?query=xyzzyplugh9876543210abcdef",
+    "url": "https://developers.cloudflare.com/search/?query=xyzzyplugh9876543210abcdef&q=xyzzyplugh9876543210abcdef",
+    "statusCode": 200,
+    "contentType": "text/html",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:49:01.601138"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:49:01.601280",
+  "url": "https://developers.cloudflare.com/search/?query=xyzzyplugh9876543210abcdef"
+}

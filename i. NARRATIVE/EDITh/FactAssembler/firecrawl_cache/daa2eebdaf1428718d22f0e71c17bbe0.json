@@ -1,0 +1,20 @@
+{
+  "markdown": "[![World Meteorological Organization](https://public.wmo.int/themes/custom/server_theme/dist/images/logo.svg)\\\\\n\\\\\n![World Meteorological Organization](https://public.wmo.int/themes/custom/server_theme/dist/images/logo_en.svg)\\\\\n\\\\\nWeather\\\\\n\\\\\nClimate\\\\\n\\\\\nWater](https://public.wmo.int/)\n\n# 404\n\n## Sorry, it looks like the wind blew this page away\n\n![A dandelion blowing in the wind.](https://public.wmo.int/sites/default/files/styles/prose_1x/public/2023-08/saad-chaudhry-YNM4KStg78I-unsplash.jpg)\n\nThe page you’re searching for no longer exists; it has been moved, or the link is broken.\n\nPlease note that the WMO public website was relaunched in November 2023. Some pages may no longer exist. We apologize for the inconvenience.\n\n[Search](https://wmo.int/search \"(opens in a new window)\") [Return to the Homepage](https://wmo.int/ \"(opens in a new window)\") [Contact us](https://wmo.int/contact-us \"(opens in a new window)\")",
+  "metadata": {
+    "title": "404 Not Found",
+    "language": "en",
+    "viewport": "width=device-width,initial-scale=1",
+    "scrapeId": "64c54c3a-257f-4522-91d3-903c5f437c9a",
+    "sourceURL": "https://public.wmo.int/en/search?search_api_views_fulltext=xyzzyplugh9876543210abcdef",
+    "url": "https://public.wmo.int/en/search?search_api_views_fulltext=xyzzyplugh9876543210abcdef",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:12:04.750389"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:12:04.750539",
+  "url": "https://public.wmo.int/en/search?search_api_views_fulltext=xyzzyplugh9876543210abcdef"
+}

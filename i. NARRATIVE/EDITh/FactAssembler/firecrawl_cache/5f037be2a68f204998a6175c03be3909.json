@@ -1,0 +1,18 @@
+{
+  "markdown": "# Not Found\n\nThe requested URL was not found on this server.\n\n* * *\n\nApache Server at lists.debian.org Port 443",
+  "metadata": {
+    "title": "404 Not Found",
+    "scrapeId": "7f73b6d4-6925-4681-be93-abfa814db11e",
+    "sourceURL": "https://lists.debian.org/debian-group/",
+    "url": "https://lists.debian.org/debian-group/",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=iso-8859-1",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:00:52.528754"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:00:52.528779",
+  "url": "https://lists.debian.org/debian-group/"
+}

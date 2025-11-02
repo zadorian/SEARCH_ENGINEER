@@ -1,0 +1,24 @@
+{
+  "markdown": "[Skip to main content](https://data.gov.au/dataset?q=gas#main-content)\n\n# 404 Page Not Found\n\nThe page you're looking for couldn't be found, it may have been removed, renamed, or it's temporarily unavailable.\n\nYou can try searching using the site's search tool.\n\nBack to Top",
+  "metadata": {
+    "MobileOptimized": "width",
+    "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+    "favicon": "https://data.gov.au/themes/custom/dga/favicon.ico",
+    "language": "en",
+    "Generator": "Drupal 10 (https://www.drupal.org)",
+    "HandheldFriendly": "true",
+    "title": "404 Page Not Found | Data.gov.au",
+    "scrapeId": "447894a0-4b9d-4de3-953a-4b9b643f4c86",
+    "sourceURL": "https://data.gov.au/dataset?q=gas",
+    "url": "https://data.gov.au/dataset?q=gas",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T03:49:15.113550"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T03:49:15.113658",
+  "url": "https://data.gov.au/dataset?q=gas"
+}

@@ -1,0 +1,20 @@
+{
+  "markdown": "404\n\nNot Found",
+  "metadata": {
+    "title": "Not Found",
+    "language": "en",
+    "viewport": "width=device-width, initial-scale=1",
+    "scrapeId": "0cb83dd3-be1d-40ee-be27-1ae45a6fc553",
+    "sourceURL": "https://www.fowtcg.com/cards?w=international",
+    "url": "https://www.fowtcg.com/cards?w=international",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=UTF-8",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:47:18.620250"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:47:18.620739",
+  "url": "https://www.fowtcg.com/cards?w=international"
+}

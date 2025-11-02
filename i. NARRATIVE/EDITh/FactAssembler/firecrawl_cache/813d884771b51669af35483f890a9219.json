@@ -1,0 +1,18 @@
+{
+  "markdown": "# Not Found\n\nThe requested URL was not found on this server.\n\n* * *\n\nApache Server at www.dreamincode.net Port 443",
+  "metadata": {
+    "title": "404 Not Found",
+    "scrapeId": "592576bb-379c-4930-96ac-927cdb5a083e",
+    "sourceURL": "https://www.dreamincode.net/forums/index.php?app=core&module=search&section=search&do=quick_search&search_app=core&fromsearch=1&search_term=bank&search_app=forums",
+    "url": "https://www.dreamincode.net/forums/index.php?app=core&module=search&section=search&do=quick_search&search_app=core&fromsearch=1&search_term=bank&search_app=forums",
+    "statusCode": 404,
+    "error": "Not Found",
+    "contentType": "text/html; charset=iso-8859-1",
+    "proxyUsed": "basic",
+    "creditsUsed": 1,
+    "scrapedAt": "2025-08-12T04:43:10.025206"
+  },
+  "success": true,
+  "cached_at": "2025-08-12T04:43:10.025260",
+  "url": "https://www.dreamincode.net/forums/index.php?app=core&module=search&section=search&do=quick_search&search_app=core&fromsearch=1&search_term=bank&search_app=forums"
+}
