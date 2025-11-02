@@ -1,1551 +1,0 @@
-⚡ BULLETPROOF 5-PHASE Document Assembler with LIVE UPDATES!
-================================================================================
-👀 YOU WILL SEE UPDATES IN YOUR OBSIDIAN FILE AS THEY HAPPEN!
-================================================================================
-Phase 1: GPT-4.1-mini extraction (BATCH API - 50% OFF!)
-Phase 2: Gemini verification + caching
-Phase 3: Claude Sonnet merging (BATCH API - 50% OFF!)
-Phase 4: Claude Opus Extended Thinking (LIVE STREAMING)
-Phase 5: Gemini final verification (using cached snippets)
-================================================================================
-
-Target: Source: 
-📋 Target structure: 5 sections
-
-📚 Processing 413 chunks
-
-============================================================
-🚀 PHASE 1: GPT Extraction (Smart Hybrid Mode)
-============================================================
-⚠️  413 chunks exceeds batch limits
-🔄 Using parallel extraction with rate limit handling...
-🚀 [18:00:44.893] Phase 1 - Thread 6175535104 extracting Malin Transcript_converted_chunk_1.md (Active: 1)
-🚀 [18:00:44.901] Phase 1 - Thread 6192361472 extracting Malin Transcript_converted_chunk_2.md (Active: 2)
-🚀 [18:00:44.907] Phase 1 - Thread 6209187840 extracting RUSSIA_SWITZERLAND_UNITED KINGDOM _ Axel Krueger, Swiss adviser for oil traders, in Gazprombank's sights - 04_04_2022 - Intelligence Online_converted.md (Active: 3)
-🚀 [18:00:44.919] Phase 1 - Thread 6226014208 extracting UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_1.md (Active: 4)
-🚀 [18:00:44.930] Phase 1 - Thread 6242840576 extracting UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_2.md (Active: 5)
-🚀 [18:00:44.937] Phase 1 - Thread 6259666944 extracting UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_3.md (Active: 6)
-🚀 [18:00:44.942] Phase 1 - Thread 6276493312 extracting UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_4.md (Active: 7)
-🚀 [18:00:44.947] Phase 1 - Thread 6293319680 extracting UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_5.md (Active: 8)
-🚀 [18:00:44.954] Phase 1 - Thread 6310146048 extracting UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_6.md (Active: 9)
-🚀 [18:00:44.959] Phase 1 - Thread 6326972416 extracting UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_7.md (Active: 10)
-✅ [18:00:49.299] Phase 1 - Thread 6226014208 completed UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_1.md in 4.4s (Found: 0 items)
-🚀 [18:00:49.299] Phase 1 - Thread 6226014208 extracting UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_8.md (Active: 10)
-   📊 Progress: 1/413 chunks processed✅ [18:00:49.741] Phase 1 - Thread 6326972416 completed UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_7.md in 4.8s (Found: 0 items)
-🚀 [18:00:49.741] Phase 1 - Thread 6326972416 extracting UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_9.md (Active: 10)
-   📊 Progress: 2/413 chunks processed✅ [18:00:51.542] Phase 1 - Thread 6226014208 completed UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_8.md in 2.2s (Found: 0 items)
-🚀 [18:00:51.542] Phase 1 - Thread 6226014208 extracting UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_10.md (Active: 10)
-   📊 Progress: 3/413 chunks processed✅ [18:00:51.807] Phase 1 - Thread 6326972416 completed UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_9.md in 2.1s (Found: 0 items)
-🚀 [18:00:51.807] Phase 1 - Thread 6326972416 extracting Sastre - Makarov case - Interview 1_converted.md (Active: 10)
-   📊 Progress: 4/413 chunks processed✅ [18:00:52.675] Phase 1 - Thread 6276493312 completed UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_4.md in 7.7s (Found: 1 items)
-🚀 [18:00:52.675] Phase 1 - Thread 6276493312 extracting Makarov Work by James and Leon_converted_chunk_1.md (Active: 10)
-   📊 Progress: 5/413 chunks processed
-   📥 LIVE: UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_4.md → 1 sections updated
-✅ [18:00:53.810] Phase 1 - Thread 6226014208 completed UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_10.md in 2.3s (Found: 0 items)
-🚀 [18:00:53.810] Phase 1 - Thread 6226014208 extracting Makarov Work by James and Leon_converted_chunk_2.md (Active: 10)
-   📊 Progress: 6/413 chunks processed✅ [18:00:55.731] Phase 1 - Thread 6192361472 completed Malin Transcript_converted_chunk_2.md in 10.8s (Found: 0 items)
-🚀 [18:00:55.731] Phase 1 - Thread 6192361472 extracting Makarov Work by James and Leon_converted_chunk_3.md (Active: 10)
-   📊 Progress: 7/413 chunks processed✅ [18:00:56.518] Phase 1 - Thread 6242840576 completed UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_2.md in 11.6s (Found: 1 items)
-🚀 [18:00:56.518] Phase 1 - Thread 6242840576 extracting Makarov Work by James and Leon_converted_chunk_4.md (Active: 10)
-   📊 Progress: 8/413 chunks processed
-   📥 LIVE: UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_2.md → 1 sections updated
-✅ [18:00:58.307] Phase 1 - Thread 6326972416 completed Sastre - Makarov case - Interview 1_converted.md in 6.5s (Found: 1 items)
-🚀 [18:00:58.308] Phase 1 - Thread 6326972416 extracting ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006)_converted_chunk_1.md (Active: 10)
-   📊 Progress: 9/413 chunks processed
-   📥 LIVE: Sastre - Makarov case - Interview 1_converted.md → 1 sections updated
-✅ [18:01:01.591] Phase 1 - Thread 6259666944 completed UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_3.md in 16.7s (Found: 0 items)
-🚀 [18:01:01.591] Phase 1 - Thread 6259666944 extracting ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006)_converted_chunk_2.md (Active: 10)
-   📊 Progress: 10/413 chunks processed✅ [18:01:02.231] Phase 1 - Thread 6293319680 completed UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_5.md in 17.3s (Found: 0 items)
-🚀 [18:01:02.231] Phase 1 - Thread 6293319680 extracting ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006)_converted_chunk_3.md (Active: 10)
-   📊 Progress: 11/413 chunks processed✅ [18:01:04.332] Phase 1 - Thread 6326972416 completed ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006)_converted_chunk_1.md in 6.0s (Found: 2 items)
-🚀 [18:01:04.333] Phase 1 - Thread 6326972416 extracting ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006)_converted_chunk_4.md (Active: 10)
-   📊 Progress: 12/413 chunks processed
-   📥 LIVE: ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006)_converted_chunk_1.md → 2 sections updated
-✅ [18:01:04.507] Phase 1 - Thread 6209187840 completed RUSSIA_SWITZERLAND_UNITED KINGDOM _ Axel Krueger, Swiss adviser for oil traders, in Gazprombank's sights - 04_04_2022 - Intelligence Online_converted.md in 19.6s (Found: 0 items)
-🚀 [18:01:04.507] Phase 1 - Thread 6209187840 extracting Kleptopia - Tom Burgis_converted.md (Active: 10)
-   📊 Progress: 13/413 chunks processed✅ [18:01:05.709] Phase 1 - Thread 6276493312 completed Makarov Work by James and Leon_converted_chunk_1.md in 13.0s (Found: 4 items)
-🚀 [18:01:05.709] Phase 1 - Thread 6276493312 extracting Firtash Makarov - Disputed links to an alleged crime boss - FT_converted_chunk_1.md (Active: 10)
-   📊 Progress: 14/413 chunks processed
-   📥 LIVE: Makarov Work by James and Leon_converted_chunk_1.md → 4 sections updated
-✅ [18:01:06.412] Phase 1 - Thread 6326972416 completed ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006)_converted_chunk_4.md in 2.1s (Found: 0 items)
-🚀 [18:01:06.412] Phase 1 - Thread 6326972416 extracting Firtash Makarov - Disputed links to an alleged crime boss - FT_converted_chunk_2.md (Active: 10)
-✅ [18:01:06.521] Phase 1 - Thread 6259666944 completed ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006)_converted_chunk_2.md in 4.9s (Found: 2 items)
-🚀 [18:01:06.531] Phase 1 - Thread 6259666944 extracting Euronova source enquiries_converted_chunk_1.md (Active: 10)
-   📊 Progress: 16/413 chunks processed
-   📥 LIVE: ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006)_converted_chunk_2.md → 2 sections updated
-✅ [18:01:07.050] Phase 1 - Thread 6192361472 completed Makarov Work by James and Leon_converted_chunk_3.md in 11.3s (Found: 2 items)
-🚀 [18:01:07.051] Phase 1 - Thread 6192361472 extracting Euronova source enquiries_converted_chunk_2.md (Active: 10)
-   📊 Progress: 17/413 chunks processed
-   📥 LIVE: Makarov Work by James and Leon_converted_chunk_3.md → 2 sections updated
-✅ [18:01:09.781] Phase 1 - Thread 6310146048 completed UNITED STATES OF AMERICA v. ALL FUNDS ON DEPOSIT AT, 1_04-cv-00798, No. 1 (D.D.C. May. 14, 2004)_converted_chunk_6.md in 24.8s (Found: 0 items)
-🚀 [18:01:09.784] Phase 1 - Thread 6310146048 extracting 10.1515_jpm-2013-2004_converted_chunk_1.md (Active: 10)
-   📊 Progress: 18/413 chunks processed✅ [18:01:09.853] Phase 1 - Thread 6192361472 completed Euronova source enquiries_converted_chunk_2.md in 2.8s (Found: 0 items)
-🚀 [18:01:09.853] Phase 1 - Thread 6192361472 extracting 10.1515_jpm-2013-2004_converted_chunk_2.md (Active: 10)
-   📊 Progress: 19/413 chunks processed✅ [18:01:10.090] Phase 1 - Thread 6293319680 completed ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006)_converted_chunk_3.md in 7.9s (Found: 2 items)
-🚀 [18:01:10.110] Phase 1 - Thread 6293319680 extracting 10.1515_jpm-2013-2004_converted_chunk_3.md (Active: 10)
-   📊 Progress: 20/413 chunks processed
-   📥 LIVE: ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006)_converted_chunk_3.md → 2 sections updated
-✅ [18:01:10.669] Phase 1 - Thread 6209187840 completed Kleptopia - Tom Burgis_converted.md in 6.2s (Found: 5 items)
-🚀 [18:01:10.670] Phase 1 - Thread 6209187840 extracting 10.1515_jpm-2013-2004_converted_chunk_4.md (Active: 10)
-   📊 Progress: 21/413 chunks processed
-   📥 LIVE: Kleptopia - Tom Burgis_converted.md → 5 sections updated
-✅ [18:01:10.871] Phase 1 - Thread 6259666944 completed Euronova source enquiries_converted_chunk_1.md in 4.3s (Found: 0 items)
-🚀 [18:01:10.871] Phase 1 - Thread 6259666944 extracting 10.1515_jpm-2013-2004_converted_chunk_5.md (Active: 10)
-   📊 Progress: 22/413 chunks processed✅ [18:01:11.072] Phase 1 - Thread 6242840576 completed Makarov Work by James and Leon_converted_chunk_4.md in 14.6s (Found: 5 items)
-🚀 [18:01:11.072] Phase 1 - Thread 6242840576 extracting 10.1515_jpm-2013-2004_converted_chunk_6.md (Active: 10)
-   📊 Progress: 23/413 chunks processed
-   📥 LIVE: Makarov Work by James and Leon_converted_chunk_4.md → 5 sections updated
-✅ [18:01:11.457] Phase 1 - Thread 6326972416 completed Firtash Makarov - Disputed links to an alleged crime boss - FT_converted_chunk_2.md in 5.0s (Found: 5 items)
-🚀 [18:01:11.457] Phase 1 - Thread 6326972416 extracting 10.1515_jpm-2013-2004_converted_chunk_7.md (Active: 10)
-   📊 Progress: 24/413 chunks processed
-   📥 LIVE: Firtash Makarov - Disputed links to an alleged crime boss - FT_converted_chunk_2.md → 5 sections updated
-✅ [18:01:11.476] Phase 1 - Thread 6276493312 completed Firtash Makarov - Disputed links to an alleged crime boss - FT_converted_chunk_1.md in 5.8s (Found: 1 items)
-🚀 [18:01:11.477] Phase 1 - Thread 6276493312 extracting 10.1515_jpm-2013-2004_converted_chunk_8.md (Active: 10)
-   📊 Progress: 25/413 chunks processed
-   📥 LIVE: Firtash Makarov - Disputed links to an alleged crime boss - FT_converted_chunk_1.md → 1 sections updated
-✅ [18:01:11.860] Phase 1 - Thread 6175535104 completed Malin Transcript_converted_chunk_1.md in 27.0s (Found: 5 items)
-🚀 [18:01:11.860] Phase 1 - Thread 6175535104 extracting 10.1515_jpm-2013-2004_converted_chunk_9.md (Active: 10)
-   📊 Progress: 26/413 chunks processed
-   📥 LIVE: Malin Transcript_converted_chunk_1.md → 5 sections updated
-✅ [18:01:12.255] Phase 1 - Thread 6310146048 completed 10.1515_jpm-2013-2004_converted_chunk_1.md in 2.5s (Found: 0 items)
-🚀 [18:01:12.255] Phase 1 - Thread 6310146048 extracting 10.1515_jpm-2013-2004_converted_chunk_10.md (Active: 10)
-   📊 Progress: 27/413 chunks processed✅ [18:01:12.347] Phase 1 - Thread 6192361472 completed 10.1515_jpm-2013-2004_converted_chunk_2.md in 2.5s (Found: 0 items)
-🚀 [18:01:12.348] Phase 1 - Thread 6192361472 extracting 10.1515_jpm-2013-2004_converted_chunk_11.md (Active: 10)
-   📊 Progress: 28/413 chunks processed✅ [18:01:12.889] Phase 1 - Thread 6293319680 completed 10.1515_jpm-2013-2004_converted_chunk_3.md in 2.8s (Found: 0 items)
-🚀 [18:01:12.889] Phase 1 - Thread 6293319680 extracting 10.1515_jpm-2013-2004_converted_chunk_12.md (Active: 10)
-   📊 Progress: 29/413 chunks processed✅ [18:01:13.162] Phase 1 - Thread 6209187840 completed 10.1515_jpm-2013-2004_converted_chunk_4.md in 2.5s (Found: 0 items)
-🚀 [18:01:13.170] Phase 1 - Thread 6209187840 extracting 10.1515_jpm-2013-2004_converted_chunk_13.md (Active: 10)
-   📊 Progress: 30/413 chunks processed✅ [18:01:13.373] Phase 1 - Thread 6259666944 completed 10.1515_jpm-2013-2004_converted_chunk_5.md in 2.5s (Found: 0 items)
-🚀 [18:01:13.373] Phase 1 - Thread 6259666944 extracting 10.1515_jpm-2013-2004_converted_chunk_14.md (Active: 10)
-   📊 Progress: 31/413 chunks processed✅ [18:01:13.833] Phase 1 - Thread 6242840576 completed 10.1515_jpm-2013-2004_converted_chunk_6.md in 2.8s (Found: 0 items)
-🚀 [18:01:13.833] Phase 1 - Thread 6242840576 extracting 10.1515_jpm-2013-2004_converted_chunk_15.md (Active: 10)
-   📊 Progress: 32/413 chunks processed✅ [18:01:14.798] Phase 1 - Thread 6226014208 completed Makarov Work by James and Leon_converted_chunk_2.md in 21.0s (Found: 5 items)
-🚀 [18:01:14.798] Phase 1 - Thread 6226014208 extracting 10.1515_jpm-2013-2004_converted_chunk_16.md (Active: 10)
-   📊 Progress: 33/413 chunks processed
-   📥 LIVE: Makarov Work by James and Leon_converted_chunk_2.md → 5 sections updated
-✅ [18:01:15.047] Phase 1 - Thread 6192361472 completed 10.1515_jpm-2013-2004_converted_chunk_11.md in 2.7s (Found: 0 items)
-🚀 [18:01:15.047] Phase 1 - Thread 6192361472 extracting 10.1515_jpm-2013-2004_converted_chunk_17.md (Active: 10)
-   📊 Progress: 34/413 chunks processed✅ [18:01:15.059] Phase 1 - Thread 6326972416 completed 10.1515_jpm-2013-2004_converted_chunk_7.md in 3.6s (Found: 0 items)
-🚀 [18:01:15.059] Phase 1 - Thread 6326972416 extracting 10.1515_jpm-2013-2004_converted_chunk_18.md (Active: 10)
-   📊 Progress: 35/413 chunks processed✅ [18:01:15.321] Phase 1 - Thread 6276493312 completed 10.1515_jpm-2013-2004_converted_chunk_8.md in 3.8s (Found: 0 items)
-🚀 [18:01:15.321] Phase 1 - Thread 6276493312 extracting 10.1515_jpm-2013-2004_converted_chunk_19.md (Active: 10)
-   📊 Progress: 36/413 chunks processed✅ [18:01:15.454] Phase 1 - Thread 6293319680 completed 10.1515_jpm-2013-2004_converted_chunk_12.md in 2.6s (Found: 0 items)
-🚀 [18:01:15.454] Phase 1 - Thread 6293319680 extracting 10.1515_jpm-2013-2004_converted_chunk_20.md (Active: 10)
-   📊 Progress: 37/413 chunks processed✅ [18:01:15.464] Phase 1 - Thread 6310146048 completed 10.1515_jpm-2013-2004_converted_chunk_10.md in 3.2s (Found: 0 items)
-🚀 [18:01:15.464] Phase 1 - Thread 6310146048 extracting 10.1515_jpm-2013-2004_converted_chunk_21.md (Active: 10)
-   📊 Progress: 38/413 chunks processed✅ [18:01:15.486] Phase 1 - Thread 6175535104 completed 10.1515_jpm-2013-2004_converted_chunk_9.md in 3.6s (Found: 0 items)
-🚀 [18:01:15.486] Phase 1 - Thread 6175535104 extracting 10.1515_jpm-2013-2004_converted_chunk_22.md (Active: 10)
-   📊 Progress: 39/413 chunks processed ��!   0��    �"   `�z   0��    �✅ [18:01:15.669] Phase 1 - Thread 6209187840 completed 10.1515_jpm-2013-2004_converted_chunk_13.md in 2.5s (Found: 0 items)
-🚀 [18:01:15.670] Phase 1 - Thread 6209187840 extracting 10.1515_jpm-2013-2004_converted_chunk_23.md (Active: 10)
-   📊 Progress: 40/413 chunks processed✅ [18:01:16.395] Phase 1 - Thread 6259666944 completed 10.1515_jpm-2013-2004_converted_chunk_14.md in 3.0s (Found: 0 items)
-🚀 [18:01:16.399] Phase 1 - Thread 6259666944 extracting 10.1515_jpm-2013-2004_converted_chunk_24.md (Active: 10)
-   📊 Progress: 41/413 chunks processed✅ [18:01:16.695] Phase 1 - Thread 6242840576 completed 10.1515_jpm-2013-2004_converted_chunk_15.md in 2.9s (Found: 0 items)
-🚀 [18:01:16.695] Phase 1 - Thread 6242840576 extracting 10.1515_jpm-2013-2004_converted_chunk_25.md (Active: 10)
-   📊 Progress: 42/413 chunks processed✅ [18:01:17.128] Phase 1 - Thread 6226014208 completed 10.1515_jpm-2013-2004_converted_chunk_16.md in 2.3s (Found: 0 items)
-🚀 [18:01:17.128] Phase 1 - Thread 6226014208 extracting 10.1515_jpm-2013-2004_converted_chunk_26.md (Active: 10)
-   📊 Progress: 43/413 chunks processed✅ [18:01:17.932] Phase 1 - Thread 6192361472 completed 10.1515_jpm-2013-2004_converted_chunk_17.md in 2.9s (Found: 0 items)
-🚀 [18:01:17.932] Phase 1 - Thread 6192361472 extracting 10.1515_jpm-2013-2004_converted_chunk_27.md (Active: 10)
-   📊 Progress: 44/413 chunks processed✅ [18:01:18.007] Phase 1 - Thread 6293319680 completed 10.1515_jpm-2013-2004_converted_chunk_20.md in 2.6s (Found: 0 items)
-🚀 [18:01:18.007] Phase 1 - Thread 6293319680 extracting 10.1515_jpm-2013-2004_converted_chunk_28.md (Active: 10)
-   📊 Progress: 45/413 chunks processed✅ [18:01:18.018] Phase 1 - Thread 6175535104 completed 10.1515_jpm-2013-2004_converted_chunk_22.md in 2.5s (Found: 0 items)
-🚀 [18:01:18.018] Phase 1 - Thread 6175535104 extracting 10.1515_jpm-2013-2004_converted_chunk_29.md (Active: 10)
-   📊 Progress: 46/413 chunks processed✅ [18:01:18.028] Phase 1 - Thread 6276493312 completed 10.1515_jpm-2013-2004_converted_chunk_19.md in 2.7s (Found: 0 items)
-🚀 [18:01:18.028] Phase 1 - Thread 6276493312 extracting 10.1515_jpm-2013-2004_converted_chunk_30.md (Active: 10)
-   📊 Progress: 47/413 chunks processed✅ [18:01:18.240] Phase 1 - Thread 6310146048 completed 10.1515_jpm-2013-2004_converted_chunk_21.md in 2.8s (Found: 0 items)
-🚀 [18:01:18.240] Phase 1 - Thread 6310146048 extracting 10.1515_jpm-2013-2004_converted_chunk_31.md (Active: 10)
-   📊 Progress: 48/413 chunks processed✅ [18:01:18.414] Phase 1 - Thread 6209187840 completed 10.1515_jpm-2013-2004_converted_chunk_23.md in 2.7s (Found: 0 items)
-🚀 [18:01:18.414] Phase 1 - Thread 6209187840 extracting 10.1515_jpm-2013-2004_converted_chunk_32.md (Active: 10)
-   📊 Progress: 49/413 chunks processed✅ [18:01:18.869] Phase 1 - Thread 6259666944 completed 10.1515_jpm-2013-2004_converted_chunk_24.md in 2.5s (Found: 0 items)
-🚀 [18:01:18.869] Phase 1 - Thread 6259666944 extracting 10.1515_jpm-2013-2004_converted_chunk_33.md (Active: 10)
-   📊 Progress: 50/413 chunks processed✅ [18:01:19.045] Phase 1 - Thread 6242840576 completed 10.1515_jpm-2013-2004_converted_chunk_25.md in 2.3s (Found: 0 items)
-🚀 [18:01:19.045] Phase 1 - Thread 6242840576 extracting 10.1515_jpm-2013-2004_converted_chunk_34.md (Active: 10)
-   📊 Progress: 51/413 chunks processed✅ [18:01:19.615] Phase 1 - Thread 6226014208 completed 10.1515_jpm-2013-2004_converted_chunk_26.md in 2.5s (Found: 0 items)
-🚀 [18:01:19.615] Phase 1 - Thread 6226014208 extracting 10.1515_jpm-2013-2004_converted_chunk_35.md (Active: 10)
-   📊 Progress: 52/413 chunks processed✅ [18:01:20.166] Phase 1 - Thread 6192361472 completed 10.1515_jpm-2013-2004_converted_chunk_27.md in 2.2s (Found: 0 items)
-🚀 [18:01:20.167] Phase 1 - Thread 6192361472 extracting 10.1515_jpm-2013-2004_converted_chunk_36.md (Active: 10)
-   📊 Progress: 53/413 chunks processed✅ [18:01:20.293] Phase 1 - Thread 6175535104 completed 10.1515_jpm-2013-2004_converted_chunk_29.md in 2.3s (Found: 0 items)
-🚀 [18:01:20.293] Phase 1 - Thread 6175535104 extracting 10.1515_jpm-2013-2004_converted_chunk_37.md (Active: 10)
-   📊 Progress: 54/413 chunks processed✅ [18:01:20.368] Phase 1 - Thread 6276493312 completed 10.1515_jpm-2013-2004_converted_chunk_30.md in 2.3s (Found: 0 items)
-🚀 [18:01:20.368] Phase 1 - Thread 6276493312 extracting 10.1515_jpm-2013-2004_converted_chunk_38.md (Active: 10)
-   📊 Progress: 55/413 chunks processed✅ [18:01:20.613] Phase 1 - Thread 6326972416 completed 10.1515_jpm-2013-2004_converted_chunk_18.md in 5.6s (Found: 0 items)
-🚀 [18:01:20.613] Phase 1 - Thread 6326972416 extracting 10.1515_jpm-2013-2004_converted_chunk_39.md (Active: 10)
-   📊 Progress: 56/413 chunks processed✅ [18:01:20.622] Phase 1 - Thread 6293319680 completed 10.1515_jpm-2013-2004_converted_chunk_28.md in 2.6s (Found: 0 items)
-🚀 [18:01:20.622] Phase 1 - Thread 6293319680 extracting 10.1515_jpm-2013-2004_converted_chunk_40.md (Active: 10)
-   📊 Progress: 57/413 chunks processed✅ [18:01:20.837] Phase 1 - Thread 6209187840 completed 10.1515_jpm-2013-2004_converted_chunk_32.md in 2.4s (Found: 0 items)
-🚀 [18:01:20.837] Phase 1 - Thread 6209187840 extracting 10.1515_jpm-2013-2004_converted_chunk_41.md (Active: 10)
-   📊 Progress: 58/413 chunks processed✅ [18:01:21.202] Phase 1 - Thread 6310146048 completed 10.1515_jpm-2013-2004_converted_chunk_31.md in 3.0s (Found: 0 items)
-🚀 [18:01:21.202] Phase 1 - Thread 6310146048 extracting 10.1515_jpm-2013-2004_converted_chunk_42.md (Active: 10)
-   📊 Progress: 59/413 chunks processed✅ [18:01:21.762] Phase 1 - Thread 6259666944 completed 10.1515_jpm-2013-2004_converted_chunk_33.md in 2.9s (Found: 0 items)
-🚀 [18:01:21.762] Phase 1 - Thread 6259666944 extracting 10.1515_jpm-2013-2004_converted_chunk_43.md (Active: 10)
-   📊 Progress: 60/413 chunks processed✅ [18:01:22.172] Phase 1 - Thread 6242840576 completed 10.1515_jpm-2013-2004_converted_chunk_34.md in 3.1s (Found: 0 items)
-🚀 [18:01:22.172] Phase 1 - Thread 6242840576 extracting 10.1515_jpm-2013-2004_converted_chunk_44.md (Active: 10)
-   📊 Progress: 61/413 chunks processed✅ [18:01:22.361] Phase 1 - Thread 6192361472 completed 10.1515_jpm-2013-2004_converted_chunk_36.md in 2.2s (Found: 0 items)
-🚀 [18:01:22.361] Phase 1 - Thread 6192361472 extracting 10.1515_jpm-2013-2004_converted_chunk_45.md (Active: 10)
-   📊 Progress: 62/413 chunks processed✅ [18:01:23.150] Phase 1 - Thread 6226014208 completed 10.1515_jpm-2013-2004_converted_chunk_35.md in 3.5s (Found: 0 items)
-🚀 [18:01:23.150] Phase 1 - Thread 6226014208 extracting 10.1515_jpm-2013-2004_converted_chunk_46.md (Active: 10)
-   📊 Progress: 63/413 chunks processed✅ [18:01:23.729] Phase 1 - Thread 6175535104 completed 10.1515_jpm-2013-2004_converted_chunk_37.md in 3.4s (Found: 0 items)
-🚀 [18:01:23.729] Phase 1 - Thread 6175535104 extracting 10.1515_jpm-2013-2004_converted_chunk_47.md (Active: 10)
-   📊 Progress: 64/413 chunks processed✅ [18:01:23.775] Phase 1 - Thread 6293319680 completed 10.1515_jpm-2013-2004_converted_chunk_40.md in 3.2s (Found: 0 items)
-🚀 [18:01:23.775] Phase 1 - Thread 6293319680 extracting 10.1515_jpm-2013-2004_converted_chunk_48.md (Active: 10)
-   📊 Progress: 65/413 chunks processed✅ [18:01:23.910] Phase 1 - Thread 6310146048 completed 10.1515_jpm-2013-2004_converted_chunk_42.md in 2.7s (Found: 0 items)
-🚀 [18:01:23.910] Phase 1 - Thread 6310146048 extracting 10.1515_jpm-2013-2004_converted_chunk_49.md (Active: 10)
-   📊 Progress: 66/413 chunks processed⏳ Thread 6192361472 rate limited on 10.1515_jpm-2013-2004_converted_chunk_45.md, waiting 1.7s (retry 1)
-⏳ Thread 6293319680 rate limited on 10.1515_jpm-2013-2004_converted_chunk_48.md, waiting 3.0s (retry 1)
-✅ [18:01:26.566] Phase 1 - Thread 6209187840 completed 10.1515_jpm-2013-2004_converted_chunk_41.md in 5.7s (Found: 0 items)
-🚀 [18:01:26.567] Phase 1 - Thread 6209187840 extracting 10.1515_jpm-2013-2004_converted_chunk_50.md (Active: 10)
-   📊 Progress: 67/413 chunks processed✅ [18:01:26.849] Phase 1 - Thread 6310146048 completed 10.1515_jpm-2013-2004_converted_chunk_49.md in 2.9s (Found: 0 items)
-🚀 [18:01:26.849] Phase 1 - Thread 6310146048 extracting chronology_converted.md (Active: 10)
-   📊 Progress: 68/413 chunks processed⏳ Thread 6259666944 rate limited on 10.1515_jpm-2013-2004_converted_chunk_43.md, waiting 1.2s (retry 1)
-✅ [18:01:27.422] Phase 1 - Thread 6276493312 completed 10.1515_jpm-2013-2004_converted_chunk_38.md in 7.1s (Found: 0 items)
-🚀 [18:01:27.422] Phase 1 - Thread 6276493312 extracting Firtash_converted_chunk_1.md (Active: 10)
-   📊 Progress: 69/413 chunks processed✅ [18:01:27.483] Phase 1 - Thread 6175535104 completed 10.1515_jpm-2013-2004_converted_chunk_47.md in 3.8s (Found: 0 items)
-🚀 [18:01:27.484] Phase 1 - Thread 6175535104 extracting Firtash_converted_chunk_2.md (Active: 10)
-   📊 Progress: 70/413 chunks processed✅ [18:01:27.487] Phase 1 - Thread 6326972416 completed 10.1515_jpm-2013-2004_converted_chunk_39.md in 6.9s (Found: 0 items)
-🚀 [18:01:27.487] Phase 1 - Thread 6326972416 extracting Firtash_converted_chunk_3.md (Active: 10)
-   📊 Progress: 71/413 chunks processed⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 2.0s (retry 1)
-✅ [18:01:28.827] Phase 1 - Thread 6209187840 completed 10.1515_jpm-2013-2004_converted_chunk_50.md in 2.3s (Found: 0 items)
-🚀 [18:01:28.827] Phase 1 - Thread 6209187840 extracting sanctions_converted.md (Active: 10)
-   📊 Progress: 72/413 chunks processed✅ [18:01:29.011] Phase 1 - Thread 6242840576 completed 10.1515_jpm-2013-2004_converted_chunk_44.md in 6.8s (Found: 0 items)
-🚀 [18:01:29.011] Phase 1 - Thread 6242840576 extracting Gergo_converted.md (Active: 10)
-   📊 Progress: 73/413 chunks processed⏳ Thread 6326972416 rate limited on Firtash_converted_chunk_3.md, waiting 3.0s (retry 1)
-⏳ Thread 6175535104 rate limited on Firtash_converted_chunk_2.md, waiting 3.0s (retry 1)
-⏳ Thread 6276493312 rate limited on Firtash_converted_chunk_1.md, waiting 3.0s (retry 1)
-⏳ Thread 6192361472 rate limited on 10.1515_jpm-2013-2004_converted_chunk_45.md, waiting 3.0s (retry 2)
-⏳ Thread 6259666944 rate limited on 10.1515_jpm-2013-2004_converted_chunk_43.md, waiting 1.1s (retry 2)
-✅ [18:01:33.592] Phase 1 - Thread 6310146048 completed chronology_converted.md in 6.7s (Found: 4 items)
-🚀 [18:01:33.592] Phase 1 - Thread 6310146048 extracting ug-stroy-tender_converted.md (Active: 10)
-   📊 Progress: 74/413 chunks processed
-   📥 LIVE: chronology_converted.md → 4 sections updated
-⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 1.4s (retry 2)
-✅ [18:01:35.058] Phase 1 - Thread 6242840576 completed Gergo_converted.md in 6.0s (Found: 2 items)
-🚀 [18:01:35.058] Phase 1 - Thread 6242840576 extracting Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007) (1)_converted_chunk_1.md (Active: 10)
-   📊 Progress: 75/413 chunks processed
-   📥 LIVE: Gergo_converted.md → 2 sections updated
-✅ [18:01:35.336] Phase 1 - Thread 6209187840 completed sanctions_converted.md in 6.5s (Found: 4 items)
-🚀 [18:01:35.336] Phase 1 - Thread 6209187840 extracting Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007) (1)_converted_chunk_2.md (Active: 10)
-   📊 Progress: 76/413 chunks processed
-   📥 LIVE: sanctions_converted.md → 4 sections updated
-✅ [18:01:35.353] Phase 1 - Thread 6293319680 completed 10.1515_jpm-2013-2004_converted_chunk_48.md in 11.6s (Found: 0 items)
-🚀 [18:01:35.353] Phase 1 - Thread 6293319680 extracting The investigation team believes the Subject_converted_chunk_1.md (Active: 10)
-   📊 Progress: 77/413 chunks processed⏳ Thread 6192361472 rate limited on 10.1515_jpm-2013-2004_converted_chunk_45.md, waiting 1.7s (retry 3)
-⏳ Thread 6209187840 rate limited on Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007) (1)_converted_chunk_2.md, waiting 3.0s (retry 1)
-⏳ Thread 6259666944 rate limited on 10.1515_jpm-2013-2004_converted_chunk_43.md, waiting 1.2s (retry 3)
-⏳ Thread 6242840576 rate limited on Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007) (1)_converted_chunk_1.md, waiting 3.0s (retry 1)
-⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 1.1s (retry 3)
-✅ [18:01:40.990] Phase 1 - Thread 6293319680 completed The investigation team believes the Subject_converted_chunk_1.md in 5.6s (Found: 0 items)
-🚀 [18:01:40.990] Phase 1 - Thread 6293319680 extracting The investigation team believes the Subject_converted_chunk_2.md (Active: 10)
-   📊 Progress: 78/413 chunks processed⏳ Thread 6259666944 rate limited on 10.1515_jpm-2013-2004_converted_chunk_43.md, waiting 3.0s (retry 4)
-✅ [18:01:42.634] Phase 1 - Thread 6192361472 completed 10.1515_jpm-2013-2004_converted_chunk_45.md in 20.3s (Found: 0 items)
-🚀 [18:01:42.634] Phase 1 - Thread 6192361472 extracting UNITED STATES_KAZAKHSTAN_TURKMENISTAN _ US lobbyist and businessman Watson connects Caspian Sea gas companies with Washington - 05_10_2022 - Intelligence Online_converted.md (Active: 10)
-   📊 Progress: 79/413 chunks processed✅ [18:01:43.341] Phase 1 - Thread 6293319680 completed The investigation team believes the Subject_converted_chunk_2.md in 2.4s (Found: 0 items)
-🚀 [18:01:43.341] Phase 1 - Thread 6293319680 extracting PG Research 051124_converted_chunk_1.md (Active: 10)
-   📊 Progress: 80/413 chunks processed⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 1.9s (retry 4)
-✅ [18:01:43.920] Phase 1 - Thread 6209187840 completed Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007) (1)_converted_chunk_2.md in 8.6s (Found: 0 items)
-🚀 [18:01:43.920] Phase 1 - Thread 6209187840 extracting PG Research 051124_converted_chunk_2.md (Active: 10)
-   📊 Progress: 81/413 chunks processed✅ [18:01:44.687] Phase 1 - Thread 6326972416 completed Firtash_converted_chunk_3.md in 17.2s (Found: 5 items)
-🚀 [18:01:44.687] Phase 1 - Thread 6326972416 extracting FRANCE_TURKMENISTAN _ With Vinci, Bouygues and Thales, French industry turns back towards Turkmenistan - 14_10_2022 - Intelligence Online_converted.md (Active: 10)
-   📊 Progress: 82/413 chunks processed
-   📥 LIVE: Firtash_converted_chunk_3.md → 5 sections updated
-⏳ Thread 6293319680 rate limited on PG Research 051124_converted_chunk_1.md, waiting 3.0s (retry 1)
-✅ [18:01:45.336] Phase 1 - Thread 6175535104 completed Firtash_converted_chunk_2.md in 17.9s (Found: 5 items)
-🚀 [18:01:45.336] Phase 1 - Thread 6175535104 extracting Luxembourg_converted.md (Active: 10)
-   📊 Progress: 83/413 chunks processed
-   📥 LIVE: Firtash_converted_chunk_2.md → 5 sections updated
-⏳ Thread 6326972416 rate limited on FRANCE_TURKMENISTAN _ With Vinci, Bouygues and Thales, French industry turns back towards Turkmenistan - 14_10_2022 - Intelligence Online_converted.md, waiting 3.0s (retry 1)
-✅ [18:01:46.315] Phase 1 - Thread 6310146048 completed ug-stroy-tender_converted.md in 12.7s (Found: 1 items)
-🚀 [18:01:46.315] Phase 1 - Thread 6310146048 extracting TAJIKISTAN _ Social media posts by Tajik president's grandson unsettle ruling circles as leadership succession looms - 20_04_2023 - Intelligence Online_converted_chunk_1.md (Active: 10)
-   📊 Progress: 84/413 chunks processed
-   📥 LIVE: ug-stroy-tender_converted.md → 1 sections updated
-✅ [18:01:47.522] Phase 1 - Thread 6175535104 completed Luxembourg_converted.md in 2.2s (Found: 0 items)
-🚀 [18:01:47.522] Phase 1 - Thread 6175535104 extracting TAJIKISTAN _ Social media posts by Tajik president's grandson unsettle ruling circles as leadership succession looms - 20_04_2023 - Intelligence Online_converted_chunk_2.md (Active: 10)
-   📊 Progress: 85/413 chunks processed⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 1.6s (retry 5)
-⏳ Thread 6259666944 rate limited on 10.1515_jpm-2013-2004_converted_chunk_43.md, waiting 1.3s (retry 5)
-✅ [18:01:49.488] Phase 1 - Thread 6192361472 completed UNITED STATES_KAZAKHSTAN_TURKMENISTAN _ US lobbyist and businessman Watson connects Caspian Sea gas companies with Washington - 05_10_2022 - Intelligence Online_converted.md in 6.9s (Found: 2 items)
-🚀 [18:01:49.489] Phase 1 - Thread 6192361472 extracting plan_converted_chunk_1.md (Active: 10)
-   📊 Progress: 86/413 chunks processed
-   📥 LIVE: UNITED STATES_KAZAKHSTAN_TURKMENISTAN _ US lobbyist and businessman Watson connects Caspian Sea gas companies with Washington - 05_10_2022 - Intelligence Online_converted.md → 2 sections updated
-✅ [18:01:49.942] Phase 1 - Thread 6242840576 completed Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007) (1)_converted_chunk_1.md in 14.9s (Found: 3 items)
-🚀 [18:01:49.942] Phase 1 - Thread 6242840576 extracting plan_converted_chunk_2.md (Active: 10)
-   📊 Progress: 87/413 chunks processed
-   📥 LIVE: Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007) (1)_converted_chunk_1.md → 3 sections updated
-✅ [18:01:50.731] Phase 1 - Thread 6209187840 completed PG Research 051124_converted_chunk_2.md in 6.8s (Found: 5 items)
-🚀 [18:01:50.731] Phase 1 - Thread 6209187840 extracting plan_converted_chunk_3.md (Active: 10)
-   📊 Progress: 88/413 chunks processed
-   📥 LIVE: PG Research 051124_converted_chunk_2.md → 5 sections updated
-✅ [18:01:50.777] Phase 1 - Thread 6175535104 completed TAJIKISTAN _ Social media posts by Tajik president's grandson unsettle ruling circles as leadership succession looms - 20_04_2023 - Intelligence Online_converted_chunk_2.md in 3.3s (Found: 0 items)
-🚀 [18:01:50.777] Phase 1 - Thread 6175535104 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_1.md (Active: 10)
-   📊 Progress: 89/413 chunks processed⏳ Thread 6242840576 rate limited on plan_converted_chunk_2.md, waiting 3.0s (retry 1)
-⏳ Thread 6192361472 rate limited on plan_converted_chunk_1.md, waiting 3.0s (retry 1)
-✅ [18:01:52.281] Phase 1 - Thread 6326972416 completed FRANCE_TURKMENISTAN _ With Vinci, Bouygues and Thales, French industry turns back towards Turkmenistan - 14_10_2022 - Intelligence Online_converted.md in 7.6s (Found: 0 items)
-🚀 [18:01:52.281] Phase 1 - Thread 6326972416 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_2.md (Active: 10)
-   📊 Progress: 90/413 chunks processed✅ [18:01:52.446] Phase 1 - Thread 6310146048 completed TAJIKISTAN _ Social media posts by Tajik president's grandson unsettle ruling circles as leadership succession looms - 20_04_2023 - Intelligence Online_converted_chunk_1.md in 6.1s (Found: 3 items)
-🚀 [18:01:52.447] Phase 1 - Thread 6310146048 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_3.md (Active: 10)
-   📊 Progress: 91/413 chunks processed
-   📥 LIVE: TAJIKISTAN _ Social media posts by Tajik president's grandson unsettle ruling circles as leadership succession looms - 20_04_2023 - Intelligence Online_converted_chunk_1.md → 3 sections updated
-✅ [18:01:53.869] Phase 1 - Thread 6293319680 completed PG Research 051124_converted_chunk_1.md in 10.5s (Found: 2 items)
-🚀 [18:01:53.869] Phase 1 - Thread 6293319680 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_4.md (Active: 10)
-   📊 Progress: 92/413 chunks processed
-   📥 LIVE: PG Research 051124_converted_chunk_1.md → 2 sections updated
-✅ [18:01:53.926] Phase 1 - Thread 6175535104 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_1.md in 3.1s (Found: 0 items)
-🚀 [18:01:53.927] Phase 1 - Thread 6175535104 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_5.md (Active: 10)
-   📊 Progress: 93/413 chunks processed⏳ Thread 6259666944 rate limited on 10.1515_jpm-2013-2004_converted_chunk_43.md, waiting 2.2s (retry 6)
-⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 2.2s (retry 6)
-✅ [18:01:54.084] Phase 1 - Thread 6276493312 completed Firtash_converted_chunk_1.md in 26.7s (Found: 5 items)
-🚀 [18:01:54.084] Phase 1 - Thread 6276493312 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_6.md (Active: 10)
-   📊 Progress: 94/413 chunks processed
-   📥 LIVE: Firtash_converted_chunk_1.md → 5 sections updated
-✅ [18:01:56.472] Phase 1 - Thread 6310146048 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_3.md in 4.0s (Found: 0 items)
-🚀 [18:01:56.472] Phase 1 - Thread 6310146048 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_7.md (Active: 10)
-   📊 Progress: 95/413 chunks processed✅ [18:01:56.951] Phase 1 - Thread 6326972416 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_2.md in 4.7s (Found: 0 items)
-🚀 [18:01:56.951] Phase 1 - Thread 6326972416 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_8.md (Active: 10)
-   📊 Progress: 96/413 chunks processed✅ [18:01:57.164] Phase 1 - Thread 6209187840 completed plan_converted_chunk_3.md in 6.4s (Found: 4 items)
-🚀 [18:01:57.164] Phase 1 - Thread 6209187840 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_9.md (Active: 10)
-   📊 Progress: 97/413 chunks processed
-   📥 LIVE: plan_converted_chunk_3.md → 4 sections updated
-⏳ Thread 6192361472 rate limited on plan_converted_chunk_1.md, waiting 1.3s (retry 2)
-⏳ Thread 6242840576 rate limited on plan_converted_chunk_2.md, waiting 1.3s (retry 2)
-✅ [18:01:58.878] Phase 1 - Thread 6276493312 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_6.md in 4.8s (Found: 0 items)
-🚀 [18:01:58.878] Phase 1 - Thread 6276493312 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_10.md (Active: 10)
-   📊 Progress: 98/413 chunks processed✅ [18:01:59.101] Phase 1 - Thread 6293319680 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_4.md in 5.2s (Found: 0 items)
-🚀 [18:01:59.101] Phase 1 - Thread 6293319680 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_11.md (Active: 10)
-   📊 Progress: 99/413 chunks processed⏳ Thread 6259666944 rate limited on 10.1515_jpm-2013-2004_converted_chunk_43.md, waiting 3.0s (retry 7)
-⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 2.0s (retry 7)
-⏳ Thread 6276493312 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_10.md, waiting 3.0s (retry 1)
-⏳ Thread 6192361472 rate limited on plan_converted_chunk_1.md, waiting 3.0s (retry 3)
-✅ [18:02:02.111] Phase 1 - Thread 6310146048 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_7.md in 5.6s (Found: 0 items)
-🚀 [18:02:02.111] Phase 1 - Thread 6310146048 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_12.md (Active: 10)
-   📊 Progress: 100/413 chunks processed⏳ Thread 6242840576 rate limited on plan_converted_chunk_2.md, waiting 3.0s (retry 3)
-✅ [18:02:02.388] Phase 1 - Thread 6175535104 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_5.md in 8.5s (Found: 0 items)
-🚀 [18:02:02.388] Phase 1 - Thread 6175535104 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_13.md (Active: 10)
-   📊 Progress: 101/413 chunks processed✅ [18:02:03.362] Phase 1 - Thread 6209187840 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_9.md in 6.2s (Found: 0 items)
-🚀 [18:02:03.362] Phase 1 - Thread 6209187840 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_14.md (Active: 10)
-   📊 Progress: 102/413 chunks processed✅ [18:02:03.608] Phase 1 - Thread 6293319680 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_11.md in 4.5s (Found: 0 items)
-🚀 [18:02:03.608] Phase 1 - Thread 6293319680 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_15.md (Active: 10)
-✅ [18:02:03.906] Phase 1 - Thread 6326972416 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_8.md in 7.0s (Found: 0 items)
-🚀 [18:02:03.906] Phase 1 - Thread 6326972416 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_16.md (Active: 10)
-   📊 Progress: 104/413 chunks processed✅ [18:02:05.368] Phase 1 - Thread 6175535104 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_13.md in 3.0s (Found: 0 items)
-🚀 [18:02:05.369] Phase 1 - Thread 6175535104 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_17.md (Active: 10)
-   📊 Progress: 105/413 chunks processed⏳ Thread 6209187840 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_14.md, waiting 3.0s (retry 1)
-⏳ Thread 6293319680 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_15.md, waiting 1.2s (retry 1)
-⏳ Thread 6326972416 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_16.md, waiting 1.3s (retry 1)
-⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 2.2s (retry 8)
-⏳ Thread 6242840576 rate limited on plan_converted_chunk_2.md, waiting 1.3s (retry 4)
-✅ [18:02:07.867] Phase 1 - Thread 6310146048 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_12.md in 5.8s (Found: 0 items)
-🚀 [18:02:07.867] Phase 1 - Thread 6310146048 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_18.md (Active: 10)
-   📊 Progress: 106/413 chunks processed✅ [18:02:09.407] Phase 1 - Thread 6276493312 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_10.md in 10.5s (Found: 0 items)
-🚀 [18:02:09.408] Phase 1 - Thread 6276493312 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_19.md (Active: 10)
-✅ [18:02:09.424] Phase 1 - Thread 6175535104 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_17.md in 4.1s (Found: 0 items)
-🚀 [18:02:09.424] Phase 1 - Thread 6175535104 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_20.md (Active: 10)
-   📊 Progress: 107/413 chunks processed   📊 Progress: 108/413 chunks processed⏳ Thread 6259666944 rate limited on 10.1515_jpm-2013-2004_converted_chunk_43.md, waiting 1.3s (retry 8)
-⏳ Thread 6293319680 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_15.md, waiting 1.2s (retry 2)
-⏳ Thread 6326972416 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_16.md, waiting 1.3s (retry 2)
-✅ [18:02:12.139] Phase 1 - Thread 6310146048 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_18.md in 4.3s (Found: 0 items)
-🚀 [18:02:12.140] Phase 1 - Thread 6310146048 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_21.md (Active: 10)
-   📊 Progress: 109/413 chunks processed✅ [18:02:12.183] Phase 1 - Thread 6276493312 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_19.md in 2.8s (Found: 0 items)
-🚀 [18:02:12.183] Phase 1 - Thread 6276493312 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_22.md (Active: 10)
-   📊 Progress: 110/413 chunks processed⏳ Thread 6175535104 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_20.md, waiting 3.0s (retry 1)
-⏳ Thread 6209187840 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_14.md, waiting 3.0s (retry 2)
-⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 1.0s (retry 9)
-⏳ Thread 6259666944 rate limited on 10.1515_jpm-2013-2004_converted_chunk_43.md, waiting 2.2s (retry 9)
-✅ [18:02:15.672] Phase 1 - Thread 6293319680 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_15.md in 12.1s (Found: 0 items)
-🚀 [18:02:15.672] Phase 1 - Thread 6293319680 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_23.md (Active: 10)
-   📊 Progress: 111/413 chunks processed✅ [18:02:16.979] Phase 1 - Thread 6276493312 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_22.md in 4.8s (Found: 0 items)
-🚀 [18:02:16.980] Phase 1 - Thread 6276493312 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_24.md (Active: 10)
-   📊 Progress: 112/413 chunks processed✅ [18:02:17.272] Phase 1 - Thread 6310146048 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_21.md in 5.1s (Found: 0 items)
-🚀 [18:02:17.272] Phase 1 - Thread 6310146048 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_25.md (Active: 10)
-   📊 Progress: 113/413 chunks processed✅ [18:02:17.364] Phase 1 - Thread 6326972416 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_16.md in 13.5s (Found: 0 items)
-🚀 [18:02:17.365] Phase 1 - Thread 6326972416 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_26.md (Active: 10)
-   📊 Progress: 114/413 chunks processed⏳ Thread 6175535104 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_20.md, waiting 1.0s (retry 2)
-⏳ Thread 6293319680 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_23.md, waiting 3.0s (retry 1)
-⏳ Thread 6276493312 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_24.md, waiting 3.0s (retry 1)
-⏳ Thread 6310146048 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_25.md, waiting 3.0s (retry 1)
-⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 3.0s (retry 10)
-✅ [18:02:20.397] Phase 1 - Thread 6326972416 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_26.md in 3.0s (Found: 0 items)
-🚀 [18:02:20.397] Phase 1 - Thread 6326972416 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_27.md (Active: 10)
-   📊 Progress: 115/413 chunks processed✅ [18:02:20.871] Phase 1 - Thread 6192361472 completed plan_converted_chunk_1.md in 31.4s (Found: 5 items)
-🚀 [18:02:20.871] Phase 1 - Thread 6192361472 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_28.md (Active: 10)
-   📊 Progress: 116/413 chunks processed
-   📥 LIVE: plan_converted_chunk_1.md → 5 sections updated
-⏳ Thread 6259666944 rate limited on 10.1515_jpm-2013-2004_converted_chunk_43.md, waiting 3.0s (retry 10)
-✅ [18:02:21.231] Phase 1 - Thread 6209187840 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_14.md in 17.9s (Found: 0 items)
-🚀 [18:02:21.231] Phase 1 - Thread 6209187840 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_29.md (Active: 10)
-   📊 Progress: 117/413 chunks processed✅ [18:02:21.807] Phase 1 - Thread 6242840576 completed plan_converted_chunk_2.md in 31.9s (Found: 5 items)
-🚀 [18:02:21.807] Phase 1 - Thread 6242840576 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_30.md (Active: 10)
-   📊 Progress: 118/413 chunks processed
-   📥 LIVE: plan_converted_chunk_2.md → 5 sections updated
-✅ [18:02:22.505] Phase 1 - Thread 6175535104 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_20.md in 13.1s (Found: 0 items)
-🚀 [18:02:22.506] Phase 1 - Thread 6175535104 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_31.md (Active: 10)
-   📊 Progress: 119/413 chunks processeda ,   a n d   b y   e x t o r t i n g   b u⏳ Thread 6293319680 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_23.md, waiting 3.0s (retry 2)
-✅ [18:02:24.529] Phase 1 - Thread 6192361472 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_28.md in 3.7s (Found: 0 items)
-🚀 [18:02:24.529] Phase 1 - Thread 6192361472 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_32.md (Active: 10)
-   📊 Progress: 120/413 chunks processed✅ [18:02:24.655] Phase 1 - Thread 6326972416 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_27.md in 4.3s (Found: 0 items)
-🚀 [18:02:24.655] Phase 1 - Thread 6326972416 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_33.md (Active: 10)
-   📊 Progress: 121/413 chunks processed✅ [18:02:24.746] Phase 1 - Thread 6209187840 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_29.md in 3.5s (Found: 0 items)
-🚀 [18:02:24.746] Phase 1 - Thread 6209187840 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_34.md (Active: 10)
-   📊 Progress: 122/413 chunks processed⏳ Thread 6175535104 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_31.md, waiting 3.0s (retry 1)
-⏳ Thread 6310146048 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_25.md, waiting 1.2s (retry 2)
-⏳ Thread 6209187840 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_34.md, waiting 3.0s (retry 1)
-✅ [18:02:28.123] Phase 1 - Thread 6192361472 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_32.md in 3.6s (Found: 0 items)
-🚀 [18:02:28.124] Phase 1 - Thread 6192361472 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_35.md (Active: 10)
-   📊 Progress: 123/413 chunks processed✅ [18:02:28.148] Phase 1 - Thread 6242840576 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_30.md in 6.3s (Found: 0 items)
-🚀 [18:02:28.149] Phase 1 - Thread 6242840576 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_36.md (Active: 10)
-   📊 Progress: 124/413 chunks processed⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 22.0s (retry 11)
-⏳ Thread 6259666944 rate limited on 10.1515_jpm-2013-2004_converted_chunk_43.md, waiting 22.0s (retry 11)
-✅ [18:02:30.577] Phase 1 - Thread 6276493312 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_24.md in 13.6s (Found: 0 items)
-🚀 [18:02:30.578] Phase 1 - Thread 6276493312 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_37.md (Active: 10)
-   📊 Progress: 125/413 chunks processed✅ [18:02:30.823] Phase 1 - Thread 6310146048 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_25.md in 13.6s (Found: 0 items)
-🚀 [18:02:30.823] Phase 1 - Thread 6310146048 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_38.md (Active: 10)
-   📊 Progress: 126/413 chunks processed✅ [18:02:30.878] Phase 1 - Thread 6293319680 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_23.md in 15.2s (Found: 0 items)
-🚀 [18:02:30.878] Phase 1 - Thread 6293319680 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_39.md (Active: 10)
-   📊 Progress: 127/413 chunks processed⏳ Thread 6175535104 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_31.md, waiting 1.2s (retry 2)
-✅ [18:02:32.124] Phase 1 - Thread 6326972416 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_33.md in 7.5s (Found: 0 items)
-🚀 [18:02:32.125] Phase 1 - Thread 6326972416 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_40.md (Active: 10)
-   📊 Progress: 128/413 chunks processed⏳ Thread 6276493312 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_37.md, waiting 1.2s (retry 1)
-✅ [18:02:33.564] Phase 1 - Thread 6310146048 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_38.md in 2.7s (Found: 0 items)
-🚀 [18:02:33.564] Phase 1 - Thread 6310146048 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_41.md (Active: 10)
-   📊 Progress: 129/413 chunks processed✅ [18:02:33.600] Phase 1 - Thread 6293319680 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_39.md in 2.7s (Found: 0 items)
-🚀 [18:02:33.600] Phase 1 - Thread 6293319680 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_42.md (Active: 10)
-   📊 Progress: 130/413 chunks processed✅ [18:02:33.706] Phase 1 - Thread 6192361472 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_35.md in 5.6s (Found: 0 items)
-🚀 [18:02:33.706] Phase 1 - Thread 6192361472 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_43.md (Active: 10)
-   📊 Progress: 131/413 chunks processed✅ [18:02:34.145] Phase 1 - Thread 6242840576 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_36.md in 6.0s (Found: 0 items)
-🚀 [18:02:34.145] Phase 1 - Thread 6242840576 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_44.md (Active: 10)
-   📊 Progress: 132/413 chunks processed⏳ Thread 6209187840 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_34.md, waiting 3.0s (retry 2)
-⏳ Thread 6175535104 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_31.md, waiting 1.1s (retry 3)
-⏳ Thread 6242840576 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_44.md, waiting 1.1s (retry 1)
-⏳ Thread 6293319680 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_42.md, waiting 1.2s (retry 1)
-⏳ Thread 6192361472 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_43.md, waiting 1.1s (retry 1)
-⏳ Thread 6276493312 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_37.md, waiting 3.0s (retry 2)
-✅ [18:02:38.407] Phase 1 - Thread 6326972416 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_40.md in 6.3s (Found: 0 items)
-🚀 [18:02:38.408] Phase 1 - Thread 6326972416 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_45.md (Active: 10)
-   📊 Progress: 133/413 chunks processed✅ [18:02:38.430] Phase 1 - Thread 6310146048 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_41.md in 4.9s (Found: 0 items)
-🚀 [18:02:38.430] Phase 1 - Thread 6310146048 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_46.md (Active: 10)
-   📊 Progress: 134/413 chunks processed✅ [18:02:41.438] Phase 1 - Thread 6175535104 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_31.md in 18.9s (Found: 0 items)
-🚀 [18:02:41.439] Phase 1 - Thread 6175535104 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_47.md (Active: 10)
-   📊 Progress: 135/413 chunks processed✅ [18:02:41.670] Phase 1 - Thread 6310146048 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_46.md in 3.2s (Found: 0 items)
-🚀 [18:02:41.670] Phase 1 - Thread 6310146048 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_48.md (Active: 10)
-   📊 Progress: 136/413 chunks processed⏳ Thread 6209187840 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_34.md, waiting 3.0s (retry 3)
-✅ [18:02:42.857] Phase 1 - Thread 6326972416 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_45.md in 4.4s (Found: 0 items)
-🚀 [18:02:42.859] Phase 1 - Thread 6326972416 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_49.md (Active: 10)
-   📊 Progress: 137/413 chunks processed✅ [18:02:43.996] Phase 1 - Thread 6242840576 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_44.md in 9.9s (Found: 0 items)
-🚀 [18:02:43.996] Phase 1 - Thread 6242840576 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_50.md (Active: 10)
-   📊 Progress: 138/413 chunks processed✅ [18:02:44.291] Phase 1 - Thread 6276493312 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_37.md in 13.7s (Found: 0 items)
-🚀 [18:02:44.291] Phase 1 - Thread 6276493312 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_51.md (Active: 10)
-   📊 Progress: 139/413 chunks processed⏳ Thread 6310146048 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_48.md, waiting 3.0s (retry 1)
-⏳ Thread 6175535104 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_47.md, waiting 3.0s (retry 1)
-⏳ Thread 6326972416 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_49.md, waiting 3.0s (retry 1)
-✅ [18:02:46.242] Phase 1 - Thread 6192361472 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_43.md in 12.5s (Found: 0 items)
-🚀 [18:02:46.242] Phase 1 - Thread 6192361472 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_52.md (Active: 10)
-   📊 Progress: 140/413 chunks processed✅ [18:02:46.308] Phase 1 - Thread 6293319680 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_42.md in 12.7s (Found: 0 items)
-🚀 [18:02:46.309] Phase 1 - Thread 6293319680 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_53.md (Active: 10)
-   📊 Progress: 141/413 chunks processed⏳ Thread 6276493312 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_51.md, waiting 3.0s (retry 1)
-✅ [18:02:48.949] Phase 1 - Thread 6242840576 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_50.md in 5.0s (Found: 0 items)
-🚀 [18:02:48.949] Phase 1 - Thread 6242840576 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_54.md (Active: 10)
-   📊 Progress: 142/413 chunks processed✅ [18:02:49.029] Phase 1 - Thread 6209187840 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_34.md in 24.3s (Found: 0 items)
-🚀 [18:02:49.029] Phase 1 - Thread 6209187840 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_55.md (Active: 10)
-   📊 Progress: 143/413 chunks processed✅ [18:02:50.238] Phase 1 - Thread 6192361472 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_52.md in 4.0s (Found: 0 items)
-🚀 [18:02:50.238] Phase 1 - Thread 6192361472 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_56.md (Active: 10)
-   📊 Progress: 144/413 chunks processed✅ [18:02:51.920] Phase 1 - Thread 6293319680 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_53.md in 5.6s (Found: 0 items)
-🚀 [18:02:51.920] Phase 1 - Thread 6293319680 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_57.md (Active: 10)
-   📊 Progress: 145/413 chunks processed✅ [18:02:52.309] Phase 1 - Thread 6310146048 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_48.md in 10.6s (Found: 0 items)
-🚀 [18:02:52.309] Phase 1 - Thread 6310146048 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_58.md (Active: 10)
-   📊 Progress: 146/413 chunks processed⏳ Thread 6326972416 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_49.md, waiting 1.2s (retry 2)
-✅ [18:02:54.309] Phase 1 - Thread 6209187840 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_55.md in 5.3s (Found: 0 items)
-🚀 [18:02:54.309] Phase 1 - Thread 6209187840 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_59.md (Active: 10)
-   📊 Progress: 147/413 chunks processed✅ [18:02:54.327] Phase 1 - Thread 6242840576 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_54.md in 5.4s (Found: 0 items)
-🚀 [18:02:54.327] Phase 1 - Thread 6242840576 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_60.md (Active: 10)
-   📊 Progress: 148/413 chunks processed✅ [18:02:54.541] Phase 1 - Thread 6175535104 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_47.md in 13.1s (Found: 0 items)
-🚀 [18:02:54.541] Phase 1 - Thread 6175535104 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_61.md (Active: 10)
-   📊 Progress: 149/413 chunks processed✅ [18:02:54.839] Phase 1 - Thread 6192361472 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_56.md in 4.6s (Found: 0 items)
-🚀 [18:02:54.839] Phase 1 - Thread 6192361472 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_62.md (Active: 10)
-   📊 Progress: 150/413 chunks processed⏳ Thread 6276493312 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_51.md, waiting 1.2s (retry 2)
-⏳ Thread 6310146048 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_58.md, waiting 1.2s (retry 1)
-⏳ Thread 6293319680 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_57.md, waiting 1.2s (retry 1)
-⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 24.0s (retry 12)
-⏳ Thread 6259666944 rate limited on 10.1515_jpm-2013-2004_converted_chunk_43.md, waiting 24.0s (retry 12)
-⏳ Thread 6175535104 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_61.md, waiting 1.4s (retry 1)
-⏳ Thread 6209187840 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_59.md, waiting 1.2s (retry 1)
-✅ [18:02:57.821] Phase 1 - Thread 6192361472 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_62.md in 3.0s (Found: 0 items)
-🚀 [18:02:57.823] Phase 1 - Thread 6192361472 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_63.md (Active: 10)
-   📊 Progress: 151/413 chunks processed✅ [18:02:57.853] Phase 1 - Thread 6326972416 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_49.md in 15.0s (Found: 0 items)
-🚀 [18:02:57.854] Phase 1 - Thread 6326972416 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_64.md (Active: 10)
-   📊 Progress: 152/413 chunks processed✅ [18:02:58.129] Phase 1 - Thread 6242840576 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_60.md in 3.8s (Found: 0 items)
-🚀 [18:02:58.129] Phase 1 - Thread 6242840576 extracting Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_65.md (Active: 10)
-   📊 Progress: 153/413 chunks processed⏳ Thread 6310146048 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_58.md, waiting 1.2s (retry 2)
-⏳ Thread 6326972416 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_64.md, waiting 1.3s (retry 1)
-⏳ Thread 6293319680 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_57.md, waiting 1.2s (retry 2)
-✅ [18:03:00.433] Phase 1 - Thread 6192361472 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_63.md in 2.6s (Found: 0 items)
-🚀 [18:03:00.434] Phase 1 - Thread 6192361472 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_1.md (Active: 10)
-   📊 Progress: 154/413 chunks processed✅ [18:03:00.508] Phase 1 - Thread 6242840576 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_65.md in 2.4s (Found: 0 items)
-🚀 [18:03:00.508] Phase 1 - Thread 6242840576 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_2.md (Active: 10)
-   📊 Progress: 155/413 chunks processed✅ [18:03:01.026] Phase 1 - Thread 6209187840 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_59.md in 6.7s (Found: 0 items)
-🚀 [18:03:01.026] Phase 1 - Thread 6209187840 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_3.md (Active: 10)
-   📊 Progress: 156/413 chunks processed⏳ Thread 6175535104 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_61.md, waiting 3.0s (retry 2)
-⏳ Thread 6276493312 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_51.md, waiting 3.0s (retry 3)
-⏳ Thread 6310146048 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_58.md, waiting 3.0s (retry 3)
-⏳ Thread 6326972416 rate limited on Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_64.md, waiting 3.0s (retry 2)
-✅ [18:03:08.400] Phase 1 - Thread 6293319680 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_57.md in 16.5s (Found: 0 items)
-🚀 [18:03:08.401] Phase 1 - Thread 6293319680 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_4.md (Active: 10)
-   📊 Progress: 157/413 chunks processed✅ [18:03:09.562] Phase 1 - Thread 6175535104 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_61.md in 15.0s (Found: 0 items)
-🚀 [18:03:09.562] Phase 1 - Thread 6175535104 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_5.md (Active: 10)
-   📊 Progress: 158/413 chunks processed✅ [18:03:09.786] Phase 1 - Thread 6276493312 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_51.md in 25.5s (Found: 0 items)
-🚀 [18:03:09.786] Phase 1 - Thread 6276493312 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_6.md (Active: 10)
-   📊 Progress: 159/413 chunks processed✅ [18:03:11.616] Phase 1 - Thread 6310146048 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_58.md in 19.3s (Found: 0 items)
-🚀 [18:03:11.617] Phase 1 - Thread 6310146048 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_7.md (Active: 10)
-   📊 Progress: 160/413 chunks processed✅ [18:03:12.447] Phase 1 - Thread 6192361472 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_1.md in 12.0s (Found: 5 items)
-🚀 [18:03:12.448] Phase 1 - Thread 6192361472 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_8.md (Active: 10)
-   📊 Progress: 161/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_1.md → 5 sections updated
-✅ [18:03:14.374] Phase 1 - Thread 6326972416 completed Richard Sakwa - Putin_ Russia_s choice-Routledge (2003)_converted_chunk_64.md in 16.5s (Found: 0 items)
-🚀 [18:03:14.376] Phase 1 - Thread 6326972416 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_9.md (Active: 10)
-   📊 Progress: 162/413 chunks processed⏳ Thread 6310146048 rate limited on 250416 Kroll Project Coppi Draft Final Report_converted_chunk_7.md, waiting 3.0s (retry 1)
-✅ [18:03:16.512] Phase 1 - Thread 6293319680 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_4.md in 8.1s (Found: 2 items)
-🚀 [18:03:16.513] Phase 1 - Thread 6293319680 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_10.md (Active: 10)
-   📊 Progress: 163/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_4.md → 2 sections updated
-✅ [18:03:17.869] Phase 1 - Thread 6209187840 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_3.md in 16.8s (Found: 5 items)
-🚀 [18:03:17.870] Phase 1 - Thread 6209187840 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_11.md (Active: 10)
-   📊 Progress: 164/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_3.md → 5 sections updated
-✅ [18:03:23.254] Phase 1 - Thread 6259666944 completed 10.1515_jpm-2013-2004_converted_chunk_43.md in 121.5s (Found: 0 items)
-🚀 [18:03:23.255] Phase 1 - Thread 6259666944 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_12.md (Active: 10)
-   📊 Progress: 165/413 chunks processed✅ [18:03:23.387] Phase 1 - Thread 6175535104 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_5.md in 13.8s (Found: 3 items)
-🚀 [18:03:23.387] Phase 1 - Thread 6175535104 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_13.md (Active: 10)
-   📊 Progress: 166/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_5.md → 3 sections updated
-✅ [18:03:23.886] Phase 1 - Thread 6276493312 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_6.md in 14.1s (Found: 4 items)
-🚀 [18:03:23.887] Phase 1 - Thread 6276493312 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_14.md (Active: 10)
-   📊 Progress: 167/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_6.md → 4 sections updated
-⏳ Thread 6226014208 rate limited on 10.1515_jpm-2013-2004_converted_chunk_46.md, waiting 26.0s (retry 13)
-✅ [18:03:24.285] Phase 1 - Thread 6242840576 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_2.md in 23.8s (Found: 5 items)
-🚀 [18:03:24.286] Phase 1 - Thread 6242840576 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_15.md (Active: 10)
-   📊 Progress: 168/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_2.md → 5 sections updated
-⏳ Thread 6276493312 rate limited on 250416 Kroll Project Coppi Draft Final Report_converted_chunk_14.md, waiting 3.0s (retry 1)
-✅ [18:03:31.715] Phase 1 - Thread 6192361472 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_8.md in 19.3s (Found: 2 items)
-🚀 [18:03:31.717] Phase 1 - Thread 6192361472 extracting 250416 Kroll Project Coppi Draft Final Report_converted_chunk_16.md (Active: 10)
-   📊 Progress: 169/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_8.md → 2 sections updated
-✅ [18:03:33.902] Phase 1 - Thread 6326972416 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_9.md in 19.5s (Found: 3 items)
-🚀 [18:03:33.902] Phase 1 - Thread 6326972416 extracting Makarov_factiva1_converted_chunk_1.md (Active: 10)
-   📊 Progress: 170/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_9.md → 3 sections updated
-✅ [18:03:34.869] Phase 1 - Thread 6192361472 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_16.md in 3.2s (Found: 0 items)
-🚀 [18:03:34.869] Phase 1 - Thread 6192361472 extracting Makarov_factiva1_converted_chunk_2.md (Active: 10)
-   📊 Progress: 171/413 chunks processed✅ [18:03:39.228] Phase 1 - Thread 6175535104 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_13.md in 15.8s (Found: 4 items)
-   📊 Progress: 172/413 chunks processed✅ [18:03:39.240] Phase 1 - Thread 6293319680 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_10.md in 22.7s (Found: 5 items)
-🚀 [18:03:39.241] Phase 1 - Thread 6293319680 extracting Makarov_factiva1_converted_chunk_4.md (Active: 9)
-🚀 [18:03:39.250] Phase 1 - Thread 6175535104 extracting Makarov_factiva1_converted_chunk_3.md (Active: 10)
-
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_13.md → 4 sections updated
-   📊 Progress: 173/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_10.md → 5 sections updated
-✅ [18:03:41.917] Phase 1 - Thread 6326972416 completed Makarov_factiva1_converted_chunk_1.md in 8.0s (Found: 4 items)
-🚀 [18:03:41.918] Phase 1 - Thread 6326972416 extracting Makarov_factiva1_converted_chunk_5.md (Active: 10)
-   📊 Progress: 174/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_1.md → 4 sections updated
-✅ [18:03:42.915] Phase 1 - Thread 6209187840 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_11.md in 25.0s (Found: 6 items)
-🚀 [18:03:42.916] Phase 1 - Thread 6209187840 extracting Makarov_factiva1_converted_chunk_6.md (Active: 10)
-   📊 Progress: 175/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_11.md → 5 sections updated
-✅ [18:03:44.003] Phase 1 - Thread 6259666944 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_12.md in 20.7s (Found: 5 items)
-🚀 [18:03:44.004] Phase 1 - Thread 6259666944 extracting Makarov_factiva1_converted_chunk_7.md (Active: 10)
-   📊 Progress: 176/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_12.md → 5 sections updated
-✅ [18:03:45.587] Phase 1 - Thread 6310146048 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_7.md in 34.0s (Found: 5 items)
-🚀 [18:03:45.587] Phase 1 - Thread 6310146048 extracting Makarov_factiva1_converted_chunk_8.md (Active: 10)
-   📊 Progress: 177/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_7.md → 5 sections updated
-✅ [18:03:47.806] Phase 1 - Thread 6175535104 completed Makarov_factiva1_converted_chunk_3.md in 8.6s (Found: 4 items)
-🚀 [18:03:47.806] Phase 1 - Thread 6175535104 extracting Makarov_factiva1_converted_chunk_9.md (Active: 10)
-   📊 Progress: 178/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_3.md → 4 sections updated
-✅ [18:03:48.652] Phase 1 - Thread 6192361472 completed Makarov_factiva1_converted_chunk_2.md in 13.8s (Found: 5 items)
-🚀 [18:03:48.652] Phase 1 - Thread 6192361472 extracting Makarov_factiva1_converted_chunk_10.md (Active: 10)
-   📊 Progress: 179/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_2.md → 5 sections updated
-✅ [18:03:48.983] Phase 1 - Thread 6242840576 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_15.md in 24.7s (Found: 5 items)
-🚀 [18:03:48.983] Phase 1 - Thread 6242840576 extracting Makarov_factiva1_converted_chunk_11.md (Active: 10)
-   📊 Progress: 180/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_15.md → 5 sections updated
-✅ [18:03:49.020] Phase 1 - Thread 6293319680 completed Makarov_factiva1_converted_chunk_4.md in 9.8s (Found: 3 items)
-🚀 [18:03:49.020] Phase 1 - Thread 6293319680 extracting Makarov_factiva1_converted_chunk_12.md (Active: 10)
-   📊 Progress: 181/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_4.md → 3 sections updated
-✅ [18:03:49.285] Phase 1 - Thread 6326972416 completed Makarov_factiva1_converted_chunk_5.md in 7.4s (Found: 4 items)
-🚀 [18:03:49.286] Phase 1 - Thread 6326972416 extracting Makarov_factiva1_converted_chunk_13.md (Active: 10)
-   📊 Progress: 182/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_5.md → 4 sections updated
-✅ [18:03:49.543] Phase 1 - Thread 6276493312 completed 250416 Kroll Project Coppi Draft Final Report_converted_chunk_14.md in 25.7s (Found: 5 items)
-🚀 [18:03:49.544] Phase 1 - Thread 6276493312 extracting Makarov_factiva1_converted_chunk_14.md (Active: 10)
-   📊 Progress: 183/413 chunks processed
-   📥 LIVE: 250416 Kroll Project Coppi Draft Final Report_converted_chunk_14.md → 5 sections updated
-✅ [18:03:50.294] Phase 1 - Thread 6209187840 completed Makarov_factiva1_converted_chunk_6.md in 7.4s (Found: 3 items)
-🚀 [18:03:50.294] Phase 1 - Thread 6209187840 extracting Makarov_factiva1_converted_chunk_15.md (Active: 10)
-   📊 Progress: 184/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_6.md → 3 sections updated
-✅ [18:03:53.621] Phase 1 - Thread 6326972416 completed Makarov_factiva1_converted_chunk_13.md in 4.3s (Found: 1 items)
-🚀 [18:03:53.621] Phase 1 - Thread 6326972416 extracting Makarov_factiva1_converted_chunk_16.md (Active: 10)
-   📊 Progress: 185/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_13.md → 1 sections updated
-✅ [18:03:54.516] Phase 1 - Thread 6175535104 completed Makarov_factiva1_converted_chunk_9.md in 6.7s (Found: 3 items)
-🚀 [18:03:54.516] Phase 1 - Thread 6175535104 extracting Makarov_factiva1_converted_chunk_17.md (Active: 10)
-   📊 Progress: 186/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_9.md → 3 sections updated
-✅ [18:03:54.747] Phase 1 - Thread 6310146048 completed Makarov_factiva1_converted_chunk_8.md in 9.2s (Found: 4 items)
-🚀 [18:03:54.747] Phase 1 - Thread 6310146048 extracting Makarov_factiva1_converted_chunk_18.md (Active: 10)
-   📊 Progress: 187/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_8.md → 4 sections updated
-✅ [18:03:54.935] Phase 1 - Thread 6293319680 completed Makarov_factiva1_converted_chunk_12.md in 5.9s (Found: 2 items)
-🚀 [18:03:54.935] Phase 1 - Thread 6293319680 extracting Makarov_factiva1_converted_chunk_19.md (Active: 10)
-   📊 Progress: 188/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_12.md → 2 sections updated
-✅ [18:03:55.010] Phase 1 - Thread 6192361472 completed Makarov_factiva1_converted_chunk_10.md in 6.4s (Found: 3 items)
-🚀 [18:03:55.010] Phase 1 - Thread 6192361472 extracting Makarov_factiva1_converted_chunk_20.md (Active: 10)
-   📊 Progress: 189/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_10.md → 3 sections updated
-✅ [18:03:55.488] Phase 1 - Thread 6259666944 completed Makarov_factiva1_converted_chunk_7.md in 11.5s (Found: 5 items)
-🚀 [18:03:55.488] Phase 1 - Thread 6259666944 extracting Makarov_factiva1_converted_chunk_21.md (Active: 10)
-   📊 Progress: 190/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_7.md → 5 sections updated
-⏳ Thread 6310146048 rate limited on Makarov_factiva1_converted_chunk_18.md, waiting 3.0s (retry 1)
-⏳ Thread 6175535104 rate limited on Makarov_factiva1_converted_chunk_17.md, waiting 1.2s (retry 1)
-✅ [18:03:57.971] Phase 1 - Thread 6226014208 completed 10.1515_jpm-2013-2004_converted_chunk_46.md in 154.8s (Found: 0 items)
-🚀 [18:03:57.971] Phase 1 - Thread 6226014208 extracting Makarov_factiva1_converted_chunk_22.md (Active: 10)
-   📊 Progress: 191/413 chunks processed⏳ Thread 6192361472 rate limited on Makarov_factiva1_converted_chunk_20.md, waiting 3.0s (retry 1)
-✅ [18:03:58.546] Phase 1 - Thread 6326972416 completed Makarov_factiva1_converted_chunk_16.md in 4.9s (Found: 3 items)
-🚀 [18:03:58.547] Phase 1 - Thread 6326972416 extracting Makarov_factiva1_converted_chunk_23.md (Active: 10)
-   📊 Progress: 192/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_16.md → 3 sections updated
-✅ [18:03:59.047] Phase 1 - Thread 6209187840 completed Makarov_factiva1_converted_chunk_15.md in 8.8s (Found: 4 items)
-🚀 [18:03:59.047] Phase 1 - Thread 6209187840 extracting Makarov_factiva1_converted_chunk_24.md (Active: 10)
-   📊 Progress: 193/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_15.md → 4 sections updated
-✅ [18:04:00.721] Phase 1 - Thread 6259666944 completed Makarov_factiva1_converted_chunk_21.md in 5.2s (Found: 2 items)
-🚀 [18:04:00.721] Phase 1 - Thread 6259666944 extracting Makarov_factiva1_converted_chunk_25.md (Active: 10)
-
-   📥 LIVE: Makarov_factiva1_converted_chunk_21.md → 2 sections updated
-✅ [18:04:01.289] Phase 1 - Thread 6242840576 completed Makarov_factiva1_converted_chunk_11.md in 12.3s (Found: 4 items)
-🚀 [18:04:01.291] Phase 1 - Thread 6242840576 extracting Makarov_factiva1_converted_chunk_26.md (Active: 10)
-   📊 Progress: 195/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_11.md → 4 sections updated
-⏳ Thread 6209187840 rate limited on Makarov_factiva1_converted_chunk_24.md, waiting 3.0s (retry 1)
-✅ [18:04:01.539] Phase 1 - Thread 6226014208 completed Makarov_factiva1_converted_chunk_22.md in 3.6s (Found: 0 items)
-🚀 [18:04:01.539] Phase 1 - Thread 6226014208 extracting Makarov_factiva1_converted_chunk_27.md (Active: 10)
-   📊 Progress: 196/413 chunks processed⏳ Thread 6175535104 rate limited on Makarov_factiva1_converted_chunk_17.md, waiting 3.0s (retry 2)
-✅ [18:04:01.851] Phase 1 - Thread 6276493312 completed Makarov_factiva1_converted_chunk_14.md in 12.3s (Found: 4 items)
-🚀 [18:04:01.851] Phase 1 - Thread 6276493312 extracting Makarov_factiva1_converted_chunk_28.md (Active: 10)
-   📊 Progress: 197/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_14.md → 4 sections updated
-⏳ Thread 6310146048 rate limited on Makarov_factiva1_converted_chunk_18.md, waiting 1.2s (retry 2)
-✅ [18:04:02.361] Phase 1 - Thread 6326972416 completed Makarov_factiva1_converted_chunk_23.md in 3.8s (Found: 0 items)
-🚀 [18:04:02.362] Phase 1 - Thread 6326972416 extracting Makarov_factiva1_converted_chunk_29.md (Active: 10)
-   📊 Progress: 198/413 chunks processed⏳ Thread 6192361472 rate limited on Makarov_factiva1_converted_chunk_20.md, waiting 1.3s (retry 2)
-✅ [18:04:04.393] Phase 1 - Thread 6293319680 completed Makarov_factiva1_converted_chunk_19.md in 9.5s (Found: 3 items)
-🚀 [18:04:04.393] Phase 1 - Thread 6293319680 extracting Makarov_factiva1_converted_chunk_30.md (Active: 10)
-   📊 Progress: 199/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_19.md → 3 sections updated
-⏳ Thread 6326972416 rate limited on Makarov_factiva1_converted_chunk_29.md, waiting 1.3s (retry 1)
-✅ [18:04:06.069] Phase 1 - Thread 6242840576 completed Makarov_factiva1_converted_chunk_26.md in 4.8s (Found: 0 items)
-🚀 [18:04:06.069] Phase 1 - Thread 6242840576 extracting Makarov_factiva1_converted_chunk_31.md (Active: 10)
-   📊 Progress: 200/413 chunks processed⏳ Thread 6310146048 rate limited on Makarov_factiva1_converted_chunk_18.md, waiting 3.0s (retry 3)
-✅ [18:04:07.255] Phase 1 - Thread 6259666944 completed Makarov_factiva1_converted_chunk_25.md in 6.5s (Found: 3 items)
-🚀 [18:04:07.255] Phase 1 - Thread 6259666944 extracting Makarov_factiva1_converted_chunk_32.md (Active: 10)
-   📊 Progress: 201/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_25.md → 3 sections updated
-⏳ Thread 6209187840 rate limited on Makarov_factiva1_converted_chunk_24.md, waiting 3.0s (retry 2)
-⏳ Thread 6175535104 rate limited on Makarov_factiva1_converted_chunk_17.md, waiting 3.0s (retry 3)
-⏳ Thread 6192361472 rate limited on Makarov_factiva1_converted_chunk_20.md, waiting 3.0s (retry 3)
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 1.7s (retry 1)
-⏳ Thread 6259666944 rate limited on Makarov_factiva1_converted_chunk_32.md, waiting 3.0s (retry 1)
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 1.7s (retry 2)
-✅ [18:04:12.918] Phase 1 - Thread 6276493312 completed Makarov_factiva1_converted_chunk_28.md in 11.1s (Found: 5 items)
-🚀 [18:04:12.918] Phase 1 - Thread 6276493312 extracting Makarov_factiva1_converted_chunk_33.md (Active: 10)
-   📊 Progress: 202/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_28.md → 5 sections updated
-⏳ Thread 6192361472 rate limited on Makarov_factiva1_converted_chunk_20.md, waiting 1.1s (retry 4)
-✅ [18:04:15.227] Phase 1 - Thread 6209187840 completed Makarov_factiva1_converted_chunk_24.md in 16.2s (Found: 1 items)
-🚀 [18:04:15.227] Phase 1 - Thread 6209187840 extracting Makarov_factiva1_converted_chunk_34.md (Active: 10)
-   📊 Progress: 203/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_24.md → 1 sections updated
-✅ [18:04:15.634] Phase 1 - Thread 6326972416 completed Makarov_factiva1_converted_chunk_29.md in 13.3s (Found: 3 items)
-🚀 [18:04:15.634] Phase 1 - Thread 6326972416 extracting Makarov_factiva1_converted_chunk_35.md (Active: 10)
-   📊 Progress: 204/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_29.md → 3 sections updated
-⏳ Thread 6276493312 rate limited on Makarov_factiva1_converted_chunk_33.md, waiting 1.2s (retry 1)
-✅ [18:04:16.904] Phase 1 - Thread 6310146048 completed Makarov_factiva1_converted_chunk_18.md in 22.2s (Found: 3 items)
-🚀 [18:04:16.905] Phase 1 - Thread 6310146048 extracting Makarov_factiva1_converted_chunk_36.md (Active: 10)
-   📊 Progress: 205/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_18.md → 3 sections updated
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 3.0s (retry 3)
-✅ [18:04:18.194] Phase 1 - Thread 6226014208 completed Makarov_factiva1_converted_chunk_27.md in 16.7s (Found: 5 items)
-🚀 [18:04:18.194] Phase 1 - Thread 6226014208 extracting Makarov_factiva1_converted_chunk_37.md (Active: 10)
-   📊 Progress: 206/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_27.md → 5 sections updated
-✅ [18:04:18.421] Phase 1 - Thread 6259666944 completed Makarov_factiva1_converted_chunk_32.md in 11.2s (Found: 1 items)
-🚀 [18:04:18.421] Phase 1 - Thread 6259666944 extracting Makarov_factiva1_converted_chunk_38.md (Active: 10)
-   📊 Progress: 207/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_32.md → 1 sections updated
-⏳ Thread 6192361472 rate limited on Makarov_factiva1_converted_chunk_20.md, waiting 3.0s (retry 5)
-✅ [18:04:21.969] Phase 1 - Thread 6259666944 completed Makarov_factiva1_converted_chunk_38.md in 3.5s (Found: 0 items)
-🚀 [18:04:21.969] Phase 1 - Thread 6259666944 extracting World Check Igor Makarov_converted.md (Active: 10)
-   📊 Progress: 208/413 chunks processed✅ [18:04:22.398] Phase 1 - Thread 6326972416 completed Makarov_factiva1_converted_chunk_35.md in 6.8s (Found: 1 items)
-🚀 [18:04:22.399] Phase 1 - Thread 6326972416 extracting igor.makarov@iteragroup.com-InstantCheckmateReport_converted.md (Active: 10)
-   📊 Progress: 209/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_35.md → 1 sections updated
-✅ [18:04:23.138] Phase 1 - Thread 6226014208 completed Makarov_factiva1_converted_chunk_37.md in 4.9s (Found: 0 items)
-🚀 [18:04:23.138] Phase 1 - Thread 6226014208 extracting caspian_converted_chunk_1.md (Active: 10)
-   📊 Progress: 210/413 chunks processed⏳ Thread 6259666944 rate limited on World Check Igor Makarov_converted.md, waiting 3.0s (retry 1)
-✅ [18:04:24.833] Phase 1 - Thread 6310146048 completed Makarov_factiva1_converted_chunk_36.md in 7.9s (Found: 2 items)
-🚀 [18:04:24.833] Phase 1 - Thread 6310146048 extracting caspian_converted_chunk_2.md (Active: 10)
-   📊 Progress: 211/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_36.md → 2 sections updated
-⏳ Thread 6192361472 rate limited on Makarov_factiva1_converted_chunk_20.md, waiting 3.0s (retry 6)
-✅ [18:04:25.034] Phase 1 - Thread 6209187840 completed Makarov_factiva1_converted_chunk_34.md in 9.8s (Found: 4 items)
-🚀 [18:04:25.034] Phase 1 - Thread 6209187840 extracting caspian_converted_chunk_3.md (Active: 10)
-   📊 Progress: 212/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_34.md → 4 sections updated
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 3.0s (retry 4)
-⏳ Thread 6226014208 rate limited on caspian_converted_chunk_1.md, waiting 3.0s (retry 1)   �H~   0��        �X   0��    
-✅ [18:04:27.842] Phase 1 - Thread 6326972416 completed igor.makarov@iteragroup.com-InstantCheckmateReport_converted.md in 5.4s (Found: 1 items)
-🚀 [18:04:27.843] Phase 1 - Thread 6326972416 extracting caspian_converted_chunk_4.md (Active: 10)
-   📊 Progress: 213/413 chunks processed
-   📥 LIVE: igor.makarov@iteragroup.com-InstantCheckmateReport_converted.md → 1 sections updated
-✅ [18:04:28.413] Phase 1 - Thread 6175535104 completed Makarov_factiva1_converted_chunk_17.md in 33.9s (Found: 4 items)
-🚀 [18:04:28.413] Phase 1 - Thread 6175535104 extracting Under scrutiny_ how the trader at the centre of Ukraine's gas dispute faces questions about his past - FT_converted_chunk_1.md (Active: 10)
-   📊 Progress: 214/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_17.md → 4 sections updated
-⏳ Thread 6175535104 rate limited on Under scrutiny_ how the trader at the centre of Ukraine's gas dispute faces questions about his past - FT_converted_chunk_1.md, waiting 3.0s (retry 1)
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 3.0s (retry 5)
-✅ [18:04:34.203] Phase 1 - Thread 6276493312 completed Makarov_factiva1_converted_chunk_33.md in 21.3s (Found: 5 items)
-🚀 [18:04:34.209] Phase 1 - Thread 6276493312 extracting Under scrutiny_ how the trader at the centre of Ukraine's gas dispute faces questions about his past - FT_converted_chunk_2.md (Active: 10)
-   📊 Progress: 215/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_33.md → 5 sections updated
-✅ [18:04:35.309] Phase 1 - Thread 6259666944 completed World Check Igor Makarov_converted.md in 13.3s (Found: 3 items)
-🚀 [18:04:35.309] Phase 1 - Thread 6259666944 extracting Gazprom's secretive Ukrainian partner tells of lone struggle to build business - FT_converted_chunk_1.md (Active: 10)
-   📊 Progress: 216/413 chunks processed✅ [18:04:35.362] Phase 1 - Thread 6209187840 completed caspian_converted_chunk_3.md in 10.3s (Found: 4 items)
-🚀 [18:04:35.362] Phase 1 - Thread 6209187840 extracting Gazprom's secretive Ukrainian partner tells of lone struggle to build business - FT_converted_chunk_2.md (Active: 10)
-
-   📥 LIVE: World Check Igor Makarov_converted.md → 3 sections updated
-   📊 Progress: 217/413 chunks processed
-   📥 LIVE: caspian_converted_chunk_3.md → 4 sections updated
-✅ [18:04:36.408] Phase 1 - Thread 6242840576 completed Makarov_factiva1_converted_chunk_31.md in 30.3s (Found: 5 items)
-🚀 [18:04:36.408] Phase 1 - Thread 6242840576 extracting the Kudimovs_converted.md (Active: 10)
-   📊 Progress: 218/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_31.md → 5 sections updated
-✅ [18:04:37.580] Phase 1 - Thread 6175535104 completed Under scrutiny_ how the trader at the centre of Ukraine's gas dispute faces questions about his past - FT_converted_chunk_1.md in 9.2s (Found: 0 items)
-🚀 [18:04:37.581] Phase 1 - Thread 6175535104 extracting Factiva-10June20250851_converted_chunk_1.md (Active: 10)
-   📊 Progress: 219/413 chunks processed✅ [18:04:37.859] Phase 1 - Thread 6192361472 completed Makarov_factiva1_converted_chunk_20.md in 42.8s (Found: 5 items)
-🚀 [18:04:37.860] Phase 1 - Thread 6192361472 extracting Factiva-10June20250851_converted_chunk_2.md (Active: 10)
-   📊 Progress: 220/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_20.md → 5 sections updated
-✅ [18:04:38.653] Phase 1 - Thread 6326972416 completed caspian_converted_chunk_4.md in 10.8s (Found: 5 items)
-🚀 [18:04:38.654] Phase 1 - Thread 6326972416 extracting Factiva-10June20250851_converted_chunk_3.md (Active: 10)
-   📊 Progress: 221/413 chunks processed
-   📥 LIVE: caspian_converted_chunk_4.md → 5 sections updated
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 1.7s (retry 6)
-✅ [18:04:39.713] Phase 1 - Thread 6276493312 completed Under scrutiny_ how the trader at the centre of Ukraine's gas dispute faces questions about his past - FT_converted_chunk_2.md in 5.5s (Found: 2 items)
-🚀 [18:04:39.715] Phase 1 - Thread 6276493312 extracting PART 2_converted.md (Active: 10)
-   📊 Progress: 222/413 chunks processed
-   📥 LIVE: Under scrutiny_ how the trader at the centre of Ukraine's gas dispute faces questions about his past - FT_converted_chunk_2.md → 2 sections updated
-⏳ Thread 6326972416 rate limited on Factiva-10June20250851_converted_chunk_3.md, waiting 3.0s (retry 1)
-✅ [18:04:42.006] Phase 1 - Thread 6259666944 completed Gazprom's secretive Ukrainian partner tells of lone struggle to build business - FT_converted_chunk_1.md in 6.7s (Found: 2 items)
-🚀 [18:04:42.006] Phase 1 - Thread 6259666944 extracting Makarov Supreme_converted.md (Active: 10)
-   📊 Progress: 223/413 chunks processed
-   📥 LIVE: Gazprom's secretive Ukrainian partner tells of lone struggle to build business - FT_converted_chunk_1.md → 2 sections updated
-✅ [18:04:42.681] Phase 1 - Thread 6209187840 completed Gazprom's secretive Ukrainian partner tells of lone struggle to build business - FT_converted_chunk_2.md in 7.3s (Found: 5 items)
-🚀 [18:04:42.689] Phase 1 - Thread 6209187840 extracting rp2_converted_chunk_1.md (Active: 10)
-   📊 Progress: 224/413 chunks processed
-   📥 LIVE: Gazprom's secretive Ukrainian partner tells of lone struggle to build business - FT_converted_chunk_2.md → 5 sections updated
-✅ [18:04:43.153] Phase 1 - Thread 6242840576 completed the Kudimovs_converted.md in 6.7s (Found: 4 items)
-🚀 [18:04:43.153] Phase 1 - Thread 6242840576 extracting rp2_converted_chunk_2.md (Active: 10)
-   📊 Progress: 225/413 chunks processed
-   📥 LIVE: the Kudimovs_converted.md → 4 sections updated
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 3.0s (retry 7)
-✅ [18:04:45.293] Phase 1 - Thread 6209187840 completed rp2_converted_chunk_1.md in 2.6s (Found: 0 items)
-🚀 [18:04:45.295] Phase 1 - Thread 6209187840 extracting rp2_converted_chunk_3.md (Active: 10)
-   📊 Progress: 226/413 chunks processed✅ [18:04:46.210] Phase 1 - Thread 6310146048 completed caspian_converted_chunk_2.md in 21.4s (Found: 5 items)
-🚀 [18:04:46.211] Phase 1 - Thread 6310146048 extracting Dayton 2_converted_chunk_1.md (Active: 10)
-   📊 Progress: 227/413 chunks processed
-   📥 LIVE: caspian_converted_chunk_2.md → 5 sections updated
-✅ [18:04:47.798] Phase 1 - Thread 6326972416 completed Factiva-10June20250851_converted_chunk_3.md in 9.1s (Found: 1 items)
-🚀 [18:04:47.798] Phase 1 - Thread 6326972416 extracting Dayton 2_converted_chunk_2.md (Active: 10)
-   📊 Progress: 228/413 chunks processed
-   📥 LIVE: Factiva-10June20250851_converted_chunk_3.md → 1 sections updated
-✅ [18:04:48.139] Phase 1 - Thread 6192361472 completed Factiva-10June20250851_converted_chunk_2.md in 10.3s (Found: 3 items)
-🚀 [18:04:48.139] Phase 1 - Thread 6192361472 extracting interim-interim_converted.md (Active: 10)
-   📊 Progress: 229/413 chunks processed
-   📥 LIVE: Factiva-10June20250851_converted_chunk_2.md → 3 sections updated
-✅ [18:04:49.069] Phase 1 - Thread 6310146048 completed Dayton 2_converted_chunk_1.md in 2.9s (Found: 0 items)
-🚀 [18:04:49.070] Phase 1 - Thread 6310146048 extracting IgorVMakarov-InstantCheckmateReport_converted_chunk_1.md (Active: 10)
-   📊 Progress: 230/413 chunks processed✅ [18:04:49.192] Phase 1 - Thread 6209187840 completed rp2_converted_chunk_3.md in 3.9s (Found: 5 items)
-🚀 [18:04:49.193] Phase 1 - Thread 6209187840 extracting IgorVMakarov-InstantCheckmateReport_converted_chunk_2.md (Active: 10)
-   📊 Progress: 231/413 chunks processed
-   📥 LIVE: rp2_converted_chunk_3.md → 5 sections updated
-✅ [18:04:49.851] Phase 1 - Thread 6175535104 completed Factiva-10June20250851_converted_chunk_1.md in 12.3s (Found: 3 items)
-🚀 [18:04:49.851] Phase 1 - Thread 6175535104 extracting Private-Eye-Strikes-Again-Against-Russian-Backed-Botley-West-05-12-23_converted.md (Active: 10)
-   📊 Progress: 232/413 chunks processed
-   📥 LIVE: Factiva-10June20250851_converted_chunk_1.md → 3 sections updated
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 1.1s (retry 8)
-✅ [18:04:50.246] Phase 1 - Thread 6242840576 completed rp2_converted_chunk_2.md in 7.1s (Found: 1 items)
-🚀 [18:04:50.246] Phase 1 - Thread 6242840576 extracting GERMANY_FRANCE_TURKMENISTAN _ Paris and Berlin in race to woo Ashgabat for business - 26_01_2023 - Intelligence Online_converted.md (Active: 10)
-   📊 Progress: 233/413 chunks processed
-   📥 LIVE: rp2_converted_chunk_2.md → 1 sections updated
-✅ [18:04:50.703] Phase 1 - Thread 6326972416 completed Dayton 2_converted_chunk_2.md in 2.9s (Found: 0 items)
-🚀 [18:04:50.704] Phase 1 - Thread 6326972416 extracting ize_converted.md (Active: 10)
-   📊 Progress: 234/413 chunks processed⏳ Thread 6310146048 rate limited on IgorVMakarov-InstantCheckmateReport_converted_chunk_1.md, waiting 3.0s (retry 1)
-✅ [18:04:51.807] Phase 1 - Thread 6226014208 completed caspian_converted_chunk_1.md in 28.7s (Found: 5 items)
-🚀 [18:04:51.808] Phase 1 - Thread 6226014208 extracting TURKMENISTAN_TURKEY _ Turkish energy tycoons target Caspian Sea projects - 26_07_2022 - Intelligence Online_converted.md (Active: 10)
-   📊 Progress: 235/413 chunks processed
-   📥 LIVE: caspian_converted_chunk_1.md → 5 sections updated
-✅ [18:04:52.323] Phase 1 - Thread 6276493312 completed PART 2_converted.md in 12.6s (Found: 4 items)
-🚀 [18:04:52.323] Phase 1 - Thread 6276493312 extracting ALEXANDER GLIKLAD v. OLEG DERIPASKA, 652641_2015, 97 (N.Y. Sup. Ct., New York County Jun. 9, 2016)_converted.md (Active: 10)
-   📊 Progress: 236/413 chunks processed
-   📥 LIVE: PART 2_converted.md → 4 sections updated
-✅ [18:04:52.855] Phase 1 - Thread 6242840576 completed GERMANY_FRANCE_TURKMENISTAN _ Paris and Berlin in race to woo Ashgabat for business - 26_01_2023 - Intelligence Online_converted.md in 2.6s (Found: 0 items)
-🚀 [18:04:52.856] Phase 1 - Thread 6242840576 extracting Igor Makarov (2)_converted_chunk_1.md (Active: 10)
-   📊 Progress: 237/413 chunks processed✅ [18:04:53.131] Phase 1 - Thread 6259666944 completed Makarov Supreme_converted.md in 11.1s (Found: 5 items)
-🚀 [18:04:53.131] Phase 1 - Thread 6259666944 extracting Igor Makarov (2)_converted_chunk_2.md (Active: 10)
-   📊 Progress: 238/413 chunks processed
-   📥 LIVE: Makarov Supreme_converted.md → 5 sections updated
-✅ [18:04:53.148] Phase 1 - Thread 6326972416 completed ize_converted.md in 2.4s (Found: 0 items)
-🚀 [18:04:53.148] Phase 1 - Thread 6326972416 extracting Igor Makarov (2)_converted_chunk_3.md (Active: 10)
-   📊 Progress: 239/413 chunks processed✅ [18:04:53.459] Phase 1 - Thread 6209187840 completed IgorVMakarov-InstantCheckmateReport_converted_chunk_2.md in 4.3s (Found: 1 items)
-🚀 [18:04:53.459] Phase 1 - Thread 6209187840 extracting Factiva-10June20250841_converted_chunk_1.md (Active: 10)
-   📊 Progress: 240/413 chunks processed
-   📥 LIVE: IgorVMakarov-InstantCheckmateReport_converted_chunk_2.md → 1 sections updated
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 3.0s (retry 9)
-⏳ Thread 6242840576 rate limited on Igor Makarov (2)_converted_chunk_1.md, waiting 3.0s (retry 1)
-⏳ Thread 6209187840 rate limited on Factiva-10June20250841_converted_chunk_1.md, waiting 3.0s (retry 1)
-✅ [18:04:56.895] Phase 1 - Thread 6175535104 completed Private-Eye-Strikes-Again-Against-Russian-Backed-Botley-West-05-12-23_converted.md in 7.0s (Found: 5 items)
-🚀 [18:04:56.895] Phase 1 - Thread 6175535104 extracting Factiva-10June20250841_converted_chunk_2.md (Active: 10)
-   📊 Progress: 241/413 chunks processed
-   📥 LIVE: Private-Eye-Strikes-Again-Against-Russian-Backed-Botley-West-05-12-23_converted.md → 5 sections updated
-✅ [18:04:59.324] Phase 1 - Thread 6276493312 completed ALEXANDER GLIKLAD v. OLEG DERIPASKA, 652641_2015, 97 (N.Y. Sup. Ct., New York County Jun. 9, 2016)_converted.md in 7.0s (Found: 2 items)
-🚀 [18:04:59.324] Phase 1 - Thread 6276493312 extracting Factiva-10June20250841_converted_chunk_3.md (Active: 10)
-   📊 Progress: 242/413 chunks processed
-   📥 LIVE: ALEXANDER GLIKLAD v. OLEG DERIPASKA, 652641_2015, 97 (N.Y. Sup. Ct., New York County Jun. 9, 2016)_converted.md → 2 sections updated
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 1.1s (retry 10)
-✅ [18:04:59.685] Phase 1 - Thread 6310146048 completed IgorVMakarov-InstantCheckmateReport_converted_chunk_1.md in 10.6s (Found: 1 items)
-🚀 [18:04:59.686] Phase 1 - Thread 6310146048 extracting Factiva-10June20250841_converted_chunk_4.md (Active: 10)
-   📊 Progress: 243/413 chunks processed
-   📥 LIVE: IgorVMakarov-InstantCheckmateReport_converted_chunk_1.md → 1 sections updated
-✅ [18:05:00.539] Phase 1 - Thread 6226014208 completed TURKMENISTAN_TURKEY _ Turkish energy tycoons target Caspian Sea projects - 26_07_2022 - Intelligence Online_converted.md in 8.7s (Found: 1 items)
-🚀 [18:05:00.539] Phase 1 - Thread 6226014208 extracting Factiva-10June20250841_converted_chunk_5.md (Active: 10)
-   📊 Progress: 244/413 chunks processed
-   📥 LIVE: TURKMENISTAN_TURKEY _ Turkish energy tycoons target Caspian Sea projects - 26_07_2022 - Intelligence Online_converted.md → 1 sections updated
-✅ [18:05:00.693] Phase 1 - Thread 6175535104 completed Factiva-10June20250841_converted_chunk_2.md in 3.8s (Found: 0 items)
-🚀 [18:05:00.693] Phase 1 - Thread 6175535104 extracting Factiva-10June20250841_converted_chunk_6.md (Active: 10)
-   📊 Progress: 245/413 chunks processed⏳ Thread 6209187840 rate limited on Factiva-10June20250841_converted_chunk_1.md, waiting 3.0s (retry 2)
-✅ [18:05:02.390] Phase 1 - Thread 6192361472 completed interim-interim_converted.md in 14.3s (Found: 4 items)
-🚀 [18:05:02.390] Phase 1 - Thread 6192361472 extracting Factiva-10June20250841_converted_chunk_7.md (Active: 10)
-   📊 Progress: 246/413 chunks processed
-   📥 LIVE: interim-interim_converted.md → 4 sections updated
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_5.md, waiting 3.0s (retry 1)
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 22.0s (retry 11)
-✅ [18:05:03.732] Phase 1 - Thread 6326972416 completed Igor Makarov (2)_converted_chunk_3.md in 10.6s (Found: 5 items)
-🚀 [18:05:03.732] Phase 1 - Thread 6326972416 extracting Factiva-10June20250841_converted_chunk_8.md (Active: 10)
-   📊 Progress: 247/413 chunks processed
-   📥 LIVE: Igor Makarov (2)_converted_chunk_3.md → 5 sections updated
-✅ [18:05:06.712] Phase 1 - Thread 6175535104 completed Factiva-10June20250841_converted_chunk_6.md in 6.0s (Found: 0 items)
-🚀 [18:05:06.713] Phase 1 - Thread 6175535104 extracting Factiva-10June20250841_converted_chunk_9.md (Active: 10)
-   📊 Progress: 248/413 chunks processed✅ [18:05:07.301] Phase 1 - Thread 6192361472 completed Factiva-10June20250841_converted_chunk_7.md in 4.9s (Found: 1 items)
-🚀 [18:05:07.302] Phase 1 - Thread 6192361472 extracting Factiva-10June20250841_converted_chunk_10.md (Active: 10)
-   📊 Progress: 249/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_7.md → 1 sections updated
-✅ [18:05:07.515] Phase 1 - Thread 6310146048 completed Factiva-10June20250841_converted_chunk_4.md in 7.8s (Found: 2 items)
-🚀 [18:05:07.515] Phase 1 - Thread 6310146048 extracting Factiva-10June20250841_converted_chunk_11.md (Active: 10)
-   📊 Progress: 250/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_4.md → 2 sections updated
-✅ [18:05:08.558] Phase 1 - Thread 6276493312 completed Factiva-10June20250841_converted_chunk_3.md in 9.2s (Found: 5 items)
-🚀 [18:05:08.559] Phase 1 - Thread 6276493312 extracting Factiva-10June20250841_converted_chunk_12.md (Active: 10)
-   📊 Progress: 251/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_3.md → 5 sections updated
-✅ [18:05:09.059] Phase 1 - Thread 6326972416 completed Factiva-10June20250841_converted_chunk_8.md in 5.3s (Found: 0 items)
-🚀 [18:05:09.060] Phase 1 - Thread 6326972416 extracting Factiva-10June20250841_converted_chunk_13.md (Active: 10)
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_5.md, waiting 1.2s (retry 2)
-⏳ Thread 6175535104 rate limited on Factiva-10June20250841_converted_chunk_9.md, waiting 1.3s (retry 1)
-⏳ Thread 6276493312 rate limited on Factiva-10June20250841_converted_chunk_12.md, waiting 3.0s (retry 1)
-⏳ Thread 6310146048 rate limited on Factiva-10June20250841_converted_chunk_11.md, waiting 3.0s (retry 1)
-✅ [18:05:12.961] Phase 1 - Thread 6326972416 completed Factiva-10June20250841_converted_chunk_13.md in 3.9s (Found: 0 items)
-🚀 [18:05:12.962] Phase 1 - Thread 6326972416 extracting Factiva-10June20250841_converted_chunk_14.md (Active: 10)
-   📊 Progress: 253/413 chunks processed✅ [18:05:13.883] Phase 1 - Thread 6209187840 completed Factiva-10June20250841_converted_chunk_1.md in 20.4s (Found: 3 items)
-🚀 [18:05:13.884] Phase 1 - Thread 6209187840 extracting Factiva-10June20250841_converted_chunk_15.md (Active: 10)
-   📊 Progress: 254/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_1.md → 3 sections updated
-✅ [18:05:14.003] Phase 1 - Thread 6259666944 completed Igor Makarov (2)_converted_chunk_2.md in 20.9s (Found: 5 items)
-🚀 [18:05:14.003] Phase 1 - Thread 6259666944 extracting Factiva-10June20250841_converted_chunk_16.md (Active: 10)
-   📊 Progress: 255/413 chunks processed
-   📥 LIVE: Igor Makarov (2)_converted_chunk_2.md → 5 sections updated
-⏳ Thread 6326972416 rate limited on Factiva-10June20250841_converted_chunk_14.md, waiting 1.3s (retry 1)
-✅ [18:05:15.119] Phase 1 - Thread 6192361472 completed Factiva-10June20250841_converted_chunk_10.md in 7.8s (Found: 4 items)
-🚀 [18:05:15.120] Phase 1 - Thread 6192361472 extracting Factiva-10June20250841_converted_chunk_17.md (Active: 10)
-   📊 Progress: 256/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_10.md → 4 sections updated
-✅ [18:05:17.487] Phase 1 - Thread 6209187840 completed Factiva-10June20250841_converted_chunk_15.md in 3.6s (Found: 0 items)
-🚀 [18:05:17.488] Phase 1 - Thread 6209187840 extracting Factiva-10June20250841_converted_chunk_18.md (Active: 10)
-   📊 Progress: 257/413 chunks processed✅ [18:05:17.562] Phase 1 - Thread 6259666944 completed Factiva-10June20250841_converted_chunk_16.md in 3.6s (Found: 0 items)
-🚀 [18:05:17.562] Phase 1 - Thread 6259666944 extracting Factiva-10June20250841_converted_chunk_19.md (Active: 10)
-   📊 Progress: 258/413 chunks processed⏳ Thread 6192361472 rate limited on Factiva-10June20250841_converted_chunk_17.md, waiting 1.0s (retry 1)
-✅ [18:05:18.694] Phase 1 - Thread 6226014208 completed Factiva-10June20250841_converted_chunk_5.md in 18.2s (Found: 0 items)
-🚀 [18:05:18.695] Phase 1 - Thread 6226014208 extracting Factiva-10June20250841_converted_chunk_20.md (Active: 10)
-   📊 Progress: 259/413 chunks processed✅ [18:05:18.991] Phase 1 - Thread 6175535104 completed Factiva-10June20250841_converted_chunk_9.md in 12.3s (Found: 5 items)
-🚀 [18:05:18.991] Phase 1 - Thread 6175535104 extracting Factiva-10June20250841_converted_chunk_21.md (Active: 10)
-   📊 Progress: 260/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_9.md → 5 sections updated
-✅ [18:05:21.538] Phase 1 - Thread 6226014208 completed Factiva-10June20250841_converted_chunk_20.md in 2.8s (Found: 0 items)
-🚀 [18:05:21.539] Phase 1 - Thread 6226014208 extracting Factiva-10June20250841_converted_chunk_22.md (Active: 10)
-   📊 Progress: 261/413 chunks processed✅ [18:05:21.649] Phase 1 - Thread 6209187840 completed Factiva-10June20250841_converted_chunk_18.md in 4.2s (Found: 0 items)
-🚀 [18:05:21.649] Phase 1 - Thread 6209187840 extracting Factiva-10June20250841_converted_chunk_23.md (Active: 10)
-   📊 Progress: 262/413 chunks processed✅ [18:05:21.740] Phase 1 - Thread 6259666944 completed Factiva-10June20250841_converted_chunk_19.md in 4.2s (Found: 0 items)
-🚀 [18:05:21.740] Phase 1 - Thread 6259666944 extracting Factiva-10June20250841_converted_chunk_24.md (Active: 10)
-   📊 Progress: 263/413 chunks processed⏳ Thread 6175535104 rate limited on Factiva-10June20250841_converted_chunk_21.md, waiting 1.0s (retry 1)
-✅ [18:05:22.208] Phase 1 - Thread 6242840576 completed Igor Makarov (2)_converted_chunk_1.md in 29.4s (Found: 5 items)
-🚀 [18:05:22.208] Phase 1 - Thread 6242840576 extracting Factiva-10June20250841_converted_chunk_25.md (Active: 10)
-   📊 Progress: 264/413 chunks processed
-   📥 LIVE: Igor Makarov (2)_converted_chunk_1.md → 5 sections updated
-⏳ Thread 6192361472 rate limited on Factiva-10June20250841_converted_chunk_17.md, waiting 3.0s (retry 2)
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_22.md, waiting 1.2s (retry 1)
-✅ [18:05:24.400] Phase 1 - Thread 6310146048 completed Factiva-10June20250841_converted_chunk_11.md in 16.9s (Found: 4 items)
-🚀 [18:05:24.400] Phase 1 - Thread 6310146048 extracting Factiva-10June20250841_converted_chunk_26.md (Active: 10)
-   📊 Progress: 265/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_11.md → 4 sections updated
-⏳ Thread 6242840576 rate limited on Factiva-10June20250841_converted_chunk_25.md, waiting 1.0s (retry 1)
-✅ [18:05:26.335] Phase 1 - Thread 6209187840 completed Factiva-10June20250841_converted_chunk_23.md in 4.7s (Found: 0 items)
-🚀 [18:05:26.335] Phase 1 - Thread 6209187840 extracting Factiva-10June20250841_converted_chunk_27.md (Active: 10)
-   📊 Progress: 266/413 chunks processed✅ [18:05:26.346] Phase 1 - Thread 6259666944 completed Factiva-10June20250841_converted_chunk_24.md in 4.6s (Found: 0 items)
-🚀 [18:05:26.346] Phase 1 - Thread 6259666944 extracting Factiva-10June20250841_converted_chunk_28.md (Active: 10)
-   📊 Progress: 267/413 chunks processed⏳ Thread 6276493312 rate limited on Factiva-10June20250841_converted_chunk_12.md, waiting 1.3s (retry 2)
-✅ [18:05:28.463] Phase 1 - Thread 6192361472 completed Factiva-10June20250841_converted_chunk_17.md in 13.3s (Found: 0 items)
-🚀 [18:05:28.464] Phase 1 - Thread 6192361472 extracting Factiva-10June20250841_converted_chunk_29.md (Active: 10)
-   📊 Progress: 268/413 chunks processed✅ [18:05:28.720] Phase 1 - Thread 6310146048 completed Factiva-10June20250841_converted_chunk_26.md in 4.3s (Found: 0 items)
-🚀 [18:05:28.720] Phase 1 - Thread 6310146048 extracting Factiva-10June20250841_converted_chunk_30.md (Active: 10)
-   📊 Progress: 269/413 chunks processed✅ [18:05:29.025] Phase 1 - Thread 6175535104 completed Factiva-10June20250841_converted_chunk_21.md in 10.0s (Found: 0 items)
-🚀 [18:05:29.025] Phase 1 - Thread 6175535104 extracting Factiva-10June20250841_converted_chunk_31.md (Active: 10)
-   📊 Progress: 270/413 chunks processed⏳ Thread 6326972416 rate limited on Factiva-10June20250841_converted_chunk_14.md, waiting 1.3s (retry 2)
-⏳ Thread 6209187840 rate limited on Factiva-10June20250841_converted_chunk_27.md, waiting 1.2s (retry 1)
-⏳ Thread 6259666944 rate limited on Factiva-10June20250841_converted_chunk_28.md, waiting 1.3s (retry 1)
-⏳ Thread 6242840576 rate limited on Factiva-10June20250841_converted_chunk_25.md, waiting 3.0s (retry 2)
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 24.0s (retry 12)
-⏳ Thread 6175535104 rate limited on Factiva-10June20250841_converted_chunk_31.md, waiting 1.3s (retry 1)
-⏳ Thread 6192361472 rate limited on Factiva-10June20250841_converted_chunk_29.md, waiting 1.3s (retry 1)
-⏳ Thread 6276493312 rate limited on Factiva-10June20250841_converted_chunk_12.md, waiting 3.0s (retry 3)
-✅ [18:05:33.442] Phase 1 - Thread 6326972416 completed Factiva-10June20250841_converted_chunk_14.md in 20.5s (Found: 0 items)
-🚀 [18:05:33.444] Phase 1 - Thread 6326972416 extracting Factiva-10June20250841_converted_chunk_32.md (Active: 10)
-   📊 Progress: 271/413 chunks processedwhich operates in the oil and gas sector.\"⏳ Thread 6326972416 rate limited on Factiva-10June20250841_converted_chunk_32.md, waiting 3.0s (retry 1)
-⏳ Thread 6175535104 rate limited on Factiva-10June20250841_converted_chunk_31.md, waiting 1.3s (retry 2)
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_22.md, waiting 1.2s (retry 2)
-✅ [18:05:37.656] Phase 1 - Thread 6209187840 completed Factiva-10June20250841_converted_chunk_27.md in 11.3s (Found: 1 items)
-🚀 [18:05:37.656] Phase 1 - Thread 6209187840 extracting Factiva-10June20250841_converted_chunk_33.md (Active: 10)
-   📊 Progress: 272/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_27.md → 1 sections updated
-✅ [18:05:40.881] Phase 1 - Thread 6242840576 completed Factiva-10June20250841_converted_chunk_25.md in 18.7s (Found: 0 items)
-🚀 [18:05:40.881] Phase 1 - Thread 6242840576 extracting Factiva-10June20250841_converted_chunk_34.md (Active: 10)
-   📊 Progress: 273/413 chunks processed✅ [18:05:41.640] Phase 1 - Thread 6276493312 completed Factiva-10June20250841_converted_chunk_12.md in 33.1s (Found: 4 items)
-🚀 [18:05:41.640] Phase 1 - Thread 6276493312 extracting Factiva-10June20250841_converted_chunk_35.md (Active: 10)
-   📊 Progress: 274/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_12.md → 4 sections updated
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_22.md, waiting 3.0s (retry 3)
-✅ [18:05:43.467] Phase 1 - Thread 6259666944 completed Factiva-10June20250841_converted_chunk_28.md in 17.1s (Found: 5 items)
-🚀 [18:05:43.468] Phase 1 - Thread 6259666944 extracting Factiva-10June20250841_converted_chunk_36.md (Active: 10)
-   📊 Progress: 275/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_28.md → 5 sections updated
-✅ [18:05:44.960] Phase 1 - Thread 6310146048 completed Factiva-10June20250841_converted_chunk_30.md in 16.2s (Found: 5 items)
-🚀 [18:05:44.960] Phase 1 - Thread 6310146048 extracting Factiva-10June20250841_converted_chunk_37.md (Active: 10)
-   📊 Progress: 276/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_30.md → 5 sections updated
-✅ [18:05:45.686] Phase 1 - Thread 6326972416 completed Factiva-10June20250841_converted_chunk_32.md in 12.2s (Found: 2 items)
-🚀 [18:05:45.688] Phase 1 - Thread 6326972416 extracting Factiva-10June20250841_converted_chunk_38.md (Active: 10)
-   📊 Progress: 277/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_32.md → 2 sections updated
-✅ [18:05:46.922] Phase 1 - Thread 6175535104 completed Factiva-10June20250841_converted_chunk_31.md in 17.9s (Found: 3 items)
-🚀 [18:05:46.923] Phase 1 - Thread 6175535104 extracting Factiva-10June20250841_converted_chunk_39.md (Active: 10)
-   📊 Progress: 278/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_31.md → 3 sections updated
-⏳ Thread 6259666944 rate limited on Factiva-10June20250841_converted_chunk_36.md, waiting 3.0s (retry 1)
-✅ [18:05:47.551] Phase 1 - Thread 6276493312 completed Factiva-10June20250841_converted_chunk_35.md in 5.9s (Found: 1 items)
-🚀 [18:05:47.642] Phase 1 - Thread 6276493312 extracting Factiva-10June20250841_converted_chunk_40.md (Active: 10)
-   📊 Progress: 279/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_35.md → 1 sections updated
-✅ [18:05:48.913] Phase 1 - Thread 6192361472 completed Factiva-10June20250841_converted_chunk_29.md in 20.4s (Found: 5 items)
-🚀 [18:05:48.915] Phase 1 - Thread 6192361472 extracting Factiva-10June20250841_converted_chunk_41.md (Active: 10)
-   📊 Progress: 280/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_29.md → 5 sections updated
-⏳ Thread 6326972416 rate limited on Factiva-10June20250841_converted_chunk_38.md, waiting 1.6s (retry 1)
-✅ [18:05:50.574] Phase 1 - Thread 6242840576 completed Factiva-10June20250841_converted_chunk_34.md in 9.7s (Found: 3 items)
-🚀 [18:05:50.574] Phase 1 - Thread 6242840576 extracting Factiva-10June20250841_converted_chunk_42.md (Active: 10)
-   📊 Progress: 281/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_34.md → 3 sections updated
-⏳ Thread 6276493312 rate limited on Factiva-10June20250841_converted_chunk_40.md, waiting 1.3s (retry 1)
-✅ [18:05:51.767] Phase 1 - Thread 6226014208 completed Factiva-10June20250841_converted_chunk_22.md in 30.2s (Found: 0 items)
-🚀 [18:05:51.768] Phase 1 - Thread 6226014208 extracting Factiva-10June20250841_converted_chunk_43.md (Active: 10)
-   📊 Progress: 282/413 chunks processed⏳ Thread 6192361472 rate limited on Factiva-10June20250841_converted_chunk_41.md, waiting 1.2s (retry 1)
-✅ [18:05:52.672] Phase 1 - Thread 6209187840 completed Factiva-10June20250841_converted_chunk_33.md in 15.0s (Found: 4 items)
-🚀 [18:05:52.673] Phase 1 - Thread 6209187840 extracting Factiva-10June20250841_converted_chunk_44.md (Active: 10)
-   📊 Progress: 283/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_33.md → 4 sections updated
-⏳ Thread 6242840576 rate limited on Factiva-10June20250841_converted_chunk_42.md, waiting 3.0s (retry 1)
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 1.5s (retry 1)
-✅ [18:05:55.569] Phase 1 - Thread 6310146048 completed Factiva-10June20250841_converted_chunk_37.md in 10.6s (Found: 3 items)
-🚀 [18:05:55.570] Phase 1 - Thread 6310146048 extracting Factiva-10June20250841_converted_chunk_45.md (Active: 10)
-   📊 Progress: 284/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_37.md → 3 sections updated
-⏳ Thread 6276493312 rate limited on Factiva-10June20250841_converted_chunk_40.md, waiting 1.3s (retry 2)
-⏳ Thread 6192361472 rate limited on Factiva-10June20250841_converted_chunk_41.md, waiting 1.0s (retry 2)
-✅ [18:05:57.029] Phase 1 - Thread 6175535104 completed Factiva-10June20250841_converted_chunk_39.md in 10.1s (Found: 3 items)
-🚀 [18:05:57.029] Phase 1 - Thread 6175535104 extracting Factiva-10June20250841_converted_chunk_46.md (Active: 10)
-   📊 Progress: 285/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_39.md → 3 sections updated
-⏳ Thread 6175535104 rate limited on Factiva-10June20250841_converted_chunk_46.md, waiting 1.0s (retry 1)
-⏳ Thread 6310146048 rate limited on Factiva-10June20250841_converted_chunk_45.md, waiting 3.0s (retry 1)
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 26.0s (retry 13)
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 3.0s (retry 2)
-✅ [18:06:00.603] Phase 1 - Thread 6259666944 completed Factiva-10June20250841_converted_chunk_36.md in 17.1s (Found: 4 items)
-🚀 [18:06:00.603] Phase 1 - Thread 6259666944 extracting Factiva-10June20250841_converted_chunk_47.md (Active: 10)
-   📊 Progress: 286/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_36.md → 4 sections updated
-✅ [18:06:00.915] Phase 1 - Thread 6326972416 completed Factiva-10June20250841_converted_chunk_38.md in 15.2s (Found: 3 items)
-🚀 [18:06:00.915] Phase 1 - Thread 6326972416 extracting Factiva-10June20250841_converted_chunk_48.md (Active: 10)
-   📊 Progress: 287/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_38.md → 3 sections updated
-✅ [18:06:01.359] Phase 1 - Thread 6209187840 completed Factiva-10June20250841_converted_chunk_44.md in 8.7s (Found: 3 items)
-🚀 [18:06:01.359] Phase 1 - Thread 6209187840 extracting Factiva-10June20250841_converted_chunk_49.md (Active: 10)
-   📊 Progress: 288/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_44.md → 3 sections updated
-⏳ Thread 6259666944 rate limited on Factiva-10June20250841_converted_chunk_47.md, waiting 1.3s (retry 1)
-⏳ Thread 6209187840 rate limited on Factiva-10June20250841_converted_chunk_49.md, waiting 3.0s (retry 1)
-✅ [18:06:04.459] Phase 1 - Thread 6242840576 completed Factiva-10June20250841_converted_chunk_42.md in 13.9s (Found: 3 items)
-🚀 [18:06:04.459] Phase 1 - Thread 6242840576 extracting makarov_factiva_2_converted_chunk_1.md (Active: 10)
-
-   📥 LIVE: Factiva-10June20250841_converted_chunk_42.md → 3 sections updated
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 1.5s (retry 3)
-✅ [18:06:05.715] Phase 1 - Thread 6175535104 completed Factiva-10June20250841_converted_chunk_46.md in 8.7s (Found: 2 items)
-🚀 [18:06:05.715] Phase 1 - Thread 6175535104 extracting makarov_factiva_2_converted_chunk_2.md (Active: 10)
-   📊 Progress: 290/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_46.md → 2 sections updated
-✅ [18:06:06.464] Phase 1 - Thread 6276493312 completed Factiva-10June20250841_converted_chunk_40.md in 18.9s (Found: 5 items)
-🚀 [18:06:06.464] Phase 1 - Thread 6276493312 extracting makarov_factiva_2_converted_chunk_3.md (Active: 10)
-   📊 Progress: 291/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_40.md → 5 sections updated
-⏳ Thread 6242840576 rate limited on makarov_factiva_2_converted_chunk_1.md, waiting 3.0s (retry 1)
-⏳ Thread 6259666944 rate limited on Factiva-10June20250841_converted_chunk_47.md, waiting 3.0s (retry 2)
-⏳ Thread 6276493312 rate limited on makarov_factiva_2_converted_chunk_3.md, waiting 1.2s (retry 1)
-✅ [18:06:08.133] Phase 1 - Thread 6192361472 completed Factiva-10June20250841_converted_chunk_41.md in 19.2s (Found: 4 items)
-🚀 [18:06:08.133] Phase 1 - Thread 6192361472 extracting makarov_factiva_2_converted_chunk_4.md (Active: 10)
-   📊 Progress: 292/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_41.md → 4 sections updated
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 1.1s (retry 4)
-✅ [18:06:08.992] Phase 1 - Thread 6209187840 completed Factiva-10June20250841_converted_chunk_49.md in 7.6s (Found: 0 items)
-🚀 [18:06:08.992] Phase 1 - Thread 6209187840 extracting makarov_factiva_2_converted_chunk_5.md (Active: 10)
-   📊 Progress: 293/413 chunks processed✅ [18:06:10.438] Phase 1 - Thread 6175535104 completed makarov_factiva_2_converted_chunk_2.md in 4.7s (Found: 0 items)
-🚀 [18:06:10.439] Phase 1 - Thread 6175535104 extracting makarov_factiva_2_converted_chunk_6.md (Active: 10)
-   📊 Progress: 294/413 chunks processed⏳ Thread 6192361472 rate limited on makarov_factiva_2_converted_chunk_4.md, waiting 3.0s (retry 1)
-✅ [18:06:11.648] Phase 1 - Thread 6310146048 completed Factiva-10June20250841_converted_chunk_45.md in 16.1s (Found: 3 items)
-🚀 [18:06:11.648] Phase 1 - Thread 6310146048 extracting makarov_factiva_2_converted_chunk_7.md (Active: 10)
-   📊 Progress: 295/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_45.md → 3 sections updated
-✅ [18:06:11.811] Phase 1 - Thread 6209187840 completed makarov_factiva_2_converted_chunk_5.md in 2.8s (Found: 0 items)
-🚀 [18:06:11.812] Phase 1 - Thread 6209187840 extracting makarov_factiva_2_converted_chunk_8.md (Active: 10)
-   📊 Progress: 296/413 chunks processed✅ [18:06:12.665] Phase 1 - Thread 6326972416 completed Factiva-10June20250841_converted_chunk_48.md in 11.7s (Found: 3 items)
-🚀 [18:06:12.667] Phase 1 - Thread 6326972416 extracting makarov_factiva_2_converted_chunk_9.md (Active: 10)
-   📊 Progress: 297/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_48.md → 3 sections updated
-✅ [18:06:12.914] Phase 1 - Thread 6175535104 completed makarov_factiva_2_converted_chunk_6.md in 2.5s (Found: 0 items)
-🚀 [18:06:12.953] Phase 1 - Thread 6175535104 extracting makarov_factiva_2_converted_chunk_10.md (Active: 10)
-   📊 Progress: 298/413 chunks processed⏳ Thread 6276493312 rate limited on makarov_factiva_2_converted_chunk_3.md, waiting 3.0s (retry 2)
-✅ [18:06:14.085] Phase 1 - Thread 6242840576 completed makarov_factiva_2_converted_chunk_1.md in 9.6s (Found: 1 items)
-🚀 [18:06:14.086] Phase 1 - Thread 6242840576 extracting makarov_factiva_2_converted_chunk_11.md (Active: 10)
-   📊 Progress: 299/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_1.md → 1 sections updated
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 3.0s (retry 5)
-⏳ Thread 6259666944 rate limited on Factiva-10June20250841_converted_chunk_47.md, waiting 3.0s (retry 3)
-⏳ Thread 6310146048 rate limited on makarov_factiva_2_converted_chunk_7.md, waiting 3.0s (retry 1)
-⏳ Thread 6192361472 rate limited on makarov_factiva_2_converted_chunk_4.md, waiting 1.1s (retry 2)
-✅ [18:06:17.215] Phase 1 - Thread 6209187840 completed makarov_factiva_2_converted_chunk_8.md in 5.4s (Found: 0 items)
-🚀 [18:06:17.216] Phase 1 - Thread 6209187840 extracting makarov_factiva_2_converted_chunk_12.md (Active: 10)
-   📊 Progress: 300/413 chunks processed⏳ Thread 6209187840 rate limited on makarov_factiva_2_converted_chunk_12.md, waiting 3.0s (retry 1)
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 1.5s (retry 6)
-✅ [18:06:20.438] Phase 1 - Thread 6242840576 completed makarov_factiva_2_converted_chunk_11.md in 6.4s (Found: 4 items)
-🚀 [18:06:20.438] Phase 1 - Thread 6242840576 extracting makarov_factiva_2_converted_chunk_13.md (Active: 10)
-   📊 Progress: 301/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_11.md → 4 sections updated
-⏳ Thread 6310146048 rate limited on makarov_factiva_2_converted_chunk_7.md, waiting 3.0s (retry 2)
-✅ [18:06:22.974] Phase 1 - Thread 6175535104 completed makarov_factiva_2_converted_chunk_10.md in 10.0s (Found: 4 items)
-🚀 [18:06:22.975] Phase 1 - Thread 6175535104 extracting makarov_factiva_2_converted_chunk_14.md (Active: 10)
-   📊 Progress: 302/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_10.md → 4 sections updated
-✅ [18:06:26.563] Phase 1 - Thread 6259666944 completed Factiva-10June20250841_converted_chunk_47.md in 26.0s (Found: 4 items)
-   📊 Progress: 303/413 chunks processed✅ [18:06:26.623] Phase 1 - Thread 6192361472 completed makarov_factiva_2_converted_chunk_4.md in 18.5s (Found: 2 items)
-🚀 [18:06:26.623] Phase 1 - Thread 6192361472 extracting makarov_factiva_2_converted_chunk_16.md (Active: 10)
-🚀 [18:06:26.627] Phase 1 - Thread 6259666944 extracting makarov_factiva_2_converted_chunk_15.md (Active: 10)
-
-   📥 LIVE: Factiva-10June20250841_converted_chunk_47.md → 4 sections updated
-   📊 Progress: 304/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_4.md → 2 sections updated
-✅ [18:06:26.755] Phase 1 - Thread 6276493312 completed makarov_factiva_2_converted_chunk_3.md in 20.3s (Found: 3 items)
-🚀 [18:06:26.756] Phase 1 - Thread 6276493312 extracting makarov_factiva_2_converted_chunk_17.md (Active: 10)
-   📊 Progress: 305/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_3.md → 3 sections updated
-✅ [18:06:26.857] Phase 1 - Thread 6242840576 completed makarov_factiva_2_converted_chunk_13.md in 6.4s (Found: 0 items)
-🚀 [18:06:26.859] Phase 1 - Thread 6242840576 extracting makarov_factiva_2_converted_chunk_18.md (Active: 10)
-   📊 Progress: 306/413 chunks processed✅ [18:06:29.245] Phase 1 - Thread 6175535104 completed makarov_factiva_2_converted_chunk_14.md in 6.3s (Found: 0 items)
-🚀 [18:06:29.246] Phase 1 - Thread 6175535104 extracting makarov_factiva_2_converted_chunk_19.md (Active: 10)
-   📊 Progress: 307/413 chunks processed⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 3.0s (retry 7)
-⏳ Thread 6192361472 rate limited on makarov_factiva_2_converted_chunk_16.md, waiting 3.0s (retry 1)
-✅ [18:06:30.456] Phase 1 - Thread 6259666944 completed makarov_factiva_2_converted_chunk_15.md in 3.8s (Found: 0 items)
-🚀 [18:06:30.456] Phase 1 - Thread 6259666944 extracting makarov_factiva_2_converted_chunk_20.md (Active: 10)
-   📊 Progress: 308/413 chunks processed⏳ Thread 6276493312 rate limited on makarov_factiva_2_converted_chunk_17.md, waiting 3.0s (retry 1)
-tney company (Inception Exploration) backed⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 28.0s (retry 14)
-✅ [18:06:31.402] Phase 1 - Thread 6310146048 completed makarov_factiva_2_converted_chunk_7.md in 19.8s (Found: 1 items)
-🚀 [18:06:31.403] Phase 1 - Thread 6310146048 extracting makarov_factiva_2_converted_chunk_21.md (Active: 10)
-   📊 Progress: 309/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_7.md → 1 sections updated
-✅ [18:06:32.661] Phase 1 - Thread 6209187840 completed makarov_factiva_2_converted_chunk_12.md in 15.4s (Found: 4 items)
-🚀 [18:06:32.662] Phase 1 - Thread 6209187840 extracting makarov_factiva_2_converted_chunk_22.md (Active: 10)
-   📊 Progress: 310/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_12.md → 4 sections updated
-✅ [18:06:33.017] Phase 1 - Thread 6175535104 completed makarov_factiva_2_converted_chunk_19.md in 3.8s (Found: 0 items)
-🚀 [18:06:33.018] Phase 1 - Thread 6175535104 extracting makarov_factiva_2_converted_chunk_23.md (Active: 10)
-   📊 Progress: 311/413 chunks processed✅ [18:06:33.190] Phase 1 - Thread 6242840576 completed makarov_factiva_2_converted_chunk_18.md in 6.3s (Found: 0 items)
-🚀 [18:06:33.190] Phase 1 - Thread 6242840576 extracting makarov_factiva_2_converted_chunk_24.md (Active: 10)
-   📊 Progress: 312/413 chunks processed✅ [18:06:35.162] Phase 1 - Thread 6326972416 completed makarov_factiva_2_converted_chunk_9.md in 22.5s (Found: 5 items)
-🚀 [18:06:35.163] Phase 1 - Thread 6326972416 extracting makarov_factiva_2_converted_chunk_25.md (Active: 10)
-   📊 Progress: 313/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_9.md → 5 sections updated
-✅ [18:06:35.219] Phase 1 - Thread 6259666944 completed makarov_factiva_2_converted_chunk_20.md in 4.8s (Found: 0 items)
-🚀 [18:06:35.219] Phase 1 - Thread 6259666944 extracting makarov_factiva_2_converted_chunk_26.md (Active: 10)
-   📊 Progress: 314/413 chunks processed⏳ Thread 6175535104 rate limited on makarov_factiva_2_converted_chunk_23.md, waiting 1.3s (retry 1)
-⏳ Thread 6209187840 rate limited on makarov_factiva_2_converted_chunk_22.md, waiting 3.0s (retry 1)
-⏳ Thread 6192361472 rate limited on makarov_factiva_2_converted_chunk_16.md, waiting 3.0s (retry 2)
-⏳ Thread 6276493312 rate limited on makarov_factiva_2_converted_chunk_17.md, waiting 3.0s (retry 2)
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 3.0s (retry 8)
-✅ [18:06:37.013] Phase 1 - Thread 6310146048 completed makarov_factiva_2_converted_chunk_21.md in 5.6s (Found: 0 items)
-🚀 [18:06:37.013] Phase 1 - Thread 6310146048 extracting makarov_factiva_2_converted_chunk_27.md (Active: 10)
-   📊 Progress: 315/413 chunks processed✅ [18:06:37.137] Phase 1 - Thread 6242840576 completed makarov_factiva_2_converted_chunk_24.md in 3.9s (Found: 0 items)
-🚀 [18:06:37.138] Phase 1 - Thread 6242840576 extracting makarov_factiva_2_converted_chunk_28.md (Active: 10)
-   📊 Progress: 316/413 chunks processed⏳ Thread 6326972416 rate limited on makarov_factiva_2_converted_chunk_25.md, waiting 3.0s (retry 1)
-⏳ Thread 6259666944 rate limited on makarov_factiva_2_converted_chunk_26.md, waiting 3.0s (retry 1)
-✅ [18:06:42.323] Phase 1 - Thread 6310146048 completed makarov_factiva_2_converted_chunk_27.md in 5.3s (Found: 1 items)
-🚀 [18:06:42.324] Phase 1 - Thread 6310146048 extracting makarov_factiva_2_converted_chunk_29.md (Active: 10)
-   📊 Progress: 317/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_27.md → 1 sections updated
-⏳ Thread 6259666944 rate limited on makarov_factiva_2_converted_chunk_26.md, waiting 1.2s (retry 2)
-⏳ Thread 6326972416 rate limited on makarov_factiva_2_converted_chunk_25.md, waiting 1.2s (retry 2)
-⏳ Thread 6276493312 rate limited on makarov_factiva_2_converted_chunk_17.md, waiting 3.0s (retry 3)
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 3.0s (retry 9)
-✅ [18:06:44.831] Phase 1 - Thread 6209187840 completed makarov_factiva_2_converted_chunk_22.md in 12.2s (Found: 0 items)
-🚀 [18:06:44.831] Phase 1 - Thread 6209187840 extracting makarov_factiva_2_converted_chunk_30.md (Active: 10)
-   📊 Progress: 318/413 chunks processed✅ [18:06:45.006] Phase 1 - Thread 6192361472 completed makarov_factiva_2_converted_chunk_16.md in 18.4s (Found: 0 items)
-🚀 [18:06:45.006] Phase 1 - Thread 6192361472 extracting makarov_factiva_2_converted_chunk_31.md (Active: 10)
-   📊 Progress: 319/413 chunks processed✅ [18:06:45.081] Phase 1 - Thread 6175535104 completed makarov_factiva_2_converted_chunk_23.md in 12.1s (Found: 5 items)
-🚀 [18:06:45.081] Phase 1 - Thread 6175535104 extracting makarov_factiva_2_converted_chunk_32.md (Active: 10)
-   📊 Progress: 320/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_23.md → 5 sections updated
-✅ [18:06:47.121] Phase 1 - Thread 6242840576 completed makarov_factiva_2_converted_chunk_28.md in 10.0s (Found: 4 items)
-🚀 [18:06:47.128] Phase 1 - Thread 6242840576 extracting makarov_factiva_2_converted_chunk_33.md (Active: 10)
-   📊 Progress: 321/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_28.md → 4 sections updated
-✅ [18:06:47.475] Phase 1 - Thread 6259666944 completed makarov_factiva_2_converted_chunk_26.md in 12.3s (Found: 0 items)
-🚀 [18:06:47.475] Phase 1 - Thread 6259666944 extracting makarov_factiva_2_converted_chunk_34.md (Active: 10)
-   📊 Progress: 322/413 chunks processed✅ [18:06:47.501] Phase 1 - Thread 6326972416 completed makarov_factiva_2_converted_chunk_25.md in 12.3s (Found: 0 items)
-🚀 [18:06:47.502] Phase 1 - Thread 6326972416 extracting makarov_factiva_2_converted_chunk_35.md (Active: 10)
-   📊 Progress: 323/413 chunks processed⏳ Thread 6192361472 rate limited on makarov_factiva_2_converted_chunk_31.md, waiting 1.3s (retry 1)
-⏳ Thread 6175535104 rate limited on makarov_factiva_2_converted_chunk_32.md, waiting 1.3s (retry 1)
-⏳ Thread 6242840576 rate limited on makarov_factiva_2_converted_chunk_33.md, waiting 3.0s (retry 1)
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 1.5s (retry 10)
-⏳ Thread 6175535104 rate limited on makarov_factiva_2_converted_chunk_32.md, waiting 1.3s (retry 2)
-✅ [18:06:53.278] Phase 1 - Thread 6276493312 completed makarov_factiva_2_converted_chunk_17.md in 26.5s (Found: 0 items)
-🚀 [18:06:53.278] Phase 1 - Thread 6276493312 extracting makarov_factiva_2_converted_chunk_36.md (Active: 10)
-   📊 Progress: 324/413 chunks processed⏳ Thread 6276493312 rate limited on makarov_factiva_2_converted_chunk_36.md, waiting 3.0s (retry 1)
-✅ [18:06:55.704] Phase 1 - Thread 6326972416 completed makarov_factiva_2_converted_chunk_35.md in 8.2s (Found: 1 items)
-🚀 [18:06:55.705] Phase 1 - Thread 6326972416 extracting sumaru_converted_chunk_1.md (Active: 10)
-   📊 Progress: 325/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_35.md → 1 sections updated
-✅ [18:06:56.373] Phase 1 - Thread 6209187840 completed makarov_factiva_2_converted_chunk_30.md in 11.5s (Found: 3 items)
-🚀 [18:06:56.373] Phase 1 - Thread 6209187840 extracting sumaru_converted_chunk_2.md (Active: 10)
-   📊 Progress: 326/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_30.md → 3 sections updated
-⏳ Thread 6242840576 rate limited on makarov_factiva_2_converted_chunk_33.md, waiting 3.0s (retry 2)
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 22.0s (retry 11)
-⏳ Thread 6175535104 rate limited on makarov_factiva_2_converted_chunk_32.md, waiting 3.0s (retry 3)
-✅ [18:06:57.593] Phase 1 - Thread 6192361472 completed makarov_factiva_2_converted_chunk_31.md in 12.6s (Found: 3 items)
-   📊 Progress: 327/413 chunks processed🚀 [18:06:57.627] Phase 1 - Thread 6192361472 extracting sumaru_converted_chunk_3.md (Active: 10)
-
-   📥 LIVE: makarov_factiva_2_converted_chunk_31.md → 3 sections updated
-✅ [18:06:57.694] Phase 1 - Thread 6310146048 completed makarov_factiva_2_converted_chunk_29.md in 15.4s (Found: 5 items)
-🚀 [18:06:57.695] Phase 1 - Thread 6310146048 extracting sumaru_converted_chunk_4.md (Active: 10)
-   📊 Progress: 328/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_29.md → 5 sections updated
-✅ [18:06:58.086] Phase 1 - Thread 6259666944 completed makarov_factiva_2_converted_chunk_34.md in 10.6s (Found: 2 items)
-🚀 [18:06:58.086] Phase 1 - Thread 6259666944 extracting sumaru_converted_chunk_5.md (Active: 10)
-   📊 Progress: 329/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_34.md → 2 sections updated
-⏳ Thread 6192361472 rate limited on sumaru_converted_chunk_3.md, waiting 3.0s (retry 1)
-⏳ Thread 6310146048 rate limited on sumaru_converted_chunk_4.md, waiting 3.0s (retry 1)
-⏳ Thread 6242840576 rate limited on makarov_factiva_2_converted_chunk_33.md, waiting 1.0s (retry 3)
-✅ [18:07:02.192] Phase 1 - Thread 6276493312 completed makarov_factiva_2_converted_chunk_36.md in 8.9s (Found: 0 items)
-🚀 [18:07:02.192] Phase 1 - Thread 6276493312 extracting sumaru_converted_chunk_6.md (Active: 10)
-   📊 Progress: 330/413 chunks processed⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 30.0s (retry 15)
-⏳ Thread 6192361472 rate limited on sumaru_converted_chunk_3.md, waiting 1.0s (retry 2)
-✅ [18:07:07.650] Phase 1 - Thread 6209187840 completed sumaru_converted_chunk_2.md in 11.3s (Found: 5 items)
-🚀 [18:07:07.650] Phase 1 - Thread 6209187840 extracting sumaru_converted_chunk_7.md (Active: 10)
-   📊 Progress: 331/413 chunks processed
-   📥 LIVE: sumaru_converted_chunk_2.md → 5 sections updated
-✅ [18:07:09.811] Phase 1 - Thread 6259666944 completed sumaru_converted_chunk_5.md in 11.7s (Found: 3 items)
-🚀 [18:07:09.813] Phase 1 - Thread 6259666944 extracting FRANCE_TURKMENISTAN _ Turkmenistan government speeds up industry prospection in France - 10_01_2023 - Intelligence Online_converted.md (Active: 10)
-   📊 Progress: 332/413 chunks processed
-   📥 LIVE: sumaru_converted_chunk_5.md → 3 sections updated
-✅ [18:07:10.969] Phase 1 - Thread 6192361472 completed sumaru_converted_chunk_3.md in 13.3s (Found: 0 items)
-🚀 [18:07:10.969] Phase 1 - Thread 6192361472 extracting firtasch_converted_chunk_1.md (Active: 10)
-   📊 Progress: 333/413 chunks processed✅ [18:07:12.026] Phase 1 - Thread 6326972416 completed sumaru_converted_chunk_1.md in 16.3s (Found: 5 items)
-🚀 [18:07:12.026] Phase 1 - Thread 6326972416 extracting firtasch_converted_chunk_2.md (Active: 10)
-   📊 Progress: 334/413 chunks processed
-   📥 LIVE: sumaru_converted_chunk_1.md → 5 sections updated
-✅ [18:07:12.098] Phase 1 - Thread 6175535104 completed makarov_factiva_2_converted_chunk_32.md in 27.0s (Found: 4 items)
-🚀 [18:07:12.102] Phase 1 - Thread 6175535104 extracting firtasch_converted_chunk_3.md (Active: 10)
-   📊 Progress: 335/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_32.md → 4 sections updated
-✅ [18:07:12.777] Phase 1 - Thread 6259666944 completed FRANCE_TURKMENISTAN _ Turkmenistan government speeds up industry prospection in France - 10_01_2023 - Intelligence Online_converted.md in 3.0s (Found: 0 items)
-🚀 [18:07:12.777] Phase 1 - Thread 6259666944 extracting IGOR VIKTORVICH MAKAROV (IDI Comp Rpt)_converted_chunk_1.md (Active: 10)
-   📊 Progress: 336/413 chunks processed✅ [18:07:15.761] Phase 1 - Thread 6259666944 completed IGOR VIKTORVICH MAKAROV (IDI Comp Rpt)_converted_chunk_1.md in 3.0s (Found: 0 items)
-🚀 [18:07:15.762] Phase 1 - Thread 6259666944 extracting IGOR VIKTORVICH MAKAROV (IDI Comp Rpt)_converted_chunk_2.md (Active: 10)
-   📊 Progress: 337/413 chunks processed✅ [18:07:15.767] Phase 1 - Thread 6242840576 completed makarov_factiva_2_converted_chunk_33.md in 28.6s (Found: 4 items)
-🚀 [18:07:15.767] Phase 1 - Thread 6242840576 extracting IGOR VIKTORVICH MAKAROV (IDI Comp Rpt)_converted_chunk_3.md (Active: 10)
-   📊 Progress: 338/413 chunks processed
-   📥 LIVE: makarov_factiva_2_converted_chunk_33.md → 4 sections updated
-✅ [18:07:18.285] Phase 1 - Thread 6242840576 completed IGOR VIKTORVICH MAKAROV (IDI Comp Rpt)_converted_chunk_3.md in 2.5s (Found: 0 items)
-🚀 [18:07:18.285] Phase 1 - Thread 6242840576 extracting IGOR VIKTORVICH MAKAROV (IDI Comp Rpt)_converted_chunk_4.md (Active: 10)
-   📊 Progress: 339/413 chunks processed✅ [18:07:18.388] Phase 1 - Thread 6259666944 completed IGOR VIKTORVICH MAKAROV (IDI Comp Rpt)_converted_chunk_2.md in 2.6s (Found: 0 items)
-🚀 [18:07:18.388] Phase 1 - Thread 6259666944 extracting IGOR VIKTORVICH MAKAROV (IDI Comp Rpt)_converted_chunk_5.md (Active: 10)
-   📊 Progress: 340/413 chunks processed✅ [18:07:18.944] Phase 1 - Thread 6209187840 completed sumaru_converted_chunk_7.md in 11.3s (Found: 4 items)
-🚀 [18:07:18.944] Phase 1 - Thread 6209187840 extracting IGOR VIKTORVICH MAKAROV (IDI Comp Rpt)_converted_chunk_6.md (Active: 10)
-   📊 Progress: 341/413 chunks processed
-   📥 LIVE: sumaru_converted_chunk_7.md → 4 sections updated
-✅ [18:07:20.339] Phase 1 - Thread 6276493312 completed sumaru_converted_chunk_6.md in 18.1s (Found: 5 items)
-🚀 [18:07:20.339] Phase 1 - Thread 6276493312 extracting PART 1_converted.md (Active: 10)
-   📊 Progress: 342/413 chunks processed
-   📥 LIVE: sumaru_converted_chunk_6.md → 5 sections updated
-✅ [18:07:21.087] Phase 1 - Thread 6242840576 completed IGOR VIKTORVICH MAKAROV (IDI Comp Rpt)_converted_chunk_4.md in 2.8s (Found: 0 items)
-🚀 [18:07:21.087] Phase 1 - Thread 6242840576 extracting ООО_МОЙ_ДОМ-1154401002766-Госзакупки-Участник-2025-06-23_converted_chunk_1.md (Active: 10)
-   📊 Progress: 343/413 chunks processed✅ [18:07:22.357] Phase 1 - Thread 6310146048 completed sumaru_converted_chunk_4.md in 24.7s (Found: 5 items)
-🚀 [18:07:22.358] Phase 1 - Thread 6310146048 extracting ООО_МОЙ_ДОМ-1154401002766-Госзакупки-Участник-2025-06-23_converted_chunk_2.md (Active: 10)
-   📊 Progress: 344/413 chunks processed
-   📥 LIVE: sumaru_converted_chunk_4.md → 5 sections updated
-✅ [18:07:24.262] Phase 1 - Thread 6209187840 completed IGOR VIKTORVICH MAKAROV (IDI Comp Rpt)_converted_chunk_6.md in 5.3s (Found: 0 items)
-🚀 [18:07:24.265] Phase 1 - Thread 6209187840 extracting ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_1.md (Active: 10)
-   📊 Progress: 345/413 chunks processed✅ [18:07:24.310] Phase 1 - Thread 6326972416 completed firtasch_converted_chunk_2.md in 12.3s (Found: 5 items)
-🚀 [18:07:24.311] Phase 1 - Thread 6326972416 extracting ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_2.md (Active: 10)
-   📊 Progress: 346/413 chunks processed
-   📥 LIVE: firtasch_converted_chunk_2.md → 5 sections updated
-✅ [18:07:24.329] Phase 1 - Thread 6175535104 completed firtasch_converted_chunk_3.md in 12.2s (Found: 5 items)
-🚀 [18:07:24.331] Phase 1 - Thread 6175535104 extracting ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_3.md (Active: 10)
-   📊 Progress: 347/413 chunks processed
-   📥 LIVE: firtasch_converted_chunk_3.md → 5 sections updated
-✅ [18:07:25.677] Phase 1 - Thread 6259666944 completed IGOR VIKTORVICH MAKAROV (IDI Comp Rpt)_converted_chunk_5.md in 7.3s (Found: 0 items)
-🚀 [18:07:25.677] Phase 1 - Thread 6259666944 extracting ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_4.md (Active: 10)
-   📊 Progress: 348/413 chunks processed⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 24.0s (retry 12)
-⏳ Thread 6175535104 rate limited on ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_3.md, waiting 3.0s (retry 1)
-⏳ Thread 6326972416 rate limited on ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_2.md, waiting 3.0s (retry 1)
-⏳ Thread 6209187840 rate limited on ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_1.md, waiting 3.0s (retry 1)
-✅ [18:07:27.210] Phase 1 - Thread 6192361472 completed firtasch_converted_chunk_1.md in 16.2s (Found: 5 items)
-🚀 [18:07:27.228] Phase 1 - Thread 6192361472 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_1.md (Active: 10)
-   📊 Progress: 349/413 chunks processed
-   📥 LIVE: firtasch_converted_chunk_1.md → 5 sections updated
-✅ [18:07:29.351] Phase 1 - Thread 6259666944 completed ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_4.md in 3.7s (Found: 0 items)
-🚀 [18:07:29.421] Phase 1 - Thread 6259666944 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_2.md (Active: 10)
-   📊 Progress: 350/413 chunks processed✅ [18:07:31.657] Phase 1 - Thread 6310146048 completed ООО_МОЙ_ДОМ-1154401002766-Госзакупки-Участник-2025-06-23_converted_chunk_2.md in 9.3s (Found: 0 items)
-🚀 [18:07:31.659] Phase 1 - Thread 6310146048 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_3.md (Active: 10)
-   📊 Progress: 351/413 chunks processed⏳ Thread 6242840576 rate limited on ООО_МОЙ_ДОМ-1154401002766-Госзакупки-Участник-2025-06-23_converted_chunk_1.md, waiting 2.0s (retry 1)
-✅ [18:07:31.994] Phase 1 - Thread 6192361472 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_1.md in 4.8s (Found: 1 items)
-🚀 [18:07:31.995] Phase 1 - Thread 6192361472 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_4.md (Active: 10)
-   📊 Progress: 352/413 chunks processed
-   📥 LIVE: web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_1.md → 1 sections updated
-✅ [18:07:32.699] Phase 1 - Thread 6276493312 completed PART 1_converted.md in 12.4s (Found: 4 items)
-🚀 [18:07:32.700] Phase 1 - Thread 6276493312 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_5.md (Active: 10)
-   📊 Progress: 353/413 chunks processed
-   📥 LIVE: PART 1_converted.md → 4 sections updated
-✅ [18:07:33.034] Phase 1 - Thread 6259666944 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_2.md in 3.6s (Found: 0 items)
-🚀 [18:07:33.034] Phase 1 - Thread 6259666944 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_6.md (Active: 10)
-   📊 Progress: 354/413 chunks processed⏳ Thread 6326972416 rate limited on ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_2.md, waiting 3.0s (retry 2)
-✅ [18:07:33.272] Phase 1 - Thread 6209187840 completed ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_1.md in 9.0s (Found: 0 items)
-🚀 [18:07:33.272] Phase 1 - Thread 6209187840 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_7.md (Active: 10)
-   📊 Progress: 355/413 chunks processed✅ [18:07:33.421] Phase 1 - Thread 6175535104 completed ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_3.md in 9.1s (Found: 0 items)
-🚀 [18:07:33.425] Phase 1 - Thread 6175535104 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_8.md (Active: 10)
-   📊 Progress: 356/413 chunks processed⏳ Thread 6276493312 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_5.md, waiting 1.2s (retry 1)
-⏳ Thread 6259666944 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_6.md, waiting 1.3s (retry 1)
-✅ [18:07:35.631] Phase 1 - Thread 6209187840 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_7.md in 2.4s (Found: 0 items)
-🚀 [18:07:35.632] Phase 1 - Thread 6209187840 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_9.md (Active: 10)
-   📊 Progress: 357/413 chunks processed✅ [18:07:35.687] Phase 1 - Thread 6192361472 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_4.md in 3.7s (Found: 0 items)
-🚀 [18:07:35.687] Phase 1 - Thread 6192361472 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_10.md (Active: 10)
-   📊 Progress: 358/413 chunks processed✅ [18:07:36.001] Phase 1 - Thread 6310146048 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_3.md in 4.3s (Found: 0 items)
-🚀 [18:07:36.001] Phase 1 - Thread 6310146048 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_11.md (Active: 10)
-   📊 Progress: 359/413 chunks processed⏳ Thread 6175535104 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_8.md, waiting 3.0s (retry 1)
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 32.0s (retry 16)
-⏳ Thread 6242840576 rate limited on ООО_МОЙ_ДОМ-1154401002766-Госзакупки-Участник-2025-06-23_converted_chunk_1.md, waiting 2.0s (retry 2)
-⏳ Thread 6192361472 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_10.md, waiting 1.3s (retry 1)
-⏳ Thread 6326972416 rate limited on ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_2.md, waiting 1.3s (retry 3)
-✅ [18:07:39.480] Phase 1 - Thread 6276493312 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_5.md in 6.8s (Found: 0 items)
-🚀 [18:07:39.481] Phase 1 - Thread 6276493312 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_12.md (Active: 10)
-   📊 Progress: 360/413 chunks processed✅ [18:07:39.764] Phase 1 - Thread 6310146048 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_11.md in 3.8s (Found: 0 items)
-🚀 [18:07:39.764] Phase 1 - Thread 6310146048 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_13.md (Active: 10)
-   📊 Progress: 361/413 chunks processed✅ [18:07:40.081] Phase 1 - Thread 6209187840 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_9.md in 4.4s (Found: 0 items)
-🚀 [18:07:40.081] Phase 1 - Thread 6209187840 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_14.md (Active: 10)
-   📊 Progress: 362/413 chunks processed⏳ Thread 6259666944 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_6.md, waiting 3.0s (retry 2)
-⏳ Thread 6209187840 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_14.md, waiting 1.2s (retry 1)
-⏳ Thread 6175535104 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_8.md, waiting 1.3s (retry 2)
-⏳ Thread 6310146048 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_13.md, waiting 1.3s (retry 1)
-✅ [18:07:43.464] Phase 1 - Thread 6192361472 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_10.md in 7.8s (Found: 0 items)
-🚀 [18:07:43.464] Phase 1 - Thread 6192361472 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_15.md (Active: 10)
-   📊 Progress: 363/413 chunks processed✅ [18:07:43.584] Phase 1 - Thread 6326972416 completed ThomasEdwardLynch-InstantCheckmateReport_converted_chunk_2.md in 19.3s (Found: 0 items)
-🚀 [18:07:43.584] Phase 1 - Thread 6326972416 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_16.md (Active: 10)
-   📊 Progress: 364/413 chunks processed⏳ Thread 6242840576 rate limited on ООО_МОЙ_ДОМ-1154401002766-Госзакупки-Участник-2025-06-23_converted_chunk_1.md, waiting 2.0s (retry 3)
-⏳ Thread 6259666944 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_6.md, waiting 1.3s (retry 3)
-⏳ Thread 6326972416 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_16.md, waiting 1.3s (retry 1)
-✅ [18:07:46.906] Phase 1 - Thread 6192361472 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_15.md in 3.4s (Found: 0 items)
-🚀 [18:07:46.906] Phase 1 - Thread 6192361472 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_17.md (Active: 10)
-   📊 Progress: 365/413 chunks processed✅ [18:07:47.466] Phase 1 - Thread 6209187840 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_14.md in 7.4s (Found: 0 items)
-🚀 [18:07:47.466] Phase 1 - Thread 6209187840 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_18.md (Active: 10)
-   📊 Progress: 366/413 chunks processed✅ [18:07:47.532] Phase 1 - Thread 6175535104 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_8.md in 14.1s (Found: 0 items)
-🚀 [18:07:47.533] Phase 1 - Thread 6175535104 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_19.md (Active: 10)
-   📊 Progress: 367/413 chunks processed⏳ Thread 6310146048 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_13.md, waiting 3.0s (retry 2)
-✅ [18:07:48.683] Phase 1 - Thread 6276493312 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_12.md in 9.2s (Found: 2 items)
-🚀 [18:07:48.684] Phase 1 - Thread 6276493312 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_20.md (Active: 10)
-   📊 Progress: 368/413 chunks processed
-   📥 LIVE: web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_12.md → 2 sections updated
-⏳ Thread 6259666944 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_6.md, waiting 1.3s (retry 4)
-✅ [18:07:52.922] Phase 1 - Thread 6209187840 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_18.md in 5.5s (Found: 0 items)
-🚀 [18:07:52.923] Phase 1 - Thread 6209187840 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_21.md (Active: 10)
-   📊 Progress: 369/413 chunks processed✅ [18:07:52.931] Phase 1 - Thread 6192361472 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_17.md in 6.0s (Found: 1 items)
-🚀 [18:07:52.931] Phase 1 - Thread 6192361472 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_22.md (Active: 10)
-   📊 Progress: 370/413 chunks processed
-   📥 LIVE: web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_17.md → 1 sections updated
-✅ [18:07:52.976] Phase 1 - Thread 6175535104 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_19.md in 5.4s (Found: 0 items)
-🚀 [18:07:52.977] Phase 1 - Thread 6175535104 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_23.md (Active: 10)
-   📊 Progress: 371/413 chunks processed⏳ Thread 6276493312 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_20.md, waiting 3.0s (retry 1)
-⏳ Thread 6242840576 rate limited on ООО_МОЙ_ДОМ-1154401002766-Госзакупки-Участник-2025-06-23_converted_chunk_1.md, waiting 1.4s (retry 4)
-✅ [18:07:53.233] Phase 1 - Thread 6326972416 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_16.md in 9.6s (Found: 1 items)
-🚀 [18:07:53.233] Phase 1 - Thread 6326972416 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_24.md (Active: 10)
-   📊 Progress: 372/413 chunks processed
-   📥 LIVE: web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_16.md → 1 sections updated
-⏳ Thread 6226014208 rate limited on Factiva-10June20250841_converted_chunk_43.md, waiting 26.0s (retry 13)
-⏳ Thread 6175535104 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_23.md, waiting 1.1s (retry 1)
-⏳ Thread 6192361472 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_22.md, waiting 1.3s (retry 1)
-⏳ Thread 6326972416 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_24.md, waiting 1.3s (retry 1)
-✅ [18:07:57.192] Phase 1 - Thread 6259666944 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_6.md in 24.2s (Found: 0 items)
-🚀 [18:07:57.192] Phase 1 - Thread 6259666944 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_25.md (Active: 10)
-   📊 Progress: 373/413 chunks processed⏳ Thread 6242840576 rate limited on ООО_МОЙ_ДОМ-1154401002766-Госзакупки-Участник-2025-06-23_converted_chunk_1.md, waiting 2.0s (retry 5)
-⏳ Thread 6259666944 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_25.md, waiting 3.0s (retry 1)
-✅ [18:07:59.234] Phase 1 - Thread 6209187840 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_21.md in 6.3s (Found: 0 items)
-🚀 [18:07:59.235] Phase 1 - Thread 6209187840 extracting web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_26.md (Active: 10)
-   📊 Progress: 374/413 chunks processed✅ [18:07:59.744] Phase 1 - Thread 6276493312 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_20.md in 11.1s (Found: 0 items)
-🚀 [18:07:59.747] Phase 1 - Thread 6276493312 extracting Return 0101 - for T_converted.md (Active: 10)
-   📊 Progress: 375/413 chunks processed⏳ Thread 6192361472 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_22.md, waiting 3.0s (retry 2)
-✅ [18:08:01.559] Phase 1 - Thread 6209187840 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_26.md in 2.3s (Found: 0 items)
-🚀 [18:08:01.561] Phase 1 - Thread 6209187840 extracting IGOR MAKAROV-Comprehensive-Report-202506181158_converted_chunk_1.md (Active: 10)
-   📊 Progress: 376/413 chunks processed✅ [18:08:04.942] Phase 1 - Thread 6326972416 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_24.md in 11.7s (Found: 0 items)
-🚀 [18:08:04.943] Phase 1 - Thread 6326972416 extracting IGOR MAKAROV-Comprehensive-Report-202506181158_converted_chunk_2.md (Active: 10)
-   📊 Progress: 377/413 chunks processed✅ [18:08:05.564] Phase 1 - Thread 6175535104 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_23.md in 12.6s (Found: 0 items)
-🚀 [18:08:05.564] Phase 1 - Thread 6175535104 extracting Putin_s Labyrinth - Steve Levine_converted.md (Active: 10)
-   📊 Progress: 378/413 chunks processed✅ [18:08:05.843] Phase 1 - Thread 6276493312 completed Return 0101 - for T_converted.md in 6.1s (Found: 0 items)
-🚀 [18:08:05.843] Phase 1 - Thread 6276493312 extracting Sastre - Makarov case - Interview 2_converted.md (Active: 10)
-   📊 Progress: 379/413 chunks processed✅ [18:08:05.986] Phase 1 - Thread 6310146048 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_13.md in 26.2s (Found: 3 items)
-🚀 [18:08:05.987] Phase 1 - Thread 6310146048 extracting ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006) (1)_converted_chunk_1.md (Active: 10)
-   📊 Progress: 380/413 chunks processed
-   📥 LIVE: web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_13.md → 3 sections updated
-⏳ Thread 6310146048 rate limited on ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006) (1)_converted_chunk_1.md, waiting 1.1s (retry 1)
-✅ [18:08:08.003] Phase 1 - Thread 6209187840 completed IGOR MAKAROV-Comprehensive-Report-202506181158_converted_chunk_1.md in 6.4s (Found: 0 items)
-🚀 [18:08:08.003] Phase 1 - Thread 6209187840 extracting ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006) (1)_converted_chunk_2.md (Active: 10)
-   📊 Progress: 381/413 chunks processed⏳ Thread 6259666944 rate limited on web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_25.md, waiting 3.0s (retry 2)
-✅ [18:08:08.408] Phase 1 - Thread 6326972416 completed IGOR MAKAROV-Comprehensive-Report-202506181158_converted_chunk_2.md in 3.5s (Found: 0 items)
-🚀 [18:08:08.408] Phase 1 - Thread 6326972416 extracting ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006) (1)_converted_chunk_3.md (Active: 10)
-   📊 Progress: 382/413 chunks processed✅ [18:08:11.036] Phase 1 - Thread 6192361472 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_22.md in 18.1s (Found: 0 items)
-   📊 Progress: 383/413 chunks processed🚀 [18:08:11.049] Phase 1 - Thread 6192361472 extracting Luxembourg _ Luxembourg asset firm's clients allegedly included sanctioned oligarchs - 14_03_2024 - Intelligence Online_converted.md (Active: 10)
-✅ [18:08:12.623] Phase 1 - Thread 6276493312 completed Sastre - Makarov case - Interview 2_converted.md in 6.8s (Found: 3 items)
-🚀 [18:08:12.628] Phase 1 - Thread 6276493312 extracting cut_converted_chunk_1.md (Active: 10)
-   📊 Progress: 384/413 chunks processed✅ [18:08:12.763] Phase 1 - Thread 6242840576 completed ООО_МОЙ_ДОМ-1154401002766-Госзакупки-Участник-2025-06-23_converted_chunk_1.md in 51.7s (Found: 1 items)
-🚀 [18:08:12.795] Phase 1 - Thread 6242840576 extracting cut_converted_chunk_2.md (Active: 10)
-
-   📥 LIVE: Sastre - Makarov case - Interview 2_converted.md → 3 sections updated
-   📊 Progress: 385/413 chunks processed
-   📥 LIVE: ООО_МОЙ_ДОМ-1154401002766-Госзакупки-Участник-2025-06-23_converted_chunk_1.md → 1 sections updated
-✅ [18:08:13.644] Phase 1 - Thread 6209187840 completed ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006) (1)_converted_chunk_2.md in 5.6s (Found: 1 items)
-🚀 [18:08:13.645] Phase 1 - Thread 6209187840 extracting cut_converted_chunk_3.md (Active: 10)
-   📊 Progress: 386/413 chunks processed
-   📥 LIVE: ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006) (1)_converted_chunk_2.md → 1 sections updated
-✅ [18:08:14.164] Phase 1 - Thread 6175535104 completed Putin_s Labyrinth - Steve Levine_converted.md in 8.6s (Found: 5 items)
-🚀 [18:08:14.164] Phase 1 - Thread 6175535104 extracting 20250613 IM - Report_converted_chunk_1.md (Active: 10)
-   📊 Progress: 387/413 chunks processed
-   📥 LIVE: Putin_s Labyrinth - Steve Levine_converted.md → 5 sections updated
-✅ [18:08:15.852] Phase 1 - Thread 6259666944 completed web_Turkmenistan_A_Model_Kleptocracy_report_converted_chunk_25.md in 18.7s (Found: 0 items)
-🚀 [18:08:15.855] Phase 1 - Thread 6259666944 extracting 20250613 IM - Report_converted_chunk_2.md (Active: 10)
-   📊 Progress: 388/413 chunks processed⏳ Thread 6209187840 rate limited on cut_converted_chunk_3.md, waiting 3.0s (retry 1)
-✅ [18:08:16.467] Phase 1 - Thread 6310146048 completed ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006) (1)_converted_chunk_1.md in 10.5s (Found: 3 items)
-🚀 [18:08:16.468] Phase 1 - Thread 6310146048 extracting Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007)_converted_chunk_1.md (Active: 10)
-   📊 Progress: 389/413 chunks processed
-   📥 LIVE: ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006) (1)_converted_chunk_1.md → 3 sections updated
-⏳ Thread 6293319680 rate limited on Makarov_factiva1_converted_chunk_30.md, waiting 34.0s (retry 17)
-⏳ Thread 6175535104 rate limited on 20250613 IM - Report_converted_chunk_1.md, waiting 1.3s (retry 1)
-✅ [18:08:18.165] Phase 1 - Thread 6192361472 completed Luxembourg _ Luxembourg asset firm's clients allegedly included sanctioned oligarchs - 14_03_2024 - Intelligence Online_converted.md in 7.1s (Found: 3 items)
-🚀 [18:08:18.166] Phase 1 - Thread 6192361472 extracting Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007)_converted_chunk_2.md (Active: 10)
-   📊 Progress: 390/413 chunks processed
-   📥 LIVE: Luxembourg _ Luxembourg asset firm's clients allegedly included sanctioned oligarchs - 14_03_2024 - Intelligence Online_converted.md → 3 sections updated
-⏳ Thread 6259666944 rate limited on 20250613 IM - Report_converted_chunk_2.md, waiting 3.0s (retry 1)
-✅ [18:08:19.425] Phase 1 - Thread 6326972416 completed ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006) (1)_converted_chunk_3.md in 11.0s (Found: 1 items)
-🚀 [18:08:19.426] Phase 1 - Thread 6326972416 extracting Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007)_converted_chunk_3.md (Active: 10)
-   📊 Progress: 391/413 chunks processed
-   📥 LIVE: ITERA, 76024533, Specimen (Trademark Pros. Hist. Oct. 17, 2006) (1)_converted_chunk_3.md → 1 sections updated
-⏳ Thread 6310146048 rate limited on Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007)_converted_chunk_1.md, waiting 3.0s (retry 1)
-⏳ Thread 6192361472 rate limited on Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007)_converted_chunk_2.md, waiting 3.0s (retry 1)
-⏳ Thread 6175535104 rate limited on 20250613 IM - Report_converted_chunk_1.md, waiting 3.0s (retry 2)
-✅ [18:08:23.443] Phase 1 - Thread 6326972416 completed Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007)_converted_chunk_3.md in 4.0s (Found: 0 items)
-🚀 [18:08:23.444] Phase 1 - Thread 6326972416 extracting Wikileaks Cable Firtash call the US Ambassador_converted_chunk_1.md (Active: 10)
-   📊 Progress: 392/413 chunks processed⏳ Thread 6310146048 rate limited on Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007)_converted_chunk_1.md, waiting 3.0s (retry 2)
-✅ [18:08:26.742] Phase 1 - Thread 6326972416 completed Wikileaks Cable Firtash call the US Ambassador_converted_chunk_1.md in 3.3s (Found: 0 items)
-🚀 [18:08:26.742] Phase 1 - Thread 6326972416 extracting Wikileaks Cable Firtash call the US Ambassador_converted_chunk_2.md (Active: 10)
-   📊 Progress: 393/413 chunks processed✅ [18:08:29.329] Phase 1 - Thread 6242840576 completed cut_converted_chunk_2.md in 16.5s (Found: 5 items)
-🚀 [18:08:29.333] Phase 1 - Thread 6242840576 extracting Wikileaks Cable Firtash call the US Ambassador_converted_chunk_3.md (Active: 10)
-   📊 Progress: 394/413 chunks processed
-   📥 LIVE: cut_converted_chunk_2.md → 5 sections updated
-✅ [18:08:29.526] Phase 1 - Thread 6226014208 completed Factiva-10June20250841_converted_chunk_43.md in 157.8s (Found: 3 items)
-🚀 [18:08:29.528] Phase 1 - Thread 6226014208 extracting Sastre - Makarov case - Interview 3_converted.md (Active: 10)
-   📊 Progress: 395/413 chunks processed
-   📥 LIVE: Factiva-10June20250841_converted_chunk_43.md → 3 sections updated
-✅ [18:08:30.947] Phase 1 - Thread 6192361472 completed Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007)_converted_chunk_2.md in 12.8s (Found: 1 items)
-🚀 [18:08:30.952] Phase 1 - Thread 6192361472 extracting TURKMENISTAN_UNITED KINGDOM _ Away from Russian tensions, energy consultants prosper in the Caspian region - 18_03_2022 - Intelligence Online_converted.md (Active: 10)
-   📊 Progress: 396/413 chunks processed
-   📥 LIVE: Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007)_converted_chunk_2.md → 1 sections updated
-✅ [18:08:31.525] Phase 1 - Thread 6276493312 completed cut_converted_chunk_1.md in 18.9s (Found: 5 items)
-🚀 [18:08:31.526] Phase 1 - Thread 6276493312 extracting ALEXANDER GLIKLAD v. OLEG DERIPASKA, 652641_2015, 97 (N.Y. Sup. Ct., New York County Jun. 9, 2016) (1)_converted.md (Active: 10)
-   📊 Progress: 397/413 chunks processed
-   📥 LIVE: cut_converted_chunk_1.md → 5 sections updated
-⏳ Thread 6310146048 rate limited on Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007)_converted_chunk_1.md, waiting 3.0s (retry 3)
-✅ [18:08:34.693] Phase 1 - Thread 6209187840 completed cut_converted_chunk_3.md in 21.0s (Found: 5 items)
-🚀 [18:08:34.694] Phase 1 - Thread 6209187840 extracting Makarov v1_converted.md (Active: 10)
-   📊 Progress: 398/413 chunks processed
-   📥 LIVE: cut_converted_chunk_3.md → 5 sections updated
-✅ [18:08:35.119] Phase 1 - Thread 6326972416 completed Wikileaks Cable Firtash call the US Ambassador_converted_chunk_2.md in 8.4s (Found: 2 items)
-🚀 [18:08:35.119] Phase 1 - Thread 6326972416 extracting ITERA v2_converted.md (Active: 10)
-   📊 Progress: 399/413 chunks processed✅ [18:08:35.163] Phase 1 - Thread 6192361472 completed TURKMENISTAN_UNITED KINGDOM _ Away from Russian tensions, energy consultants prosper in the Caspian region - 18_03_2022 - Intelligence Online_converted.md in 4.2s (Found: 1 items)
-🚀 [18:08:35.163] Phase 1 - Thread 6192361472 extracting RUSSIA_TURKMENISTAN _ Lukoil relaunches Caspian ambitions after president's son appointed to head oil sector - 09_12_2021 - Intelligence Online_converted.md (Active: 10)
-
-   📥 LIVE: Wikileaks Cable Firtash call the US Ambassador_converted_chunk_2.md → 2 sections updated
-   📊 Progress: 400/413 chunks processed
-   📥 LIVE: TURKMENISTAN_UNITED KINGDOM _ Away from Russian tensions, energy consultants prosper in the Caspian region - 18_03_2022 - Intelligence Online_converted.md → 1 sections updated
-✅ [18:08:37.526] Phase 1 - Thread 6226014208 completed Sastre - Makarov case - Interview 3_converted.md in 8.0s (Found: 4 items)
-🚀 [18:08:37.530] Phase 1 - Thread 6226014208 extracting AZERBAIJAN_UNITED STATES_TURKMENISTAN _ The US lobbyist who wants to connect Caspian gas reserves - 26_04_2022 - Intelligence Online_converted.md (Active: 10)
-   📊 Progress: 401/413 chunks processed
-   📥 LIVE: Sastre - Makarov case - Interview 3_converted.md → 4 sections updated
-✅ [18:08:37.972] Phase 1 - Thread 6192361472 completed RUSSIA_TURKMENISTAN _ Lukoil relaunches Caspian ambitions after president's son appointed to head oil sector - 09_12_2021 - Intelligence Online_converted.md in 2.8s (Found: 0 items)
-🚀 [18:08:37.973] Phase 1 - Thread 6192361472 extracting WESTERN PERCEPTIONS_converted_chunk_1.md (Active: 10)
-   📊 Progress: 402/413 chunks processed✅ [18:08:40.341] Phase 1 - Thread 6209187840 completed Makarov v1_converted.md in 5.6s (Found: 1 items)
-🚀 [18:08:40.367] Phase 1 - Thread 6209187840 extracting WESTERN PERCEPTIONS_converted_chunk_2.md (Active: 10)
-   📊 Progress: 403/413 chunks processed
-   📥 LIVE: Makarov v1_converted.md → 1 sections updated
-✅ [18:08:42.020] Phase 1 - Thread 6242840576 completed Wikileaks Cable Firtash call the US Ambassador_converted_chunk_3.md in 12.7s (Found: 3 items)
-   📊 Progress: 404/413 chunks processed
-   📥 LIVE: Wikileaks Cable Firtash call the US Ambassador_converted_chunk_3.md → 3 sections updated
-✅ [18:08:46.733] Phase 1 - Thread 6276493312 completed ALEXANDER GLIKLAD v. OLEG DERIPASKA, 652641_2015, 97 (N.Y. Sup. Ct., New York County Jun. 9, 2016) (1)_converted.md in 15.2s (Found: 2 items)
-✅ [18:08:46.738] Phase 1 - Thread 6259666944 completed 20250613 IM - Report_converted_chunk_2.md in 30.9s (Found: 5 items)
-   📊 Progress: 405/413 chunks processed
-   📥 LIVE: ALEXANDER GLIKLAD v. OLEG DERIPASKA, 652641_2015, 97 (N.Y. Sup. Ct., New York County Jun. 9, 2016) (1)_converted.md → 2 sections updated
-   📊 Progress: 406/413 chunks processed
-   📥 LIVE: 20250613 IM - Report_converted_chunk_2.md → 5 sections updated
-✅ [18:08:47.269] Phase 1 - Thread 6209187840 completed WESTERN PERCEPTIONS_converted_chunk_2.md in 6.9s (Found: 1 items)
-   📊 Progress: 407/413 chunks processed
-   📥 LIVE: WESTERN PERCEPTIONS_converted_chunk_2.md → 1 sections updated
-✅ [18:08:50.237] Phase 1 - Thread 6226014208 completed AZERBAIJAN_UNITED STATES_TURKMENISTAN _ The US lobbyist who wants to connect Caspian gas reserves - 26_04_2022 - Intelligence Online_converted.md in 12.7s (Found: 4 items)
-   📊 Progress: 408/413 chunks processed✅ [18:08:50.366] Phase 1 - Thread 6310146048 completed Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007)_converted_chunk_1.md in 33.9s (Found: 4 items)
-
-   📥 LIVE: AZERBAIJAN_UNITED STATES_TURKMENISTAN _ The US lobbyist who wants to connect Caspian gas reserves - 26_04_2022 - Intelligence Online_converted.md → 4 sections updated
-   📊 Progress: 409/413 chunks processed
-   📥 LIVE: Weber v. Finker et al, 3_07-mc-00027, No. 38 (M.D.Fla. Oct. 11, 2007)_converted_chunk_1.md → 4 sections updated
-✅ [18:08:51.692] Phase 1 - Thread 6175535104 completed 20250613 IM - Report_converted_chunk_1.md in 37.5s (Found: 5 items)
-   📊 Progress: 410/413 chunks processed✅ [18:08:51.711] Phase 1 - Thread 6326972416 completed ITERA v2_converted.md in 16.6s (Found: 5 items)
-
-   📥 LIVE: 20250613 IM - Report_converted_chunk_1.md → 5 sections updated
-   📊 Progress: 411/413 chunks processed
-   📥 LIVE: ITERA v2_converted.md → 3 sections updated
-✅ [18:08:53.161] Phase 1 - Thread 6192361472 completed WESTERN PERCEPTIONS_converted_chunk_1.md in 15.2s (Found: 5 items)
-   📊 Progress: 412/413 chunks processed
-   📥 LIVE: WESTERN PERCEPTIONS_converted_chunk_1.md → 5 sections updated
-✅ [18:09:03.574] Phase 1 - Thread 6293319680 completed Makarov_factiva1_converted_chunk_30.md in 299.2s (Found: 5 items)
-   📊 Progress: 413/413 chunks processed
-   📥 LIVE: Makarov_factiva1_converted_chunk_30.md → 5 sections updated
-
-✅ Phase 1 complete: 413/413 successful extractions
-
-🔄 Starting Phase 2 in BACKGROUND while Phase 3 begins...
-
-============================================================
-🔀 PHASE 3: Claude Sonnet Batch Merging (50% COST SAVINGS!)
-============================================================
-💰 Using Batch API for 50% off Claude pricing!
-📦 Creating batch with 5 merge tasks
-✅ Batch msgbatch_01KRpfaNwAsm8HSXaRgHqfop created successfully
-⏳ STREAMING batch results as they complete...
-   📊 Status: in_progress | Completed: 0/5 | Elapsed: 0s
-============================================================
-🔍 PHASE 2: Gemini Verification & Caching
-============================================================
-📦 Creating Gemini cache with GPT snippets only...
-✅ Gemini cache created: cachedContents/ug44fwhci1tm06intkjpaf3pwkjnx4fa0ruybhlv
-💰 This cache will be reused in Phase 5 for final verification
-🔍 Verifying ALL GPT snippets against ALL sources in ONE CALL...
-   📊 Processing 413 snippets with 413 sources
-   🧠 Using Gemini's 2M token context for comprehensive analysis
-❌ Phase 2 failed: 400 The input token count (1805502) exceeds the maximum number of tokens allowed (1048576).
-   📊 Status: in_progress | Completed: 0/5 | Elapsed: 22s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 23s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 24s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 25s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 27s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 28s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 29s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 30s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 32s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 33s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 34s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 35s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 36s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 38s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 39s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 40s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 41s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 43s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 44s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 45s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 46s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 48s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 49s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 50s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 51s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 52s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 54s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 55s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 57s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 58s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 59s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 60s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 61s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 63s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 64s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 65s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 66s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 68s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 69s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 70s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 71s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 72s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 74s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 75s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 76s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 77s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 79s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 80s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 81s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 82s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 83s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 85s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 86s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 87s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 88s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 89s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 91s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 92s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 93s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 94s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 96s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 97s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 98s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 99s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 100s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 102s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 103s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 104s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 105s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 107s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 108s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 109s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 110s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 111s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 113s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 114s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 115s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 117s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 118s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 120s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 121s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 122s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 123s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 125s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 126s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 127s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 128s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 130s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 131s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 132s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 134s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 135s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 137s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 138s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 139s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 140s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 141s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 143s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 144s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 145s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 146s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 148s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 149s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 150s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 151s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 153s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 154s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 155s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 156s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 158s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 159s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 160s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 161s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 163s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 164s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 165s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 166s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 167s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 169s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 170s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 171s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 172s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 173s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 175s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 176s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 177s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 178s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 180s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 181s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 183s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 184s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 185s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 186s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 187s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 189s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 190s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 191s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 192s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 193s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 195s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 196s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 197s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 198s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 199s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 201s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 202s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 203s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 204s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 206s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 207s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 208s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 209s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 211s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 212s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 213s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 214s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 215s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 217s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 218s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 220s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 221s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 223s   📊 Status: in_progress | Completed: 0/5 | Elapsed: 224s                                                                                   📝 LIVE UPDATE: Makarov's selling of Itera and decline of influence in Russia (10068 chars)
-   📝 LIVE UPDATE: Makarov's selling of Itera and decline of influence in Russia
-   📝 LIVE UPDATE: Makarov  severing ties in Russia (14865 chars)
-   📝 LIVE UPDATE: Makarov  severing ties in Russia
-   📝 LIVE UPDATE: Makarov's remaining ties in russia (10134 chars)
-   📝 LIVE UPDATE: Makarov's remaining ties in russia
-   📝 LIVE UPDATE: Makarov's remaining businesses in Russia (27431 chars)
-   📝 LIVE UPDATE: Makarov's remaining businesses in Russia
-   📝 LIVE UPDATE: Makarov's reputation today in Russia (13077 chars)
-   📝 LIVE UPDATE: Makarov's reputation today in Russia
-
-✅ All 5 merge tasks complete!
-✅ Phase 3 complete: Document merged with footnotes using Batch API
-
-⏳ Waiting for Phase 2 background task to complete...
-📸 Created pre-Claude backup for comparison
-
-============================================================
-✨ PHASE 4: Claude Opus Extended Thinking Rewrite (LIVE!)
-============================================================
-👀 WATCH YOUR FILE UPDATE IN REAL-TIME!
-🤔 Claude Opus is thinking deeply...
-📡 STREAMING REWRITE: ............................ ✅ 63686 chars
-✅ Phase 4 complete: Document rewritten with Extended Thinking
-
-============================================================
-🔎 PHASE 5: Gemini Final Verification (Using Cached Snippets)
-============================================================
-⚠️ No cache from Phase 2, skipping verification
-
-================================================================================
-🔍 PHASE 5B: Gemini Comprehensive Comparison
-Comparing Claude Opus rewrite against pre-Claude state...
-================================================================================
-
-================================================================================
-🔍 GEMINI FINAL COMPARISON - Claude Opus Rewrite Analysis
-================================================================================
-📊 Document sizes:
-   Pre-Claude: 75,807 chars
-   Post-Claude: 63,686 chars
-   Difference: -12,121 chars
-
-📦 Creating Gemini comparison cache...
-⚠️  Gemini comparison failed: 'NoneType' object has no attribute 'items'
-   Final document is still valid
-
-================================================================================
-🎉 ALL 5 PHASES + GEMINI COMPARISON COMPLETE!
-📄 Check idee.md in Obsidian
-💰 Total savings: ~90% through caching
-🔍 Gemini has reviewed Claude's work and added comments
-================================================================================
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1750782169.295058 14515173 init.cc:232] grpc_wait_for_shutdown_with_timeout() timed out.
