@@ -1,0 +1,402 @@
+2025-10-07 20:28:32,163 - INFO - Successfully logged in to MediaWiki
+2025-10-07 20:28:32,163 - INFO - Fetching list of country pages...
+2025-10-07 20:28:32,323 - INFO - Found 236 wiki pages (countries, states, templates, etc.)
+2025-10-07 20:28:32,323 - INFO - Found 236 country pages to process
+2025-10-07 20:28:32,323 - INFO - Processing 1/236: Afghanistan
+2025-10-07 20:28:32,626 - WARNING - Could not resolve ISO code for 'Afghanistan', skipping cache file naming by code.
+2025-10-07 20:28:33,130 - INFO - Processing 2/236: Albania
+2025-10-07 20:28:33,819 - INFO - Processing 3/236: Algeria
+2025-10-07 20:28:34,030 - WARNING - Could not resolve ISO code for 'Algeria', skipping cache file naming by code.
+2025-10-07 20:28:34,536 - INFO - Processing 4/236: Andorra
+2025-10-07 20:28:34,722 - WARNING - Could not resolve ISO code for 'Andorra', skipping cache file naming by code.
+2025-10-07 20:28:35,224 - INFO - Processing 5/236: Angola
+2025-10-07 20:28:35,414 - WARNING - Could not resolve ISO code for 'Angola', skipping cache file naming by code.
+2025-10-07 20:28:35,920 - INFO - Processing 6/236: Antigua and Barbuda
+2025-10-07 20:28:36,090 - WARNING - Could not resolve ISO code for 'Antigua and Barbuda', skipping cache file naming by code.
+2025-10-07 20:28:36,596 - INFO - Processing 7/236: Argentina
+2025-10-07 20:28:37,327 - INFO - Processing 8/236: Armenia
+2025-10-07 20:28:37,544 - WARNING - Could not resolve ISO code for 'Armenia', skipping cache file naming by code.
+2025-10-07 20:28:38,051 - INFO - Processing 9/236: Asset Registries
+2025-10-07 20:28:38,217 - WARNING - Could not resolve ISO code for 'Asset Registries', skipping cache file naming by code.
+2025-10-07 20:28:38,718 - INFO - Processing 10/236: Australia
+2025-10-07 20:28:39,457 - INFO - Processing 11/236: Austria
+2025-10-07 20:28:40,158 - INFO - Processing 12/236: Azerbaijan
+2025-10-07 20:28:40,334 - WARNING - Could not resolve ISO code for 'Azerbaijan', skipping cache file naming by code.
+2025-10-07 20:28:40,836 - INFO - Processing 13/236: Bahamas
+2025-10-07 20:28:41,017 - WARNING - Could not resolve ISO code for 'Bahamas', skipping cache file naming by code.
+2025-10-07 20:28:41,523 - INFO - Processing 14/236: Bahrain
+2025-10-07 20:28:41,706 - WARNING - Could not resolve ISO code for 'Bahrain', skipping cache file naming by code.
+2025-10-07 20:28:42,208 - INFO - Processing 15/236: Bangladesh
+2025-10-07 20:28:42,882 - INFO - Processing 16/236: Barbados
+2025-10-07 20:28:43,114 - WARNING - Could not resolve ISO code for 'Barbados', skipping cache file naming by code.
+2025-10-07 20:28:43,620 - INFO - Processing 17/236: Belarus
+2025-10-07 20:28:44,305 - INFO - Processing 18/236: Belgium
+2025-10-07 20:28:45,008 - INFO - Processing 19/236: Belize
+2025-10-07 20:28:45,209 - WARNING - Could not resolve ISO code for 'Belize', skipping cache file naming by code.
+2025-10-07 20:28:45,711 - INFO - Processing 20/236: Benin
+2025-10-07 20:28:45,908 - WARNING - Could not resolve ISO code for 'Benin', skipping cache file naming by code.
+2025-10-07 20:28:46,411 - INFO - Processing 21/236: Bhutan
+2025-10-07 20:28:46,577 - WARNING - Could not resolve ISO code for 'Bhutan', skipping cache file naming by code.
+2025-10-07 20:28:47,083 - INFO - Processing 22/236: Bolivia
+2025-10-07 20:28:47,808 - INFO - Processing 23/236: Bosnia and Herzegovina
+2025-10-07 20:28:48,515 - INFO - Processing 24/236: Botswana
+2025-10-07 20:28:48,690 - WARNING - Could not resolve ISO code for 'Botswana', skipping cache file naming by code.
+2025-10-07 20:28:49,192 - INFO - Processing 25/236: Brazil
+2025-10-07 20:28:49,917 - INFO - Processing 26/236: Breaches
+2025-10-07 20:28:50,092 - WARNING - Could not resolve ISO code for 'Breaches', skipping cache file naming by code.
+2025-10-07 20:28:50,599 - INFO - Processing 27/236: Brunei
+2025-10-07 20:28:50,781 - WARNING - Could not resolve ISO code for 'Brunei', skipping cache file naming by code.
+2025-10-07 20:28:51,287 - INFO - Processing 28/236: Bulgaria
+2025-10-07 20:28:52,003 - INFO - Processing 29/236: Burkina Faso
+2025-10-07 20:28:52,193 - WARNING - Could not resolve ISO code for 'Burkina Faso', skipping cache file naming by code.
+2025-10-07 20:28:52,696 - INFO - Processing 30/236: Burundi
+2025-10-07 20:28:52,870 - WARNING - Could not resolve ISO code for 'Burundi', skipping cache file naming by code.
+2025-10-07 20:28:53,373 - INFO - Processing 31/236: Cabo Verde
+2025-10-07 20:28:53,598 - WARNING - Could not resolve ISO code for 'Cabo Verde', skipping cache file naming by code.
+2025-10-07 20:28:54,099 - INFO - Processing 32/236: Cambodia
+2025-10-07 20:28:54,316 - WARNING - Could not resolve ISO code for 'Cambodia', skipping cache file naming by code.
+2025-10-07 20:28:54,822 - INFO - Processing 33/236: Cameroon
+2025-10-07 20:28:55,367 - WARNING - Could not resolve ISO code for 'Cameroon', skipping cache file naming by code.
+2025-10-07 20:28:55,870 - INFO - Processing 34/236: Canada
+2025-10-07 20:28:56,914 - INFO - Processing 35/236: Cape Verde
+2025-10-07 20:28:57,270 - WARNING - Could not resolve ISO code for 'Cape Verde', skipping cache file naming by code.
+2025-10-07 20:28:57,771 - INFO - Processing 36/236: Central African Republic
+2025-10-07 20:28:57,959 - WARNING - Could not resolve ISO code for 'Central African Republic', skipping cache file naming by code.
+2025-10-07 20:28:58,461 - INFO - Processing 37/236: Chad
+2025-10-07 20:28:58,675 - WARNING - Could not resolve ISO code for 'Chad', skipping cache file naming by code.
+2025-10-07 20:28:59,178 - INFO - Processing 38/236: Chile
+2025-10-07 20:28:59,893 - INFO - Processing 39/236: China
+2025-10-07 20:29:00,590 - INFO - Processing 40/236: Civil Society
+2025-10-07 20:29:00,770 - WARNING - Could not resolve ISO code for 'Civil Society', skipping cache file naming by code.
+2025-10-07 20:29:01,275 - INFO - Processing 41/236: Colombia
+2025-10-07 20:29:01,982 - INFO - Processing 42/236: Commercial
+2025-10-07 20:29:02,183 - WARNING - Could not resolve ISO code for 'Commercial', skipping cache file naming by code.
+2025-10-07 20:29:02,685 - INFO - Processing 43/236: Comoros
+2025-10-07 20:29:02,869 - WARNING - Could not resolve ISO code for 'Comoros', skipping cache file naming by code.
+2025-10-07 20:29:03,370 - INFO - Processing 44/236: Congo
+2025-10-07 20:29:03,566 - WARNING - Could not resolve ISO code for 'Congo', skipping cache file naming by code.
+2025-10-07 20:29:04,067 - INFO - Processing 45/236: Corporate Registry
+2025-10-07 20:29:04,280 - WARNING - Could not resolve ISO code for 'Corporate Registry', skipping cache file naming by code.
+2025-10-07 20:29:04,782 - INFO - Processing 46/236: Costa Rica
+2025-10-07 20:29:05,008 - WARNING - Could not resolve ISO code for 'Costa Rica', skipping cache file naming by code.
+2025-10-07 20:29:05,510 - INFO - Processing 47/236: Countries
+2025-10-07 20:29:05,680 - WARNING - Could not resolve ISO code for 'Countries', skipping cache file naming by code.
+2025-10-07 20:29:06,184 - INFO - Processing 48/236: Croatia
+2025-10-07 20:29:06,902 - INFO - Processing 49/236: Cuba
+2025-10-07 20:29:07,237 - WARNING - Could not resolve ISO code for 'Cuba', skipping cache file naming by code.
+2025-10-07 20:29:07,743 - INFO - Processing 50/236: Cyprus
+2025-10-07 20:29:08,454 - INFO - Processing 51/236: Czech Republic
+2025-10-07 20:29:09,314 - INFO - Processing 52/236: Czechia (Czech Republic)
+2025-10-07 20:29:10,035 - INFO - Processing 53/236: Côte d'Ivoire
+2025-10-07 20:29:10,215 - WARNING - Could not resolve ISO code for 'Côte d'Ivoire', skipping cache file naming by code.
+2025-10-07 20:29:10,717 - INFO - Processing 54/236: Democratic Republic of the Congo
+2025-10-07 20:29:11,081 - WARNING - Could not resolve ISO code for 'Democratic Republic of the Congo', skipping cache file naming by code.
+2025-10-07 20:29:11,582 - INFO - Processing 55/236: Denmark
+2025-10-07 20:29:12,466 - INFO - Processing 56/236: Djibouti
+2025-10-07 20:29:12,655 - WARNING - Could not resolve ISO code for 'Djibouti', skipping cache file naming by code.
+2025-10-07 20:29:13,159 - INFO - Processing 57/236: Dominica
+2025-10-07 20:29:13,335 - WARNING - Could not resolve ISO code for 'Dominica', skipping cache file naming by code.
+2025-10-07 20:29:13,836 - INFO - Processing 58/236: Dominican Republic
+2025-10-07 20:29:14,225 - WARNING - Could not resolve ISO code for 'Dominican Republic', skipping cache file naming by code.
+2025-10-07 20:29:14,726 - INFO - Processing 59/236: East Timor
+2025-10-07 20:29:15,099 - WARNING - Could not resolve ISO code for 'East Timor', skipping cache file naming by code.
+2025-10-07 20:29:15,602 - INFO - Processing 60/236: Ecuador
+2025-10-07 20:29:16,303 - INFO - Processing 61/236: Egypt
+2025-10-07 20:29:17,019 - INFO - Processing 62/236: El Salvador
+2025-10-07 20:29:17,401 - WARNING - Could not resolve ISO code for 'El Salvador', skipping cache file naming by code.
+2025-10-07 20:29:17,905 - INFO - Processing 63/236: Equatorial Guinea
+2025-10-07 20:29:18,093 - WARNING - Could not resolve ISO code for 'Equatorial Guinea', skipping cache file naming by code.
+2025-10-07 20:29:18,594 - INFO - Processing 64/236: Eritrea
+2025-10-07 20:29:18,773 - WARNING - Could not resolve ISO code for 'Eritrea', skipping cache file naming by code.
+2025-10-07 20:29:19,275 - INFO - Processing 65/236: Estonia
+2025-10-07 20:29:19,482 - WARNING - Could not resolve ISO code for 'Estonia', skipping cache file naming by code.
+2025-10-07 20:29:19,984 - INFO - Processing 66/236: Eswatini
+2025-10-07 20:29:20,152 - WARNING - Could not resolve ISO code for 'Eswatini', skipping cache file naming by code.
+2025-10-07 20:29:20,656 - INFO - Processing 67/236: Eswatini (fmr. "Swaziland")
+2025-10-07 20:29:20,872 - WARNING - Could not resolve ISO code for 'Eswatini (fmr. "Swaziland")', skipping cache file naming by code.
+2025-10-07 20:29:21,372 - INFO - Processing 68/236: Ethiopia
+2025-10-07 20:29:21,554 - WARNING - Could not resolve ISO code for 'Ethiopia', skipping cache file naming by code.
+2025-10-07 20:29:22,060 - INFO - Processing 69/236: Fiji
+2025-10-07 20:29:22,230 - WARNING - Could not resolve ISO code for 'Fiji', skipping cache file naming by code.
+2025-10-07 20:29:22,736 - INFO - Processing 70/236: Finland
+2025-10-07 20:29:23,468 - INFO - Processing 71/236: France
+2025-10-07 20:29:24,201 - INFO - Processing 72/236: Further Public Records
+2025-10-07 20:29:24,371 - WARNING - Could not resolve ISO code for 'Further Public Records', skipping cache file naming by code.
+2025-10-07 20:29:24,878 - INFO - Processing 73/236: Gabon
+2025-10-07 20:29:25,068 - WARNING - Could not resolve ISO code for 'Gabon', skipping cache file naming by code.
+2025-10-07 20:29:25,574 - INFO - Processing 74/236: Gambia
+2025-10-07 20:29:25,762 - WARNING - Could not resolve ISO code for 'Gambia', skipping cache file naming by code.
+2025-10-07 20:29:26,268 - INFO - Processing 75/236: Georgia
+2025-10-07 20:29:26,636 - WARNING - Could not resolve ISO code for 'Georgia', skipping cache file naming by code.
+2025-10-07 20:29:27,138 - INFO - Processing 76/236: Germany
+2025-10-07 20:29:27,875 - INFO - Processing 77/236: Ghana
+2025-10-07 20:29:28,207 - WARNING - Could not resolve ISO code for 'Ghana', skipping cache file naming by code.
+2025-10-07 20:29:28,714 - INFO - Processing 78/236: Gibraltar
+2025-10-07 20:29:28,901 - WARNING - Could not resolve ISO code for 'Gibraltar', skipping cache file naming by code.
+2025-10-07 20:29:29,403 - INFO - Processing 79/236: Greece
+2025-10-07 20:29:30,111 - INFO - Processing 80/236: Grenada
+2025-10-07 20:29:30,304 - WARNING - Could not resolve ISO code for 'Grenada', skipping cache file naming by code.
+2025-10-07 20:29:30,805 - INFO - Processing 81/236: Guatemala
+2025-10-07 20:29:30,994 - WARNING - Could not resolve ISO code for 'Guatemala', skipping cache file naming by code.
+2025-10-07 20:29:31,500 - INFO - Processing 82/236: Guinea
+2025-10-07 20:29:32,074 - WARNING - Could not resolve ISO code for 'Guinea', skipping cache file naming by code.
+2025-10-07 20:29:32,576 - INFO - Processing 83/236: Guinea-Bissau
+2025-10-07 20:29:33,122 - WARNING - Could not resolve ISO code for 'Guinea-Bissau', skipping cache file naming by code.
+2025-10-07 20:29:33,625 - INFO - Processing 84/236: Guyana
+2025-10-07 20:29:33,980 - WARNING - Could not resolve ISO code for 'Guyana', skipping cache file naming by code.
+2025-10-07 20:29:34,488 - INFO - Processing 85/236: Haiti
+2025-10-07 20:29:34,688 - WARNING - Could not resolve ISO code for 'Haiti', skipping cache file naming by code.
+2025-10-07 20:29:35,193 - INFO - Processing 86/236: Honduras
+2025-10-07 20:29:35,388 - WARNING - Could not resolve ISO code for 'Honduras', skipping cache file naming by code.
+2025-10-07 20:29:35,892 - INFO - Processing 87/236: Hong-Kong
+2025-10-07 20:29:36,080 - WARNING - Could not resolve ISO code for 'Hong-Kong', skipping cache file naming by code.
+2025-10-07 20:29:36,581 - INFO - Processing 88/236: Hungary
+2025-10-07 20:29:37,295 - INFO - Processing 89/236: Iceland
+2025-10-07 20:29:37,967 - INFO - Processing 90/236: India
+2025-10-07 20:29:38,673 - INFO - Processing 91/236: Indonesia
+2025-10-07 20:29:39,374 - INFO - Processing 92/236: Iran
+2025-10-07 20:29:39,550 - WARNING - Could not resolve ISO code for 'Iran', skipping cache file naming by code.
+2025-10-07 20:29:40,051 - INFO - Processing 93/236: Iraq
+2025-10-07 20:29:40,268 - WARNING - Could not resolve ISO code for 'Iraq', skipping cache file naming by code.
+2025-10-07 20:29:40,771 - INFO - Processing 94/236: Ireland
+2025-10-07 20:29:41,496 - INFO - Processing 95/236: Israel
+2025-10-07 20:29:41,664 - WARNING - Could not resolve ISO code for 'Israel', skipping cache file naming by code.
+2025-10-07 20:29:42,166 - INFO - Processing 96/236: Italy
+2025-10-07 20:29:42,869 - INFO - Processing 97/236: Ivory Coast
+2025-10-07 20:29:43,077 - WARNING - Could not resolve ISO code for 'Ivory Coast', skipping cache file naming by code.
+2025-10-07 20:29:43,578 - INFO - Processing 98/236: Jamaica
+2025-10-07 20:29:43,766 - WARNING - Could not resolve ISO code for 'Jamaica', skipping cache file naming by code.
+2025-10-07 20:29:44,272 - INFO - Processing 99/236: Japan
+2025-10-07 20:29:45,284 - INFO - Processing 100/236: Jordan
+2025-10-07 20:29:45,512 - WARNING - Could not resolve ISO code for 'Jordan', skipping cache file naming by code.
+2025-10-07 20:29:46,019 - INFO - Processing 101/236: Kazakhstan
+2025-10-07 20:29:46,199 - WARNING - Could not resolve ISO code for 'Kazakhstan', skipping cache file naming by code.
+2025-10-07 20:29:46,700 - INFO - Processing 102/236: Kenya
+2025-10-07 20:29:47,372 - INFO - Processing 103/236: Kiribati
+2025-10-07 20:29:47,609 - WARNING - Could not resolve ISO code for 'Kiribati', skipping cache file naming by code.
+2025-10-07 20:29:48,113 - INFO - Processing 104/236: Kosovo
+2025-10-07 20:29:48,299 - WARNING - Could not resolve ISO code for 'Kosovo', skipping cache file naming by code.
+2025-10-07 20:29:48,801 - INFO - Processing 105/236: Kuwait
+2025-10-07 20:29:48,967 - WARNING - Could not resolve ISO code for 'Kuwait', skipping cache file naming by code.
+2025-10-07 20:29:49,472 - INFO - Processing 106/236: Kyrgyzstan
+2025-10-07 20:29:49,707 - WARNING - Could not resolve ISO code for 'Kyrgyzstan', skipping cache file naming by code.
+2025-10-07 20:29:50,214 - INFO - Processing 107/236: Laos
+2025-10-07 20:29:50,393 - WARNING - Could not resolve ISO code for 'Laos', skipping cache file naming by code.
+2025-10-07 20:29:50,894 - INFO - Processing 108/236: Latvia
+2025-10-07 20:29:51,069 - WARNING - Could not resolve ISO code for 'Latvia', skipping cache file naming by code.
+2025-10-07 20:29:51,576 - INFO - Processing 109/236: Lebanon
+2025-10-07 20:29:51,802 - WARNING - Could not resolve ISO code for 'Lebanon', skipping cache file naming by code.
+2025-10-07 20:29:52,308 - INFO - Processing 110/236: Lesotho
+2025-10-07 20:29:52,491 - WARNING - Could not resolve ISO code for 'Lesotho', skipping cache file naming by code.
+2025-10-07 20:29:52,992 - INFO - Processing 111/236: Liberia
+2025-10-07 20:29:53,159 - WARNING - Could not resolve ISO code for 'Liberia', skipping cache file naming by code.
+2025-10-07 20:29:53,661 - INFO - Processing 112/236: Libya
+2025-10-07 20:29:53,899 - WARNING - Could not resolve ISO code for 'Libya', skipping cache file naming by code.
+2025-10-07 20:29:54,400 - INFO - Processing 113/236: Liechtenstein
+2025-10-07 20:29:55,095 - INFO - Processing 114/236: Lithuania
+2025-10-07 20:29:55,270 - WARNING - Could not resolve ISO code for 'Lithuania', skipping cache file naming by code.
+2025-10-07 20:29:55,778 - INFO - Processing 115/236: Litigation
+2025-10-07 20:29:55,996 - WARNING - Could not resolve ISO code for 'Litigation', skipping cache file naming by code.
+2025-10-07 20:29:56,497 - INFO - Processing 116/236: Luxembourg
+2025-10-07 20:29:57,214 - INFO - Processing 117/236: Madagascar
+2025-10-07 20:29:57,387 - WARNING - Could not resolve ISO code for 'Madagascar', skipping cache file naming by code.
+2025-10-07 20:29:57,889 - INFO - Processing 118/236: Main Page
+2025-10-07 20:29:58,094 - WARNING - Could not resolve ISO code for 'Main Page', skipping cache file naming by code.
+2025-10-07 20:29:58,601 - INFO - Processing 119/236: Malawi
+2025-10-07 20:29:58,781 - WARNING - Could not resolve ISO code for 'Malawi', skipping cache file naming by code.
+2025-10-07 20:29:59,284 - INFO - Processing 120/236: Malaysia
+2025-10-07 20:29:59,959 - INFO - Processing 121/236: Maldives
+2025-10-07 20:30:00,192 - WARNING - Could not resolve ISO code for 'Maldives', skipping cache file naming by code.
+2025-10-07 20:30:00,698 - INFO - Processing 122/236: Mali
+2025-10-07 20:30:00,887 - WARNING - Could not resolve ISO code for 'Mali', skipping cache file naming by code.
+2025-10-07 20:30:01,391 - INFO - Processing 123/236: Malta
+2025-10-07 20:30:02,078 - INFO - Processing 124/236: Marshall Islands
+2025-10-07 20:30:02,292 - WARNING - Could not resolve ISO code for 'Marshall Islands', skipping cache file naming by code.
+2025-10-07 20:30:02,794 - INFO - Processing 125/236: Mauritania
+2025-10-07 20:30:02,983 - WARNING - Could not resolve ISO code for 'Mauritania', skipping cache file naming by code.
+2025-10-07 20:30:03,486 - INFO - Processing 126/236: Mauritius
+2025-10-07 20:30:04,157 - INFO - Processing 127/236: Media
+2025-10-07 20:30:04,386 - WARNING - Could not resolve ISO code for 'Media', skipping cache file naming by code.
+2025-10-07 20:30:04,892 - INFO - Processing 128/236: Mexico
+2025-10-07 20:30:05,597 - INFO - Processing 129/236: Micronesia
+2025-10-07 20:30:05,959 - WARNING - Could not resolve ISO code for 'Micronesia', skipping cache file naming by code.
+2025-10-07 20:30:06,460 - INFO - Processing 130/236: Miscellaneous
+2025-10-07 20:30:07,149 - INFO - Processing 131/236: Moldova
+2025-10-07 20:30:08,090 - INFO - Processing 132/236: Monaco
+2025-10-07 20:30:08,280 - WARNING - Could not resolve ISO code for 'Monaco', skipping cache file naming by code.
+2025-10-07 20:30:08,784 - INFO - Processing 133/236: Mongolia
+2025-10-07 20:30:08,960 - WARNING - Could not resolve ISO code for 'Mongolia', skipping cache file naming by code.
+2025-10-07 20:30:09,464 - INFO - Processing 134/236: Montenegro
+2025-10-07 20:30:10,146 - INFO - Processing 135/236: Morocco
+2025-10-07 20:30:10,827 - INFO - Processing 136/236: Mozambique
+2025-10-07 20:30:11,201 - WARNING - Could not resolve ISO code for 'Mozambique', skipping cache file naming by code.
+2025-10-07 20:30:11,707 - INFO - Processing 137/236: Myanmar
+2025-10-07 20:30:11,889 - WARNING - Could not resolve ISO code for 'Myanmar', skipping cache file naming by code.
+2025-10-07 20:30:12,395 - INFO - Processing 138/236: Myanmar (formerly Burma)
+2025-10-07 20:30:12,570 - WARNING - Could not resolve ISO code for 'Myanmar (formerly Burma)', skipping cache file naming by code.
+2025-10-07 20:30:13,074 - INFO - Processing 139/236: Namibia
+2025-10-07 20:30:13,301 - WARNING - Could not resolve ISO code for 'Namibia', skipping cache file naming by code.
+2025-10-07 20:30:13,804 - INFO - Processing 140/236: Nauru
+2025-10-07 20:30:13,989 - WARNING - Could not resolve ISO code for 'Nauru', skipping cache file naming by code.
+2025-10-07 20:30:14,495 - INFO - Processing 141/236: Nepal
+2025-10-07 20:30:14,663 - WARNING - Could not resolve ISO code for 'Nepal', skipping cache file naming by code.
+2025-10-07 20:30:15,165 - INFO - Processing 142/236: Netherlands
+2025-10-07 20:30:15,905 - INFO - Processing 143/236: New Zealand
+2025-10-07 20:30:16,588 - INFO - Processing 144/236: Nicaragua
+2025-10-07 20:30:16,759 - WARNING - Could not resolve ISO code for 'Nicaragua', skipping cache file naming by code.
+2025-10-07 20:30:17,261 - INFO - Processing 145/236: Niger
+2025-10-07 20:30:17,493 - WARNING - Could not resolve ISO code for 'Niger', skipping cache file naming by code.
+2025-10-07 20:30:17,994 - INFO - Processing 146/236: Nigeria
+2025-10-07 20:30:18,685 - INFO - Processing 147/236: North Korea
+2025-10-07 20:30:19,358 - INFO - Processing 148/236: North Macedonia
+2025-10-07 20:30:20,097 - INFO - Processing 149/236: Norway
+2025-10-07 20:30:20,814 - INFO - Processing 150/236: Oman
+2025-10-07 20:30:20,982 - WARNING - Could not resolve ISO code for 'Oman', skipping cache file naming by code.
+2025-10-07 20:30:21,484 - INFO - Processing 151/236: Other
+2025-10-07 20:30:21,689 - WARNING - Could not resolve ISO code for 'Other', skipping cache file naming by code.
+2025-10-07 20:30:22,190 - INFO - Processing 152/236: Pakistan
+2025-10-07 20:30:22,880 - INFO - Processing 153/236: Palau
+2025-10-07 20:30:23,048 - WARNING - Could not resolve ISO code for 'Palau', skipping cache file naming by code.
+2025-10-07 20:30:23,550 - INFO - Processing 154/236: Palestine
+2025-10-07 20:30:23,786 - WARNING - Could not resolve ISO code for 'Palestine', skipping cache file naming by code.
+2025-10-07 20:30:24,287 - INFO - Processing 155/236: Palestine State
+2025-10-07 20:30:24,475 - WARNING - Could not resolve ISO code for 'Palestine State', skipping cache file naming by code.
+2025-10-07 20:30:24,980 - INFO - Processing 156/236: Panama
+2025-10-07 20:30:25,148 - WARNING - Could not resolve ISO code for 'Panama', skipping cache file naming by code.
+2025-10-07 20:30:25,649 - INFO - Processing 157/236: Papua New Guinea
+2025-10-07 20:30:25,884 - WARNING - Could not resolve ISO code for 'Papua New Guinea', skipping cache file naming by code.
+2025-10-07 20:30:26,389 - INFO - Processing 158/236: Paraguay
+2025-10-07 20:30:27,077 - INFO - Processing 159/236: Peru
+2025-10-07 20:30:27,756 - INFO - Processing 160/236: Philippines
+2025-10-07 20:30:28,486 - INFO - Processing 161/236: Poland
+2025-10-07 20:30:29,290 - INFO - Processing 162/236: Political
+2025-10-07 20:30:29,458 - WARNING - Could not resolve ISO code for 'Political', skipping cache file naming by code.
+2025-10-07 20:30:29,965 - INFO - Processing 163/236: Portugal
+2025-10-07 20:30:30,637 - INFO - Processing 164/236: Public Record
+2025-10-07 20:30:30,811 - WARNING - Could not resolve ISO code for 'Public Record', skipping cache file naming by code.
+2025-10-07 20:30:31,315 - INFO - Processing 165/236: Qatar
+2025-10-07 20:30:31,485 - WARNING - Could not resolve ISO code for 'Qatar', skipping cache file naming by code.
+2025-10-07 20:30:31,987 - INFO - Processing 166/236: Regulatory
+2025-10-07 20:30:32,155 - WARNING - Could not resolve ISO code for 'Regulatory', skipping cache file naming by code.
+2025-10-07 20:30:32,658 - INFO - Processing 167/236: Romania
+2025-10-07 20:30:33,919 - INFO - Processing 168/236: Russia
+2025-10-07 20:30:34,775 - INFO - Processing 169/236: Rwanda
+2025-10-07 20:30:34,960 - WARNING - Could not resolve ISO code for 'Rwanda', skipping cache file naming by code.
+2025-10-07 20:30:35,462 - INFO - Processing 170/236: Saint Kitts and Nevis
+2025-10-07 20:30:35,844 - WARNING - Could not resolve ISO code for 'Saint Kitts and Nevis', skipping cache file naming by code.
+2025-10-07 20:30:36,350 - INFO - Processing 171/236: Saint Lucia
+2025-10-07 20:30:36,533 - WARNING - Could not resolve ISO code for 'Saint Lucia', skipping cache file naming by code.
+2025-10-07 20:30:37,034 - INFO - Processing 172/236: Saint Vincent and the Grenadines
+2025-10-07 20:30:37,202 - WARNING - Could not resolve ISO code for 'Saint Vincent and the Grenadines', skipping cache file naming by code.
+2025-10-07 20:30:37,707 - INFO - Processing 173/236: Samoa
+2025-10-07 20:30:37,940 - WARNING - Could not resolve ISO code for 'Samoa', skipping cache file naming by code.
+2025-10-07 20:30:38,441 - INFO - Processing 174/236: San Marino
+2025-10-07 20:30:38,627 - WARNING - Could not resolve ISO code for 'San Marino', skipping cache file naming by code.
+2025-10-07 20:30:39,128 - INFO - Processing 175/236: Sao Tome and Principe
+2025-10-07 20:30:39,298 - WARNING - Could not resolve ISO code for 'Sao Tome and Principe', skipping cache file naming by code.
+2025-10-07 20:30:39,805 - INFO - Processing 176/236: Saudi Arabia
+2025-10-07 20:30:40,038 - WARNING - Could not resolve ISO code for 'Saudi Arabia', skipping cache file naming by code.
+2025-10-07 20:30:40,545 - INFO - Processing 177/236: Senegal
+2025-10-07 20:30:40,726 - WARNING - Could not resolve ISO code for 'Senegal', skipping cache file naming by code.
+2025-10-07 20:30:41,228 - INFO - Processing 178/236: Serbia
+2025-10-07 20:30:41,907 - INFO - Processing 179/236: Seychelles
+2025-10-07 20:30:42,136 - WARNING - Could not resolve ISO code for 'Seychelles', skipping cache file naming by code.
+2025-10-07 20:30:42,640 - INFO - Processing 180/236: Sierra Leone
+2025-10-07 20:30:42,825 - WARNING - Could not resolve ISO code for 'Sierra Leone', skipping cache file naming by code.
+2025-10-07 20:30:43,327 - INFO - Processing 181/236: Singapore
+2025-10-07 20:30:44,007 - INFO - Processing 182/236: Slovakia
+2025-10-07 20:30:44,859 - INFO - Processing 183/236: Slovenia
+2025-10-07 20:30:45,535 - INFO - Processing 184/236: Solomon Islands
+2025-10-07 20:30:45,704 - WARNING - Could not resolve ISO code for 'Solomon Islands', skipping cache file naming by code.
+2025-10-07 20:30:46,210 - INFO - Processing 185/236: Somalia
+2025-10-07 20:30:46,378 - WARNING - Could not resolve ISO code for 'Somalia', skipping cache file naming by code.
+2025-10-07 20:30:46,883 - INFO - Processing 186/236: South Africa
+2025-10-07 20:30:47,564 - INFO - Processing 187/236: South Korea
+2025-10-07 20:30:48,233 - INFO - Processing 188/236: South Sudan
+2025-10-07 20:30:48,426 - WARNING - Could not resolve ISO code for 'South Sudan', skipping cache file naming by code.
+2025-10-07 20:30:48,933 - INFO - Processing 189/236: Spain
+2025-10-07 20:30:49,622 - INFO - Processing 190/236: Sri Lanka
+2025-10-07 20:30:50,295 - INFO - Processing 191/236: Sudan
+2025-10-07 20:30:50,523 - WARNING - Could not resolve ISO code for 'Sudan', skipping cache file naming by code.
+2025-10-07 20:30:51,026 - INFO - Processing 192/236: Suriname
+2025-10-07 20:30:51,209 - WARNING - Could not resolve ISO code for 'Suriname', skipping cache file naming by code.
+2025-10-07 20:30:51,710 - INFO - Processing 193/236: Sweden
+2025-10-07 20:30:52,411 - INFO - Processing 194/236: Switzerland
+2025-10-07 20:30:53,130 - INFO - Processing 195/236: Syria
+2025-10-07 20:30:53,308 - WARNING - Could not resolve ISO code for 'Syria', skipping cache file naming by code.
+2025-10-07 20:30:53,811 - INFO - Processing 196/236: TEMPLATE
+2025-10-07 20:30:53,978 - WARNING - Could not resolve ISO code for 'TEMPLATE', skipping cache file naming by code.
+2025-10-07 20:30:54,479 - INFO - Processing 197/236: Taiwan
+2025-10-07 20:30:55,224 - INFO - Processing 198/236: Tajikistan
+2025-10-07 20:30:55,403 - WARNING - Could not resolve ISO code for 'Tajikistan', skipping cache file naming by code.
+2025-10-07 20:30:55,904 - INFO - Processing 199/236: Tanzania
+2025-10-07 20:30:56,072 - WARNING - Could not resolve ISO code for 'Tanzania', skipping cache file naming by code.
+2025-10-07 20:30:56,579 - INFO - Processing 200/236: Test Country 1
+2025-10-07 20:30:56,890 - WARNING - Could not resolve ISO code for 'Test Country 1', skipping cache file naming by code.
+2025-10-07 20:30:57,396 - INFO - Processing 201/236: Thailand
+2025-10-07 20:30:58,064 - INFO - Processing 202/236: Timor-Leste
+2025-10-07 20:30:58,230 - WARNING - Could not resolve ISO code for 'Timor-Leste', skipping cache file naming by code.
+2025-10-07 20:30:58,735 - INFO - Processing 203/236: Togo
+2025-10-07 20:30:58,923 - WARNING - Could not resolve ISO code for 'Togo', skipping cache file naming by code.
+2025-10-07 20:30:59,426 - INFO - Processing 204/236: Tonga
+2025-10-07 20:30:59,600 - WARNING - Could not resolve ISO code for 'Tonga', skipping cache file naming by code.
+2025-10-07 20:31:00,104 - INFO - Processing 205/236: Trinidad and Tobago
+2025-10-07 20:31:00,268 - WARNING - Could not resolve ISO code for 'Trinidad and Tobago', skipping cache file naming by code.
+2025-10-07 20:31:00,770 - INFO - Processing 206/236: Tunisia
+2025-10-07 20:31:01,516 - INFO - Processing 207/236: Turkey
+2025-10-07 20:31:01,710 - WARNING - Could not resolve ISO code for 'Turkey', skipping cache file naming by code.
+2025-10-07 20:31:02,217 - INFO - Processing 208/236: Turkmenistan
+2025-10-07 20:31:02,403 - WARNING - Could not resolve ISO code for 'Turkmenistan', skipping cache file naming by code.
+2025-10-07 20:31:02,905 - INFO - Processing 209/236: Tuvalu
+2025-10-07 20:31:03,112 - WARNING - Could not resolve ISO code for 'Tuvalu', skipping cache file naming by code.
+2025-10-07 20:31:03,618 - INFO - Processing 210/236: UK
+2025-10-07 20:31:04,298 - INFO - Processing 211/236: USA-Federal
+2025-10-07 20:31:04,974 - INFO - Processing 212/236: USA-Florida
+2025-10-07 20:31:05,827 - INFO - Processing 213/236: USA-Michigan
+2025-10-07 20:31:06,503 - INFO - Processing 214/236: USA-Nevada
+2025-10-07 20:31:07,178 - INFO - Processing 215/236: USA- Alabama
+2025-10-07 20:31:07,849 - INFO - Processing 216/236: USA- Alaska
+2025-10-07 20:31:08,522 - INFO - Processing 217/236: USA- Arizona
+2025-10-07 20:31:09,219 - INFO - Processing 218/236: USA- Arkansas
+2025-10-07 20:31:09,906 - INFO - Processing 219/236: USA- New Jersey
+2025-10-07 20:31:10,705 - INFO - Processing 220/236: USA- New York
+2025-10-07 20:31:11,591 - INFO - Processing 221/236: USA- Washington
+2025-10-07 20:31:12,262 - INFO - Processing 222/236: Uganda
+2025-10-07 20:31:12,426 - WARNING - Could not resolve ISO code for 'Uganda', skipping cache file naming by code.
+2025-10-07 20:31:12,928 - INFO - Processing 223/236: Ukraine
+2025-10-07 20:31:13,601 - INFO - Processing 224/236: United Arab Emirates
+2025-10-07 20:31:13,764 - WARNING - Could not resolve ISO code for 'United Arab Emirates', skipping cache file naming by code.
+2025-10-07 20:31:14,271 - INFO - Processing 225/236: United Kingdom
+2025-10-07 20:31:14,956 - INFO - Processing 226/236: United States
+2025-10-07 20:31:15,674 - INFO - Processing 227/236: United States of America
+2025-10-07 20:31:16,474 - INFO - Processing 228/236: Uruguay
+2025-10-07 20:31:17,146 - INFO - Processing 229/236: Uzbekistan
+2025-10-07 20:31:17,311 - WARNING - Could not resolve ISO code for 'Uzbekistan', skipping cache file naming by code.
+2025-10-07 20:31:17,812 - INFO - Processing 230/236: Vanuatu
+2025-10-07 20:31:17,978 - WARNING - Could not resolve ISO code for 'Vanuatu', skipping cache file naming by code.
+2025-10-07 20:31:18,484 - INFO - Processing 231/236: Vatican City
+2025-10-07 20:31:18,649 - WARNING - Could not resolve ISO code for 'Vatican City', skipping cache file naming by code.
+2025-10-07 20:31:19,152 - INFO - Processing 232/236: Venezuela
+2025-10-07 20:31:19,861 - INFO - Processing 233/236: Vietnam
+2025-10-07 20:31:20,548 - INFO - Processing 234/236: Yemen
+2025-10-07 20:31:20,716 - WARNING - Could not resolve ISO code for 'Yemen', skipping cache file naming by code.
+2025-10-07 20:31:21,218 - INFO - Processing 235/236: Zambia
+2025-10-07 20:31:21,457 - WARNING - Could not resolve ISO code for 'Zambia', skipping cache file naming by code.
+2025-10-07 20:31:21,963 - INFO - Processing 236/236: Zimbabwe
+2025-10-07 20:31:22,151 - WARNING - Could not resolve ISO code for 'Zimbabwe', skipping cache file naming by code.
+2025-10-07 20:31:22,685 - INFO - Saved 3731 registries to /Users/attic/Library/Mobile Documents/com~apple~CloudDocs/01_ACTIVE_PROJECTS/Development/0. WIKIMAN/data/wiki_registries.json
+2025-10-07 20:31:22,690 - INFO - Saved country index to /Users/attic/Library/Mobile Documents/com~apple~CloudDocs/01_ACTIVE_PROJECTS/Development/0. WIKIMAN/data/wiki_country_index.json
+
+=== Wiki Fetch Complete ===
+Countries processed: 214
+Total registries extracted: 3731
+Cached wiki pages: 254
+
+Registry types:
+  public_records: 885
+  corporate_registry: 824
+  court_records: 795
+  government: 745
+  land_registry: 297
+  securities: 127
+  ip_registry: 58

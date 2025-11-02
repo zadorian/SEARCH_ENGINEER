@@ -1,0 +1,25 @@
+# WIKIMAN-PRO Dependencies
+
+# MCP SDK - REQUIRED
+mcp>=0.1.0
+
+# Existing WIKIMAN dependencies
+python-dotenv>=1.0.0
+openai>=1.0.0
+requests>=2.31.0
+aiohttp>=3.8.4
+tldextract>=5.1.0
+playwright>=1.40.0
+
+# Gemini Integration (Phase 1A)
+tenacity>=8.2.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Optional: For better testing
+responses>=0.23.0
+
+# Country normalization fallback
+pycountry>=22.3.5

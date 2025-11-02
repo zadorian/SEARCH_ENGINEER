@@ -1,0 +1,32 @@
+# WIKIMAN-PRO Sample Queries
+# Format: One query per line
+# Lines starting with # are comments and will be ignored
+
+# Hungarian Companies
+Get Hungarian corporate info for MOL Group
+Get Hungarian corporate info for OTP Bank
+Get Hungarian corporate info for Richter Gedeon
+
+# German Companies
+Search Germany company registry for Siemens AG
+Search Germany company registry for BMW AG
+Search Germany company registry for Volkswagen AG
+
+# UK Companies
+Find UK corporate records for BP
+Find UK corporate records for Shell
+Find UK corporate records for HSBC
+
+# French Companies
+Get French corporate info for Total SA
+Get French corporate info for BNP Paribas
+Get French corporate info for Airbus
+
+# Multi-word company names
+MOL Group in Hungary corporate registry
+Richter Gedeon in Hungary corporate registry
+
+# Various query formats
+Get German corporate info for Deutsche Bank
+Search UK company registry for Rolls Royce
+Find French corporate records for Societe Generale

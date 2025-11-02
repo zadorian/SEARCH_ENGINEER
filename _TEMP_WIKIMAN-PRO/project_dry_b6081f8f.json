@@ -1,0 +1,127 @@
+{
+  "narrative": null,
+  "timeline": [],
+  "relationships": {
+    "outgoing": [
+      {
+        "edge_id": "edge_references_908a0abf",
+        "source_node_id": "node_narrative_b6081f8f",
+        "target_node_id": "node_url_7ab54c1a",
+        "relationship_type": "references",
+        "context": "[2025-08-23T05:11:07.408949Z] Source: Current position: Chief Technology Officer at AZA",
+        "confidence": 1.0,
+        "metadata": "{\"snippet_id\": \"616f8245\", \"timestamp\": \"2025-08-23T05:11:07.408949Z\", \"reference_type\": \"source_document\"}",
+        "first_seen": "2025-08-23 05:11:07",
+        "last_updated": "2025-08-23 05:11:07",
+        "node_type": "url",
+        "value": "https://www.linkedin.com/in/callum-dryden/",
+        "name": "https://www.linkedin.com/in/callum-dryden/"
+      },
+      {
+        "edge_id": "edge_mentions_3121f587",
+        "source_node_id": "node_narrative_b6081f8f",
+        "target_node_id": "node_email_2dadd59e",
+        "relationship_type": "mentions",
+        "context": "[2025-08-23T05:11:07.405965Z] Email: callumdryden@gmail.com (personal, validated as valid with Grade A)",
+        "confidence": 0.9,
+        "metadata": "{\"snippet_id\": \"c376355f\", \"timestamp\": \"2025-08-23T05:11:07.405965Z\", \"full_text\": \"Email: callumdryden@gmail.com (personal, validated as valid with Grade A)\", \"extraction_type\": \"narrative_mention\"}",
+        "first_seen": "2025-08-23 05:11:07",
+        "last_updated": "2025-08-23 05:11:07",
+        "node_type": "email",
+        "value": "callumdryden@gmail.com",
+        "name": "callumdryden@gmail.com"
+      },
+      {
+        "edge_id": "edge_mentions_49350dd0",
+        "source_node_id": "node_narrative_b6081f8f",
+        "target_node_id": "node_username_53c1f048",
+        "relationship_type": "mentions",
+        "context": "[2025-08-23T05:11:07.405965Z] Email: callumdryden@gmail.com (personal, validated as valid with Grade A)",
+        "confidence": 0.9,
+        "metadata": "{\"snippet_id\": \"c376355f\", \"timestamp\": \"2025-08-23T05:11:07.405965Z\", \"full_text\": \"Email: callumdryden@gmail.com (personal, validated as valid with Grade A)\", \"extraction_type\": \"narrative_mention\"}",
+        "first_seen": "2025-08-23 05:11:07",
+        "last_updated": "2025-08-23 05:11:07",
+        "node_type": "username",
+        "value": "gmail",
+        "name": "gmail"
+      },
+      {
+        "edge_id": "edge_mentions_fea54688",
+        "source_node_id": "node_narrative_b6081f8f",
+        "target_node_id": "node_phone_020e3490",
+        "relationship_type": "mentions",
+        "context": "[2025-08-23T05:11:07.407933Z] Phone: +447899957486 (mobile)",
+        "confidence": 0.9,
+        "metadata": "{\"snippet_id\": \"60371993\", \"timestamp\": \"2025-08-23T05:11:07.407933Z\", \"full_text\": \"Phone: +447899957486 (mobile)\", \"extraction_type\": \"narrative_mention\"}",
+        "first_seen": "2025-08-23 05:11:07",
+        "last_updated": "2025-08-23 05:11:07",
+        "node_type": "phone",
+        "value": "+447899957486",
+        "name": "+447899957486"
+      },
+      {
+        "edge_id": "edge_mentions_108f79a2",
+        "source_node_id": "node_narrative_b6081f8f",
+        "target_node_id": "node_domain_7b0301b0",
+        "relationship_type": "mentions",
+        "context": "[2025-08-23T05:11:07.410021Z] Previous company: bit.ly (multiple email variations attempted there)",
+        "confidence": 0.9,
+        "metadata": "{\"snippet_id\": \"af023c16\", \"timestamp\": \"2025-08-23T05:11:07.410021Z\", \"full_text\": \"Previous company: bit.ly (multiple email variations attempted there)\", \"extraction_type\": \"narrative_mention\"}",
+        "first_seen": "2025-08-23 05:11:07",
+        "last_updated": "2025-08-23 05:11:07",
+        "node_type": "domain",
+        "value": "bit.ly",
+        "name": "bit.ly"
+      },
+      {
+        "edge_id": "edge_mentions_0eabc3f1",
+        "source_node_id": "node_narrative_b6081f8f",
+        "target_node_id": "node_company_number_0aeaa7d5",
+        "relationship_type": "mentions",
+        "context": "[2025-08-23T05:11:07.411060Z] Owns Scottish company SC495939 with 75-100% shareholding",
+        "confidence": 0.9,
+        "metadata": "{\"snippet_id\": \"a8cf9404\", \"timestamp\": \"2025-08-23T05:11:07.411060Z\", \"full_text\": \"Owns Scottish company SC495939 with 75-100% shareholding\", \"extraction_type\": \"narrative_mention\"}",
+        "first_seen": "2025-08-23 05:11:07",
+        "last_updated": "2025-08-23 05:11:07",
+        "node_type": "company_number",
+        "value": "SC495939",
+        "name": "SC495939"
+      },
+      {
+        "edge_id": "edge_mentions_eee4f831",
+        "source_node_id": "node_narrative_b6081f8f",
+        "target_node_id": "node_url_aae2b9f5",
+        "relationship_type": "mentions",
+        "context": "[2025-08-23T05:11:07.412481Z] Primary source: https://www.linkedin.com/in/callum-dryden/?originalSubdomain=uk",
+        "confidence": 0.9,
+        "metadata": "{\"snippet_id\": \"50665fcb\", \"timestamp\": \"2025-08-23T05:11:07.412481Z\", \"full_text\": \"Primary source: https://www.linkedin.com/in/callum-dryden/?originalSubdomain=uk\", \"extraction_type\": \"narrative_mention\"}",
+        "first_seen": "2025-08-23 05:11:07",
+        "last_updated": "2025-08-23 05:11:07",
+        "node_type": "url",
+        "value": "https://www.linkedin.com/in/callum-dryden/?originalSubdomain=uk",
+        "name": "https://www.linkedin.com/in/callum-dryden/?originalSubdomain=uk"
+      },
+      {
+        "edge_id": "edge_references_9f553376",
+        "source_node_id": "node_narrative_b6081f8f",
+        "target_node_id": "node_url_aae2b9f5",
+        "relationship_type": "references",
+        "context": "[2025-08-23T05:11:07.412481Z] Source: Primary source: https://www.linkedin.com/in/callum-dryden/?originalSubdomain=uk",
+        "confidence": 1.0,
+        "metadata": "{\"snippet_id\": \"50665fcb\", \"timestamp\": \"2025-08-23T05:11:07.412481Z\", \"reference_type\": \"source_document\"}",
+        "first_seen": "2025-08-23 05:11:07",
+        "last_updated": "2025-08-23 05:11:07",
+        "node_type": "url",
+        "value": "https://www.linkedin.com/in/callum-dryden/?originalSubdomain=uk",
+        "name": "https://www.linkedin.com/in/callum-dryden/?originalSubdomain=uk"
+      }
+    ],
+    "incoming": []
+  },
+  "statistics": {
+    "total_notes": 10,
+    "total_entities": 7,
+    "total_edges": 10
+  },
+  "exported_at": "2025-08-23T05:11:07.414760Z"
+}

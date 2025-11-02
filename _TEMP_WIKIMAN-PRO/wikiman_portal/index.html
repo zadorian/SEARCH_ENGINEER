@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WIKIMAN Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- vis-network for graph rendering -->
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🧭 WIKIMAN Portal</div>
+    <div class="actions">
+      <label class="file-input">
+        <input type="file" id="projectFile" accept="application/json" />
+        <span>Load Project JSON</span>
+      </label>
+      <select id="projectSelect" class="select" style="max-width:220px"><option value="">• Select project…</option></select>
+      <input id="projectName" class="input" style="width:200px" placeholder="Project name (e.g. Portal)" />
+      <input id="projectDesc" class="input" style="width:260px" placeholder="Description (optional)" />
+      <button id="newProject" class="btn">New Project</button>
+      <button id="archiveProject" class="btn btn-ghost">Archive</button>
+      <button id="deleteProject" class="btn btn-ghost">Delete</button>
+      <button id="undoProject" class="btn btn-ghost">Undo</button>
+      <button id="commitChat" class="btn">Commit Chat → Project</button>
+      <button id="exportProject" class="btn">Export Project</button>
+      <button id="refreshGraph" class="btn">Refresh Graph</button>
+      <button id="exportChat" class="btn">Export Chat</button>
+      <button id="resetUI" class="btn btn-ghost">Reset Layout</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- Communication / Chat -->
+    <section class="pane pane-left">
+      <div class="pane-header">
+        <h2>💬 Communication</h2>
+      </div>
+      <div id="chatList" class="chat-list"></div>
+      <form id="chatForm" class="chat-form" autocomplete="off">
+        <input id="chatInput" class="input" type="text" placeholder="Type a note, decision, or task…" />
+        <input id="noteUrl" class="input" type="url" placeholder="Optional source URL (https://…)" />
+        <select id="chatType" class="select">
+          <option value="note">Note</option>
+          <option value="decision">Decision</option>
+          <option value="task">Task</option>
+        </select>
+        <button class="btn" type="submit">Add</button>
+        <button id="attachNote" class="btn" type="button">Add + Attach</button>
+      </form>
+    </section>
+
+    <!-- Project System Overview -->
+    <section class="pane pane-center">
+      <div class="pane-header">
+        <h2>📁 Project</h2>
+        <div class="subtle" id="projectSource">No project loaded</div>
+      </div>
+      <div class="project-content">
+        <div class="stats" id="projectStats"></div>
+        <div class="edges">
+          <div class="edges-header">
+            <h3>Relationships</h3>
+            <input type="search" id="edgeFilter" class="input" placeholder="Filter edges (type/value)…" />
+          </div>
+          <div id="edgesList" class="edges-list"></div>
+        </div>
+
+        <div class="diff">
+          <div class="edges-header">
+            <h3>Latest Diff</h3>
+            <div>
+              <button id="toggleDiff" class="btn btn-ghost">Show</button>
+              <button id="copyDiff" class="btn btn-ghost" disabled>Copy</button>
+              <button id="downloadDiff" class="btn btn-ghost" disabled>Download</button>
+              <button id="saveAfter" class="btn" disabled>Apply Patch Locally</button>
+              <button id="toggleTwoUp" class="btn btn-ghost">2-Up</button>
+            </div>
+          </div>
+          <pre id="diffView" class="diff-view hidden"></pre>
+          <div id="twoUp" class="twoup hidden">
+            <div>
+              <div class="tw-title">Before</div>
+              <pre id="beforeView" class="tw-view"></pre>
+            </div>
+            <div>
+              <div class="tw-title">After</div>
+              <pre id="afterView" class="tw-view"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Graph Visualization -->
+    <section class="pane pane-right">
+      <div class="pane-header">
+        <h2>🗺️ Graph</h2>
+        <div class="subtle" id="graphSource">Loading graph…</div>
+      </div>
+      <div id="graph" class="graph"></div>
+      <div class="legend" id="legend"></div>
+    </section>
+  </main>
+
+  <footer class="bottombar">
+    <div>
+      Tip: This runs as static files. Serve with `python3 -m http.server` and open this folder.
+    </div>
+    <div id="status" class="status subtle"></div>
+  </footer>
+
+  <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="app.js"></script>
+  <script>
+    // Attempt to auto-load known data if present
+    window.WIKIMAN_DEFAULTS = {
+      graphPath: '../wikiman_graph_web/graph_data.json',
+      projectPath: '../project_dry_b6081f8f.json'
+    };
+  </script>
+</body>
+</html>
