@@ -1,0 +1,351 @@
+{
+  "search_id": "search_20260108_094302",
+  "created_at": "2026-01-08T08:43:02.380729",
+  "updated_at": "2026-01-08T08:43:24.701315",
+  "query": "+971 58 896 3632",
+  "engines": [
+    "GO",
+    "BI",
+    "YA",
+    "DD",
+    "BR",
+    "YE",
+    "QW",
+    "AR",
+    "EX",
+    "GD",
+    "GR",
+    "NA",
+    "PW",
+    "SS",
+    "BO",
+    "AL",
+    "HF",
+    "W",
+    "OA",
+    "GU",
+    "CR",
+    "OL",
+    "PM",
+    "AX",
+    "SE",
+    "WP",
+    "NT",
+    "JS",
+    "MU",
+    "SG",
+    "BK",
+    "AA",
+    "LG",
+    "BA",
+    "YO",
+    "BS",
+    "SP",
+    "CY"
+  ],
+  "completed_engines": [
+    "GO",
+    "BI",
+    "YA",
+    "DD",
+    "BR",
+    "EX",
+    "SS",
+    "QW",
+    "GD",
+    "OL",
+    "GR",
+    "OA",
+    "NA",
+    "PM",
+    "PW",
+    "WP",
+    "AL",
+    "BK",
+    "YO",
+    "HF",
+    "W",
+    "YE",
+    "CR",
+    "AR",
+    "JS",
+    "GU",
+    "SG",
+    "NT",
+    "AA",
+    "LG",
+    "BA",
+    "MU",
+    "SE",
+    "AX"
+  ],
+  "failed_engines": [],
+  "results_count": 0,
+  "unique_urls": 0,
+  "engine_progress": {
+    "GO": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:02.408099"
+    },
+    "BI": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:02.662721"
+    },
+    "YA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:02.810546"
+    },
+    "DD": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:02.991176"
+    },
+    "BR": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:03.208670"
+    },
+    "YE": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:05.912536"
+    },
+    "QW": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:03.896980"
+    },
+    "AR": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:06.411964"
+    },
+    "EX": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:03.406493"
+    },
+    "GD": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:04.158649"
+    },
+    "GR": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:04.397014"
+    },
+    "NA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:04.647382"
+    },
+    "PW": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:04.897490"
+    },
+    "SS": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:03.590497"
+    },
+    "BO": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0
+    },
+    "AL": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:05.157683"
+    },
+    "HF": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:05.407694"
+    },
+    "W": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:05.658523"
+    },
+    "OA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:04.469597"
+    },
+    "GU": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:06.526040"
+    },
+    "CR": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:06.186590"
+    },
+    "OL": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:04.190068"
+    },
+    "PM": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:04.754522"
+    },
+    "AX": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:24.680520"
+    },
+    "SE": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:15.301029"
+    },
+    "WP": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:05.002911"
+    },
+    "NT": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:07.157825"
+    },
+    "JS": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:06.494919"
+    },
+    "MU": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:08.059831"
+    },
+    "SG": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:06.945149"
+    },
+    "BK": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:05.196274"
+    },
+    "AA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:07.159244"
+    },
+    "LG": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:07.409129"
+    },
+    "BA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:07.659867"
+    },
+    "YO": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-08T08:43:05.396391"
+    },
+    "BS": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0
+    },
+    "SP": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0
+    },
+    "CY": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0
+    }
+  },
+  "partial_results": [],
+  "metadata": {}
+}

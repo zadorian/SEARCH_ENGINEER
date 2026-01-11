@@ -1,0 +1,804 @@
+{
+  "searches": [
+    {
+      "timestamp": "2026-01-08T09:31:35.793895",
+      "search_id": "search_20260108_093122",
+      "query": "emiratesgas.com",
+      "total_time_ms": 12921.240091323853,
+      "total_unique_results": 0,
+      "total_raw_results": 0,
+      "engines": {
+        "GD": {
+          "queries_sent": [
+            "GD:emiratesgas.com"
+          ],
+          "response_time_ms": 22.2,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.299,
+          "success": true,
+          "error": null
+        },
+        "AL": {
+          "queries_sent": [
+            "AL:emiratesgas.com"
+          ],
+          "response_time_ms": 1.0,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "PW": {
+          "queries_sent": [
+            "PW:emiratesgas.com"
+          ],
+          "response_time_ms": 2.5,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "GR": {
+          "queries_sent": [
+            "GR:emiratesgas.com"
+          ],
+          "response_time_ms": 1.9,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "NA": {
+          "queries_sent": [
+            "NA:emiratesgas.com"
+          ],
+          "response_time_ms": 3.4,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "HF": {
+          "queries_sent": [
+            "HF:emiratesgas.com"
+          ],
+          "response_time_ms": 1.1,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "GU": {
+          "queries_sent": [
+            "GU:emiratesgas.com"
+          ],
+          "response_time_ms": 579.4,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.281,
+          "success": true,
+          "error": null
+        },
+        "W": {
+          "queries_sent": [
+            "W:emiratesgas.com"
+          ],
+          "response_time_ms": 2.6,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "NT": {
+          "queries_sent": [
+            "NT:emiratesgas.com"
+          ],
+          "response_time_ms": 9316.0,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.0,
+          "success": true,
+          "error": null
+        },
+        "JS": {
+          "queries_sent": [
+            "JS:emiratesgas.com"
+          ],
+          "response_time_ms": 89.8,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.297,
+          "success": true,
+          "error": null
+        },
+        "MU": {
+          "queries_sent": [
+            "MU:emiratesgas.com"
+          ],
+          "response_time_ms": 1215.5,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.261,
+          "success": true,
+          "error": null
+        },
+        "SG": {
+          "queries_sent": [
+            "SG:emiratesgas.com"
+          ],
+          "response_time_ms": 15.1,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "AA": {
+          "queries_sent": [
+            "AA:emiratesgas.com"
+          ],
+          "response_time_ms": 1.0,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "LG": {
+          "queries_sent": [
+            "LG:emiratesgas.com"
+          ],
+          "response_time_ms": 1.2,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "BA": {
+          "queries_sent": [
+            "BA:emiratesgas.com"
+          ],
+          "response_time_ms": 4.1,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "QW": {
+          "queries_sent": [
+            "QW:emiratesgas.com"
+          ],
+          "response_time_ms": 4.6,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "timestamp": "2026-01-08T10:19:55.037959",
+      "search_id": "search_20260108_101949",
+      "query": "hoth298@gmail.com",
+      "total_time_ms": 6018.475532531738,
+      "total_unique_results": 0,
+      "total_raw_results": 0,
+      "engines": {
+        "GD": {
+          "queries_sent": [
+            "GD:hoth298@gmail.com"
+          ],
+          "response_time_ms": 14.3,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.298,
+          "success": true,
+          "error": null
+        },
+        "AL": {
+          "queries_sent": [
+            "AL:hoth298@gmail.com"
+          ],
+          "response_time_ms": 1.1,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "PW": {
+          "queries_sent": [
+            "PW:hoth298@gmail.com"
+          ],
+          "response_time_ms": 1.7,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "GR": {
+          "queries_sent": [
+            "GR:hoth298@gmail.com"
+          ],
+          "response_time_ms": 1.5,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "NA": {
+          "queries_sent": [
+            "NA:hoth298@gmail.com"
+          ],
+          "response_time_ms": 1.7,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "HF": {
+          "queries_sent": [
+            "HF:hoth298@gmail.com"
+          ],
+          "response_time_ms": 1.1,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "GU": {
+          "queries_sent": [
+            "GU:hoth298@gmail.com"
+          ],
+          "response_time_ms": 614.3,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.201,
+          "success": true,
+          "error": null
+        },
+        "W": {
+          "queries_sent": [
+            "W:hoth298@gmail.com"
+          ],
+          "response_time_ms": 1.9,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "NT": {
+          "queries_sent": [
+            "NT:hoth298@gmail.com"
+          ],
+          "response_time_ms": 659.7,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.193,
+          "success": true,
+          "error": null
+        },
+        "JS": {
+          "queries_sent": [
+            "JS:hoth298@gmail.com"
+          ],
+          "response_time_ms": 114.5,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.281,
+          "success": true,
+          "error": null
+        },
+        "MU": {
+          "queries_sent": [
+            "MU:hoth298@gmail.com"
+          ],
+          "response_time_ms": 1855.0,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.0,
+          "success": true,
+          "error": null
+        },
+        "SG": {
+          "queries_sent": [
+            "SG:hoth298@gmail.com"
+          ],
+          "response_time_ms": 12.2,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.298,
+          "success": true,
+          "error": null
+        },
+        "AA": {
+          "queries_sent": [
+            "AA:hoth298@gmail.com"
+          ],
+          "response_time_ms": 1.0,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "LG": {
+          "queries_sent": [
+            "LG:hoth298@gmail.com"
+          ],
+          "response_time_ms": 1.0,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "BA": {
+          "queries_sent": [
+            "BA:hoth298@gmail.com"
+          ],
+          "response_time_ms": 1.7,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "QW": {
+          "queries_sent": [
+            "QW:hoth298@gmail.com"
+          ],
+          "response_time_ms": 1.7,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "timestamp": "2026-01-09T08:03:12.791683",
+      "search_id": "search_20260109_080307",
+      "query": "site:localhost",
+      "total_time_ms": 5430.77540397644,
+      "total_unique_results": 0,
+      "total_raw_results": 0,
+      "engines": {
+        "GD": {
+          "queries_sent": [
+            "GD:site:localhost"
+          ],
+          "response_time_ms": 26.1,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.293,
+          "success": true,
+          "error": null
+        },
+        "AL": {
+          "queries_sent": [
+            "AL:site:localhost"
+          ],
+          "response_time_ms": 3.6,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.299,
+          "success": true,
+          "error": null
+        },
+        "PW": {
+          "queries_sent": [
+            "PW:site:localhost"
+          ],
+          "response_time_ms": 4.8,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.299,
+          "success": true,
+          "error": null
+        },
+        "GR": {
+          "queries_sent": [
+            "GR:site:localhost"
+          ],
+          "response_time_ms": 5.1,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.299,
+          "success": true,
+          "error": null
+        },
+        "NA": {
+          "queries_sent": [
+            "NA:site:localhost"
+          ],
+          "response_time_ms": 1.3,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.3,
+          "success": true,
+          "error": null
+        },
+        "HF": {
+          "queries_sent": [
+            "HF:site:localhost"
+          ],
+          "response_time_ms": 2.8,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.299,
+          "success": true,
+          "error": null
+        },
+        "GU": {
+          "queries_sent": [
+            "GU:site:localhost"
+          ],
+          "response_time_ms": 600.0,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.132,
+          "success": true,
+          "error": null
+        },
+        "W": {
+          "queries_sent": [
+            "W:site:localhost"
+          ],
+          "response_time_ms": 5.3,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.299,
+          "success": true,
+          "error": null
+        },
+        "NT": {
+          "queries_sent": [
+            "NT:site:localhost"
+          ],
+          "response_time_ms": 544.5,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.148,
+          "success": true,
+          "error": null
+        },
+        "JS": {
+          "queries_sent": [
+            "JS:site:localhost"
+          ],
+          "response_time_ms": 120.8,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.266,
+          "success": true,
+          "error": null
+        },
+        "MU": {
+          "queries_sent": [
+            "MU:site:localhost"
+          ],
+          "response_time_ms": 1073.5,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.0,
+          "success": true,
+          "error": null
+        },
+        "SG": {
+          "queries_sent": [
+            "SG:site:localhost"
+          ],
+          "response_time_ms": 14.8,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.296,
+          "success": true,
+          "error": null
+        },
+        "AA": {
+          "queries_sent": [
+            "AA:site:localhost"
+          ],
+          "response_time_ms": 3.1,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.299,
+          "success": true,
+          "error": null
+        },
+        "LG": {
+          "queries_sent": [
+            "LG:site:localhost"
+          ],
+          "response_time_ms": 4.0,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.299,
+          "success": true,
+          "error": null
+        },
+        "BA": {
+          "queries_sent": [
+            "BA:site:localhost"
+          ],
+          "response_time_ms": 5.9,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.298,
+          "success": true,
+          "error": null
+        },
+        "QW": {
+          "queries_sent": [
+            "QW:site:localhost"
+          ],
+          "response_time_ms": 5.1,
+          "raw_results": 0,
+          "exclusive_unique": 0,
+          "duplicates": 0,
+          "unique_contribution_rate": 0.0,
+          "value_score": 0.299,
+          "success": true,
+          "error": null
+        }
+      }
+    }
+  ],
+  "engine_totals": {
+    "GD": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 20.86504300435384,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "AL": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 1.9117991129557292,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "PW": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 3.0077298482259116,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "GR": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 2.8118292490641275,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "NA": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 2.094745635986328,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "HF": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 1.6662279764811199,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "GU": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 597.8988806406657,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "W": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 3.2463868459065757,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "NT": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 3506.7126750946045,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "JS": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 108.34542910257976,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "MU": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 1381.348689397176,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "SG": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 14.058351516723633,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "AA": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 1.7215410868326824,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "LG": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 2.077023188273112,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "BA": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 3.8924217224121094,
+      "success_count": 3,
+      "fail_count": 0
+    },
+    "QW": {
+      "total_searches": 3,
+      "total_raw_results": 0,
+      "total_exclusive_unique": 0,
+      "total_duplicates": 0,
+      "avg_response_time_ms": 3.7813186645507812,
+      "success_count": 3,
+      "fail_count": 0
+    }
+  }
+}

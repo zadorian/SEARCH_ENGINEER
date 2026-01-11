@@ -1,0 +1,24 @@
+# Corporella Claude - Dependencies
+
+# Core
+anthropic>=0.40.0          # Claude Haiku 4.5 API
+requests>=2.31.0           # HTTP requests
+websockets>=12.0           # WebSocket server
+aiohttp>=3.9.0             # Async HTTP
+python-dotenv>=1.0.0       # Environment variables
+
+# Data processing
+python-Levenshtein>=0.25.0 # Fuzzy string matching for deduplication
+fuzzywuzzy>=0.18.0         # Name similarity
+jsonschema>=4.20.0         # JSON validation
+
+# Optional (for specific data sources)
+alephclient>=2.3.0         # OCCRP Aleph integration
+edgar>=5.0.0               # SEC EDGAR (if using Bellingcat's tool)
+beautifulsoup4>=4.12.0     # HTML parsing
+lxml>=5.0.0                # XML processing
+
+# Development
+pytest>=7.4.0              # Testing
+pytest-asyncio>=0.21.0     # Async testing
+black>=23.0.0              # Code formatting

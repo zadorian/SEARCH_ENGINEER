@@ -1,0 +1,154 @@
+{
+  "description": "DRILL_SEARCH content analysis pipeline for routing/workflow hints",
+  "version": 1,
+  "processors": [
+    {
+      "rename": {
+        "field": "message",
+        "target_field": "content",
+        "ignore_missing": true
+      }
+    },
+    {
+      "set": {
+        "field": "ingest.received_at",
+        "value": "{{_ingest.timestamp}}"
+      }
+    },
+    {
+      "script": {
+        "lang": "painless",
+        "source": """
+          String text = ctx.containsKey('content') && ctx.content != null ? ctx.content.toString() : '';
+
+          Map entities = [
+            emails: new ArrayList(),
+            phones: new ArrayList(),
+            urls: new ArrayList(),
+            companies: new ArrayList(),
+            persons: new ArrayList(),
+            ml: new ArrayList()
+          ];
+
+          // Simple pattern-based extraction (fast, no ML)
+          def addUnique = (list, value) -> {
+            if (value != null) {
+              def v = value.toString();
+              if (!list.contains(v)) { list.add(v); }
+            }
+          };
+
+          def emailMatcher = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}/.matcher(text);
+          while (emailMatcher.find()) { addUnique(entities.emails, emailMatcher.group()); }
+
+          def phoneMatcher = /(?:\\+?\\d[\\d\\s().-]{6,}\\d)/.matcher(text);
+          while (phoneMatcher.find()) { addUnique(entities.phones, phoneMatcher.group().trim()); }
+
+          def urlMatcher = /https?:\\/\\/[\\w\\.-]+[^\\s'"]*/.matcher(text);
+          while (urlMatcher.find()) { addUnique(entities.urls, urlMatcher.group()); }
+
+          // Lightweight company/person heuristics: capitalized 2+ words
+          def companyMatcher = /\\b([A-Z][A-Za-z0-9&'.-]+\\s+[A-Z][A-Za-z0-9&'.-]+)\\b/.matcher(text);
+          while (companyMatcher.find()) { addUnique(entities.companies, companyMatcher.group(1)); }
+
+          ctx.entities = entities;
+
+          // Routing hints
+          Map routing = [
+            inputs: new ArrayList(),
+            outputs: new ArrayList(),
+            suggested_workflows: new ArrayList(),
+            profile_slots: new ArrayList(),
+            graph: new ArrayList(),
+            backward_goals: new ArrayList(),
+            semantic_topics: new ArrayList(),
+            filters: [:]
+          ];
+
+          if (entities.emails.size() > 0) {
+            routing.inputs.add('email');
+            routing.outputs.add('domain_intel');
+            routing.suggested_workflows.add([
+              id: 'email_domain_chain',
+              priority: 9,
+              reason: entities.emails.size() + ' emails detected',
+              steps: ['extract_entities', 'validate_emails', 'domain_analysis', 'whois_lookup', 'company_enrich']
+            ]);
+            routing.profile_slots.add([
+              slot: 'emails',
+              values: entities.emails,
+              confidence: 0.9,
+              source: 'ingest_pipeline'
+            ]);
+            routing.graph.add([from: 'email', to: 'domain', relation: 'extracted_from']);
+            routing.backward_goals.add("Find owner of " + entities.emails[0]);
+          }
+
+          if (entities.companies.size() > 0) {
+            routing.inputs.add('company_name');
+            routing.outputs.add('company_officers');
+            routing.suggested_workflows.add([
+              id: 'company_officer_chain',
+              priority: 7,
+              reason: entities.companies.size() + ' companies detected',
+              steps: ['company_search', 'executive_lookup', 'relationship_graph']
+            ]);
+            routing.profile_slots.add([
+              slot: 'company_name',
+              values: entities.companies,
+              confidence: 0.65,
+              source: 'ingest_pipeline'
+            ]);
+            routing.graph.add([from: 'company', to: 'person', relation: 'employs']);
+            routing.backward_goals.add("Find directors of " + entities.companies[0]);
+          }
+
+          if (entities.phones.size() > 0) {
+            routing.inputs.add('phone');
+            routing.outputs.add('phone_meta');
+            routing.suggested_workflows.add([
+              id: 'phone_carrier_geo',
+              priority: 6,
+              reason: entities.phones.size() + ' phone numbers detected',
+              steps: ['phone_parse', 'carrier_lookup', 'geo_analysis']
+            ]);
+            routing.profile_slots.add([
+              slot: 'phones',
+              values: entities.phones,
+              confidence: 0.6,
+              source: 'ingest_pipeline'
+            ]);
+            routing.graph.add([from: 'phone', to: 'location', relation: 'located_at']);
+          }
+
+          if (ctx.country != null) {
+             routing.filters.country = ctx.country;
+          }
+          
+          // Semantic/Vector placeholders (simulated for now)
+          if (text.toLowerCase().contains("fraud") || text.toLowerCase().contains("scam")) {
+             routing.semantic_topics.add("financial_crime");
+             routing.filters.sensitivity = "high";
+          }
+
+          ctx.routing = routing;
+
+          // Classification
+          Map classification = [
+            data_type: 'unstructured',
+            sensitivity: 'unknown'
+          ];
+          if (entities.emails.size() >= 20 || entities.phones.size() >= 10) {
+            classification.data_type = 'breach_data';
+            classification.sensitivity = 'high';
+          } else if (entities.companies.size() > 0) {
+            classification.data_type = 'corporate';
+          } else if (entities.emails.size() > 0) {
+            classification.data_type = 'contact_list';
+          }
+          ctx.classification = classification;
+        """
+      }
+    }
+  ]
+}

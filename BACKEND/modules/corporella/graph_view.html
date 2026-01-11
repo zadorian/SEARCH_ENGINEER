@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Corporella Claude - Graph View</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow: hidden;
+        }
+
+        .container {
+            display: grid;
+            grid-template-rows: 1fr 200px;
+            height: 100vh;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        /* Top Panel - Large Graph */
+        .graph-panel {
+            background: #1a1a1a;
+            border-radius: 8px;
+            border: 1px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #graph-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Bottom Panel - Browsing Log */
+        .log-panel {
+            background: #1a1a1a;
+            border-radius: 8px;
+            border: 1px solid #333;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .log-panel h3 {
+            color: #00ff88;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .log-entry {
+            padding: 8px 12px;
+            background: #2a2a2a;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .log-entry:hover {
+            background: #333;
+            border-left-color: #00ff88;
+        }
+
+        .log-entry.active {
+            border-left-color: #00ff88;
+            background: #2a4a3a;
+        }
+
+        .log-entry .timestamp {
+            color: #888;
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+
+        .log-entry .action {
+            color: #00ff88;
+            font-weight: 600;
+        }
+
+        .log-entry .details {
+            color: #ccc;
+            margin-top: 4px;
+        }
+
+        /* Search Box (floating on graph) */
+        .search-box {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            width: 300px;
+            padding: 12px;
+            background: rgba(26, 26, 26, 0.95);
+            border: 1px solid #00ff88;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .search-box button {
+            padding: 12px 24px;
+            background: #00ff88;
+            border: none;
+            border-radius: 4px;
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-box button:hover {
+            background: #00dd77;
+        }
+
+        /* Graph Node Styles */
+        .node-query {
+            fill: #00ff88;
+            stroke: #00dd77;
+            stroke-width: 3px;
+            cursor: pointer;
+        }
+
+        .node-result {
+            fill: #4a4a4a;
+            stroke: #666;
+            stroke-width: 2px;
+            cursor: pointer;
+        }
+
+        .node-result.contradiction {
+            fill: #d00;
+            stroke: #a00;
+            stroke-width: 3px;
+        }
+
+        .node-query.glow,
+        .node-result.glow {
+            filter: drop-shadow(0 0 10px #00ff88) drop-shadow(0 0 20px #00ff88);
+            animation: pulse 1s infinite;
+        }
+
+        .node-result.contradiction.glow {
+            filter: drop-shadow(0 0 10px #d00) drop-shadow(0 0 20px #d00);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .link {
+            stroke: #00ff88;
+            stroke-opacity: 0.6;
+            stroke-width: 2px;
+            fill: none;
+        }
+
+        .link.glow {
+            stroke-opacity: 1;
+            stroke-width: 3px;
+            filter: drop-shadow(0 0 5px #00ff88);
+        }
+
+        .node-label {
+            fill: #fff;
+            font-size: 12px;
+            text-anchor: middle;
+            pointer-events: none;
+            font-weight: 600;
+        }
+
+        .node-label.query {
+            fill: #000;
+            font-size: 14px;
+        }
+
+        .node-label.url {
+            fill: #ccc;
+            font-size: 11px;
+        }
+
+        .badge {
+            fill: #00ff88;
+            stroke: #00dd77;
+            stroke-width: 1px;
+        }
+
+        .badge.contradiction {
+            fill: #d00;
+            stroke: #a00;
+        }
+
+        .badge-text {
+            fill: #000;
+            font-size: 9px;
+            font-weight: bold;
+            text-anchor: middle;
+        }
+
+        .badge-text.contradiction {
+            fill: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top: Large Graph Panel -->
+        <div class="graph-panel">
+            <div class="search-box">
+                <input type="text" id="companyName" placeholder="Company name..." />
+                <input type="text" id="countryCode" placeholder="Country (e.g., GB, us_ca)" />
+                <button onclick="search()">Search</button>
+            </div>
+            <svg id="graph-canvas"></svg>
+        </div>
+
+        <!-- Bottom: Browsing Log -->
+        <div class="log-panel">
+            <h3>🔍 Browsing Log</h3>
+            <div id="log-container"></div>
+        </div>
+    </div>
+
+    <script>
+        // WebSocket connection
+        let ws;
+        let graphData = { nodes: [], links: [] };
+        let simulation;
+        let svg, g;
+        let queryCounter = 0;
+
+        // Initialize D3 graph
+        function initGraph() {
+            const container = document.getElementById('graph-canvas');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            svg = d3.select('#graph-canvas')
+                .attr('width', width)
+                .attr('height', height);
+
+            g = svg.append('g');
+
+            // Add zoom behavior
+            const zoom = d3.zoom()
+                .scaleExtent([0.1, 4])
+                .on('zoom', (event) => {
+                    g.attr('transform', event.transform);
+                });
+
+            svg.call(zoom);
+
+            // Force simulation
+            simulation = d3.forceSimulation()
+                .force('link', d3.forceLink().id(d => d.id).distance(150))
+                .force('charge', d3.forceManyBody().strength(-300))
+                .force('center', d3.forceCenter(width / 2, height / 2))
+                .force('collision', d3.forceCollide().radius(50));
+        }
+
+        // Clean URL (remove http://, https://, www.)
+        function cleanURL(url) {
+            return url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+        }
+
+        // Add query node and result nodes to graph
+        function addToGraph(query, results, contradictions = []) {
+            queryCounter++;
+            const queryNodeId = `query-${queryCounter}`;
+
+            // Add query node
+            graphData.nodes.push({
+                id: queryNodeId,
+                label: query,
+                type: 'query',
+                timestamp: new Date().toISOString()
+            });
+
+            // Add result nodes and links
+            results.forEach((result, idx) => {
+                const url = result.url || result.opencorporates_url || result.id || `result-${idx}`;
+                const cleanUrl = cleanURL(url);
+                const source = result.source || 'unknown';
+                const resultNodeId = `result-${cleanUrl}`;
+
+                // Check if result already exists
+                let existingNode = graphData.nodes.find(n => n.id === resultNodeId);
+
+                if (!existingNode) {
+                    // Add new result node
+                    const isContradiction = contradictions.some(c =>
+                        c.values.some(v => v.source === `[${source.toUpperCase()}]`)
+                    );
+
+                    graphData.nodes.push({
+                        id: resultNodeId,
+                        label: cleanUrl,
+                        type: 'result',
+                        source: source,
+                        contradiction: isContradiction,
+                        data: result
+                    });
+                }
+
+                // Add link from query to result
+                graphData.links.push({
+                    source: queryNodeId,
+                    target: resultNodeId,
+                    queryId: queryNodeId
+                });
+            });
+
+            updateGraph();
+            addLogEntry('search', query, `Found ${results.length} results`);
+        }
+
+        // Update graph visualization
+        function updateGraph() {
+            // Clear existing
+            g.selectAll('*').remove();
+
+            // Links
+            const link = g.append('g')
+                .selectAll('path')
+                .data(graphData.links)
+                .join('path')
+                .attr('class', 'link')
+                .attr('marker-end', 'url(#arrowhead)');
+
+            // Arrow marker
+            svg.append('defs').append('marker')
+                .attr('id', 'arrowhead')
+                .attr('viewBox', '-0 -5 10 10')
+                .attr('refX', 25)
+                .attr('refY', 0)
+                .attr('orient', 'auto')
+                .attr('markerWidth', 8)
+                .attr('markerHeight', 8)
+                .append('path')
+                .attr('d', 'M 0,-5 L 10,0 L 0,5')
+                .attr('fill', '#00ff88');
+
+            // Nodes
+            const node = g.append('g')
+                .selectAll('g')
+                .data(graphData.nodes)
+                .join('g')
+                .call(d3.drag()
+                    .on('start', dragstarted)
+                    .on('drag', dragged)
+                    .on('end', dragended));
+
+            // Node circles
+            node.append('circle')
+                .attr('r', d => d.type === 'query' ? 30 : 20)
+                .attr('class', d => d.type === 'query' ? 'node-query' : 'node-result')
+                .classed('contradiction', d => d.contradiction);
+
+            // Source badges for result nodes
+            node.filter(d => d.type === 'result')
+                .append('circle')
+                .attr('class', d => d.contradiction ? 'badge contradiction' : 'badge')
+                .attr('r', 10)
+                .attr('cx', 15)
+                .attr('cy', -15);
+
+            node.filter(d => d.type === 'result')
+                .append('text')
+                .attr('class', d => d.contradiction ? 'badge-text contradiction' : 'badge-text')
+                .attr('x', 15)
+                .attr('y', -11)
+                .text(d => d.source ? d.source.substring(0, 2).toUpperCase() : '??');
+
+            // Node labels
+            node.append('text')
+                .attr('class', d => `node-label ${d.type}`)
+                .attr('y', d => d.type === 'query' ? 5 : 5)
+                .text(d => {
+                    if (d.type === 'query') return d.label;
+                    // Truncate long URLs
+                    return d.label.length > 30 ? d.label.substring(0, 27) + '...' : d.label;
+                });
+
+            // Update simulation
+            simulation.nodes(graphData.nodes);
+            simulation.force('link').links(graphData.links);
+            simulation.alpha(1).restart();
+
+            // Tick function
+            simulation.on('tick', () => {
+                link.attr('d', d => {
+                    const dx = d.target.x - d.source.x;
+                    const dy = d.target.y - d.source.y;
+                    return `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`;
+                });
+
+                node.attr('transform', d => `translate(${d.x},${d.y})`);
+            });
+        }
+
+        // Drag functions
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+
+        // Add entry to browsing log
+        function addLogEntry(action, query, details) {
+            const logContainer = document.getElementById('log-container');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.dataset.queryId = `query-${queryCounter}`;
+
+            const timestamp = new Date().toLocaleTimeString();
+            entry.innerHTML = `
+                <div class="timestamp">${timestamp}</div>
+                <div class="action">${action.toUpperCase()}: ${query}</div>
+                <div class="details">${details}</div>
+            `;
+
+            // Hover effect - glow corresponding nodes
+            entry.addEventListener('mouseenter', () => {
+                entry.classList.add('active');
+                const queryId = entry.dataset.queryId;
+
+                // Glow query node
+                g.selectAll('circle.node-query')
+                    .filter(d => d.id === queryId)
+                    .classed('glow', true);
+
+                // Glow connected result nodes and links
+                const connectedResults = graphData.links
+                    .filter(l => l.queryId === queryId)
+                    .map(l => l.target.id || l.target);
+
+                g.selectAll('circle.node-result')
+                    .filter(d => connectedResults.includes(d.id))
+                    .classed('glow', true);
+
+                g.selectAll('path.link')
+                    .filter(d => d.queryId === queryId)
+                    .classed('glow', true);
+            });
+
+            entry.addEventListener('mouseleave', () => {
+                entry.classList.remove('active');
+                g.selectAll('.glow').classed('glow', false);
+            });
+
+            logContainer.insertBefore(entry, logContainer.firstChild);
+        }
+
+        // Search function
+        async function search() {
+            const companyName = document.getElementById('companyName').value;
+            const countryCode = document.getElementById('countryCode').value;
+
+            if (!companyName) {
+                alert('Please enter a company name');
+                return;
+            }
+
+            const message = {
+                type: 'search',
+                query: companyName,
+                country: countryCode || null
+            };
+
+            ws.send(JSON.stringify(message));
+        }
+
+        // Connect to WebSocket
+        function connectWebSocket() {
+            ws = new WebSocket('ws://localhost:8765');
+
+            ws.onopen = () => {
+                console.log('✅ Connected to Corporella Claude');
+                addLogEntry('system', 'Connected', 'WebSocket connection established');
+            };
+
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+
+                if (data.type === 'final_entity') {
+                    // Add to graph
+                    const query = document.getElementById('companyName').value;
+                    const results = data.entity._sources || [];
+                    const contradictions = data.entity._contradictions || [];
+
+                    // Extract result nodes from raw data
+                    const resultNodes = [];
+                    if (data.entity.raw_data) {
+                        Object.entries(data.entity.raw_data).forEach(([source, items]) => {
+                            items.forEach(item => {
+                                resultNodes.push({
+                                    ...item,
+                                    source: source.replace('_raw', '')
+                                });
+                            });
+                        });
+                    }
+
+                    addToGraph(query, resultNodes, contradictions);
+                }
+            };
+
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+                addLogEntry('error', 'Connection Error', 'Failed to connect to server');
+            };
+
+            ws.onclose = () => {
+                console.log('Disconnected from server');
+                addLogEntry('system', 'Disconnected', 'Connection closed');
+                setTimeout(connectWebSocket, 3000);
+            };
+        }
+
+        // Initialize on load
+        window.onload = () => {
+            initGraph();
+            connectWebSocket();
+        };
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const container = document.getElementById('graph-canvas');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            svg.attr('width', width).attr('height', height);
+            simulation.force('center', d3.forceCenter(width / 2, height / 2));
+            simulation.alpha(0.3).restart();
+        });
+    </script>
+</body>
+</html>

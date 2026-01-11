@@ -1,0 +1,233 @@
+{
+  "_description": "Gap Analysis: What's MISSING for Full End-to-End Flow Execution",
+  "_designed_flow": "TEMPLATE → WATCHERS → QUERY → RESULTS → GRID ROTATION → K-U INTENT → FILL SECTIONS → IDENTIFY GAPS → NEW QUERY → LOOP",
+
+  "CRITICAL_MISSING_INFRASTRUCTURE": {
+
+    "1_TEMPLATE_LOADER": {
+      "what_exists": "EDITH templates (219 jurisdictions, 33 genres) with placeholder syntax",
+      "what_is_missing": "No operator to LOAD a template and bind it to current investigation",
+      "why_critical": "Flows start with template - without loading, nothing drives the investigation",
+      "proposed_solution": {
+        "operator": "template:{genre}:{jurisdiction}",
+        "example": "template:COMPANY_DD:HU",
+        "behavior": [
+          "Load template from ~/.claude/skills/edith-templates/",
+          "Create watcher for each [PLACEHOLDER] in template",
+          "Return section structure with empty/partial states"
+        ]
+      }
+    },
+
+    "2_WATCHER_TO_SECTION_BINDING": {
+      "what_exists": "Watchers exist (+#w:topic:, +#w:entity:, etc.) but fire independently",
+      "what_is_missing": "No mechanism to bind watcher findings TO specific template sections",
+      "why_critical": "Watchers collect data but don't know WHERE to put it in template",
+      "proposed_solution": {
+        "operator": "+#w:topic:{topic} =>section:{section_id}",
+        "example": "+#w:topic:officers =>section:corporate_overview",
+        "behavior": [
+          "When watcher finds matching content",
+          "Route to specified section's slot",
+          "Update section's sufficiency score"
+        ]
+      }
+    },
+
+    "3_SECTION_SUFFICIENCY_QUERY": {
+      "what_exists": "Sufficiency checker exists (sufficiency.py) with 5 binary constraints",
+      "what_is_missing": "No operator to QUERY current sufficiency state of sections",
+      "why_critical": "Can't decide whether to continue searching or move to next section",
+      "proposed_solution": {
+        "operator": "sufficient? :#section_id",
+        "example": "sufficient? :#corporate_overview",
+        "behavior": [
+          "Return {sufficient: bool, score: 0.0-1.0, missing: [fields], sources_remaining: int}"
+        ]
+      }
+    },
+
+    "4_HUNGRY_SLOTS_QUERY": {
+      "what_exists": "Slot hunger mechanics (contracts.py:914-979) with is_hungry() method",
+      "what_is_missing": "No operator to GET all hungry slots across template",
+      "why_critical": "Need to know which fields still need data to drive next query",
+      "proposed_solution": {
+        "operator": "hungry?",
+        "example": "hungry? :#entity OR hungry? ##section:officers",
+        "behavior": [
+          "Return list of slots where hunger > 0.5",
+          "Include field name, current hunger score, expected source types"
+        ]
+      }
+    },
+
+    "5_K_U_INTENT_DERIVATION": {
+      "what_exists": "K-U Matrix in cognitive_engine.py with VERIFY/TRACE/EXTRACT/DISCOVER",
+      "what_is_missing": "No operator to DERIVE intent for specific entity+location combo",
+      "why_critical": "Can't auto-select correct query strategy without knowing intent",
+      "proposed_solution": {
+        "operator": "intent? :#entity :location",
+        "example": "intent? :#Acme_Corp :HU",
+        "behavior": [
+          "Assess subject knowledge (known/unknown)",
+          "Assess location knowledge (known/unknown)",
+          "Return intent quadrant (VERIFY/TRACE/EXTRACT/DISCOVER)",
+          "Suggest appropriate operators for that intent"
+        ]
+      }
+    },
+
+    "6_QUERY_FROM_INTENT": {
+      "what_exists": "IOPlanner can execute chains, but doesn't read intent",
+      "what_is_missing": "No mechanism to GENERATE query from intent + hungry slots",
+      "why_critical": "The loop requires automatic query generation based on state",
+      "proposed_solution": {
+        "operator": "query_for_intent:{intent} :#{entity}",
+        "example": "query_for_intent:TRACE :#Acme_Corp",
+        "behavior": [
+          "Look at hungry slots on entity",
+          "Consult IO Matrix for routes to fill those slots",
+          "Generate and execute appropriate query sequence"
+        ]
+      }
+    },
+
+    "7_RESULTS_TO_SLOTS_ROUTER": {
+      "what_exists": "Tagging (=> +#tag) works but doesn't fill slots",
+      "what_is_missing": "No mechanism to ROUTE results into specific template slots",
+      "why_critical": "Search results don't automatically become slot values",
+      "proposed_solution": {
+        "operator": "=> slot:{entity}:{field}",
+        "example": "cuk: Acme Corp => slot:#Acme_Corp:registration_number",
+        "behavior": [
+          "Extract relevant value from result",
+          "Set as slot value with provenance",
+          "Update slot state (PARTIAL→FILLED)",
+          "Update section sufficiency"
+        ]
+      }
+    },
+
+    "8_SECTION_CONTENT_WRITER": {
+      "what_exists": "Writer agent defined but not connected to sections",
+      "what_is_missing": "No operator to TRIGGER section writing from filled slots",
+      "why_critical": "Filled slots don't become narrative paragraphs",
+      "proposed_solution": {
+        "operator": "write_section:{section_id}",
+        "example": "write_section:corporate_overview",
+        "behavior": [
+          "Gather all filled slots for section",
+          "Pass to Writer agent with template prose style",
+          "Generate markdown paragraph",
+          "Insert into narrative node"
+        ]
+      }
+    },
+
+    "9_GAP_IDENTIFICATION": {
+      "what_exists": "EmptyHeaderDetector in frontend, but no backend operator",
+      "what_is_missing": "No operator to IDENTIFY gaps in current template state",
+      "why_critical": "Can't decide what to search for next without knowing gaps",
+      "proposed_solution": {
+        "operator": "gaps?",
+        "example": "gaps? :#Acme_Corp OR gaps? ##section:officers",
+        "behavior": [
+          "Compare filled slots vs template requirements",
+          "Return list of missing information",
+          "Include suggested query operators to fill each gap"
+        ]
+      }
+    },
+
+    "10_LOOP_CONTROL": {
+      "what_exists": "Navigator Autopilot defined but not as operator",
+      "what_is_missing": "No operator to CONTINUE or STOP the investigation loop",
+      "why_critical": "Flow doesn't know when to keep looping vs finalize",
+      "proposed_solution": {
+        "operator": "loop_state?",
+        "example": "loop_state?",
+        "behavior": [
+          "Check all sections' sufficiency",
+          "Check if sources exhausted",
+          "Return {continue: bool, next_action: 'search'|'write'|'finalize', reason: string}"
+        ]
+      }
+    },
+
+    "11_SOURCE_DEPLETION_TRACKER": {
+      "what_exists": "Watchers can track ##unchecked but no aggregate query",
+      "what_is_missing": "No operator to check if sources are exhausted per section",
+      "why_critical": "Need to know when to stop trying to fill a slot",
+      "proposed_solution": {
+        "operator": "sources_remaining? :#section",
+        "example": "sources_remaining? :#officers_section",
+        "behavior": [
+          "Count nodes tagged ##unchecked for relevant source types",
+          "Return {remaining: int, by_type: {registry: 3, news: 12, ...}}"
+        ]
+      }
+    },
+
+    "12_CONDITIONAL_BRANCHING": {
+      "what_exists": "EDITH templates have [IF CLEAN:] [IF ISSUES:] blocks",
+      "what_is_missing": "No operator to EVALUATE conditions and branch",
+      "why_critical": "Templates have conditional sections that need dynamic evaluation",
+      "proposed_solution": {
+        "operator": "IF {condition} THEN {query} ELSE {query}",
+        "example": "IF sufficient? :#pep_check THEN write_section:pep ELSE p: [SUBJECT] =>pep_sources",
+        "behavior": [
+          "Evaluate condition (another operator)",
+          "Execute THEN branch if true, ELSE if false",
+          "Return result of executed branch"
+        ]
+      }
+    }
+  },
+
+  "IMPLEMENTATION_PRIORITY": [
+    {
+      "priority": 1,
+      "operators": ["template:", "hungry?", "gaps?"],
+      "reason": "Must know what we're trying to fill and what's missing"
+    },
+    {
+      "priority": 2,
+      "operators": ["intent?", "sufficient?", "sources_remaining?"],
+      "reason": "Must know current state to decide next action"
+    },
+    {
+      "priority": 3,
+      "operators": ["=> slot:", "+#w: =>section:"],
+      "reason": "Must route results into template structure"
+    },
+    {
+      "priority": 4,
+      "operators": ["write_section:", "loop_state?"],
+      "reason": "Must generate output and control loop"
+    },
+    {
+      "priority": 5,
+      "operators": ["IF/THEN/ELSE", "query_for_intent:"],
+      "reason": "Advanced flow control and automation"
+    }
+  ],
+
+  "OPERATOR_SYNTAX_RULES": {
+    "no_exclamation_marks": "! reserved for coordinates/location scope only",
+    "query_operators_end_with_question_mark": "? = read/query current state",
+    "action_operators_use_colon": ": = execute action with target",
+    "arrow_for_routing": "=> = route/apply to target"
+  },
+
+  "EXISTING_OPERATORS_TO_LEVERAGE": {
+    "entity_investigation": ["p:", "c:", "e:", "t:", "d:"],
+    "registry_lookup": ["cuk:", "chr:", "cde:", "csr:", "chu:"],
+    "link_analysis": ["bl?", "?bl", "ol?", "?ol"],
+    "extraction": ["ent?", "p?", "c?", "e?", "t?", "a?"],
+    "comparison": ["=?"],
+    "tagging": ["=> +#tag", "=> -#tag"],
+    "filtering": ["@CLASS", "##dimension:val", "##unchecked"],
+    "chains": ["chain: due_diligence", "chain: ubo"],
+    "watchers": ["+#w:topic:", "+#w:entity:", "-#w:", "~#w:"]
+  }
+}

@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DeHashed Data Explorer</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/vis-network@latest/standalone/umd/vis-network.min.js"></script>
+  </head>
+  <body>
+    <!-- Server Status Indicator -->
+    <div
+      id="server-status"
+      style="
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        background-color: #1a1a1a;
+        border: 1px solid #333;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      "
+    >
+      <span id="server-status-icon">🟢</span>
+      <span id="server-status-text">Server Online</span>
+    </div>
+
+    <div id="container">
+      <header id="header" class="minimizable">
+        <div class="header-content">
+          <div
+            class="project-selector"
+            style="
+              display: inline-flex;
+              margin-right: 20px;
+              align-items: center;
+              gap: 10px;
+            "
+          >
+            <label style="font-size: 11px; font-weight: bold">Project:</label>
+            <select
+              id="projectSelect"
+              style="font-size: 11px; padding: 3px; min-width: 150px"
+              onchange="handleProjectSwitch(this.value)"
+            >
+              <option value="">Loading...</option>
+            </select>
+            <button
+              onclick="showNewProjectDialog()"
+              style="
+                font-size: 11px;
+                padding: 3px 8px;
+                background: #0f172a;
+                border: 1px solid rgba(96, 165, 250, 0.6);
+                color: #e2e8f0;
+              "
+            >
+              New
+            </button>
+            <button
+              onclick="uploadFile()"
+              style="
+                font-size: 11px;
+                padding: 3px 8px;
+                background: #0f172a;
+                border: 1px solid rgba(96, 165, 250, 0.6);
+                color: #e2e8f0;
+                margin-left: 20px;
+              "
+            >
+              Upload File
+            </button>
+            <input
+              type="file"
+              id="file-input"
+              accept=".md,.jpg,.jpeg,.png,.gif,.bmp,.webp"
+              style="display: none"
+              onchange="handleFileUpload(event)"
+            />
+            <button
+              onclick="recoverLegacyData()"
+              style="
+                font-size: 11px;
+                padding: 3px 8px;
+                background: #0f172a;
+                border: 1px solid rgba(96, 165, 250, 0.6);
+                color: #e2e8f0;
+              "
+            >
+              Recover Old Data
+            </button>
+          </div>
+          <div class="tabs" style="display: inline-flex; margin-right: 20px">
+            <button class="tab-button active" onclick="switchTab('graph')">
+              Graph
+            </button>
+            <button class="tab-button" onclick="switchTab('cache')">
+              Cache
+            </button>
+          </div>
+          <div style="display: inline-flex; gap: 15px; align-items: center">
+            <button
+              id="anchorSelectedBtn"
+              onclick="anchorSelectedNodes()"
+              style="
+                display: none;
+                font-size: 11px;
+                padding: 3px 8px;
+                background: #0f172a;
+                border: 1px solid rgba(96, 165, 250, 0.6);
+              "
+            >
+              Anchor Selected
+            </button>
+            <button
+              id="undoBtn"
+              onclick="undoLastAction()"
+              style="
+                font-size: 11px;
+                padding: 3px 8px;
+                background: #444;
+                border: 1px solid rgba(96, 165, 250, 0.3);
+                color: #e2e8f0;
+              "
+              disabled
+              title="Nothing to undo"
+            >
+              Undo
+            </button>
+            <label style="font-size: 11px">
+              <input
+                type="checkbox"
+                id="highlightAnchored"
+                onchange="toggleAnchoredHighlight(this.checked)"
+              />
+              Anchored
+            </label>
+            <label style="font-size: 11px">
+              <input
+                type="checkbox"
+                id="highlightUnsearched"
+                onchange="toggleUnsearchedHighlight(this.checked)"
+              />
+              Unsearched
+            </label>
+            <label style="font-size: 11px">
+              <input
+                type="checkbox"
+                id="aiSuggestions"
+                onchange="toggleAISuggestions(this.checked)"
+              />
+              AI
+            </label>
+            <label style="font-size: 11px">
+              <input
+                type="checkbox"
+                id="showArrows"
+                onchange="toggleArrows(this.checked)"
+              />
+              Arrows
+            </label>
+            <label style="font-size: 11px">
+              <input
+                type="checkbox"
+                id="showQueries"
+                onchange="toggleQueryDisplay(this.checked)"
+                checked
+              />
+              Queries
+            </label>
+            <label style="font-size: 11px">
+              <input
+                type="checkbox"
+                id="showSources"
+                onchange="toggleSourceDisplay(this.checked)"
+                checked
+              />
+              Sources
+            </label>
+            <label style="font-size: 11px">
+              <input
+                type="checkbox"
+                id="showImageSources"
+                onchange="toggleImageSourceDisplay(this.checked)"
+                checked
+              />
+              Image Sources
+            </label>
+            <label style="font-size: 11px">
+              <input
+                type="checkbox"
+                id="showConnectionLabels"
+                onchange="toggleConnectionLabels(this.checked)"
+              />
+              Connection Labels
+            </label>
+            <label style="font-size: 11px">
+              <input
+                type="checkbox"
+                id="showClusterContents"
+                onchange="toggleClusterContents(this.checked)"
+                checked
+              />
+              Cluster Contents
+            </label>
+            <div style="display: inline-flex; gap: 5px; margin-left: 10px">
+              <button
+                id="createClusterBtn"
+                onclick="createClusterFromSelection()"
+                style="
+                  font-size: 11px;
+                  padding: 3px 8px;
+                  background: #0f172a;
+                  border: 1px solid rgba(96, 165, 250, 0.6);
+                  color: #e2e8f0;
+                "
+              >
+                Create Cluster
+              </button>
+              <button
+                id="removeClusterBtn"
+                onclick="removeSelectedCluster()"
+                style="
+                  font-size: 11px;
+                  padding: 3px 8px;
+                  background: #0f172a;
+                  border: 1px solid #ff0000;
+                  color: #e2e8f0;
+                "
+                disabled
+              >
+                Remove Cluster
+              </button>
+            </div>
+          </div>
+          <div
+            class="node-filters"
+            style="display: inline-flex; margin-left: 20px; gap: 6px"
+          >
+            <label style="font-size: 11px; font-weight: bold; margin-right: 5px"
+              >Filter:</label
+            >
+            <button class="filter-btn active" onclick="filterNodeList('all')">
+              All
+            </button>
+            <button class="filter-btn" onclick="filterNodeList('email')">
+              Email
+            </button>
+            <button class="filter-btn" onclick="filterNodeList('phone')">
+              Phone
+            </button>
+            <button class="filter-btn" onclick="filterNodeList('name')">
+              Name
+            </button>
+            <button class="filter-btn" onclick="filterNodeList('company')">
+              Company
+            </button>
+            <button class="filter-btn" onclick="filterNodeList('address')">
+              Address
+            </button>
+            <button class="filter-btn" onclick="filterNodeList('username')">
+              Username
+            </button>
+            <button class="filter-btn" onclick="filterNodeList('password')">
+              Password
+            </button>
+            <button class="filter-btn" onclick="filterNodeList('ip_address')">
+              IP
+            </button>
+            <button class="filter-btn" onclick="filterNodeList('domain')">
+              Domain
+            </button>
+          </div>
+          <div
+            class="search-container"
+            style="display: inline-flex; margin-left: 20px"
+          >
+            <select id="searchType" style="font-size: 11px; padding: 3px">
+              <option value="">Auto</option>
+              <option value="email">Email</option>
+              <option value="username">User</option>
+              <option value="password">Pass</option>
+              <option value="hashed_password">Hash</option>
+              <option value="phone">Phone</option>
+              <option value="ip_address">IP</option>
+              <option value="domain">Domain</option>
+              <option value="name">Name</option>
+              <option value="address">Address</option>
+              <option value="vin">VIN</option>
+              <option value="ssn">SSN</option>
+              <option value="cc">CC</option>
+              <option value="dob">DOB</option>
+              <option value="city">City</option>
+              <option value="state">State</option>
+              <option value="zip">ZIP</option>
+              <option value="country">Country</option>
+              <option value="narrative">Narrative</option>
+              <option value="database_name">DB</option>
+              <option value="blanket_search">All</option>
+              <option value="osint">OSINT</option>
+              <option value="opencorporates" disabled>OpenCorporates (Deprecated - Use Corporella)</option>
+              <option value="aleph">OCCRP Aleph</option>
+              <option value="corporate">Corporate (All)</option>
+              <option value="web-search">Web Search</option>
+              <option value="brave">Brave Search</option>
+              <option value="duckduckgo">DuckDuckGo</option>
+              <option value="exa">Exa Search</option>
+              <option value="firecrawl">Firecrawl</option>
+            </select>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search..."
+              style="font-size: 11px; padding: 3px; width: 200px"
+            />
+            <button id="searchBtn" style="font-size: 11px; padding: 3px 8px">
+              Go
+            </button>
+            <label style="margin-left: 10px; font-size: 11px">
+              <input
+                type="checkbox"
+                id="includeHashes"
+                onchange="toggleHashedPasswords(this.checked)"
+              />
+              Hashes
+            </label>
+          </div>
+        </div>
+        <div class="header-minimize-zone"></div>
+      </header>
+
+      <div id="main-content">
+        <div id="graph-container">
+          <div id="graph-tab" class="tab-content active">
+            <div id="network"></div>
+          </div>
+          <div id="cache-tab" class="tab-content">
+            <div class="cache-controls">
+              <button onclick="viewCacheAsMap()">Map View</button>
+              <button onclick="viewCacheAsList()">List View</button>
+              <button onclick="clearCache()">Clear Cache</button>
+            </div>
+            <div id="cache-view"></div>
+          </div>
+        </div>
+
+        <div id="info-panel">
+          <button
+            id="info-panel-toggle"
+            class="info-panel-toggle"
+            type="button"
+          >
+            Details Panel
+          </button>
+          <div class="panel-tabs">
+            <button
+              class="panel-tab active"
+              onclick="switchPanelTab('details')"
+            >
+              Details
+            </button>
+            <button class="panel-tab" onclick="switchPanelTab('nodes')">
+              Nodes
+            </button>
+          </div>
+
+          <div id="panel-details" class="panel-content active">
+            <h2>Node Information</h2>
+            <div id="node-details">
+              <p>Click on a node to see details</p>
+            </div>
+          </div>
+
+          <div id="panel-nodes" class="panel-content">
+            <h2>All Nodes</h2>
+            <div class="node-list-controls">
+              <button onclick="toggleAllNodes(true)">Show All</button>
+              <button onclick="toggleAllNodes(false)">Hide All</button>
+              <label style="margin-left: 15px">
+                <input
+                  type="checkbox"
+                  id="select-all-nodes"
+                  onchange="toggleSelectAllNodes(this.checked)"
+                />
+                Select All
+              </label>
+              <button
+                onclick="deleteSelectedNodesFromList()"
+                style="
+                  background: rgba(239, 68, 68, 0.15);
+                  color: #fca5a5;
+                  font-weight: bold;
+                  margin-left: 10px;
+                "
+              >
+                Delete Selected
+              </button>
+            </div>
+            <div
+              class="node-spacing-control"
+              style="
+                margin: 10px 0;
+                padding: 10px;
+                background: rgba(15, 23, 42, 0.75);
+                border: 1px solid rgba(96, 165, 250, 0.2);
+                border-radius: 4px;
+              "
+            >
+              <label
+                style="
+                  display: block;
+                  color: #ccc;
+                  font-size: 12px;
+                  margin-bottom: 5px;
+                "
+                >Node Spacing: <span id="spacing-value">400</span>px</label
+              >
+              <input
+                type="range"
+                id="node-spacing-slider"
+                min="100"
+                max="800"
+                value="400"
+                style="width: 100%"
+                oninput="adjustNodeSpacing(this.value)"
+              />
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 10px;
+                  color: #888;
+                  margin-top: 2px;
+                "
+              >
+                <span>Tight</span>
+                <span>Wide</span>
+              </div>
+            </div>
+            <div id="node-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="status-bar">
+        <span id="status">Ready</span>
+        <span id="node-count">Nodes: 0</span>
+        <span id="edge-count">Edges: 0</span>
+      </div>
+
+      <!-- Entity Panel (floating) -->
+      <div
+        id="entity-panel"
+        style="
+          position: fixed;
+          right: 20px;
+          bottom: 250px;
+          width: 400px;
+          max-height: 50vh;
+          background: #1a1a1a;
+          border: 1px solid rgba(96, 165, 250, 0.6);
+          border-radius: 8px;
+          display: none;
+          flex-direction: column;
+          z-index: 1000;
+          box-shadow: 0 4px 10px rgba(0, 255, 0, 0.3);
+        "
+      >
+        <div
+          style="
+            padding: 10px;
+            background: #0f172a;
+            border-bottom: 1px solid rgba(96, 165, 250, 0.4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: move;
+          "
+        >
+          <span style="color: #e2e8f0; font-weight: bold"
+            >Project Entities & Facts</span
+          >
+          <button
+            onclick="toggleEntityPanel()"
+            style="
+              background: transparent;
+              border: 1px solid rgba(96, 165, 250, 0.6);
+              color: #e2e8f0;
+              padding: 2px 8px;
+              cursor: pointer;
+              font-size: 16px;
+            "
+          >
+            ×
+          </button>
+        </div>
+        <div
+          id="entity-panel-content"
+          style="padding: 10px; overflow-y: auto; flex: 1"
+        >
+          <div
+            id="entity-stats"
+            style="
+              padding: 10px;
+              background: #0f172a;
+              border: 1px solid #333;
+              margin-bottom: 10px;
+              border-radius: 4px;
+              font-size: 12px;
+            "
+          >
+            Loading entities...
+          </div>
+          <div
+            id="entity-list"
+            style="max-height: 300px; overflow-y: auto"
+          ></div>
+        </div>
+      </div>
+
+      <!-- AI Chat Interface -->
+      <div
+        id="ai-chat-container"
+        style="
+          height: 200px;
+          border-top: 1px solid rgba(96, 165, 250, 0.5);
+          display: flex;
+          flex-direction: column;
+        "
+      >
+        <div
+          id="chat-header"
+          style="
+            padding: 5px 10px;
+            background-color: #0f172a;
+            border-bottom: 1px solid rgba(96, 165, 250, 0.4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span style="color: #e2e8f0; font-weight: bold; font-size: 12px"
+              >AI Analysis Assistant</span
+            >
+            <label
+              style="
+                color: #888;
+                font-size: 11px;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+              "
+            >
+              <input
+                type="checkbox"
+                id="selectAllNodes"
+                onchange="toggleSelectAllNodes(this.checked)"
+                style="margin: 0"
+              />
+              Select All Nodes
+            </label>
+            <div style="display: flex; gap: 5px">
+              <button
+                onclick="generateReport('selected')"
+                style="
+                  font-size: 9px;
+                  padding: 2px 6px;
+                  background: #0f172a;
+                  border: 1px solid rgba(96, 165, 250, 0.6);
+                  color: #e2e8f0;
+                "
+                title="Report on selected nodes"
+              >
+                Selected
+              </button>
+              <button
+                onclick="generateReport('anchored')"
+                style="
+                  font-size: 9px;
+                  padding: 2px 6px;
+                  background: #0f172a;
+                  border: 1px solid rgba(96, 165, 250, 0.6);
+                  color: #e2e8f0;
+                "
+                title="Report on anchored nodes"
+              >
+                Anchored
+              </button>
+              <button
+                onclick="generateReport('all')"
+                style="
+                  font-size: 9px;
+                  padding: 2px 6px;
+                  background: #0f172a;
+                  border: 1px solid rgba(96, 165, 250, 0.6);
+                  color: #e2e8f0;
+                "
+                title="Report on all nodes"
+              >
+                All
+              </button>
+              <button
+                onclick="extractEntitiesFromLastMessage()"
+                style="
+                  font-size: 9px;
+                  padding: 2px 6px;
+                  background: #0f172a;
+                  border: 1px solid rgba(96, 165, 250, 0.6);
+                  color: #e2e8f0;
+                "
+                title="Extract entities from last AI message"
+              >
+                Extract Entities
+              </button>
+            </div>
+          </div>
+          <button
+            id="toggle-chat"
+            onclick="toggleChatVisibility()"
+            style="font-size: 10px; padding: 2px 6px"
+          >
+            Hide
+          </button>
+        </div>
+        <div
+          id="chat-messages"
+          style="
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            font-size: 11px;
+            line-height: 1.4;
+            background-color: #050505;
+          "
+        >
+          <div style="color: #888; font-style: italic">
+            AI assistant ready. Ask me to analyze your graph connections,
+            identify patterns, or make observations about the data.
+          </div>
+        </div>
+        <div
+          id="chat-input-area"
+          style="
+            display: flex;
+            padding: 5px;
+            background-color: #0f172a;
+            border-top: 1px solid #e2e8f0;
+          "
+        >
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Ask AI about connections, patterns, or observations..."
+            style="
+              flex: 1;
+              background: #000;
+              color: #0f0;
+              border: 1px solid #0f0;
+              padding: 5px;
+              font-family: inherit;
+              font-size: 11px;
+            "
+          />
+          <button
+            id="send-chat"
+            onclick="sendChatMessage()"
+            style="margin-left: 5px; font-size: 11px; padding: 5px 10px"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+
+      <!-- Minimized AI Chat Bar -->
+      <div
+        id="ai-chat-minimized"
+        style="
+          display: none;
+          height: 30px;
+          border-top: 1px solid rgba(96, 165, 250, 0.5);
+          background-color: #0f172a;
+          padding: 5px 10px;
+          cursor: pointer;
+        "
+        onclick="toggleChatVisibility()"
+      >
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <span style="color: #e2e8f0; font-weight: bold; font-size: 11px"
+            >AI Analysis Assistant (Click to restore)</span
+          >
+          <span style="color: #888; font-size: 10px">▲</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Creation Modal -->
+    <div
+      id="projectModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+      "
+    >
+      <div
+        style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: #0f172a;
+          border: 1px solid rgba(96, 165, 250, 0.6);
+          padding: 20px;
+          min-width: 300px;
+        "
+      >
+        <h3 style="color: #e2e8f0; margin-top: 0">New Project</h3>
+        <div style="margin-bottom: 15px">
+          <label
+            style="
+              display: block;
+              color: #e2e8f0;
+              margin-bottom: 5px;
+              font-size: 11px;
+            "
+            >Project Name:</label
+          >
+          <input
+            type="text"
+            id="newProjectName"
+            style="
+              width: 100%;
+              background: #000;
+              color: #0f0;
+              border: 1px solid #0f0;
+              padding: 5px;
+              font-size: 11px;
+            "
+          />
+        </div>
+        <div style="margin-bottom: 15px">
+          <label
+            style="
+              display: block;
+              color: #e2e8f0;
+              margin-bottom: 5px;
+              font-size: 11px;
+            "
+            >Description (optional):</label
+          >
+          <textarea
+            id="newProjectDescription"
+            style="
+              width: 100%;
+              height: 60px;
+              background: #000;
+              color: #0f0;
+              border: 1px solid #0f0;
+              padding: 5px;
+              font-size: 11px;
+              resize: vertical;
+            "
+          ></textarea>
+        </div>
+        <div style="text-align: right; gap: 10px">
+          <button
+            onclick="hideProjectModal()"
+            style="
+              font-size: 11px;
+              padding: 5px 15px;
+              background: #0f172a;
+              border: 1px solid #ff0000;
+              color: #e2e8f0;
+              margin-right: 10px;
+            "
+          >
+            Cancel
+          </button>
+          <button
+            onclick="createNewProject()"
+            style="
+              font-size: 11px;
+              padding: 5px 15px;
+              background: #0f172a;
+              border: 1px solid rgba(96, 165, 250, 0.6);
+              color: #e2e8f0;
+            "
+          >
+            Create
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="graph-c1-integration.js"></script>
+    <script src="graph.js"></script>
+  </body>
+</html>

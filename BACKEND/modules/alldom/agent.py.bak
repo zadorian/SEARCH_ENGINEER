@@ -1,0 +1,22 @@
+from claude_agent_sdk import AgentDefinition, AgentConfig
+
+PROMPT = """You are ALLDOM, the Domain Specialist.
+
+You map the Digital Footprint (DNS, IP, Tech).
+"""
+
+DEFINITION = AgentDefinition(
+    description="Domain Specialist - DNS, IP, Tech stack.",
+    prompt=PROMPT,
+    tools=["mcp__nexus__execute", "mcp__nexus__assess"],
+    model="sonnet",
+)
+
+CONFIG = AgentConfig(
+    name="alldom",
+    model="claude-sonnet-4-5-20250929",
+    system_prompt=PROMPT,
+    mcp_server=None,
+    allowed_tools=DEFINITION.tools,
+    tools=[],
+)

@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Anchor Feature Summary</title>
+    <style>
+      body {
+        font-family: monospace;
+        background: #000;
+        color: #0f0;
+        padding: 20px;
+      }
+      h2 {
+        color: #ff0;
+      }
+      .feature {
+        background: #001100;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #0f0;
+      }
+      .visual {
+        color: #ffd700;
+      }
+      .instruction {
+        color: #6ff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Anchor Feature - Complete Implementation</h1>
+
+    <div class="feature">
+      <h2>Selection & Anchor Button</h2>
+      <p>✓ Select nodes by clicking, Cmd+click, Ctrl+click, or Shift+click</p>
+      <p>✓ "Anchor X Nodes" button appears when nodes are selected</p>
+      <p>
+        ✓ Button changes to "Unanchor X Nodes" if all selected are already
+        anchored
+      </p>
+      <p>✓ Button shows in red background (#660000) with red border</p>
+    </div>
+
+    <div class="feature">
+      <h2>Anchored Node Appearance</h2>
+      <p class="visual">
+        ✓ Gold border (#FFD700) - thick (4px normal, 6px selected)
+      </p>
+      <p class="visual">✓ Larger size (30 vs default)</p>
+      <p class="visual">✓ Bold text, larger font (14px)</p>
+      <p class="visual">✓ Orange highlight border (#FFA500) when hovered</p>
+      <p class="visual">
+        ✓ Anchor emoji (⚓) appears above node when zoomed in (scale > 0.8)
+      </p>
+    </div>
+
+    <div class="feature">
+      <h2>Anchored Toggle View</h2>
+      <p>✓ "Anchored" checkbox in header toggles highlight mode</p>
+      <p>When enabled:</p>
+      <ul>
+        <li class="visual">
+          Anchored nodes: Extra large (35), gold glow, bright gold text
+        </li>
+        <li>Non-anchored nodes: Faded to dark gray (#222), small text</li>
+      </ul>
+      <p>When disabled: Normal view with anchored nodes still gold-bordered</p>
+    </div>
+
+    <div class="feature">
+      <h2>Persistence</h2>
+      <p>✓ Anchored nodes saved to disk with graph state</p>
+      <p>✓ Restored on page reload with all visual properties</p>
+      <p>✓ Anchor icons redraw automatically after load</p>
+    </div>
+
+    <div class="feature">
+      <h2 class="instruction">How to Use</h2>
+      <ol>
+        <li>Select nodes (click, or Cmd/Ctrl/Shift+click for multiple)</li>
+        <li>Click "Anchor X Nodes" button that appears</li>
+        <li>Selected nodes turn gold and become prominent</li>
+        <li>Toggle "Anchored" checkbox to focus only on anchored nodes</li>
+        <li>Zoom in to see anchor emoji above anchored nodes</li>
+        <li>Select anchored nodes and click "Unanchor" to remove anchor</li>
+      </ol>
+    </div>
+
+    <div class="feature">
+      <h2>Technical Details</h2>
+      <p>- Anchored nodes stored in Set: <code>anchoredNodes</code></p>
+      <p>- Visual updates use vis.js node update API</p>
+      <p>- Anchor icons drawn on afterDrawing event using canvas API</p>
+      <p>- State persisted in graph_state.anchoredNodes array</p>
+    </div>
+  </body>
+</html>

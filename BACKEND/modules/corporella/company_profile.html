@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Corporella Claude - Company Profile</title>
+    <link rel="stylesheet" href="dynamic_sections.css">
+    <link rel="stylesheet" href="entity_badges.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 20px;
+            height: calc(100vh - 40px);
+        }
+
+        /* Left Panel - Search & Raw Results */
+        .search-panel {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-y: auto;
+            border: 1px solid #333;
+        }
+
+        .search-panel h2 {
+            color: #00ff88;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            background: #0a0a0a;
+            border: 1px solid #00ff88;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .search-box button {
+            width: 100%;
+            padding: 12px;
+            background: #00ff88;
+            border: none;
+            border-radius: 4px;
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-box button:hover {
+            background: #00dd77;
+        }
+
+        .status {
+            padding: 10px;
+            background: #2a2a2a;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: #00ff88;
+        }
+
+        .raw-results {
+            margin-top: 20px;
+        }
+
+        .raw-result {
+            background: #2a2a2a;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            border-left: 3px solid #00ff88;
+        }
+
+        /* Right Panel - Company Profile */
+        .profile-panel {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 30px;
+            overflow-y: auto;
+            border: 1px solid #333;
+        }
+
+        .profile-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #333;
+        }
+
+        .company-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .company-name input {
+            background: transparent;
+            border: none;
+            color: #00ff88;
+            font-size: 32px;
+            font-weight: 700;
+            flex: 1;
+            outline: none;
+            border-bottom: 2px solid transparent;
+        }
+
+        .company-name input:focus {
+            border-bottom-color: #00ff88;
+        }
+
+        .source-badges {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 600;
+            border: 1px solid;
+        }
+
+        .badge-oc { color: #00ffff; border-color: #00ffff; background: #003333; }
+        .badge-al { color: #ff00ff; border-color: #ff00ff; background: #330033; }
+        .badge-ed { color: #ffff00; border-color: #ffff00; background: #333300; }
+        .badge-oo { color: #ff9900; border-color: #ff9900; background: #332200; }
+        .badge-li { color: #0099ff; border-color: #0099ff; background: #002233; }
+
+        .profile-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00ff88;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .field-group {
+            margin-bottom: 20px;
+        }
+
+        .field-label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .field-value {
+            background: #2a2a2a;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .field-value input,
+        .field-value textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #e0e0e0;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .field-value textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+
+        .field-value:focus-within {
+            border-color: #00ff88;
+            background: #1a1a1a;
+        }
+
+        .field-source {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 9px;
+        }
+
+        .officers-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .officer-card {
+            background: #2a2a2a;
+            padding: 12px;
+            border-radius: 4px;
+            border-left: 3px solid #00ff88;
+        }
+
+        .officer-name {
+            font-weight: 600;
+            color: #00ff88;
+            margin-bottom: 5px;
+        }
+
+        .officer-position {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .contradiction-alert {
+            background: #3a1a1a;
+            border: 1px solid #ff4444;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contradiction-alert h4 {
+            color: #ff4444;
+            margin-bottom: 10px;
+        }
+
+        .contradiction-item {
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .add-button {
+            padding: 8px 16px;
+            background: #333;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .add-button:hover {
+            background: #00ff88;
+            color: #000;
+        }
+
+        .raw-data-toggle {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
+        .raw-json {
+            background: #0a0a0a;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #333;
+            max-height: 300px;
+            overflow-y: auto;
+            font-size: 11px;
+            font-family: 'Courier New', monospace;
+            display: none;
+        }
+
+        .raw-json.visible {
+            display: block;
+        }
+
+        /* Wiki Sources Styles */
+        .wiki-sources {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #333;
+        }
+
+        .wiki-sources-label {
+            color: #888;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .wiki-source-btn {
+            display: inline-block;
+            padding: 4px 10px;
+            margin: 3px;
+            background: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .wiki-source-btn:hover {
+            background: #00ff88;
+            color: #000;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Panel: Search & Raw Results -->
+        <div class="search-panel">
+            <h2>🔍 Search Company</h2>
+
+            <div class="search-box">
+                <input type="text" id="searchQuery" placeholder="Enter company name..." value="Apple Inc">
+                <button onclick="startSearch()">Search</button>
+            </div>
+
+            <div class="status" id="status">Ready to search</div>
+
+            <div class="raw-results">
+                <h3 style="color: #888; font-size: 14px; margin-bottom: 10px;">Raw Results Stream</h3>
+                <div id="rawResults" style="color: #666; font-size: 12px;">Results will appear here...</div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Company Profile -->
+        <div class="profile-panel">
+            <div id="contradictions"></div>
+
+            <div class="profile-header">
+                <div class="company-name">
+                    <input type="text" id="companyName" placeholder="Company Name" readonly>
+                </div>
+                <div class="source-badges" id="sourceBadges"></div>
+            </div>
+
+            <!-- Basic Information -->
+            <div class="profile-section">
+                <div class="section-title">Basic Information</div>
+
+                <div class="field-group">
+                    <div class="field-label">Company Number</div>
+                    <div class="field-value">
+                        <input type="text" id="companyNumber" placeholder="Not available">
+                        <span class="field-source" id="companyNumberSource"></span>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">LEI Code</div>
+                    <div class="field-value">
+                        <input type="text" id="lei" placeholder="Not available">
+                        <span class="field-source" id="leiSource"></span>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">Jurisdiction</div>
+                    <div class="field-value">
+                        <input type="text" id="jurisdiction" placeholder="Not available">
+                        <span class="field-source" id="jurisdictionSource"></span>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">Status</div>
+                    <div class="field-value">
+                        <input type="text" id="status_field" placeholder="Not available">
+                        <span class="field-source" id="statusSource"></span>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">Founded Year</div>
+                    <div class="field-value">
+                        <input type="text" id="foundedYear" placeholder="Not available">
+                        <span class="field-source" id="foundedYearSource"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="profile-section">
+                <div class="section-title">Contact Information</div>
+
+                <div class="field-group">
+                    <div class="field-label">Registered Address</div>
+                    <div class="field-value">
+                        <textarea id="address" placeholder="Not available"></textarea>
+                        <span class="field-source" id="addressSource"></span>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">Website</div>
+                    <div class="field-value">
+                        <input type="text" id="website" placeholder="Not available">
+                        <span class="field-source" id="websiteSource"></span>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">Phone</div>
+                    <div class="field-value">
+                        <input type="text" id="phone" placeholder="Not available">
+                        <span class="field-source" id="phoneSource"></span>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">Email</div>
+                    <div class="field-value">
+                        <input type="text" id="email" placeholder="Not available">
+                        <span class="field-source" id="emailSource"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Officers & Directors -->
+            <div class="profile-section">
+                <div class="section-title">Officers & Directors</div>
+                <div class="officers-list" id="officersList">
+                    <div style="color: #666;">No officers data available</div>
+                </div>
+                <button class="add-button" onclick="addOfficer()">+ Add Officer</button>
+            </div>
+
+            <!-- Ownership Structure -->
+            <div class="profile-section">
+                <div class="section-title">Ownership Structure</div>
+
+                <div class="field-label">Shareholders</div>
+                <div class="shareholders-list" id="shareholdersList">
+                    <div style="color: #666;">No shareholders data available</div>
+                </div>
+
+                <div class="field-label" style="margin-top: 16px;">Beneficial Owners</div>
+                <div class="beneficial-owners-list" id="beneficialOwnersList">
+                    <div style="color: #666;">No beneficial owners data available</div>
+                </div>
+            </div>
+
+            <!-- Corporate Registry Sources -->
+            <div class="profile-section">
+                <div class="section-title">🏢 Corporate Registry</div>
+                <div class="field-group">
+                    <div class="field-label">Jurisdiction</div>
+                    <div class="field-value" id="registryJurisdiction">-</div>
+                </div>
+                <div class="field-group">
+                    <div class="field-label">Company Number</div>
+                    <div class="field-value" id="registryNumber">-</div>
+                </div>
+                <div class="wiki-sources" id="corporateRegistrySources">
+                    <!-- Wiki sources will be added here -->
+                </div>
+            </div>
+
+            <!-- Litigation -->
+            <div class="profile-section">
+                <div class="section-title">Litigation</div>
+                <div class="field-group">
+                    <div class="field-value" id="litigationContent">No litigation data available</div>
+                </div>
+                <div class="wiki-sources" id="litigationSources">
+                    <!-- Wiki sources will be added here -->
+                </div>
+            </div>
+
+            <!-- Regulatory -->
+            <div class="profile-section">
+                <div class="section-title">Regulatory</div>
+                <div class="field-group">
+                    <div class="field-value" id="regulatoryContent">No regulatory data available</div>
+                </div>
+                <div class="wiki-sources" id="regulatorySources">
+                    <!-- Wiki sources will be added here -->
+                </div>
+            </div>
+
+            <!-- Assets -->
+            <div class="profile-section">
+                <div class="section-title">Assets</div>
+                <div class="field-group">
+                    <div class="field-value" id="assetsContent">No assets data available</div>
+                </div>
+                <div class="wiki-sources" id="assetsSources">
+                    <!-- Wiki sources will be added here -->
+                </div>
+            </div>
+
+            <!-- Licensing -->
+            <div class="profile-section">
+                <div class="section-title">Licensing</div>
+                <div class="field-group">
+                    <div class="field-value" id="licensingContent">No licensing data available</div>
+                </div>
+                <div class="wiki-sources" id="licensingSources">
+                    <!-- Wiki sources will be added here -->
+                </div>
+            </div>
+
+            <!-- Political -->
+            <div class="profile-section">
+                <div class="section-title">Political</div>
+                <div class="field-group">
+                    <div class="field-value" id="politicalContent">No political data available</div>
+                </div>
+                <div class="wiki-sources" id="politicalSources">
+                    <!-- Wiki sources will be added here -->
+                </div>
+            </div>
+
+            <!-- Breaches -->
+            <div class="profile-section">
+                <div class="section-title">Breaches</div>
+                <div class="field-group">
+                    <div class="field-value" id="breachesContent">No breach data available</div>
+                </div>
+                <div class="wiki-sources" id="breachesSources">
+                    <!-- Wiki sources will be added here -->
+                </div>
+            </div>
+
+            <!-- Media & Reputation -->
+            <div class="profile-section">
+                <div class="section-title">Media & Reputation</div>
+                <div class="field-group">
+                    <div class="field-value" id="reputationContent">No reputation data available</div>
+                </div>
+                <div class="wiki-sources" id="reputationSources">
+                    <!-- Wiki sources will be added here -->
+                </div>
+            </div>
+
+            <!-- Further Public Records -->
+            <div class="profile-section">
+                <div class="section-title">Further Public Records</div>
+                <div class="field-group">
+                    <div class="field-value" id="otherContent">No additional records available</div>
+                </div>
+                <div class="wiki-sources" id="otherSources">
+                    <!-- Wiki sources will be added here -->
+                </div>
+            </div>
+
+            <!-- Notes -->
+            <div class="profile-section">
+                <div class="section-title">Notes</div>
+                <div class="field-group">
+                    <div class="field-value">
+                        <textarea id="notes" placeholder="Add your notes here..." rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Raw Data Toggle -->
+            <div class="raw-data-toggle">
+                <button class="add-button" onclick="toggleRawData()">Toggle Raw JSON</button>
+                <pre class="raw-json" id="rawJson"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let ws = null;
+        let currentEntity = {};
+
+        function connectWebSocket() {
+            ws = new WebSocket('ws://localhost:8765');
+
+            ws.onopen = function() {
+                updateStatus('✓ Connected - Ready to search', '#00ff88');
+            };
+
+            ws.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                handleMessage(data);
+            };
+
+            ws.onerror = function() {
+                updateStatus('✗ Connection error', '#ff4444');
+            };
+
+            ws.onclose = function() {
+                updateStatus('✗ Disconnected', '#ff4444');
+            };
+        }
+
+        function handleMessage(data) {
+            switch(data.type) {
+                case 'search_started':
+                    updateStatus(`🔍 Searching: ${data.query}`, '#ffaa00');
+                    clearProfile();
+                    document.getElementById('rawResults').innerHTML = '';
+                    break;
+
+                case 'raw_result':
+                    displayRawResult(data);
+                    break;
+
+                case 'entity_update':
+                    currentEntity = data.entity;
+                    console.log('Entity update received:', data.entity);
+                    // Check specifically for wiki sources
+                    if (data.entity.about && data.entity.about._corporate_registry_sources) {
+                        console.log('Found corporate registry sources:', data.entity.about._corporate_registry_sources);
+                    }
+                    if (data.entity.compliance) {
+                        console.log('Found compliance section:', data.entity.compliance);
+                    }
+                    populateProfile(data.entity);
+                    break;
+
+                case 'search_complete':
+                    updateStatus(`✓ Complete: ${data.sources_used.join(', ')} (${data.processing_time.toFixed(2)}s)`, '#00ff88');
+                    break;
+
+                case 'search_error':
+                    updateStatus(`✗ Error: ${data.error}`, '#ff4444');
+                    break;
+            }
+        }
+
+        function populateProfile(entity) {
+            // Update raw JSON
+            document.getElementById('rawJson').textContent = JSON.stringify(entity, null, 2);
+
+            // Company name
+            const name = entity.name?.value || entity.name || '';
+            document.getElementById('companyName').value = name.replace(/\s*\[[A-Z]{2}\]\s*/g, '');
+
+            // Extract source badges
+            const sources = entity._sources || [];
+            const badgesHtml = sources.map(s => {
+                const badges = {
+                    'opencorporates': '<span class="badge badge-oc">[OC]</span>',
+                    'aleph': '<span class="badge badge-al">[AL]</span>',
+                    'edgar': '<span class="badge badge-ed">[ED]</span>',
+                    'openownership': '<span class="badge badge-oo">[OO]</span>',
+                    'linkedin': '<span class="badge badge-li">[LI]</span>'
+                };
+                return badges[s] || '';
+            }).join('');
+            document.getElementById('sourceBadges').innerHTML = badgesHtml;
+
+            // Basic info
+            const about = entity.about || {};
+            setField('companyNumber', about.company_number);
+            setField('lei', about.lei);
+            setField('jurisdiction', about.jurisdiction);
+            setField('foundedYear', about.founded_year);
+
+            // Address
+            if (about.registered_address) {
+                const addr = about.registered_address.value || about.registered_address;
+                setField('address', addr);
+            }
+
+            // Website
+            if (about.website) {
+                const web = about.website.value || about.website;
+                setField('website', web);
+            }
+
+            // Contact details
+            if (about.contact_details) {
+                if (about.contact_details.phone) {
+                    setField('phone', about.contact_details.phone.value || about.contact_details.phone);
+                }
+                if (about.contact_details.email) {
+                    setField('email', about.contact_details.email.value || about.contact_details.email);
+                }
+            }
+
+            // Officers
+            if (entity.officers && entity.officers.length > 0) {
+                displayOfficers(entity.officers);
+            }
+
+            // Ownership
+            if (entity.ownership_structure) {
+                displayShareholders(entity.ownership_structure.shareholders);
+                displayBeneficialOwners(entity.ownership_structure.beneficial_owners);
+            }
+
+            // Contradictions
+            if (entity._contradictions && entity._contradictions.length > 0) {
+                displayContradictions(entity._contradictions);
+            }
+
+            // Populate Corporate Registry section
+            if (about.jurisdiction) {
+                const normalized = normalizeJurisdiction(about.jurisdiction);
+                const el = document.getElementById('registryJurisdiction');
+                if (normalized) {
+                    el.textContent = normalized.display;
+                    el.title = normalized.fullName; // Tooltip
+                } else {
+                    el.textContent = about.jurisdiction;
+                }
+            }
+            if (about.company_number) {
+                document.getElementById('registryNumber').textContent = about.company_number;
+            }
+
+            // Display wiki sources for each section
+            displayWikiSources(entity);
+        }
+
+        /**
+         * Normalize jurisdiction codes to display format with tooltips
+         * GB → UK (with tooltip "United Kingdom")
+         * US → US (with tooltip "United States")
+         * etc.
+         */
+        function normalizeJurisdiction(code) {
+            if (!code) return null;
+
+            const strCode = String(code).toUpperCase();
+
+            // Jurisdiction mapping: code → { display, fullName }
+            const jurisdictions = {
+                'GB': { display: 'UK', fullName: 'United Kingdom' },
+                'US': { display: 'US', fullName: 'United States' },
+                'US_CA': { display: 'US-CA', fullName: 'United States - California' },
+                'US_DE': { display: 'US-DE', fullName: 'United States - Delaware' },
+                'US_NY': { display: 'US-NY', fullName: 'United States - New York' },
+                'DE': { display: 'DE', fullName: 'Germany' },
+                'FR': { display: 'FR', fullName: 'France' },
+                'NL': { display: 'NL', fullName: 'Netherlands' },
+                'IE': { display: 'IE', fullName: 'Ireland' },
+                'LU': { display: 'LU', fullName: 'Luxembourg' },
+                'CH': { display: 'CH', fullName: 'Switzerland' },
+                'SG': { display: 'SG', fullName: 'Singapore' },
+                'HK': { display: 'HK', fullName: 'Hong Kong' },
+                'AU': { display: 'AU', fullName: 'Australia' },
+                'CA': { display: 'CA', fullName: 'Canada' },
+                'NZ': { display: 'NZ', fullName: 'New Zealand' },
+                'JP': { display: 'JP', fullName: 'Japan' },
+                'CN': { display: 'CN', fullName: 'China' },
+                'IN': { display: 'IN', fullName: 'India' },
+                'BR': { display: 'BR', fullName: 'Brazil' },
+                'MX': { display: 'MX', fullName: 'Mexico' },
+                'ES': { display: 'ES', fullName: 'Spain' },
+                'IT': { display: 'IT', fullName: 'Italy' },
+                'SE': { display: 'SE', fullName: 'Sweden' },
+                'NO': { display: 'NO', fullName: 'Norway' },
+                'DK': { display: 'DK', fullName: 'Denmark' },
+                'FI': { display: 'FI', fullName: 'Finland' },
+                'BE': { display: 'BE', fullName: 'Belgium' },
+                'AT': { display: 'AT', fullName: 'Austria' },
+                'PL': { display: 'PL', fullName: 'Poland' },
+                'CZ': { display: 'CZ', fullName: 'Czech Republic' },
+                'HU': { display: 'HU', fullName: 'Hungary' },
+                'RO': { display: 'RO', fullName: 'Romania' },
+                'BG': { display: 'BG', fullName: 'Bulgaria' },
+                'GR': { display: 'GR', fullName: 'Greece' },
+                'PT': { display: 'PT', fullName: 'Portugal' },
+                'SK': { display: 'SK', fullName: 'Slovakia' },
+                'SI': { display: 'SI', fullName: 'Slovenia' },
+                'EE': { display: 'EE', fullName: 'Estonia' },
+                'LV': { display: 'LV', fullName: 'Latvia' },
+                'LT': { display: 'LT', fullName: 'Lithuania' },
+                'HR': { display: 'HR', fullName: 'Croatia' },
+                'CY': { display: 'CY', fullName: 'Cyprus' },
+                'MT': { display: 'MT', fullName: 'Malta' },
+                'IS': { display: 'IS', fullName: 'Iceland' },
+                'LI': { display: 'LI', fullName: 'Liechtenstein' },
+                'KY': { display: 'KY', fullName: 'Cayman Islands' },
+                'BM': { display: 'BM', fullName: 'Bermuda' },
+                'VG': { display: 'VG', fullName: 'British Virgin Islands' },
+                'JE': { display: 'JE', fullName: 'Jersey' },
+                'GG': { display: 'GG', fullName: 'Guernsey' },
+                'IM': { display: 'IM', fullName: 'Isle of Man' },
+                'AE': { display: 'AE', fullName: 'United Arab Emirates' },
+                'SA': { display: 'SA', fullName: 'Saudi Arabia' },
+                'IL': { display: 'IL', fullName: 'Israel' },
+                'TR': { display: 'TR', fullName: 'Turkey' },
+                'ZA': { display: 'ZA', fullName: 'South Africa' },
+                'NG': { display: 'NG', fullName: 'Nigeria' },
+                'KE': { display: 'KE', fullName: 'Kenya' },
+                'EG': { display: 'EG', fullName: 'Egypt' },
+                'AR': { display: 'AR', fullName: 'Argentina' },
+                'CL': { display: 'CL', fullName: 'Chile' },
+                'CO': { display: 'CO', fullName: 'Colombia' },
+                'PE': { display: 'PE', fullName: 'Peru' },
+                'VE': { display: 'VE', fullName: 'Venezuela' },
+                'RU': { display: 'RU', fullName: 'Russia' },
+                'UA': { display: 'UA', fullName: 'Ukraine' },
+                'KR': { display: 'KR', fullName: 'South Korea' },
+                'TH': { display: 'TH', fullName: 'Thailand' },
+                'MY': { display: 'MY', fullName: 'Malaysia' },
+                'ID': { display: 'ID', fullName: 'Indonesia' },
+                'PH': { display: 'PH', fullName: 'Philippines' },
+                'VN': { display: 'VN', fullName: 'Vietnam' },
+                'PK': { display: 'PK', fullName: 'Pakistan' },
+                'BD': { display: 'BD', fullName: 'Bangladesh' },
+                'LK': { display: 'LK', fullName: 'Sri Lanka' }
+            };
+
+            return jurisdictions[strCode] || { display: strCode, fullName: strCode };
+        }
+
+        function setField(fieldId, value) {
+            if (!value) return;
+
+            // Skip if value is an object (not a string/number/boolean)
+            if (typeof value === 'object' && value !== null) {
+                console.warn(`Skipping object value for field ${fieldId}:`, value);
+                return;
+            }
+
+            const el = document.getElementById(fieldId);
+            if (el) {
+                // Convert to string safely
+                const strValue = String(value);
+
+                // Remove source badges for display
+                const cleanValue = strValue.replace(/\s*\[[A-Z]{2}\]\s*/g, '');
+
+                // Special handling for jurisdiction field
+                if (fieldId === 'jurisdiction') {
+                    const normalized = normalizeJurisdiction(cleanValue);
+                    if (normalized) {
+                        el.value = normalized.display;
+                        el.title = normalized.fullName; // Tooltip
+                    } else {
+                        el.value = cleanValue;
+                    }
+                } else {
+                    el.value = cleanValue;
+                }
+
+                // Extract source badges for display
+                const badges = strValue.match(/\[[A-Z]{2}\]/g);
+                if (badges) {
+                    const sourceEl = document.getElementById(fieldId + 'Source');
+                    if (sourceEl) {
+                        sourceEl.innerHTML = badges.map(b => {
+                            const badgeClass = {
+                                '[OC]': 'badge-oc',
+                                '[AL]': 'badge-al',
+                                '[ED]': 'badge-ed',
+                                '[OO]': 'badge-oo',
+                                '[LI]': 'badge-li'
+                            }[b] || '';
+                            return `<span class="badge ${badgeClass}">${b}</span>`;
+                        }).join(' ');
+                    }
+                }
+            }
+        }
+
+        function displayOfficers(officers) {
+            const list = document.getElementById('officersList');
+            list.innerHTML = officers.map(officer => {
+                const name = officer.name || officer.officer_name || 'Unknown';
+                const position = officer.position || officer.type || 'Unknown Position';
+                const dates = officer.appointed_date ? `Appointed: ${officer.appointed_date}` : '';
+                const source = officer.source || '';
+
+                return `
+                    <div class="officer-card">
+                        <div class="officer-name">${name}</div>
+                        <div class="officer-position">${position}</div>
+                        ${dates ? `<div style="font-size: 11px; color: #666; margin-top: 3px;">${dates}</div>` : ''}
+                        ${source ? `<span class="badge badge-${source.toLowerCase().substring(0,2)}">${source}</span>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function displayContradictions(contradictions) {
+            const html = `
+                <div class="contradiction-alert">
+                    <h4>⚠️ Contradictions Detected</h4>
+                    ${contradictions.map(c => `
+                        <div class="contradiction-item">
+                            <strong>${c.field}:</strong> ${JSON.stringify(c.values)}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            document.getElementById('contradictions').innerHTML = html;
+        }
+
+        function displayRawResult(data) {
+            // Extract company info from different source formats
+            let companies = [];
+
+            if (data.source === 'opencorporates') {
+                companies = (data.data.companies || []).map(c => {
+                    const normalized = normalizeJurisdiction(c.jurisdiction_code);
+                    return {
+                        name: c.name,
+                        jurisdiction: normalized ? normalized.display : c.jurisdiction_code,
+                        jurisdiction_tooltip: normalized ? normalized.fullName : c.jurisdiction_code,
+                        company_id: c.company_number,
+                        source_badge: '[OC]',
+                        raw_data: c
+                    };
+                });
+            } else if (data.source === 'aleph') {
+                // CONSOLIDATE ALL ALEPH RESULTS INTO ONE CARD
+                const alephResults = data.data.results || [];
+                if (alephResults.length > 0) {
+                    const firstResult = alephResults[0];
+                    const rawJurisdiction = firstResult.properties?.country?.[0] || firstResult.countries?.[0] || 'N/A';
+                    const normalized = normalizeJurisdiction(rawJurisdiction);
+
+                    companies = [{
+                        name: firstResult.caption || firstResult.properties?.name?.[0] || 'Unknown',
+                        jurisdiction: normalized ? normalized.display : rawJurisdiction,
+                        jurisdiction_tooltip: normalized ? normalized.fullName : rawJurisdiction,
+                        company_id: firstResult.properties?.registrationNumber?.[0] || 'N/A',
+                        source_badge: '[AL]',
+                        result_count: alephResults.length,
+                        raw_data: alephResults // Store ALL results for population
+                    }];
+                }
+            }
+
+            // Display each company as separate card (ONE card per source)
+            companies.forEach(company => {
+                const card = document.createElement('div');
+                card.className = 'raw-result';
+                card.style.cursor = 'pointer';
+                card.style.transition = 'all 0.2s';
+                card.style.minHeight = '70px';
+                card.style.position = 'relative';
+
+                card.innerHTML = `
+                    <div style="display: flex; flex-direction: column; height: 100%; position: relative;">
+                        <div style="position: absolute; top: 4px; right: 4px;">
+                            <span class="badge">${company.source_badge}</span>
+                            ${company.result_count > 1 ? `<span style="color: #ffaa00; font-size: 10px; margin-left: 5px;">(${company.result_count} results)</span>` : ''}
+                        </div>
+                        <div style="flex: 1; padding-right: 50px;">
+                            <div style="color: #00ff88; font-weight: 600; margin-bottom: 4px;">
+                                ${company.name}
+                            </div>
+                            <div style="font-size: 11px; color: #999;">
+                                <span style="color: #666;">Jurisdiction:</span> <span title="${company.jurisdiction_tooltip || company.jurisdiction}">${company.jurisdiction}</span>
+                                ${company.company_id !== 'N/A' ? `<span style="margin-left: 10px; color: #666;">ID:</span> ${company.company_id}` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                card.onclick = () => {
+                    document.querySelectorAll('.raw-result').forEach(c => c.style.background = '#2a2a2a');
+                    card.style.background = '#1a3a2a';
+                    populateFromRawData(company);
+                };
+
+                card.onmouseover = () => {
+                    if (card.style.background !== 'rgb(26, 58, 42)') {
+                        card.style.background = '#333';
+                    }
+                };
+
+                card.onmouseout = () => {
+                    if (card.style.background !== 'rgb(26, 58, 42)') {
+                        card.style.background = '#2a2a2a';
+                    }
+                };
+
+                document.getElementById('rawResults').appendChild(card);
+            });
+
+            document.getElementById('rawResults').scrollTop = document.getElementById('rawResults').scrollHeight;
+        }
+
+        function createConsolidatedCard(consolidated) {
+            const card = document.createElement('div');
+            card.className = 'raw-result';
+            card.style.cursor = 'pointer';
+            card.style.transition = 'all 0.2s';
+            card.style.minHeight = '70px';
+            card.style.position = 'relative';
+
+            const badges = consolidated.source_badges.map(b =>
+                `<span class="badge" style="margin-right: 4px;">${b}</span>`
+            ).join('');
+
+            card.innerHTML = `
+                <div style="display: flex; flex-direction: column; height: 100%; position: relative;">
+                    <div style="position: absolute; top: 4px; right: 4px; display: flex; gap: 4px;">
+                        ${badges}
+                    </div>
+                    <div style="flex: 1; padding-right: 70px;">
+                        <div style="color: #00ff88; font-weight: 600; margin-bottom: 4px;">
+                            ${consolidated.name}
+                        </div>
+                        <div style="font-size: 11px; color: #999;">
+                            <span style="color: #666;">Jurisdiction:</span> <span title="${consolidated.jurisdiction_tooltip || consolidated.jurisdiction}">${consolidated.jurisdiction}</span>
+                            ${consolidated.company_id !== 'N/A' ? `<span style="margin-left: 10px; color: #666;">ID:</span> ${consolidated.company_id}` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Click handler - populate from ALL sources
+            card.onclick = () => {
+                document.querySelectorAll('.raw-result').forEach(c => c.style.background = '#2a2a2a');
+                card.style.background = '#1a3a2a';
+                populateFromConsolidated(consolidated);
+            };
+
+            card.onmouseover = () => {
+                if (card.style.background !== 'rgb(26, 58, 42)') {
+                    card.style.background = '#333';
+                }
+            };
+
+            card.onmouseout = () => {
+                if (card.style.background !== 'rgb(26, 58, 42)') {
+                    card.style.background = '#2a2a2a';
+                }
+            };
+
+            consolidated.cardElement = card;
+            document.getElementById('rawResults').appendChild(card);
+        }
+
+        function updateConsolidatedCard(consolidated) {
+            if (!consolidated.cardElement) return;
+
+            const badges = consolidated.source_badges.map(b =>
+                `<span class="badge" style="margin-right: 4px;">${b}</span>`
+            ).join('');
+
+            consolidated.cardElement.querySelector('div').innerHTML = `
+                <div style="position: absolute; top: 4px; right: 4px; display: flex; gap: 4px;">
+                    ${badges}
+                </div>
+                <div style="flex: 1; padding-right: 70px;">
+                    <div style="color: #00ff88; font-weight: 600; margin-bottom: 4px;">
+                        ${consolidated.name}
+                    </div>
+                    <div style="font-size: 11px; color: #999;">
+                        <span style="color: #666;">Jurisdiction:</span> <span title="${consolidated.jurisdiction_tooltip || consolidated.jurisdiction}">${consolidated.jurisdiction}</span>
+                        ${consolidated.company_id !== 'N/A' ? `<span style="margin-left: 10px; color: #666;">ID:</span> ${consolidated.company_id}` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function populateFromConsolidated(consolidated) {
+            // Set company name if empty
+            if (!document.getElementById('companyName').value) {
+                document.getElementById('companyName').value = consolidated.name;
+            }
+
+            // Add all source badges
+            const existingBadges = Array.from(document.getElementById('sourceBadges').children)
+                .map(b => b.textContent);
+
+            consolidated.source_badges.forEach(badge => {
+                if (!existingBadges.includes(badge)) {
+                    const badgeEl = document.createElement('span');
+                    badgeEl.textContent = badge;
+                    badgeEl.className = 'badge';
+                    document.getElementById('sourceBadges').appendChild(badgeEl);
+                }
+            });
+
+            // Populate from each source
+            Object.entries(consolidated.raw_data_by_source).forEach(([source_badge, raw_data]) => {
+                const company = {
+                    name: consolidated.name,
+                    jurisdiction: consolidated.jurisdiction,
+                    company_id: consolidated.company_id,
+                    source_badge: source_badge,
+                    raw_data: raw_data
+                };
+                populateFromRawData(company);
+            });
+
+            updateStatus(`Enriched from ${consolidated.source_badges.join(' ')}`, '#00ff88');
+        }
+
+        // Track existing officers to prevent duplicates
+        let existingOfficers = [];
+
+        function populateFromRawData(company) {
+            // DON'T clear - we're enriching!
+            // Only set company name if empty
+            if (!document.getElementById('companyName').value) {
+                document.getElementById('companyName').value = company.name;
+            }
+
+            // Add source badge if not already present
+            const existingBadges = Array.from(document.getElementById('sourceBadges').children)
+                .map(b => b.textContent);
+            if (!existingBadges.includes(company.source_badge)) {
+                const badge = document.createElement('span');
+                badge.textContent = company.source_badge;
+                badge.className = 'badge';
+                document.getElementById('sourceBadges').appendChild(badge);
+            }
+
+            // Enrich fields (only fill if empty or add source badge)
+            if (company.source_badge === '[OC]') {
+                enrichField('companyNumber', company.company_id, company.source_badge);
+                enrichField('jurisdiction', company.jurisdiction, company.source_badge);
+                enrichField('registeredAddress', company.raw_data.registered_address_in_full, company.source_badge);
+                enrichField('companyType', company.raw_data.company_type, company.source_badge);
+                // Map to founded_year field (entity_template.json uses founded_year, not incorporation_date)
+                enrichField('foundedYear', company.raw_data.incorporation_date, company.source_badge);
+                enrichField('dissolutionDate', company.raw_data.dissolution_date, company.source_badge);
+                enrichField('currentStatus', company.raw_data.current_status, company.source_badge);
+
+                // Merge officers
+                if (company.raw_data.officers && company.raw_data.officers.length > 0) {
+                    const newOfficers = company.raw_data.officers.map(o => ({
+                        name: o.name,
+                        position: o.position,
+                        appointed_date: o.start_date,
+                        resigned_date: o.end_date,
+                        source: company.source_badge
+                    }));
+                    mergeOfficers(newOfficers);
+                }
+            } else if (company.source_badge === '[AL]') {
+                // Handle multiple Aleph results - raw_data is now an array
+                const alephResults = Array.isArray(company.raw_data) ? company.raw_data : [company.raw_data];
+
+                // Process ALL Aleph results
+                alephResults.forEach(result => {
+                    const props = result.properties || {};
+                    enrichField('companyNumber', props.registrationNumber?.[0], company.source_badge);
+                    enrichField('jurisdiction', props.country?.[0] || result.countries?.[0], company.source_badge);
+                    enrichField('registeredAddress', props.address?.[0], company.source_badge);
+                    // Map to founded_year field (entity_template.json uses founded_year)
+                    enrichField('foundedYear', props.incorporationDate?.[0], company.source_badge);
+
+                    // Merge Aleph officers
+                    if (result.officers && result.officers.length > 0) {
+                        const newOfficers = result.officers.map(o => ({
+                            name: o.name,
+                            position: o.position,
+                            appointed_date: o.start_date,
+                            resigned_date: o.end_date,
+                            source: company.source_badge
+                        }));
+                        mergeOfficers(newOfficers);
+                    }
+                });
+            }
+
+            updateStatus(`Enriched from ${company.source_badge}`, '#00ff88');
+        }
+
+        function enrichField(fieldId, newValue, sourceBadge) {
+            if (!newValue) return; // Skip empty values
+
+            // Clean array values from Aleph
+            if (typeof newValue === 'string' && newValue.trim() === '[]') return;
+
+            const field = document.getElementById(fieldId);
+            if (!field) return;
+
+            const currentValue = field.value.trim();
+
+            // Apply entity recognition to the value
+            let processedValue = newValue;
+            if (typeof newValue === 'string' && window.entityRecognizer) {
+                processedValue = window.entityRecognizer.detectAndMark(newValue, fieldId);
+            }
+
+            if (!currentValue) {
+                // Field is empty - just set it
+                field.value = newValue;
+                field.innerHTML = processedValue; // Use innerHTML for entity badges
+                addFieldSourceBadge(fieldId, sourceBadge);
+            } else if (currentValue === newValue) {
+                // Same value - just add source badge
+                addFieldSourceBadge(fieldId, sourceBadge);
+            } else {
+                // Different value - show contradiction
+                console.log(`Contradiction in ${fieldId}: "${currentValue}" vs "${newValue}"`);
+                // Keep existing value but flag for review
+                addFieldSourceBadge(fieldId, sourceBadge + '?');
+            }
+        }
+
+        function addFieldSourceBadge(fieldId, sourceBadge) {
+            const field = document.getElementById(fieldId);
+            if (!field || !field.parentElement) return;
+
+            const container = field.parentElement;
+            let badgeContainer = container.querySelector('.field-source');
+
+            if (!badgeContainer) {
+                badgeContainer = document.createElement('div');
+                badgeContainer.className = 'field-source';
+                container.appendChild(badgeContainer);
+            }
+
+            // Add badge if not already present
+            if (!badgeContainer.textContent.includes(sourceBadge)) {
+                const badge = document.createElement('span');
+                badge.textContent = sourceBadge;
+                badge.className = 'badge';
+                badge.style.fontSize = '9px';
+                badge.style.padding = '2px 4px';
+                badge.style.marginLeft = '3px';
+                badgeContainer.appendChild(badge);
+            }
+        }
+
+        function mergeOfficers(newOfficers) {
+            newOfficers.forEach(newOfficer => {
+                // Check if officer already exists (by name)
+                const existing = existingOfficers.find(o =>
+                    o.name.toLowerCase() === newOfficer.name.toLowerCase()
+                );
+
+                if (existing) {
+                    // Officer exists - add source badge
+                    if (!existing.sources) existing.sources = [existing.source];
+                    if (!existing.sources.includes(newOfficer.source)) {
+                        existing.sources.push(newOfficer.source);
+                    }
+                    // Enrich with additional data
+                    if (!existing.position && newOfficer.position) existing.position = newOfficer.position;
+                    if (!existing.appointed_date && newOfficer.appointed_date) existing.appointed_date = newOfficer.appointed_date;
+                    if (!existing.resigned_date && newOfficer.resigned_date) existing.resigned_date = newOfficer.resigned_date;
+                } else {
+                    // New officer - add to list
+                    newOfficer.sources = [newOfficer.source];
+                    existingOfficers.push(newOfficer);
+                }
+            });
+
+            // Re-display all officers
+            displayMergedOfficers();
+        }
+
+        function displayMergedOfficers() {
+            const officersList = document.getElementById('officersList');
+
+            if (existingOfficers.length === 0) {
+                officersList.innerHTML = '<div style="color: #666;">No officers data available</div>';
+                return;
+            }
+
+            const html = existingOfficers.map(officer => {
+                const sources = officer.sources || [officer.source];
+                const badges = sources.map(s =>
+                    `<span class="badge" style="font-size: 9px; padding: 2px 4px; margin-left: 4px;">${s}</span>`
+                ).join('');
+
+                return `
+                    <div class="officer-card" style="position: relative; padding-right: 60px;">
+                        <div style="position: absolute; top: 8px; right: 8px; display: flex; gap: 4px;">
+                            ${badges}
+                        </div>
+                        <div class="officer-name">${officer.name}</div>
+                        <div class="officer-position">${officer.position || 'Position not specified'}</div>
+                        ${officer.appointed_date ? `<div style="font-size: 11px; color: #666; margin-top: 4px;">Appointed: ${officer.appointed_date}</div>` : ''}
+                        ${officer.resigned_date ? `<div style="font-size: 11px; color: #666;">Resigned: ${officer.resigned_date}</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+
+            officersList.innerHTML = html;
+        }
+
+        function displayShareholders(shareholders) {
+            const list = document.getElementById('shareholdersList');
+
+            if (!shareholders || shareholders.length === 0 || (shareholders.length === 1 && !shareholders[0].name)) {
+                list.innerHTML = '<div style="color: #666;">No shareholders data available</div>';
+                return;
+            }
+
+            const html = shareholders.map(shareholder => {
+                if (!shareholder.name) return '';
+
+                const sourceBadge = shareholder.source ?
+                    `<span class="badge" style="font-size: 9px; padding: 2px 4px;">${shareholder.source}</span>` : '';
+
+                let details = [];
+                if (shareholder.entity_type === 'person') {
+                    if (shareholder.nationality) details.push(`${shareholder.nationality} national`);
+                    if (shareholder.residence) details.push(`${shareholder.residence} resident`);
+                    if (shareholder.dob) details.push(`DOB ${shareholder.dob}`);
+                } else if (shareholder.entity_type === 'company') {
+                    if (shareholder.company_number) details.push(`Company #${shareholder.company_number}`);
+                }
+                if (shareholder.details) details.push(shareholder.details);
+
+                const detailsHtml = details.length > 0 ?
+                    `<div style="font-size: 11px; color: #888; margin-top: 4px;">${details.join(' • ')}</div>` : '';
+
+                // Apply entity recognition to the name
+                let displayName = shareholder.name;
+                if (window.entityRecognizer) {
+                    displayName = window.entityRecognizer.detectAndMark(shareholder.name, 'shareholder');
+                }
+
+                return `
+                    <div class="officer-card" style="position: relative; padding-right: 60px;">
+                        <div style="position: absolute; top: 8px; right: 8px;">
+                            ${sourceBadge}
+                        </div>
+                        <div class="officer-name">${displayName}</div>
+                        <div class="officer-position">${shareholder.entity_type || 'Shareholder'}</div>
+                        ${detailsHtml}
+                    </div>
+                `;
+            }).filter(html => html).join('');
+
+            list.innerHTML = html || '<div style="color: #666;">No shareholders data available</div>';
+        }
+
+        function displayBeneficialOwners(beneficialOwners) {
+            const list = document.getElementById('beneficialOwnersList');
+
+            if (!beneficialOwners || beneficialOwners.length === 0 || (beneficialOwners.length === 1 && !beneficialOwners[0].name)) {
+                list.innerHTML = '<div style="color: #666;">No beneficial owners data available</div>';
+                return;
+            }
+
+            const html = beneficialOwners.map(owner => {
+                if (!owner.name) return '';
+
+                const sourceBadge = owner.source ?
+                    `<span class="badge" style="font-size: 9px; padding: 2px 4px;">${owner.source}</span>` : '';
+
+                let details = [];
+                if (owner.entity_type === 'person') {
+                    if (owner.nationality) details.push(`${owner.nationality} national`);
+                    if (owner.residence) details.push(`${owner.residence} resident`);
+                    if (owner.dob) details.push(`DOB ${owner.dob}`);
+                } else if (owner.entity_type === 'company') {
+                    if (owner.company_number) details.push(`Company #${owner.company_number}`);
+                }
+                if (owner.details) details.push(owner.details);
+
+                const detailsHtml = details.length > 0 ?
+                    `<div style="font-size: 11px; color: #888; margin-top: 4px;">${details.join(' • ')}</div>` : '';
+
+                // Apply entity recognition to the name
+                let displayName = owner.name;
+                if (window.entityRecognizer) {
+                    displayName = window.entityRecognizer.detectAndMark(owner.name, 'beneficialOwner');
+                }
+
+                return `
+                    <div class="officer-card" style="position: relative; padding-right: 60px;">
+                        <div style="position: absolute; top: 8px; right: 8px;">
+                            ${sourceBadge}
+                        </div>
+                        <div class="officer-name">${displayName}</div>
+                        <div class="officer-position">${owner.entity_type || 'Beneficial Owner'}</div>
+                        ${detailsHtml}
+                    </div>
+                `;
+            }).filter(html => html).join('');
+
+            list.innerHTML = html || '<div style="color: #666;">No beneficial owners data available</div>';
+        }
+
+        function clearProfile() {
+            document.getElementById('companyName').value = '';
+            document.getElementById('sourceBadges').innerHTML = '';
+            document.getElementById('contradictions').innerHTML = '';
+
+            const inputs = document.querySelectorAll('input[type="text"], textarea');
+            inputs.forEach(input => {
+                if (input.id !== 'searchQuery' && input.id !== 'notes') {
+                    input.value = '';
+                }
+            });
+
+            // Clear field source badges
+            document.querySelectorAll('.field-source').forEach(badge => badge.remove());
+
+            // Reset officers tracking
+            existingOfficers = [];
+            document.getElementById('officersList').innerHTML = '<div style="color: #666;">No officers data available</div>';
+
+            // Reset ownership lists
+            document.getElementById('shareholdersList').innerHTML = '<div style="color: #666;">No shareholders data available</div>';
+            document.getElementById('beneficialOwnersList').innerHTML = '<div style="color: #666;">No beneficial owners data available</div>';
+        }
+
+        function updateStatus(text, color) {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = text;
+            statusEl.style.color = color;
+        }
+
+        function startSearch() {
+            const query = document.getElementById('searchQuery').value;
+            if (!query) {
+                alert('Please enter a company name');
+                return;
+            }
+
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                alert('Not connected. Please refresh the page.');
+                return;
+            }
+
+            // Clear previous search results
+            document.getElementById('rawResults').innerHTML = '';
+
+            ws.send(JSON.stringify({
+                type: 'search',
+                query: query,
+                sources: ['opencorporates', 'aleph', 'edgar']
+            }));
+        }
+
+        function addOfficer() {
+            const name = prompt('Officer name:');
+            const position = prompt('Position:');
+
+            if (name && position) {
+                currentEntity.officers = currentEntity.officers || [];
+                currentEntity.officers.push({
+                    name: name,
+                    position: position,
+                    source: 'manual'
+                });
+                displayOfficers(currentEntity.officers);
+            }
+        }
+
+        // displayWikiSources is now defined at the end of the file using DynamicSectionManager
+
+        function displaySourceButtons(containerId, sources) {
+            const container = document.getElementById(containerId);
+            if (!container || !sources || sources.length === 0) return;
+
+            // Clear existing content
+            container.innerHTML = '';
+
+            // Add label
+            const label = document.createElement('div');
+            label.className = 'wiki-sources-label';
+            label.textContent = '📚 Research Sources:';
+            container.appendChild(label);
+
+            // Add source buttons
+            sources.forEach(source => {
+                const btn = document.createElement('a');
+                btn.className = 'wiki-source-btn';
+                btn.href = source.url;
+                btn.target = '_blank';
+                btn.textContent = source.title;
+                btn.title = source.url; // Show full URL on hover
+                container.appendChild(btn);
+            });
+        }
+
+        function toggleRawData() {
+            document.getElementById('rawJson').classList.toggle('visible');
+        }
+
+        // Connect on load
+        connectWebSocket();
+
+        // Allow Enter key to search
+        document.getElementById('searchQuery').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') startSearch();
+        });
+    </script>
+
+    <!-- Include the Dynamic Section Manager -->
+    <script src="entity_recognition.js"></script>
+    <script src="dynamic_sections.js"></script>
+    <script>
+        // Initialize the dynamic section manager
+        const sectionManager = new DynamicSectionManager();
+
+        // Override the displayWikiSources function to use the new animated system
+        window.displayWikiSources = function(entity) {
+            console.log('=== displayWikiSources CALLED ===');
+            console.log('Entity data:', JSON.stringify(entity, null, 2));
+
+            // Check for wiki data
+            if (entity && entity.about && entity.about._corporate_registry_sources) {
+                console.log('✅ Corporate Registry sources found:', entity.about._corporate_registry_sources.length);
+            } else {
+                console.log('❌ NO Corporate Registry sources');
+            }
+
+            if (entity && entity.compliance) {
+                console.log('Compliance data:', Object.keys(entity.compliance));
+
+                ['litigation', 'regulatory', 'assets', 'licensing', 'political', 'breaches', 'reputation', 'other'].forEach(section => {
+                    if (entity.compliance[section] && entity.compliance[section]._wiki_sources) {
+                        console.log(`✅ ${section} sources found:`, entity.compliance[section]._wiki_sources.length);
+                    } else {
+                        console.log(`❌ NO ${section} sources`);
+                    }
+                });
+            } else {
+                console.log('❌ NO compliance data at all!');
+            }
+
+            try {
+                // Use the hierarchical rendering system
+                sectionManager.renderHierarchicalSections(entity);
+            } catch (error) {
+                console.error('Error rendering hierarchical sections:', error);
+                console.error('Stack trace:', error.stack);
+                // Fallback: show error message to user
+                console.warn('Falling back to simple display due to error');
+            }
+        }
+    </script>
+</body>
+</html>

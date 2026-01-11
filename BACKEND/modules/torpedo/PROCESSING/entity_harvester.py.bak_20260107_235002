@@ -1,0 +1,628 @@
+#!/usr/bin/env python3
+"""
+EU NEWS ENTITY HARVESTER
+
+Searches all EU news sources for company designators (GmbH, Ltd, S.p.A., etc.),
+extracts company and person names from snippets using GLiNER,
+outputs to news_entities_<timestamp>.json.
+
+Usage:
+    python -m TORPEDO.PROCESSING.entity_harvester --jurisdiction DE
+    python -m TORPEDO.PROCESSING.entity_harvester --all --concurrent 5
+    python -m TORPEDO.PROCESSING.entity_harvester --jurisdiction IT --designators "S.p.A.,S.r.l."
+    python -m TORPEDO.PROCESSING.entity_harvester --dry-run --jurisdiction UK
+"""
+
+import asyncio
+import json
+import logging
+import re
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Any, Optional
+from dataclasses import dataclass, field, asdict
+
+from dotenv import load_dotenv
+
+from ..paths import env_file, io_matrix_dir, repo_root
+
+# Load environment (best-effort)
+_env = env_file()
+if _env:
+    load_dotenv(_env)
+
+# Relative imports within TORPEDO package
+from ..EXECUTION.news_searcher import NewsSearcher
+from .designators import DESIGNATORS, EU27_UK, get_designators, get_unique_designators
+
+# Import GLiNER - use absolute import from modules path
+try:
+    from LINKLATER.extraction.backends.gliner import GLiNERBackend
+    GLINER_AVAILABLE = True
+except ImportError:
+    try:
+        # Alternative: direct import if running from BACKEND/modules
+        import importlib.util
+        gliner_path = repo_root() / "SEARCH_ENGINEER" / "BACKEND" / "modules" / "LINKLATER" / "extraction" / "backends" / "gliner.py"
+        spec = importlib.util.spec_from_file_location("gliner_backend", gliner_path)
+        gliner_mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gliner_mod)
+        GLiNERBackend = gliner_mod.GLiNERBackend
+        GLINER_AVAILABLE = gliner_mod.GLINER_AVAILABLE
+    except Exception:
+        GLINER_AVAILABLE = False
+        GLiNERBackend = None
+
+logger = logging.getLogger("TORPEDO.EntityHarvester")
+
+# Output base (always write a new, timestamped file)
+OUTPUT_DIR = io_matrix_dir()
+OUTPUT_BASENAME = "news_entities"
+
+
+def _timestamp() -> str:
+    return datetime.now().strftime("%Y%m%d_%H%M%S")
+
+
+def _ensure_unique_path(path: Path) -> Path:
+    if not path.exists():
+        return path
+
+    stem = path.stem
+    suffix = path.suffix or ".json"
+    for i in range(1, 10000):
+        candidate = path.with_name(f"{stem}_{i:03d}{suffix}")
+        if not candidate.exists():
+            return candidate
+
+    raise RuntimeError(f"Unable to create unique output path for {path}")
+
+
+def _build_output_path(output_path: Optional[Path]) -> Path:
+    timestamp = _timestamp()
+    if output_path:
+        if output_path.exists() and output_path.is_dir():
+            path = output_path / f"{OUTPUT_BASENAME}_{timestamp}.json"
+        else:
+            suffix = output_path.suffix or ".json"
+            path = output_path.with_name(f"{output_path.stem}_{timestamp}{suffix}")
+    else:
+        path = OUTPUT_DIR / f"{OUTPUT_BASENAME}_{timestamp}.json"
+
+    return _ensure_unique_path(path)
+
+
+@dataclass
+class HarvestedEntity:
+    """A single harvested entity."""
+    entity_type: str
+    name: str
+    normalized_name: str
+    confidence: float
+    jurisdiction: str
+    harvest_keyword: str
+    sources: List[Dict[str, Any]] = field(default_factory=list)
+    source_urls: List[str] = field(default_factory=list)
+    occurrence_count: int = 1
+
+    def to_dict(self) -> Dict:
+        return asdict(self)
+
+
+@dataclass
+class HarvestStats:
+    """Statistics for a harvest run."""
+    total_searches: int = 0
+    total_articles: int = 0
+    total_snippets_processed: int = 0
+    companies_extracted: int = 0
+    persons_extracted: int = 0
+    unique_companies: int = 0
+    unique_persons: int = 0
+    errors: int = 0
+    jurisdictions_processed: List[str] = field(default_factory=list)
+
+    def to_dict(self) -> Dict:
+        return asdict(self)
+
+
+class EntityHarvester:
+    """
+    EU News Entity Harvester.
+
+    Searches news sources for company designators,
+    extracts entities with GLiNER,
+    outputs to JSON file.
+    """
+
+    def __init__(
+        self,
+        max_sources: int = 10,
+        max_pages: int = 1,
+        confidence_threshold: float = 0.5,
+        dry_run: bool = False,
+        require_recipe: bool = True,  # Only use sources with extraction recipes
+        checkpoint_every: int = 1,  # Save progress every N keywords
+    ):
+        self.news_searcher = NewsSearcher()
+        self.max_sources = max_sources
+        self.max_pages = max_pages
+        self.confidence_threshold = confidence_threshold
+        self.dry_run = dry_run
+        self.require_recipe = require_recipe
+        self.checkpoint_every = checkpoint_every
+        self._gliner = None
+        self._save_lock = asyncio.Lock()
+        self._keywords_completed = 0
+        self.companies: Dict[str, HarvestedEntity] = {}
+        self.persons: Dict[str, HarvestedEntity] = {}
+        self.stats = HarvestStats()
+        # Build set of all designators for validation
+        self._all_designators = get_unique_designators()
+
+    def _get_gliner(self) -> Optional[GLiNERBackend]:
+        """Lazy load GLiNER backend."""
+        if self._gliner is None and GLINER_AVAILABLE and GLiNERBackend:
+            self._gliner = GLiNERBackend(threshold=self.confidence_threshold)
+        return self._gliner
+
+    def _normalize_name(self, name: str) -> str:
+        """Normalize entity name for deduplication."""
+        return " ".join(name.lower().split())
+
+    def _clean_company_candidate(self, name: str) -> str:
+        """Clean extracted company candidate without stripping internal punctuation."""
+        cleaned = re.sub(r"\s+", " ", name).strip()
+        return cleaned.strip(" ,;:-\"'()[]{}")
+
+    def _extract_companies_by_designator(self, text: str, designator: str) -> List[str]:
+        """Extract company candidates by designator in local context."""
+        if not text or not designator:
+            return []
+
+        escaped = re.escape(designator)
+        if not designator.endswith("."):
+            escaped = f"{escaped}\\.?"
+
+        pattern = re.compile(escaped, re.IGNORECASE)
+        candidates = []
+        seen = set()
+        boundaries = ".?!;:\n"
+
+        for match in pattern.finditer(text):
+            start = max(0, match.start() - 120)
+            if start > 0 and text[start].isalnum():
+                while start < match.start() and text[start].isalnum():
+                    start += 1
+            prefix = text[start:match.start()]
+            cut = max(prefix.rfind(ch) for ch in boundaries)
+            if cut != -1:
+                prefix = prefix[cut + 1:]
+
+            words = prefix.strip().split()
+            if not words:
+                continue
+            if len(words) > 6:
+                prefix = " ".join(words[-6:])
+
+            candidate = f"{prefix} {text[match.start():match.end()]}".strip()
+            candidate = self._clean_company_candidate(candidate)
+
+            if len(candidate) < 3 or candidate.lower() == designator.lower():
+                continue
+
+            normalized = self._normalize_name(candidate)
+            if normalized in seen:
+                continue
+
+            seen.add(normalized)
+            candidates.append(candidate)
+
+        return candidates
+
+    def _has_designator(self, name: str) -> bool:
+        """
+        Check if company name contains a valid designator.
+
+        This is the KEY FILTER - without it we get garbage like
+        "Critics Choice Awards" and "Dragons' Den".
+
+        With it, we only keep real companies like "Barclays PLC",
+        "Siemens AG", "Podravka d.d."
+        """
+        name_upper = name.upper()
+        name_lower = name.lower()
+
+        for designator in self._all_designators:
+            # Check various forms
+            d_upper = designator.upper()
+            d_lower = designator.lower()
+
+            # Exact suffix match (most common): "Barclays PLC"
+            if name_upper.endswith(f" {d_upper}"):
+                return True
+            if name_upper.endswith(f" {d_upper}."):
+                return True
+
+            # With period variations: "S.p.A." vs "SpA"
+            if f" {d_upper}" in name_upper:
+                return True
+            if f" {d_lower}" in name_lower:
+                return True
+
+            # Parenthetical: "Barclays (PLC)"
+            if f"({d_upper})" in name_upper:
+                return True
+
+        return False
+
+    def _add_company(
+        self,
+        name: str,
+        confidence: float,
+        jurisdiction: str,
+        keyword: str,
+        source: Dict[str, Any]
+    ):
+        """Add or merge a company entity."""
+        normalized = self._normalize_name(name)
+        source_url = source.get("url") or ""
+
+        if normalized in self.companies:
+            entity = self.companies[normalized]
+            entity.occurrence_count += 1
+            entity.confidence = max(entity.confidence, confidence)
+            existing_urls = {s.get("url") for s in entity.sources}
+            if source_url and source_url not in existing_urls:
+                entity.sources.append(source)
+            if source_url and source_url not in entity.source_urls:
+                entity.source_urls.append(source_url)
+        else:
+            self.companies[normalized] = HarvestedEntity(
+                entity_type="company",
+                name=name,
+                normalized_name=normalized,
+                confidence=confidence,
+                jurisdiction=jurisdiction,
+                harvest_keyword=keyword,
+                sources=[source] if source_url else [],
+                source_urls=[source_url] if source_url else [],
+                occurrence_count=1
+            )
+            self.stats.unique_companies += 1
+
+        self.stats.companies_extracted += 1
+
+    def _add_person(
+        self,
+        name: str,
+        confidence: float,
+        jurisdiction: str,
+        keyword: str,
+        source: Dict[str, Any]
+    ):
+        """Add or merge a person entity."""
+        normalized = self._normalize_name(name)
+        source_url = source.get("url") or ""
+
+        if normalized in self.persons:
+            entity = self.persons[normalized]
+            entity.occurrence_count += 1
+            entity.confidence = max(entity.confidence, confidence)
+            existing_urls = {s.get("url") for s in entity.sources}
+            if source_url and source_url not in existing_urls:
+                entity.sources.append(source)
+            if source_url and source_url not in entity.source_urls:
+                entity.source_urls.append(source_url)
+        else:
+            self.persons[normalized] = HarvestedEntity(
+                entity_type="person",
+                name=name,
+                normalized_name=normalized,
+                confidence=confidence,
+                jurisdiction=jurisdiction,
+                harvest_keyword=keyword,
+                sources=[source] if source_url else [],
+                source_urls=[source_url] if source_url else [],
+                occurrence_count=1
+            )
+            self.stats.unique_persons += 1
+
+        self.stats.persons_extracted += 1
+
+    async def _checkpoint(self, reason: str = ""):
+        """Persist current results to disk to avoid losing progress."""
+        if self.dry_run or self.checkpoint_every <= 0:
+            return
+        async with self._save_lock:
+            self.save_results()
+            if reason:
+                logger.info(f"Checkpoint saved ({reason})")
+
+    async def _process_article(
+        self,
+        article: Dict[str, Any],
+        jurisdiction: str,
+        keyword: str,
+        source_domain: str
+    ):
+        """Extract entities from a single article."""
+        gliner = self._get_gliner()
+        if not gliner:
+            logger.warning("GLiNER not available - skipping extraction")
+            return
+
+        title = article.get("title", "")
+        snippet = article.get("snippet", "")
+        text = f"{title}. {snippet}".strip()
+
+        if len(text) < 20:
+            return
+
+        self.stats.total_snippets_processed += 1
+
+        source_info = {
+            "url": article.get("url", ""),
+            "domain": source_domain,
+            "title": title,
+            "snippet": snippet[:200] if snippet else ""
+        }
+
+        try:
+            result = gliner.extract(
+                text,
+                url=article.get("url", ""),
+                include_emails=False,
+                include_phones=False,
+                include_dates=False
+            )
+
+            for company in result.get("companies", []):
+                name = company.get("value", "").strip()
+                conf = company.get("confidence", 0.5)
+                if (
+                    name
+                    and conf >= self.confidence_threshold
+                    and len(name) >= 3
+                    and self._has_designator(name)
+                ):
+                    self._add_company(name, conf, jurisdiction, keyword, source_info)
+
+            for person in result.get("persons", []):
+                name = person.get("value", "").strip()
+                conf = person.get("confidence", 0.5)
+                if name and conf >= self.confidence_threshold and len(name) >= 3:
+                    self._add_person(name, conf, jurisdiction, keyword, source_info)
+
+            for candidate in self._extract_companies_by_designator(text, keyword):
+                if self._has_designator(candidate):
+                    self._add_company(candidate, 0.55, jurisdiction, keyword, source_info)
+
+        except Exception as e:
+            logger.debug(f"Entity extraction failed for article: {e}")
+            self.stats.errors += 1
+
+    async def harvest_keyword(self, keyword: str, jurisdiction: str) -> int:
+        """Harvest entities for a single keyword in a jurisdiction."""
+        logger.info(f"  Searching {jurisdiction} news for '{keyword}'...")
+
+        articles_count = 0
+        try:
+            results = await self.news_searcher.search(
+                query=keyword,
+                jurisdiction=jurisdiction,
+                max_sources=self.max_sources,
+                max_pages=self.max_pages,
+                extract=True,
+                require_recipe=self.require_recipe
+            )
+
+            self.stats.total_searches += 1
+            pages_fetched = results.get("pages_fetched", 0)
+            logger.info(f"    Pages fetched: {pages_fetched}")
+
+            for source_result in results.get("results", []):
+                source_domain = source_result.get("domain", "")
+                articles = source_result.get("articles", [])
+
+                for article in articles:
+                    await self._process_article(article, jurisdiction, keyword, source_domain)
+                    articles_count += 1
+
+            self.stats.total_articles += articles_count
+            logger.info(f"    Found {articles_count} articles")
+
+        except Exception as e:
+            logger.error(f"  Search failed for '{keyword}' in {jurisdiction}: {e}")
+            self.stats.errors += 1
+        finally:
+            self._keywords_completed += 1
+            if self.checkpoint_every and (self._keywords_completed % self.checkpoint_every == 0):
+                await self._checkpoint(f"{jurisdiction}:{keyword}")
+
+        return articles_count
+
+    async def harvest_jurisdiction(
+        self,
+        jurisdiction: str,
+        designators: Optional[List[str]] = None,
+        concurrent: int = 3
+    ):
+        """Harvest entities from a single jurisdiction."""
+        jur = jurisdiction.upper()
+        if jur == "GB":
+            jur = "UK"
+
+        keywords = designators or get_designators(jur)
+        if not keywords:
+            logger.warning(f"No designators for {jur}")
+            return
+
+        logger.info(f"Harvesting {jur} with {len(keywords)} designators...")
+
+        if not self.news_searcher.loaded:
+            await self.news_searcher.load_sources()
+
+        semaphore = asyncio.Semaphore(concurrent)
+
+        async def search_keyword(keyword: str):
+            async with semaphore:
+                await self.harvest_keyword(keyword, jur)
+
+        tasks = [search_keyword(k) for k in keywords]
+        await asyncio.gather(*tasks, return_exceptions=True)
+
+        self.stats.jurisdictions_processed.append(jur)
+        await self._checkpoint(f"{jur} complete")
+        logger.info(f"Completed {jur}: {self.stats.unique_companies} companies, {self.stats.unique_persons} persons")
+
+    async def harvest_all_eu(
+        self,
+        jurisdictions: Optional[List[str]] = None,
+        concurrent_keywords: int = 3
+    ):
+        """Harvest entities from all EU27 + UK jurisdictions."""
+        jurs = jurisdictions or EU27_UK
+
+        logger.info(f"Starting EU harvest for {len(jurs)} jurisdictions...")
+
+        await self.news_searcher.load_sources()
+
+        for jur in jurs:
+            await self.harvest_jurisdiction(jur, concurrent=concurrent_keywords)
+            await asyncio.sleep(1)
+
+        logger.info(f"Harvest complete: {self.stats.unique_companies} companies, {self.stats.unique_persons} persons")
+
+    def get_results(self) -> Dict[str, Any]:
+        """Get harvest results as dict."""
+        return {
+            "harvested_at": datetime.now().isoformat(),
+            "jurisdictions_processed": self.stats.jurisdictions_processed,
+            "stats": self.stats.to_dict(),
+            "total_entities": self.stats.unique_companies + self.stats.unique_persons,
+            "companies": [
+                e.to_dict() for e in sorted(
+                    self.companies.values(),
+                    key=lambda x: -x.occurrence_count
+                )
+            ],
+            "persons": [
+                e.to_dict() for e in sorted(
+                    self.persons.values(),
+                    key=lambda x: -x.occurrence_count
+                )
+            ]
+        }
+
+    def save_results(self, output_path: Optional[Path] = None):
+        """Save results to JSON file."""
+        path = _build_output_path(output_path)
+
+        if self.dry_run:
+            logger.info(f"DRY RUN - Would save to {path}")
+            return
+
+        results = self.get_results()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(results, f, indent=2, ensure_ascii=False)
+
+        logger.info(f"Saved {self.stats.unique_companies + self.stats.unique_persons} entities to {path}")
+
+    def print_summary(self):
+        """Print harvest summary."""
+        print(f"\n{'='*60}")
+        print("EU NEWS ENTITY HARVEST COMPLETE")
+        print(f"{'='*60}")
+        print(f"  Jurisdictions: {len(self.stats.jurisdictions_processed)}")
+        print(f"  Searches: {self.stats.total_searches}")
+        print(f"  Articles: {self.stats.total_articles}")
+        print(f"  Snippets: {self.stats.total_snippets_processed}")
+        print(f"  Companies: {self.stats.unique_companies}")
+        print(f"  Persons: {self.stats.unique_persons}")
+        print(f"  Errors: {self.stats.errors}")
+
+        if self.companies:
+            print(f"\nTop 10 Companies:")
+            for i, entity in enumerate(sorted(
+                self.companies.values(), key=lambda x: -x.occurrence_count
+            )[:10]):
+                print(f"  {i+1}. {entity.name} ({entity.occurrence_count}x, {entity.jurisdiction})")
+
+        if self.persons:
+            print(f"\nTop 10 Persons:")
+            for i, entity in enumerate(sorted(
+                self.persons.values(), key=lambda x: -x.occurrence_count
+            )[:10]):
+                print(f"  {i+1}. {entity.name} ({entity.occurrence_count}x)")
+
+
+async def main():
+    import argparse
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    )
+
+    parser = argparse.ArgumentParser(description="EU News Entity Harvester")
+    parser.add_argument("--jurisdiction", "-j", help="Single jurisdiction to harvest")
+    parser.add_argument("--all", action="store_true", help="Harvest all EU27 + UK")
+    parser.add_argument("--designators", "-d", help="Comma-separated designators")
+    parser.add_argument("--max-sources", "-m", type=int, default=10, help="Max sources per search")
+    parser.add_argument("--max-pages", type=int, default=1, help="Max pages per source (pagination)")
+    parser.add_argument("--concurrent", "-c", type=int, default=3, help="Concurrent searches")
+    parser.add_argument("--threshold", "-t", type=float, default=0.5, help="Confidence threshold")
+    parser.add_argument("--dry-run", action="store_true", help="Don't save output")
+    parser.add_argument(
+        "--output",
+        "-o",
+        help="Output file path or directory (timestamped, never overwrites existing files)",
+    )
+    parser.add_argument("--checkpoint-every", type=int, default=1, help="Save progress every N keywords (0=off)")
+    parser.add_argument("--list-jurisdictions", action="store_true", help="List jurisdictions")
+    args = parser.parse_args()
+
+    if args.list_jurisdictions:
+        print(f"EU27 + UK Jurisdictions ({len(EU27_UK)}):")
+        for jur in sorted(EU27_UK):
+            d = get_designators(jur)
+            print(f"  {jur}: {len(d)} designators")
+        return
+
+    if not GLINER_AVAILABLE:
+        print("ERROR: GLiNER not available. Install with: pip install gliner")
+        return
+
+    harvester = EntityHarvester(
+        max_sources=args.max_sources,
+        max_pages=args.max_pages,
+        confidence_threshold=args.threshold,
+        dry_run=args.dry_run,
+        checkpoint_every=args.checkpoint_every
+    )
+
+    designators = None
+    if args.designators:
+        designators = [d.strip() for d in args.designators.split(",")]
+
+    if args.jurisdiction:
+        await harvester.harvest_jurisdiction(
+            args.jurisdiction,
+            designators=designators,
+            concurrent=args.concurrent
+        )
+    elif args.all:
+        await harvester.harvest_all_eu(concurrent_keywords=args.concurrent)
+    else:
+        print("Specify --jurisdiction XX or --all")
+        return
+
+    output_path = Path(args.output) if args.output else None
+    harvester.save_results(output_path)
+    harvester.print_summary()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

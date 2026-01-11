@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SASTRE</title>
+    <style>
+        :root { --bg: #0a0a0f; --panel: #12121a; --input: #1a1a25; --border: #2a2a3a; --text: #e0e0e0; --dim: #888; --accent: #4a9eff; --ok: #4ade80; --err: #f87171; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'SF Mono', monospace; background: var(--bg); color: var(--text); height: 100vh; overflow: hidden; }
+        .grid { display: grid; grid-template-columns: 200px 1fr 260px; grid-template-rows: 40px 1fr; height: 100vh; gap: 1px; background: var(--border); }
+        header { grid-column: 1/-1; background: var(--panel); display: flex; align-items: center; padding: 0 12px; gap: 10px; }
+        .logo { font-size: 14px; font-weight: bold; color: var(--accent); }
+        .tabs { display: flex; gap: 2px; }
+        .tab { padding: 4px 8px; background: 0; border: 0; color: var(--dim); cursor: pointer; font: inherit; font-size: 10px; border-radius: 2px; }
+        .tab.on { background: var(--accent); color: #fff; }
+        .side, .main, .right { background: var(--panel); display: flex; flex-direction: column; }
+        .hdr { padding: 6px 10px; border-bottom: 1px solid var(--border); font-size: 9px; text-transform: uppercase; color: var(--dim); display: flex; justify-content: space-between; }
+        .content { flex: 1; overflow-y: auto; padding: 6px; }
+        .sess { padding: 5px 6px; border-radius: 2px; cursor: pointer; margin-bottom: 2px; font-size: 10px; }
+        .sess:hover { background: var(--input); }
+        .sess.on { background: var(--input); border-left: 2px solid var(--accent); }
+        .msgs { flex: 1; overflow-y: auto; padding: 8px; }
+        .msg { margin-bottom: 8px; max-width: 85%; }
+        .msg.u { margin-left: auto; }
+        .bubble { display: inline-block; padding: 5px 8px; border-radius: 5px; font-size: 11px; line-height: 1.3; }
+        .msg.u .bubble { background: var(--accent); color: #fff; }
+        .msg.a .bubble { background: var(--input); }
+        .chatbox { padding: 8px; border-top: 1px solid var(--border); display: flex; gap: 5px; }
+        .chatbox input { flex: 1; background: var(--input); border: 1px solid var(--border); border-radius: 3px; padding: 6px 8px; color: var(--text); font: inherit; font-size: 11px; }
+        .chatbox button { background: var(--accent); border: 0; border-radius: 3px; padding: 6px 10px; color: #fff; cursor: pointer; font-size: 10px; }
+        .sbar { padding: 6px; border-bottom: 1px solid var(--border); display: flex; gap: 4px; }
+        .sbar input { flex: 1; background: var(--input); border: 1px solid var(--border); border-radius: 2px; padding: 5px 6px; color: var(--text); font: inherit; font-size: 10px; }
+        .sbar select { background: var(--input); border: 1px solid var(--border); border-radius: 2px; padding: 4px; color: var(--text); font-size: 9px; }
+        .sbar button { background: var(--accent); border: 0; border-radius: 2px; padding: 5px 10px; color: #fff; font-size: 10px; cursor: pointer; }
+        .res { flex: 1; overflow-y: auto; padding: 6px; }
+        .item { padding: 6px; background: var(--input); border-radius: 2px; margin-bottom: 4px; border-left: 2px solid var(--accent); font-size: 10px; }
+        .item .t { color: var(--accent); margin-bottom: 2px; }
+        .item .s { color: var(--dim); font-size: 9px; }
+        .view { display: none; flex-direction: column; flex: 1; }
+        .view.on { display: flex; }
+        .rtabs { display: flex; border-bottom: 1px solid var(--border); }
+        .rtab { flex: 1; padding: 5px; background: 0; border: 0; color: var(--dim); cursor: pointer; font-size: 9px; text-align: center; }
+        .rtab.on { background: var(--input); color: var(--text); }
+        .log { font-size: 9px; padding: 2px 5px; border-radius: 2px; margin-bottom: 2px; font-family: monospace; }
+        .log.i { background: rgba(74,158,255,.1); }
+        .log.g { background: rgba(74,222,128,.1); color: var(--ok); }
+        .log.e { background: rgba(248,113,113,.1); color: var(--err); }
+        .edith-area { flex: 1; display: flex; flex-direction: column; }
+        .edith-sections { flex: 1; overflow-y: auto; padding: 6px; }
+        .edith-section { background: var(--input); border-radius: 3px; margin-bottom: 6px; }
+        .edith-section .head { padding: 6px 8px; font-size: 10px; font-weight: bold; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+        .edith-section .body { padding: 6px 8px; font-size: 10px; max-height: 100px; overflow-y: auto; white-space: pre-wrap; }
+        .edith-section .body:empty::after { content: '(empty)'; color: var(--dim); font-style: italic; }
+        #conn { font-size: 9px; color: var(--dim); }
+    </style>
+</head>
+<body>
+<div class="grid">
+    <header>
+        <span class="logo">SASTRE</span>
+        <nav class="tabs">
+            <button class="tab on" data-v="chat">Chat</button>
+            <button class="tab" data-v="torpedo">TORPEDO</button>
+            <button class="tab" data-v="brute">BRUTE</button>
+            <button class="tab" data-v="cymon">Cymonides</button>
+        </nav>
+        <div style="flex:1"></div>
+        <span id="conn">...</span>
+    </header>
+    <aside class="side">
+        <div class="hdr">Sessions <button onclick="newSess()" style="background:var(--accent);border:0;padding:1px 4px;border-radius:2px;color:#fff;cursor:pointer;font-size:8px">+</button></div>
+        <div class="content" id="sessions"></div>
+    </aside>
+    <main class="main">
+        <div class="view on" id="v-chat">
+            <div class="msgs" id="msgs"><div class="msg a"><div class="bubble">Ready. p: c: d: e: t: or cog: for AI</div></div></div>
+            <div class="chatbox"><input id="cin" placeholder="p:Name, c:Company, cog: question..."><button onclick="send()">Send</button></div>
+        </div>
+        <div class="view" id="v-torpedo">
+            <div class="sbar">
+                <input id="tin" placeholder="Company name or URL..." style="flex:2">
+                <select id="tjur"><option value=":cuk!">UK</option><option value=":cde!">DE</option><option value=":cch!">CH</option><option value=":cno!">NO</option><option value=":cfi!">FI</option><option value=":cie!">IE</option></select>
+                <button onclick="torpSearch()">Search</button>
+                <button onclick="torpCrawl()" style="background:#16a34a">Crawl</button>
+                <button onclick="clearTorpViz()" style="background:#666">Clear</button>
+            </div>
+            <div id="torpedo-viz-container" style="margin:8px 0;min-height:400px;"></div>
+            <div class="res" id="tres"></div>
+        </div>
+        <div class="view" id="v-brute">
+            <div class="sbar"><input id="bin" placeholder="Search..." oninput="debounceBrute()"><button onclick="bruteSearch()">Search</button></div>
+            <div class="res" id="bres"></div>
+        </div>
+        <div class="view" id="v-cymon">
+            <div class="sbar">
+                <input id="cyin" placeholder="Search..." oninput="debounceCy()">
+                <select id="cyidx"><option>cymonides-3</option><option>cymonides-1</option><option>cymonides-2</option><option>cymonides-4</option></select>
+                <button onclick="cySearch()">Search</button>
+            </div>
+            <div class="res" id="cyres"></div>
+        </div>
+    </main>
+    <aside class="right">
+        <div class="rtabs">
+            <button class="rtab on" data-r="logs">Logs</button>
+            <button class="rtab" data-r="edith">EDITH</button>
+        </div>
+        <div id="r-logs" class="content" style="display:block"><div id="logs"></div></div>
+        <div id="r-edith" class="edith-area" style="display:none">
+            <div class="hdr">Watchers <button onclick="loadWatchers()" style="background:var(--accent);border:0;padding:1px 4px;border-radius:2px;color:#fff;cursor:pointer;font-size:8px">Refresh</button></div>
+            <div class="edith-sections" id="watchers"></div>
+        </div>
+    </aside>
+</div>
+<script>
+let ws,cid='c_'+Math.random().toString(36).slice(2,8),sess='default';
+function conn(){
+    ws=new WebSocket((location.protocol==='https:'?'wss:':'ws:')+'//'+location.host+'/ws/'+cid);
+    ws.onopen=()=>{$('conn').textContent='Connected';$('conn').style.color='#4ade80';addSess('default','Default');loadWatchers();};
+    ws.onclose=()=>{$('conn').textContent='Disconnected';$('conn').style.color='#f87171';setTimeout(conn,2000);};
+    ws.onmessage=e=>handle(JSON.parse(e.data));
+}
+function handle(d){
+    if(d.type==='agent_event')log(d.event?.message||JSON.stringify(d.event));
+    else if(d.type==='chat_response'){hideTh();addMsg(d.response,'a');}
+    else if(d.type==='chat_thinking')showTh();
+    else if(d.type==='watchers_update')renderWatchers(d.watchers);
+}
+function $(id){return document.getElementById(id);}
+function esc(t){const d=document.createElement('div');d.textContent=t||'';return d.innerHTML;}
+function send(){const i=$('cin'),m=i.value.trim();if(!m||!ws)return;addMsg(m,'u');i.value='';ws.send(JSON.stringify({type:'chat',message:m,session_id:sess}));}
+function addMsg(t,r){const c=$('msgs'),d=document.createElement('div');d.className='msg '+r;d.innerHTML='<div class="bubble">'+esc(t)+'</div>';c.appendChild(d);c.scrollTop=c.scrollHeight;}
+function showTh(){if(!$('th')){const c=$('msgs'),d=document.createElement('div');d.id='th';d.className='msg a';d.innerHTML='<div class="bubble">...</div>';c.appendChild(d);c.scrollTop=c.scrollHeight;}}
+function hideTh(){const t=$('th');if(t)t.remove();}
+function addSess(id,n){if(document.querySelector('[data-s="'+id+'"]'))return;const d=document.createElement('div');d.className='sess'+(id===sess?' on':'');d.dataset.s=id;d.textContent=n||id;d.onclick=()=>selSess(id);$('sessions').appendChild(d);}
+function selSess(id){sess=id;document.querySelectorAll('.sess').forEach(s=>s.classList.toggle('on',s.dataset.s===id));}
+function newSess(){const id='s_'+Date.now().toString(36);addSess(id,'Sess '+id.slice(-4));selSess(id);}
+function log(m){const c=$('logs'),d=document.createElement('div');d.className='log '+(m.includes('error')||m.includes('fail')?'e':m.includes('success')||m.includes('complete')?'g':'i');d.textContent=m;c.appendChild(d);c.scrollTop=c.scrollHeight;}
+async function torpSearch(){const q=$('tin').value.trim(),j=$('tjur').value;if(!q)return;show('tres','Searching...');try{const r=await fetch('/api/investigate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:'c: '+q+' '+j})});const d=await r.json();$('tres').innerHTML='<div class="item">Session: '+d.session_id+' - '+d.status+'</div>';}catch(e){show('tres','Error: '+e.message);}}
+let bruteTimer;function debounceBrute(){clearTimeout(bruteTimer);bruteTimer=setTimeout(bruteSearch,500);}async function bruteSearch(){const q=$('bin').value.trim();if(!q)return;show('bres','Searching...');try{const r=await fetch('/api/brute',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:q})});const d=await r.json();dispRes('bres',d.results||[]);}catch(e){show('bres','Error: '+e.message);}}
+let cyTimer;function debounceCy(){clearTimeout(cyTimer);cyTimer=setTimeout(cySearch,300);}async function cySearch(){const q=$('cyin').value.trim(),idx=$('cyidx').value;if(!q)return;show('cyres','Searching...');try{const r=await fetch('/api/cymonides',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:q,index:idx})});const d=await r.json();dispCy('cyres',d);}catch(e){show('cyres','Error: '+e.message);}}
+function show(id,m){$(id).innerHTML='<div style="color:var(--dim);padding:12px;text-align:center">'+m+'</div>';}
+function dispRes(id,res){const c=$(id);if(!res.length){show(id,'No results');return;}c.innerHTML=res.slice(0,50).map(r=>'<div class="item"><div class="t">'+esc(r.title||r.name||r.url||'Result')+'</div><div class="s">'+esc((r.snippet||r.description||JSON.stringify(r)).slice(0,200))+'</div></div>').join('');}
+function dispCy(id,d){const c=$(id);c.innerHTML='<div style="margin-bottom:4px;color:var(--dim)">Found: '+(d.total||0)+'</div>';if(!d.hits?.length)return;c.innerHTML+=d.hits.slice(0,50).map(h=>'<div class="item"><div class="t">'+esc(h.source?.name||h.source?.company||h.id)+'</div><div class="s">'+esc(JSON.stringify(h.source).slice(0,200))+'</div></div>').join('');}
+async function loadWatchers(){try{const r=await fetch('/api/watchers');const d=await r.json();renderWatchers(d.watchers||[]);}catch(e){$('watchers').innerHTML='<div style="color:var(--dim);padding:8px">Error loading watchers</div>';}}
+function renderWatchers(w){const c=$('watchers');if(!w||!w.length){c.innerHTML='<div style="color:var(--dim);padding:8px">No active watchers</div>';return;}c.innerHTML=w.map(s=>'<div class="edith-section"><div class="head"><span>'+esc(s.title||s.name||s.id)+'</span><span style="color:var(--dim)">'+esc(s.status||'')+'</span></div><div class="body">'+esc(s.content||'')+'</div></div>').join('');}
+document.querySelectorAll('.tab').forEach(t=>{t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));$('v-'+t.dataset.v).classList.add('on');};});
+document.querySelectorAll('.rtab').forEach(t=>{t.onclick=()=>{document.querySelectorAll('.rtab').forEach(x=>x.classList.remove('on'));t.classList.add('on');$('r-logs').style.display=t.dataset.r==='logs'?'block':'none';$('r-edith').style.display=t.dataset.r==='edith'?'flex':'none';if(t.dataset.r==='edith')loadWatchers();};});
+$('cin').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();send();}};
+conn();
+</script>
+<script src="/static/torpedo_viz.js"></script>
+<script>
+function torpCrawl() {
+    const q = document.getElementById("tin").value.trim();
+    if (!q) return;
+    
+    const viz = initTorpedoViz();
+    viz.clear();
+    
+    // Start crawl via WebSocket
+    if (ws && ws.readyState === 1) {
+        ws.send(JSON.stringify({
+            type: "torpedo_crawl",
+            query: q,
+            jurisdiction: document.getElementById("tjur").value
+        }));
+    }
+}
+
+function clearTorpViz() {
+    if (torpedoViz) torpedoViz.clear();
+    document.getElementById("tres").innerHTML = "";
+}
+
+// Handle torpedo events from WebSocket
+const origOnMessage = ws ? ws.onmessage : null;
+function setupTorpedoWs() {
+    if (!ws) return;
+    const orig = ws.onmessage;
+    ws.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        if (data.type === "torpedo_node") {
+            const viz = initTorpedoViz();
+            viz.addNode(data.url, data.parent, data.extractions || []);
+        } else if (orig) {
+            orig.call(ws, e);
+        }
+    };
+}
+setTimeout(setupTorpedoWs, 1000);
+</script>
+</body>
+</html>

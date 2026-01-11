@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Corporella Claude - Company Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #00ff88;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #00ff88;
+            letter-spacing: -0.5px;
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff4444;
+        }
+
+        .status-dot.connected {
+            background: #00ff88;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Entity Tags - Green Button Capsules with White Letters */
+        .entity-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background: #00ff88;
+            border: none;
+            border-radius: 16px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 2px 4px;
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0, 255, 136, 0.3);
+        }
+
+        .entity-tag:hover {
+            background: #00cc70;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 255, 136, 0.4);
+        }
+
+        .entity-tag.person {
+            background: #00ff88;
+            color: #ffffff;
+        }
+
+        .entity-tag.person:hover {
+            background: #00cc70;
+        }
+
+        .entity-tag.company {
+            background: #00ff88;
+            color: #ffffff;
+        }
+
+        .entity-tag.company:hover {
+            background: #00cc70;
+        }
+
+        /* Wiki Links Section */
+        .wiki-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+            padding: 12px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        .wiki-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .wiki-link:hover {
+            background: #333;
+            border-color: #00ff88;
+            color: #00ff88;
+        }
+
+        .wiki-link svg {
+            width: 14px;
+            height: 14px;
+            margin-right: 5px;
+        }
+
+        /* Search Section */
+        .search-section {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 16px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #00ff88;
+            background: #0f0f0f;
+        }
+
+        .search-button {
+            padding: 12px 24px;
+            background: #00ff88;
+            border: none;
+            color: #000;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .search-button:hover {
+            background: #00cc70;
+            transform: translateY(-1px);
+        }
+
+        .search-button:disabled {
+            background: #333;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .result-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .result-card:hover {
+            border-color: #00ff88;
+            background: #1f1f1f;
+            transform: translateY(-2px);
+        }
+
+        .result-card.selected {
+            border-color: #00ff88;
+            background: #0a2a1a;
+        }
+
+        /* ALEPH Multiple Results Cards */
+        .aleph-result-card {
+            background: linear-gradient(135deg, #2a1a1a, #1a0a0a);
+            border-left: 3px solid #ff6600;
+        }
+
+        .aleph-dataset-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            padding: 3px 8px;
+            background: #ff6600;
+            color: #000;
+            font-size: 10px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .aleph-indicators {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .risk-indicator {
+            padding: 2px 6px;
+            font-size: 10px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .risk-indicator.sanctions {
+            background: #ff0000;
+            color: #fff;
+        }
+
+        .risk-indicator.pep {
+            background: #ff9900;
+            color: #000;
+        }
+
+        .risk-indicator.leak {
+            background: #9900ff;
+            color: #fff;
+        }
+
+        /* Profile Sections */
+        .profile-section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #00ff88;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Enrichment Buttons */
+        .enrichment-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .enrichment-button {
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            border: 1px solid #00ff88;
+            border-radius: 6px;
+            color: #00ff88;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .enrichment-button:hover {
+            background: #00ff88;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .enrichment-button.loading {
+            opacity: 0.5;
+            cursor: wait;
+        }
+
+        /* Fields Grid */
+        .fields-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .field-group {
+            position: relative;
+        }
+
+        .field-label {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .field-value {
+            width: 100%;
+            padding: 8px 12px;
+            background: #0f0f0f;
+            border: 1px solid #333;
+            color: #e0e0e0;
+            border-radius: 4px;
+            font-size: 13px;
+            resize: none;
+            font-family: inherit;
+        }
+
+        .field-value:focus {
+            border-color: #00ff88;
+            background: #1a1a1a;
+            outline: none;
+        }
+
+        .field-source {
+            font-size: 10px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* Source Badges */
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 10px;
+            border-radius: 3px;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+
+        .badge-oc { background: #4CAF50; color: white; }
+        .badge-al { background: #FF6B00; color: white; }
+        .badge-ed { background: #2196F3; color: white; }
+        .badge-oo { background: #9C27B0; color: white; }
+        .badge-li { background: #0077B5; color: white; }
+        .badge-ch { background: #00AA00; color: white; }
+
+        /* Officers/Shareholders Cards */
+        .officer-card {
+            background: #2a2a2a;
+            padding: 12px;
+            border-radius: 4px;
+            border-left: 3px solid #00ff88;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .officer-name {
+            font-weight: 600;
+            color: #00ff88;
+            margin-bottom: 5px;
+        }
+
+        .officer-position {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* Contradiction Alert */
+        .contradiction-alert {
+            background: #3a1a1a;
+            border: 1px solid #ff4444;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contradiction-alert h4 {
+            color: #ff4444;
+            margin-bottom: 10px;
+        }
+
+        /* Loading States */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            display: none;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #333;
+            border-top: 3px solid #00ff88;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Corporella Claude</h1>
+            <div class="connection-status">
+                <div id="statusDot" class="status-dot"></div>
+                <span id="statusText">Disconnected</span>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <input type="text" id="searchInput" class="search-input"
+                   placeholder="Enter company name (e.g., Apple Inc, Revolut Ltd)">
+            <button id="searchButton" class="search-button">Search All Sources</button>
+        </div>
+
+        <div id="wikiLinks" class="wiki-links" style="display: none;"></div>
+
+        <div id="resultsGrid" class="results-grid"></div>
+
+        <div id="profileContainer" style="display: none;">
+            <div class="profile-section">
+                <div class="section-title">
+                    <span id="companyName">Company Profile</span>
+                    <div id="enrichmentButtons" class="enrichment-buttons"></div>
+                </div>
+
+                <div id="contradictions"></div>
+
+                <div class="fields-grid">
+                    <div class="field-group">
+                        <div class="field-label">Registration Number</div>
+                        <input type="text" id="companyNumber" class="field-value">
+                        <div id="companyNumber-source" class="field-source"></div>
+                    </div>
+                    <div class="field-group">
+                        <div class="field-label">Jurisdiction</div>
+                        <input type="text" id="jurisdiction" class="field-value">
+                        <div id="jurisdiction-source" class="field-source"></div>
+                    </div>
+                    <div class="field-group">
+                        <div class="field-label">Incorporation Date</div>
+                        <input type="text" id="incorporationDate" class="field-value">
+                        <div id="incorporationDate-source" class="field-source"></div>
+                    </div>
+                    <div class="field-group">
+                        <div class="field-label">Status</div>
+                        <input type="text" id="status" class="field-value">
+                        <div id="status-source" class="field-source"></div>
+                    </div>
+                    <div class="field-group">
+                        <div class="field-label">Registered Address</div>
+                        <input type="text" id="registeredAddress" class="field-value">
+                        <div id="registeredAddress-source" class="field-source"></div>
+                    </div>
+                    <div class="field-group">
+                        <div class="field-label">Website</div>
+                        <input type="text" id="website" class="field-value">
+                        <div id="website-source" class="field-source"></div>
+                    </div>
+                    <div class="field-group">
+                        <div class="field-label">LEI Code</div>
+                        <input type="text" id="lei" class="field-value">
+                        <div id="lei-source" class="field-source"></div>
+                    </div>
+                    <div class="field-group">
+                        <div class="field-label">Tax Number</div>
+                        <input type="text" id="taxNumber" class="field-value">
+                        <div id="taxNumber-source" class="field-source"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <div class="section-title">
+                    <span>Officers & Directors</span>
+                    <button class="enrichment-button" onclick="addOfficer()">+ Add Officer</button>
+                </div>
+                <div id="officersList"></div>
+            </div>
+
+            <div class="profile-section">
+                <div class="section-title">
+                    <span>Ownership Structure</span>
+                    <button class="enrichment-button" onclick="addShareholder()">+ Add Shareholder</button>
+                </div>
+                <div class="field-group" style="margin-bottom: 15px;">
+                    <div class="field-label">Shareholders</div>
+                    <div id="shareholdersList"></div>
+                </div>
+                <div class="field-group">
+                    <div class="field-label">Beneficial Owners</div>
+                    <div id="beneficialOwnersList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // WebSocket Connection
+        let ws = null;
+        let currentEntity = null;
+
+        // Entity Recognition System
+        class EntityRecognizer {
+            detectAndMark(text, context) {
+                if (!text) return text;
+
+                // Detect if it's a person or company
+                const isCompany = /\b(Ltd|Limited|Inc|Corp|Corporation|GmbH|SA|SRL|LLC|LLP|PLC)\b/i.test(text);
+                const isPerson = !isCompany && /^[A-Z][a-z]+ [A-Z]/.test(text);
+
+                if (isPerson) {
+                    return `<span class="entity-tag person" onclick="searchEntity('${text.replace(/'/g, "\\'")}', 'person')">${text}</span>`;
+                } else if (isCompany) {
+                    return `<span class="entity-tag company" onclick="searchEntity('${text.replace(/'/g, "\\'")}', 'company')">${text}</span>`;
+                }
+
+                return text;
+            }
+        }
+
+        window.entityRecognizer = new EntityRecognizer();
+
+        function searchEntity(name, type) {
+            console.log(`Searching for ${type}: ${name}`);
+            document.getElementById('searchInput').value = name;
+            performSearch();
+        }
+
+        // Wiki Links and DDG Bangs Generator
+        function generateWikiLinks(jurisdiction) {
+            const wikiContainer = document.getElementById('wikiLinks');
+            wikiContainer.innerHTML = '';
+            wikiContainer.style.display = 'flex';
+
+            const links = [];
+            const bangs = [];
+            const companyName = document.getElementById('companyName').textContent;
+
+            // Jurisdiction-specific links and bangs
+            if (jurisdiction === 'GB' || jurisdiction === 'UK') {
+                links.push(
+                    { name: 'Companies House', url: 'https://find-and-update.company-information.service.gov.uk/' },
+                    { name: 'FCA Register', url: 'https://register.fca.org.uk/' },
+                    { name: 'UK Land Registry', url: 'https://www.gov.uk/government/organisations/land-registry' }
+                );
+                bangs.push(
+                    { name: '!ukcompanies', desc: 'UK Companies House' },
+                    { name: '!companieshouse', desc: 'Companies House Direct' },
+                    { name: '!fca', desc: 'FCA Register' },
+                    { name: '!uklandregistry', desc: 'Land Registry' }
+                );
+            } else if (jurisdiction === 'US' || jurisdiction.startsWith('us_')) {
+                links.push(
+                    { name: 'SEC EDGAR', url: 'https://www.sec.gov/edgar/searchedgar/companysearch.html' },
+                    { name: 'Delaware Registry', url: 'https://icis.corp.delaware.gov/ecorp/entitysearch/' }
+                );
+                bangs.push(
+                    { name: '!edgar', desc: 'SEC EDGAR' },
+                    { name: '!sec', desc: 'SEC Filings' },
+                    { name: '!bloomberg', desc: 'Bloomberg' },
+                    { name: '!yahoofinance', desc: 'Yahoo Finance' },
+                    { name: '!crunchbase', desc: 'Crunchbase' },
+                    { name: '!delaware', desc: 'Delaware Registry' }
+                );
+            } else if (jurisdiction === 'DE') {
+                links.push(
+                    { name: 'Handelsregister', url: 'https://www.handelsregister.de' },
+                    { name: 'Unternehmensregister', url: 'https://www.unternehmensregister.de' }
+                );
+                bangs.push(
+                    { name: '!handelsregister', desc: 'Handelsregister' },
+                    { name: '!unternehmensregister', desc: 'Unternehmensregister' },
+                    { name: '!firmenwissen', desc: 'Firmenwissen' },
+                    { name: '!northdata', desc: 'North Data' }
+                );
+            } else if (jurisdiction === 'FR') {
+                bangs.push(
+                    { name: '!infogreffe', desc: 'Infogreffe' },
+                    { name: '!societe', desc: 'Societe.com' },
+                    { name: '!bodacc', desc: 'BODACC' },
+                    { name: '!sirene', desc: 'INSEE Sirene' }
+                );
+            } else if (jurisdiction === 'NL') {
+                bangs.push(
+                    { name: '!kvk', desc: 'KvK Netherlands' },
+                    { name: '!openkvk', desc: 'OpenKVK' },
+                    { name: '!companyinfo', desc: 'Company.info NL' }
+                );
+            } else if (jurisdiction === 'HK') {
+                bangs.push(
+                    { name: '!hkcompanies', desc: 'HK Companies Registry' },
+                    { name: '!icris', desc: 'ICRIS Hong Kong' }
+                );
+            } else if (jurisdiction === 'SG') {
+                bangs.push(
+                    { name: '!acra', desc: 'ACRA Singapore' },
+                    { name: '!sgcompanies', desc: 'SG Companies' }
+                );
+            }
+
+            // Always add global sources
+            links.push(
+                { name: 'OpenCorporates', url: 'https://opencorporates.com' },
+                { name: 'OCCRP Aleph', url: 'https://aleph.occrp.org' },
+                { name: 'ICIJ Offshore', url: 'https://offshoreleaks.icij.org' }
+            );
+
+            // Global DDG bangs
+            bangs.push(
+                { name: '!opencorporates', desc: 'OpenCorporates' },
+                { name: '!aleph', desc: 'OCCRP Aleph' },
+                { name: '!offshore', desc: 'ICIJ Offshore' },
+                { name: '!linkedin', desc: 'LinkedIn' },
+                { name: '!glassdoor', desc: 'Glassdoor' },
+                { name: '!dnb', desc: 'Dun & Bradstreet' },
+                { name: '!gleif', desc: 'GLEIF (LEI)' }
+            );
+
+            // Create sections
+            const wikiSection = document.createElement('div');
+            wikiSection.style.cssText = 'display: flex; flex-wrap: wrap; gap: 8px; width: 100%;';
+
+            // Add Wiki Links header
+            const wikiHeader = document.createElement('div');
+            wikiHeader.style.cssText = 'width: 100%; font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 5px;';
+            wikiHeader.textContent = 'Direct Links:';
+            wikiSection.appendChild(wikiHeader);
+
+            // Add wiki links
+            links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.target = '_blank';
+                a.className = 'wiki-link';
+                a.innerHTML = link.name;
+                wikiSection.appendChild(a);
+            });
+
+            wikiContainer.appendChild(wikiSection);
+
+            // Add DDG Bangs section
+            if (bangs.length > 0) {
+                const bangsSection = document.createElement('div');
+                bangsSection.style.cssText = 'display: flex; flex-wrap: wrap; gap: 8px; width: 100%; margin-top: 12px;';
+
+                const bangsHeader = document.createElement('div');
+                bangsHeader.style.cssText = 'width: 100%; font-size: 11px; color: #888; text-transform: uppercase; margin-bottom: 5px;';
+                bangsHeader.textContent = 'DuckDuckGo Bangs:';
+                bangsSection.appendChild(bangsHeader);
+
+                bangs.forEach(bang => {
+                    const bangLink = document.createElement('a');
+                    const searchQuery = encodeURIComponent(`${bang.name} ${companyName}`);
+                    bangLink.href = `https://duckduckgo.com/?q=${searchQuery}`;
+                    bangLink.target = '_blank';
+                    bangLink.className = 'wiki-link';
+                    bangLink.style.background = 'linear-gradient(135deg, #2a1a1a, #1a0a0a)';
+                    bangLink.style.borderColor = '#ff6600';
+                    bangLink.title = bang.desc;
+                    bangLink.innerHTML = `${bang.name}`;
+                    bangsSection.appendChild(bangLink);
+                });
+
+                wikiContainer.appendChild(bangsSection);
+            }
+        }
+
+        // Connect WebSocket
+        function connectWebSocket() {
+            ws = new WebSocket('ws://localhost:8765');
+
+            ws.onopen = () => {
+                console.log('Connected to Corporella Claude');
+                document.getElementById('statusDot').classList.add('connected');
+                document.getElementById('statusText').textContent = 'Connected';
+            };
+
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                handleServerMessage(data);
+            };
+
+            ws.onclose = () => {
+                document.getElementById('statusDot').classList.remove('connected');
+                document.getElementById('statusText').textContent = 'Disconnected';
+                setTimeout(connectWebSocket, 3000);
+            };
+
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+            };
+        }
+
+        function handleServerMessage(data) {
+            if (data.type === 'search_result') {
+                displaySearchResults(data.results);
+                hideLoading();
+            } else if (data.type === 'enrichment_buttons') {
+                displayEnrichmentButtons(data.buttons);
+            } else if (data.type === 'enrichment_result') {
+                mergeEnrichmentResult(data.result);
+            } else if (data.type === 'progress') {
+                console.log('Progress:', data.message);
+            }
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query || !ws || ws.readyState !== WebSocket.OPEN) return;
+
+            showLoading();
+            clearResults();
+
+            ws.send(JSON.stringify({
+                type: 'search',
+                query: query
+            }));
+        }
+
+        function displaySearchResults(results) {
+            const grid = document.getElementById('resultsGrid');
+            grid.innerHTML = '';
+
+            results.forEach(result => {
+                if (result.source === 'aleph' && result.results) {
+                    // Display EACH Aleph result as separate card
+                    result.results.forEach((alephEntity, idx) => {
+                        const card = createAlephCard(alephEntity, idx);
+                        grid.appendChild(card);
+                    });
+                } else if (result.source === 'opencorporates' && result.companies) {
+                    result.companies.forEach(company => {
+                        const card = createCompanyCard(company, 'opencorporates');
+                        grid.appendChild(card);
+                    });
+                } else if (result.source === 'edgar' && result.ok) {
+                    const card = createEdgarCard(result);
+                    grid.appendChild(card);
+                }
+            });
+
+            // Show profile container if results
+            if (grid.children.length > 0) {
+                document.getElementById('profileContainer').style.display = 'block';
+                // Auto-select first result
+                if (grid.children[0]) {
+                    grid.children[0].click();
+                }
+            }
+        }
+
+        function createAlephCard(entity, index) {
+            const card = document.createElement('div');
+            card.className = 'result-card aleph-result-card';
+
+            // Get dataset info
+            const dataset = entity._source_dataset || entity.collection_id || 'Unknown Source';
+            const datasetName = typeof dataset === 'object' ? dataset.name : dataset;
+
+            // Check for risk indicators
+            const risks = [];
+            if (entity.properties?.sanctions?.length) risks.push('SANCTIONS');
+            if (entity.properties?.politicalExposure?.length) risks.push('PEP');
+            if (datasetName.toLowerCase().includes('leak')) risks.push('LEAK');
+
+            card.innerHTML = `
+                <div class="aleph-dataset-badge">${datasetName}</div>
+                <div style="font-weight: 600; margin-bottom: 5px;">
+                    ${entity.caption || entity.name || 'Unknown Entity'}
+                </div>
+                <div style="font-size: 11px; color: #888;">
+                    ${entity.schema || 'Entity'} • ${entity.countries?.[0] || 'N/A'}
+                </div>
+                ${risks.length > 0 ? `
+                    <div class="aleph-indicators">
+                        ${risks.map(r => `<span class="risk-indicator ${r.toLowerCase()}">${r}</span>`).join('')}
+                    </div>
+                ` : ''}
+                <div style="font-size: 10px; color: #666; margin-top: 5px;">
+                    Result ${index + 1} from Aleph
+                </div>
+            `;
+
+            card.onclick = () => populateProfile(entity, 'aleph');
+            return card;
+        }
+
+        function createCompanyCard(company, source) {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+
+            card.innerHTML = `
+                <div style="font-weight: 600; margin-bottom: 5px;">${company.name}</div>
+                <div style="font-size: 11px; color: #888;">
+                    ${company.jurisdiction_code} • ${company.company_number || 'N/A'}
+                </div>
+                <div style="font-size: 10px; color: #666; margin-top: 5px;">
+                    ${company.company_status || 'Status unknown'}
+                </div>
+                <span class="badge badge-oc">[OC]</span>
+            `;
+
+            card.onclick = () => populateProfile(company, source);
+            return card;
+        }
+
+        function createEdgarCard(data) {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+
+            card.innerHTML = `
+                <div style="font-weight: 600; margin-bottom: 5px;">${data.company_name}</div>
+                <div style="font-size: 11px; color: #888;">
+                    CIK: ${data.cik} • ${data.state_of_incorporation || 'N/A'}
+                </div>
+                <div style="font-size: 10px; color: #666; margin-top: 5px;">
+                    ${data.filings?.length || 0} filings available
+                </div>
+                <span class="badge badge-ed">[ED]</span>
+            `;
+
+            card.onclick = () => populateProfile(data, 'edgar');
+            return card;
+        }
+
+        function populateProfile(data, source) {
+            currentEntity = { ...data, source };
+
+            // Clear selected state from all cards
+            document.querySelectorAll('.result-card').forEach(c => c.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+
+            // Set company name
+            document.getElementById('companyName').textContent =
+                data.name || data.caption || data.company_name || 'Unknown Company';
+
+            // Populate fields with source tracking
+            if (source === 'opencorporates') {
+                setField('companyNumber', data.company_number, 'OpenCorporates');
+                setField('jurisdiction', data.jurisdiction_code, 'OpenCorporates');
+                setField('incorporationDate', data.incorporation_date, 'OpenCorporates');
+                setField('status', data.company_status, 'OpenCorporates');
+                setField('registeredAddress', data.registered_address_in_full, 'OpenCorporates');
+            } else if (source === 'aleph') {
+                const props = data.properties || {};
+                setField('companyNumber', props.registrationNumber?.[0], 'Aleph');
+                setField('jurisdiction', data.countries?.[0], 'Aleph');
+                setField('incorporationDate', props.incorporationDate?.[0], 'Aleph');
+                setField('status', props.status?.[0], 'Aleph');
+                setField('registeredAddress', props.address?.[0], 'Aleph');
+                setField('website', props.website?.[0], 'Aleph');
+                setField('lei', props.leiCode?.[0], 'Aleph');
+            } else if (source === 'edgar') {
+                setField('companyNumber', data.cik, 'SEC EDGAR');
+                setField('jurisdiction', data.state_of_incorporation, 'SEC EDGAR');
+                setField('taxNumber', data.irs_number, 'SEC EDGAR');
+                setField('status', 'Active (SEC Filer)', 'SEC EDGAR');
+            }
+
+            // Generate wiki links based on jurisdiction
+            const jurisdiction = data.jurisdiction_code || data.countries?.[0] || 'US';
+            generateWikiLinks(jurisdiction);
+
+            // Request enrichment buttons
+            requestEnrichmentButtons();
+
+            // Display officers if available
+            if (data.officers) {
+                displayOfficers(data.officers);
+            }
+        }
+
+        function setField(fieldId, value, source) {
+            const field = document.getElementById(fieldId);
+            if (field && value) {
+                field.value = value;
+            }
+
+            // Set source label if provided
+            if (source) {
+                const sourceEl = document.getElementById(`${fieldId}-source`);
+                if (sourceEl) {
+                    sourceEl.textContent = `Source: ${source}`;
+                }
+            }
+        }
+
+        function addOfficer() {
+            const name = prompt('Enter officer name:');
+            if (!name) return;
+            const position = prompt('Enter position/role:');
+            if (!position) return;
+
+            displayOfficer({
+                name: name,
+                position: position,
+                source: 'manual'
+            });
+        }
+
+        function displayOfficer(officer) {
+            const list = document.getElementById('officersList');
+            const card = document.createElement('div');
+            card.className = 'officer-card';
+
+            const name = window.entityRecognizer.detectAndMark(
+                officer.name || officer.officer_name,
+                'officer'
+            );
+
+            card.innerHTML = `
+                <div class="officer-name">${name}</div>
+                <div class="officer-position">
+                    ${officer.position || officer.officer_role || 'Director'}
+                </div>
+                ${officer.source ? `<div class="field-source">Source: ${officer.source}</div>` : ''}
+            `;
+            list.appendChild(card);
+        }
+
+        function addShareholder() {
+            const name = prompt('Enter shareholder name:');
+            if (!name) return;
+            const details = prompt('Enter details (optional):');
+
+            displayShareholder({
+                name: name,
+                details: details || '',
+                source: 'manual'
+            });
+        }
+
+        function displayShareholder(shareholder) {
+            const list = document.getElementById('shareholdersList');
+            const card = document.createElement('div');
+            card.className = 'officer-card';
+
+            const name = window.entityRecognizer.detectAndMark(
+                shareholder.name,
+                'shareholder'
+            );
+
+            card.innerHTML = `
+                <div class="officer-name">${name}</div>
+                <div class="officer-position">${shareholder.details || 'Shareholder'}</div>
+                ${shareholder.source ? `<div class="field-source">Source: ${shareholder.source}</div>` : ''}
+            `;
+            list.appendChild(card);
+        }
+
+        function displayOfficers(officers) {
+            const list = document.getElementById('officersList');
+            list.innerHTML = officers.map(officer => {
+                const name = window.entityRecognizer.detectAndMark(
+                    officer.name || officer.officer_name,
+                    'officer'
+                );
+
+                return `
+                    <div class="officer-card">
+                        <div class="officer-name">${name}</div>
+                        <div class="officer-position">
+                            ${officer.position || officer.officer_role || 'Director'}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function requestEnrichmentButtons() {
+            if (!ws || ws.readyState !== WebSocket.OPEN || !currentEntity) return;
+
+            ws.send(JSON.stringify({
+                type: 'get_enrichment_buttons',
+                entity: currentEntity
+            }));
+        }
+
+        function displayEnrichmentButtons(buttons) {
+            const container = document.getElementById('enrichmentButtons');
+            container.innerHTML = buttons.map((btn, idx) => `
+                <button class="enrichment-button" onclick="executeEnrichment(${idx})">
+                    ${btn.label}
+                </button>
+            `).join('');
+
+            // Store buttons for execution
+            window.enrichmentActions = buttons;
+        }
+
+        function executeEnrichment(index) {
+            const action = window.enrichmentActions[index];
+            if (!action || !ws || ws.readyState !== WebSocket.OPEN) return;
+
+            // Mark button as loading
+            event.target.classList.add('loading');
+
+            ws.send(JSON.stringify({
+                type: 'execute_enrichment',
+                action: action,
+                entity: currentEntity
+            }));
+        }
+
+        function mergeEnrichmentResult(result) {
+            // Merge new data into current entity
+            console.log('Enrichment result:', result);
+            // Update display with new data
+            if (result.officers) {
+                displayOfficers(result.officers);
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        function clearResults() {
+            document.getElementById('resultsGrid').innerHTML = '';
+            document.getElementById('profileContainer').style.display = 'none';
+            document.getElementById('wikiLinks').style.display = 'none';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            connectWebSocket();
+
+            document.getElementById('searchButton').addEventListener('click', performSearch);
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+        });
+    </script>
+</body>
+</html>

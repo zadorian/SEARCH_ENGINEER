@@ -1,0 +1,124 @@
+{
+  "hu_dd": [],
+  "person_hu": [
+    {
+      "name": "k-monitor.hu",
+      "url": "https://adatbazis.k-monitor.hu/adatbazis/cimkek/{0}"
+    },
+    {
+      "name": "mnb.hu",
+      "url": "https://intezmenykereso.mnb.hu/Details/Index?LId={0}&EntityType=Person&expandAccordions=IntezmenyAlapadatok"
+    },
+    {
+      "name": "mnb.hu",
+      "url": "https://intezmenykereso.mnb.hu/en/Details/Index?LId={0}&EntityType=Person&expandAccordions=IntezmenyAlapadatok"
+    },
+    {
+      "name": "k-monitor.hu",
+      "url": "https://adatbazis.k-monitor.hu/adatbazis/cimkek/{0}"
+    }
+  ],
+  "cr_hu": [
+    {
+      "name": "e-cegjegyzek.hu",
+      "url": "https://www.e-cegjegyzek.hu/?cegadatlap/{0}"
+    },
+    {
+      "name": "opten.hu",
+      "url": "https://webshop.opten.hu/product/search/{0}/{1}"
+    },
+    { "name": "opten.hu", "url": "https://webshop.opten.hu/{0}{1}}.html" },
+    {
+      "name": "k-monitor.hu",
+      "url": "https://adatbazis.k-monitor.hu/adatbazis/cimkek/{0}"
+    },
+    {
+      "name": "kozbeszerzes.hu",
+      "url": "https://www.kozbeszerzes.hu/adatbazis/megtekint/hirdetmeny/ehr-{0}/"
+    },
+    {
+      "name": "ekr.gov.hu",
+      "url": "https://ekr.gov.hu/portal/ajanlatkero/ajanlatkero-nyilvantartas/{0}/reszletek"
+    }
+  ],
+  "lit_hu": [
+    {
+      "name": "ekr.gov.hu",
+      "url": "https://ekr.gov.hu/nyilvantartasok/hu/szerzodesszegesek/adatok/{0}"
+    },
+    {
+      "name": "hunconcourt.hu",
+      "url": "https://hunconcourt.hu/decisions-search/results/?hatarozat_sorszam=&hatarozat_evszam={0}"
+    },
+    {
+      "name": "birosag.hu",
+      "url": "https://birosag.hu/kereses?kulcsszo={0}&bekuldes_min=&bekuldes_max="
+    },
+    {
+      "name": "birosag.hu",
+      "url": "https://birosag.hu/kereses?kulcsszo={0}&bekuldes_min={1}&bekuldes_max={2}"
+    },
+    { "name": "njt.hu", "url": "https://njt.hu/translations/-:-:{0}:-/1/10" },
+    { "name": "njt.hu", "url": "https://njt.hu/translations/{0}:-:-:-/1/10" },
+    { "name": "njt.hu", "url": "https://njt.hu/translations/{0}:-:{1}:-/1/10" },
+    { "name": "nav.gov.hu", "url": "https://nav.gov.hu/kereso?query={0}" },
+    {
+      "name": "alkotmanybirosag.hu",
+      "url": "https://alkotmanybirosag.hu/kereses/?keywords={0}"
+    }
+  ],
+  "reg_hu": [
+    {
+      "name": "ogyei.gov.hu",
+      "url": "https://nor.ogyei.gov.hu/?s=nev&filter[distributor_company]={0}"
+    },
+    {
+      "name": "ogyei.gov.hu",
+      "url": "https://nor.ogyei.gov.hu/?s=nev&filter[tool_search_term]=&filter[tool_type]=&q={0}"
+    },
+    { "name": "nav.gov.hu", "url": "https://nav.gov.hu/kereso?query={0}" },
+    {
+      "name": "nebih.gov.hu",
+      "url": "https://portal.nebih.gov.hu/l/termekvisszahivas/{0}"
+    },
+    {
+      "name": "mnb.hu",
+      "url": "https://intezmenykereso.mnb.hu/en/Details/Index?LId={0}&EntityType=Institute&expandAccordions=IntezmenyAlapadatok"
+    },
+    {
+      "name": "posta.hu",
+      "url": "https://www.posta.hu/szolgaltatasok/szolgaltataskereso?selectedServices=1002&searchText={0}&searchField=v%C3%A1ros"
+    },
+    {
+      "name": "mekon.hu",
+      "url": "https://eugyintezes.mekon.hu/index.php?u=nevjegyzek&m=tag&f=adatlap&id={0}"
+    },
+    {
+      "name": "mmk.hu",
+      "url": "https://www.mmk.hu/kereses/tagok?nev={}+&kamarai_szam=&kamarai_szam2=&tagozat=&megye=&iranyito_szam=&telepules=&szakterulet2=&szakterulet3=0&szakterulet_22=&szakmaiCim=&tanusitvany=&submit=Keres%C3%A9s"
+    },
+    { "name": "mmk.hu", "url": "https://www.mmk.hu/nevjegyzek?id={0}" },
+    {
+      "name": "mnl.gov.hu",
+      "url": "https://mnl.gov.hu/kereso?kulcsszo={0}&og_group_ref={1}&type%5B%5D=blog&type%5B%5D=event&type%5B%5D=faq&type%5B%5D=forum&type%5B%5D=article&type%5B%5D=page"
+    }
+  ],
+  "asset_hu": [
+    {
+      "name": "k-monitor.hu",
+      "url": "https://adatbazis.k-monitor.hu/adatbazis/cimkek/{0}"
+    },
+    {
+      "name": "hajoregiszter.hu",
+      "url": "https://www.hajoregiszter.hu/tarsasag/{0}/{1}"
+    },
+    {
+      "name": "takarnet.hu",
+      "url": "https://www.takarnet.hu/pls/tknet/hivatalok_p.hivatal_adat?pid={0}"
+    },
+    {
+      "name": "k-monitor.hu",
+      "url": "https://adatbazis.k-monitor.hu/adatbazis/cimkek/{0}"
+    }
+  ]
+}

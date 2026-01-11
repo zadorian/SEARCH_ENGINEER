@@ -1,0 +1,2644 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Radiant Disambiguator - Interactive Knowledge Graph</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+      /* ───────────────────────────────── GLOBAL ───────────────────────────────── */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #0a0a0a;
+        color: #e0e0e0;
+        overflow: hidden;
+      }
+
+      /* ───────────────────────────────── HEADER ───────────────────────────────── */
+      .header {
+        background: #1a1a1a;
+        border-bottom: 1px solid #333;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .header h1 {
+        font-size: 20px;
+        font-weight: 600;
+        background: linear-gradient(135deg, #4a9eff, #00d4ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .controls button {
+        padding: 8px 16px;
+        background: #2a2a2a;
+        border: 1px solid #444;
+        border-radius: 20px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+      .controls button:hover {
+        background: #333;
+        border-color: #666;
+        transform: translateY(-1px);
+      }
+      .controls input {
+        padding: 8px 16px;
+        background: #2a2a2a;
+        border: 1px solid #444;
+        border-radius: 20px;
+        color: #fff;
+        font-size: 13px;
+        width: 200px;
+      }
+      .controls input:focus {
+        outline: none;
+        border-color: #4a9eff;
+      }
+
+      /* ───────────────────────────────── CONTAINER ───────────────────────────────── */
+      .container {
+        display: flex;
+        height: calc(100vh - 60px);
+      }
+
+      /* ───────────────────────────────── SIDEBAR ───────────────────────────────── */
+      .sidebar {
+        width: 300px;
+        background: #151515;
+        border-right: 1px solid #333;
+        overflow-y: auto;
+        padding: 20px;
+      }
+      .sidebar h3 {
+        font-size: 14px;
+        margin-bottom: 15px;
+        color: #4a9eff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .entity-list {
+        list-style: none;
+      }
+      .entity-item {
+        padding: 10px;
+        margin-bottom: 8px;
+        background: #1a1a1a;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .entity-item:hover {
+        background: #222;
+        transform: translateX(5px);
+      }
+      .entity-item.selected {
+        background: #2a2a2a;
+        border: 1px solid #4a9eff;
+      }
+      .entity-type {
+        font-size: 10px;
+        color: #888;
+        text-transform: uppercase;
+        background: #222;
+        padding: 2px 6px;
+        border-radius: 10px;
+      }
+      .source-item {
+        padding: 8px;
+        margin-bottom: 5px;
+        background: #1a1a1a;
+        border-radius: 6px;
+        font-size: 12px;
+        color: #aaa;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .source-item:hover {
+        background: #222;
+        color: #fff;
+      }
+      .source-item.active {
+        background: #2a2a2a;
+        color: #4a9eff;
+        border: 1px solid #4a9eff;
+      }
+
+      /* ───────────────────────────────── GRAPH ────────────────────────────────── */
+      .graph-container {
+        flex: 1;
+        position: relative;
+        background: #0f0f0f;
+      }
+      #graph {
+        width: 100%;
+        height: 100%;
+      }
+
+      /* ───────────────────────────────── NODES ────────────────────────────────── */
+      .node {
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .node.entity circle {
+        stroke-width: 3px;
+        filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.8));
+      }
+      .node.slot circle {
+        stroke-width: 2px;
+        transition: all 0.3s;
+      }
+      .node.slot.expandable circle {
+        stroke-dasharray: 4, 4;
+        cursor: pointer;
+        stroke-width: 2px;
+      }
+      .node.slot.expanded circle {
+        stroke-width: 3px;
+        fill-opacity: 0;
+      }
+      .node.slot.expanded.zoomed-parent text {
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        fill: #fff !important;
+        text-anchor: middle !important;
+      }
+      .node.slot.filled circle {
+        stroke-dasharray: none !important;
+      }
+      .node.slot.partial circle {
+        stroke-dasharray: 4, 4 !important;
+        stroke-width: 3px;
+        fill-opacity: 0 !important;
+      }
+      .node.source circle {
+        stroke-width: 2px;
+        fill: #1a1a1a;
+        stroke: #4a9eff;
+        fill-opacity: 0.8;
+      }
+      .node.fact circle {
+        stroke-width: 2px;
+        fill-opacity: 0.8;
+      }
+      .node.address path {
+        stroke-width: 2px;
+        fill-opacity: 0.8;
+      }
+      .node text {
+        font-size: 11px;
+        pointer-events: none;
+        user-select: none;
+        fill: #ccc;
+        text-shadow:
+          0 0 3px #000,
+          0 0 6px #000,
+          0 0 9px #000;
+      }
+      .node.slot {
+        cursor: pointer;
+      }
+      .node.slot.expandable {
+        cursor: pointer;
+      }
+      .node.slot circle {
+        pointer-events: all;
+        cursor: pointer;
+        vector-effect: non-scaling-stroke;
+      }
+      .node.entity text {
+        font-weight: 600;
+        font-size: 14px;
+        fill: #fff;
+      }
+      .node.slot text {
+        font-size: 10px;
+        fill: #aaa;
+      }
+      .node.slot.expandable text {
+        fill: #ccc;
+        font-weight: 500;
+      }
+      .node.slot.expanded text {
+        fill: #fff;
+        font-weight: 600;
+      }
+      .node.slot.filled circle {
+        stroke-dasharray: none !important;
+      }
+      .node.source text {
+        font-size: 9px;
+        fill: #4a9eff;
+      }
+
+      /* ───────────────────────────────── LINKS ────────────────────────────────── */
+      .link {
+        stroke: #444;
+        stroke-opacity: 0.6;
+        transition: all 0.3s;
+        fill: none;
+      }
+      .link:hover {
+        stroke-opacity: 1;
+        stroke-width: 3px;
+      }
+      .link.slot-link {
+        stroke: #555;
+        stroke-opacity: 0.3;
+        stroke-width: 1px;
+      }
+      .link.entity-slot {
+        stroke: #666;
+        stroke-opacity: 0.5;
+      }
+      .link.slot-entity {
+        stroke: #fff;
+        stroke-opacity: 0.8;
+        stroke-width: 2px;
+      }
+      .link.entity-entity {
+        stroke: #fff;
+        stroke-opacity: 0.8;
+        stroke-width: 3px;
+        cursor: pointer;
+      }
+      .link.entity-entity.unverified {
+        stroke-dasharray: 5, 5 !important;
+        stroke-width: 1.5px !important;
+        stroke-opacity: 0.5 !important;
+      }
+      .link.source-link {
+        stroke: #4a9eff;
+        stroke-opacity: 0.3;
+        stroke-dasharray: 3, 3;
+      }
+      .link.source-entity {
+        stroke: #4a9eff;
+        stroke-opacity: 0.5;
+        stroke-dasharray: none;
+        stroke-width: 2px;
+      }
+      .link.verified {
+        stroke-opacity: 1;
+        stroke-width: 3px;
+      }
+      .link.highlighted {
+        stroke: #fff;
+        stroke-opacity: 1;
+        stroke-width: 4px;
+      }
+      .link.slot-entity {
+        stroke: #999;
+        stroke-width: 2px;
+        opacity: 0.8;
+      }
+      .link.slot-entity.unverified {
+        stroke-dasharray: 5, 5;
+      }
+      .link-label {
+        font-size: 10px;
+        fill: #888;
+        text-anchor: middle;
+        pointer-events: none;
+      }
+
+      /* ───────────────────────────────── TOOLTIP ──────────────────────────────── */
+      .tooltip {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.95);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 12px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s;
+        z-index: 1000;
+        max-width: 300px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      }
+      .tooltip.show {
+        opacity: 1;
+      }
+      .tooltip-title {
+        font-weight: 600;
+        color: #4a9eff;
+        margin-bottom: 8px;
+      }
+      .tooltip-content {
+        margin: 4px 0;
+        color: #aaa;
+      }
+      .tooltip-source {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid #333;
+        font-size: 11px;
+        color: #888;
+      }
+      .tooltip-hint {
+        margin-top: 8px;
+        font-size: 10px;
+        color: #4a9eff;
+        font-style: italic;
+      }
+
+      /* ───────────────────────────────── LEGEND ───────────────────────────────── */
+      .legend {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(26, 26, 26, 0.95);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 15px;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+        font-size: 12px;
+      }
+      .legend-color {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+      }
+      .legend-slot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px dashed #666;
+      }
+
+      /* ───────────────────────────────── ANIMATIONS ───────────────────────────────── */
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .node.slot.expandable:hover circle {
+        animation: pulse 1s infinite;
+      }
+
+      /* ───────────────────────────────── ZOOM INDICATOR ───────────────────────────────── */
+      .zoom-indicator {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: rgba(26, 26, 26, 0.95);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 12px;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Radiant Disambiguator</h1>
+      <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button onclick="resetView()">Reset View</button>
+        <label style="margin: 0 10px">
+          <input
+            type="checkbox"
+            id="showSourcesCheckbox"
+            checked
+            onchange="toggleSources()"
+          />
+          Show Sources
+        </label>
+        <button onclick="collapseAll()">Collapse All</button>
+        <button onclick="exportGraph()">Export</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="sidebar">
+        <h3>Entities</h3>
+        <ul class="entity-list" id="entityList"></ul>
+
+        <h3 style="margin-top: 30px">Sources</h3>
+        <div id="sourceList"></div>
+      </div>
+
+      <div class="graph-container">
+        <svg id="graph">
+          <defs>
+            <marker
+              id="arrowhead"
+              markerWidth="10"
+              markerHeight="7"
+              refX="9"
+              refY="3.5"
+              orient="auto"
+            >
+              <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+            </marker>
+          </defs>
+        </svg>
+
+        <div class="zoom-indicator" id="zoomIndicator">Zoom: 100%</div>
+
+        <div
+          style="
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            background: rgba(26, 26, 26, 0.95);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 11px;
+            color: #4a9eff;
+            max-width: 250px;
+          "
+        >
+          💡 Click on dotted slots to expand them and see sub-levels. Try
+          clicking "Basic Info" or "Location" on ACME Ltd!
+        </div>
+
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-color" style="background: #4a9eff"></div>
+            <span>Entity</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-slot"></div>
+            <span>Empty Slot</span>
+          </div>
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background: none; border: 2px dashed #888"
+            ></div>
+            <span>Expandable Slot</span>
+          </div>
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="
+                background: rgba(74, 158, 255, 0.3);
+                border: 2px solid #4a9eff;
+                border-radius: 50%;
+              "
+            ></div>
+            <span>Partially Filled</span>
+          </div>
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background: #4a9eff; opacity: 0.8"
+            ></div>
+            <span>Fact/Filled Value</span>
+          </div>
+          <div class="legend-item">
+            <svg width="20" height="20" viewBox="0 0 20 20">
+              <rect
+                width="20"
+                height="12"
+                x="0"
+                y="4"
+                fill="#1a1a1a"
+                stroke="#4a9eff"
+                rx="2"
+              />
+            </svg>
+            <span>Source Document</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+      // ─────────────────────────────── GLOBAL VARIABLES ─────────────────────────────────
+      let showSources = true;
+      let expandedSlots = new Set();
+      let currentZoomLevel = 1;
+      let zoomedParentSlot = null;
+
+      // Helper function to get schema at a specific path
+      function getSchemaAtPath(schema, pathParts) {
+        let current = schema;
+        for (const part of pathParts) {
+          if (!current || typeof current !== "object") return null;
+          current = current[part];
+        }
+        return current;
+      }
+
+      // Auto-expand parent slots that contain entity connections
+      function autoExpandFilledPaths() {
+        expandedSlots.clear();
+
+        // Find all entity-to-entity connections through facts
+        knowledgeGraph.facts.forEach(fact => {
+          const entity = knowledgeGraph.entities.find(
+            e => e.id === fact.entityId
+          );
+          if (!entity) return;
+
+          const pathParts = fact.path.split(".");
+          const schema = getSchemaAtPath(
+            SLOT_HIERARCHY[entity.type],
+            pathParts
+          );
+
+          // If this fact points to another entity, expand parent slots (but not the final slot!)
+          if (
+            schema &&
+            schema.entityType &&
+            knowledgeGraph.entities.find(e => e.id === fact.value)
+          ) {
+            let currentPath = fact.entityId + "-slot";
+
+            // Expand each PARENT slot in the path (not the final one which is the connection)
+            pathParts.forEach((part, index) => {
+              if (index < pathParts.length - 1) {
+                // Don't expand the final slot - it's a connection!
+                currentPath += "-" + part;
+                expandedSlots.add(currentPath);
+              }
+            });
+          }
+        });
+      }
+
+      // ─────────────────────────────── SLOT HIERARCHY ─────────────────────────────────
+      const SLOT_HIERARCHY = {
+        COMPANY: {
+          "Basic Info": {
+            Type: null,
+            Founded: null,
+            Industry: null,
+          },
+          Ownership: {
+            "Parent Company": { entityType: "COMPANY" },
+            Subsidiaries: { entityType: "COMPANY", multiple: true },
+            Shareholders: { entityType: "PERSON", multiple: true },
+          },
+          "Related Companies": {
+            Partners: { entityType: "COMPANY", multiple: true },
+            Competitors: { entityType: "COMPANY", multiple: true },
+            Clients: { entityType: "COMPANY", multiple: true },
+          },
+          Location: {
+            Headquarters: { type: "address" },
+            Offices: { type: "address", multiple: true },
+            Country: null,
+            Region: null,
+          },
+          "Contact Details": {
+            "Main Phone": null,
+            Email: null,
+            Website: null,
+            Support: null,
+          },
+          "Related Professionals": {
+            Executives: {
+              CEO: { entityType: "PERSON" },
+              CFO: { entityType: "PERSON" },
+              CTO: { entityType: "PERSON" },
+              COO: { entityType: "PERSON" },
+              CMO: { entityType: "PERSON" },
+            },
+            "Department Heads": {
+              "Head of Sales": { entityType: "PERSON" },
+              "Head of Marketing": { entityType: "PERSON" },
+              "Head of Engineering": { entityType: "PERSON" },
+              "Head of HR": { entityType: "PERSON" },
+              "Head of Legal": { entityType: "PERSON" },
+            },
+            "Board Members": { entityType: "PERSON", multiple: true },
+            Advisors: { entityType: "PERSON", multiple: true },
+          },
+          Financial: {
+            Revenue: null,
+            Valuation: null,
+            Funding: {
+              "Total Raised": null,
+              "Last Round": null,
+              Investors: { entityType: "COMPANY", multiple: true },
+            },
+          },
+        },
+        PERSON: {
+          Personal: {
+            "Full Name": null,
+            "Date of Birth": null,
+            Nationality: null,
+          },
+          Professional: {
+            "Current Role": null,
+            Department: null,
+            "Start Date": null,
+            "Previous Roles": { multiple: true },
+          },
+          Contact: {
+            "Work Email": null,
+            "Personal Email": null,
+            Phone: null,
+            Address: { type: "address" },
+          },
+          Education: {
+            Degrees: { multiple: true },
+            Universities: { entityType: "ORGANIZATION", multiple: true },
+            Certifications: { multiple: true },
+          },
+          Affiliations: {
+            "Current Employer": { entityType: "COMPANY" },
+            "Previous Employers": { entityType: "COMPANY", multiple: true },
+            "Board Positions": { entityType: "COMPANY", multiple: true },
+            "Advisory Roles": { entityType: "COMPANY", multiple: true },
+          },
+        },
+      };
+
+      // ─────────────────────────────── DATA ─────────────────────────────────
+      let knowledgeGraph = {
+        entities: [
+          {
+            id: "acme-ltd",
+            name: "ACME Ltd",
+            type: "COMPANY",
+            color: "#00a67e",
+            x: 800,
+            y: 800,
+          },
+          {
+            id: "acme-corp",
+            name: "ACME Corp (CA)",
+            type: "COMPANY",
+            color: "#f39c12",
+            x: 1800,
+            y: 600,
+          },
+          {
+            id: "john-smith",
+            name: "John Smith",
+            type: "PERSON",
+            color: "#3498db",
+            x: 200,
+            y: 1600,
+          },
+          {
+            id: "hans-muller",
+            name: "Hans Müller",
+            type: "PERSON",
+            color: "#e74c3c",
+            x: 2400,
+            y: 1600,
+          },
+          {
+            id: "sarah-johnson",
+            name: "Sarah Johnson",
+            type: "PERSON",
+            color: "#9b59b6",
+            x: 1600,
+            y: 200,
+          },
+          {
+            id: "techventures",
+            name: "TechVentures Inc",
+            type: "COMPANY",
+            color: "#1abc9c",
+            x: 1000,
+            y: 1800,
+          },
+          {
+            id: "globalbank",
+            name: "Global Bank Corp",
+            type: "COMPANY",
+            color: "#34495e",
+            x: 2800,
+            y: 400,
+          },
+          {
+            id: "jane-doe",
+            name: "Jane Doe",
+            type: "PERSON",
+            color: "#e67e22",
+            x: 1200,
+            y: 2400,
+          },
+          {
+            id: "mike-wilson",
+            name: "Mike Wilson",
+            type: "PERSON",
+            color: "#8e44ad",
+            x: 400,
+            y: 2800,
+          },
+          {
+            id: "lisa-chen",
+            name: "Lisa Chen",
+            type: "PERSON",
+            color: "#8e44ad",
+            x: 3200,
+            y: 2400,
+          },
+          {
+            id: "techcorp",
+            name: "TechCorp Solutions",
+            type: "COMPANY",
+            color: "#c0392b",
+            x: 200,
+            y: 400,
+          },
+          {
+            id: "innovate-llc",
+            name: "Innovate LLC",
+            type: "COMPANY",
+            color: "#27ae60",
+            x: 2400,
+            y: 3200,
+          },
+        ],
+        facts: [
+          // ACME Ltd facts
+          {
+            entityId: "acme-ltd",
+            path: "Basic Info.Type",
+            value: "Technology",
+            source: "registry-2023.pdf",
+          },
+          {
+            entityId: "acme-ltd",
+            path: "Basic Info.Founded",
+            value: "2010",
+            source: "registry-2023.pdf",
+          },
+          {
+            entityId: "acme-ltd",
+            path: "Basic Info.Industry",
+            value: "Software Development",
+            source: "registry-2023.pdf",
+          },
+          {
+            entityId: "acme-ltd",
+            path: "Related Professionals.Executives.CEO",
+            value: "john-smith",
+            source: "leadership.docx",
+          },
+          {
+            entityId: "acme-ltd",
+            path: "Related Professionals.Executives.CTO",
+            value: "sarah-johnson",
+            source: "org-chart.pdf",
+          },
+          {
+            entityId: "acme-ltd",
+            path: "Related Professionals.Department Heads.Head of Sales",
+            value: "sarah-johnson",
+            source: "org-chart.pdf",
+          },
+          {
+            entityId: "acme-ltd",
+            path: "Location.Headquarters",
+            value: "123 Tech Park, San Francisco, CA",
+            source: "registry-2023.pdf",
+          },
+          {
+            entityId: "acme-ltd",
+            path: "Location.Country",
+            value: "USA",
+            source: "registry-2023.pdf",
+          },
+          {
+            entityId: "acme-ltd",
+            path: "Financial.Revenue",
+            value: "$50M",
+            source: "annual-report.pdf",
+          },
+          {
+            entityId: "acme-ltd",
+            path: "Related Companies.Partners",
+            value: "techventures",
+            source: "partnerships.docx",
+          },
+          {
+            entityId: "acme-ltd",
+            path: "Contact Details.Website",
+            value: "www.acme-ltd.com",
+            source: "registry-2023.pdf",
+          },
+          {
+            entityId: "acme-ltd",
+            path: "Contact Details.Email",
+            value: "info@acme-ltd.com",
+            source: "registry-2023.pdf",
+          },
+
+          // ACME Corp facts
+          {
+            entityId: "acme-corp",
+            path: "Basic Info.Type",
+            value: "Manufacturing",
+            source: "canada-dir.pdf",
+          },
+          {
+            entityId: "acme-corp",
+            path: "Related Professionals.Executives.CEO",
+            value: "hans-muller",
+            source: "execs.docx",
+          },
+          {
+            entityId: "acme-corp",
+            path: "Location.Headquarters",
+            value: "456 Industry Blvd, Toronto, ON",
+            source: "canada-dir.pdf",
+          },
+          {
+            entityId: "acme-corp",
+            path: "Location.Country",
+            value: "Canada",
+            source: "canada-dir.pdf",
+          },
+
+          // John Smith facts
+          {
+            entityId: "john-smith",
+            path: "Professional.Current Role",
+            value: "Chief Executive Officer",
+            source: "leadership.docx",
+          },
+          {
+            entityId: "john-smith",
+            path: "Contact.Phone",
+            value: "+1 212-555-0123",
+            source: "contacts.csv",
+          },
+          {
+            entityId: "john-smith",
+            path: "Contact.Address",
+            value: "789 Executive Dr, Palo Alto, CA",
+            source: "contacts.csv",
+          },
+          {
+            entityId: "john-smith",
+            path: "Affiliations.Current Employer",
+            value: "acme-ltd",
+            source: "leadership.docx",
+          },
+
+          // Hans Müller facts
+          {
+            entityId: "hans-muller",
+            path: "Professional.Current Role",
+            value: "Chief Executive Officer",
+            source: "execs.docx",
+          },
+          {
+            entityId: "hans-muller",
+            path: "Affiliations.Current Employer",
+            value: "acme-corp",
+            source: "execs.docx",
+          },
+
+          // Sarah Johnson facts
+          {
+            entityId: "sarah-johnson",
+            path: "Professional.Current Role",
+            value: "CTO & Head of Sales",
+            source: "org-chart.pdf",
+          },
+          {
+            entityId: "sarah-johnson",
+            path: "Professional.Department",
+            value: "Technology & Sales",
+            source: "org-chart.pdf",
+          },
+          {
+            entityId: "sarah-johnson",
+            path: "Affiliations.Current Employer",
+            value: "acme-ltd",
+            source: "org-chart.pdf",
+          },
+
+          // TechVentures facts
+          {
+            entityId: "techventures",
+            path: "Basic Info.Type",
+            value: "Investment Firm",
+            source: "partnerships.docx",
+          },
+          {
+            entityId: "techventures",
+            path: "Related Companies.Partners",
+            value: "acme-ltd",
+            source: "partnerships.docx",
+          },
+          {
+            entityId: "techventures",
+            path: "Related Professionals.Executives.CEO",
+            value: "mike-wilson",
+            source: "techventures-report.pdf",
+          },
+          {
+            entityId: "techventures",
+            path: "Financial.Revenue",
+            value: "$500M AUM",
+            source: "techventures-report.pdf",
+          },
+
+          // GlobalBank facts
+          {
+            entityId: "globalbank",
+            path: "Basic Info.Type",
+            value: "Financial Services",
+            source: "financial-docs.pdf",
+          },
+          {
+            entityId: "globalbank",
+            path: "Related Professionals.Executives.CFO",
+            value: "lisa-chen",
+            source: "financial-docs.pdf",
+          },
+          {
+            entityId: "globalbank",
+            path: "Related Companies.Clients",
+            value: "acme-ltd",
+            source: "client-list.xlsx",
+          },
+          {
+            entityId: "globalbank",
+            path: "Related Companies.Clients",
+            value: "techventures",
+            source: "client-list.xlsx",
+          },
+          {
+            entityId: "globalbank",
+            path: "Location.Headquarters",
+            value: "1 Financial Plaza, New York, NY",
+            source: "financial-docs.pdf",
+          },
+
+          // TechCorp facts
+          {
+            entityId: "techcorp",
+            path: "Related Companies.Competitors",
+            value: "acme-ltd",
+            source: "market-analysis.pdf",
+          },
+          {
+            entityId: "techcorp",
+            path: "Related Professionals.Department Heads.Head of Engineering",
+            value: "jane-doe",
+            source: "techcorp-org.pdf",
+          },
+          {
+            entityId: "techcorp",
+            path: "Ownership.Parent Company",
+            value: "acme-corp",
+            source: "ownership-docs.pdf",
+          },
+
+          // Innovate LLC facts
+          {
+            entityId: "innovate-llc",
+            path: "Related Companies.Partners",
+            value: "techcorp",
+            source: "partnership-agreement.pdf",
+          },
+          {
+            entityId: "innovate-llc",
+            path: "Financial.Funding.Investors",
+            value: "techventures",
+            source: "funding-round.pdf",
+          },
+
+          // Jane Doe facts
+          {
+            entityId: "jane-doe",
+            path: "Professional.Current Role",
+            value: "Head of Engineering",
+            source: "techcorp-org.pdf",
+          },
+          {
+            entityId: "jane-doe",
+            path: "Affiliations.Current Employer",
+            value: "techcorp",
+            source: "techcorp-org.pdf",
+          },
+          {
+            entityId: "jane-doe",
+            path: "Affiliations.Previous Employers",
+            value: "acme-ltd",
+            source: "linkedin-jane.pdf",
+          },
+          {
+            entityId: "jane-doe",
+            path: "Contact.Work Email",
+            value: "jane.doe@techcorp.com",
+            source: "techcorp-org.pdf",
+          },
+          {
+            entityId: "jane-doe",
+            path: "Education.Degrees",
+            value: "PhD Computer Science, MIT",
+            source: "linkedin-jane.pdf",
+          },
+
+          // Mike Wilson facts
+          {
+            entityId: "mike-wilson",
+            path: "Professional.Current Role",
+            value: "CEO & Managing Partner",
+            source: "techventures-report.pdf",
+          },
+          {
+            entityId: "mike-wilson",
+            path: "Affiliations.Current Employer",
+            value: "techventures",
+            source: "techventures-report.pdf",
+          },
+          {
+            entityId: "mike-wilson",
+            path: "Affiliations.Board Positions",
+            value: "acme-ltd",
+            source: "linkedin-mike.pdf",
+          }, // Unverified
+          {
+            entityId: "mike-wilson",
+            path: "Affiliations.Board Positions",
+            value: "innovate-llc",
+            source: "linkedin-mike.pdf",
+          }, // Unverified
+
+          // Lisa Chen facts
+          {
+            entityId: "lisa-chen",
+            path: "Professional.Current Role",
+            value: "Chief Financial Officer",
+            source: "financial-docs.pdf",
+          },
+          {
+            entityId: "lisa-chen",
+            path: "Affiliations.Current Employer",
+            value: "globalbank",
+            source: "financial-docs.pdf",
+          },
+          {
+            entityId: "lisa-chen",
+            path: "Affiliations.Advisory Roles",
+            value: "techventures",
+            source: "advisory-board.pdf",
+          },
+          {
+            entityId: "lisa-chen",
+            path: "Contact.Phone",
+            value: "+1 646-555-0199",
+            source: "contact-directory.csv",
+          },
+        ],
+        sources: [
+          { id: "registry-2023.pdf", pubDate: "2023-03-15", color: "#4a9eff" },
+          { id: "leadership.docx", pubDate: "2023-09-20", color: "#00d4ff" },
+          { id: "contacts.csv", pubDate: "2023-10-01", color: "#00a8ff" },
+          { id: "canada-dir.pdf", pubDate: "2022-12-01", color: "#0080ff" },
+          { id: "execs.docx", pubDate: "2023-07-30", color: "#0058ff" },
+          { id: "org-chart.pdf", pubDate: "2023-11-15", color: "#4a70ff" },
+          { id: "annual-report.pdf", pubDate: "2023-12-31", color: "#7a9eff" },
+          { id: "partnerships.docx", pubDate: "2023-08-20", color: "#9ab8ff" },
+          {
+            id: "techventures-report.pdf",
+            pubDate: "2023-11-30",
+            color: "#ff6b6b",
+          },
+          { id: "financial-docs.pdf", pubDate: "2023-10-15", color: "#4ecdc4" },
+          { id: "client-list.xlsx", pubDate: "2023-09-01", color: "#45b7d1" },
+          {
+            id: "market-analysis.pdf",
+            pubDate: "2023-08-10",
+            color: "#f9ca24",
+          },
+          { id: "techcorp-org.pdf", pubDate: "2023-07-20", color: "#6c5ce7" },
+          { id: "ownership-docs.pdf", pubDate: "2023-06-15", color: "#a29bfe" },
+          {
+            id: "partnership-agreement.pdf",
+            pubDate: "2023-05-20",
+            color: "#fd79a8",
+          },
+          { id: "funding-round.pdf", pubDate: "2023-12-01", color: "#fdcb6e" },
+          { id: "linkedin-jane.pdf", pubDate: "2023-11-10", color: "#e17055" },
+          { id: "board-minutes.pdf", pubDate: "2023-12-15", color: "#00b894" },
+          { id: "advisory-board.pdf", pubDate: "2023-11-25", color: "#00cec9" },
+          {
+            id: "contact-directory.csv",
+            pubDate: "2023-10-30",
+            color: "#ff7675",
+          },
+          { id: "linkedin-mike.pdf", pubDate: "2023-09-15", color: "#fab1a0" },
+        ],
+      };
+
+      // ─────────────────────────────── GRAPH SETUP ─────────────────────────────────
+      const svg = d3.select("#graph");
+      let width = window.innerWidth - 300;
+      let height = window.innerHeight - 60;
+
+      svg.attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+      const linkGroup = g.append("g").attr("class", "links");
+      const linkLabelGroup = g.append("g").attr("class", "link-labels");
+      const nodeGroup = g.append("g").attr("class", "nodes");
+
+      let link = linkGroup.selectAll(".link");
+      let linkLabel = linkLabelGroup.selectAll(".link-label");
+      let node = nodeGroup.selectAll(".node");
+
+      // Zoom behavior
+      const zoom = d3
+        .zoom()
+        .scaleExtent([0.1, 10])
+        .on("zoom", event => {
+          g.attr("transform", event.transform);
+          currentZoomLevel = event.transform.k;
+          document.getElementById("zoomIndicator").textContent =
+            `Zoom: ${Math.round(event.transform.k * 100)}%`;
+        });
+
+      svg.call(zoom);
+
+      // Force simulation
+      const simulation = d3
+        .forceSimulation()
+        .force(
+          "link",
+          d3
+            .forceLink()
+            .id(d => d.id)
+            .distance(d => {
+              // Scale distances with zoom level when we have a zoomed parent
+              const scaleFactor = zoomedParentSlot ? 1 : 1;
+
+              if (d.type === "entity-slot")
+                return (d.distance || 80) * scaleFactor;
+              if (d.type === "slot-slot")
+                return (d.distance || 40) * scaleFactor;
+              if (d.type === "slot-entity") return 400 * scaleFactor;
+              if (d.type === "source-entity") return 400 * scaleFactor;
+              if (d.type === "source-fact") return 300 * scaleFactor;
+              if (d.type === "entity-entity") return 500 * scaleFactor;
+              return (d.distance || 200) * scaleFactor;
+            })
+            .strength(d => {
+              // Make slot connections very strong to keep them in place
+              if (d.type === "entity-slot" || d.type === "slot-slot") return 2;
+              if (d.type === "source-entity") return 0.3;
+              return 0.5;
+            })
+        )
+        .force(
+          "charge",
+          d3.forceManyBody().strength(d => {
+            if (d.type === "entity") return -5000;
+            if (d.type === "source") return -3000;
+            if (d.type === "slot") return 0;
+            if (d.type === "fact") return 0;
+            return -100;
+          })
+        )
+        .force(
+          "collision",
+          d3
+            .forceCollide()
+            .radius(d => {
+              if (d.type === "entity") return 800;
+              if (d.type === "source") return 500;
+              if (d.type === "slot") return 10;
+              if (d.type === "fact") return 10;
+              return 50;
+            })
+            .strength(5)
+        );
+
+      // ─────────────────────────────── HELPER FUNCTIONS ─────────────────────────────────
+      function getFact(entityId, path) {
+        return knowledgeGraph.facts.find(
+          f => f.entityId === entityId && f.path === path
+        );
+      }
+
+      function hasFilledSubslots(entityId, path, schema) {
+        if (!schema || typeof schema !== "object") return false;
+
+        // Check direct fact first
+        if (getFact(entityId, path)) return true;
+
+        // Then check children
+        for (const key in schema) {
+          const subPath = `${path}.${key}`;
+          if (getFact(entityId, subPath)) return true;
+          if (
+            typeof schema[key] === "object" &&
+            schema[key] !== null &&
+            !schema[key].entityType
+          ) {
+            if (hasFilledSubslots(entityId, subPath, schema[key])) return true;
+          }
+        }
+        return false;
+      }
+
+      function countFilledSlots(entityId, path, schema) {
+        if (!schema || typeof schema !== "object")
+          return { filled: 0, total: 0 };
+
+        let filled = 0;
+        let total = 0;
+
+        for (const key in schema) {
+          const subPath = `${path}.${key}`;
+          total++;
+
+          if (getFact(entityId, subPath)) {
+            filled++;
+          } else if (
+            typeof schema[key] === "object" &&
+            schema[key] !== null &&
+            !schema[key].entityType
+          ) {
+            const subResult = countFilledSlots(entityId, subPath, schema[key]);
+            filled += subResult.filled;
+            total += subResult.total - 1;
+          }
+        }
+
+        return { filled, total };
+      }
+
+      // ─────────────────────────────── RENDER FUNCTIONS ─────────────────────────────────
+      function renderGraph() {
+        // Store ALL current positions before re-rendering
+        const oldPositions = new Map();
+        simulation.nodes().forEach(node => {
+          if (node.x !== undefined && node.y !== undefined) {
+            oldPositions.set(node.id, {
+              x: node.x,
+              y: node.y,
+              fx: node.fx,
+              fy: node.fy,
+            });
+          }
+        });
+
+        const nodes = [];
+        const links = [];
+        const labeledLinks = [];
+
+        // Add entities
+        knowledgeGraph.entities.forEach(entity => {
+          nodes.push({
+            id: entity.id,
+            name: entity.name,
+            type: "entity",
+            entityType: entity.type,
+            color: entity.color,
+            radius: 30,
+            fx: entity.x,
+            fy: entity.y,
+          });
+        });
+
+        // Add source nodes if enabled
+        if (showSources) {
+          knowledgeGraph.sources.forEach((source, index) => {
+            // Spread sources in a much larger circle
+            const angle = (index / knowledgeGraph.sources.length) * 2 * Math.PI;
+            const radius = 1200;
+            const x = width / 2 + Math.cos(angle) * radius;
+            const y = height / 2 + Math.sin(angle) * radius;
+            nodes.push({
+              id: `source-${source.id}`,
+              name: source.id,
+              type: "source",
+              pubDate: source.pubDate,
+              color: source.color,
+              radius: 30,
+              x: x,
+              y: y,
+              fx: x,
+              fy: y,
+            });
+          });
+        }
+
+        // Create entity-source connections and fact nodes
+        const factsBySource = new Map();
+        const entityConnections = new Map();
+
+        knowledgeGraph.facts.forEach(fact => {
+          const pathParts = fact.path.split(".");
+          const entity = knowledgeGraph.entities.find(
+            e => e.id === fact.entityId
+          );
+          const schema = getSchemaAtPath(
+            SLOT_HIERARCHY[entity.type],
+            pathParts
+          );
+
+          // Track facts by source
+          if (!factsBySource.has(fact.source)) {
+            factsBySource.set(fact.source, []);
+          }
+          factsBySource.get(fact.source).push(fact);
+        });
+
+        // Connect sources to entities they mention
+        if (showSources) {
+          entityConnections.forEach((entities, sourceId) => {
+            entities.forEach(entityId => {
+              links.push({
+                source: `source-${sourceId}`,
+                target: entityId,
+                type: "source-entity",
+                distance: 200,
+              });
+            });
+          });
+        }
+
+        // Add slots for each entity
+        knowledgeGraph.entities.forEach(entity => {
+          addSlotsForEntity(entity, nodes, links, labeledLinks);
+        });
+
+        // Update force simulation
+        simulation.nodes(nodes);
+        simulation.force("link").links([...links, ...labeledLinks]);
+
+        // Restore ALL positions from before the re-render
+        nodes.forEach(node => {
+          const oldPos = oldPositions.get(node.id);
+          if (oldPos) {
+            node.x = oldPos.x;
+            node.y = oldPos.y;
+            if (oldPos.fx !== undefined) node.fx = oldPos.fx;
+            if (oldPos.fy !== undefined) node.fy = oldPos.fy;
+          } else {
+            // New nodes get fixed positions immediately
+            if (
+              node.type === "entity" ||
+              node.type === "source" ||
+              node.type === "fact"
+            ) {
+              node.fx = node.x;
+              node.fy = node.y;
+            }
+          }
+        });
+
+        // Update links
+        link = linkGroup
+          .selectAll(".link")
+          .data(
+            [...links, ...labeledLinks],
+            d => `${d.source.id || d.source}-${d.target.id || d.target}`
+          );
+
+        link.exit().remove();
+
+        const linkEnter = link
+          .enter()
+          .append("path")
+          .attr("class", d => {
+            let classes = "link";
+            if (d.type === "source-slot" || d.type === "source-fact")
+              classes += " source-link";
+            if (d.type === "source-entity") classes += " source-entity";
+            if (d.type === "entity-entity") {
+              classes += " entity-entity";
+              if (d.verified === false) classes += " unverified";
+            }
+            if (d.type === "slot-entity") {
+              classes += " slot-entity";
+              if (d.verified === false) classes += " unverified";
+            }
+            if (d.type === "entity-slot" || d.type === "slot-slot")
+              classes += " slot-link";
+            return classes;
+          })
+          .style("marker-end", d =>
+            d.type === "entity-entity" || d.type === "slot-entity"
+              ? "url(#arrowhead)"
+              : null
+          );
+
+        link = linkEnter.merge(link);
+
+        // Update link labels
+        linkLabel = linkLabelGroup.selectAll(".link-label").data(
+          labeledLinks.filter(d => d.label),
+          d => `${d.source}-${d.target}-label`
+        );
+
+        linkLabel.exit().remove();
+
+        const linkLabelEnter = linkLabel
+          .enter()
+          .append("text")
+          .attr("class", "link-label")
+          .text(d => d.label);
+
+        linkLabel = linkLabelEnter.merge(linkLabel);
+
+        // Update nodes
+        node = nodeGroup.selectAll(".node").data(nodes, d => d.id);
+
+        node.exit().remove();
+
+        const nodeEnter = node
+          .enter()
+          .append("g")
+          .attr("class", d => {
+            let classes = `node ${d.type}`;
+            if (d.hasChildren) classes += " expandable";
+            if (d.expanded) classes += " expanded";
+            if (d.id === zoomedParentSlot) classes += " zoomed-parent";
+            if (d.filled) classes += " filled";
+            if (d.fillRatio > 0 && d.fillRatio < 1) classes += " partial";
+            return classes;
+          })
+          .call(
+            d3
+              .drag()
+              .on("start", dragstarted)
+              .on("drag", dragged)
+              .on("end", dragended)
+          );
+
+        // Add shapes based on node type
+        nodeEnter.each(function (d) {
+          const g = d3.select(this);
+
+          if (d.type === "entity") {
+            g.append("circle")
+              .attr("r", d.radius)
+              .attr("fill", d.color)
+              .attr("stroke", "#fff")
+              .attr("stroke-width", 3);
+          } else if (d.type === "slot") {
+            // Scale slot size based on whether this is the zoomed parent
+            const radius = d.id === zoomedParentSlot ? 30 : d.radius;
+
+            g.append("circle")
+              .attr("r", radius)
+              .attr("fill", () => {
+                if (d.filled && d.color) return d.color;
+                if (d.fillRatio > 0 && d.fillRatio < 1)
+                  return d.color || "#666";
+                return "none";
+              })
+              .attr("fill-opacity", () => {
+                if (d.filled) return 0.8;
+                if (d.fillRatio > 0) return d.fillRatio * 0.5;
+                return 0;
+              })
+              .attr("stroke", () => d.color || "#666")
+              .attr("stroke-width", () => {
+                if (d.id === zoomedParentSlot) return 3;
+                return d.hasChildren || d.filled ? 2 : 1;
+              })
+              .attr("stroke-dasharray", () => {
+                if (d.filled) return null;
+                if (d.id === zoomedParentSlot) return "6,6"; // Larger dash for zoomed parent
+                return "3,3";
+              })
+              .style("vector-effect", "non-scaling-stroke")
+              .style("pointer-events", "all")
+              .style("cursor", d.hasChildren ? "pointer" : "default");
+          } else if (d.type === "fact") {
+            if (d.factType === "address") {
+              g.append("path")
+                .attr(
+                  "d",
+                  `M 0,${-d.radius} L ${d.radius},${d.radius} L ${-d.radius},${d.radius} Z`
+                )
+                .attr("fill", d.color)
+                .attr("stroke", d.color)
+                .attr("stroke-width", 2);
+            } else {
+              g.append("circle")
+                .attr("r", d.radius)
+                .attr("fill", d.color)
+                .attr("stroke", d.color)
+                .attr("stroke-width", 2);
+            }
+          } else if (d.type === "source") {
+            g.append("circle")
+              .attr("r", 30)
+              .attr("fill", "#1a1a1a")
+              .attr("stroke", d.color || "#4a9eff")
+              .attr("stroke-width", 2);
+          }
+        });
+
+        // Add text background for better readability
+        nodeEnter
+          .append("rect")
+          .attr("class", "text-bg")
+          .attr("fill", "#1a1a1a")
+          .attr("fill-opacity", 0.8)
+          .attr("rx", 2)
+          .attr("ry", 2)
+          .style("display", d => (d.type === "slot" ? "block" : "none"));
+
+        // Add text with better positioning
+        nodeEnter
+          .append("text")
+          .attr("dy", d => {
+            if (d.id === zoomedParentSlot) return 4; // Center text for zoomed parent
+            if (d.type === "entity" || d.type === "source") return 4;
+            if (d.type === "slot") return -15;
+            return 3;
+          })
+          .attr("text-anchor", "middle")
+          .attr("font-size", d => {
+            if (d.id === zoomedParentSlot) return "14px"; // Larger text for zoomed parent
+            if (d.type === "entity" || d.type === "source") return "14px";
+            if (d.type === "slot") return "11px";
+            return "12px";
+          })
+          .attr("font-weight", d =>
+            d.type === "entity" || d.id === zoomedParentSlot ? "bold" : "normal"
+          )
+          .style("pointer-events", "none")
+          .text(d => {
+            if (d.type === "source")
+              return d.name
+                .replace(".pdf", "")
+                .replace(".docx", "")
+                .replace(".csv", "");
+            if (d.type === "slot" && d.filled && !d.hasChildren && d.value) {
+              // Show just value for filled leaf slots
+              const targetEntity = knowledgeGraph.entities.find(
+                e => e.id === d.value
+              );
+              return targetEntity
+                ? targetEntity.name
+                : d.value.substring(0, 15) + "...";
+            }
+            return d.name.length > 20
+              ? d.name.substring(0, 20) + "..."
+              : d.name;
+          })
+          .each(function (d) {
+            // Position text background based on text size
+            if (d.type === "slot" && d.id !== zoomedParentSlot) {
+              const bbox = this.getBBox();
+              d3.select(this.parentNode)
+                .select(".text-bg")
+                .attr("x", bbox.x - 3)
+                .attr("y", bbox.y - 2)
+                .attr("width", bbox.width + 6)
+                .attr("height", bbox.height + 4);
+            }
+          });
+
+        node = nodeEnter.merge(node);
+
+        // Update existing nodes' classes
+        node.attr("class", d => {
+          let classes = `node ${d.type}`;
+          if (d.hasChildren) classes += " expandable";
+          if (d.expanded) classes += " expanded";
+          if (d.id === zoomedParentSlot) classes += " zoomed-parent";
+          if (d.filled) classes += " filled";
+          if (d.fillRatio > 0 && d.fillRatio < 1) classes += " partial";
+          return classes;
+        });
+
+        // Add interactions
+        node
+          .on("click", handleNodeClick)
+          .on("mouseenter", handleNodeHover)
+          .on("mouseleave", hideTooltip);
+
+        link.on("mouseenter", handleLinkHover).on("mouseleave", hideTooltip);
+
+        // Don't restart simulation if we have existing nodes - just update positions
+        if (oldPositions.size === 0) {
+          // Only run simulation for initial layout
+          simulation.alpha(1).alphaDecay(0.02).restart();
+        } else {
+          // Just run one tick to update positions without movement
+          simulation.alpha(0.001).restart();
+        }
+
+        simulation.on("tick", () => {
+          // First pass: calculate angles for slots that point to entities
+          nodes.forEach(node => {
+            if (node.type === "slot" && node.targetEntityId) {
+              const targetEntity = nodes.find(
+                n => n.id === node.targetEntityId
+              );
+              const sourceEntity = nodes.find(n => n.id === node.entityId);
+
+              if (
+                targetEntity &&
+                sourceEntity &&
+                !isNaN(targetEntity.x) &&
+                !isNaN(targetEntity.y) &&
+                !isNaN(sourceEntity.x) &&
+                !isNaN(sourceEntity.y)
+              ) {
+                // Calculate angle towards target entity
+                const dx = targetEntity.x - sourceEntity.x;
+                const dy = targetEntity.y - sourceEntity.y;
+                node.angle = Math.atan2(dy, dx);
+              }
+            }
+          });
+
+          // Update slot and fact positions to be fixed relative to their parents
+          nodes.forEach(node => {
+            if (
+              (node.type === "slot" || node.type === "fact") &&
+              node.angle !== undefined
+            ) {
+              let parent;
+
+              // For top-level slots/facts, parent is the entity
+              if (node.level === 1 || node.type === "fact") {
+                parent = nodes.find(n => n.id === node.entityId);
+              } else {
+                // For sub-slots, use the stored parent slot ID
+                parent = nodes.find(n => n.id === node.parentSlotId);
+              }
+
+              if (parent && !isNaN(parent.x) && !isNaN(parent.y)) {
+                // Scale distance for zoomed parent slot's children
+                const distance =
+                  node.parentSlotId === zoomedParentSlot
+                    ? node.distance * 1.5
+                    : node.distance;
+
+                node.fx = parent.x + Math.cos(node.angle) * distance;
+                node.fy = parent.y + Math.sin(node.angle) * distance;
+                node.x = node.fx;
+                node.y = node.fy;
+              }
+            }
+          });
+
+          // Fix all other nodes to their current positions
+          nodes.forEach(node => {
+            if (node.fx === undefined || node.fx === null) {
+              node.fx = node.x;
+              node.fy = node.y;
+            }
+          });
+
+          link.attr("d", d => {
+            // For slot-entity links, make sure we use the correct node references
+            const sourceNode =
+              typeof d.source === "string"
+                ? nodes.find(n => n.id === d.source)
+                : d.source;
+            const targetNode =
+              typeof d.target === "string"
+                ? nodes.find(n => n.id === d.target)
+                : d.target;
+
+            if (!sourceNode || !targetNode) return "";
+
+            // For slot-entity links, draw a straight line
+            if (d.type === "slot-entity") {
+              return `M ${sourceNode.x},${sourceNode.y} L ${targetNode.x},${targetNode.y}`;
+            }
+
+            // Default straight lines
+            return `M ${sourceNode.x},${sourceNode.y} L ${targetNode.x},${targetNode.y}`;
+          });
+
+          linkLabel
+            .attr("x", d => {
+              const sourceNode =
+                typeof d.source === "string"
+                  ? nodes.find(n => n.id === d.source)
+                  : d.source;
+              const targetNode =
+                typeof d.target === "string"
+                  ? nodes.find(n => n.id === d.target)
+                  : d.target;
+              return sourceNode && targetNode
+                ? (sourceNode.x + targetNode.x) / 2
+                : 0;
+            })
+            .attr("y", d => {
+              const sourceNode =
+                typeof d.source === "string"
+                  ? nodes.find(n => n.id === d.source)
+                  : d.source;
+              const targetNode =
+                typeof d.target === "string"
+                  ? nodes.find(n => n.id === d.target)
+                  : d.target;
+              return sourceNode && targetNode
+                ? (sourceNode.y + targetNode.y) / 2
+                : 0;
+            });
+
+          node.attr("transform", d => `translate(${d.x},${d.y})`);
+        });
+      }
+
+      function addSlotsForEntity(entity, nodes, links, labeledLinks) {
+        const schema = SLOT_HIERARCHY[entity.type];
+        if (!schema) return;
+
+        const slotCount = Object.keys(schema).length;
+        const angleStep = (2 * Math.PI) / slotCount;
+
+        Object.entries(schema).forEach(([slotKey, slotSchema], index) => {
+          const slotId = `${entity.id}-slot-${slotKey}`;
+          let angle = index * angleStep - Math.PI / 2;
+
+          // Check if this slot or any children have values
+          const hasChildren =
+            typeof slotSchema === "object" &&
+            slotSchema !== null &&
+            !slotSchema.entityType;
+          const directFact = getFact(entity.id, slotKey);
+          const hasFilled =
+            directFact || hasFilledSubslots(entity.id, slotKey, slotSchema);
+          const isExpanded = expandedSlots.has(slotId);
+
+          // Scale distances based on whether this slot is the zoomed parent
+          const baseDistance =
+            slotId === zoomedParentSlot ? 150 : isExpanded ? 100 : 60;
+          const distance = baseDistance;
+
+          let fillRatio = 0;
+          if (hasChildren) {
+            const counts = countFilledSlots(entity.id, slotKey, slotSchema);
+            fillRatio = counts.total > 0 ? counts.filled / counts.total : 0;
+          }
+
+          // Check if this is an entity reference at top level
+          if (directFact && slotSchema && slotSchema.entityType) {
+            const targetEntity = knowledgeGraph.entities.find(
+              e => e.id === directFact.value
+            );
+            if (targetEntity) {
+              // Calculate the optimal angle toward the target entity
+              // This will be recalculated in the tick function, but we need an initial value
+              const dx = targetEntity.x - entity.fx;
+              const dy = targetEntity.y - entity.fy;
+              const angleToTarget = Math.atan2(dy, dx);
+
+              // Create COLORED SLOT for entity reference
+              nodes.push({
+                id: slotId,
+                name: slotKey,
+                type: "slot",
+                entityId: entity.id,
+                path: slotKey,
+                hasChildren: false,
+                expanded: false,
+                filled: true,
+                fillRatio: 1,
+                value: directFact.value,
+                targetEntityId: directFact.value,
+                color: entity.color,
+                radius: slotId === zoomedParentSlot ? 30 : 8,
+                angle: angleToTarget, // Use angle toward target
+                distance: distance,
+                level: 1,
+              });
+
+              // Connect entity to slot
+              links.push({
+                source: entity.id,
+                target: slotId,
+                type: "entity-slot",
+                distance: distance,
+              });
+
+              // Connect slot to target entity
+              links.push({
+                source: slotId,
+                target: directFact.value,
+                type: "slot-entity",
+                label: slotKey,
+                sourceDoc: directFact.source,
+                verified: !directFact.source.includes("linkedin"),
+              });
+
+              return;
+            }
+          }
+
+          // For direct facts without children, create fact nodes
+          if (directFact && !hasChildren) {
+            const factId = `${entity.id}-fact-${slotKey}`;
+            nodes.push({
+              id: factId,
+              name: directFact.value,
+              type: "fact",
+              entityId: entity.id,
+              path: slotKey,
+              color: entity.color,
+              radius: 12,
+              angle: angle,
+              distance: distance,
+            });
+
+            links.push({
+              source: entity.id,
+              target: factId,
+              type: "entity-fact",
+              distance: distance,
+            });
+
+            if (showSources) {
+              links.push({
+                source: `source-${directFact.source}`,
+                target: factId,
+                type: "source-fact",
+                distance: 150,
+              });
+            }
+          } else {
+            // Show slot for expandable items or empty slots
+            let hasExpandedChildren = false;
+            if (isExpanded && hasChildren) {
+              Object.keys(slotSchema).forEach(childKey => {
+                const childSlotId = `${entity.id}-slot-${slotKey}-${childKey}`;
+                if (expandedSlots.has(childSlotId)) {
+                  hasExpandedChildren = true;
+                }
+              });
+            }
+
+            nodes.push({
+              id: slotId,
+              name: slotKey,
+              type: "slot",
+              entityId: entity.id,
+              path: slotKey,
+              hasChildren: hasChildren,
+              expanded: isExpanded,
+              filled: false,
+              fillRatio: fillRatio,
+              color: fillRatio > 0 ? entity.color : "#666",
+              radius: slotId === zoomedParentSlot ? 30 : 8,
+              angle: angle,
+              distance: hasExpandedChildren ? 120 : distance,
+              level: 1,
+            });
+
+            links.push({
+              source: entity.id,
+              target: slotId,
+              type: "entity-slot",
+              distance: distance,
+            });
+          }
+
+          // Add sub-slots if expanded
+          if (isExpanded && hasChildren) {
+            addSubSlots(
+              entity,
+              slotId,
+              slotKey,
+              slotSchema,
+              nodes,
+              links,
+              labeledLinks,
+              2
+            );
+          }
+        });
+      }
+
+      function addSubSlots(
+        entity,
+        parentId,
+        parentPath,
+        schema,
+        nodes,
+        links,
+        labeledLinks,
+        level
+      ) {
+        const subSlotCount = Object.keys(schema).length;
+        const parentNode = nodes.find(n => n.id === parentId);
+        if (!parentNode) return;
+
+        // Use the parent's angle to ensure sub-slots extend outward
+        const parentAngle = parentNode.angle;
+
+        // Calculate angle spread to prevent text overlap
+        let angleSpread, minAngleStep;
+
+        if (level === 2) {
+          minAngleStep = Math.PI / 4;
+          angleSpread = Math.min(
+            Math.PI * 1.5,
+            minAngleStep * (subSlotCount - 1)
+          );
+        } else {
+          minAngleStep = Math.PI / 6;
+          angleSpread = Math.min(Math.PI, minAngleStep * (subSlotCount - 1));
+        }
+
+        const startAngle = parentAngle - angleSpread / 2;
+        const angleStep =
+          subSlotCount > 1 ? angleSpread / (subSlotCount - 1) : 0;
+
+        Object.entries(schema).forEach(([key, subSchema], index) => {
+          const slotPath = `${parentPath}.${key}`;
+          const slotId = `${entity.id}-slot-${slotPath.replace(/\./g, "-")}`;
+          let angle =
+            subSlotCount === 1 ? parentAngle : startAngle + index * angleStep;
+
+          // Scale distances based on whether parent is zoomed
+          const baseDistance = parentId === zoomedParentSlot ? 80 : 50;
+          const distance = baseDistance;
+
+          const fact = getFact(entity.id, slotPath);
+          const hasChildren =
+            typeof subSchema === "object" &&
+            subSchema !== null &&
+            !subSchema.entityType;
+          const isExpanded = expandedSlots.has(slotId);
+
+          // Handle entity references - ALWAYS show the slot
+          if (fact && subSchema && subSchema.entityType) {
+            const targetEntity = knowledgeGraph.entities.find(
+              e => e.id === fact.value
+            );
+            if (targetEntity) {
+              // Create the slot node - it should be colored!
+              nodes.push({
+                id: slotId,
+                name: key,
+                type: "slot",
+                entityId: entity.id,
+                parentSlotId: parentId,
+                path: slotPath,
+                hasChildren: false,
+                expanded: false,
+                filled: true,
+                fillRatio: 1,
+                value: fact.value,
+                targetEntityId: fact.value,
+                color: entity.color,
+                radius: Math.max(4, 10 - level * 2),
+                angle: angle, // This will be recalculated to point to target
+                distance: distance,
+                level: level,
+              });
+
+              // Connect parent to this slot
+              links.push({
+                source: parentId,
+                target: slotId,
+                type: "slot-slot",
+                distance: distance,
+              });
+
+              // Connect this slot to the target entity
+              links.push({
+                source: slotId,
+                target: fact.value,
+                type: "slot-entity",
+                label: key,
+                sourceDoc: fact.source,
+                verified: !fact.source.includes("linkedin"),
+              });
+
+              return;
+            }
+          }
+
+          // For non-entity facts, create fact nodes
+          if (fact && !subSchema?.entityType && !hasChildren) {
+            const factId = `${entity.id}-fact-${slotPath.replace(/\./g, "-")}`;
+            nodes.push({
+              id: factId,
+              name: fact.value,
+              type: "fact",
+              entityId: entity.id,
+              path: slotPath,
+              color: entity.color,
+              radius: 12,
+              factType: subSchema?.type || "default",
+              angle: angle,
+              distance: distance,
+            });
+
+            // Connect fact to parent slot
+            links.push({
+              source: parentId,
+              target: factId,
+              type: "slot-fact",
+              distance: distance,
+            });
+
+            // Connect to source if enabled
+            if (showSources) {
+              links.push({
+                source: `source-${fact.source}`,
+                target: factId,
+                type: "source-fact",
+                distance: 150,
+              });
+            }
+
+            return;
+          }
+
+          // Show slot node
+          let fillRatio = 0;
+          if (hasChildren) {
+            const counts = countFilledSlots(entity.id, slotPath, subSchema);
+            fillRatio = counts.total > 0 ? counts.filled / counts.total : 0;
+          }
+
+          nodes.push({
+            id: slotId,
+            name: key,
+            type: "slot",
+            entityId: entity.id,
+            parentSlotId: parentId,
+            path: slotPath,
+            hasChildren: hasChildren,
+            expanded: isExpanded,
+            filled: false,
+            fillRatio: fillRatio,
+            value: null,
+            color: "#666",
+            radius: Math.max(4, 10 - level * 2),
+            angle: angle,
+            distance: distance,
+            level: level,
+          });
+
+          links.push({
+            source: parentId,
+            target: slotId,
+            type: "slot-slot",
+            distance: distance,
+          });
+
+          // Connect to source if filled
+          if (fact && showSources) {
+            links.push({
+              source: `source-${fact.source}`,
+              target: slotId,
+              type: "source-fact",
+              distance: 150,
+            });
+          }
+
+          // Recursively add sub-slots if expanded
+          if (isExpanded && hasChildren) {
+            addSubSlots(
+              entity,
+              slotId,
+              slotPath,
+              subSchema,
+              nodes,
+              links,
+              labeledLinks,
+              level + 1
+            );
+          }
+        });
+      }
+
+      // ─────────────────────────────── INTERACTION HANDLERS ─────────────────────────────────
+      function dragstarted(event, d) {
+        if (d.type === "slot" || d.type === "fact") return;
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      }
+
+      function dragged(event, d) {
+        if (d.type === "slot" || d.type === "fact") return;
+        d.fx = event.x;
+        d.fy = event.y;
+      }
+
+      function dragended(event, d) {
+        if (!event.active) simulation.alphaTarget(0);
+      }
+
+      function handleNodeClick(event, d) {
+        if (d.type === "entity") {
+          highlightEntity(d.id);
+        } else if (d.type === "slot" && d.hasChildren) {
+          toggleSlotExpansion(d.id, d);
+        } else if (d.type === "source") {
+          highlightSource(d.id.replace("source-", ""));
+        }
+      }
+
+      function toggleSlotExpansion(slotId, slotData) {
+        // Extract the entity ID and path from the slot ID
+        const parts = slotId.split("-slot-");
+        const entityId = parts[0];
+        const slotPath = parts[1];
+
+        // If slotData wasn't passed, try to find it
+        if (!slotData) {
+          const slotNode = d3.selectAll(".node").filter(d => d.id === slotId);
+          if (slotNode.empty()) {
+            console.error("Slot node not found:", slotId);
+            return;
+          }
+          slotData = slotNode.datum();
+        }
+
+        // Make sure we have valid coordinates
+        if (!slotData || slotData.x === undefined || slotData.y === undefined) {
+          console.error("Slot data missing or incomplete", slotData);
+          return;
+        }
+
+        // First expand the slot so we can calculate child positions
+        if (!expandedSlots.has(slotId)) {
+          // Collapse other branches first
+          const pathSegments = slotPath ? slotPath.split("-") : [];
+          const toKeep = new Set();
+
+          let currentPath = entityId + "-slot";
+          for (let i = 0; i < pathSegments.length; i++) {
+            currentPath += "-" + pathSegments[i];
+            toKeep.add(currentPath);
+          }
+
+          const toRemove = [];
+          expandedSlots.forEach(expandedId => {
+            if (!expandedId.startsWith(entityId + "-slot")) return;
+            if (
+              !toKeep.has(expandedId) &&
+              !expandedId.startsWith(slotId + "-")
+            ) {
+              toRemove.push(expandedId);
+            }
+          });
+
+          toRemove.forEach(id => expandedSlots.delete(id));
+          expandedSlots.add(slotId);
+
+          // Store the zoomed parent slot
+          zoomedParentSlot = slotId;
+
+          // Re-render with expanded slot
+          renderGraph();
+        }
+
+        // Now calculate the bounding box that includes the parent slot and all its children
+        // Wait a frame for positions to update
+        setTimeout(() => {
+          const allNodes = d3.selectAll(".node").data();
+
+          // Find all child nodes of this slot
+          const childNodes = allNodes.filter(n => {
+            return (
+              n.parentSlotId === slotId ||
+              (n.type === "fact" &&
+                n.entityId === entityId &&
+                n.path &&
+                n.path.startsWith(slotPath + "."))
+            );
+          });
+
+          // Calculate bounding box
+          let minX = slotData.x,
+            maxX = slotData.x;
+          let minY = slotData.y,
+            maxY = slotData.y;
+
+          childNodes.forEach(child => {
+            if (child.x !== undefined && child.y !== undefined) {
+              minX = Math.min(minX, child.x);
+              maxX = Math.max(maxX, child.x);
+              minY = Math.min(minY, child.y);
+              maxY = Math.max(maxY, child.y);
+            }
+          });
+
+          // Add padding
+          const padding = 100;
+          minX -= padding;
+          maxX += padding;
+          minY -= padding;
+          maxY += padding;
+
+          // Calculate center and size of bounding box
+          const centerX = (minX + maxX) / 2;
+          const centerY = (minY + maxY) / 2;
+          const boxWidth = maxX - minX;
+          const boxHeight = maxY - minY;
+
+          // Calculate zoom level to fit the bounding box
+          const targetZoomX = width / boxWidth;
+          const targetZoomY = height / boxHeight;
+          const targetZoom = Math.min(targetZoomX, targetZoomY, 3); // Cap at 3x zoom
+
+          // Calculate translation to center the bounding box
+          const targetX = width / 2 - centerX * targetZoom;
+          const targetY = height / 2 - centerY * targetZoom;
+
+          // Animate zoom and pan
+          svg
+            .transition()
+            .duration(750)
+            .call(
+              zoom.transform,
+              d3.zoomIdentity.translate(targetX, targetY).scale(targetZoom)
+            );
+        }, 50);
+      }
+
+      function collapseChildren(slotId) {
+        const toRemove = [];
+        expandedSlots.forEach(id => {
+          if (id.startsWith(slotId + "-")) {
+            toRemove.push(id);
+          }
+        });
+        toRemove.forEach(id => expandedSlots.delete(id));
+      }
+
+      function handleNodeHover(event, d) {
+        const tooltip = document.getElementById("tooltip");
+        let content = "";
+
+        if (d.type === "entity") {
+          // Find all sources that mention this entity
+          const sources = new Set();
+          knowledgeGraph.facts.forEach(fact => {
+            if (fact.entityId === d.id || fact.value === d.id) {
+              sources.add(fact.source);
+            }
+          });
+
+          content = `
+      <div class="tooltip-title">${d.name}</div>
+      <div class="tooltip-content">Type: ${d.entityType}</div>
+      ${
+        sources.size > 0
+          ? `
+        <div class="tooltip-source">Sources (${sources.size}):</div>
+        <div style="font-size:10px;color:#888;max-height:100px;overflow-y:auto;">
+          ${Array.from(sources)
+            .map(s => `• ${s}`)
+            .join("<br>")}
+        </div>
+      `
+          : ""
+      }
+    `;
+        } else if (d.type === "slot") {
+          const status =
+            d.hasChildren && d.fillRatio > 0
+              ? `${Math.round(d.fillRatio * 100)}% of sub-slots filled`
+              : "Empty";
+          content = `
+      <div class="tooltip-title">${d.name}</div>
+      <div class="tooltip-content">Status: ${status}</div>
+      ${d.hasChildren ? `<div class="tooltip-hint">Click to ${d.expanded ? "collapse" : "expand"}</div>` : ""}
+    `;
+        } else if (d.type === "fact") {
+          // Find the source for this fact
+          const fact = knowledgeGraph.facts.find(
+            f => f.entityId === d.entityId && f.path === d.path
+          );
+          content = `
+      <div class="tooltip-title">Fact Value</div>
+      <div class="tooltip-content">${d.name}</div>
+      ${fact ? `<div class="tooltip-source">Source: ${fact.source}</div>` : ""}
+    `;
+        } else if (d.type === "source") {
+          const factCount = knowledgeGraph.facts.filter(
+            f => f.source === d.name
+          ).length;
+          content = `
+      <div class="tooltip-title">Source Document</div>
+      <div class="tooltip-content">${d.name}</div>
+      <div class="tooltip-source">Published: ${d.pubDate || "Unknown"}</div>
+      <div class="tooltip-content">Contains ${factCount} facts</div>
+      <div class="tooltip-hint">Click to highlight all related data</div>
+    `;
+        }
+
+        tooltip.innerHTML = content;
+        tooltip.style.left = event.pageX + 10 + "px";
+        tooltip.style.top = event.pageY + 10 + "px";
+        tooltip.classList.add("show");
+      }
+
+      function handleLinkHover(event, d) {
+        const tooltip = document.getElementById("tooltip");
+        let content = "";
+
+        if (d.type === "entity-entity" && d.label) {
+          content = `
+      <div class="tooltip-title">Relationship</div>
+      <div class="tooltip-content">${d.label}</div>
+      ${d.sourceDoc ? `<div class="tooltip-source">Source: ${d.sourceDoc}</div>` : ""}
+    `;
+        } else if (d.type === "source-entity") {
+          content = `
+      <div class="tooltip-title">Source Connection</div>
+      <div class="tooltip-content">This entity is mentioned in this source</div>
+    `;
+        } else if (d.type === "source-fact") {
+          content = `
+      <div class="tooltip-title">Fact Source</div>
+      <div class="tooltip-content">This fact comes from this document</div>
+    `;
+        }
+
+        tooltip.innerHTML = content;
+        tooltip.style.left = event.pageX + 10 + "px";
+        tooltip.style.top = event.pageY - 10 + "px";
+        tooltip.classList.add("show");
+      }
+
+      function hideTooltip() {
+        document.getElementById("tooltip").classList.remove("show");
+      }
+
+      // ─────────────────────────────── SIDEBAR ─────────────────────────────────
+      function renderSidebar() {
+        const entityList = document.getElementById("entityList");
+        entityList.innerHTML = "";
+
+        knowledgeGraph.entities.forEach(entity => {
+          const li = document.createElement("li");
+          li.className = "entity-item";
+          li.setAttribute("data-entity-id", entity.id);
+          li.innerHTML = `
+      <span style="color:${entity.color}">● ${entity.name}</span>
+      <span class="entity-type">${entity.type}</span>
+    `;
+          li.onclick = () => highlightEntity(entity.id);
+          entityList.appendChild(li);
+        });
+
+        const sourceList = document.getElementById("sourceList");
+        sourceList.innerHTML = "";
+
+        knowledgeGraph.sources.forEach(source => {
+          const factCount = knowledgeGraph.facts.filter(
+            f => f.source === source.id
+          ).length;
+          const div = document.createElement("div");
+          div.className = "source-item";
+          div.setAttribute("data-source-id", source.id);
+          div.innerHTML = `
+      <span style="color:${source.color}">●</span> 📄 ${source.id}<br>
+      <span style="font-size:10px;color:#666;">📅 ${source.pubDate} • ${factCount} facts</span>
+    `;
+          div.onclick = () => highlightSource(source.id);
+          sourceList.appendChild(div);
+        });
+      }
+
+      // ─────────────────────────────── HIGHLIGHT FUNCTIONS ─────────────────────────────────
+      function highlightEntity(entityId) {
+        d3.selectAll(".link").classed("highlighted", false);
+        d3.selectAll(".node").style("opacity", 0.3);
+
+        document
+          .querySelectorAll(".entity-item")
+          .forEach(el => el.classList.remove("selected"));
+        const clickedItem = document.querySelector(
+          `[data-entity-id="${entityId}"]`
+        );
+        if (clickedItem) clickedItem.classList.add("selected");
+
+        // Highlight entity and all its connections
+        d3.selectAll(".node")
+          .filter(d => d.id === entityId)
+          .style("opacity", 1);
+        d3.selectAll(".node")
+          .filter(d => d.entityId === entityId)
+          .style("opacity", 1);
+
+        // Highlight connected nodes and links
+        d3.selectAll(".link").each(function (d) {
+          if (
+            d.source.id === entityId ||
+            d.target.id === entityId ||
+            d.source.entityId === entityId ||
+            d.target.entityId === entityId
+          ) {
+            d3.select(this).classed("highlighted", true);
+            const otherId =
+              d.source.id === entityId
+                ? d.target.id
+                : d.target.id === entityId
+                  ? d.source.id
+                  : null;
+            if (otherId) {
+              d3.selectAll(".node")
+                .filter(n => n.id === otherId)
+                .style("opacity", 1);
+            }
+          }
+        });
+      }
+
+      function highlightSource(sourceId) {
+        d3.selectAll(".link").classed("highlighted", false);
+        d3.selectAll(".node").style("opacity", 0.3);
+
+        document
+          .querySelectorAll(".source-item")
+          .forEach(el => el.classList.remove("active"));
+        const clickedSource = document.querySelector(
+          `[data-source-id="${sourceId}"]`
+        );
+        if (clickedSource) clickedSource.classList.add("active");
+
+        // Highlight source node
+        d3.selectAll(".node")
+          .filter(d => d.id === `source-${sourceId}`)
+          .style("opacity", 1);
+
+        // Highlight all entities and facts from this source
+        const affectedEntities = new Set();
+
+        knowledgeGraph.facts.forEach(fact => {
+          if (fact.source === sourceId) {
+            affectedEntities.add(fact.entityId);
+
+            // If it references another entity, add that too
+            const pathParts = fact.path.split(".");
+            const entity = knowledgeGraph.entities.find(
+              e => e.id === fact.entityId
+            );
+            const schema = getSchemaAtPath(
+              SLOT_HIERARCHY[entity.type],
+              pathParts
+            );
+
+            if (schema && schema.entityType && fact.value) {
+              affectedEntities.add(fact.value);
+            }
+          }
+        });
+
+        // Highlight all affected entities and their connections
+        affectedEntities.forEach(entityId => {
+          d3.selectAll(".node")
+            .filter(d => d.id === entityId)
+            .style("opacity", 1);
+        });
+
+        // Highlight all links from this source
+        d3.selectAll(".link")
+          .filter(
+            d =>
+              d.source.id === `source-${sourceId}` ||
+              d.target.id === `source-${sourceId}` ||
+              d.sourceDoc === sourceId
+          )
+          .classed("highlighted", true)
+          .each(function (d) {
+            d3.selectAll(".node")
+              .filter(n => n.id === d.source.id || n.id === d.target.id)
+              .style("opacity", 1);
+          });
+
+        // Highlight fact nodes from this source
+        d3.selectAll(".node")
+          .filter(
+            d =>
+              d.type === "fact" &&
+              knowledgeGraph.facts.some(
+                f =>
+                  f.source === sourceId &&
+                  (d.id.includes(f.entityId) || d.entityId === f.entityId)
+              )
+          )
+          .style("opacity", 1);
+      }
+
+      // ─────────────────────────────── CONTROL FUNCTIONS ─────────────────────────────────
+      function resetView() {
+        d3.selectAll(".link").classed("highlighted", false);
+        d3.selectAll(".node").style("opacity", 1);
+        zoomedParentSlot = null;
+        svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+      }
+
+      function toggleSources() {
+        showSources = document.getElementById("showSourcesCheckbox").checked;
+        renderGraph();
+      }
+
+      function collapseAll() {
+        expandedSlots.clear();
+        zoomedParentSlot = null;
+        renderGraph();
+      }
+
+      function exportGraph() {
+        const data = {
+          entities: knowledgeGraph.entities,
+          facts: knowledgeGraph.facts,
+          sources: knowledgeGraph.sources,
+          expandedSlots: Array.from(expandedSlots),
+          timestamp: new Date().toISOString(),
+        };
+
+        const blob = new Blob([JSON.stringify(data, null, 2)], {
+          type: "application/json",
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `knowledge-graph-${Date.now()}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      // ─────────────────────────────── SEARCH ─────────────────────────────────
+      document.getElementById("searchInput").addEventListener("input", e => {
+        const query = e.target.value.toLowerCase();
+
+        if (!query) {
+          resetView();
+          return;
+        }
+
+        d3.selectAll(".node").style("opacity", 0.3);
+        d3.selectAll(".link").classed("highlighted", false);
+
+        // Search entities
+        knowledgeGraph.entities.forEach(entity => {
+          if (entity.name.toLowerCase().includes(query)) {
+            highlightEntity(entity.id);
+          }
+        });
+
+        // Search facts
+        knowledgeGraph.facts.forEach(fact => {
+          if (
+            fact.value &&
+            fact.value.toString().toLowerCase().includes(query)
+          ) {
+            const entity = knowledgeGraph.entities.find(
+              e => e.id === fact.entityId
+            );
+            if (entity) highlightEntity(entity.id);
+          }
+        });
+      });
+
+      // ─────────────────────────────── INITIALIZATION ─────────────────────────────────
+      autoExpandFilledPaths();
+      renderSidebar();
+      renderGraph();
+
+      window.addEventListener("resize", () => {
+        width = window.innerWidth - 300;
+        height = window.innerHeight - 60;
+        svg.attr("viewBox", [0, 0, width, height]);
+        simulation.force("center", d3.forceCenter(width / 2, height / 2));
+        simulation.alpha(0.3).restart();
+      });
+    </script>
+  </body>
+</html>

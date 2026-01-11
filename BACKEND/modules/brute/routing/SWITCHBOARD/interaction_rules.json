@@ -1,0 +1,199 @@
+{
+  "version": "1.0",
+  "description": "Combinatorial interaction rules between search axes",
+
+  "axis_interactions": {
+    "SUBJECT_LOCATION": {
+      "person_country": {
+        "effect": "enhance",
+        "description": "Person + specific country enables local sources",
+        "enables": ["local_news", "regional_registries", "language_variants"],
+        "adds_capabilities": ["name_transliteration", "local_format_matching"]
+      },
+      "company_jurisdiction": {
+        "effect": "limit",
+        "description": "Company + jurisdiction restricts to business registries",
+        "restricts_to": ["corporate_registries", "business_databases"],
+        "requires": ["registration_number_formats", "local_company_types"]
+      },
+      "organisation_address": {
+        "effect": "enhance",
+        "description": "Organisation + address enables precise location search",
+        "enables": [
+          "street_level_search",
+          "building_registries",
+          "local_directories"
+        ],
+        "cross_references": ["property_records", "business_licenses"]
+      }
+    },
+
+    "LOCATION_TEMPORAL": {
+      "historical_geo": {
+        "effect": "transform",
+        "description": "Historical date + location may require boundary adjustments",
+        "considerations": [
+          "border_changes",
+          "name_changes",
+          "sovereignty_changes"
+        ],
+        "examples": {
+          "yugoslavia_1990": [
+            "slovenia",
+            "croatia",
+            "bosnia",
+            "serbia",
+            "montenegro",
+            "macedonia"
+          ],
+          "soviet_union_1985": [
+            "russia",
+            "ukraine",
+            "belarus",
+            "kazakhstan",
+            "etc"
+          ]
+        }
+      },
+      "future_date": {
+        "effect": "limit",
+        "description": "Future dates limit to planning/prediction sources",
+        "restricts_to": [
+          "news",
+          "press_releases",
+          "financial_forecasts",
+          "event_calendars"
+        ]
+      }
+    },
+
+    "SUBJECT_OBJECT": {
+      "entity_proximity": {
+        "effect": "require",
+        "description": "Entity + proximity operator requires relationship extraction",
+        "needs": [
+          "co_occurrence_analysis",
+          "sentence_boundary_detection",
+          "relationship_scoring"
+        ],
+        "output": "entity_relationship_graph"
+      },
+      "topic_NOT": {
+        "effect": "complex",
+        "description": "Topic + NOT operator requires semantic understanding",
+        "process": [
+          "synonym_expansion",
+          "concept_hierarchy",
+          "negative_filtering"
+        ],
+        "caution": "May exclude relevant results if too broad"
+      }
+    },
+
+    "NARRATIVE_LOCATION": {
+      "document_sources": {
+        "effect": "prioritize",
+        "description": "Document assembly prioritizes sources by credibility",
+        "ranking": {
+          "academic": 10,
+          "government": 9,
+          "news_major": 8,
+          "corporate_official": 7,
+          "news_regional": 6,
+          "blogs_known": 5,
+          "forums": 4,
+          "social_media": 3
+        }
+      },
+      "gap_filling_temporal": {
+        "effect": "sequence",
+        "description": "Gap filling respects temporal sequence",
+        "rules": ["chronological_order", "cause_effect", "version_evolution"]
+      }
+    },
+
+    "MULTI_AXIS": {
+      "person_company_country_date": {
+        "effect": "orchestrate",
+        "description": "Complex multi-axis query requires staged execution",
+        "stages": [
+          { "axis": "SUBJECT", "action": "identify_person_variations" },
+          { "axis": "SUBJECT", "action": "identify_company_variations" },
+          { "axis": "LOCATION", "action": "localize_to_country" },
+          { "axis": "TEMPORAL", "action": "filter_by_date" },
+          { "axis": "OBJECT", "action": "apply_relationship_operators" },
+          { "axis": "NARRATIVE", "action": "assemble_timeline" }
+        ]
+      },
+      "address_phone_email": {
+        "effect": "correlate",
+        "description": "Contact information correlation",
+        "process": ["reverse_lookup", "data_enrichment", "validation"],
+        "sources": ["people_search", "business_directories", "public_records"]
+      }
+    }
+  },
+
+  "constraint_rules": {
+    "mutual_exclusions": [
+      ["archive_only", "real_time"],
+      ["exact_match", "fuzzy_search"],
+      ["single_source", "consensus_required"]
+    ],
+
+    "required_combinations": [
+      {
+        "if": "proximity_operator",
+        "then": ["snippet_extraction", "context_validation"]
+      },
+      {
+        "if": "company_search",
+        "then": ["corporate_registries", "business_identifiers"]
+      },
+      {
+        "if": "historical_search",
+        "then": ["archive_sources", "date_filtering"]
+      }
+    ],
+
+    "performance_optimizations": [
+      {
+        "condition": "large_date_range",
+        "action": "sample_first",
+        "parameters": { "sample_size": 100, "then": "expand_if_sparse" }
+      },
+      {
+        "condition": "multiple_entities",
+        "action": "parallel_search",
+        "parameters": { "max_parallel": 5, "merge_strategy": "union" }
+      }
+    ]
+  },
+
+  "capability_matrix": {
+    "NARRATIVE": {
+      "enhances": ["SUBJECT", "OBJECT"],
+      "enhanced_by": ["SUBJECT", "TEMPORAL"],
+      "limits": [],
+      "limited_by": ["FILETYPE"]
+    },
+    "SUBJECT": {
+      "enhances": ["LOCATION", "SOURCES"],
+      "enhanced_by": ["NARRATIVE"],
+      "limits": ["SOURCES"],
+      "limited_by": ["TEMPORAL"]
+    },
+    "OBJECT": {
+      "enhances": ["NARRATIVE"],
+      "enhanced_by": [],
+      "limits": ["SOURCES"],
+      "limited_by": ["LOCATION"]
+    },
+    "LOCATION": {
+      "enhances": ["SOURCES", "SUBJECT"],
+      "enhanced_by": ["SUBJECT"],
+      "limits": ["SOURCES", "TEMPORAL"],
+      "limited_by": ["TEMPORAL"]
+    }
+  }
+}

@@ -1,0 +1,292 @@
+/**
+ * Entity Tag Styles - Green Button-Like Tags
+ * Wrapped around text, not full width
+ */
+
+/* === Base Entity Tag === */
+.entity-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 0 3px 2px 0;
+    background: #27ae60;  /* Green background */
+    color: #ffffff;       /* White font */
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    vertical-align: middle;
+    white-space: nowrap;
+    line-height: 1.4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.entity-badge:hover {
+    background: #229954;  /* Darker green on hover */
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.entity-badge:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* === Type-Specific Styling === */
+/* All entity types now use uniform green styling - no type-specific colors */
+.entity-company,
+.entity-person,
+.entity-address,
+.entity-email,
+.entity-phone {
+    /* Inherits green button styling from .entity-badge */
+}
+
+/* === Click Animation === */
+.entity-clicked {
+    animation: entityClick 0.3s ease;
+}
+
+@keyframes entityClick {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* === Highlight Animation === */
+.entity-highlighted {
+    animation: entityHighlight 2s ease;
+}
+
+@keyframes entityHighlight {
+    0% {
+        background: #00ff88;
+        color: #000;
+        border-color: #00ff88;
+    }
+    50% {
+        background: #00ff88;
+        color: #000;
+        border-color: #00ff88;
+    }
+    100% {
+        background: #333;
+        color: #e0e0e0;
+        border-color: #444;
+    }
+}
+
+/* === Entity in Field Values === */
+.field-value .entity-badge {
+    font-size: 11px;
+    padding: 2px 6px;
+}
+
+/* === Entity in Tables === */
+table .entity-badge {
+    font-size: 10px;
+    padding: 2px 5px;
+    margin: 1px;
+}
+
+/* === Entity Type Badge (for identification) === */
+/* Removed type-specific colored dots - all tags are now uniform green */
+.entity-badge::after {
+    content: '';
+    display: none;  /* Hide the type indicator dot */
+}
+
+/* === Entity Tooltip (on hover) === */
+.entity-badge[title] {
+    position: relative;
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+    .entity-badge {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+
+    .field-value .entity-badge {
+        font-size: 9px;
+        padding: 2px 5px;
+    }
+}
+
+/* === Entity Legend (optional - can be shown in UI) === */
+/* Updated for uniform green tags - no type-specific colors */
+.entity-legend {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #1a1a1a;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.entity-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #888;
+}
+
+.entity-legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #27ae60;  /* Uniform green for all entity types */
+}
+
+/* === Loading State for Entity Recognition === */
+.entity-recognizing {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.entity-recognizing::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    margin-left: -6px;
+    margin-top: -6px;
+    border: 2px solid #00ff88;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* === Entity in Search Results === */
+.company-card .entity-badge {
+    margin: 2px;
+}
+
+/* === Compact Mode === */
+.entity-badge.compact {
+    padding: 1px 4px;
+    font-size: 9px;
+}
+
+/* === Entity Count Badge === */
+.entity-count {
+    display: inline-block;
+    background: #00ff88;
+    color: #000;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 1px 4px;
+    border-radius: 2px;
+    margin-left: 3px;
+    vertical-align: super;
+}
+
+/* === WHITE BUTTON-LIKE TAGS (URLs, Source Badges, Jurisdiction) === */
+/* Same button styling as entity tags, but white background + black text */
+
+/* Website/URL tags */
+.website-badge,
+a.website-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 0 3px 2px 0;
+    background: #ffffff;  /* White background */
+    color: #000000;       /* Black text */
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid #ddd;  /* Subtle border to distinguish from green tags */
+    cursor: pointer;
+    transition: all 0.15s ease;
+    vertical-align: middle;
+    white-space: nowrap;
+    line-height: 1.4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.website-badge:hover,
+a.website-badge:hover {
+    background: #f0f0f0;  /* Light gray on hover */
+    color: #000000;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.website-badge:active,
+a.website-badge:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Source badges */
+.source-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 0 3px 2px 0;
+    background: #ffffff;  /* White background */
+    color: #000000;       /* Black text */
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid #ddd;
+    cursor: default;
+    transition: all 0.15s ease;
+    vertical-align: middle;
+    white-space: nowrap;
+    line-height: 1.4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.source-badge:hover {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Jurisdiction badges */
+.jurisdiction-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 0 3px 2px 0;
+    background: #ffffff;  /* White background */
+    color: #000000;       /* Black text */
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid #ddd;
+    cursor: default;
+    transition: all 0.15s ease;
+    vertical-align: middle;
+    white-space: nowrap;
+    line-height: 1.4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.jurisdiction-badge:hover {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}

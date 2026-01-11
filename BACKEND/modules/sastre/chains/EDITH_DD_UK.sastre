@@ -1,0 +1,54 @@
+// SASTRE CHAIN: EDITH DD UK (Gold Standard)
+// Full End-to-End Due Diligence for UK Entities
+
+// 1. SETUP
+SET $subject = "TARGET_COMPANY"
+SET $jurisdiction = "UK"
+
+// 2. IDENTITY & REGISTRY
+// Full sweep of UK registries (Companies House + Torpedo)
+$corp_node = cuk: $subject :cuk! 
+  => @company? 
+  => #TARGET_CORP
+
+IF $corp_node.exists THEN
+  LOG "Target identified in registry."
+
+  // 3. MANAGEMENT (Officers)
+  $officers = $corp_node => officers! 
+    => @person? 
+    => +#MANAGEMENT
+
+  // 4. OWNERSHIP (PSCs)
+  $owners = $corp_node => shareholders! 
+    => @entity? 
+    => +#OWNERSHIP
+
+  // 5. FINANCIALS
+  $financials = $corp_node => filings! 
+    => @document?
+    => +#FINANCIALS
+
+  // 6. ASSETS (UK Land Registry)
+  $assets = $subject => :assuk! 
+    => @property? 
+    => +#ASSETS
+
+  // 7. RISK CHECK
+  $risk_hits = ($subject OR $officers) => news: "fraud" OR "litigation" OR "sanction" OR "money laundering"
+    => topicType:risk 
+    => +#ADVERSE_MEDIA
+
+  // 8. SANCTIONS
+  $sanctions = ($corp_node OR $officers OR $owners) => chain: sanctions_check 
+    => +#SANCTIONS_HIT
+
+  // 9. NARRATIVE GENERATION
+  WRITE template "dd_uk_full_report" 
+    WITH context($corp_node, $officers, $owners, $financials, $assets, $risk_hits, $sanctions)
+    => OUT report "Due Diligence Report: " + $subject
+
+ELSE
+  LOG "Target NOT found. Aborting."
+  WRITE template "dd_uk_not_found" WITH context($subject)
+END

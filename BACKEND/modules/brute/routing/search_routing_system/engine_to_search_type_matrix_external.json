@@ -1,0 +1,52 @@
+{
+  "site": {
+    "L1": ["BA", "BI", "BR", "DD", "EX", "GO", "QW", "YA", "YC"],
+    "L2": ["BI", "BR", "DD", "EX", "GO", "YA", "YC"],
+    "L3": ["BA", "BI", "BR", "DD", "EX", "GO", "QW", "YA", "YC"]
+  },
+  "filetype": {
+    "L1": ["BI", "BR", "DD", "GO", "PW", "YA", "YC"],
+    "L2": ["BI", "BR", "DD", "GO", "YA", "YC"],
+    "L3": ["BI", "BR", "DD", "GO", "PW", "YA", "YC"]
+  },
+  "date": {
+    "L1": ["BI", "BR", "GO", "YA", "YC"],
+    "L2": ["BI", "BR", "DD", "EX", "GO", "YA", "YC"],
+    "L3": ["BI", "BR", "DD", "GO", "YA", "YC"]
+  },
+  "intitle": {
+    "L1": ["GO", "BI", "YA", "BR", "BA", "DD"],
+    "L2": ["GO", "BI", "BR", "DD", "YA"],
+    "L3": ["GO", "BI", "BR", "DD", "YA"]
+  },
+  "inurl": {
+    "L1": ["BA", "BI", "DD", "GO", "HFU", "MM", "YA", "YC"],
+    "L2": ["BI", "BR", "CBI", "CD", "DD", "GO", "HFU", "MM", "YA", "YC"],
+    "L3": ["BI", "BR", "CBI", "CD", "DD", "GO", "HFU", "MM", "YA", "YC"]
+  },
+  "news": {
+    "L1": ["EX", "QW", "ST", "BS", "NA", "GD", "AR"],
+    "L2": ["GO", "BI", "BR", "DD", "EX"],
+    "L3": ["GO", "BI", "BR", "DD"]
+  },
+  "language": {
+    "L1": ["BI", "BR", "DD", "GO", "QW", "ST", "YA", "YC"],
+    "L2": ["BI", "BR", "DD", "GO", "QW", "YA", "YC"],
+    "L3": ["BI", "BR", "DD", "GO", "YA", "YC"]
+  },
+  "proximity": {
+    "L1": ["BI", "BR", "DD", "GO", "YA", "YC"],
+    "L2": ["BI", "BR", "DD", "GO", "YA", "YC"],
+    "L3": ["BI", "BR", "DD", "GO", "YA", "YC"]
+  },
+  "book": {
+    "L1": ["AA", "LG", "GU", "OL"],
+    "L2": ["AA", "LG", "GU", "OL"],
+    "L3": ["GO", "BI", "BR", "DD"]
+  },
+  "academic": {
+    "L1": ["OA", "CR", "SE", "PM", "AX", "NT", "JS", "MU", "SG", "WP"],
+    "L2": ["GO", "BI", "EX"],
+    "L3": ["GO", "BI", "BR", "DD"]
+  }
+}

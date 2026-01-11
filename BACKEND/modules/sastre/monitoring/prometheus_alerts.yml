@@ -1,0 +1,104 @@
+# SASTRE Prometheus Alerting Rules
+# Add to Prometheus config: rule_files: ["/data/SASTRE/monitoring/prometheus_alerts.yml"]
+
+groups:
+  - name: sastre_alerts
+    interval: 30s
+    rules:
+      # Circuit breaker alerts
+      - alert: SastreCircuitBreakerOpen
+        expr: sastre_circuit_breaker_state == 2
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Circuit breaker {{ $labels.circuit_name }} is OPEN"
+          description: "Circuit breaker {{ $labels.circuit_name }} has been open for more than 1 minute. External service may be down."
+      
+      - alert: SastreCircuitBreakerHalfOpen
+        expr: sastre_circuit_breaker_state == 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Circuit breaker {{ $labels.circuit_name }} is HALF_OPEN"
+          description: "Circuit breaker {{ $labels.circuit_name }} is in half-open state for more than 5 minutes."
+      
+      # High error rate
+      - alert: SastreHighErrorRate
+        expr: |
+          (
+            sum(rate(sastre_tool_calls_total{status="error"}[5m])) 
+            / 
+            sum(rate(sastre_tool_calls_total[5m]))
+          ) > 0.3
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "SASTRE error rate is above 30%"
+          description: "Tool error rate has been above 30% for the last 5 minutes."
+      
+      # Tool latency
+      - alert: SastreHighLatency
+        expr: |
+          histogram_quantile(0.95, 
+            sum(rate(sastre_tool_duration_seconds_bucket[5m])) by (le, tool_name)
+          ) > 60
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Tool {{ $labels.tool_name }} p95 latency > 60s"
+          description: "Tool {{ $labels.tool_name }} has p95 latency above 60 seconds."
+      
+      # Service down
+      - alert: SastreOrchestratorDown
+        expr: up{job="sastre-orchestrator"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "SASTRE Orchestrator is down"
+          description: "SASTRE Orchestrator service has been down for more than 1 minute."
+      
+      - alert: SastreMetricsDown
+        expr: up{job="sastre-metrics"} == 0
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "SASTRE Metrics server is down"
+          description: "SASTRE Metrics server has been down for more than 2 minutes."
+      
+      # Memory usage
+      - alert: SastreHighMemory
+        expr: process_resident_memory_bytes{job=~"sastre.*"} > 2e9
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "SASTRE service using > 2GB memory"
+          description: "{{ $labels.job }} is using more than 2GB of memory."
+
+  - name: sastre_recording_rules
+    interval: 30s
+    rules:
+      # Pre-compute common queries
+      - record: sastre:tool_error_rate:5m
+        expr: |
+          sum(rate(sastre_tool_calls_total{status="error"}[5m])) by (tool_name)
+          / 
+          sum(rate(sastre_tool_calls_total[5m])) by (tool_name)
+      
+      - record: sastre:tool_latency_p95:5m
+        expr: |
+          histogram_quantile(0.95, 
+            sum(rate(sastre_tool_duration_seconds_bucket[5m])) by (le, tool_name)
+          )
+      
+      - record: sastre:tool_latency_p50:5m
+        expr: |
+          histogram_quantile(0.50, 
+            sum(rate(sastre_tool_duration_seconds_bucket[5m])) by (le, tool_name)
+          )

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Quick Test</title>
+    <script>
+      // Test if graph.js loads without syntax errors
+      var scriptTest = document.createElement("script");
+      scriptTest.src = "graph.js";
+      scriptTest.onload = function () {
+        document.body.innerHTML =
+          '<h1 style="color: green;">✓ graph.js loaded successfully!</h1>';
+      };
+      scriptTest.onerror = function () {
+        document.body.innerHTML =
+          '<h1 style="color: red;">✗ Error loading graph.js</h1>';
+      };
+      document.head.appendChild(scriptTest);
+    </script>
+  </head>
+  <body>
+    <h1>Testing...</h1>
+  </body>
+</html>

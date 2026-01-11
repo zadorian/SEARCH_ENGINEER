@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Changes Summary</title>
+    <style>
+      body {
+        font-family: monospace;
+        background: #000;
+        color: #0f0;
+        padding: 20px;
+      }
+      h2 {
+        color: #ff0;
+      }
+      .fix {
+        background: #001100;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #0f0;
+      }
+      .before {
+        color: #f66;
+      }
+      .after {
+        color: #6f6;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fixed Issues with Query Nodes and Check Indicators</h1>
+
+    <div class="fix">
+      <h2>1. Check indicators now properly attached to nodes</h2>
+      <p class="before">
+        Before: Check indicators were positioned with physics: false, causing
+        them to lag behind when dragging the graph
+      </p>
+      <p class="after">
+        After: Check indicators now have physics: true with light mass (0.1) and
+        are connected with spring physics to their parent nodes
+      </p>
+    </div>
+
+    <div class="fix">
+      <h2>2. Check indicators are now properly inside node boundaries</h2>
+      <p class="before">
+        Before: Position was x+40, y-40 which could place them outside
+      </p>
+      <p class="after">
+        After: Position is x+30, y-30 with larger size (15) and thicker border
+        (3) for better visibility
+      </p>
+    </div>
+
+    <div class="fix">
+      <h2>3. Query nodes are fully interactive</h2>
+      <p class="before">
+        Before: Query nodes had physics: false and fixed positioning
+      </p>
+      <p class="after">
+        After: Query nodes have physics: true with proper mass and can be
+        dragged around
+      </p>
+    </div>
+
+    <div class="fix">
+      <h2>4. Click handlers enhanced</h2>
+      <p class="before">Before: Query nodes showed basic info</p>
+      <p class="after">
+        After: - Single-click on query nodes shows detailed search variations
+        with proper formatting - Single-click on check indicators shows preview
+        info - Double-click on both works properly to toggle between states
+      </p>
+    </div>
+
+    <div class="fix">
+      <h2>5. Physics configuration optimized</h2>
+      <p class="before">Before: Global physics was disabled</p>
+      <p class="after">
+        After: - Regular nodes: physics disabled (stay in place) - Check
+        indicators: physics enabled with light mass - Query nodes: physics
+        enabled with normal mass - Spring connections keep indicators attached
+        to parents
+      </p>
+    </div>
+
+    <div class="fix">
+      <h2>6. Persistence fixed</h2>
+      <p class="before">
+        Before: Check/query node physics properties not preserved on reload
+      </p>
+      <p class="after">
+        After: Load function now correctly restores physics properties for all
+        node types
+      </p>
+    </div>
+
+    <h2>Testing Instructions:</h2>
+    <ol>
+      <li>
+        Reload the page to see existing check indicators properly attached
+      </li>
+      <li>
+        Drag the graph - check indicators should move smoothly with their parent
+        nodes
+      </li>
+      <li>Double-click a check indicator to expand it to a query node</li>
+      <li>Single-click the query node to see detailed search information</li>
+      <li>Double-click the query node to minimize it back to a check</li>
+      <li>
+        The check indicators should appear inside the node boundaries, not
+        underneath
+      </li>
+    </ol>
+  </body>
+</html>

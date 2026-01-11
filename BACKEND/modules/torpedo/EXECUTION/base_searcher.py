@@ -1,0 +1,167 @@
+"""
+BaseSearcher - Common functionality for all Torpedo searchers.
+
+Uses JESTER (via jester_bridge) for scraping, routing to the method determined
+by PROCESSING classification (scrape_method field in sources).
+
+The key distinction:
+- PROCESSING = Tests sites, determines which JESTER method works, saves classification
+- EXECUTION = Uses the already-classified method from sources JSON (no testing)
+
+Handles:
+- Method routing based on scrape_method field
+- Fallback to cascade if no classification exists
+- BrightData proxy integration
+"""
+
+import asyncio
+import logging
+from typing import Dict, Any, Optional, List
+from pathlib import Path
+from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+
+from ..paths import env_file
+
+# Load environment (best-effort)
+_env = env_file()
+if _env:
+    load_dotenv(_env)
+
+# Import from jester_bridge (which imports from real JESTER)
+from ..jester_bridge import TorpedoScraper, ScrapeMethod, ScrapeResult
+
+logger = logging.getLogger("Torpedo.BaseSearcher")
+
+
+class BaseSearcher:
+    """
+    Base class for all Torpedo searchers.
+
+    Uses JESTER for scraping, routing to the specific method
+    determined by PROCESSING classification.
+    """
+
+    def __init__(self):
+        self.scraper = TorpedoScraper()
+        self._scraper_initialized = False
+
+    async def _ensure_scraper(self):
+        """Lazy init scraper."""
+        if not self._scraper_initialized:
+            self._scraper_initialized = True
+
+    async def fetch_url(
+        self,
+        url: str,
+        scrape_method: str = None,
+        use_brightdata: bool = False
+    ) -> Dict[str, Any]:
+        """
+        Fetch URL content using the appropriate JESTER method.
+
+        If scrape_method is provided (from PROCESSING classification),
+        uses that specific method. Otherwise falls back to cascade.
+
+        Args:
+            url: URL to fetch
+            scrape_method: Pre-classified method (jester_a, jester_b, etc.)
+            use_brightdata: Force BrightData proxy
+
+        Returns:
+            {
+                "success": bool,
+                "html": str | None,
+                "json": dict | None,
+                "error": str | None,
+                "status_code": int,
+                "method_used": str
+            }
+        """
+        await self._ensure_scraper()
+
+        try:
+            if use_brightdata:
+                # Force BrightData
+                result = await self.scraper.scrape(url, force_method=ScrapeMethod.BRIGHTDATA)
+            elif scrape_method:
+                # Use pre-classified method
+                result = await self._fetch_with_method(url, scrape_method)
+            else:
+                # No classification - run full cascade
+                result = await self.scraper.scrape(url)
+
+            success = getattr(result, "success", None)
+            if success is None:
+                error = getattr(result, "error", None)
+                status_code = getattr(result, "status_code", 0) or 0
+                html = getattr(result, "html", "") or ""
+                success = error is None and 200 <= status_code < 400 and len(html) > 100
+
+            method = getattr(result, "method", None)
+            method_used = method.value if hasattr(method, "value") else str(method)
+
+            return {
+                "success": success,
+                "html": getattr(result, "html", None),
+                "json": None,  # Parse separately if needed
+                "error": getattr(result, "error", None),
+                "status_code": getattr(result, "status_code", 0),
+                "method_used": method_used,
+            }
+
+        except Exception as e:
+            logger.error(f"Fetch failed for {url}: {e}")
+            return {
+                "success": False,
+                "html": None,
+                "json": None,
+                "error": str(e),
+                "status_code": 0,
+                "method_used": "failed"
+            }
+
+    async def _fetch_with_method(self, url: str, method: str) -> ScrapeResult:
+        """
+        Fetch using a specific pre-classified method.
+
+        Args:
+            url: URL to fetch
+            method: Method name (jester_a, jester_b, jester_c, firecrawl, brightdata)
+
+        Returns:
+            ScrapeResult from the scraper
+        """
+        method = method.lower().replace("scrapemethod.", "")
+
+        # Map string method to ScrapeMethod enum
+        method_map = {
+            "jester_a": ScrapeMethod.JESTER_A,
+            "jester_b": ScrapeMethod.JESTER_B,
+            "jester_c": ScrapeMethod.JESTER_C,
+            "jester_d": ScrapeMethod.JESTER_D,
+            "firecrawl": ScrapeMethod.FIRECRAWL,
+            "brightdata": ScrapeMethod.BRIGHTDATA,
+        }
+
+        force_method = method_map.get(method)
+
+        # Use scrape() with force_method - uses that method directly
+        return await self.scraper.scrape(url, force_method=force_method)
+
+    async def close(self):
+        """Close scraper connections."""
+        await self.scraper.close()
+
+    def parse_html(self, html: str) -> BeautifulSoup:
+        """Parse HTML into BeautifulSoup object."""
+        return BeautifulSoup(html, "html.parser")
+
+    def extract_text(self, soup: BeautifulSoup, selector: str) -> Optional[str]:
+        """Extract text from first matching element."""
+        el = soup.select_one(selector)
+        return el.get_text(strip=True) if el else None
+
+    def extract_all_text(self, soup: BeautifulSoup, selector: str) -> List[str]:
+        """Extract text from all matching elements."""
+        return [el.get_text(strip=True) for el in soup.select(selector)]

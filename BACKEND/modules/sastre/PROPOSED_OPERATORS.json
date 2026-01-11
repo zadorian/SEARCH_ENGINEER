@@ -1,0 +1,325 @@
+{
+  "_description": "Proposed operators needed for full end-to-end flow execution. Collected separately for user evaluation.",
+  "_syntax_rules": {
+    "no_exclamation_marks": "! is reserved for coordinates/location scope ONLY",
+    "question_mark_for_queries": "? = read/query state (read-only)",
+    "colon_for_actions": ": = execute action with target",
+    "arrow_for_routing": "=> = route/apply to target"
+  },
+
+  "FLOW_CONTROL_OPERATORS": {
+    "1_template_load": {
+      "syntax": "template:{genre}:{jurisdiction} :#{entity}",
+      "example": "template:COMPANY_DD:UK :#AcmeCorp",
+      "behavior": [
+        "Load jurisdiction template (e.g., UK.json)",
+        "Load genre template (e.g., COMPANY_DD.skill.md)",
+        "Stack templates to get sections + allowed_actions",
+        "AUTO-CREATE watcher for each section",
+        "Return sections list with initial states"
+      ],
+      "returns": "{sections: [...], allowed_actions: [...], watchers_created: [...]}",
+      "priority": "CRITICAL - nothing works without this"
+    },
+
+    "2_foreach_loop": {
+      "syntax": "foreach #{tag} => {operators}",
+      "example": "foreach #officers => p: [NAME] => +#enriched",
+      "behavior": [
+        "Iterate over all nodes with tag",
+        "Apply operators to each node",
+        "Tag results with specified tag"
+      ],
+      "returns": "All individual results tagged",
+      "priority": "HIGH - needed for multi-entity enrichment"
+    },
+
+    "3_conditional_if_then_else": {
+      "syntax": "IF {condition} THEN {operators} ELSE {operators}",
+      "example": "IF filled? :#ubo THEN skip ELSE c: [SHAREHOLDER]",
+      "behavior": [
+        "Evaluate condition (another operator)",
+        "Execute THEN branch if true",
+        "Execute ELSE branch if false (optional)"
+      ],
+      "returns": "Result of executed branch",
+      "priority": "HIGH - needed for conditional sections"
+    },
+
+    "4_while_loop": {
+      "syntax": "WHILE {condition} DO {operators}",
+      "example": "WHILE NOT sufficient? DO gaps? => search_gap",
+      "behavior": [
+        "Evaluate condition",
+        "Execute body if true",
+        "Repeat until condition false",
+        "Max iterations safety (default: 10)"
+      ],
+      "returns": "Final state after loop exits",
+      "priority": "MEDIUM - nice for gap-filling automation"
+    }
+  },
+
+  "STATE_QUERY_OPERATORS": {
+    "5_filled_check": {
+      "syntax": "filled? :#{section_or_slot}",
+      "example": "filled? :#corporate_officers",
+      "behavior": [
+        "Check if section/slot has data",
+        "Binary: true (has data) or false (empty)"
+      ],
+      "returns": "{filled: bool}",
+      "priority": "CRITICAL - enables conditionals"
+    },
+
+    "6_sufficient_check": {
+      "syntax": "sufficient? @template:{name} OR sufficient?",
+      "example": "sufficient? @template:COMPANY_DD",
+      "behavior": [
+        "Run 5 sufficiency constraints",
+        "Run semantic sufficiency if governor set",
+        "Return overall status + details"
+      ],
+      "returns": "{sufficient: bool, score: 0.0-1.0, unfilled: [...], reason: string}",
+      "priority": "CRITICAL - enables loop control"
+    },
+
+    "7_gaps_query": {
+      "syntax": "gaps? :#{entity} OR gaps? @section:{id}",
+      "example": "gaps? :#AcmeCorp",
+      "behavior": [
+        "Compare filled slots vs template requirements",
+        "Return list of unfilled sections/slots",
+        "Include suggested next query for each gap"
+      ],
+      "returns": "{gaps: [{section, slot, suggested_query}, ...]}",
+      "priority": "CRITICAL - drives gap-filling"
+    },
+
+    "8_intent_derivation": {
+      "syntax": "intent? :#{entity} :#{location}",
+      "example": "intent? :#AcmeCorp :HU",
+      "behavior": [
+        "Assess subject knowledge (known/unknown)",
+        "Assess location knowledge (known/unknown)",
+        "Derive K-U quadrant (VERIFY/TRACE/EXTRACT/DISCOVER)",
+        "Suggest appropriate tactic (SPEAR/TRAP/NET)"
+      ],
+      "returns": "{quadrant: 'TRACE', intent: 'DISCOVER_LOCATION', tactic: 'trap', suggested_operators: [...]}",
+      "priority": "MEDIUM - for intelligent query selection"
+    },
+
+    "9_sources_remaining": {
+      "syntax": "sources? :#{section} ##unchecked",
+      "example": "sources? :#officers ##unchecked",
+      "behavior": [
+        "Count nodes tagged ##unchecked for section",
+        "Group by source type"
+      ],
+      "returns": "{remaining: 5, by_type: {registry: 2, news: 3}}",
+      "priority": "MEDIUM - for source exhaustion detection"
+    }
+  },
+
+  "ROUTING_OPERATORS": {
+    "10_slot_routing": {
+      "syntax": "=> slot:#{entity}:{field}",
+      "example": "cuk: Acme Corp => slot:#AcmeCorp:registration_number",
+      "behavior": [
+        "Extract relevant value from result",
+        "Set as slot value with provenance",
+        "Update slot state (EMPTY→FILLED)",
+        "Trigger on_slot_fed callback"
+      ],
+      "returns": "{slot_updated: true, value: '12345678', source: 'Companies House'}",
+      "priority": "HIGH - connects results to slots"
+    },
+
+    "11_section_routing": {
+      "syntax": "=> section:{section_id}",
+      "example": "p? :#registry @PERSON => section:corporate_officers",
+      "behavior": [
+        "Route extracted entities to section",
+        "Update section's content",
+        "Check section sufficiency"
+      ],
+      "returns": "{section_updated: true, entities_added: 3}",
+      "priority": "HIGH - connects extraction to template"
+    },
+
+    "12_watcher_section_binding": {
+      "syntax": "+#w:{type}:{topic} =>section:{section_id}",
+      "example": "+#w:topic:sanctions =>section:sanctions_watchlists",
+      "behavior": [
+        "Create watcher with section binding",
+        "When watcher fires, route to section automatically"
+      ],
+      "returns": "{watcher_id: 'w_123', bound_to: 'sanctions_watchlists'}",
+      "priority": "HIGH - automates finding routing"
+    }
+  },
+
+  "WATCHER_CASCADE_OPERATORS": {
+    "13_watcher_spawn": {
+      "syntax": "+#w:{type}:{value} =>spawn:+#w:{child_type}:[EXTRACTED]",
+      "example": "+#w:entity:@PERSON =>spawn:+#w:entity:[NAME]",
+      "behavior": [
+        "When parent watcher fires and extracts entity",
+        "Spawn new watcher for that specific entity",
+        "Link parent-child in graph"
+      ],
+      "returns": "{parent_watcher: 'w_123', spawned: ['w_456', 'w_789']}",
+      "priority": "HIGH - enables watcher cascading"
+    }
+  },
+
+  "GENERATION_OPERATORS": {
+    "14_write_section": {
+      "syntax": "write_section:{section_id} :#{filled_slots}",
+      "example": "write_section:corporate_officers :#officer_data",
+      "behavior": [
+        "Gather all filled slots for section",
+        "Pass to Writer agent with template prose style",
+        "Generate markdown paragraph",
+        "Insert into narrative node"
+      ],
+      "returns": "{section_id: 'corporate_officers', content: '...', word_count: 245}",
+      "priority": "MEDIUM - for document generation"
+    },
+
+    "15_aggregate_table": {
+      "syntax": "aggregate: #{tag1} #{tag2} => table_section:{id}",
+      "example": "aggregate: #property #vehicles #shares => table_section:asset_summary",
+      "behavior": [
+        "Collect all nodes from specified tags",
+        "Format as table rows",
+        "Insert into specified section"
+      ],
+      "returns": "{table_created: true, rows: 15}",
+      "priority": "LOW - for asset tables"
+    }
+  },
+
+  "VERIFICATION_OPERATORS": {
+    "16_verify": {
+      "syntax": "verify? :#{entity} ##dimension",
+      "example": "verify? :#JohnSmith ##identity",
+      "behavior": [
+        "Check if entity passes verification for dimension",
+        "Run disambiguation if multiple candidates"
+      ],
+      "returns": "{verified: bool, confidence: 0.95, collisions: [...]}",
+      "priority": "MEDIUM - for identity confirmation"
+    },
+
+    "17_validate_document": {
+      "syntax": "validate: :#{document} ##template",
+      "example": "validate: :#report ##COMPANY_DD",
+      "behavior": [
+        "Run QC validation against template requirements",
+        "Check all required sections present",
+        "Verify source citations"
+      ],
+      "returns": "{status: 'PASS', issues: [], completeness: 0.92}",
+      "priority": "LOW - for final QC"
+    }
+  },
+
+  "IMPLEMENTATION_PRIORITY_ORDER": [
+    {
+      "tier": 1,
+      "name": "MUST HAVE - Nothing Works Without",
+      "operators": [
+        "template:{genre}:{jurisdiction}",
+        "filled?",
+        "sufficient?",
+        "gaps?"
+      ]
+    },
+    {
+      "tier": 2,
+      "name": "HIGH - Core Flow Control",
+      "operators": [
+        "foreach",
+        "IF/THEN/ELSE",
+        "=> slot:",
+        "=> section:",
+        "+#w: =>spawn:"
+      ]
+    },
+    {
+      "tier": 3,
+      "name": "MEDIUM - Intelligent Automation",
+      "operators": [
+        "intent?",
+        "sources?",
+        "WHILE/DO",
+        "write_section:",
+        "verify?"
+      ]
+    },
+    {
+      "tier": 4,
+      "name": "LOW - Nice to Have",
+      "operators": [
+        "aggregate:",
+        "validate:"
+      ]
+    }
+  ],
+
+  "EXISTING_OPERATORS_TO_LEVERAGE": {
+    "entity_investigation": ["p:", "c:", "e:", "t:", "d:"],
+    "registry_lookup": ["cuk:", "chr:", "cde:", "csr:", "chu:", "reguk:", "reghu:"],
+    "link_analysis": ["bl?", "?bl", "ol?", "?ol"],
+    "extraction": ["ent?", "p?", "c?", "e?", "t?", "a?"],
+    "comparison": ["=?", "handshake"],
+    "tagging": ["=> +#tag", "=> -#tag"],
+    "filtering": ["@CLASS", "##dimension:val", "##unchecked"],
+    "chains": ["chain: due_diligence", "chain: ubo", "chain: officers"],
+    "watchers": ["+#w:topic:", "+#w:entity:", "+#w:event:", "-#w:", "~#w:"],
+    "parallel": ["{ a, b, c }"],
+    "exact_phrase": ["\"quoted text\""],
+    "location_scope": ["de!", "uk!", "us!", "gov!", ":HU", ":UK"],
+    "temporal": ["2024!", "before:", "after:", "period:"]
+  },
+
+  "BARRIERS_SUMMARY": {
+    "barrier_1": {
+      "name": "No Template Auto-Trigger",
+      "description": "Template loads but doesn't auto-spawn watchers or auto-run queries",
+      "blocked_by": "Missing template: operator",
+      "unblocked_by": "template:{genre}:{jurisdiction} operator"
+    },
+    "barrier_2": {
+      "name": "Watchers Don't Spawn Watchers",
+      "description": "When watcher fires, it routes findings but doesn't create new watchers",
+      "blocked_by": "No cascade mechanism",
+      "unblocked_by": "+#w: =>spawn: syntax"
+    },
+    "barrier_3": {
+      "name": "No Operator-Level IF/THEN/ELSE",
+      "description": "Orchestrator has phase branching, but no operator syntax for conditionals",
+      "blocked_by": "Conditionals only in Python code",
+      "unblocked_by": "IF/THEN/ELSE operator syntax"
+    },
+    "barrier_4": {
+      "name": "Parallel Syntax Is Sequential",
+      "description": "{ !a, !b } syntax parses but executes in loop, not asyncio.gather()",
+      "blocked_by": "macros.py uses for-loop",
+      "unblocked_by": "Change to asyncio.gather() in MacroExecutor"
+    },
+    "barrier_5": {
+      "name": "No Loop Until Sufficient Control",
+      "description": "7-phase pipeline runs once, no automatic re-loop",
+      "blocked_by": "Linear phase execution",
+      "unblocked_by": "WHILE/DO operator + sufficient? check"
+    },
+    "barrier_6": {
+      "name": "No Slot→Section Binding",
+      "description": "Slots fill but don't auto-populate template sections",
+      "blocked_by": "Missing routing",
+      "unblocked_by": "=> slot: and => section: operators"
+    }
+  }
+}

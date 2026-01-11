@@ -1,0 +1,1897 @@
+07:42:03 | Loading sources from /Users/attic/01. DRILL_SEARCH/drill-search-app/input_output2/matrix/sources.json
+07:42:03 | Found 3277 domains without templates
+07:42:03 | 
+07:42:03 | ============================================================
+07:42:03 | SEEKLEECH FULL RUN
+07:42:03 | ============================================================
+07:42:03 | Domains to process: 3277
+07:42:03 | Already done: 2
+07:42:03 | Remaining: 3275 (approx)
+07:42:03 | Concurrent: 150
+07:42:03 | Output: /Users/attic/01. DRILL_SEARCH/drill-search-app/input_output2/matrix/seekleech_results.json
+07:42:03 | ============================================================
+07:42:03 | 
+07:42:03 | Estimated time: ~1 minutes (0.0 hours)
+07:42:03 | Using model pool across multiple providers for max throughput
+07:42:03 | 
+07:42:03 | Resuming: 2 already done
+07:42:03 | Processing 3274 registries (2 skipped)
+07:42:03 | [1/3274] planalto.gov.br
+07:42:04 | HTTP Request: GET https://planalto.gov.br/sitemap.xml "HTTP/1.0 404 Not Found"
+07:42:05 | HTTP Request: GET https://planalto.gov.br/sitemap_index.xml "HTTP/1.0 404 Not Found"
+07:42:06 | HTTP Request: GET https://planalto.gov.br/robots.txt "HTTP/1.0 404 Not Found"
+07:42:06 |   [1/3] Scraping homepage...
+07:42:07 | HTTP Request: GET https://planalto.gov.br "HTTP/1.1 200 OK"
+07:42:07 | ModelPool initialized with 6 models: ['claude-haiku-4-5-20251001', 'gemini-2.0-flash', 'gpt-4o-mini', 'anthropic/claude-3-haiku', 'google/gemini-flash-1.5', 'meta-llama/llama-3.1-8b-instruct']
+07:42:10 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:42:10 |   [2/3] Google: site:planalto.gov.br buscar empresa OR pesquisar empresa OR ...
+07:42:11 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Aplanalto.gov.br+buscar+empresa+OR+pesquisar+empresa+OR+consultar+CNPJ+OR+registro+de+empresa+OR+cadastro+empresarial&num=10 "HTTP/1.1 200 OK"
+07:42:13 | HTTP Request: GET https://www.planalto.gov.br/ccivil_03/leis/l8934.htm "HTTP/1.1 200 OK"
+07:42:15 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:42:17 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:42:18 | HTTP Request: GET https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp123.htm "HTTP/1.1 200 OK"
+07:42:26 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:42:27 | HTTP Request: GET https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/lei/l13303.htm "HTTP/1.1 200 OK"
+07:42:29 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:42:29 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:42:30 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:42:35 |   [3/3] CC Index...
+07:42:36 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.planalto.gov.br%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:42:38 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:42:38 |   ✗ not_found (-)
+07:42:38 | [2/3274] jucesponline.sp.gov.br
+07:42:41 | HTTP Request: GET https://jucesponline.sp.gov.br/sitemap.xml "HTTP/1.1 404 Not Found"
+07:42:41 | HTTP Request: GET https://jucesponline.sp.gov.br/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:42:41 | HTTP Request: GET https://jucesponline.sp.gov.br/robots.txt "HTTP/1.1 404 Not Found"
+07:42:41 |   [1/3] Scraping homepage...
+07:42:42 | HTTP Request: GET https://jucesponline.sp.gov.br "HTTP/1.1 200 OK"
+07:42:42 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:42:53 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:42:53 |   [2/3] Skipping Google (no query generated)
+07:42:53 |   [3/3] CC Index...
+07:42:54 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.jucesponline.sp.gov.br%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:42:55 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:42:55 |   ✗ not_found (-)
+07:42:55 | [3/3274] eib.org
+07:42:56 | HTTP Request: GET https://eib.org/sitemap.xml "HTTP/1.1 301 Moved Permanently"
+07:42:57 | HTTP Request: GET https://www.eib.org/ "HTTP/1.1 301 Moved Permanently"
+07:42:57 | HTTP Request: GET https://www.eib.org/en/ "HTTP/1.1 302 Found"
+07:42:58 | HTTP Request: GET http://www.eib.org/en/index "HTTP/1.1 301 Moved Permanently"
+07:42:58 | HTTP Request: GET https://www.eib.org/en/index "HTTP/1.1 200 OK"
+07:42:58 | HTTP Request: GET https://eib.org/sitemap_index.xml "HTTP/1.1 301 Moved Permanently"
+07:42:58 | HTTP Request: GET https://www.eib.org/ "HTTP/1.1 301 Moved Permanently"
+07:42:58 | HTTP Request: GET https://www.eib.org/en/ "HTTP/1.1 302 Found"
+07:42:58 | HTTP Request: GET http://www.eib.org/en/index "HTTP/1.1 301 Moved Permanently"
+07:42:58 | HTTP Request: GET https://www.eib.org/en/index "HTTP/1.1 200 OK"
+07:42:59 | HTTP Request: GET https://eib.org/robots.txt "HTTP/1.1 301 Moved Permanently"
+07:42:59 | HTTP Request: GET https://www.eib.org/ "HTTP/1.1 301 Moved Permanently"
+07:42:59 | HTTP Request: GET https://www.eib.org/en/ "HTTP/1.1 302 Found"
+07:42:59 | HTTP Request: GET http://www.eib.org/en/index "HTTP/1.1 301 Moved Permanently"
+07:42:59 | HTTP Request: GET https://www.eib.org/en/index "HTTP/1.1 200 OK"
+07:42:59 |   Found 7 candidates in sitemap/robots
+07:43:00 | HTTP Request: GET https://tech.eib.org/_tools/front/js/generic/jquery-eib.js?v=2.186 "HTTP/1.1 200 OK"
+07:43:00 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:43:00 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:43:01 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:43:07 | HTTP Request: GET https://tech.eib.org/_tools/front/js/framework/jquery-3.5.1.min.js "HTTP/1.1 200 OK"
+07:43:11 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:43:11 |   [1/3] Scraping homepage...
+07:43:11 | HTTP Request: GET https://eib.org "HTTP/1.1 301 Moved Permanently"
+07:43:12 | HTTP Request: GET https://www.eib.org/ "HTTP/1.1 301 Moved Permanently"
+07:43:12 | HTTP Request: GET https://www.eib.org/en/ "HTTP/1.1 302 Found"
+07:43:12 | HTTP Request: GET http://www.eib.org/en/index "HTTP/1.1 301 Moved Permanently"
+07:43:13 | HTTP Request: GET https://www.eib.org/en/index "HTTP/1.1 200 OK"
+07:43:13 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:43:15 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:43:15 |   [2/3] Google: site:eib.org company search OR officer search OR document se...
+07:43:16 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Aeib.org+company+search+OR+officer+search+OR+document+search&num=10 "HTTP/1.1 200 OK"
+07:43:17 | HTTP Request: GET https://www.eib.org/en/stories/search-engine-tree-saver "HTTP/1.1 200 OK"
+07:43:17 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:43:20 | HTTP Request: GET https://www.eib.org/en/search.htm?q=test "HTTP/1.1 200 OK"
+07:43:21 | HTTP Request: GET https://www.eib.org/en/company/12345 "HTTP/1.1 404 Not Found"
+07:43:21 |   ✓ found (google_direct)
+07:43:21 | [4/3274] sec.report
+07:43:24 | HTTP Request: GET https://sec.report/robots.txt "HTTP/1.1 200 OK"
+07:43:24 |   [1/3] Scraping homepage...
+07:43:24 | HTTP Request: GET https://sec.report "HTTP/1.1 200 OK"
+07:43:24 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:43:24 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:43:27 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:43:38 |   [2/3] Skipping Google (no query generated)
+07:43:38 |   [3/3] CC Index...
+07:43:38 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.sec.report%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:43:41 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:43:41 |   ✗ not_found (-)
+07:43:41 | [5/3274] cnpj.info
+07:43:42 |   [1/3] Scraping homepage...
+07:43:45 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 500 Internal Server Error"
+07:43:45 |   ✗ scrape_failed_all_failed (-)
+07:43:45 | [6/3274] casadosdados.com.br
+07:43:46 | HTTP Request: GET https://casadosdados.com.br/sitemap.xml "HTTP/1.1 403 Forbidden"
+07:43:46 | HTTP Request: GET https://casadosdados.com.br/sitemap_index.xml "HTTP/1.1 403 Forbidden"
+07:43:47 | HTTP Request: GET https://casadosdados.com.br/robots.txt "HTTP/1.1 200 OK"
+07:43:47 |   [1/3] Scraping homepage...
+07:43:47 | HTTP Request: GET https://casadosdados.com.br "HTTP/1.1 403 Forbidden"
+07:43:50 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:43:51 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:43:55 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:43:56 | HTTP Request: GET https://casadosdados.com.br/solucao/cnpj?q=test "HTTP/1.1 403 Forbidden"
+07:43:56 | HTTP Request: GET https://casadosdados.com.br/solucao/cnpj?q=12345 "HTTP/1.1 403 Forbidden"
+07:43:57 | HTTP Request: GET https://casadosdados.com.br/company/12345 "HTTP/1.1 403 Forbidden"
+07:43:57 |   ✓ found (homepage_firecrawl)
+07:43:57 | [7/3274] ec.europa.eu
+07:43:58 | HTTP Request: GET https://ec.europa.eu/sitemap.xml "HTTP/1.1 200 OK"
+07:43:58 | HTTP Request: GET https://ec.europa.eu/sitemap_index.xml "HTTP/1.1 404 (Not Found)"
+07:43:58 | HTTP Request: GET https://ec.europa.eu/robots.txt "HTTP/1.1 200 OK"
+07:43:59 |   [1/3] Scraping homepage...
+07:43:59 | HTTP Request: GET https://ec.europa.eu "HTTP/1.1 301 Moved Permanently"
+07:44:00 | HTTP Request: GET https://commission.europa.eu/select-language?destination=/node/1 "HTTP/1.1 200 OK"
+07:44:01 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:44:02 |   [2/3] Google: site:ec.europa.eu [company search] OR [company lookup] OR [c...
+07:44:03 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Aec.europa.eu+%5Bcompany+search%5D+OR+%5Bcompany+lookup%5D+OR+%5Bcompany+profile%5D+OR+%5Bofficer+search%5D+OR+%5Bdocument+search%5D&num=10 "HTTP/1.1 200 OK"
+07:44:04 | HTTP Request: GET https://ec.europa.eu/newsroom/just/redirection/item/717212/en/1148 "HTTP/1.1 302 Found"
+07:44:04 | HTTP Request: GET https://www.youtube.com/watch?v=YPhw5SR4C5M "HTTP/1.1 200 OK"
+07:44:05 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:44:05 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:44:06 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:44:09 | HTTP Request: GET https://competition-cases.ec.europa.eu/search?caseInstrument=InstrumentFS "HTTP/1.1 200 OK"
+07:44:13 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:44:13 | HTTP Request: GET https://competition-cases.ec.europa.eu/search?caseInstrument={instrument}&query=test "HTTP/1.1 200 OK"
+07:44:13 | HTTP Request: GET https://competition-cases.ec.europa.eu/search?caseNumber={caseNumber} "HTTP/1.1 200 OK"
+07:44:14 |   ✓ found (google_direct)
+07:44:14 | [8/3274] cbcg.me
+07:44:15 |   [1/3] Scraping homepage...
+07:44:24 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:44:24 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:44:27 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:44:27 |   [2/3] Google: site:cbcg.me pretraga kompanije OR identifikacioni broj OR p...
+07:44:28 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Acbcg.me+pretraga+kompanije+OR+identifikacioni+broj+OR+profil+kompanije+OR+direktor+OR+dokument+OR+podaci&num=10 "HTTP/1.1 200 OK"
+07:44:33 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:44:34 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:44:38 |   ✓ found (google_firecrawl)
+07:44:38 | [9/3274] moufk.roskazna.gov.ru
+07:44:41 |   [1/3] Scraping homepage...
+07:44:52 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:44:53 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:44:53 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:44:54 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:44:58 |   [2/3] Skipping Google (no query generated)
+07:44:58 |   [3/3] CC Index...
+07:44:59 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.moufk.roskazna.gov.ru%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:45:01 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:45:01 |   ✗ not_found (-)
+07:45:01 | [10/3274] cnpjs.rocks
+07:45:02 |   [1/3] Scraping homepage...
+07:45:02 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:45:02 |   ✗ scrape_failed_all_failed (-)
+07:45:02 | [11/3274] justice.gov
+07:45:04 |   [1/3] Scraping homepage...
+07:45:11 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:45:12 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:45:15 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:45:15 |   [2/3] Google: site:justice.gov company search OR lookup OR officer/directo...
+07:45:15 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Ajustice.gov+company+search+OR+lookup+OR+officer%2Fdirector+search+OR+document%2Ffiling+search&num=10 "HTTP/1.1 200 OK"
+07:45:17 | HTTP Request: GET https://www.justice.gov/usao-sdga/pr/operation-low-voltage-homeland-security-investigations-executes-federal-search-warrant "HTTP/1.1 200 OK"
+07:45:18 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:45:20 | HTTP Request: GET https://search.justice.gov/search?query=test "HTTP/1.1 302 Found"
+07:45:21 | HTTP Request: GET https://www.usa.gov/search-error "HTTP/1.1 200 OK"
+07:45:21 |   ✓ found (google_direct)
+07:45:21 | [12/3274] consultasocio.com
+07:45:21 | HTTP Request: GET https://consultasocio.com/sitemap.xml "HTTP/1.1 403 Forbidden"
+07:45:22 | HTTP Request: GET https://consultasocio.com/sitemap_index.xml "HTTP/1.1 403 Forbidden"
+07:45:22 | HTTP Request: GET https://consultasocio.com/robots.txt "HTTP/1.1 403 Forbidden"
+07:45:22 |   [1/3] Scraping homepage...
+07:45:22 | HTTP Request: GET https://consultasocio.com "HTTP/1.1 403 Forbidden"
+07:45:28 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:45:29 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:45:29 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:45:30 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:45:34 |   [2/3] Skipping Google (no query generated)
+07:45:34 |   [3/3] CC Index...
+07:45:35 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.consultasocio.com%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:45:37 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:45:37 |   ✗ not_found (-)
+07:45:37 | [13/3274] opentender.eu
+07:45:38 | HTTP Request: GET https://opentender.eu/sitemap.xml "HTTP/1.1 200 OK"
+07:45:38 | HTTP Request: GET https://opentender.eu/sitemap_index.xml "HTTP/1.1 200 OK"
+07:45:39 | HTTP Request: GET https://opentender.eu/robots.txt "HTTP/1.1 200 OK"
+07:45:39 |   [1/3] Scraping homepage...
+07:45:39 | HTTP Request: GET https://opentender.eu "HTTP/1.1 200 OK"
+07:45:39 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:45:41 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:45:41 |   [2/3] Google: site:opentender.eu company search OR officer search OR docum...
+07:45:42 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Aopentender.eu+company+search+OR+officer+search+OR+documents+OR+filings&num=10 "HTTP/1.1 200 OK"
+07:45:43 | HTTP Request: GET https://jm.opentender.eu/search/company "HTTP/1.1 200 OK"
+07:45:44 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:45:46 | HTTP Request: GET https://jm.opentender.eu/search/company?q=test "HTTP/1.1 200 OK"
+07:45:46 | HTTP Request: GET https://jm.opentender.eu/company/12345 "HTTP/1.1 200 OK"
+07:45:47 |   ✓ found (google_direct)
+07:45:47 | [14/3274] digital.gov.ru
+07:46:17 |   [1/3] Scraping homepage...
+07:46:57 |   ✗ scrape_failed_all_failed (-)
+07:46:57 | [15/3274] informecadastral.com.br
+07:46:58 | HTTP Request: GET https://informecadastral.com.br/sitemap.xml "HTTP/1.1 301 Moved Permanently"
+07:46:59 | HTTP Request: GET https://www.informecadastral.com.br/sitemap.xml "HTTP/1.1 200 OK"
+07:46:59 | HTTP Request: GET https://informecadastral.com.br/sitemap_index.xml "HTTP/1.1 301 Moved Permanently"
+07:46:59 | HTTP Request: GET https://www.informecadastral.com.br/sitemap_index.xml "HTTP/1.1 200 OK"
+07:47:00 | HTTP Request: GET https://informecadastral.com.br/robots.txt "HTTP/1.1 301 Moved Permanently"
+07:47:00 | HTTP Request: GET https://www.informecadastral.com.br/robots.txt "HTTP/1.1 200 OK"
+07:47:00 |   Found 3 candidates in sitemap/robots
+07:47:00 | HTTP Request: GET https://www.informecadastral.com.br/includes/js/jquery-3.7.0.min.js "HTTP/1.1 200 OK"
+07:47:01 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:47:01 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:47:01 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:47:03 | HTTP Request: GET https://www.informecadastral.com.br/includes/js/jquery.mask.min.js "HTTP/1.1 200 OK"
+07:47:07 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:47:07 |   [1/3] Scraping homepage...
+07:47:07 | HTTP Request: GET https://informecadastral.com.br "HTTP/1.1 301 Moved Permanently"
+07:47:07 | HTTP Request: GET https://www.informecadastral.com.br/ "HTTP/1.1 200 OK"
+07:47:08 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:47:12 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:47:12 | HTTP Request: GET https://www.informecadastral.com.br/?cnpj=12345 "HTTP/1.1 200 OK"
+07:47:12 | HTTP Request: GET https://www.informecadastral.com.br/company/12345 "HTTP/1.1 200 OK"
+07:47:13 | HTTP Request: GET https://www.informecadastral.com.br/documentos/12345 "HTTP/1.1 200 OK"
+07:47:13 |   ✓ found (homepage_direct)
+07:47:13 | [16/3274] portaltransparencia.gov.br
+07:47:14 | HTTP Request: GET https://portaltransparencia.gov.br/sitemap.xml "HTTP/1.1 302 Moved Temporarily"
+07:47:15 | HTTP Request: GET https://portaldatransparencia.gov.br/sitemap.xml "HTTP/1.1 200 OK"
+07:47:16 | HTTP Request: GET https://portaltransparencia.gov.br/sitemap_index.xml "HTTP/1.1 302 Moved Temporarily"
+07:47:16 | HTTP Request: GET https://portaldatransparencia.gov.br/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:47:17 | HTTP Request: GET https://portaltransparencia.gov.br/robots.txt "HTTP/1.1 302 Moved Temporarily"
+07:47:17 | HTTP Request: GET https://portaldatransparencia.gov.br/robots.txt "HTTP/1.1 200 OK"
+07:47:17 |   [1/3] Scraping homepage...
+07:47:18 | HTTP Request: GET https://portaltransparencia.gov.br "HTTP/1.1 302 Moved Temporarily"
+07:47:18 | HTTP Request: GET https://portaldatransparencia.gov.br/ "HTTP/1.1 200 OK"
+07:47:20 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:47:22 | HTTP Request: GET https://portaltransparencia.gov.br/pessoa-juridica/busca/lista?termo=test "HTTP/1.1 302 Moved Temporarily"
+07:47:23 | HTTP Request: GET https://portaldatransparencia.gov.br/pessoa-juridica/busca/lista?termo=test "HTTP/1.1 200 OK"
+07:47:23 | HTTP Request: GET https://portaltransparencia.gov.br/pessoa-juridica/busca/lista?cnpj=12345 "HTTP/1.1 302 Moved Temporarily"
+07:47:24 | HTTP Request: GET https://portaldatransparencia.gov.br/pessoa-juridica/busca/lista?cnpj=12345 "HTTP/1.1 200 OK"
+07:47:24 | HTTP Request: GET https://portaltransparencia.gov.br/pessoa-juridica/busca/lista?cnpj=12345 "HTTP/1.1 302 Moved Temporarily"
+07:47:25 | HTTP Request: GET https://portaldatransparencia.gov.br/pessoa-juridica/busca/lista?cnpj=12345 "HTTP/1.1 200 OK"
+07:47:25 |   ✓ found (homepage_direct)
+07:47:25 | [17/3274] pma.ps
+07:47:27 | HTTP Request: GET https://pma.ps/sitemap.xml "HTTP/1.1 404 Not Found"
+07:47:27 | HTTP Request: GET https://pma.ps/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:47:27 | HTTP Request: GET https://pma.ps/robots.txt "HTTP/1.1 200 OK"
+07:47:27 |   [1/3] Scraping homepage...
+07:47:27 | HTTP Request: GET https://pma.ps "HTTP/1.1 301 Moved Permanently"
+07:47:29 | HTTP Request: GET https://www.pma.ps/ar/ "HTTP/1.1 200 OK"
+07:47:30 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:47:30 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:47:31 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:47:46 |   [2/3] Skipping Google (no query generated)
+07:47:46 |   [3/3] CC Index...
+07:47:47 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.pma.ps%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:47:49 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:47:49 |   ✗ not_found (-)
+07:47:49 | [18/3274] metro.gov.az
+07:47:50 | HTTP Request: GET https://metro.gov.az/sitemap.xml "HTTP/1.1 404 Not Found"
+07:47:51 | HTTP Request: GET https://metro.gov.az/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:47:51 | HTTP Request: GET https://metro.gov.az/robots.txt "HTTP/1.1 200 OK"
+07:47:51 |   [1/3] Scraping homepage...
+07:47:51 | HTTP Request: GET https://metro.gov.az "HTTP/1.1 302 Found"
+07:47:52 | HTTP Request: GET https://metro.gov.az/az "HTTP/1.1 200 OK"
+07:47:52 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:47:55 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:47:56 | HTTP Request: GET https://metro.gov.az/az/search?q=test "HTTP/1.1 200 OK"
+07:47:56 |   ✓ found (homepage_direct)
+07:47:56 | [19/3274] brokercheck.finra.org
+07:47:57 | HTTP Request: GET https://brokercheck.finra.org/sitemap.xml "HTTP/1.1 200 OK"
+07:47:57 | HTTP Request: GET https://brokercheck.finra.org/sitemap_index.xml "HTTP/1.1 200 OK"
+07:47:57 | HTTP Request: GET https://brokercheck.finra.org/robots.txt "HTTP/1.1 200 OK"
+07:47:57 |   [1/3] Scraping homepage...
+07:47:57 | HTTP Request: GET https://brokercheck.finra.org "HTTP/1.1 200 OK"
+07:47:58 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:48:02 |   [2/3] Skipping Google (no query generated)
+07:48:02 |   [3/3] CC Index...
+07:48:02 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.brokercheck.finra.org%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:48:03 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:48:03 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:48:03 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:48:42 | HTTP Request: GET https://brokercheck.finra.org/search "HTTP/1.1 200 OK"
+07:48:45 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:48:46 | HTTP Request: GET https://brokercheck.finra.org/search/results "HTTP/1.1 200 OK"
+07:48:46 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:48:48 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:48:48 | HTTP Request: GET https://brokercheck.finra.org/register/view?id=12345 "HTTP/1.1 200 OK"
+07:48:49 | HTTP Request: GET https://brokercheck.finra.org/brokercheck/view/entity/acme "HTTP/1.1 200 OK"
+07:48:49 |   ○ found_profiles_only (cc_index)
+07:48:49 | [20/3274] econodata.com.br
+07:48:49 | HTTP Request: GET https://econodata.com.br/sitemap.xml "HTTP/1.1 308 Permanent Redirect"
+07:48:51 | HTTP Request: GET https://www.econodata.com.br/sitemap.xml "HTTP/1.1 403 Forbidden"
+07:48:51 | HTTP Request: GET https://econodata.com.br/sitemap_index.xml "HTTP/1.1 308 Permanent Redirect"
+07:48:51 | HTTP Request: GET https://www.econodata.com.br/sitemap_index.xml "HTTP/1.1 403 Forbidden"
+07:48:51 | HTTP Request: GET https://econodata.com.br/robots.txt "HTTP/1.1 308 Permanent Redirect"
+07:48:51 | HTTP Request: GET https://www.econodata.com.br/robots.txt "HTTP/1.1 200 OK"
+07:48:51 |   [1/3] Scraping homepage...
+07:48:51 | HTTP Request: GET https://econodata.com.br "HTTP/1.1 308 Permanent Redirect"
+07:48:51 | HTTP Request: GET https://www.econodata.com.br/ "HTTP/1.1 200 OK"
+07:48:53 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:48:56 | HTTP Request: GET https://www.econodata.com.br/consulta-empresa?q=test "HTTP/1.1 200 OK"
+07:48:57 | HTTP Request: GET https://www.econodata.com.br/consulta-empresa?id=12345 "HTTP/1.1 200 OK"
+07:48:57 | HTTP Request: GET https://www.econodata.com.br/consulta-empresa?id=12345 "HTTP/1.1 200 OK"
+07:48:58 | HTTP Request: GET https://www.econodata.com.br/consulta-socio-decisor?q=test "HTTP/1.1 200 OK"
+07:48:58 |   ✓ found (homepage_direct)
+07:48:58 | [21/3274] asp.icc-cpi.int
+07:48:59 | HTTP Request: GET https://asp.icc-cpi.int/sitemap.xml "HTTP/1.1 404 Not Found"
+07:49:00 | HTTP Request: GET https://asp.icc-cpi.int/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:49:00 | HTTP Request: GET https://asp.icc-cpi.int/robots.txt "HTTP/1.1 200 OK"
+07:49:00 |   [1/3] Scraping homepage...
+07:49:01 | HTTP Request: GET https://asp.icc-cpi.int "HTTP/1.1 200 OK"
+07:49:01 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:49:01 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:49:02 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:49:05 |   [2/3] Skipping Google (no query generated)
+07:49:05 |   [3/3] CC Index...
+07:49:05 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.asp.icc-cpi.int%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:49:08 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:49:08 |   ✗ not_found (-)
+07:49:08 | [22/3274] rkn.gov.ru
+07:49:39 |   [1/3] Scraping homepage...
+07:50:19 |   ✗ scrape_failed_all_failed (-)
+07:50:19 | [23/3274] amcu.gov.ua
+07:50:21 | HTTP Request: GET https://amcu.gov.ua/sitemap.xml "HTTP/1.1 200 OK"
+07:50:23 | HTTP Request: GET https://amcu.gov.ua/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:50:23 | HTTP Request: GET https://amcu.gov.ua/robots.txt "HTTP/1.1 200 OK"
+07:50:23 |   [1/3] Scraping homepage...
+07:50:24 | HTTP Request: GET https://amcu.gov.ua "HTTP/1.1 200 OK"
+07:50:24 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:50:30 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:50:31 | HTTP Request: GET https://amcu.gov.ua/searchresult?key=test "HTTP/1.1 200 OK"
+07:50:33 | HTTP Request: GET https://amcu.gov.ua/npasearch?num=12345 "HTTP/1.1 200 OK"
+07:50:34 | HTTP Request: GET https://amcu.gov.ua/persons?search=acme "HTTP/1.1 200 OK"
+07:50:35 | HTTP Request: GET https://amcu.gov.ua/npasearch?key=test "HTTP/1.1 200 OK"
+07:50:35 |   ✓ found (homepage_direct)
+07:50:35 | [24/3274] consultacnpj.com
+07:50:36 | HTTP Request: GET https://consultacnpj.com/sitemap.xml "HTTP/1.1 200 OK"
+07:50:36 | HTTP Request: GET https://consultacnpj.com/sitemap_index.xml "HTTP/1.1 403 Forbidden"
+07:50:37 | HTTP Request: GET https://consultacnpj.com/robots.txt "HTTP/1.1 200 OK"
+07:50:37 |   [1/3] Scraping homepage...
+07:50:37 | HTTP Request: GET https://consultacnpj.com "HTTP/1.1 200 OK"
+07:50:38 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:50:39 |   [2/3] Google: site:consultacnpj.com "pesquisa de empresa" OR "consulta CNP...
+07:50:40 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Aconsultacnpj.com+%22pesquisa+de+empresa%22+OR+%22consulta+CNPJ%22+OR+%22busca+CNPJ%22&num=10 "HTTP/1.1 200 OK"
+07:50:40 | HTTP Request: GET https://consultacnpj.com/ "HTTP/1.1 200 OK"
+07:50:40 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:50:40 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:50:41 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:50:42 | HTTP Request: GET https://consultacnpj.com/cnpj/leads2b-sa-leads2bcom-11378117000120 "HTTP/1.1 200 OK"
+07:50:47 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:50:47 | HTTP Request: GET https://consultacnpj.com/cnpj/%7Bcnpj%7D "HTTP/1.1 200 OK"
+07:50:47 | HTTP Request: GET https://consultacnpj.com/cnpj/%7Bcompany-name%7D-%7Bcnpj%7D "HTTP/1.1 200 OK"
+07:50:47 |   ✓ found (google_direct)
+07:50:47 | [25/3274] fca.org.uk
+07:50:48 | HTTP Request: GET https://fca.org.uk/sitemap.xml "HTTP/1.1 301 Moved Permanently"
+07:50:49 | HTTP Request: GET https://www.fca.org.uk/sitemap.xml "HTTP/1.1 200 OK"
+07:50:49 | HTTP Request: GET https://fca.org.uk/sitemap_index.xml "HTTP/1.1 301 Moved Permanently"
+07:50:51 | HTTP Request: GET https://www.fca.org.uk/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:50:51 | HTTP Request: GET https://fca.org.uk/robots.txt "HTTP/1.1 301 Moved Permanently"
+07:50:51 | HTTP Request: GET https://www.fca.org.uk/robots.txt "HTTP/1.1 200 OK"
+07:50:52 |   [1/3] Scraping homepage...
+07:50:52 | HTTP Request: GET https://fca.org.uk "HTTP/1.1 301 Moved Permanently"
+07:50:52 | HTTP Request: GET https://www.fca.org.uk/ "HTTP/1.1 200 OK"
+07:50:52 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:50:58 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:50:58 | HTTP Request: GET https://fca.org.uk/?fca_action=search&search_term=test "HTTP/1.1 301 Moved Permanently"
+07:51:01 | HTTP Request: GET https://www.fca.org.uk/?fca_action=search&search_term=test "HTTP/1.1 200 OK"
+07:51:01 | HTTP Request: GET https://fca.org.uk/lookup?id=12345 "HTTP/1.1 301 Moved Permanently"
+07:51:02 | HTTP Request: GET https://www.fca.org.uk/lookup?id=12345 "HTTP/1.1 404 Not Found"
+07:51:03 | HTTP Request: GET https://fca.org.uk/company/12345 "HTTP/1.1 301 Moved Permanently"
+07:51:04 | HTTP Request: GET https://www.fca.org.uk/company/12345 "HTTP/1.1 404 Not Found"
+07:51:04 | HTTP Request: GET https://fca.org.uk/officer-search?name=acme "HTTP/1.1 301 Moved Permanently"
+07:51:06 | HTTP Request: GET https://www.fca.org.uk/officer-search?name=acme "HTTP/1.1 404 Not Found"
+07:51:06 |   ✓ found (homepage_direct)
+07:51:06 | [26/3274] government.ru
+07:51:36 |   [1/3] Scraping homepage...
+07:52:17 |   ✗ scrape_failed_all_failed (-)
+07:52:17 | [27/3274] roskazna.gov.ru
+07:52:19 |   [1/3] Scraping homepage...
+07:52:27 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:52:28 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:52:30 |   [2/3] Google: site:roskazna.gov.ru [поиск компании ИЛИ поиск по идентифика...
+07:52:30 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Aroskazna.gov.ru+%5B%D0%BF%D0%BE%D0%B8%D1%81%D0%BA+%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8+%D0%98%D0%9B%D0%98+%D0%BF%D0%BE%D0%B8%D1%81%D0%BA+%D0%BF%D0%BE+%D0%B8%D0%B4%D0%B5%D0%BD%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%82%D0%BE%D1%80%D1%83+%D0%98%D0%9B%D0%98+%D0%BF%D0%BE%D0%B8%D1%81%D0%BA+%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8F+%D0%98%D0%9B%D0%98+%D0%BF%D0%BE%D0%B8%D1%81%D0%BA+%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2%5D&num=10 "HTTP/1.1 200 OK"
+07:52:31 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:52:32 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:52:32 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:52:33 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:52:54 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:52:57 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:53:08 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:53:08 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:53:11 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:53:11 |   [3/3] CC Index...
+07:53:12 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.roskazna.gov.ru%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:53:13 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:53:14 |   ✗ not_found (-)
+07:53:14 | [28/3274] ttbz.org.cn
+07:53:20 |   [1/3] Scraping homepage...
+07:53:22 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:53:22 |   ✗ scrape_failed_all_failed (-)
+07:53:22 | [29/3274] enterprisegeorgia.gov.ge
+07:53:24 |   [1/3] Scraping homepage...
+07:53:29 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 500 Internal Server Error"
+07:53:29 |   ✗ scrape_failed_all_failed (-)
+07:53:29 | [30/3274] gvh.hu
+07:53:30 | HTTP Request: GET https://gvh.hu/sitemap.xml "HTTP/1.1 200 OK"
+07:53:31 | HTTP Request: GET https://gvh.hu/sitemap_index.xml "HTTP/1.1 404 "
+07:53:31 | HTTP Request: GET https://gvh.hu/robots.txt "HTTP/1.1 404 "
+07:53:32 |   Found 1 candidates in sitemap/robots
+07:53:32 | HTTP Request: GET http://gvh.hu/en/resolutions/resolutions-search "HTTP/1.0 301 Error encountered"
+07:53:33 | HTTP Request: GET https://gvh.hu/en/resolutions/resolutions-search "HTTP/1.1 200 OK"
+07:53:34 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:53:34 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:53:35 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:53:40 | HTTP Request: GET https://gvh.hu/en/search?q=test "HTTP/1.1 200 OK"
+07:53:42 | HTTP Request: GET https://gvh.hu/en/lookup?id=12345 "HTTP/1.1 404 "
+07:53:43 | HTTP Request: GET https://gvh.hu/en/lookup/12345 "HTTP/1.1 404 "
+07:53:43 |   ✓ found (sitemap)
+07:53:43 | [31/3274] www38.receita.fazenda.gov.br
+07:53:45 | HTTP Request: GET https://www38.receita.fazenda.gov.br/sitemap.xml "HTTP/1.1 404 Not Found"
+07:53:45 | HTTP Request: GET https://www38.receita.fazenda.gov.br/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:53:45 | HTTP Request: GET https://www38.receita.fazenda.gov.br/robots.txt "HTTP/1.1 404 Not Found"
+07:53:45 |   [1/3] Scraping homepage...
+07:53:45 | HTTP Request: GET https://www38.receita.fazenda.gov.br "HTTP/1.1 302 Found"
+07:53:46 | HTTP Request: GET https://www38.receita.fazenda.gov.br/redesim "HTTP/1.1 404 Not Found"
+07:53:46 |   ✗ scrape_failed_http_404 (-)
+07:53:46 | [32/3274] consultas.plus
+07:53:50 | HTTP Request: GET https://consultas.plus/sitemap.xml "HTTP/1.1 301 Moved Permanently"
+07:53:51 | HTTP Request: GET https://consultas.plus/sitemap_index.xml "HTTP/1.1 200 OK"
+07:53:51 | HTTP Request: GET https://consultas.plus/sitemap_index.xml "HTTP/1.1 200 OK"
+07:53:51 | HTTP Request: GET https://consultas.plus/robots.txt "HTTP/1.1 200 OK"
+07:53:51 |   [1/3] Scraping homepage...
+07:53:52 | HTTP Request: GET https://consultas.plus "HTTP/1.1 200 OK"
+07:53:55 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:54:00 | HTTP Request: GET https://consultas.plus/?s=test "HTTP/1.1 200 OK"
+07:54:00 |   ✓ found (homepage_direct)
+07:54:00 | [33/3274] fovarositorvenyszek.birosag.hu
+07:54:01 | HTTP Request: GET https://fovarositorvenyszek.birosag.hu/sitemap.xml "HTTP/1.1 301 Moved Permanently"
+07:54:02 | HTTP Request: GET https://birosag.hu/fovarosi-torvenyszek "HTTP/1.1 200 OK"
+07:54:03 | HTTP Request: GET https://fovarositorvenyszek.birosag.hu/sitemap_index.xml "HTTP/1.1 301 Moved Permanently"
+07:54:03 | HTTP Request: GET https://birosag.hu/fovarosi-torvenyszek "HTTP/1.1 200 OK"
+07:54:03 | HTTP Request: GET https://fovarositorvenyszek.birosag.hu/robots.txt "HTTP/1.1 200 OK"
+07:54:04 |   [1/3] Scraping homepage...
+07:54:04 | HTTP Request: GET https://fovarositorvenyszek.birosag.hu "HTTP/1.1 301 Moved Permanently"
+07:54:04 | HTTP Request: GET https://birosag.hu/fovarosi-torvenyszek "HTTP/1.1 200 OK"
+07:54:05 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:54:12 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:54:12 | HTTP Request: GET https://fovarositorvenyszek.birosag.hu/kereses?kulcsszo=test "HTTP/1.1 301 Moved Permanently"
+07:54:13 | HTTP Request: GET https://birosag.hu/fovarosi-torvenyszek "HTTP/1.1 200 OK"
+07:54:15 | HTTP Request: GET https://www.kozadat.hu/kereso/talalatok?szoveg=12345 "HTTP/1.1 200 OK"
+07:54:15 | HTTP Request: GET https://fovarositorvenyszek.birosag.hu/company/12345 "HTTP/1.1 301 Moved Permanently"
+07:54:16 | HTTP Request: GET https://birosag.hu/fovarosi-torvenyszek "HTTP/1.1 200 OK"
+07:54:16 |   ✓ found (homepage_direct)
+07:54:16 | [34/3274] kse.kg
+07:54:18 | HTTP Request: GET https://kse.kg/sitemap.xml "HTTP/1.1 302 Found"
+07:54:20 | HTTP Request: GET https://www.kse.kg/sitemap.xml "HTTP/1.1 200 OK"
+07:54:21 | HTTP Request: GET https://kse.kg/sitemap_index.xml "HTTP/1.1 302 Found"
+07:54:22 | HTTP Request: GET https://www.kse.kg/sitemap_index.xml "HTTP/1.1 200 OK"
+07:54:23 | HTTP Request: GET https://kse.kg/robots.txt "HTTP/1.1 302 Found"
+07:54:23 | HTTP Request: GET https://www.kse.kg/robots.txt "HTTP/1.1 200 OK"
+07:54:23 |   Found 7 candidates in sitemap/robots
+07:54:24 | HTTP Request: GET https://www.kse.kg/scripts/ckeditor/adapters/jquery.js "HTTP/1.1 200 OK"
+07:54:25 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:54:26 | HTTP Request: GET https://www.kse.kg/scripts/jquery.tools.min.js "HTTP/1.1 200 OK"
+07:54:26 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:54:27 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:54:27 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:54:40 |   [1/3] Scraping homepage...
+07:54:42 | HTTP Request: GET https://kse.kg "HTTP/1.1 302 Found"
+07:54:43 | HTTP Request: GET https://www.kse.kg/ "HTTP/1.1 200 OK"
+07:54:48 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:54:48 |   ✓ found (homepage_direct)
+07:54:48 | [35/3274] rejestr.io
+07:54:49 | HTTP Request: GET https://rejestr.io/sitemap.xml "HTTP/1.1 403 Forbidden"
+07:54:50 | HTTP Request: GET https://rejestr.io/sitemap_index.xml "HTTP/1.1 403 Forbidden"
+07:54:51 | HTTP Request: GET https://rejestr.io/robots.txt "HTTP/1.1 200 OK"
+07:54:51 |   [1/3] Scraping homepage...
+07:54:51 | HTTP Request: GET https://rejestr.io "HTTP/1.1 403 Forbidden"
+07:54:55 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:54:55 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:54:59 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:55:00 | HTTP Request: GET https://rejestr.io/?q=test "HTTP/1.1 403 Forbidden"
+07:55:00 |   ✓ found (homepage_firecrawl)
+07:55:00 | [36/3274] parliament.bg
+07:55:02 | HTTP Request: GET https://parliament.bg/sitemap.xml "HTTP/1.1 200 OK"
+07:55:02 | HTTP Request: GET https://parliament.bg/sitemap_index.xml "HTTP/1.1 200 OK"
+07:55:03 | HTTP Request: GET https://parliament.bg/robots.txt "HTTP/1.1 200 OK"
+07:55:03 |   [1/3] Scraping homepage...
+07:55:03 | HTTP Request: GET https://parliament.bg "HTTP/1.1 200 OK"
+07:55:04 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:55:05 |   [2/3] Google: site:parliament.bg търси OR търсене OR търсят OR търсите...
+07:55:05 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Aparliament.bg+%D1%82%D1%8A%D1%80%D1%81%D0%B8+OR+%D1%82%D1%8A%D1%80%D1%81%D0%B5%D0%BD%D0%B5+OR+%D1%82%D1%8A%D1%80%D1%81%D1%8F%D1%82+OR+%D1%82%D1%8A%D1%80%D1%81%D0%B8%D1%82%D0%B5&num=10 "HTTP/1.1 200 OK"
+07:55:07 | HTTP Request: GET https://dv.parliament.bg/DVWeb/broeveList.faces "HTTP/1.1 500 Internal Server Error"
+07:55:08 | HTTP Request: GET https://dv.parliament.bg/DVWeb/searchDV.faces "HTTP/1.1 500 Internal Server Error"
+07:55:08 | HTTP Request: GET https://dv.parliament.bg/DVWeb/help/broeveList.html;jsessionid=1636EC1936366628B59648E618786D72 "HTTP/1.1 200 OK"
+07:55:09 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:55:09 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:55:09 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:55:20 |   [3/3] CC Index...
+07:55:21 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.parliament.bg%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:55:23 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:55:23 |   ✗ not_found (-)
+07:55:23 | [37/3274] bafin.de
+07:55:30 | HTTP Request: GET https://bafin.de/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:55:31 | HTTP Request: GET https://bafin.de/robots.txt "HTTP/1.1 200 OK"
+07:55:31 |   [1/3] Scraping homepage...
+07:55:31 | HTTP Request: GET https://bafin.de "HTTP/1.1 302 Found"
+07:55:32 | HTTP Request: GET https://www.bafin.de/DE/Startseite/startseite_node.html "HTTP/1.1 200 OK"
+07:55:32 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:55:40 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:55:40 |   [2/3] Skipping Google (no query generated)
+07:55:40 |   [3/3] CC Index...
+07:55:41 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.bafin.de%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:55:42 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:55:42 |   ✗ not_found (-)
+07:55:42 | [38/3274] kap.org.tr
+07:55:44 | HTTP Request: GET https://kap.org.tr/sitemap.xml "HTTP/1.1 307 Temporary Redirect"
+07:55:44 | HTTP Request: GET https://kap.org.tr/en/sitemap.xml "HTTP/1.1 404 Not Found"
+07:55:44 | HTTP Request: GET https://kap.org.tr/sitemap_index.xml "HTTP/1.1 307 Temporary Redirect"
+07:55:45 | HTTP Request: GET https://kap.org.tr/en/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:55:45 | HTTP Request: GET https://kap.org.tr/robots.txt "HTTP/1.1 307 Temporary Redirect"
+07:55:45 | HTTP Request: GET https://kap.org.tr/en/robots.txt "HTTP/1.1 404 Not Found"
+07:55:45 |   [1/3] Scraping homepage...
+07:55:46 | HTTP Request: GET https://kap.org.tr "HTTP/1.1 301 Moved permanently"
+07:55:47 | HTTP Request: GET https://www.kap.org.tr/ "HTTP/1.1 307 Temporary Redirect"
+07:55:47 | HTTP Request: GET https://www.kap.org.tr/en/ "HTTP/1.1 308 Permanent Redirect"
+07:55:48 | HTTP Request: GET https://www.kap.org.tr/en "HTTP/1.1 200 OK"
+07:55:48 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:55:48 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:55:49 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:55:56 |   [2/3] Skipping Google (no query generated)
+07:55:56 |   [3/3] CC Index...
+07:55:57 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.kap.org.tr%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:55:59 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:55:59 |   ✗ not_found (-)
+07:55:59 | [39/3274] in.gov.br
+07:56:01 | HTTP Request: GET https://in.gov.br/sitemap.xml "HTTP/1.1 200 OK"
+07:56:01 | HTTP Request: GET https://in.gov.br/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:56:01 | HTTP Request: GET https://in.gov.br/robots.txt "HTTP/1.1 200 OK"
+07:56:01 |   [1/3] Scraping homepage...
+07:56:02 | HTTP Request: GET https://in.gov.br "HTTP/1.1 301 Moved Permanently"
+07:56:03 | HTTP Request: GET https://www.gov.br/imprensanacional "HTTP/1.1 301 Moved Permanently"
+07:56:04 | HTTP Request: GET https://www.gov.br/imprensanacional/pt-br "HTTP/1.1 200 OK"
+07:56:04 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:56:08 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:56:09 |   [2/3] Google: site:in.gov.br pesquisa de empresas ou busca por CNPJ ou bus...
+07:56:09 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Ain.gov.br+pesquisa+de+empresas+ou+busca+por+CNPJ+ou+busca+por+nome+de+diretor&num=10 "HTTP/1.1 200 OK"
+07:56:11 | HTTP Request: GET https://pesquisa.in.gov.br/imprensa/servlet/INPDFViewer?jornal=515&pagina=78&data=05/06/2024&captchafield=firstAccess "HTTP/1.1 200 OK"
+07:56:13 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:56:15 | HTTP Request: GET https://pesquisa.in.gov.br/imprensa/servlet/INPDFViewer?jornal=515&pagina=144&data=06/05/2024&captchafield=firstAccess "HTTP/1.1 200 OK"
+07:56:16 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:56:16 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:56:16 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:56:46 |   ✓ found (google_direct)
+07:56:46 | [40/3274] publications.parliament.uk
+07:56:46 | HTTP Request: GET https://publications.parliament.uk/sitemap.xml "HTTP/1.1 403 Forbidden"
+07:56:47 | HTTP Request: GET https://publications.parliament.uk/sitemap_index.xml "HTTP/1.1 403 Forbidden"
+07:56:47 | HTTP Request: GET https://publications.parliament.uk/robots.txt "HTTP/1.1 403 Forbidden"
+07:56:47 |   [1/3] Scraping homepage...
+07:56:48 | HTTP Request: GET https://publications.parliament.uk "HTTP/1.1 403 Forbidden"
+07:56:52 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:56:55 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:56:55 |   [2/3] Google: site:publications.parliament.uk search OR lookup OR query...
+07:56:56 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Apublications.parliament.uk+search+OR+lookup+OR+query&num=10 "HTTP/1.1 200 OK"
+07:56:56 | HTTP Request: GET https://publications.parliament.uk/pa/ld5802/ldselect/ldeconaf/131/131.pdf "HTTP/1.1 403 Forbidden"
+07:56:57 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:56:58 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:57:01 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:57:01 | HTTP Request: GET https://publications.parliament.uk/pa/cm5802/cmselect/cmhaff/139/13909.htm "HTTP/1.1 403 Forbidden"
+07:57:03 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:57:05 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:57:07 | HTTP Request: GET https://publications.parliament.uk/pa/cm5804/cmselect/cmtreasy/215/report.html "HTTP/1.1 403 Forbidden"
+07:57:08 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:57:08 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:57:09 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:57:10 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:57:18 |   [3/3] CC Index...
+07:57:19 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.publications.parliament.uk%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:57:20 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:57:20 |   ✗ not_found (-)
+07:57:20 | [41/3274] dnb.com
+07:57:52 |   [1/3] Scraping homepage...
+07:58:13 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:58:14 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:58:23 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:58:23 |   [2/3] Google: site:dnb.com company search OR officer search OR document se...
+07:58:24 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Adnb.com+company+search+OR+officer+search+OR+document+search&num=10 "HTTP/1.1 200 OK"
+07:58:25 | HTTP Request: GET https://dunsnumberlookup.dnb.com/ "HTTP/1.1 200 OK"
+07:58:26 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:58:27 | HTTP Request: GET https://dunsnumberlookup.dnb.com/?duns=12345 "HTTP/1.1 200 OK"
+07:58:43 |   ✓ found (google_direct)
+07:58:43 | [42/3274] infolex.lt
+07:58:44 | HTTP Request: GET https://infolex.lt/sitemap.xml "HTTP/1.1 301 Moved Permanently"
+07:58:44 | HTTP Request: GET https://www.infolex.lt/landing "HTTP/1.1 403 Forbidden"
+07:58:44 | HTTP Request: GET https://infolex.lt/sitemap_index.xml "HTTP/1.1 301 Moved Permanently"
+07:58:45 | HTTP Request: GET https://www.infolex.lt/landing "HTTP/1.1 403 Forbidden"
+07:58:45 | HTTP Request: GET https://infolex.lt/robots.txt "HTTP/1.1 301 Moved Permanently"
+07:58:45 | HTTP Request: GET https://www.infolex.lt/landing "HTTP/1.1 403 Forbidden"
+07:58:45 |   [1/3] Scraping homepage...
+07:58:46 | HTTP Request: GET https://infolex.lt "HTTP/1.1 301 Moved Permanently"
+07:58:46 | HTTP Request: GET https://www.infolex.lt/landing "HTTP/1.1 403 Forbidden"
+07:58:51 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:58:51 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:58:52 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:58:52 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:59:02 | HTTP Request: GET https://infolex.lt/teise/test "HTTP/1.1 301 Moved Permanently"
+07:59:03 | HTTP Request: GET https://www.infolex.lt/landing "HTTP/1.1 403 Forbidden"
+07:59:03 | HTTP Request: GET https://infolex.lt/teise/?search=12345 "HTTP/1.1 301 Moved Permanently"
+07:59:03 | HTTP Request: GET https://www.infolex.lt/landing "HTTP/1.1 403 Forbidden"
+07:59:03 | HTTP Request: GET https://infolex.lt/teise/12345 "HTTP/1.1 301 Moved Permanently"
+07:59:04 | HTTP Request: GET https://www.infolex.lt/landing "HTTP/1.1 403 Forbidden"
+07:59:04 |   ✓ found (homepage_firecrawl)
+07:59:04 | [43/3274] merinfo.se
+07:59:05 | HTTP Request: GET https://merinfo.se/sitemap.xml "HTTP/1.1 301 Moved Permanently"
+07:59:05 | HTTP Request: GET https://www.merinfo.se/sitemap.xml "HTTP/1.1 404 Not Found"
+07:59:06 | HTTP Request: GET https://merinfo.se/sitemap_index.xml "HTTP/1.1 301 Moved Permanently"
+07:59:06 | HTTP Request: GET https://www.merinfo.se/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:59:06 | HTTP Request: GET https://merinfo.se/robots.txt "HTTP/1.1 301 Moved Permanently"
+07:59:07 | HTTP Request: GET https://www.merinfo.se/robots.txt "HTTP/1.1 404 Not Found"
+07:59:07 |   [1/3] Scraping homepage...
+07:59:07 | HTTP Request: GET https://merinfo.se "HTTP/1.1 301 Moved Permanently"
+07:59:08 | HTTP Request: GET https://www.merinfo.se/ "HTTP/1.1 200 OK"
+07:59:12 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:59:12 | HTTP Request: GET https://merinfo.se/search?q=test "HTTP/1.1 301 Moved Permanently"
+07:59:13 | HTTP Request: GET https://www.merinfo.se/search?q=test "HTTP/1.1 200 OK"
+07:59:13 | HTTP Request: GET https://merinfo.se/%7Bcategory%7D/foretag/%7Bpage%7D "HTTP/1.1 301 Moved Permanently"
+07:59:13 | HTTP Request: GET https://www.merinfo.se/%7Bcategory%7D/foretag/%7Bpage%7D "HTTP/1.1 404 Not Found"
+07:59:13 |   ✓ found (homepage_direct)
+07:59:13 | [44/3274] cadastroempresa.com.br
+07:59:14 | HTTP Request: GET https://cadastroempresa.com.br/sitemap.xml "HTTP/1.1 403 Forbidden"
+07:59:15 | HTTP Request: GET https://cadastroempresa.com.br/sitemap_index.xml "HTTP/1.1 403 Forbidden"
+07:59:15 | HTTP Request: GET https://cadastroempresa.com.br/robots.txt "HTTP/1.1 200 OK"
+07:59:15 |   [1/3] Scraping homepage...
+07:59:15 | HTTP Request: GET https://cadastroempresa.com.br "HTTP/1.1 403 Forbidden"
+07:59:19 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:59:19 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:59:22 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:59:22 |   [2/3] Google: site:cadastroempresa.com.br busca de empresa ou pesquisa de ...
+07:59:22 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Acadastroempresa.com.br+busca+de+empresa+ou+pesquisa+de+empresa+ou+procura+de+empresa&num=10 "HTTP/1.1 200 OK"
+07:59:23 | HTTP Request: GET https://cadastroempresa.com.br/blog/quais-sao-os-tipos-de-fornecedores/ "HTTP/1.1 403 Forbidden"
+07:59:26 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:59:27 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:59:30 | HTTP Request: GET https://cadastroempresa.com.br/fornecedores?q=test "HTTP/1.1 403 Forbidden"
+07:59:30 | HTTP Request: GET https://cadastroempresa.com.br/company/12345 "HTTP/1.1 403 Forbidden"
+07:59:30 | HTTP Request: GET https://cadastroempresa.com.br/company/12345 "HTTP/1.1 403 Forbidden"
+07:59:30 |   ✓ found (google_firecrawl)
+07:59:30 | [45/3274] acl-uk.org
+07:59:32 | HTTP Request: GET https://acl-uk.org/sitemap.xml "HTTP/1.1 200 OK"
+07:59:32 | HTTP Request: GET https://acl-uk.org/sitemap_index.xml "HTTP/1.1 302 Found"
+07:59:33 | HTTP Request: GET https://www.acl-uk.org/sitemap.xml "HTTP/1.1 200 OK"
+07:59:34 | HTTP Request: GET https://acl-uk.org/robots.txt "HTTP/1.1 200 OK"
+07:59:34 |   [1/3] Scraping homepage...
+07:59:34 | HTTP Request: GET https://acl-uk.org "HTTP/1.1 301 Moved Permanently"
+07:59:34 | HTTP Request: GET https://www.acl-uk.org/ "HTTP/1.1 200 OK"
+07:59:35 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+07:59:35 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+07:59:35 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+07:59:37 |   [2/3] Skipping Google (no query generated)
+07:59:37 |   [3/3] CC Index...
+07:59:38 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.acl-uk.org%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+07:59:40 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+07:59:40 |   ✗ not_found (-)
+07:59:40 | [46/3274] mekh.hu
+07:59:42 |   [1/3] Scraping homepage...
+07:59:48 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+07:59:49 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+07:59:53 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+07:59:55 |   ✓ found (homepage_firecrawl)
+07:59:55 | [47/3274] nemzeticegtar.hu
+07:59:56 | HTTP Request: GET https://nemzeticegtar.hu/sitemap.xml "HTTP/1.1 301 Moved Permanently"
+07:59:57 | HTTP Request: GET https://www.nemzeticegtar.hu/sitemap.xml "HTTP/1.1 404 Not Found"
+07:59:57 | HTTP Request: GET https://nemzeticegtar.hu/sitemap_index.xml "HTTP/1.1 301 Moved Permanently"
+07:59:58 | HTTP Request: GET https://www.nemzeticegtar.hu/sitemap_index.xml "HTTP/1.1 404 Not Found"
+07:59:58 | HTTP Request: GET https://nemzeticegtar.hu/robots.txt "HTTP/1.1 301 Moved Permanently"
+07:59:58 | HTTP Request: GET https://www.nemzeticegtar.hu/robots.txt "HTTP/1.1 200 OK"
+07:59:58 |   [1/3] Scraping homepage...
+07:59:59 | HTTP Request: GET https://nemzeticegtar.hu "HTTP/1.1 301 Moved Permanently"
+07:59:59 | HTTP Request: GET https://www.nemzeticegtar.hu/ "HTTP/1.1 200 OK"
+08:00:00 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:00:04 |   [2/3] Skipping Google (no query generated)
+08:00:04 |   [3/3] CC Index...
+08:00:05 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.nemzeticegtar.hu%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+08:00:05 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+08:00:05 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+08:00:05 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:00:08 |   ✗ not_found (-)
+08:00:08 | [48/3274] bceao.int
+08:00:08 |   [1/3] Scraping homepage...
+08:00:11 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 500 Internal Server Error"
+08:00:11 |   ✗ scrape_failed_all_failed (-)
+08:00:11 | [49/3274] etat.lu
+08:00:13 | HTTP Request: GET https://etat.lu/sitemap.xml "HTTP/1.1 302 Found"
+08:00:14 | HTTP Request: GET https://etat.public.lu "HTTP/1.1 302 Found"
+08:00:14 | HTTP Request: GET https://etat.public.lu/fr.html "HTTP/1.1 301 Moved Permanently"
+08:00:15 | HTTP Request: GET http://etat.public.lu/fr.html/ "HTTP/1.1 302 Found"
+08:00:15 | HTTP Request: GET https://etat.public.lu/fr.html/ "HTTP/1.1 200 OK"
+08:00:16 | HTTP Request: GET https://etat.lu/sitemap_index.xml "HTTP/1.1 302 Found"
+08:00:16 | HTTP Request: GET https://etat.public.lu "HTTP/1.1 302 Found"
+08:00:16 | HTTP Request: GET https://etat.public.lu/fr.html "HTTP/1.1 301 Moved Permanently"
+08:00:16 | HTTP Request: GET https://etat.lu/robots.txt "HTTP/1.1 302 Found"
+08:00:17 | HTTP Request: GET https://etat.public.lu "HTTP/1.1 302 Found"
+08:00:17 | HTTP Request: GET https://etat.public.lu/fr.html "HTTP/1.1 301 Moved Permanently"
+08:00:17 | HTTP Request: GET http://etat.public.lu/fr.html/ "HTTP/1.1 302 Found"
+08:00:18 | HTTP Request: GET https://etat.public.lu/fr.html/ "HTTP/1.1 200 OK"
+08:00:18 |   [1/3] Scraping homepage...
+08:00:18 | HTTP Request: GET https://etat.lu "HTTP/1.1 302 Found"
+08:00:18 | HTTP Request: GET https://etat.public.lu "HTTP/1.1 302 Found"
+08:00:19 | HTTP Request: GET https://etat.public.lu/fr.html "HTTP/1.1 301 Moved Permanently"
+08:00:20 | HTTP Request: GET http://etat.public.lu/fr.html/ "HTTP/1.1 302 Found"
+08:00:20 | HTTP Request: GET https://etat.public.lu/fr.html/ "HTTP/1.1 200 OK"
+08:00:24 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+08:00:26 | HTTP Request: GET https://annuaire.public.lu/?search=test "HTTP/1.1 302 Found"
+08:00:26 | HTTP Request: GET https://annuaire.public.lu/fr.html?search=test "HTTP/1.1 200 OK"
+08:00:26 |   ✓ found (homepage_direct)
+08:00:26 | [50/3274] jure.nl
+08:00:28 | HTTP Request: GET https://jure.nl/sitemap.xml "HTTP/1.1 404 Not Found"
+08:00:31 | HTTP Request: GET https://jure.nl/sitemap_index.xml "HTTP/1.1 200 OK"
+08:00:31 | HTTP Request: GET https://jure.nl/robots.txt "HTTP/1.1 200 OK"
+08:00:31 |   [1/3] Scraping homepage...
+08:00:31 | HTTP Request: GET https://jure.nl "HTTP/1.1 200 OK"
+08:00:32 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+08:00:36 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+08:00:38 | HTTP Request: GET https://jure.nl/zoeken?q=test "HTTP/1.1 200 OK"
+08:00:39 | HTTP Request: GET https://jure.nl/?search_keywords=12345 "HTTP/1.1 200 OK"
+08:00:40 | HTTP Request: GET https://jure.nl/zoeken?zoekterm=12345 "HTTP/1.1 200 OK"
+08:00:40 |   ✓ found (homepage_direct)
+08:00:40 | [51/3274] obcan.justice.sk
+08:00:42 | HTTP Request: GET https://obcan.justice.sk/sitemap.xml "HTTP/1.1 200 OK"
+08:00:42 | HTTP Request: GET https://obcan.justice.sk/sitemap_index.xml "HTTP/1.1 404 Not Found"
+08:00:42 | HTTP Request: GET https://obcan.justice.sk/robots.txt "HTTP/1.1 200 OK"
+08:00:42 |   [1/3] Scraping homepage...
+08:00:43 | HTTP Request: GET https://obcan.justice.sk "HTTP/1.1 404 Not Found"
+08:00:43 |   ✗ scrape_failed_http_404 (-)
+08:00:43 | [52/3274] tobacco.gov.cn
+08:00:46 |   [1/3] Scraping homepage...
+08:00:48 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:00:48 |   ✗ scrape_failed_all_failed (-)
+08:00:48 | [53/3274] inseed.km
+08:00:51 |   [1/3] Scraping homepage...
+08:00:59 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:01:00 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:01:01 |   [2/3] Google: site:inseed.km recherche entreprise OR recherche société OR ...
+08:01:02 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Ainseed.km+recherche+entreprise+OR+recherche+soci%C3%A9t%C3%A9+OR+recherche+soci%C3%A9t%C3%A9+par+num%C3%A9ro+OR+recherche+dirigeant+OR+recherche+documents&num=10 "HTTP/1.1 429 Too Many Requests"
+08:01:02 |   [3/3] CC Index...
+08:01:03 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.inseed.km%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+08:01:03 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+08:01:03 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+08:01:04 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:01:06 |   ✗ not_found (-)
+08:01:06 | [54/3274] tbmm.gov.tr
+08:01:07 | HTTP Request: GET https://tbmm.gov.tr/sitemap.xml "HTTP/1.1 200 OK"
+08:01:07 | HTTP Request: GET https://tbmm.gov.tr/sitemap_index.xml "HTTP/1.1 200 OK"
+08:01:08 | HTTP Request: GET https://tbmm.gov.tr/robots.txt "HTTP/1.1 200 OK"
+08:01:08 |   [1/3] Scraping homepage...
+08:01:08 | HTTP Request: GET https://tbmm.gov.tr "HTTP/1.1 200 OK"
+08:01:12 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+08:01:13 | HTTP Request: GET https://tbmm.gov.tr/Arama/Sonuc?q=test "HTTP/1.1 200 OK"
+08:01:13 |   ✓ found (homepage_direct)
+08:01:13 | [55/3274] bot.go.tz
+08:01:15 | HTTP Request: GET https://bot.go.tz/sitemap.xml "HTTP/1.1 302 Found"
+08:01:16 | HTTP Request: GET https://bot.go.tz/Error/Index/404 "HTTP/1.1 200 OK"
+08:01:17 | HTTP Request: GET https://bot.go.tz/sitemap_index.xml "HTTP/1.1 302 Found"
+08:01:17 | HTTP Request: GET https://bot.go.tz/Error/Index/404 "HTTP/1.1 200 OK"
+08:01:18 | HTTP Request: GET https://bot.go.tz/robots.txt "HTTP/1.1 302 Found"
+08:01:19 | HTTP Request: GET https://bot.go.tz/Error/Index/404 "HTTP/1.1 200 OK"
+08:01:19 |   [1/3] Scraping homepage...
+08:01:21 | HTTP Request: GET https://bot.go.tz "HTTP/1.1 200 OK"
+08:01:22 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+08:01:27 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+08:01:39 | HTTP Request: GET https://bot.go.tz/Home/Search?SearchText=test "HTTP/1.1 302 Found"
+08:01:40 | HTTP Request: GET https://www.bot.go.tz/Error/Error_404?aspxerrorpath=/Home/Search "HTTP/1.1 302 Found"
+08:01:41 | HTTP Request: GET https://www.bot.go.tz/Error/Index/404 "HTTP/1.1 200 OK"
+08:01:41 |   ✓ found (homepage_direct)
+08:01:41 | [56/3274] u.ae
+08:01:43 | HTTP Request: GET https://u.ae/sitemap.xml "HTTP/1.1 404 Not Found"
+08:01:43 | HTTP Request: GET https://u.ae/sitemap_index.xml "HTTP/1.1 404 Not Found"
+08:01:44 | HTTP Request: GET https://u.ae/robots.txt "HTTP/1.1 404 Not Found"
+08:01:44 |   [1/3] Scraping homepage...
+08:01:44 | HTTP Request: GET https://u.ae "HTTP/1.1 200 OK"
+08:01:46 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:01:48 | HTTP Request: GET https://u.ae/en/company/12345 "HTTP/1.1 302 Found"
+08:01:49 | HTTP Request: GET https://u.ae/en/error/404 "HTTP/1.1 200 OK"
+08:01:49 |   ✓ found (homepage_direct)
+08:01:49 | [57/3274] rejstrik.penize.cz
+08:01:51 | HTTP Request: GET https://rejstrik.penize.cz/sitemap.xml "HTTP/1.1 200 OK"
+08:01:51 | HTTP Request: GET https://rejstrik.penize.cz/sitemap_index.xml "HTTP/1.1 410 Gone"
+08:01:51 | HTTP Request: GET https://rejstrik.penize.cz/robots.txt "HTTP/1.1 200 OK"
+08:01:51 |   [1/3] Scraping homepage...
+08:01:52 | HTTP Request: GET https://rejstrik.penize.cz "HTTP/1.1 200 OK"
+08:01:52 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+08:01:52 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+08:01:53 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:01:57 |   [2/3] Skipping Google (no query generated)
+08:01:57 |   [3/3] CC Index...
+08:01:58 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.rejstrik.penize.cz%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+08:02:01 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+08:02:01 |   ✗ not_found (-)
+08:02:01 | [58/3274] nrea.gov.eg
+08:02:03 |   [1/3] Scraping homepage...
+08:02:11 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:02:12 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+08:02:14 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+08:02:14 |   [2/3] Google: site:nrea.gov.eg البحث عن الشركات OR بحث عن الوثائق OR بحث ع...
+08:02:15 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Anrea.gov.eg+%D8%A7%D9%84%D8%A8%D8%AD%D8%AB+%D8%B9%D9%86+%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A7%D8%AA+OR+%D8%A8%D8%AD%D8%AB+%D8%B9%D9%86+%D8%A7%D9%84%D9%88%D8%AB%D8%A7%D8%A6%D9%82+OR+%D8%A8%D8%AD%D8%AB+%D8%B9%D9%86+%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%A7%D8%A1&num=10 "HTTP/1.1 200 OK"
+08:02:16 | HTTP Request: GET https://services.nrea.gov.eg/Search "HTTP/1.1 200 OK"
+08:02:18 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:02:20 | HTTP Request: GET https://services.nrea.gov.eg/search?ContentSearchTerm=test "HTTP/1.1 200 OK"
+08:02:21 | HTTP Request: GET https://services.nrea.gov.eg/search?RequestSearchModel.RequestNumber=12345 "HTTP/1.1 200 OK"
+08:02:22 | HTTP Request: GET https://services.nrea.gov.eg/search?RequestSearchModel.RequestNumber=12345 "HTTP/1.1 200 OK"
+08:02:22 |   ✓ found (google_direct)
+08:02:22 | [59/3274] members.parliament.uk
+08:02:22 | HTTP Request: GET https://members.parliament.uk/sitemap.xml "HTTP/1.1 403 Forbidden"
+08:02:23 | HTTP Request: GET https://members.parliament.uk/sitemap_index.xml "HTTP/1.1 403 Forbidden"
+08:02:23 | HTTP Request: GET https://members.parliament.uk/robots.txt "HTTP/1.1 403 Forbidden"
+08:02:23 |   [1/3] Scraping homepage...
+08:02:24 | HTTP Request: GET https://members.parliament.uk "HTTP/1.1 403 Forbidden"
+08:02:26 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:02:27 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+08:02:27 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+08:02:27 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:02:31 |   [2/3] Google: site:members.parliament.uk company search or document search...
+08:02:32 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Amembers.parliament.uk+company+search+or+document+search&num=10 "HTTP/1.1 200 OK"
+08:02:32 | HTTP Request: GET https://members.parliament.uk/member/5251/writtenquestions "HTTP/1.1 403 Forbidden"
+08:02:40 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:02:45 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+08:02:46 | HTTP Request: GET https://members.parliament.uk/member/12345/writtenquestions "HTTP/1.1 403 Forbidden"
+08:02:46 | HTTP Request: GET https://members.parliament.uk/member/12345/appgofficerroles "HTTP/1.1 403 Forbidden"
+08:02:46 |   ✓ found (google_firecrawl)
+08:02:46 | [60/3274] jusmundi.com
+08:02:47 | HTTP Request: GET https://jusmundi.com/sitemap.xml "HTTP/1.1 403 Forbidden"
+08:02:47 | HTTP Request: GET https://jusmundi.com/sitemap_index.xml "HTTP/1.1 403 Forbidden"
+08:02:47 | HTTP Request: GET https://jusmundi.com/robots.txt "HTTP/1.1 403 Forbidden"
+08:02:47 |   [1/3] Scraping homepage...
+08:02:47 | HTTP Request: GET https://jusmundi.com "HTTP/1.1 403 Forbidden"
+08:02:52 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:02:52 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+08:02:55 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+08:02:55 |   [2/3] Google: site:jusmundi.com Company search by name OR Company search b...
+08:02:55 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Ajusmundi.com+Company+search+by+name+OR+Company+search+by+ID+OR+Officer%2Fdirector+search+OR+Document%2Ffiling+search&num=10 "HTTP/1.1 429 Too Many Requests"
+08:02:55 |   [3/3] CC Index...
+08:02:56 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.jusmundi.com%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+08:02:57 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:02:59 | HTTP Request: GET https://jusmundi.com/en/search "HTTP/1.1 403 Forbidden"
+08:03:04 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:03:05 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+08:03:05 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+08:03:05 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:03:11 | HTTP Request: GET https://jusmundi.com/en/search?q= "HTTP/1.1 403 Forbidden"
+08:03:15 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:03:19 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+08:03:20 | HTTP Request: GET https://jusmundi.com/en/search?q=test "HTTP/1.1 403 Forbidden"
+08:03:20 | HTTP Request: GET https://jusmundi.com/en/document/skeleton/?su={encoded_search_url} "HTTP/1.1 403 Forbidden"
+08:03:20 |   ✓ found (cc_index_firecrawl)
+08:03:20 | [61/3274] uyap.gov.tr
+08:03:21 | HTTP Request: GET https://uyap.gov.tr/sitemap.xml "HTTP/1.1 200 OK"
+08:03:22 | HTTP Request: GET https://uyap.gov.tr/sitemap_index.xml "HTTP/1.1 404 Not Found"
+08:03:22 | HTTP Request: GET https://uyap.gov.tr/robots.txt "HTTP/1.1 200 OK"
+08:03:22 |   [1/3] Scraping homepage...
+08:03:22 | HTTP Request: GET https://uyap.gov.tr "HTTP/1.1 200 OK"
+08:03:23 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+08:03:25 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+08:03:25 |   [2/3] Google: site:uyap.gov.tr şirket arama OR firma arama OR ofis arama O...
+08:03:26 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Auyap.gov.tr+%C5%9Firket+arama+OR+firma+arama+OR+ofis+arama+OR+belge+arama+OR+dosya+arama&num=10 "HTTP/1.1 429 Too Many Requests"
+08:03:26 |   [3/3] CC Index...
+08:03:27 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.uyap.gov.tr%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+08:03:28 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:03:28 |   ✗ not_found (-)
+08:03:28 | [62/3274] reports.adviserinfo.sec.gov
+08:03:29 | HTTP Request: GET https://reports.adviserinfo.sec.gov/sitemap.xml "HTTP/1.1 403 Forbidden"
+08:03:30 | HTTP Request: GET https://reports.adviserinfo.sec.gov/sitemap_index.xml "HTTP/1.1 403 Forbidden"
+08:03:30 | HTTP Request: GET https://reports.adviserinfo.sec.gov/robots.txt "HTTP/1.1 403 Forbidden"
+08:03:30 |   [1/3] Scraping homepage...
+08:03:30 | HTTP Request: GET https://reports.adviserinfo.sec.gov "HTTP/1.1 403 Forbidden"
+08:03:34 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:03:34 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+08:03:34 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+08:03:35 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:03:40 |   [2/3] Skipping Google (no query generated)
+08:03:40 |   [3/3] CC Index...
+08:03:41 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.reports.adviserinfo.sec.gov%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+08:03:43 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+08:03:43 |   ✗ not_found (-)
+08:03:43 | [63/3274] cbar.az
+08:03:45 | HTTP Request: GET https://cbar.az/sitemap.xml "HTTP/1.1 302 Found"
+08:03:46 | HTTP Request: GET https://cbar.az/home "HTTP/1.1 200 OK"
+08:03:46 | HTTP Request: GET https://cbar.az/sitemap_index.xml "HTTP/1.1 302 Found"
+08:03:47 | HTTP Request: GET https://cbar.az/home "HTTP/1.1 200 OK"
+08:03:47 | HTTP Request: GET https://cbar.az/robots.txt "HTTP/1.1 404 Not Found"
+08:03:47 |   [1/3] Scraping homepage...
+08:03:48 | HTTP Request: GET https://cbar.az "HTTP/1.1 200 OK"
+08:03:48 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+08:03:54 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+08:03:55 | HTTP Request: GET https://cbar.az/search?q=test "HTTP/1.1 302 Found"
+08:03:56 | HTTP Request: GET https://cbar.az/home "HTTP/1.1 200 OK"
+08:03:56 | HTTP Request: GET https://cbar.az/company/12345 "HTTP/1.1 302 Found"
+08:03:57 | HTTP Request: GET https://cbar.az/home "HTTP/1.1 200 OK"
+08:03:57 |   ✓ found (homepage_direct)
+08:03:57 | [64/3274] papagal.bg
+08:03:58 | HTTP Request: GET https://papagal.bg/sitemap.xml "HTTP/1.1 403 Forbidden"
+08:03:58 | HTTP Request: GET https://papagal.bg/sitemap_index.xml "HTTP/1.1 403 Forbidden"
+08:03:59 | HTTP Request: GET https://papagal.bg/robots.txt "HTTP/1.1 200 OK"
+08:03:59 |   [1/3] Scraping homepage...
+08:03:59 | HTTP Request: GET https://papagal.bg "HTTP/1.1 403 Forbidden"
+08:04:03 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:04:04 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:04:07 | HTTP Request: GET https://papagal.bg/advanced_search?query=test "HTTP/1.1 403 Forbidden"
+08:04:07 | HTTP Request: GET https://papagal.bg/advanced_search?query=12345 "HTTP/1.1 403 Forbidden"
+08:04:08 | HTTP Request: GET https://papagal.bg/company/12345 "HTTP/1.1 403 Forbidden"
+08:04:08 |   ✓ found (homepage_firecrawl)
+08:04:08 | [65/3274] gov.cn
+08:04:08 |   [1/3] Scraping homepage...
+08:04:08 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:04:09 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+08:04:09 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+08:04:10 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:04:16 |   [2/3] Skipping Google (no query generated)
+08:04:16 |   [3/3] CC Index...
+08:04:16 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.gov.cn%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+08:04:19 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+08:04:19 |   ✗ not_found (-)
+08:04:19 | [66/3274] bundesverfassungsgericht.de
+08:04:23 | HTTP Request: GET https://bundesverfassungsgericht.de/sitemap.xml "HTTP/1.1 404 Not Found"
+08:04:24 | HTTP Request: GET https://bundesverfassungsgericht.de/sitemap_index.xml "HTTP/1.1 404 Not Found"
+08:04:25 | HTTP Request: GET https://bundesverfassungsgericht.de/robots.txt "HTTP/1.1 200 OK"
+08:04:25 |   [1/3] Scraping homepage...
+08:04:25 | HTTP Request: GET https://bundesverfassungsgericht.de "HTTP/1.1 302 Found"
+08:04:26 | HTTP Request: GET https://www.bundesverfassungsgericht.de/DE/Home/home_node.html "HTTP/1.1 200 OK"
+08:04:27 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+08:04:29 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+08:04:29 |   [2/3] Google: site:bundesverfassungsgericht.de Suche nach Unternehmen OR U...
+08:04:30 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Abundesverfassungsgericht.de+Suche+nach+Unternehmen+OR+Unternehmensprofil+OR+Dokumente+OR+Gesch%C3%A4ftsf%C3%BChrer&num=10 "HTTP/1.1 429 Too Many Requests"
+08:04:30 |   [3/3] CC Index...
+08:04:31 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.bundesverfassungsgericht.de%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+08:04:31 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:04:32 |   ✗ not_found (-)
+08:04:32 | [67/3274] bfarm.de
+08:04:33 | HTTP Request: GET https://bfarm.de/sitemap.xml "HTTP/1.1 301 Moved Permanently"
+08:04:35 | HTTP Request: GET https://www.bfarm.de/sitemap.xml "HTTP/1.1 404 Not Found"
+08:04:38 | HTTP Request: GET https://bfarm.de/sitemap_index.xml "HTTP/1.1 301 Moved Permanently"
+08:04:38 | HTTP Request: GET https://www.bfarm.de/sitemap_index.xml "HTTP/1.1 404 Not Found"
+08:04:39 | HTTP Request: GET https://bfarm.de/robots.txt "HTTP/1.1 301 Moved Permanently"
+08:04:40 | HTTP Request: GET https://www.bfarm.de/robots.txt "HTTP/1.1 404 Not Found"
+08:04:40 |   [1/3] Scraping homepage...
+08:04:41 | HTTP Request: GET https://bfarm.de "HTTP/1.1 301 Moved Permanently"
+08:04:41 | HTTP Request: GET https://www.bfarm.de/ "HTTP/1.1 302 Found"
+08:04:41 | HTTP Request: GET https://www.bfarm.de/DE/Home/_node.html "HTTP/1.1 200 OK"
+08:04:42 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+08:04:42 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+08:04:43 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:04:52 |   [2/3] Skipping Google (no query generated)
+08:04:52 |   [3/3] CC Index...
+08:04:53 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.bfarm.de%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+08:04:54 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+08:04:54 |   ✗ not_found (-)
+08:04:54 | [68/3274] dpi.gov.gy
+08:05:05 | HTTP Request: GET https://dpi.gov.gy/sitemap.xml "HTTP/1.1 200 OK"
+08:05:11 | HTTP Request: GET https://dpi.gov.gy/sitemap_index.xml "HTTP/1.1 404 Not Found"
+08:05:21 |   [1/3] Scraping homepage...
+08:05:23 | HTTP Request: GET https://dpi.gov.gy "HTTP/1.1 200 OK"
+08:05:24 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+08:05:27 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+08:05:27 |   [2/3] Google: site:dpi.gov.gy company search OR officer search OR document...
+08:05:28 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Adpi.gov.gy+company+search+OR+officer+search+OR+document+search&num=10 "HTTP/1.1 429 Too Many Requests"
+08:05:28 |   [3/3] CC Index...
+08:05:29 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.dpi.gov.gy%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+08:05:30 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:05:31 |   ✗ not_found (-)
+08:05:31 | [69/3274] eakta.birosag.hu
+08:05:32 | HTTP Request: GET https://eakta.birosag.hu/sitemap.xml "HTTP/1.1 200 OK"
+08:05:32 | HTTP Request: GET https://eakta.birosag.hu/sitemap_index.xml "HTTP/1.1 200 OK"
+08:05:32 | HTTP Request: GET https://eakta.birosag.hu/robots.txt "HTTP/1.1 200 OK"
+08:05:32 |   [1/3] Scraping homepage...
+08:05:33 | HTTP Request: GET https://eakta.birosag.hu "HTTP/1.1 200 OK"
+08:05:33 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+08:05:33 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+08:05:33 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:05:34 | HTTP Request: GET https://eakta.birosag.hu/e-ceg-betekintes?nev=acme "HTTP/1.1 200 OK"
+08:05:35 |   ✓ found (homepage_direct)
+08:05:35 | [70/3274] icwc-aral.uz
+08:05:36 |   [1/3] Scraping homepage...
+08:05:47 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 500 Internal Server Error"
+08:05:47 |   ✗ scrape_failed_all_failed (-)
+08:05:47 | [71/3274] cbr.ru
+08:05:48 | HTTP Request: GET https://cbr.ru/sitemap.xml "HTTP/1.1 404 Not Found"
+08:05:49 | HTTP Request: GET https://cbr.ru/sitemap_index.xml "HTTP/1.1 404 Not Found"
+08:05:49 | HTTP Request: GET https://cbr.ru/robots.txt "HTTP/1.1 200 OK"
+08:05:49 |   [1/3] Scraping homepage...
+08:05:49 | HTTP Request: GET https://cbr.ru "HTTP/1.1 200 OK"
+08:05:53 | HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+08:05:56 | HTTP Request: GET https://cbr.ru/search/?text=test "HTTP/1.1 200 OK"
+08:05:56 |   ✓ found (homepage_direct)
+08:05:56 | [72/3274] fapmc.gov.ru
+08:05:58 |   [1/3] Scraping homepage...
+08:05:59 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:05:59 |   ✗ scrape_failed_all_failed (-)
+08:05:59 | [73/3274] tanzlii.org
+08:06:00 | HTTP Request: GET https://tanzlii.org/sitemap.xml "HTTP/1.1 404 Not Found"
+08:06:00 | HTTP Request: GET https://tanzlii.org/sitemap_index.xml "HTTP/1.1 404 Not Found"
+08:06:01 | HTTP Request: GET https://tanzlii.org/robots.txt "HTTP/1.1 200 OK"
+08:06:01 |   [1/3] Scraping homepage...
+08:06:01 | HTTP Request: GET https://tanzlii.org "HTTP/1.1 302 Found"
+08:06:02 | HTTP Request: GET https://tanzlii.org/en/ "HTTP/1.1 200 OK"
+08:06:02 | Model gemini/gemini-2.0-flash failed: 403 Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry. [reason: "SERVICE_DISABLED"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+metadata {
+  key: "serviceTitle"
+  value: "Generative Language API"
+}
+metadata {
+  key: "containerInfo"
+  value: "246344740816"
+}
+metadata {
+  key: "consumer"
+  value: "projects/246344740816"
+}
+metadata {
+  key: "activationUrl"
+  value: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+, locale: "en-US"
+message: "Generative Language API has not been used in project 246344740816 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+, links {
+  description: "Google developers console API activation"
+  url: "https://console.developers.google.com/apis/api/generativelanguage.googleapis.com/overview?project=246344740816"
+}
+]
+08:06:07 | HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+08:06:07 |   [2/3] Google: site:tanzlii.org company search OR officer search OR documen...
+08:06:08 | HTTP Request: GET https://www.googleapis.com/customsearch/v1?key=AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s&cx=3224c9c84183240de&q=site%3Atanzlii.org+company+search+OR+officer+search+OR+document+search&num=10 "HTTP/1.1 429 Too Many Requests"
+08:06:08 |   [3/3] CC Index...
+08:06:12 | HTTP Request: GET https://index.commoncrawl.org/CC-MAIN-2024-10-index?url=%2A.tanzlii.org%2F%2A&matchType=domain&output=json&limit=300&filter=status%3A200 "HTTP/1.1 404 Not Found"
+08:06:13 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+08:06:14 |   ✗ not_found (-)
+08:06:14 | [74/3274] speier.house.gov
+08:06:14 |   [1/3] Scraping homepage...
+08:06:15 | HTTP Request: POST https://api.firecrawl.dev/v1/scrape "HTTP/1.1 200 OK"
+08:06:15 |   ✗ scrape_failed_all_failed (-)
+08:06:15 | [75/3274] e-qanun.az
+08:06:16 | HTTP Request: GET https://e-qanun.az/sitemap.xml "HTTP/1.1 200 OK"
+08:06:17 | HTTP Request: GET https://e-qanun.az/sitemap_index.xml "HTTP/1.1 404 Not Found"
+08:06:18 | HTTP Request: GET https://e-qanun.az/robots.txt "HTTP/1.1 404 Not Found"
+08:06:18 |   [1/3] Scraping homepage...
+08:06:18 | HTTP Request: GET https://e-qanun.az "HTTP/1.1 200 OK"
+08:06:18 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+08:06:18 | Model openrouter/google/gemini-flash-1.5 failed: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-flash-1.5.', 'code': 404}, 'user_id': 'user_31kLrzam3t8qZjfHKQXLLbVInR7'}
+08:06:19 | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+Traceback (most recent call last):
+  File "/Users/attic/01. DRILL_SEARCH/drill-search-app/BACKEND/modules/JESTER/run_seekleech_full.py", line 156, in <module>
+    asyncio.run(main())
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 664, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/attic/01. DRILL_SEARCH/drill-search-app/BACKEND/modules/JESTER/run_seekleech_full.py", line 126, in main
+    results = await leech.run(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/attic/01. DRILL_SEARCH/drill-search-app/BACKEND/modules/JESTER/seekleech.py", line 721, in run
+    if resume and output.exists():
+                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/attic/01. DRILL_SEARCH/drill-search-app/BACKEND/modules/JESTER/seekleech.py", line 702, in process
+    
+  File "/Users/attic/01. DRILL_SEARCH/drill-search-app/BACKEND/modules/JESTER/seekleech.py", line 588, in mine
+    status="pending",
+           ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'

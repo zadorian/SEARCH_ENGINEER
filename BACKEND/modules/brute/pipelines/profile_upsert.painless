@@ -1,0 +1,78 @@
+// Merge profile slots with provenance + confidence tracking + normalization
+if (ctx._source.slots == null) {
+  ctx._source.slots = new HashMap();
+}
+
+def now = params.now != null ? params.now : new Date().toString();
+def incoming = params.slots != null ? params.slots : new HashMap();
+int MAX_SLOT_SIZE = 50;
+
+incoming.forEach((slotName, values) -> {
+  if (values == null) { return; }
+  def slotList = ctx._source.slots.getOrDefault(slotName, new ArrayList());
+
+  for (def v : values) {
+    if (v == null) { continue; }
+    
+    def rawValue = v.containsKey('value') ? v.value : v;
+    def confidence = v.containsKey('confidence') ? v.confidence : 0.5;
+    def source = v.containsKey('source') ? v.source : 'unknown';
+    
+    // Normalization: Lowercase specific fields
+    if ((slotName == "emails" || slotName == "domains" || slotName == "urls") && rawValue instanceof String) {
+        rawValue = rawValue.toLowerCase().trim();
+    } else if (rawValue instanceof String) {
+        rawValue = rawValue.trim();
+    }
+    
+    def value = rawValue; // Final value to store
+    def seen = false;
+
+    for (def existing : slotList) {
+      if (existing.containsKey('value') && existing.value == value) {
+        // Update confidence/source if new entry is stronger
+        if (confidence > (existing.containsKey('confidence') ? existing.confidence : 0)) {
+          existing.confidence = confidence;
+        }
+        if (source != 'unknown') {
+          existing.source = source; // Overwrite source to most recent
+        }
+        // Update timestamp
+        existing.last_seen = now;
+        seen = true;
+        break;
+      }
+    }
+
+    if (!seen) {
+      slotList.add([
+        "value": value,
+        "confidence": confidence,
+        "source": source,
+        "first_seen": now,
+        "last_seen": now
+      ]);
+    }
+  }
+
+  // Bound size: Sort by confidence (desc) and trim
+  if (slotList.size() > MAX_SLOT_SIZE) {
+    slotList.sort((a, b) -> Double.compare(
+       b.containsKey('confidence') ? b.confidence : 0.0,
+       a.containsKey('confidence') ? a.confidence : 0.0
+    ));
+    // Keep top N
+    def trimmed = new ArrayList();
+    for (int i = 0; i < MAX_SLOT_SIZE; i++) {
+        trimmed.add(slotList.get(i));
+    }
+    slotList = trimmed;
+  }
+
+  ctx._source.slots.put(slotName, slotList);
+});
+
+ctx._source.updated_at = now;
+if (!ctx._source.containsKey("created_at")) {
+  ctx._source.created_at = now;
+}

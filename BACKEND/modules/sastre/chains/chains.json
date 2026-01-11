@@ -1,0 +1,403 @@
+{
+  "$schema": "./chains_schema.json",
+  "version": "1.0.0",
+  "last_updated": "2026-01-02",
+  "description": "Investigation chain templates for SASTRE",
+  
+  "chains": [
+    {
+      "id": "uk_person_deep_dd",
+      "name": "UK Person Deep Due Diligence",
+      "genre": "due_diligence",
+      "jurisdiction": "UK",
+      "entity_type": "person",
+      "depth": "comprehensive",
+      "description": "Full DD on UK individual with career analysis, associates, temporal overlaps",
+      "phases": [
+        {
+          "id": "anchor",
+          "name": "Profile Mode - Anchor",
+          "mode": "PROFILE",
+          "ku_state": {"subject": "known", "location": "known"},
+          "intent": "ENRICH",
+          "strategy": "VERIFY",
+          "steps": [
+            {"syntax": "p: {ENTITY} => +#SUBJECT", "description": "Tag subject"},
+            {"syntax": ":#SUBJECT :cruk! => +#CH_DATA", "description": "Companies House lookup"},
+            {"syntax": "@c? :#CH_DATA => +#CURRENT_COMPANIES", "description": "Extract companies"},
+            {"syntax": "@p? :#CH_DATA ##role:officer => +#ALL_OFFICERS", "description": "Extract all officers", "gap": "##role filter"},
+            {"syntax": ":#SUBJECT :reguk! => +#FCA_DATA", "description": "FCA regulatory check"},
+            {"syntax": ":#SUBJECT :lituk! => +#LITIGATION", "description": "UK litigation check"}
+          ]
+        },
+        {
+          "id": "career_chapters",
+          "name": "Career Timeline Extraction",
+          "mode": "GRID",
+          "ku_state": {"subject": "known", "location": "partial"},
+          "intent": "DISCOVER",
+          "strategy": "TRACE",
+          "steps": [
+            {"syntax": "career? :#CH_DATA => +#CAREER_CHAPTERS", "description": "Extract career timeline", "gap": "career? operator"},
+            {"syntax": "/gridX{:#CAREER_CHAPTERS} => +#TENURE_PERIODS", "description": "Create tenure periods"}
+          ]
+        },
+        {
+          "id": "temporal_overlap",
+          "name": "Temporal Overlap Detection",
+          "mode": "GRID",
+          "ku_state": {"subject": "known", "location": "known"},
+          "intent": "DISCOVER",
+          "strategy": "CORRELATE",
+          "steps": [
+            {"syntax": "events? :#CURRENT_COMPANIES => +#COMPANY_EVENTS", "description": "Company events/scandals", "gap": "events? operator"},
+            {"syntax": "overlap? :#CAREER_CHAPTERS :#COMPANY_EVENTS => +#TEMPORAL_OVERLAPS", "description": "Detect overlaps", "gap": "overlap? operator"},
+            {"syntax": "IF filled? :#TEMPORAL_OVERLAPS THEN +#ADVERSE_FLAG", "description": "Flag if overlap found"}
+          ]
+        },
+        {
+          "id": "associate_network",
+          "name": "Associate Network Discovery",
+          "mode": "GRID",
+          "ku_state": {"subject": "known", "location": "unknown"},
+          "intent": "DISCOVER",
+          "strategy": "TRACE",
+          "steps": [
+            {"syntax": "/gridS{:#CURRENT_COMPANIES} => @p? ##role:officer => +#CO_OFFICERS", "description": "Extract co-officers"},
+            {"syntax": "/gridS{:#CURRENT_COMPANIES} => @p? ##role:shareholder => +#CO_SHAREHOLDERS", "description": "Extract co-shareholders"},
+            {"syntax": ":#CO_OFFICERS :#CO_SHAREHOLDERS => +#ASSOCIATES", "description": "Combine associates"},
+            {"syntax": "/clink :#ASSOCIATES => +#NETWORK_OVERLAPS", "description": "Find network overlaps"}
+          ]
+        },
+        {
+          "id": "mini_dd_associates",
+          "name": "One-Step-Removed DDs",
+          "mode": "PROFILE",
+          "ku_state": {"subject": "known", "location": "known"},
+          "intent": "ENRICH",
+          "strategy": "VERIFY",
+          "steps": [
+            {"syntax": "/gridS{:#NETWORK_OVERLAPS} => TOP(5) => +#KEY_ASSOCIATES", "description": "Top 5 associates", "gap": "TOP() selector"},
+            {"syntax": "/gridS{:#KEY_ASSOCIATES} => FOREACH { p: $ITEM :cruk! => +#ASSOC_CH_$INDEX }", "description": "Mini-DD each associate", "gap": "FOREACH"},
+            {"syntax": "/gridS{:#KEY_ASSOCIATES} => FOREACH { sanctions? :$ITEM => +#ASSOC_SANCTIONS_$INDEX }", "description": "Sanctions check", "gap": "sanctions?"},
+            {"syntax": "/gridS{:#KEY_ASSOCIATES} => FOREACH { pep? :$ITEM => +#ASSOC_PEP_$INDEX }", "description": "PEP check", "gap": "pep?"}
+          ]
+        },
+        {
+          "id": "historical_affiliations",
+          "name": "Historical Affiliations Analysis",
+          "mode": "GRID",
+          "ku_state": {"subject": "known", "location": "partial"},
+          "intent": "DISCOVER",
+          "strategy": "TRACE",
+          "steps": [
+            {"syntax": "/gridX{:#CH_DATA ##status:resigned} => +#PAST_AFFILIATIONS", "description": "Resigned positions"},
+            {"syntax": "/gridS{:#PAST_AFFILIATIONS} => FOREACH { events? :$COMPANY :$END-NOW => +#POST_DEPARTURE_$INDEX }", "description": "Post-departure events", "gap": "events?, temporal filter"},
+            {"syntax": "IF #bankruptcy OR #fraud IN :#POST_DEPARTURE_* THEN +#SUSPICIOUS_EXIT", "description": "Flag suspicious exits"}
+          ]
+        },
+        {
+          "id": "compliance",
+          "name": "Sanctions & PEP Layer",
+          "mode": "PROFILE",
+          "ku_state": {"subject": "known", "location": "known"},
+          "intent": "ENRICH",
+          "strategy": "VERIFY",
+          "steps": [
+            {"syntax": "sanctions? :#SUBJECT => +#SANCTIONS_DIRECT", "description": "Direct sanctions", "gap": "sanctions?"},
+            {"syntax": "pep? :#SUBJECT => +#PEP_DIRECT", "description": "Direct PEP", "gap": "pep?"},
+            {"syntax": "/gridS{:#CURRENT_COMPANIES} => sanctions? => +#COMPANY_SANCTIONS", "description": "Company sanctions"}
+          ]
+        },
+        {
+          "id": "digital_footprint",
+          "name": "Digital & Domain Analysis",
+          "mode": "GRID",
+          "ku_state": {"subject": "known", "location": "unknown"},
+          "intent": "DISCOVER",
+          "strategy": "TRACE",
+          "steps": [
+            {"syntax": "cdom? :#SUBJECT => +#SUBJECT_DOMAINS", "description": "Find domains"},
+            {"syntax": "/gridS{:#CURRENT_COMPANIES} => cdom? => +#COMPANY_DOMAINS", "description": "Company domains"},
+            {"syntax": "bl? :!:#SUBJECT_DOMAINS :!:#COMPANY_DOMAINS => @ent? => +#BACKLINK_ENTITIES", "description": "Backlink entities"},
+            {"syntax": "adverse? :#SUBJECT => +#ADVERSE_MEDIA", "description": "Adverse media", "gap": "adverse?"}
+          ]
+        },
+        {
+          "id": "nexus_assessment",
+          "name": "NEXUS K-U Assessment",
+          "mode": "GRID",
+          "ku_state": {"nexus": "partial"},
+          "intent": "ENRICH",
+          "strategy": "VERIFY",
+          "steps": [
+            {"syntax": "/gridX{:#SUBJECT x [?]} => +#ALL_RELATIONSHIPS", "description": "All relationships"},
+            {"syntax": "/gridX{:#ALL_RELATIONSHIPS} => KU? => +#NEXUS_KU_STATE", "description": "K-U state check", "gap": "KU?"},
+            {"syntax": "/gridX{:#NEXUS_KU_STATE ##state:hungry} => +#RELATIONSHIP_GAPS", "description": "Find hungry slots"}
+          ]
+        },
+        {
+          "id": "cross_pollination",
+          "name": "Cross-Pollination Check",
+          "mode": "GRID",
+          "description": "Insights from each mode drive actions in others",
+          "steps": [
+            {"syntax": "/gridN{##template:uk_person_dd} => gaps? => +#NARRATIVE_GAPS", "description": "Check template gaps", "gap": "gaps?"},
+            {"syntax": "IF \"Cyprus\" IN :#CH_DATA THEN { :#SUBJECT :ccy! => +#CYPRUS_DATA }", "description": "Cross-jurisdiction check"},
+            {"syntax": "IF filled? :#NETWORK_OVERLAPS THEN { +#watcher[Associate Changes] }", "description": "Set watcher if network found"}
+          ]
+        },
+        {
+          "id": "document_generation",
+          "name": "Write to EDITH",
+          "mode": "PROFILE",
+          "steps": [
+            {"syntax": "/write ##Executive_Summary :#SUBJECT", "description": "Write summary", "gap": "/write"},
+            {"syntax": "/write ##Corporate_Affiliations :#CURRENT_COMPANIES :#PAST_AFFILIATIONS", "description": "Write affiliations"},
+            {"syntax": "/write ##Regulatory_Status :#FCA_DATA :#SANCTIONS_DIRECT :#PEP_DIRECT", "description": "Write regulatory"},
+            {"syntax": "/write ##Associate_Network :#ASSOCIATES :#NETWORK_OVERLAPS", "description": "Write associates"},
+            {"syntax": "/write ##Temporal_Analysis :#CAREER_CHAPTERS :#TEMPORAL_OVERLAPS", "description": "Write temporal"},
+            {"syntax": "/write ##Risk_Flags :#ADVERSE_FLAG :#NETWORK_ADVERSE :#SUSPICIOUS_EXIT", "description": "Write flags"},
+            {"syntax": "IF filled? :#ADVERSE_FLAG THEN /flag ##Temporal_Analysis", "description": "Flag section", "gap": "/flag"},
+            {"syntax": "+#watcher[New Filings] :#SUBJECT", "description": "Set ongoing watcher"}
+          ]
+        }
+      ]
+    },
+    
+    {
+      "id": "uk_company_dd",
+      "name": "UK Company Due Diligence",
+      "genre": "due_diligence",
+      "jurisdiction": "UK",
+      "entity_type": "company",
+      "depth": "comprehensive",
+      "description": "Full corporate DD including officers, UBO chain, related companies",
+      "phases": [
+        {
+          "id": "anchor",
+          "name": "Profile Mode - Anchor",
+          "steps": [
+            {"syntax": "c: {ENTITY} => +#SUBJECT"},
+            {"syntax": ":#SUBJECT :cuk! => +#COMPANY_DATA"},
+            {"syntax": ":#SUBJECT :cruk! => +#CH_OFFICIAL"}
+          ]
+        },
+        {
+          "id": "officers",
+          "name": "Officer Extraction",
+          "steps": [
+            {"syntax": "@p? :#CH_OFFICIAL ##role:officer ##status:active => +#CURRENT_OFFICERS"},
+            {"syntax": "@p? :#CH_OFFICIAL ##role:officer ##status:resigned => +#FORMER_OFFICERS"},
+            {"syntax": "/gridS{:#CURRENT_OFFICERS} => FOREACH { sanctions? :$ITEM => +#OFFICER_SANCTIONS_$INDEX }"},
+            {"syntax": "/gridS{:#CURRENT_OFFICERS} => FOREACH { pep? :$ITEM => +#OFFICER_PEP_$INDEX }"},
+            {"syntax": "/clink :#CURRENT_OFFICERS => +#OFFICER_OVERLAPS"}
+          ]
+        },
+        {
+          "id": "ownership",
+          "name": "Ownership Chain (UBO)",
+          "steps": [
+            {"syntax": "@p? :#CH_OFFICIAL ##role:shareholder => +#DIRECT_SHAREHOLDERS_P"},
+            {"syntax": "@c? :#CH_OFFICIAL ##role:shareholder => +#DIRECT_SHAREHOLDERS_C"},
+            {"syntax": "ubo? :#SUBJECT => +#UBO_CHAIN", "gap": "ubo?"},
+            {"syntax": "/gridS{:#UBO_CHAIN ##type:person} => FOREACH { sanctions? :$ITEM => +#UBO_SANCTIONS_$INDEX }"}
+          ]
+        },
+        {
+          "id": "related",
+          "name": "Related Companies",
+          "steps": [
+            {"syntax": "/gridS{:#CURRENT_OFFICERS} => @c? => EXCLUDE :#SUBJECT => +#SAME_OFFICER_COMPANIES"},
+            {"syntax": "/gridS{:#DIRECT_SHAREHOLDERS_P} => @c? => EXCLUDE :#SUBJECT => +#SAME_SHAREHOLDER_COMPANIES"},
+            {"syntax": "/clink :#SAME_OFFICER_COMPANIES :#SAME_SHAREHOLDER_COMPANIES => +#COMPANY_NETWORK"}
+          ]
+        },
+        {
+          "id": "regulatory",
+          "name": "Regulatory Status",
+          "steps": [
+            {"syntax": ":#SUBJECT :reguk! => +#FCA_STATUS"},
+            {"syntax": ":#SUBJECT :lituk! => +#LITIGATION"},
+            {"syntax": "sanctions? :#SUBJECT => +#SANCTIONS_COMPANY"},
+            {"syntax": "adverse? :#SUBJECT => +#ADVERSE_COMPANY"}
+          ]
+        },
+        {
+          "id": "digital",
+          "name": "Digital Footprint",
+          "steps": [
+            {"syntax": "cdom? :#SUBJECT => +#COMPANY_DOMAIN"},
+            {"syntax": "alldom? :#COMPANY_DOMAIN => +#DOMAIN_ANALYSIS"},
+            {"syntax": "bl? :!:#COMPANY_DOMAIN => @ent? => +#BACKLINK_ENTITIES"}
+          ]
+        },
+        {
+          "id": "document",
+          "name": "Document Generation",
+          "steps": [
+            {"syntax": "/write ##Company_Profile :#COMPANY_DATA"},
+            {"syntax": "/write ##Officers :#CURRENT_OFFICERS"},
+            {"syntax": "/write ##Ownership :#DIRECT_SHAREHOLDERS_P :#UBO_CHAIN"},
+            {"syntax": "/write ##Related_Companies :#COMPANY_NETWORK"},
+            {"syntax": "/write ##Regulatory :#FCA_STATUS :#LITIGATION"},
+            {"syntax": "/write ##Risk_Assessment :#SANCTIONS_COMPANY :#ADVERSE_COMPANY"}
+          ]
+        }
+      ]
+    },
+    
+    {
+      "id": "asset_trace",
+      "name": "Asset Trace",
+      "genre": "asset_trace",
+      "jurisdiction": "multi",
+      "entity_type": "any",
+      "depth": "comprehensive",
+      "description": "Trace assets across jurisdictions, property, companies, domains",
+      "phases": [
+        {
+          "id": "corporate_assets",
+          "name": "Corporate Asset Discovery",
+          "steps": [
+            {"syntax": "{ENTITY} => +#SUBJECT"},
+            {"syntax": "IF @person :#SUBJECT THEN { p: :#SUBJECT :cruk! => @c? => +#UK_COMPANIES }"},
+            {"syntax": "IF @person :#SUBJECT THEN { p: :#SUBJECT :cde! => @c? => +#DE_COMPANIES }"},
+            {"syntax": ":#UK_COMPANIES :#DE_COMPANIES => +#ALL_CORPORATE_ASSETS"}
+          ]
+        },
+        {
+          "id": "property_assets",
+          "name": "Property Asset Discovery",
+          "steps": [
+            {"syntax": ":#SUBJECT :land_uk! => +#UK_PROPERTY", "gap": ":land_uk!"},
+            {"syntax": "/gridS{:#ALL_CORPORATE_ASSETS} => FOREACH { :land_uk! => +#CORP_PROPERTY_$INDEX }"}
+          ]
+        },
+        {
+          "id": "digital_assets",
+          "name": "Digital Asset Discovery",
+          "steps": [
+            {"syntax": "whois? :#SUBJECT => +#DIRECT_DOMAINS"},
+            {"syntax": "/gridS{:#ALL_CORPORATE_ASSETS} => whois? => +#CORPORATE_DOMAINS"},
+            {"syntax": "reverse_whois? :#DIRECT_DOMAINS => +#REVERSE_WHOIS_DOMAINS", "gap": "reverse_whois?"}
+          ]
+        },
+        {
+          "id": "offshore",
+          "name": "Offshore Discovery",
+          "steps": [
+            {"syntax": ":#SUBJECT leaks! => +#LEAK_HITS"},
+            {"syntax": "@ent? :#LEAK_HITS => +#LEAK_ENTITIES"},
+            {"syntax": "/gridS{:#LEAK_ENTITIES ##jurisdiction:offshore} => +#OFFSHORE_ENTITIES"}
+          ]
+        },
+        {
+          "id": "timeline",
+          "name": "Asset Timeline",
+          "steps": [
+            {"syntax": "timeline? :#ALL_CORPORATE_ASSETS :#UK_PROPERTY :#DIRECT_DOMAINS => +#ASSET_TIMELINE", "gap": "timeline?"},
+            {"syntax": "pattern? :#ASSET_TIMELINE ##rapid_acquisition => +#RAPID_ACQUISITION", "gap": "pattern?"}
+          ]
+        }
+      ]
+    },
+    
+    {
+      "id": "network_analysis",
+      "name": "Network Analysis",
+      "genre": "corporate_intelligence",
+      "jurisdiction": "multi",
+      "entity_type": "mixed",
+      "depth": "comprehensive",
+      "description": "Multi-entity investigation, find hidden connections",
+      "phases": [
+        {
+          "id": "seeds",
+          "name": "Seed Entities",
+          "steps": [
+            {"syntax": "{ENTITY_1} => +#SEED_1"},
+            {"syntax": "{ENTITY_2} => +#SEED_2"},
+            {"syntax": ":#SEED_1 :#SEED_2 => +#SEEDS"}
+          ]
+        },
+        {
+          "id": "expand",
+          "name": "Expand Seeds",
+          "steps": [
+            {"syntax": "/gridS{:#SEEDS} => FOREACH { IF @person $ITEM THEN { p: $ITEM :cruk! => @c? => +#LAYER1_$INDEX } }"},
+            {"syntax": "/gridS{:#SEEDS} => FOREACH { IF @company $ITEM THEN { c: $ITEM :cruk! => @p? => +#LAYER1_$INDEX } }"}
+          ]
+        },
+        {
+          "id": "intersection",
+          "name": "Find Intersections",
+          "steps": [
+            {"syntax": "/clink :#SEEDS => +#SEED_OVERLAPS"},
+            {"syntax": "intersect? :#LAYER1_* :#SEEDS => +#COMMON_ENTITIES", "gap": "intersect?"},
+            {"syntax": "/gridS{:#COMMON_ENTITIES} => +#NETWORK_HUBS"}
+          ]
+        },
+        {
+          "id": "nexus",
+          "name": "Nexus Analysis",
+          "steps": [
+            {"syntax": "/gridX{:#SEED_1 x :#SEED_2} => +#NEXUS_1_2"},
+            {"syntax": "path? :#SEED_1 :#SEED_2 => +#PATH_1_2", "gap": "path?"},
+            {"syntax": "/gridX{:#NEXUS_1_2} => KU? => +#NEXUS_KU"}
+          ]
+        },
+        {
+          "id": "hidden",
+          "name": "Hidden Link Discovery",
+          "steps": [
+            {"syntax": "/gridS{:#SEEDS} => cdom? => +#SEED_DOMAINS"},
+            {"syntax": "bl? :!:#SEED_DOMAINS => @ent? => +#BACKLINK_ENTITIES"},
+            {"syntax": "intersect? :#BACKLINK_ENTITIES :#SEEDS => +#HIDDEN_CONNECTORS"}
+          ]
+        }
+      ]
+    }
+  ],
+  
+  "syntax_gaps": {
+    "high_priority": [
+      {"syntax": "sanctions?", "purpose": "Sanctions list query", "status": "not_implemented"},
+      {"syntax": "pep?", "purpose": "PEP database query", "status": "not_implemented"},
+      {"syntax": "adverse?", "purpose": "Adverse media search", "status": "not_implemented"},
+      {"syntax": "ubo?", "purpose": "UBO chain traversal", "status": "not_implemented"},
+      {"syntax": "/write ##Section", "purpose": "Write to EDITH section", "status": "not_implemented"},
+      {"syntax": "/flag ##Section", "purpose": "Flag EDITH section", "status": "not_implemented"},
+      {"syntax": "@nexus?", "purpose": "Extract relationships as nodes", "status": "not_implemented"},
+      {"syntax": "career?", "purpose": "Extract career timeline", "status": "not_implemented"},
+      {"syntax": "events?", "purpose": "Extract company events", "status": "not_implemented"},
+      {"syntax": "overlap?", "purpose": "Temporal overlap detection", "status": "not_implemented"},
+      {"syntax": ":YYYY-YYYY", "purpose": "Temporal window filter", "status": "not_implemented"},
+      {"syntax": "##role:XXX", "purpose": "Role-based filter", "status": "not_implemented"}
+    ],
+    "medium_priority": [
+      {"syntax": "KU?", "purpose": "K-U state query", "status": "not_implemented"},
+      {"syntax": "FOREACH {...}", "purpose": "Iterate over set", "status": "not_implemented"},
+      {"syntax": ":#TAG_*", "purpose": "Wildcard tag match", "status": "not_implemented"},
+      {"syntax": "TOP(N)", "purpose": "Select top N", "status": "not_implemented"},
+      {"syntax": "EXCLUDE", "purpose": "Remove from set", "status": "not_implemented"},
+      {"syntax": "COUNT()", "purpose": "Count items", "status": "not_implemented"},
+      {"syntax": "timeline?", "purpose": "Build timeline", "status": "not_implemented"},
+      {"syntax": "pattern?", "purpose": "Pattern detection", "status": "not_implemented"},
+      {"syntax": "path?", "purpose": "Path finding", "status": "not_implemented"},
+      {"syntax": "intersect?", "purpose": "Multi-tag intersection", "status": "not_implemented"},
+      {"syntax": "expect?", "purpose": "Expected relationship check", "status": "not_implemented"},
+      {"syntax": "gaps?", "purpose": "Template gap check", "status": "not_implemented"}
+    ],
+    "low_priority": [
+      {"syntax": "linkedin?", "purpose": "LinkedIn lookup", "status": "not_implemented"},
+      {"syntax": "social?", "purpose": "Social profiles", "status": "not_implemented"},
+      {"syntax": "@education?", "purpose": "Education extraction", "status": "not_implemented"},
+      {"syntax": "@date?", "purpose": "Date extraction", "status": "not_implemented"},
+      {"syntax": "cluster?", "purpose": "Temporal clustering", "status": "not_implemented"},
+      {"syntax": "reverse_whois?", "purpose": "Reverse WHOIS", "status": "not_implemented"},
+      {"syntax": ":land_uk!", "purpose": "UK Land Registry", "status": "not_implemented"},
+      {"syntax": "leaks!", "purpose": "Leaked databases", "status": "not_implemented"}
+    ]
+  }
+}

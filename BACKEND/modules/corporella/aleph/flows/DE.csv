@@ -1,0 +1,3 @@
+country,source_id,source_label,kind,publisher,input_type,output_schema,output_columns
+DE,1027,"German companies registry (OpenCorporates, 2019)",(unknown),,company_name,Company,collection_id;collection_label;entity_schema;company_name;company_id;company_address;company_country;company_jurisdiction;company_status;company_incorporation_date;company_dissolution_date;company_website;company_owner_person;company_owner_company
+DE,1027,"German companies registry (OpenCorporates, 2019)",(unknown),,generic_query,Entity,id;schema;caption;countries;addresses;websites;publisher;collection_id

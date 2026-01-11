@@ -1,0 +1,563 @@
+{
+  "$schema": "relationship_search_tactics_schema.json",
+  "version": "1.0",
+  "description": "Search optimization tactics for each relationship edge type - boolean logic, proximity operators, and shortcuts",
+  "last_updated": "2026-01-06",
+
+  "person_identifiers": {
+    "has_phone": {
+      "description": "Find other instances of a known phone number linked to a person",
+      "tactics": [
+        {
+          "name": "surname_with_fragments",
+          "logic": "When phone is known, search surname + country code + partial number",
+          "pattern": "\"${surname}\" \"${country_code}\" \"${last_4_digits}\"",
+          "example": "\"Smith\" \"+44\" \"7890\"",
+          "why": "Phone numbers rarely appear alone - usually near owner's name"
+        },
+        {
+          "name": "format_variations",
+          "logic": "Same number written multiple ways",
+          "variations": [
+            "+44 20 7123 4567",
+            "0044 20 7123 4567",
+            "(020) 7123 4567",
+            "020-7123-4567",
+            "02071234567"
+          ],
+          "pattern": "\"${var1}\" OR \"${var2}\" OR \"${var3}\""
+        },
+        {
+          "name": "proximity_to_name",
+          "logic": "Phone numbers appear within ~10 words of person/company name",
+          "pattern": "\"${name}\" NEAR/10 \"${phone_fragment}\"",
+          "engines": ["google", "bing"]
+        },
+        {
+          "name": "international_prefix_swap",
+          "logic": "Same number with different country representations",
+          "pattern": "(\"+44\" OR \"0044\" OR \"44\") \"${local_number}\""
+        }
+      ],
+      "reverse_lookup": {
+        "description": "Find owner when only phone is known",
+        "pattern": "\"${full_phone}\" -site:whitepages.com -site:truecaller.com",
+        "note": "Exclude aggregator sites to find original sources"
+      }
+    },
+
+    "has_email": {
+      "description": "Find instances of email or discover emails for known person",
+      "tactics": [
+        {
+          "name": "domain_harvest",
+          "logic": "Find all emails at a company domain",
+          "pattern": "\"@${company_domain}\"",
+          "example": "\"@acme.com\"",
+          "why": "Lists all employees whose emails are public"
+        },
+        {
+          "name": "local_part_patterns",
+          "logic": "Guess email from name using common patterns",
+          "patterns": [
+            "${firstname}.${lastname}@",
+            "${f}.${lastname}@",
+            "${firstname}${lastname}@",
+            "${lastname}${firstname}@",
+            "${firstname}_${lastname}@"
+          ],
+          "example": "\"john.smith@\" OR \"j.smith@\" OR \"johnsmith@\""
+        },
+        {
+          "name": "name_proximity_to_domain",
+          "logic": "Name appears near company email domain",
+          "pattern": "\"${name}\" NEAR/10 \"@${domain}\"",
+          "example": "\"John Smith\" NEAR/10 \"@acme.com\""
+        },
+        {
+          "name": "breach_format",
+          "logic": "Breach data often shows email:password or email|data",
+          "pattern": "\"${email}:\" OR \"${email}|\"",
+          "note": "For finding breach appearances"
+        }
+      ],
+      "reverse_lookup": {
+        "description": "Find person from email",
+        "pattern": "\"${email}\" -site:hunter.io -site:rocketreach.co",
+        "note": "Exclude aggregators for original sources"
+      }
+    },
+
+    "has_linkedin": {
+      "description": "Find or verify LinkedIn profile for person",
+      "tactics": [
+        {
+          "name": "site_search_with_context",
+          "logic": "Search LinkedIn with name + company for disambiguation",
+          "pattern": "site:linkedin.com/in \"${name}\" \"${company}\"",
+          "example": "site:linkedin.com/in \"John Smith\" \"Acme Corp\""
+        },
+        {
+          "name": "url_slug_search",
+          "logic": "LinkedIn URLs contain name variations",
+          "pattern": "site:linkedin.com/in/${firstname}-${lastname}",
+          "variations": ["john-smith", "johnsmith", "john-smith-abc123"]
+        },
+        {
+          "name": "cached_profiles",
+          "logic": "Find LinkedIn data indexed elsewhere",
+          "pattern": "\"linkedin.com/in/${slug}\" -site:linkedin.com",
+          "why": "Finds cached/scraped versions when profile is private"
+        },
+        {
+          "name": "title_company_combo",
+          "logic": "Job title + company is often unique identifier",
+          "pattern": "site:linkedin.com \"${title}\" \"${company}\" \"${location}\"",
+          "example": "site:linkedin.com \"CFO\" \"Acme Corp\" \"London\""
+        }
+      ]
+    },
+
+    "has_twitter": {
+      "description": "Find Twitter/X handle for person",
+      "tactics": [
+        {
+          "name": "handle_variations",
+          "logic": "Common handle patterns from name",
+          "patterns": ["@${firstname}${lastname}", "@${f}${lastname}", "@${lastname}${firstname}"],
+          "example": "@johnsmith OR @jsmith OR @smithjohn"
+        },
+        {
+          "name": "bio_search",
+          "logic": "Search for company/title in Twitter bios",
+          "pattern": "site:twitter.com \"${company}\" \"${title}\"",
+          "note": "Twitter bios often mention employer"
+        }
+      ]
+    }
+  },
+
+  "corporate_relationships": {
+    "officer_of": {
+      "description": "Person is director/officer of company",
+      "tactics": [
+        {
+          "name": "title_proximity",
+          "logic": "Officer titles appear within 3-5 words of name",
+          "pattern": "(\"director\" OR \"officer\" OR \"secretary\") NEAR/5 \"${name}\"",
+          "example": "\"director\" NEAR/5 \"John Smith\""
+        },
+        {
+          "name": "appointment_language",
+          "logic": "Registry announcements use specific language",
+          "patterns": [
+            "\"appointed\" NEAR/5 \"${name}\" NEAR/10 \"${company}\"",
+            "\"resignation\" NEAR/5 \"${name}\"",
+            "\"terminated\" NEAR/5 \"${name}\""
+          ]
+        },
+        {
+          "name": "company_with_role",
+          "logic": "Company name + role + person",
+          "pattern": "\"${company}\" (\"director\" OR \"CEO\" OR \"CFO\") \"${surname}\"",
+          "example": "\"Acme Ltd\" \"director\" \"Smith\""
+        },
+        {
+          "name": "registry_specific",
+          "logic": "Use jurisdiction-specific registry patterns",
+          "uk": "site:companieshouse.gov.uk \"${name}\"",
+          "de": "site:handelsregister.de \"${name}\"",
+          "us": "site:sec.gov \"${name}\" \"director\""
+        }
+      ]
+    },
+
+    "employed_by": {
+      "description": "Person employed by company",
+      "tactics": [
+        {
+          "name": "title_variations",
+          "logic": "Job titles have many synonyms",
+          "ceo_variants": ["CEO", "Chief Executive", "Managing Director", "President", "Geschäftsführer"],
+          "cfo_variants": ["CFO", "Chief Financial Officer", "Finance Director", "FD"],
+          "pattern": "(\"${title_var1}\" OR \"${title_var2}\") NEAR/10 \"${name}\""
+        },
+        {
+          "name": "press_release_pattern",
+          "logic": "PR announcements follow patterns",
+          "pattern": "\"${company}\" (\"announces\" OR \"appoints\" OR \"names\") \"${name}\" \"${title}\"",
+          "example": "\"Acme Corp\" \"appoints\" \"John Smith\" \"CEO\""
+        },
+        {
+          "name": "byline_author",
+          "logic": "Employee content often has company in byline",
+          "pattern": "\"${name}\" \"${company}\" (\"author\" OR \"contributor\" OR \"written by\")"
+        }
+      ]
+    },
+
+    "shareholder_of": {
+      "description": "Person/company owns shares in company",
+      "tactics": [
+        {
+          "name": "ownership_language",
+          "logic": "Ownership announcements use specific terms",
+          "patterns": [
+            "\"${name}\" (\"shareholder\" OR \"stockholder\") NEAR/10 \"${company}\"",
+            "\"beneficial owner\" NEAR/10 \"${name}\" NEAR/10 \"${company}\"",
+            "\"owns\" NEAR/3 \"%\" NEAR/10 \"${company}\" NEAR/10 \"${name}\""
+          ]
+        },
+        {
+          "name": "percentage_proximity",
+          "logic": "Ownership percentage often stated",
+          "pattern": "\"${name}\" NEAR/15 (\"25%\" OR \"50%\" OR \"100%\") NEAR/15 \"${company}\"",
+          "example": "\"Smith\" NEAR/15 \"51%\" NEAR/15 \"Acme\""
+        },
+        {
+          "name": "psc_language",
+          "logic": "UK PSC register terminology",
+          "pattern": "\"person with significant control\" NEAR/10 \"${name}\" NEAR/10 \"${company}\""
+        }
+      ]
+    },
+
+    "subsidiary_of": {
+      "description": "Company is subsidiary of parent",
+      "tactics": [
+        {
+          "name": "corporate_hierarchy_terms",
+          "logic": "Subsidiaries described with specific language",
+          "patterns": [
+            "\"${subsidiary}\" (\"subsidiary\" OR \"wholly owned\" OR \"controlled by\") \"${parent}\"",
+            "\"${parent}\" (\"owns\" OR \"acquired\" OR \"parent of\") \"${subsidiary}\""
+          ]
+        },
+        {
+          "name": "percentage_ownership",
+          "logic": "Often stated as percentage",
+          "pattern": "\"${parent}\" \"100%\" NEAR/5 \"${subsidiary}\"",
+          "note": "Wholly owned = 100%"
+        },
+        {
+          "name": "annual_report_pattern",
+          "logic": "Annual reports list subsidiaries",
+          "pattern": "\"${parent}\" \"annual report\" \"subsidiaries\" \"${subsidiary}\""
+        }
+      ]
+    },
+
+    "regulated_by": {
+      "description": "Company regulated by authority",
+      "tactics": [
+        {
+          "name": "registration_number_proximity",
+          "logic": "FRN/registration near company name",
+          "pattern": "\"${company}\" NEAR/10 (\"FRN\" OR \"firm reference\") NEAR/5 \"${number}\"",
+          "example": "\"Acme Ltd\" NEAR/10 \"FRN\" NEAR/5 \"123456\""
+        },
+        {
+          "name": "regulator_site_search",
+          "logic": "Search regulator websites directly",
+          "uk_fca": "site:fca.org.uk \"${company}\"",
+          "us_sec": "site:sec.gov \"${company}\"",
+          "us_finra": "site:finra.org \"${company}\""
+        }
+      ]
+    }
+  },
+
+  "family_relationships": {
+    "married_to": {
+      "description": "Spousal relationship",
+      "tactics": [
+        {
+          "name": "spouse_language",
+          "logic": "Spouse references use common phrases",
+          "patterns": [
+            "\"${name}\" (\"husband\" OR \"wife\" OR \"spouse\") NEAR/5",
+            "\"${name}\" \"and his wife\" OR \"and her husband\"",
+            "\"Mr and Mrs ${surname}\"",
+            "\"${name1}\" \"married\" NEAR/5 \"${name2}\""
+          ]
+        },
+        {
+          "name": "maiden_name",
+          "logic": "Women's maiden names indicated by 'née'",
+          "pattern": "\"${married_name}\" (\"née\" OR \"born\" OR \"maiden name\") \"${maiden_name}\"",
+          "example": "\"Jane Smith\" \"née\" \"Jones\""
+        },
+        {
+          "name": "joint_property",
+          "logic": "Property records show joint ownership",
+          "pattern": "\"${surname}\" \"joint tenants\" OR \"${name1}\" \"${name2}\" \"property\""
+        },
+        {
+          "name": "wedding_announcement",
+          "logic": "Wedding announcements name both parties",
+          "pattern": "\"${name1}\" \"${name2}\" (\"wedding\" OR \"married\" OR \"engagement\")"
+        }
+      ]
+    },
+
+    "child_of": {
+      "description": "Parent-child relationship",
+      "tactics": [
+        {
+          "name": "family_language",
+          "logic": "Family references use specific terms",
+          "patterns": [
+            "\"${child_name}\" (\"son of\" OR \"daughter of\") \"${parent_name}\"",
+            "\"${parent_name}\" (\"son\" OR \"daughter\") \"${child_first_name}\"",
+            "\"${surname}\" \"family\" \"${child_first_name}\""
+          ]
+        },
+        {
+          "name": "obituary_pattern",
+          "logic": "Obituaries list survivors",
+          "pattern": "\"${deceased}\" \"survived by\" NEAR/20 \"${child_name}\""
+        },
+        {
+          "name": "inheritance_language",
+          "logic": "Estate/inheritance mentions",
+          "pattern": "\"${parent}\" \"estate\" NEAR/10 \"${child}\" (\"heir\" OR \"beneficiary\")"
+        }
+      ]
+    },
+
+    "sibling_of": {
+      "description": "Sibling relationship",
+      "tactics": [
+        {
+          "name": "sibling_language",
+          "logic": "Sibling terms near names",
+          "patterns": [
+            "\"${name1}\" (\"brother\" OR \"sister\" OR \"sibling\") \"${name2}\"",
+            "\"${surname}\" \"brothers\" OR \"${surname}\" \"sisters\""
+          ]
+        }
+      ]
+    }
+  },
+
+  "domain_relationships": {
+    "links_to": {
+      "description": "Backlink/outlink relationship between domains",
+      "tactics": [
+        {
+          "name": "link_operator",
+          "logic": "Find pages linking to domain",
+          "pattern": "link:${domain}",
+          "note": "Deprecated on Google but works on some engines",
+          "alternatives": ["Majestic", "Ahrefs", "CommonCrawl web graph"]
+        },
+        {
+          "name": "anchor_text_search",
+          "logic": "Find links by anchor text",
+          "pattern": "\"${anchor_text}\" site:-${source_domain}",
+          "example": "\"click here for Acme\" -site:acme.com"
+        },
+        {
+          "name": "referral_pattern",
+          "logic": "Find referral/partnership mentions",
+          "pattern": "\"${domain}\" (\"partner\" OR \"referral\" OR \"affiliate\")"
+        }
+      ]
+    },
+
+    "shares_tracker": {
+      "description": "Domains share same analytics tracker",
+      "tactics": [
+        {
+          "name": "exact_tracker_search",
+          "logic": "Search for exact tracker ID",
+          "patterns": [
+            "\"${ga_id}\"",
+            "\"${gtm_id}\"",
+            "\"${facebook_pixel}\""
+          ],
+          "example": "\"UA-12345678-1\" OR \"GTM-ABCDEF\""
+        },
+        {
+          "name": "publicwww_search",
+          "logic": "PublicWWW indexes source code",
+          "pattern": "publicwww.com search for \"${tracker_id}\"",
+          "note": "Best source for tracker-based domain discovery"
+        }
+      ]
+    },
+
+    "registrant_of": {
+      "description": "Person/company is domain registrant",
+      "tactics": [
+        {
+          "name": "whois_text_search",
+          "logic": "Historic WHOIS data indexed",
+          "pattern": "\"${name}\" \"registrant\" NEAR/10 \"${domain}\"",
+          "sources": ["DomainTools", "WHOXY", "WhoisXML"]
+        },
+        {
+          "name": "reverse_whois",
+          "logic": "Find all domains by registrant",
+          "pattern": "whois \"${email}\" OR \"${name}\" registrant",
+          "note": "Use specialized reverse WHOIS tools"
+        }
+      ]
+    },
+
+    "hosted_at": {
+      "description": "Domain hosted at IP",
+      "tactics": [
+        {
+          "name": "ip_search",
+          "logic": "Find other domains on same IP",
+          "pattern": "ip:${ip_address}",
+          "tools": ["Shodan", "Censys", "SecurityTrails"]
+        },
+        {
+          "name": "asn_search",
+          "logic": "Find all IPs in same ASN",
+          "pattern": "asn:${asn_number}",
+          "note": "Companies often own IP ranges"
+        }
+      ]
+    }
+  },
+
+  "location_relationships": {
+    "has_address": {
+      "description": "Entity has physical address",
+      "tactics": [
+        {
+          "name": "street_number_proximity",
+          "logic": "Street number and name appear together",
+          "pattern": "\"${number}\" NEAR/2 \"${street_name}\"",
+          "example": "\"123\" NEAR/2 \"Main Street\""
+        },
+        {
+          "name": "postcode_search",
+          "logic": "UK postcodes are very specific",
+          "pattern": "\"${postcode}\" \"${company_or_name}\"",
+          "example": "\"SW1A 1AA\" \"Acme Ltd\"",
+          "note": "UK postcodes identify ~15 addresses"
+        },
+        {
+          "name": "address_with_entity",
+          "logic": "Full address + entity name",
+          "pattern": "\"${street_address}\" \"${city}\" \"${entity_name}\""
+        },
+        {
+          "name": "registered_office",
+          "logic": "Registered office language",
+          "pattern": "\"${company}\" \"registered office\" NEAR/10 \"${address}\""
+        }
+      ]
+    },
+
+    "located_at": {
+      "description": "Entity located in jurisdiction",
+      "tactics": [
+        {
+          "name": "jurisdiction_qualifiers",
+          "logic": "Add jurisdiction to disambiguate",
+          "pattern": "\"${entity}\" (\"${city}\" OR \"${country}\")",
+          "example": "\"Acme Ltd\" \"London\" OR \"UK\""
+        }
+      ]
+    }
+  },
+
+  "provenance_relationships": {
+    "mentioned_in": {
+      "description": "Entity mentioned in document/article",
+      "tactics": [
+        {
+          "name": "exclude_noise_sites",
+          "logic": "Exclude aggregator sites",
+          "pattern": "\"${entity}\" -site:linkedin.com -site:bloomberg.com/profile",
+          "note": "Find original sources, not scraped copies"
+        },
+        {
+          "name": "news_specific",
+          "logic": "Search news sources only",
+          "pattern": "\"${entity}\" site:reuters.com OR site:bbc.co.uk OR site:ft.com"
+        },
+        {
+          "name": "date_restricted",
+          "logic": "Limit to time period",
+          "pattern": "\"${entity}\" after:2024-01-01 before:2024-12-31"
+        }
+      ]
+    },
+
+    "documented_by": {
+      "description": "Entity documented in specific file/URL",
+      "tactics": [
+        {
+          "name": "filetype_search",
+          "logic": "Find specific document types",
+          "pattern": "\"${entity}\" filetype:pdf OR filetype:docx",
+          "example": "\"John Smith\" \"Acme Corp\" filetype:pdf"
+        },
+        {
+          "name": "annual_report_search",
+          "logic": "Find in annual reports",
+          "pattern": "\"${entity}\" \"annual report\" filetype:pdf"
+        }
+      ]
+    }
+  },
+
+  "meta_tactics": {
+    "proximity_rules": {
+      "description": "General proximity guidelines",
+      "tight": {
+        "words": "2-3",
+        "use_for": ["street number + street name", "first + last name", "title + name"],
+        "example": "NEAR/3"
+      },
+      "medium": {
+        "words": "5-10",
+        "use_for": ["name + company", "name + role", "phone + name"],
+        "example": "NEAR/10"
+      },
+      "loose": {
+        "words": "15-20",
+        "use_for": ["name + ownership %", "entity + date", "entity + event"],
+        "example": "NEAR/20"
+      }
+    },
+
+    "boolean_combinations": {
+      "description": "Effective boolean patterns",
+      "all_variations": {
+        "pattern": "(\"${var1}\" OR \"${var2}\" OR \"${var3}\")",
+        "use": "Name variations, title synonyms"
+      },
+      "required_context": {
+        "pattern": "\"${entity}\" (\"${context1}\" OR \"${context2}\")",
+        "use": "Entity + role/location/company"
+      },
+      "exclusion": {
+        "pattern": "\"${entity}\" -site:${noise_site}",
+        "use": "Remove aggregator/scraper sites"
+      }
+    },
+
+    "engine_specific": {
+      "google": {
+        "proximity": "Not supported directly, use quotes",
+        "around": "AROUND(N) operator works",
+        "example": "\"Smith\" AROUND(5) \"director\""
+      },
+      "bing": {
+        "proximity": "NEAR:N operator",
+        "example": "\"Smith\" NEAR:5 \"director\""
+      },
+      "yandex": {
+        "proximity": "~ operator with distance",
+        "example": "\"Smith\" ~5 \"director\""
+      }
+    }
+  }
+}

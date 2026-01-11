@@ -1,0 +1,98 @@
+[
+  {
+    "id": "bangs",
+    "name": "DuckDuckGo Bangs Catalog",
+    "provider": "DDG",
+    "categories": {
+      "direct": [
+        "directory",
+        "news",
+        "social",
+        "forum",
+        "shopping",
+        "dev",
+        "docs"
+      ],
+      "indirect": ["academic", "dataset"]
+    },
+    "layers": ["directory", "engine_hints"],
+    "inputs": ["keyword", "site", "category"],
+    "form": { "type": "catalog", "source": "bangs", "searchable": "pattern" },
+    "dimensions": ["category", "language", "region", "url_pattern"],
+    "supports": {
+      "operators": ["site", "lang", "inurl", "intitle", "author"],
+      "filters": ["category", "language"]
+    },
+    "routing": {
+      "segment": "OBJ",
+      "strict_LOC": ["site", "lang"],
+      "stream": false
+    }
+  },
+  {
+    "id": "curlie",
+    "name": "Curlie (DMOZ) Directory",
+    "provider": "Curlie",
+    "categories": {
+      "direct": ["directory", "news", "academic", "docs"],
+      "indirect": ["dataset"]
+    },
+    "layers": ["directory"],
+    "inputs": ["keyword", "category"],
+    "form": {
+      "type": "catalog",
+      "source": "curlie",
+      "searchable": "category_hierarchy"
+    },
+    "dimensions": ["category", "language", "region"],
+    "supports": {
+      "operators": ["site", "lang"],
+      "filters": ["category", "language", "region"]
+    },
+    "routing": { "segment": "OBJ", "strict_LOC": ["lang"], "stream": false }
+  },
+  {
+    "id": "huggingface_cc",
+    "name": "HuggingFace CommonCrawl Collections",
+    "provider": "HuggingFace",
+    "categories": {
+      "direct": ["dataset", "news", "directory"],
+      "indirect": ["docs", "code", "academic"]
+    },
+    "layers": ["dataset", "api"],
+    "inputs": ["dataset_id", "keyword", "url_pattern"],
+    "form": {
+      "type": "api",
+      "api": "huggingface",
+      "searchable": "label_filters"
+    },
+    "dimensions": ["category", "language", "region", "url_pattern"],
+    "supports": {
+      "operators": ["site", "lang"],
+      "filters": ["category", "language", "region", "url_pattern"]
+    },
+    "routing": { "segment": "LOC", "strict_LOC": ["lang"], "stream": false }
+  },
+  {
+    "id": "news_domains_index",
+    "name": "News Domains Index",
+    "provider": "NewsIndex",
+    "categories": {
+      "direct": ["news"],
+      "indirect": ["dataset", "directory"]
+    },
+    "layers": ["index", "vector"],
+    "inputs": ["keyword", "language", "country", "category"],
+    "form": {
+      "type": "index",
+      "api": "internal",
+      "searchable": "semantic|filter"
+    },
+    "dimensions": ["language", "country", "category"],
+    "supports": {
+      "operators": ["news", "lang"],
+      "filters": ["language", "country", "category"]
+    },
+    "routing": { "segment": "OBJ", "strict_LOC": ["lang"], "stream": true }
+  }
+]

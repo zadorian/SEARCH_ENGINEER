@@ -1,0 +1,26 @@
+<\!DOCTYPE html>
+<html>
+  <head>
+    <title>Test Load</title>
+  </head>
+  <body>
+    <h1>Testing API Load</h1>
+    <pre id="result"></pre>
+    <script>
+      fetch("/api/cache/load")
+        .then(r => r.json())
+        .then(data => {
+          document.getElementById("result").textContent = JSON.stringify(
+            data,
+            null,
+            2
+          );
+          console.log("Nodes:", data.data?.graph_state?.nodes?.length);
+        })
+        .catch(err => {
+          document.getElementById("result").textContent = "Error: " + err;
+        });
+    </script>
+  </body>
+</html>
+EOF < /dev/null

@@ -1,0 +1,19 @@
+- [x] Add designator-based company extraction fallback in entity harvester
+  - Priority: High
+  - Added: 2026-01-05 by GPT-5
+  - Completed: 2026-01-05 by GPT-5
+  - Notes: Extract company candidates from local context around the search designator.
+- [ ] Validate CZ harvest output with s.r.o. snippets
+  - Priority: High
+  - Added: 2026-01-05 by GPT-5
+  - Notes: Run a small CZ harvest and confirm entities land in news_entities.json.
+- [x] Store entity source URLs in output
+  - Priority: High
+  - Added: 2026-01-05 by GPT-5
+  - Completed: 2026-01-05 by GPT-5
+  - Notes: Add `source_urls` list to each entity in news_entities.json.
+- [x] Enforce single news source file for TORPEDO
+  - Priority: High
+  - Added: 2026-01-05 by GPT-5
+  - Completed: 2026-01-06 by Codex
+  - Notes: Load only `input_output/matrix/sources/news.json`.

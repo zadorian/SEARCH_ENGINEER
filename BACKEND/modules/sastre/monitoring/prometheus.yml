@@ -1,0 +1,27 @@
+# SASTRE Prometheus Configuration
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+rule_files:
+  - /etc/prometheus/alerts.yml
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "sastre-orchestrator"
+    static_configs:
+      - targets: ["sastre-orchestrator:8201"]
+    metrics_path: /health
+    
+  - job_name: "sastre-metrics"
+    static_configs:
+      - targets: ["sastre-metrics:9090"]
+    metrics_path: /metrics

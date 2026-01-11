@@ -1,0 +1,5 @@
+golden_lists_with_embeddings.json
+*.pyc
+__pycache__/
+matrix_backup_*/
+batch_jobs/

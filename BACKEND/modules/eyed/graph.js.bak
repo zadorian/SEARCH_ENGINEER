@@ -1,0 +1,4993 @@
+// Graph visualization for DeHashed data
+let network = null;
+let nodes = null;
+let edges = null;
+let nodeIdCounter = 0;
+let searchCache = new Map(); // Cache for search results
+let nodeExpansionCache = new Map(); // Track which nodes have been expanded
+let valueToNodeMap = new Map(); // Map values to node IDs for deduplication
+let breachConnections = new Map(); // Map breach names to node arrays
+let focusedNode = null; // Currently focused node
+let originalNodeColors = new Map(); // Store original colors during focus
+let currentProfileNode = null; // Currently edited node
+let includeHashedPasswords = false; // Option to include hashed passwords
+let showArrows = false; // Option to show arrow direction on edges
+let nodeSearchQueries = new Map(); // Map to store search relationships for query nodes
+let anchoredNodes = new Set(); // Set of anchored node IDs
+let selectedNodes = new Set(); // Currently selected nodes
+
+// Load cache from disk on startup
+async function loadCacheFromStorage() {
+    try {
+        const response = await fetch('/api/cache/load');
+        const result = await response.json();
+        
+        if (result.success && result.data) {
+            // Load search cache
+            if (result.data.search_cache) {
+                // Convert object back to Map
+                searchCache = new Map(Object.entries(result.data.search_cache));
+                console.log(`Loaded ${searchCache.size} cached searches from disk`);
+            }
+            
+            // Return graph state for loading
+            return result.data.graph_state;
+        }
+    } catch (e) {
+        console.error('Error loading cache from disk:', e);
+    }
+    return null;
+}
+
+// Save cache to disk
+async function saveCacheToStorage() {
+    try {
+        // Convert Map to object for serialization
+        const cacheObj = {};
+        searchCache.forEach((value, key) => {
+            cacheObj[key] = value;
+        });
+        
+        const data = {
+            search_cache: cacheObj
+        };
+        
+        const response = await fetch('/api/cache/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        if (result.success) {
+            console.log(`Saved ${searchCache.size} searches to disk`);
+        }
+    } catch (e) {
+        console.error('Error saving cache to disk:', e);
+    }
+}
+
+// Save graph state to disk
+async function saveGraphState() {
+    try {
+        const graphState = {
+            nodes: nodes.get(),
+            edges: edges.get(),
+            nodeIdCounter: nodeIdCounter,
+            valueToNodeMap: Array.from(valueToNodeMap.entries()),
+            breachConnections: Array.from(breachConnections.entries()),
+            nodeSearchQueries: Array.from(nodeSearchQueries.entries()),
+            activeQueryNodes: Array.from(activeQueryNodes.entries()),
+            autoShowQueries: autoShowQueries,
+            anchoredNodes: Array.from(anchoredNodes)
+        };
+        
+        const data = {
+            graph_state: graphState
+        };
+        
+        const response = await fetch('/api/cache/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        if (result.success) {
+            console.log('Graph state saved to disk');
+        }
+    } catch (e) {
+        console.error('Error saving graph state to disk:', e);
+    }
+}
+
+// Load graph state from disk (now done via loadCacheFromStorage)
+function loadGraphState(graphState) {
+    try {
+        if (graphState) {
+            
+            // Restore nodes with their saved positions
+            if (graphState.nodes) {
+                // Ensure each node has its position
+                graphState.nodes.forEach(node => {
+                    // vis.js needs x and y at the top level
+                    if (node.x === undefined || node.y === undefined) {
+                        // If position is missing, give it a default
+                        node.x = Math.random() * 1000 - 500;
+                        node.y = Math.random() * 1000 - 500;
+                    }
+                });
+                nodes.add(graphState.nodes);
+            }
+            
+            // Restore edges
+            if (graphState.edges) {
+                edges.add(graphState.edges);
+            }
+            
+            // Restore counters
+            if (graphState.nodeIdCounter) {
+                nodeIdCounter = graphState.nodeIdCounter;
+            }
+            
+            // Restore value map
+            if (graphState.valueToNodeMap) {
+                valueToNodeMap = new Map(graphState.valueToNodeMap);
+            }
+            
+            // Restore breach connections
+            if (graphState.breachConnections) {
+                breachConnections = new Map(graphState.breachConnections);
+                
+                // Rebuild breach connections if edges are missing
+                breachConnections.forEach((nodeIds, breachName) => {
+                    console.log(`Checking breach ${breachName} with ${nodeIds.length} nodes`);
+                    
+                    // Check if connections exist
+                    let hasConnections = false;
+                    if (nodeIds.length >= 2) {
+                        const testEdge = edges.get({
+                            filter: edge => edge.title && edge.title.includes(breachName)
+                        });
+                        hasConnections = testEdge.length > 0;
+                    }
+                    
+                    // Recreate connections if missing
+                    if (!hasConnections && nodeIds.length >= 2) {
+                        console.log(`Recreating connections for breach: ${breachName}`);
+                        connectBreachNodes(nodeIds, breachName);
+                    }
+                });
+            }
+            
+            // Restore search queries
+            if (graphState.nodeSearchQueries) {
+                nodeSearchQueries = new Map(graphState.nodeSearchQueries);
+                console.log(`Loaded ${nodeSearchQueries.size} search queries`);
+            }
+            
+            // Restore active query nodes
+            if (graphState.activeQueryNodes) {
+                activeQueryNodes = new Map(graphState.activeQueryNodes);
+                console.log(`Loaded ${activeQueryNodes.size} active query nodes`);
+            }
+            
+            // Restore autoShowQueries state and update checkbox
+            if (graphState.autoShowQueries !== undefined) {
+                autoShowQueries = graphState.autoShowQueries;
+                const checkbox = document.getElementById('showQueries');
+                if (checkbox) {
+                    checkbox.checked = autoShowQueries;
+                }
+            }
+            
+            // Restore anchored nodes
+            if (graphState.anchoredNodes) {
+                anchoredNodes = new Set(graphState.anchoredNodes);
+                console.log(`Loaded ${anchoredNodes.size} anchored nodes`);
+            }
+            
+            // Update colors and physics for loaded nodes
+            const allNodes = nodes.get();
+            const updates = [];
+            allNodes.forEach(node => {
+                let needsUpdate = false;
+                const update = { id: node.id };
+                
+                // Update password node colors
+                if (node.type === 'password' || node.type === 'hashed_password') {
+                    const newColor = getNodeColor(node.type);
+                    update.color = {
+                        background: '#000000',
+                        border: newColor,
+                        highlight: {
+                            background: '#1a1a1a',
+                            border: newColor
+                        }
+                    };
+                    needsUpdate = true;
+                }
+                
+                // Ensure check indicators have correct physics
+                if (node.isCheckIndicator) {
+                    update.physics = true;
+                    update.mass = 0.1;
+                    update.fixed = { x: false, y: false };
+                    update.chosen = { node: true, label: true };
+                    needsUpdate = true;
+                }
+                
+                // Ensure query nodes have correct physics
+                if (node.isQueryNode || node.id.startsWith('query_')) {
+                    update.physics = true;
+                    update.mass = 1;
+                    update.fixed = { x: false, y: false };
+                    update.chosen = { node: true, label: true };
+                    needsUpdate = true;
+                }
+                
+                // Ensure regular nodes have physics disabled
+                if (!node.isCheckIndicator && !node.isQueryNode && !node.id.startsWith('query_') && !node.id.startsWith('check_')) {
+                    update.physics = false;
+                    needsUpdate = true;
+                }
+                
+                // Apply anchored node styling - ONLY background color
+                if (anchoredNodes.has(node.id)) {
+                    const typeColor = getNodeColor(node.type);
+                    update.borderWidth = 2;  // NORMAL border
+                    update.borderWidthSelected = 3;  // NORMAL selected
+                    update.size = undefined;  // DEFAULT size
+                    update.color = {
+                        background: '#000000',  // Black background
+                        border: typeColor,
+                        highlight: {
+                            background: '#1a1a1a',
+                            border: typeColor
+                        }
+                    };
+                    update.font = {
+                        color: '#FFFFFF'  // White text - ONLY CHANGE
+                    };
+                    needsUpdate = true;
+                }
+                
+                if (needsUpdate) {
+                    updates.push(update);
+                }
+            });
+            if (updates.length > 0) {
+                nodes.update(updates);
+                console.log(`Updated ${updates.length} nodes with correct properties`);
+            }
+            
+            console.log(`Loaded graph with ${nodes.length} nodes and ${edges.length} edges`);
+            return true;
+        }
+        return false;
+    } catch (e) {
+        console.error('Error loading graph state:', e);
+        return false;
+    }
+}
+
+// Track active query nodes
+let activeQueryNodes = new Map();
+// Track visible search indicators
+let visibleSearchIndicators = new Set();
+
+// Draw search indicators on nodes
+function drawSearchIndicators() {
+    // COMPLETELY DISABLED - NO INDICATORS
+    return;
+}
+
+// Remove all fucking indicator circles
+function removeAllIndicators() {
+    if (!nodes) return;
+    
+    const allNodes = nodes.get();
+    const indicatorNodes = allNodes.filter(node => 
+        node.isCheckIndicator || node.isMergeIndicator || 
+        node.id.startsWith('check_') || node.id.startsWith('merge_')
+    );
+    
+    indicatorNodes.forEach(node => {
+        // Remove associated edges
+        const connectedEdges = edges.get({
+            filter: edge => edge.from === node.id || edge.to === node.id
+        });
+        connectedEdges.forEach(edge => edges.remove(edge.id));
+        
+        // Remove the node
+        nodes.remove(node.id);
+    });
+    
+    updateStatus(`Removed ${indicatorNodes.length} indicator circles`);
+}
+
+// Call this immediately to remove existing circles
+if (typeof nodes !== 'undefined' && nodes) {
+    removeAllIndicators();
+}
+
+// Function to call from console to remove circles
+window.removeCircles = function() {
+    if (nodes) {
+        removeAllIndicators();
+        console.log("All indicator circles removed!");
+    }
+}
+
+// Toggle query node (transform check to query node and back)
+function toggleQueryNode(searchKey) {
+    const searchData = nodeSearchQueries.get(searchKey);
+    if (!searchData) return;
+    
+    const sourceNode = nodes.get(searchData.sourceNode);
+    if (!sourceNode) return;
+    
+    const queryNodeId = 'query_' + searchData.sourceNode;
+    const existingQueryNode = nodes.get(queryNodeId);
+    
+    if (existingQueryNode) {
+        // Query node exists - remove it and its edges
+        hideQueryNode(queryNodeId);
+    } else {
+        // Create query node in place of the check
+        const sourcePos = network.getPositions([searchData.sourceNode])[searchData.sourceNode];
+        const canvasPos = network.canvasToDOM(sourcePos);
+        
+        // Remove the check node first
+        const checkNodeId = 'check_' + searchData.sourceNode;
+        if (nodes.get(checkNodeId)) {
+            edges.remove('edge_' + searchData.sourceNode + '_' + checkNodeId);
+            nodes.remove(checkNodeId);
+        }
+        
+        const queryNode = {
+            id: queryNodeId,
+            label: searchData.query,
+            title: `Query for: ${searchData.query}\nFound ${searchData.results.length} results\nDouble-click to minimize back to check`,
+            color: {
+                background: '#000000',
+                border: '#ff0000',
+                highlight: {
+                    background: '#330000',
+                    border: '#ff0000'
+                }
+            },
+            borderWidth: 3,
+            borderWidthSelected: 4,
+            font: {
+                color: '#ff0000',
+                size: 12,
+                face: 'monospace',
+                bold: true
+            },
+            shape: 'box',
+            x: sourcePos.x + 100,
+            y: sourcePos.y - 100,
+            isQueryNode: true,
+            physics: true,
+            mass: 1,
+            fixed: {
+                x: false,
+                y: false
+            },
+            chosen: {
+                node: true,
+                label: true
+            }
+        };
+        
+        nodes.add(queryNode);
+        activeQueryNodes.set(queryNodeId, searchData);
+        
+        // Add edge from source to query node
+        edges.add({
+            id: 'edge_' + searchData.sourceNode + '_' + queryNodeId,
+            from: searchData.sourceNode,
+            to: queryNodeId,
+            color: {
+                color: '#ff0000'
+            },
+            dashes: [5, 5],
+            width: 1
+        });
+        
+        // Add edges from query node to all results
+        searchData.results.forEach(resultId => {
+            edges.add({
+                id: 'edge_' + queryNodeId + '_' + resultId,
+                from: queryNodeId,
+                to: resultId,
+                color: {
+                    color: '#ff6600'
+                },
+                dashes: [2, 2],
+                width: 1,
+                arrows: {
+                    to: {
+                        enabled: false
+                    }
+                }
+            });
+        });
+        
+        // Redraw indicators to hide the check for this node
+        drawSearchIndicators();
+    }
+}
+
+// Hide query node and restore check indicator
+function hideQueryNode(queryNodeId, showCheckBriefly = true) {
+    // Remove all edges connected to this query node
+    const connectedEdges = edges.get({
+        filter: edge => edge.from === queryNodeId || edge.to === queryNodeId
+    });
+    connectedEdges.forEach(edge => edges.remove(edge.id));
+    
+    // Remove the query node
+    nodes.remove(queryNodeId);
+    activeQueryNodes.delete(queryNodeId);
+    
+    if (autoShowQueries) {
+        // Show check briefly then hide it
+        drawSearchIndicators();
+        setTimeout(() => {
+            drawSearchIndicators(); // This will hide the check for this specific node
+        }, 500);
+    } else {
+        // Don't show checks at all when queries toggle is off
+        clearSearchIndicators();
+    }
+}
+
+// Add merge indicator outside node - DISABLED
+function addMergeIndicator(nodeId, count) {
+    // COMPLETELY DISABLED - NO INDICATORS
+    return;
+}
+
+// Clear search indicators
+function clearSearchIndicators() {
+    // Remove DOM indicators if any
+    const indicators = document.querySelectorAll('.search-indicator');
+    indicators.forEach(indicator => indicator.remove());
+    
+    // Remove check nodes
+    const checkNodes = nodes.get({
+        filter: node => node.isCheckIndicator === true
+    });
+    
+    checkNodes.forEach(node => {
+        // Remove edge to check node
+        edges.remove('edge_' + node.parentNodeId + '_' + node.id);
+        // Remove check node
+        nodes.remove(node.id);
+    });
+}
+
+// Initialize the graph
+function initializeGraph() {
+    // Create empty datasets
+    nodes = new vis.DataSet([]);
+    edges = new vis.DataSet([]);
+    
+    // Container for the graph
+    const container = document.getElementById('network');
+    
+    // Data for the graph
+    const data = {
+        nodes: nodes,
+        edges: edges
+    };
+    
+    // Options for the graph
+    const options = {
+        nodes: {
+            shape: 'box',
+            font: {
+                size: 12,
+                face: 'monospace',
+                multi: true // Allow line breaks
+            },
+            borderWidth: 2,
+            shadow: false,  // No shadow unless selected
+            widthConstraint: {
+                maximum: 400, // Increased max width
+                minimum: 100  // Min width
+            },
+            margin: 10 // Add padding inside nodes
+        },
+        edges: {
+            arrows: {
+                to: {
+                    enabled: showArrows,
+                    scaleFactor: 0.8
+                }
+            },
+            color: {
+                color: '#00ff00',
+                highlight: '#ff0000'
+            },
+            width: 2,
+            smooth: {
+                type: 'cubicBezier'
+            },
+            font: {
+                color: '#00ff00',
+                size: 10,
+                face: 'monospace',
+                align: 'middle'
+            }
+        },
+        physics: {
+            enabled: true, // Enable physics for check nodes to move with graph
+            solver: 'barnesHut',
+            barnesHut: {
+                gravitationalConstant: -50,
+                centralGravity: 0,
+                springLength: 50,
+                springConstant: 0.001,
+                damping: 0.9,
+                avoidOverlap: 0.5
+            },
+            stabilization: {
+                enabled: false // Don't auto-stabilize
+            }
+        },
+        interaction: {
+            hover: true,
+            tooltipDelay: 300,
+            dragNodes: true,
+            dragView: true,
+            navigationButtons: false,
+            multiselect: true,  // Enable multi-select with shift/ctrl
+            selectConnectedEdges: false
+        },
+        manipulation: {
+            enabled: false
+        }
+    };
+    
+    // Create the network
+    network = new vis.Network(container, data, options);
+    
+    
+    // Only update search indicators when needed, not constantly
+    // This was causing performance issues and interfering with interactions
+    
+    // Remove anchor icon drawing - just use visual node properties
+    
+    // Save positions after network stabilizes (including after zoom/pan)
+    let saveTimer = null;
+    network.on("stabilized", function() {
+        // Debounce saves
+        if (saveTimer) clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => {
+            // Update node positions
+            const allNodeIds = nodes.getIds();
+            const positions = network.getPositions(allNodeIds);
+            const updates = [];
+            
+            for (let nodeId in positions) {
+                if (positions[nodeId]) {
+                    const node = nodes.get(nodeId);
+                    if (node && (node.x !== positions[nodeId].x || node.y !== positions[nodeId].y)) {
+                        updates.push({
+                            id: nodeId,
+                            x: positions[nodeId].x,
+                            y: positions[nodeId].y
+                        });
+                    }
+                }
+            }
+            
+            if (updates.length > 0) {
+                nodes.update(updates);
+                saveGraphState();
+            }
+        }, 500); // Wait 500ms after stabilization to save
+    });
+    
+    // Handle node clicks
+    network.on("click", function(params) {
+        if (params.nodes.length > 0) {
+            const nodeId = params.nodes[0];
+            const node = nodes.get(nodeId);
+            
+            // Special handling for query nodes
+            if (nodeId.startsWith('query_')) {
+                const searchData = activeQueryNodes.get(nodeId);
+                if (searchData) {
+                    // Show the exact search variations in the details panel
+                    const detailsDiv = document.getElementById('node-details');
+                    const sourceNode = nodes.get(searchData.sourceNode);
+                    let html = `
+                        <div style="background: #0a0a0a; padding: 10px; border: 2px solid #ff0000;">
+                            <h3 style="color: #ff0000">Query Node Details</h3>
+                            <table style="width: 100%; margin-top: 10px;">
+                                <tr><td style="color: #ffff00; width: 40%;">Search Query:</td><td style="color: #00ff00;">${escapeHtml(searchData.query)}</td></tr>
+                                <tr><td style="color: #ffff00;">Source Node:</td><td style="color: #00ff00;">${sourceNode ? sourceNode.type + ': ' + sourceNode.label : searchData.sourceNode}</td></tr>
+                                <tr><td style="color: #ffff00;">Search Time:</td><td style="color: #00ff00;">${new Date(searchData.timestamp).toLocaleString()}</td></tr>
+                                <tr><td style="color: #ffff00;">Results Found:</td><td style="color: #00ff00;">${searchData.results.length}</td></tr>
+                            </table>
+                            <hr style="border-color: #ff0000; margin: 15px 0;">
+                            <h4 style="color: #ffff00">Search Results:</h4>
+                            <ul style="color: #00ff00; list-style: none; padding: 0;">
+                    `;
+                    searchData.results.forEach(resultId => {
+                        const resultNode = nodes.get(resultId);
+                        if (resultNode) {
+                            const typeColor = getNodeColor(resultNode.type);
+                            html += `<li style="margin: 5px 0; padding: 5px; border-left: 3px solid ${typeColor};">
+                                        <span style="color: ${typeColor};">${resultNode.type.toUpperCase()}</span>: 
+                                        <span style="color: #00ff00;">${escapeHtml(resultNode.label)}</span>
+                                     </li>`;
+                        }
+                    });
+                    html += `
+                            </ul>
+                            <div style="margin-top: 20px; padding: 10px; background: #1a0000; border: 1px solid #660000;">
+                                <p style="color: #ff6666; font-size: 11px; margin: 0;">ℹ️ Double-click the query node to minimize it back to a check indicator</p>
+                            </div>
+                        </div>
+                    `;
+                    detailsDiv.innerHTML = html;
+                }
+            } else if (node && node.isCheckIndicator) {
+                // Show info for check indicators
+                const searchKey = node.searchKey;
+                const searchData = nodeSearchQueries.get(searchKey);
+                if (searchData) {
+                    const detailsDiv = document.getElementById('node-details');
+                    detailsDiv.innerHTML = `
+                        <div style="background: #0a0a0a; padding: 10px; border: 2px solid #ff0000;">
+                            <h3 style="color: #ff0000">Search Indicator</h3>
+                            <p style="color: #00ff00">This node has been searched</p>
+                            <p style="color: #ffff00">Found ${searchData.results.length} results</p>
+                            <p style="color: #ff6666; margin-top: 10px">Double-click to expand and see search results</p>
+                        </div>
+                    `;
+                }
+            } else {
+                showNodeDetails(node);
+            }
+        }
+    });
+    
+    // Update node list when nodes are added/removed
+    nodes.on('add', function() {
+        if (document.getElementById('panel-nodes').classList.contains('active')) {
+            updateNodeList();
+        }
+    });
+    
+    nodes.on('remove', function() {
+        if (document.getElementById('panel-nodes').classList.contains('active')) {
+            updateNodeList();
+        }
+    });
+    
+    // Handle double clicks
+    network.on("doubleClick", function(params) {
+        if (params.nodes.length > 0) {
+            const nodeId = params.nodes[0];
+            const node = nodes.get(nodeId);
+            
+            // Check if it's a query node
+            if (nodeId.startsWith('query_')) {
+                console.log('Double-clicked query node:', nodeId);
+                hideQueryNode(nodeId);
+                return;
+            } 
+            // Check if it's a check indicator
+            else if (node && node.isCheckIndicator) {
+                // Transform check to query node
+                const searchKey = node.searchKey;
+                toggleQueryNode(searchKey);
+                return;
+            } 
+            else {
+                expandNode(node);
+            }
+        }
+    });
+    
+    // Handle right clicks
+    network.on("oncontext", function(params) {
+        params.event.preventDefault();
+        
+        if (params.nodes.length > 0) {
+            const nodeId = params.nodes[0];
+            const node = nodes.get(nodeId);
+            showContextMenu(params.event, node);
+        } else {
+            showContextMenu(params.event, null, params.pointer.canvas);
+        }
+    });
+    
+    // Handle mouse down for focus mode - DISABLED
+    /*
+    network.on("hold", function(params) {
+        if (params.nodes.length > 0) {
+            const nodeId = params.nodes[0];
+            focusNode(nodeId);
+        }
+    });
+    */
+    
+    // Handle mouse up to release focus
+    network.on("release", function(params) {
+        if (focusedNode) {
+            releaseFocus();
+        }
+    });
+    
+    // Also release on general mouse up (backup)
+    document.addEventListener('mouseup', function() {
+        if (focusedNode) {
+            releaseFocus();
+        }
+    });
+    
+    // Handle edge hover
+    network.on("hoverEdge", function(params) {
+        if (params.edge) {
+            const edge = edges.get(params.edge);
+            if (edge) {
+                // Show edge information
+                const fromNode = nodes.get(edge.from);
+                const toNode = nodes.get(edge.to);
+                
+                let info = '';
+                if (edge.title && edge.title.includes('Same breach record')) {
+                    // Breach record connection
+                    info = edge.title;
+                } else {
+                    // Other connection
+                    info = `Connected: ${fromNode.label} - ${toNode.label}`;
+                    if (edge.title) {
+                        info = edge.title;
+                    }
+                }
+                
+                // Update status bar with edge info
+                updateStatus(info);
+                
+                // Create floating tooltip
+                let tooltip = document.getElementById('edge-tooltip');
+                if (!tooltip) {
+                    tooltip = document.createElement('div');
+                    tooltip.id = 'edge-tooltip';
+                    tooltip.style.cssText = `
+                        position: absolute;
+                        background: #000;
+                        border: 2px solid #0f0;
+                        color: #0f0;
+                        padding: 10px;
+                        font-family: monospace;
+                        font-size: 11px;
+                        line-height: 1.3;
+                        z-index: 1000;
+                        max-width: 400px;
+                        max-height: 500px;
+                        overflow-y: auto;
+                        box-shadow: 0 0 10px #0f0;
+                        pointer-events: none;
+                    `;
+                    document.body.appendChild(tooltip);
+                }
+                
+                // Format tooltip content
+                let tooltipHTML = '';
+                if (edge.title && edge.title.includes('Same breach record')) {
+                    tooltipHTML = `<strong style="color: #ff6600;">${escapeHtml(edge.title)}</strong><br>`;
+                    tooltipHTML += `<span style="color: #888;">These items were found together</span><br><br>`;
+                    tooltipHTML += `<span style="color: ${getNodeColor(fromNode.type)}">${fromNode.type.toUpperCase()}: ${escapeHtml(fromNode.label)}</span><br>`;
+                    tooltipHTML += `<span style="color: ${getNodeColor(toNode.type)}">${toNode.type.toUpperCase()}: ${escapeHtml(toNode.label)}</span>`;
+                } else {
+                    tooltipHTML = `<strong style="color: #0ff;">Connection</strong><br>`;
+                    tooltipHTML += `<span style="color: ${getNodeColor(fromNode.type)}">${escapeHtml(fromNode.label)}</span><br>`;
+                    tooltipHTML += `<span style="color: ${getNodeColor(toNode.type)}">${escapeHtml(toNode.label)}</span>`;
+                    if (edge.title) {
+                        tooltipHTML += `<br><span style="color: #888;">${escapeHtml(edge.title)}</span>`;
+                    }
+                }
+                
+                tooltip.innerHTML = tooltipHTML;
+                tooltip.style.display = 'block';
+                
+                // Position tooltip near mouse
+                const updateTooltipPosition = (e) => {
+                    tooltip.style.left = (e.pageX + 15) + 'px';
+                    tooltip.style.top = (e.pageY - 30) + 'px';
+                };
+                
+                // Track mouse movement
+                document.addEventListener('mousemove', updateTooltipPosition);
+                tooltip.setAttribute('data-mousemove-handler', 'true');
+                
+                // Highlight the edge
+                edges.update({
+                    id: params.edge,
+                    width: 4,
+                    color: {
+                        color: '#ffff00',
+                        highlight: '#ff0000',  // Keep red highlight when clicked
+                        inherit: false
+                    }
+                });
+            }
+        }
+    });
+    
+    // Handle edge blur (mouse leaves edge)
+    network.on("blurEdge", function(params) {
+        if (params.edge) {
+            const edge = edges.get(params.edge);
+            if (edge) {
+                // Restore original edge appearance
+                const isBreachConnection = edge.title && edge.title.includes('Same breach record');
+                edges.update({
+                    id: params.edge,
+                    width: 2,
+                    color: isBreachConnection ? {
+                        color: '#666666',
+                        inherit: false
+                    } : {
+                        color: '#00ff00',
+                        highlight: '#ff0000'
+                    }
+                });
+                
+                // Hide tooltip
+                const tooltip = document.getElementById('edge-tooltip');
+                if (tooltip) {
+                    tooltip.style.display = 'none';
+                    // Remove mousemove listener
+                    if (tooltip.getAttribute('data-mousemove-handler')) {
+                        const handlers = document._getEventListeners ? document._getEventListeners(document).mousemove : [];
+                        // Just hide it, the handler will be replaced on next hover
+                    }
+                }
+                
+                // Clear status
+                updateStatus('Ready');
+            }
+        }
+    });
+    
+    // Handle keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // Check if user is typing in an input/textarea field
+        const activeElement = document.activeElement;
+        const isTyping = activeElement && (
+            activeElement.tagName === 'INPUT' || 
+            activeElement.tagName === 'TEXTAREA' ||
+            activeElement.contentEditable === 'true'
+        );
+        
+        // Delete key for selected nodes (only if not typing)
+        if ((e.key === 'Delete' || e.key === 'Backspace') && !isTyping) {
+            const selectedNodes = network.getSelectedNodes();
+            if (selectedNodes.length > 0) {
+                e.preventDefault();
+                deleteSelectedNodes(selectedNodes);
+            }
+        }
+        
+        // Ctrl/Cmd + A to select all (only if not typing)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'a' && !isTyping) {
+            e.preventDefault();
+            network.selectNodes(nodes.getIds());
+        }
+        
+        // Escape to deselect
+        if (e.key === 'Escape') {
+            network.unselectAll();
+            fixStuckFocus();
+        }
+        
+        // R to reset node colors (only if not typing)
+        if ((e.key === 'r' || e.key === 'R') && !isTyping) {
+            e.preventDefault();
+            if (e.shiftKey) {
+                // Shift+R to recover lost nodes
+                recoverLostNodes();
+            } else {
+                fixStuckFocus();
+            }
+        }
+    });
+    
+    // Ensure node remains visible and properly configured
+    function ensureNodeVisible(nodeId) {
+        const node = nodes.get(nodeId);
+        if (node) {
+            const update = {
+                id: nodeId,
+                hidden: false,
+                physics: false
+                // Don't update fixed property - let vis.js handle it
+            };
+            
+            // Get current position
+            const currentPos = network.getPositions([nodeId])[nodeId];
+            if (currentPos && !isNaN(currentPos.x) && !isNaN(currentPos.y)) {
+                update.x = currentPos.x;
+                update.y = currentPos.y;
+            } else if (node.x !== undefined && node.y !== undefined) {
+                // Fallback to stored position
+                update.x = node.x;
+                update.y = node.y;
+            } else {
+                // Last resort: center the node
+                console.warn(`[EnsureVisible] No valid position for node ${nodeId}, centering it`);
+                const view = network.getViewPosition();
+                update.x = view.x;
+                update.y = view.y;
+            }
+            
+            nodes.update(update);
+            
+            // Force a redraw
+            network.redraw();
+            
+            return true;
+        }
+        return false;
+    }
+    
+    // Safe node movement function
+    function safeMoveNode(nodeId, x, y) {
+        if (nodeId && !isNaN(x) && !isNaN(y) && isFinite(x) && isFinite(y)) {
+            try {
+                // Check if node exists before moving
+                const node = nodes.get(nodeId);
+                if (!node) {
+                    console.error(`[SafeMove] Node ${nodeId} does not exist in dataset`);
+                    return false;
+                }
+                
+                console.log(`[SafeMove] Moving node ${nodeId} to (${x}, ${y})`);
+                network.moveNode(nodeId, x, y);
+                
+                // Verify position after move
+                const newPos = network.getPositions([nodeId])[nodeId];
+                if (!newPos || isNaN(newPos.x) || isNaN(newPos.y)) {
+                    console.error(`[SafeMove] Failed to verify position after move for node ${nodeId}`);
+                }
+                
+                return true;
+            } catch (error) {
+                console.error(`[SafeMove] Failed to move node ${nodeId} to ${x}, ${y}:`, error);
+                return false;
+            }
+        } else {
+            console.warn(`[SafeMove] Invalid move parameters for node ${nodeId}: x=${x}, y=${y}`);
+            return false;
+        }
+    }
+    
+    // Simple drag tracking for merge functionality
+    let draggedNode = null;
+    
+    network.on("dragStart", function(params) {
+        if (params.nodes.length > 0) {
+            draggedNode = params.nodes[0];
+        }
+    });
+    
+    /* REMOVED COMPLEX DRAG HANDLING
+        // Update check indicator and merge indicator positions for dragged nodes
+        if (params.nodes.length > 0) {
+            // Log current position of main dragged node
+            const mainNode = params.nodes[0];
+            const currentPos = network.getPositions([mainNode])[mainNode];
+            if (!currentPos || isNaN(currentPos.x) || isNaN(currentPos.y)) {
+                console.error('[Dragging] Invalid position detected for node:', mainNode, currentPos);
+                // Try to recover by ensuring node is visible
+                ensureNodeVisible(mainNode);
+            }
+            params.nodes.forEach(nodeId => {
+                const checkNodeId = 'check_' + nodeId;
+                const checkNode = nodes.get(checkNodeId);
+                if (checkNode) {
+                    const parentPos = network.getPositions([nodeId])[nodeId];
+                    if (parentPos && !isNaN(parentPos.x) && !isNaN(parentPos.y)) {
+                        safeMoveNode(checkNodeId, parentPos.x + 40, parentPos.y - 15);
+                    }
+                }
+                
+                // Merge indicators disabled
+            });
+        }
+        
+        // Handle group dragging for connected nodes or selected nodes
+        if (isGroupDrag && draggedNode && params.nodes.length > 0) {
+            // Calculate the movement delta
+            const currentPos = network.getPositions([draggedNode])[draggedNode];
+            const initialPos = initialPositions.get(draggedNode);
+            
+            if (currentPos && initialPos && !isNaN(currentPos.x) && !isNaN(currentPos.y) && !isNaN(initialPos.x) && !isNaN(initialPos.y)) {
+                const deltaX = currentPos.x - initialPos.x;
+                const deltaY = currentPos.y - initialPos.y;
+                
+                // Move all connected nodes by the same delta
+                connectedNodeGroup.forEach(nodeId => {
+                    if (nodeId !== draggedNode) { // The dragged node moves automatically
+                        const nodeInitialPos = initialPositions.get(nodeId);
+                        if (nodeInitialPos && !isNaN(nodeInitialPos.x) && !isNaN(nodeInitialPos.y)) {
+                            const newX = nodeInitialPos.x + deltaX;
+                            const newY = nodeInitialPos.y + deltaY;
+                            if (!isNaN(newX) && !isNaN(newY)) {
+                                safeMoveNode(nodeId, newX, newY);
+                            }
+                        }
+                    }
+                    
+                    // Also move check indicators for connected nodes
+                    const checkNodeId = 'check_' + nodeId;
+                    const checkNode = nodes.get(checkNodeId);
+                    if (checkNode) {
+                        const nodePos = network.getPositions([nodeId])[nodeId];
+                        if (nodePos && !isNaN(nodePos.x) && !isNaN(nodePos.y)) {
+                            safeMoveNode(checkNodeId, nodePos.x + 40, nodePos.y - 15);
+                        }
+                    }
+                    
+                    // Merge indicators disabled
+                });
+                
+                // Also move selected nodes if we're dragging multiple selected nodes
+                if (selectedNodes.has(draggedNode) && selectedNodes.size > 1) {
+                    selectedNodes.forEach(nodeId => {
+                        if (nodeId !== draggedNode && !connectedNodeGroup.has(nodeId)) { // Don't double-move connected nodes
+                            const nodeInitialPos = initialPositions.get(nodeId);
+                            if (nodeInitialPos && !isNaN(nodeInitialPos.x) && !isNaN(nodeInitialPos.y)) {
+                                const newX = nodeInitialPos.x + deltaX;
+                                const newY = nodeInitialPos.y + deltaY;
+                                if (!isNaN(newX) && !isNaN(newY)) {
+                                    safeMoveNode(nodeId, newX, newY);
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    });*/
+    
+    network.on("dragEnd", function(params) {
+        // Simple drag end - handle merge if needed
+        if (draggedNode && params.nodes.length > 0) {
+            const draggedNodeId = draggedNode;
+            
+            // Get final position of dragged node
+            const draggedPos = network.getPositions([draggedNodeId])[draggedNodeId];
+            
+            if (draggedPos) {
+                // Check all nodes to see if we're over one
+                let targetNodeId = null;
+                const allNodes = nodes.get();
+                
+                for (const node of allNodes) {
+                    // Skip the dragged node itself and any selected nodes
+                    if (node.id === draggedNodeId || selectedNodes.has(node.id)) continue;
+                    
+                    const nodePos = network.getPositions([node.id])[node.id];
+                    if (nodePos) {
+                        // Calculate distance between centers
+                        const dx = draggedPos.x - nodePos.x;
+                        const dy = draggedPos.y - nodePos.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        // If nodes are very close (within 50 pixels), consider it a merge
+                        if (distance < 50) {
+                            targetNodeId = node.id;
+                            break;
+                        }
+                    }
+                }
+                
+                if (targetNodeId) {
+                    // Check if multiple nodes are selected
+                    if (selectedNodes.size > 1) {
+                        // Merge all selected nodes into the target
+                        const nodesToMerge = Array.from(selectedNodes);
+                        for (const nodeId of nodesToMerge) {
+                            if (nodeId !== targetNodeId) {
+                                mergeNodes(nodeId, targetNodeId);
+                            }
+                        }
+                        updateStatus(`Merged ${nodesToMerge.length} selected nodes into target`);
+                    } else {
+                        // Single node merge
+                        mergeNodes(draggedNodeId, targetNodeId);
+                    }
+                    
+                    // Clear selection after merge
+                    network.unselectAll();
+                    selectedNodes.clear();
+                }
+            }
+        }
+        
+        draggedNode = null;
+    });
+    
+    // Track node selection changes
+    network.on("selectNode", function(params) {
+        selectedNodes.clear();
+        params.nodes.forEach(nodeId => selectedNodes.add(nodeId));
+        
+        // Show anchor button if multiple nodes selected
+        const anchorBtn = document.getElementById('anchorSelectedBtn');
+        if (selectedNodes.size > 0) {
+            anchorBtn.style.display = 'inline-block';
+            
+            // Check if all selected nodes are anchored
+            let allAnchored = true;
+            selectedNodes.forEach(nodeId => {
+                if (!anchoredNodes.has(nodeId)) {
+                    allAnchored = false;
+                }
+            });
+            
+            if (allAnchored) {
+                anchorBtn.textContent = `Unanchor ${selectedNodes.size} Node${selectedNodes.size > 1 ? 's' : ''}`;
+            } else {
+                anchorBtn.textContent = `Anchor ${selectedNodes.size} Node${selectedNodes.size > 1 ? 's' : ''}`;
+            }
+        } else {
+            anchorBtn.style.display = 'none';
+        }
+    });
+    
+    network.on("deselectNode", function(params) {
+        selectedNodes.clear();
+        const stillSelected = network.getSelectedNodes();
+        stillSelected.forEach(nodeId => selectedNodes.add(nodeId));
+        
+        // Update anchor button
+        const anchorBtn = document.getElementById('anchorSelectedBtn');
+        if (selectedNodes.size > 0) {
+            anchorBtn.style.display = 'inline-block';
+            
+            // Check if all selected nodes are anchored
+            let allAnchored = true;
+            selectedNodes.forEach(nodeId => {
+                if (!anchoredNodes.has(nodeId)) {
+                    allAnchored = false;
+                }
+            });
+            
+            if (allAnchored) {
+                anchorBtn.textContent = `Unanchor ${selectedNodes.size} Node${selectedNodes.size > 1 ? 's' : ''}`;
+            } else {
+                anchorBtn.textContent = `Anchor ${selectedNodes.size} Node${selectedNodes.size > 1 ? 's' : ''}`;
+            }
+        } else {
+            anchorBtn.style.display = 'none';
+        }
+    });
+    
+    /* REMOVED THE REST OF COMPLEX DRAG CODE */
+    
+    // Handle hover events
+                fixStuckFocus();
+            }
+            isGroupDrag = false;
+            connectedNodeGroup.clear();
+            updateStatus('Ready');
+        }
+        
+        // Handle deselection for AI chat context
+        const event = params.event?.srcEvent || params.event;
+        const isMultiSelect = event && (event.metaKey || event.ctrlKey || event.shiftKey);
+        
+        if (!isMultiSelect && !isGroupDrag) {
+            selectedNodes.clear();
+        } else if (!isGroupDrag) {
+            // Remove only the deselected nodes
+            params.nodes.forEach(nodeId => selectedNodes.delete(nodeId));
+        }
+        // If isGroupDrag, don't modify selection here
+        
+        updateChatInputWithSelection();
+        
+        // Hide anchor button when no nodes selected
+        const anchorBtn = document.getElementById('anchorSelectedBtn');
+        if (selectedNodes.size === 0) {
+            anchorBtn.style.display = 'none';
+        } else {
+            // Check if all selected nodes are anchored
+            let allAnchored = true;
+            selectedNodes.forEach(nodeId => {
+                if (!anchoredNodes.has(nodeId)) {
+                    allAnchored = false;
+                }
+            });
+            
+            if (allAnchored) {
+                anchorBtn.textContent = `Unanchor ${selectedNodes.size} Node${selectedNodes.size > 1 ? 's' : ''}`;
+            } else {
+                anchorBtn.textContent = `Anchor ${selectedNodes.size} Node${selectedNodes.size > 1 ? 's' : ''}`;
+            }
+        }
+    });
+    
+    // Track node selections for AI chat with Command key support
+    network.on("selectNode", function(params) {
+        // Check if Command key (metaKey) is pressed for multi-selection
+        const event = params.event?.srcEvent || params.event;
+        const isMultiSelect = event && (event.metaKey || event.ctrlKey || event.shiftKey);
+        
+        if (!isMultiSelect && !isGroupDrag) {
+            // For normal click, only select the clicked node
+            selectedNodes.clear();
+            network.unselectAll();
+            if (params.nodes.length > 0) {
+                const clickedNode = params.nodes[0];
+                network.selectNodes([clickedNode]);
+                selectedNodes.add(clickedNode);
+            }
+        } else if (!isGroupDrag) {
+            // Multi-select mode
+            params.nodes.forEach(nodeId => selectedNodes.add(nodeId));
+        }
+        // If isGroupDrag, the selection is handled by the hold timer
+        
+        updateChatInputWithSelection();
+        
+        // Show anchor button when nodes are selected
+        const anchorBtn = document.getElementById('anchorSelectedBtn');
+        if (selectedNodes.size > 0) {
+            anchorBtn.style.display = 'inline-block';
+            
+            // Check if all selected nodes are anchored
+            let allAnchored = true;
+            selectedNodes.forEach(nodeId => {
+                if (!anchoredNodes.has(nodeId)) {
+                    allAnchored = false;
+                }
+            });
+            
+            if (allAnchored) {
+                anchorBtn.textContent = `Unanchor ${selectedNodes.size} Node${selectedNodes.size > 1 ? 's' : ''}`;
+            } else {
+                anchorBtn.textContent = `Anchor ${selectedNodes.size} Node${selectedNodes.size > 1 ? 's' : ''}`;
+            }
+        }
+    });
+}
+
+// Add a node to the graph
+function addNode(data, type, parentId = null, forceDuplicate = false) {
+    // Create a unique key based on value and type
+    const valueKey = `${type}_${data.value || data.label || data.id}`;
+    
+    // Check if node already exists (unless forcing duplicate)
+    if (!forceDuplicate && valueToNodeMap.has(valueKey)) {
+        const existingNodeId = valueToNodeMap.get(valueKey);
+        
+        // Just add edge to existing node if there's a parent
+        if (parentId) {
+            // Check if edge already exists
+            const existingEdges = edges.get({
+                filter: function(edge) {
+                    return edge.from === parentId && edge.to === existingNodeId;
+                }
+            });
+            
+            // Don't add search connections - store them for query nodes instead
+            if (parentId) {
+                const searchKey = `${parentId}_search`;
+                let searchData = nodeSearchQueries.get(searchKey) || {
+                    sourceNode: parentId,
+                    query: nodes.get(parentId)?.label,
+                    results: []
+                };
+                if (!searchData.results.includes(existingNodeId)) {
+                    searchData.results.push(existingNodeId);
+                }
+                nodeSearchQueries.set(searchKey, searchData);
+            }
+        }
+        
+        updateStatus();
+        return existingNodeId;
+    }
+    
+    const nodeId = `node_${nodeIdCounter++}`;
+    const color = getNodeColor(type);
+    
+    // Create tooltip with field type and breach info
+    let tooltip = `${type.toUpperCase()}: ${data.value || data.label || 'Unknown'}`;
+    if (data.breach) {
+        tooltip += `\n\nFound in: ${data.breach}`;
+        if (data.breachData) {
+            const bd = data.breachData;
+            if (bd.breach_date) tooltip += `\nBreach Date: ${bd.breach_date}`;
+            if (bd.added_date) tooltip += `\nAdded: ${bd.added_date}`;
+            if (bd.source) tooltip += `\nSource: ${bd.source}`;
+        }
+    }
+    
+    // Calculate position with good spacing and NO OVERLAP
+    let x, y;
+    const minDistance = 300; // Minimum distance between any two nodes
+    
+    if (parentId && nodes.get(parentId)) {
+        // Position relative to parent
+        const parentNode = nodes.get(parentId);
+        const parentPos = network ? network.getPositions([parentId])[parentId] : {x: 0, y: 0};
+        
+        // Calculate angle based on existing children
+        const connectedToParent = edges.get({
+            filter: edge => edge.from === parentId
+        }).length;
+        
+        // Use more points in circle for better distribution
+        const maxNodesInCircle = 16; // More slots for better spacing
+        const angleStep = (2 * Math.PI) / maxNodesInCircle;
+        let angle = connectedToParent * angleStep;
+        let distance = 600; // Start with larger distance
+        
+        // Find a position that doesn't overlap with existing nodes
+        let attempts = 0;
+        do {
+            x = parentPos.x + distance * Math.cos(angle);
+            y = parentPos.y + distance * Math.sin(angle);
+            
+            // Check if this position overlaps with any existing node
+            const allPositions = network ? network.getPositions() : {};
+            let tooClose = false;
+            
+            for (let existingId in allPositions) {
+                if (existingId !== parentId) {
+                    const existingPos = allPositions[existingId];
+                    const dx = x - existingPos.x;
+                    const dy = y - existingPos.y;
+                    const distanceToExisting = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distanceToExisting < minDistance) {
+                        tooClose = true;
+                        break;
+                    }
+                }
+            }
+            
+            if (!tooClose) break;
+            
+            // Try next angle or increase distance
+            attempts++;
+            if (attempts % maxNodesInCircle === 0) {
+                distance += 200; // Move further out
+            }
+            angle += angleStep;
+            
+        } while (attempts < 50); // Prevent infinite loop
+        
+    } else {
+        // Position new root nodes in a grid pattern with larger spacing
+        const gridSize = Math.ceil(Math.sqrt(nodes.length + 1));
+        const index = nodes.length;
+        const row = Math.floor(index / gridSize);
+        const col = index % gridSize;
+        const spacing = 800; // Even larger spacing between grid nodes
+        
+        x = col * spacing - (gridSize * spacing) / 2;
+        y = row * spacing - (gridSize * spacing) / 2;
+        
+        // Add random offset to prevent perfect grid alignment
+        x += (Math.random() - 0.5) * 200;
+        y += (Math.random() - 0.5) * 200;
+    }
+    
+    const node = {
+        id: nodeId,
+        label: data.label || data.value || 'Unknown', // Full value, no truncation
+        title: tooltip,
+        color: {
+            background: '#000000',  // Black background
+            border: color,          // Colored border
+            highlight: {
+                background: '#1a1a1a',
+                border: color
+            }
+        },
+        data: {
+            ...data,
+            addedAt: Date.now() // Track when node was added
+        },
+        type: type,
+        x: x,
+        y: y,
+        physics: false,  // Regular nodes don't move with physics
+        // Remove fixed property - let vis.js handle it internally
+        font: {
+            color: '#00ff00',  // Bright green text
+            multi: 'html',
+            size: 12
+        },
+        shadow: false  // No shadow
+    };
+    
+    nodes.add(node);
+    
+    // No temporary highlighting
+    
+    // Store in map for deduplication
+    if (!forceDuplicate) {
+        valueToNodeMap.set(valueKey, nodeId);
+    }
+    
+    // Don't create search connections by default
+    // These will be stored in query nodes instead
+    if (parentId && parentId !== nodeId) {
+        // Store the search relationship for later query node creation
+        if (!nodeSearchQueries) {
+            window.nodeSearchQueries = new Map();
+        }
+        
+        const searchKey = `${parentId}_search`;
+        let searchData = nodeSearchQueries.get(searchKey) || {
+            sourceNode: parentId,
+            query: nodes.get(parentId)?.label,
+            results: [],
+            timestamp: new Date().getTime()
+        };
+        searchData.results.push(nodeId);
+        nodeSearchQueries.set(searchKey, searchData);
+        
+        // Update the parent node to show it has been searched
+        const parentNode = nodes.get(parentId);
+        if (parentNode) {
+            nodes.update({
+                id: parentId,
+                searched: true
+            });
+        }
+    }
+    
+    updateStatus();
+    saveGraphState(); // Save after adding nodes
+    return nodeId;
+}
+
+// Get edge label based on parent and child nodes
+function getEdgeLabel(fromId, toId) {
+    const fromNode = nodes.get(fromId);
+    const toNode = nodes.get(toId);
+    
+    if (!fromNode || !toNode) return '';
+    
+    // For consistency: arrows always point from container to contained
+    // or from searcher to found
+    return ''; // Remove labels for now - arrows speak for themselves
+}
+
+// Create connections for all nodes from the same breach record
+function createValueBasedConnections(breach) {
+    if (!breach) return;
+    
+    // Collect all nodes from this breach record
+    const breachNodes = [];
+    const fields = ['email', 'username', 'password', 'ip_address', 'phone', 'name', 'address', 'domain', 'vin'];
+    
+    // Gather all node IDs from this breach
+    fields.forEach(field => {
+        if (breach[field] && breach[field].length > 0) {
+            breach[field].forEach(value => {
+                const nodeId = valueToNodeMap.get(`${field}_${value}`);
+                if (nodeId) {
+                    breachNodes.push(nodeId);
+                }
+            });
+        }
+    });
+    
+    // Also check hashed passwords if they're included
+    if (includeHashedPasswords && breach.hashed_password && breach.hashed_password.length > 0) {
+        breach.hashed_password.forEach(hash => {
+            const nodeId = valueToNodeMap.get(`hashed_password_${hash}`);
+            if (nodeId) {
+                breachNodes.push(nodeId);
+            }
+        });
+    }
+    
+    // Connect all nodes from this breach record to each other
+    // They're all from the same breach record, so they're all related
+    for (let i = 0; i < breachNodes.length; i++) {
+        for (let j = i + 1; j < breachNodes.length; j++) {
+            const nodeId1 = breachNodes[i];
+            const nodeId2 = breachNodes[j];
+            
+            // Create undirected edge (no arrows)
+            const edgeId = `edge_${nodeId1}_${nodeId2}_breach`;
+            const reverseEdgeId = `edge_${nodeId2}_${nodeId1}_breach`;
+            
+            // Check if edge already exists in either direction
+            if (!edges.get(edgeId) && !edges.get(reverseEdgeId)) {
+                const breachName = breach.database_name || 'Unknown';
+                edges.add({
+                    id: edgeId,
+                    from: nodeId1,
+                    to: nodeId2,
+                    title: `Same breach record: ${breachName}`,
+                    color: {
+                        color: '#666666',
+                        inherit: false
+                    },
+                    dashes: [5, 5],
+                    width: 2,
+                    arrows: {
+                        to: { enabled: false },
+                        from: { enabled: false }
+                    }
+                });
+            }
+        }
+    }
+}
+
+// Get color based on node type
+function getNodeColor(type) {
+    const colors = {
+        'email': '#00CED1',      // Dark turquoise
+        'username': '#9370DB',    // Medium purple
+        'password': '#FFFF00',    // YELLOW for passwords
+        'hashed_password': '#FFD700', // Gold for hashes
+        'ip_address': '#FFA500',  // Orange
+        'phone': '#808080',       // Gray
+        'domain': '#32CD32',      // Lime green
+        'name': '#4169E1',        // Royal blue
+        'address': '#8B4513',     // Saddle brown
+        'vin': '#FF1493'          // Deep pink
+    };
+    return colors[type] || '#FFFFFF';
+}
+
+// Truncate label for display (disabled - show full text)
+function truncateLabel(text) {
+    if (!text) return 'Unknown';
+    // Return full text - no truncation
+    return text;
+}
+
+// Show node details in the info panel
+// Get the query that found this node
+function getQueryForNode(nodeId) {
+    // Check all search queries to find which one resulted in this node
+    for (let [searchKey, searchData] of nodeSearchQueries.entries()) {
+        if (searchData.results && searchData.results.includes(nodeId)) {
+            return searchData.query;
+        }
+    }
+    return null;
+}
+
+function showNodeDetails(node) {
+    if (!node) return;
+    
+    currentProfileNode = node;
+    const detailsDiv = document.getElementById('node-details');
+    
+    // Get connected nodes
+    const connectedEdges = edges.get({
+        filter: edge => edge.from === node.id || edge.to === node.id
+    });
+    
+    const connectedNodes = [];
+    connectedEdges.forEach(edge => {
+        const connectedId = edge.from === node.id ? edge.to : edge.from;
+        const connectedNode = nodes.get(connectedId);
+        if (connectedNode) {
+            connectedNodes.push(`${connectedNode.type}: ${escapeHtml(connectedNode.label)}`);
+        }
+    });
+    
+    let html = `
+        <div style="background: #0a0a0a; padding: 10px; border: 1px solid #00ff00;">
+            <h3 style="margin: 0 0 10px 0; color: ${getNodeColor(node.type)}">${node.type.toUpperCase()}: ${escapeHtml(node.label)}</h3>
+            
+            <div style="margin-bottom: 15px;">
+                <strong>Primary Value:</strong> 
+                <input type="text" id="node-primary-value" value="${escapeHtml(node.data.value || node.label)}" 
+                       style="width: 100%; background: #000; color: #0f0; border: 1px solid #0f0; padding: 5px; font-family: inherit;">
+            </div>
+            
+            ${node.data.variations && node.data.variations.length > 0 ? `
+                <div style="margin-bottom: 15px; background: #001100; padding: 10px; border: 1px solid #003300;">
+                    <strong>Variations (${node.data.variations.length}):</strong>
+                    ${node.data.mergeHistory ? `<button onclick="showUnmergeOptions('${node.id}')" style="float: right; font-size: 11px;">Unmerge</button>` : ''}
+                    <div style="clear: both; margin-top: 5px;">
+                        ${node.data.variations.map((v, idx) => `
+                            <div style="padding: 5px; margin: 5px 0; background: #000; border: 1px solid #003300;">
+                                <span style="color: ${getNodeColor(v.type)}">${v.type}:</span>
+                                <input type="text" id="variation-${idx}" value="${escapeHtml(v.value)}" 
+                                       style="width: 70%; background: #000; color: #0f0; border: 1px solid #0f0; padding: 2px; font-family: inherit;">
+                                <br><small style="color: #888;">From: ${v.breach || 'Unknown'} • ${v.mergedAt ? new Date(v.mergedAt).toLocaleDateString() : ''}</small>
+                                ${v.notes ? `<br><small style="color: #888;">Notes: ${escapeHtml(v.notes)}</small>` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            ` : ''}
+            
+            <div style="margin-bottom: 15px;">
+                <strong>Found in:</strong> <span style="color: #ff0000">${escapeHtml(node.data.breach || 'Unknown')}</span>
+                ${node.data.breachData?.breach_date ? `<br><small>Breach Date: ${node.data.breachData.breach_date}</small>` : ''}
+            </div>
+            
+            ${getQueryForNode(node.id) ? `
+                <div style="margin-bottom: 15px; background: #330000; padding: 10px; border: 2px solid #ff0000;">
+                    <strong style="color: #ff0000;">Found by Query:</strong><br>
+                    <div style="background: #000000; padding: 8px; border: 1px solid #ff0000; margin-top: 5px;">
+                        <span style="color: #ff0000; font-family: monospace;">${escapeHtml(getQueryForNode(node.id))}</span>
+                    </div>
+                </div>
+            ` : ''}
+            
+            <div style="margin-bottom: 15px;">
+                <strong>Connected to (${connectedNodes.length}):</strong>
+                <div style="max-height: 150px; overflow-y: auto; margin-top: 5px;">
+                    ${connectedNodes.length > 0 ? connectedNodes.map(n => `<div style="padding: 2px 0;">• ${n}</div>`).join('') : '<div>No connections</div>'}
+                </div>
+            </div>
+            
+            <div>
+                <strong>Notes:</strong><br>
+                <textarea id="node-notes" style="width: 100%; height: 100px; background: #000; color: #0f0; border: 1px solid #0f0; font-family: inherit; margin-top: 5px;" placeholder="Add notes here...">${escapeHtml(node.data.notes || '')}</textarea>
+                <button onclick="saveNodeDetails('${node.id}')" style="margin-top: 5px;">Save All Changes</button>
+            </div>
+        </div>
+    `;
+    
+    detailsDiv.innerHTML = html;
+}
+
+// Expand a node (search for related data)
+async function expandNode(node) {
+    if (!node.data) return;
+    
+    // Check if this node has already been expanded
+    const nodeKey = `${node.id}_${node.type}_${node.data.value || node.data.label}`;
+    if (nodeExpansionCache.has(nodeKey)) {
+        updateStatus('Node already searched - double-click search indicator to view query');
+        
+        // Redraw search indicators to make sure it's visible
+        clearSearchIndicators();
+        drawSearchIndicators();
+        return;
+    }
+    
+    // If AI suggestions are enabled, show suggestions modal first
+    if (aiSuggestionsEnabled) {
+        updateStatus('Generating AI suggestions...');
+        
+        try {
+            const suggestions = await generateAISuggestions(node.data.value || node.label, node.type);
+            
+            if (suggestions && suggestions.length > 0) {
+                showAISuggestionsModal(suggestions, node);
+                return; // Let user choose what to search
+            } else {
+                updateStatus('No AI suggestions available, proceeding with normal search');
+            }
+        } catch (error) {
+            console.error('AI suggestions failed:', error);
+            updateStatus('AI suggestions failed, proceeding with normal search');
+        }
+    }
+    
+    // Normal expansion (when AI is disabled or no suggestions)
+    updateStatus('Expanding node...');
+    
+    // Determine what to search for based on the node type
+    let searchQueries = [];
+    
+    // For any data node, search for its value
+    if (node.data && node.data.value) {
+        // 1. FIRST: Search in its own category
+        searchQueries.push({ 
+            value: node.data.value, 
+            type: node.type,
+            priority: 1,
+            description: `Searching as ${node.type}`
+        });
+        
+        // 2. THEN: Search in other categories (blanket search)
+        searchQueries.push({ 
+            value: node.data.value, 
+            type: 'blanket_search',
+            priority: 2,
+            description: 'Searching in all fields'
+        });
+        
+        // 3. Add any variations if they exist
+        if (node.data.variations && node.data.variations.length > 0) {
+            node.data.variations.forEach((variation, idx) => {
+                searchQueries.push({ 
+                    value: variation.value, 
+                    type: variation.type || 'blanket_search',
+                    priority: 3 + idx,
+                    description: `Searching variation: ${variation.value}`
+                });
+            });
+        }
+    }
+    
+    // Perform searches for each query in priority order
+    let hasNewResults = false;
+    searchQueries.sort((a, b) => a.priority - b.priority);
+    
+    for (const query of searchQueries) {
+        updateStatus(query.description);
+        const result = await performSearch(query.value, query.type, node.id);
+        if (result) hasNewResults = true;
+    }
+    
+    // Mark this node as expanded only if we got results
+    if (hasNewResults) {
+        nodeExpansionCache.set(nodeKey, true);
+    }
+    
+    updateStatus('Ready');
+}
+
+// Perform a search
+async function performSearch(query, type = null, parentNodeId = null) {
+    if (!query) return false;
+    
+    // Check cache first
+    const cacheKey = `${query}_${type || 'auto'}`;
+    if (searchCache.has(cacheKey)) {
+        const cachedData = searchCache.get(cacheKey);
+        updateStatus(`Using cached results for ${query}`);
+        
+        // If no parent node, don't create a search node - just process results without parent
+        // This means initial searches won't have a parent node
+        
+        // Process cached results
+        if (cachedData.results && cachedData.results.length > 0) {
+            processCachedResults(cachedData.results, parentNodeId);
+            updateStatus(`Found ${cachedData.results.length} breaches (cached)`);
+            return true;
+        } else {
+            updateStatus('No results found (cached)');
+            return false;
+        }
+    }
+    
+    updateStatus(`🔍 Searching for ${query}...`);
+    
+    // Add visual feedback in the search input
+    const searchBtn = document.getElementById('searchBtn');
+    const originalText = searchBtn.textContent;
+    searchBtn.textContent = 'Searching...';
+    searchBtn.disabled = true;
+    
+    try {
+        const response = await fetch('/api/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ query, type })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.error) {
+            updateStatus(`❌ Error: ${data.error}`);
+            searchBtn.textContent = originalText;
+            searchBtn.disabled = false;
+            return false;
+        }
+        
+        // Cache the results and save to storage
+        searchCache.set(cacheKey, data);
+        saveCacheToStorage();
+        
+        // If no parent node, don't create a search node - just process results without parent
+        // This means initial searches won't have a parent node
+        
+        // Process the results
+        if (data.results && data.results.length > 0) {
+            // Show progress while adding nodes
+            let processedCount = 0;
+            const totalBreaches = data.results.length;
+            
+            data.results.forEach((breach, index) => {
+                const breachInfo = breach.database_name || 'Unknown Database';
+                const breachNodes = []; // Track all nodes from this breach
+                
+                // Update progress
+                processedCount++;
+                updateStatus(`🔄 Processing breach ${processedCount}/${totalBreaches}...`);
+                
+                // Add nodes for ALL data types found in the breach
+                if (breach.email && breach.email.length > 0) {
+                    breach.email.forEach(email => {
+                        const nodeId = addNode({ 
+                            value: email, 
+                            label: email,
+                            breach: breachInfo,
+                            breachData: breach
+                        }, 'email', parentNodeId);
+                        if (nodeId) breachNodes.push(nodeId);
+                    });
+                }
+                
+                if (breach.username && breach.username.length > 0) {
+                    breach.username.forEach(username => {
+                        const nodeId = addNode({ 
+                            value: username, 
+                            label: username,
+                            breach: breachInfo,
+                            breachData: breach
+                        }, 'username', parentNodeId);
+                        breachNodes.push(nodeId);
+                    });
+                }
+                
+                if (breach.ip_address && breach.ip_address.length > 0) {
+                    breach.ip_address.forEach(ip => {
+                        const nodeId = addNode({ 
+                            value: ip, 
+                            label: ip,
+                            breach: breachInfo,
+                            breachData: breach
+                        }, 'ip_address', parentNodeId);
+                        breachNodes.push(nodeId);
+                    });
+                }
+                
+                if (breach.password && breach.password.length > 0) {
+                    breach.password.forEach(password => {
+                        const nodeId = addNode({ 
+                            value: password, 
+                            label: password,
+                            breach: breachInfo,
+                            breachData: breach
+                        }, 'password', parentNodeId);
+                        breachNodes.push(nodeId);
+                    });
+                }
+                
+                if (includeHashedPasswords && breach.hashed_password && breach.hashed_password.length > 0) {
+                    breach.hashed_password.forEach(hash => {
+                        const nodeId = addNode({ 
+                            value: hash, 
+                            label: truncateLabel(hash),
+                            breach: breachInfo,
+                            breachData: breach
+                        }, 'hashed_password', parentNodeId);
+                        breachNodes.push(nodeId);
+                    });
+                }
+                
+                if (breach.phone && breach.phone.length > 0) {
+                    breach.phone.forEach(phone => {
+                        const nodeId = addNode({ 
+                            value: phone, 
+                            label: phone,
+                            breach: breachInfo,
+                            breachData: breach
+                        }, 'phone', parentNodeId);
+                        breachNodes.push(nodeId);
+                    });
+                }
+                
+                if (breach.name && breach.name.length > 0) {
+                    breach.name.forEach(name => {
+                        const nodeId = addNode({ 
+                            value: name, 
+                            label: name,
+                            breach: breachInfo,
+                            breachData: breach
+                        }, 'name', parentNodeId);
+                        breachNodes.push(nodeId);
+                    });
+                }
+                
+                if (breach.address && breach.address.length > 0) {
+                    breach.address.forEach(address => {
+                        const nodeId = addNode({ 
+                            value: address, 
+                            label: truncateLabel(address),
+                            breach: breachInfo,
+                            breachData: breach
+                        }, 'address', parentNodeId);
+                        breachNodes.push(nodeId);
+                    });
+                }
+                
+                if (breach.domain && breach.domain.length > 0) {
+                    breach.domain.forEach(domain => {
+                        const nodeId = addNode({ 
+                            value: domain, 
+                            label: domain,
+                            breach: breachInfo,
+                            breachData: breach
+                        }, 'domain', parentNodeId);
+                        breachNodes.push(nodeId);
+                    });
+                }
+                
+                if (breach.vin && breach.vin.length > 0) {
+                    breach.vin.forEach(vin => {
+                        const nodeId = addNode({ 
+                            value: vin, 
+                            label: vin,
+                            breach: breachInfo,
+                            breachData: breach
+                        }, 'vin', parentNodeId);
+                        breachNodes.push(nodeId);
+                    });
+                }
+                
+                // Create connections based on shared values within this breach
+                createValueBasedConnections(breach);
+            });
+            
+            updateStatus(`✅ Found ${data.results.length} breaches with ${data.total || data.results.length} total records`);
+            searchBtn.textContent = originalText;
+            searchBtn.disabled = false;
+            return true;
+        } else {
+            updateStatus('⚠️ No results found');
+            searchBtn.textContent = originalText;
+            searchBtn.disabled = false;
+            
+            // Add visual feedback for no results
+            const statusElement = document.getElementById('status');
+            statusElement.style.color = '#ff6600';
+            setTimeout(() => {
+                statusElement.style.color = '#00ff00';
+            }, 3000);
+            return false;
+        }
+        
+    } catch (error) {
+        console.error('Search error:', error);
+        updateStatus(`❌ Error: ${error.message}`);
+        searchBtn.textContent = originalText;
+        searchBtn.disabled = false;
+        return false;
+    }
+}
+
+// Process cached results
+function processCachedResults(results, parentNodeId) {
+    results.forEach(breach => {
+        const breachInfo = breach.database_name || 'Unknown Database';
+        const breachNodes = []; // Track all nodes from this breach
+        
+        // Add nodes for ALL data types - same as in performSearch
+        if (breach.email && breach.email.length > 0) {
+            breach.email.forEach(email => {
+                const nodeId = addNode({ 
+                    value: email, 
+                    label: email,
+                    breach: breachInfo,
+                    breachData: breach
+                }, 'email', parentNodeId);
+                if (nodeId) breachNodes.push(nodeId);
+            });
+        }
+        
+        if (breach.username && breach.username.length > 0) {
+            breach.username.forEach(username => {
+                const nodeId = addNode({ 
+                    value: username, 
+                    label: username,
+                    breach: breachInfo,
+                    breachData: breach
+                }, 'username', parentNodeId);
+                breachNodes.push(nodeId);
+            });
+        }
+        
+        if (breach.ip_address && breach.ip_address.length > 0) {
+            breach.ip_address.forEach(ip => {
+                const nodeId = addNode({ 
+                    value: ip, 
+                    label: ip,
+                    breach: breachInfo,
+                    breachData: breach
+                }, 'ip_address', parentNodeId);
+                breachNodes.push(nodeId);
+            });
+        }
+        
+        if (breach.password && breach.password.length > 0) {
+            breach.password.forEach(password => {
+                const nodeId = addNode({ 
+                    value: password, 
+                    label: password,
+                    breach: breachInfo,
+                    breachData: breach
+                }, 'password', parentNodeId);
+                breachNodes.push(nodeId);
+            });
+        }
+        
+        if (includeHashedPasswords && breach.hashed_password && breach.hashed_password.length > 0) {
+            breach.hashed_password.forEach(hash => {
+                const nodeId = addNode({ 
+                    value: hash, 
+                    label: truncateLabel(hash),
+                    breach: breachInfo,
+                    breachData: breach
+                }, 'hashed_password', parentNodeId);
+                breachNodes.push(nodeId);
+            });
+        }
+        
+        if (breach.phone && breach.phone.length > 0) {
+            breach.phone.forEach(phone => {
+                const nodeId = addNode({ 
+                    value: phone, 
+                    label: phone,
+                    breach: breachInfo,
+                    breachData: breach
+                }, 'phone', parentNodeId);
+                breachNodes.push(nodeId);
+            });
+        }
+        
+        if (breach.name && breach.name.length > 0) {
+            breach.name.forEach(name => {
+                const nodeId = addNode({ 
+                    value: name, 
+                    label: name,
+                    breach: breachInfo,
+                    breachData: breach
+                }, 'name', parentNodeId);
+                breachNodes.push(nodeId);
+            });
+        }
+        
+        if (breach.address && breach.address.length > 0) {
+            breach.address.forEach(address => {
+                const nodeId = addNode({ 
+                    value: address, 
+                    label: truncateLabel(address),
+                    breach: breachInfo,
+                    breachData: breach
+                }, 'address', parentNodeId);
+                breachNodes.push(nodeId);
+            });
+        }
+        
+        if (breach.domain && breach.domain.length > 0) {
+            breach.domain.forEach(domain => {
+                const nodeId = addNode({ 
+                    value: domain, 
+                    label: domain,
+                    breach: breachInfo,
+                    breachData: breach
+                }, 'domain', parentNodeId);
+                breachNodes.push(nodeId);
+            });
+        }
+        
+        if (breach.vin && breach.vin.length > 0) {
+            breach.vin.forEach(vin => {
+                const nodeId = addNode({ 
+                    value: vin, 
+                    label: vin,
+                    breach: breachInfo,
+                    breachData: breach
+                }, 'vin', parentNodeId);
+                breachNodes.push(nodeId);
+            });
+        }
+        
+        // Create connections based on shared values within this breach
+        createValueBasedConnections(breach);
+    });
+}
+
+// Update status bar
+function updateStatus(message = null) {
+    if (message) {
+        document.getElementById('status').textContent = message;
+    }
+    document.getElementById('node-count').textContent = `Nodes: ${nodes.length}`;
+    document.getElementById('edge-count').textContent = `Edges: ${edges.length}`;
+    
+    // Show selected nodes count
+    if (network) {
+        const selectedNodes = network.getSelectedNodes();
+        if (selectedNodes.length > 0) {
+            document.getElementById('status').textContent += ` | Selected: ${selectedNodes.length}`;
+        }
+    }
+}
+
+// Escape HTML to prevent XSS
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return String(text).replace(/[&<>"']/g, m => map[m]);
+}
+
+// EMERGENCY RESET - CLEAR SAVED STATE AND RESTORE ORIGINAL NODES
+window.emergencyReset = function() {
+    // Clear all saved state
+    localStorage.clear();
+    
+    // Clear anchored nodes
+    anchoredNodes.clear();
+    
+    const allNodes = nodes.get();
+    const updates = [];
+    
+    allNodes.forEach(node => {
+        updates.push({
+            id: node.id,
+            color: {
+                background: '#000000',
+                border: getNodeColor(node.type),
+                highlight: {
+                    background: '#1a1a1a',
+                    border: getNodeColor(node.type)
+                }
+            },
+            font: {
+                color: '#00ff00',
+                size: 12,
+                face: 'monospace'
+            },
+            borderWidth: 2,
+            borderWidthSelected: 3,
+            hidden: false
+        });
+    });
+    
+    nodes.update(updates);
+    
+    // Clear server cache too
+    fetch('/api/cache/clear', { method: 'POST' }).catch(() => {});
+    
+    updateStatus('EMERGENCY RESET - ALL STATE CLEARED, ORIGINAL SIZES RESTORED');
+}
+
+// Fix stuck focus mode
+// Recover any "lost" nodes by ensuring all are visible
+function recoverLostNodes() {
+    const allNodes = nodes.get();
+    let recoveredCount = 0;
+    
+    allNodes.forEach(node => {
+        const pos = network.getPositions([node.id])[node.id];
+        
+        // Check if position is invalid or node might be hidden
+        if (!pos || isNaN(pos.x) || isNaN(pos.y) || 
+            Math.abs(pos.x) > 10000 || Math.abs(pos.y) > 10000) {
+            
+            console.log(`[Recovery] Recovering lost node: ${node.id}`);
+            
+            // Get viewport center
+            const view = network.getViewPosition();
+            
+            // Place node at a random position near viewport center
+            const offsetX = (Math.random() - 0.5) * 200;
+            const offsetY = (Math.random() - 0.5) * 200;
+            
+            nodes.update({
+                id: node.id,
+                x: view.x + offsetX,
+                y: view.y + offsetY,
+                hidden: false,
+                physics: false,
+                fixed: {
+                    x: false,
+                    y: false
+                }
+            });
+            
+            recoveredCount++;
+        }
+    });
+    
+    if (recoveredCount > 0) {
+        network.redraw();
+        updateStatus(`Recovered ${recoveredCount} lost nodes`);
+    }
+    
+    return recoveredCount;
+}
+
+function fixStuckFocus() {
+    focusedNode = null;
+    originalNodeColors.clear();
+    
+    // FORCE RESET ALL NODES TO ABSOLUTE NORMAL SIZE
+    const allNodes = nodes.get();
+    const updates = [];
+    
+    allNodes.forEach(node => {
+        // Special handling for query nodes - KEEP THEM RED!
+        if (node.id && node.id.startsWith('query_')) {
+            updates.push({
+                id: node.id,
+                color: {
+                    background: '#000000',
+                    border: '#ff0000',  // RED border for query nodes
+                    highlight: {
+                        background: '#330000',
+                        border: '#ff0000'  // RED highlight for query nodes
+                    }
+                },
+                font: {
+                    color: '#ff0000',  // RED text for query nodes
+                    size: 12,
+                    face: 'monospace',
+                    bold: true
+                },
+                borderWidth: 3,
+                borderWidthSelected: 4,
+                hidden: false
+            });
+        } else {
+            // ALL OTHER NODES - FORCE TO NORMAL SIZE
+            const borderColor = getNodeColor(node.type);
+            const isAnchored = anchoredNodes.has(node.id);
+            
+            updates.push({
+                id: node.id,
+                color: {
+                    background: '#000000',  // Always black background
+                    border: borderColor,
+                    highlight: {
+                        background: '#1a1a1a',
+                        border: borderColor
+                    }
+                },
+                font: {
+                    color: isAnchored ? '#FFFFFF' : '#00ff00',  // White for anchored, green for others
+                    size: isAnchored ? 18 : 12,  // 18 for anchored, 12 for normal
+                    face: 'monospace',
+                    bold: isAnchored  // Only anchored are bold
+                },
+                borderWidth: 2,  // NORMAL border width
+                borderWidthSelected: 3,  // NORMAL selected width
+                hidden: false
+            });
+        }
+    });
+    
+    nodes.update(updates);
+    updateStatus('ALL NODES RESET TO NORMAL SIZE');
+}
+
+// Remove self-referencing edges (loops)
+function removeSelfLoops() {
+    const allEdges = edges.get();
+    const loopEdges = allEdges.filter(edge => edge.from === edge.to);
+    
+    if (loopEdges.length > 0) {
+        console.log(`Removing ${loopEdges.length} self-referencing edges`);
+        edges.remove(loopEdges.map(edge => edge.id));
+        saveGraphState();
+    }
+}
+
+// Handle search button click
+document.getElementById('searchBtn').addEventListener('click', () => {
+    const query = document.getElementById('searchInput').value;
+    const type = document.getElementById('searchType').value || null;
+    
+    if (query) {
+        performSearch(query, type);
+    }
+});
+
+// Handle enter key in search input
+document.getElementById('searchInput').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        document.getElementById('searchBtn').click();
+    }
+});
+
+// Show context menu
+function showContextMenu(event, node, position = null) {
+    // Remove any existing context menu
+    const existingMenu = document.getElementById('context-menu');
+    if (existingMenu) existingMenu.remove();
+    
+    const menu = document.createElement('div');
+    menu.id = 'context-menu';
+    menu.style.cssText = `
+        position: absolute;
+        left: ${event.pageX}px;
+        top: ${event.pageY}px;
+        background: #000;
+        border: 1px solid #0f0;
+        padding: 5px;
+        z-index: 1000;
+        font-family: monospace;
+        font-size: 12px;
+    `;
+    
+    if (node) {
+        const selectedNodes = network.getSelectedNodes();
+        if (selectedNodes.length > 1) {
+            // Multiple nodes selected
+            menu.innerHTML = `
+                <div class="menu-item" onclick="deleteSelectedNodes([${selectedNodes.map(id => `'${id}'`).join(',')}])">Delete ${selectedNodes.length} Selected Nodes</div>
+                <div class="menu-item" onclick="connectSelectedNodes([${selectedNodes.map(id => `'${id}'`).join(',')}])">Connect Selected Nodes</div>
+                <div class="menu-item" onclick="mergeSelectedNodes([${selectedNodes.map(id => `'${id}'`).join(',')}])">Merge ${selectedNodes.length} Selected Nodes</div>
+            `;
+        } else {
+            // Single node context menu
+            const isAnchored = anchoredNodes.has(node.id);
+            menu.innerHTML = `
+                <div class="menu-item" onclick="toggleAnchorNode('${node.id}')">${isAnchored ? 'Unanchor' : 'Anchor'} Node</div>
+                <div class="menu-item" onclick="centerNode('${node.id}')">Center Node</div>
+                <div class="menu-item" onclick="duplicateNode('${node.id}')">Duplicate Node</div>
+                <div class="menu-item" onclick="deleteNode('${node.id}')">Delete Node</div>
+                <div class="menu-item" onclick="deleteConnections('${node.id}')">Delete Connections</div>
+            `;
+        }
+    } else if (position) {
+        // Canvas context menu
+        menu.innerHTML = `
+            <div class="menu-item" onclick="createNewNode(${position.x}, ${position.y})">Create New Node</div>
+        `;
+    }
+    
+    document.body.appendChild(menu);
+    
+    // Remove menu on click outside
+    setTimeout(() => {
+        document.addEventListener('click', function removeMenu() {
+            const menu = document.getElementById('context-menu');
+            if (menu) menu.remove();
+            document.removeEventListener('click', removeMenu);
+        });
+    }, 100);
+}
+
+// Center a node in the arrangement
+window.centerNode = function(nodeId) {
+    const allNodes = nodes.get();
+    if (allNodes.length === 0) return;
+    
+    // Calculate the center point of all nodes
+    let minX = Infinity, maxX = -Infinity;
+    let minY = Infinity, maxY = -Infinity;
+    
+    allNodes.forEach(node => {
+        const pos = network.getPositions([node.id])[node.id];
+        if (pos) {
+            minX = Math.min(minX, pos.x);
+            maxX = Math.max(maxX, pos.x);
+            minY = Math.min(minY, pos.y);
+            maxY = Math.max(maxY, pos.y);
+        }
+    });
+    
+    // Calculate center point
+    const centerX = (minX + maxX) / 2;
+    const centerY = (minY + maxY) / 2;
+    
+    // Move the selected node to center
+    network.moveNode(nodeId, centerX, centerY);
+    
+    // Update node position in dataset
+    nodes.update({
+        id: nodeId,
+        x: centerX,
+        y: centerY
+    });
+    
+    // Focus on the centered node
+    network.focus(nodeId, {
+        scale: 1.0,
+        animation: true
+    });
+    
+    updateStatus(`Node centered in arrangement`);
+    saveGraphState();
+}
+
+// Duplicate a node
+window.duplicateNode = function(nodeId) {
+    const node = nodes.get(nodeId);
+    if (node) {
+        const newNode = {
+            ...node.data,
+            label: node.data.label || node.data.value || 'Duplicate'
+        };
+        addNode(newNode, node.type, null, true); // Force duplicate
+    }
+}
+
+// Delete a node
+window.deleteNode = function(nodeId) {
+    nodes.remove(nodeId);
+    updateStatus();
+    saveGraphState();
+}
+
+// Delete connections to a node
+window.deleteConnections = function(nodeId) {
+    const connectedEdges = edges.get({
+        filter: function(edge) {
+            return edge.from === nodeId || edge.to === nodeId;
+        }
+    });
+    edges.remove(connectedEdges.map(e => e.id));
+    updateStatus();
+    saveGraphState();
+}
+
+// Create a new node at position
+window.createNewNode = function(x, y) {
+    const value = prompt('Enter node value:');
+    if (value) {
+        const type = prompt('Enter node type (email, username, password, ip_address, etc.):') || 'custom';
+        
+        // Create node with specific position
+        const nodeId = `node_${nodeIdCounter++}`;
+        const borderColor = getNodeColor(type);
+        
+        const node = {
+            id: nodeId,
+            label: value,
+            title: value,
+            color: {
+                background: '#000000',
+                border: borderColor,
+                highlight: {
+                    background: '#1a1a1a',
+                    border: borderColor
+                }
+            },
+            data: { value: value, label: value },
+            type: type,
+            x: x,
+            y: y,
+            font: {
+                color: '#00ff00',
+                multi: 'html',
+                size: 12
+            }
+        };
+        
+        nodes.add(node);
+        updateStatus();
+        saveGraphState();
+    }
+}
+
+// Delete multiple selected nodes
+window.deleteSelectedNodes = function(nodeIds) {
+    if (confirm(`Delete ${nodeIds.length} selected nodes?`)) {
+        nodeIds.forEach(nodeId => {
+            nodes.remove(nodeId);
+            // Clean up from tracking maps
+            valueToNodeMap.forEach((value, key) => {
+                if (value === nodeId) {
+                    valueToNodeMap.delete(key);
+                }
+            });
+        });
+        updateStatus(`Deleted ${nodeIds.length} nodes`);
+        saveGraphState();
+    }
+}
+
+// Connect selected nodes
+window.connectSelectedNodes = function(nodeIds) {
+    if (nodeIds.length < 2) return;
+    
+    const connectionName = prompt('Enter connection name/reason:') || 'Manual connection';
+    
+    // Connect all selected nodes in a star pattern
+    for (let i = 0; i < nodeIds.length - 1; i++) {
+        for (let j = i + 1; j < nodeIds.length; j++) {
+            if (nodeIds[i] !== nodeIds[j]) { // Prevent self-loops
+                edges.add({
+                    from: nodeIds[i],
+                    to: nodeIds[j],
+                    color: {
+                        color: '#ff00ff' // Magenta for manual connections
+                    },
+                    dashes: false,
+                    width: 2,
+                    title: connectionName,
+                    arrows: ''
+                });
+            }
+        }
+    }
+    
+    updateStatus(`Connected ${nodeIds.length} nodes`);
+    saveGraphState();
+}
+
+// Merge selected nodes into one
+window.mergeSelectedNodes = function(nodeIds) {
+    if (nodeIds.length < 2) return;
+    
+    // Get the target node (first selected node becomes the main one)
+    const targetId = nodeIds[0];
+    const targetNode = nodes.get(targetId);
+    
+    if (!targetNode) return;
+    
+    // Merge all other nodes into the target
+    for (let i = 1; i < nodeIds.length; i++) {
+        mergeNodes(nodeIds[i], targetId);
+    }
+    
+    updateStatus(`Merged ${nodeIds.length} nodes into ${targetNode.label}`);
+    hideContextMenu();
+}
+
+// Connect nodes from the same breach
+function connectBreachNodes(nodeIds, breachName) {
+    if (nodeIds.length < 2) return;
+    
+    // Connect all nodes in a star pattern (all connected to each other)
+    for (let i = 0; i < nodeIds.length - 1; i++) {
+        for (let j = i + 1; j < nodeIds.length; j++) {
+            if (nodeIds[i] !== nodeIds[j]) {
+                // Check if edge already exists
+                const existingEdge = edges.get({
+                    filter: edge => 
+                        (edge.from === nodeIds[i] && edge.to === nodeIds[j]) ||
+                        (edge.from === nodeIds[j] && edge.to === nodeIds[i])
+                });
+                
+                if (existingEdge.length === 0) {
+                    edges.add({
+                        from: nodeIds[i],
+                        to: nodeIds[j],
+                        color: {
+                            color: '#00ff00' // Green for breach connections
+                        },
+                        dashes: false,
+                        width: 1,
+                        title: `Same breach: ${breachName}`,
+                        arrows: ''
+                    });
+                }
+            }
+        }
+    }
+}
+
+// Merge two nodes
+function mergeNodes(sourceId, targetId) {
+    const sourceNode = nodes.get(sourceId);
+    const targetNode = nodes.get(targetId);
+    
+    if (!sourceNode || !targetNode) return;
+    
+    // The target (node being dragged onto) becomes the main entity
+    // The source (node being dragged) becomes a variation
+    
+    // Update target node data with variations
+    const targetData = { ...targetNode.data };
+    
+    // Initialize variations array if it doesn't exist
+    if (!targetData.variations) {
+        targetData.variations = [];
+    }
+    
+    // Initialize merge history if it doesn't exist
+    if (!targetData.mergeHistory) {
+        targetData.mergeHistory = [];
+    }
+    
+    // Store complete merge information for reversal
+    const mergeInfo = {
+        nodeId: sourceId,
+        value: sourceNode.data.value || sourceNode.label,
+        label: sourceNode.label,
+        type: sourceNode.type,
+        breach: sourceNode.data.breach,
+        breachData: sourceNode.data.breachData,
+        notes: sourceNode.data.notes || '',
+        position: network.getPositions([sourceId])[sourceId],
+        mergedAt: new Date().toISOString(),
+        originalConnections: edges.get({
+            filter: edge => edge.from === sourceId || edge.to === sourceId
+        }).map(edge => ({...edge}))
+    };
+    
+    // Add source value as a variation
+    targetData.variations.push({
+        id: sourceId, // Keep original ID for unmerging
+        value: sourceNode.data.value || sourceNode.label,
+        label: sourceNode.label,
+        type: sourceNode.type,
+        breach: sourceNode.data.breach,
+        notes: sourceNode.data.notes || '',
+        mergedAt: mergeInfo.mergedAt
+    });
+    
+    // Add to merge history
+    targetData.mergeHistory.push(mergeInfo);
+    
+    // If source had variations, add them too
+    if (sourceNode.data.variations) {
+        targetData.variations.push(...sourceNode.data.variations);
+    }
+    
+    // Merge notes
+    if (sourceNode.data.notes && targetNode.data.notes) {
+        targetData.notes = targetNode.data.notes + '\n\n[Merged from ' + sourceNode.label + ']\n' + sourceNode.data.notes;
+    } else if (sourceNode.data.notes) {
+        targetData.notes = sourceNode.data.notes;
+    }
+    
+    // Update label - NO [+n] numbers, just clean label
+    const variationCount = targetData.variations.length;
+    // Remove ALL existing [+n] patterns from the label first
+    const baseLabel = targetNode.label.replace(/\s*\[\+\d+\]/g, '').replace(/<br>\[\+\d+\]/g, '');
+    const newLabel = baseLabel; // Just the clean label, no merge count
+    
+    // Update target node with type in tooltip
+    nodes.update({
+        id: targetId,
+        data: targetData,
+        label: newLabel,
+        title: `${targetNode.type.toUpperCase()}: ${targetNode.label}\n${variationCount} variation(s)`,
+        borderWidth: 3, // Thicker border for merged nodes
+        shapeProperties: {
+            borderDashes: false
+        }
+    });
+    
+    // NO INDICATORS - DISABLED
+    
+    // Transfer all edges from source to target
+    const sourceEdges = edges.get({
+        filter: edge => edge.from === sourceId || edge.to === sourceId
+    });
+    
+    sourceEdges.forEach(edge => {
+        const newEdge = { ...edge };
+        if (edge.from === sourceId) {
+            newEdge.from = targetId;
+        }
+        if (edge.to === sourceId) {
+            newEdge.to = targetId;
+        }
+        
+        // Check if this edge already exists
+        const exists = edges.get({
+            filter: e => (e.from === newEdge.from && e.to === newEdge.to) || 
+                        (e.from === newEdge.to && e.to === newEdge.from)
+        }).length > 0;
+        
+        if (!exists && newEdge.from !== newEdge.to) {
+            edges.add({
+                from: newEdge.from,
+                to: newEdge.to,
+                color: newEdge.color,
+                dashes: newEdge.dashes,
+                width: newEdge.width,
+                title: (newEdge.title || '') + ' [via ' + sourceNode.label + ']',
+                arrows: newEdge.arrows
+            });
+        }
+    });
+    
+    // Remove source node
+    nodes.remove(sourceId);
+    
+    // Update tracking maps
+    valueToNodeMap.forEach((nodeId, key) => {
+        if (nodeId === sourceId) {
+            valueToNodeMap.delete(key);
+        }
+    });
+    
+    // Update breach connections
+    breachConnections.forEach((nodeIds, breach) => {
+        const index = nodeIds.indexOf(sourceId);
+        if (index > -1) {
+            nodeIds.splice(index, 1);
+            if (!nodeIds.includes(targetId)) {
+                nodeIds.push(targetId);
+            }
+        }
+    });
+    
+    saveGraphState();
+    updateStatus(`Merged "${sourceNode.label}" into "${targetNode.label}"`);
+    
+    // Update node details if target node is selected
+    if (network.getSelectedNodes().includes(targetId)) {
+        showNodeDetails(nodes.get(targetId));
+    }
+}
+
+// Focus on a node and its connections
+function focusNode(nodeId) {
+    focusedNode = nodeId;
+    
+    // Get connected nodes
+    const connectedNodes = new Set([nodeId]);
+    const connectedEdges = edges.get({
+        filter: function(edge) {
+            if (edge.from === nodeId || edge.to === nodeId) {
+                connectedNodes.add(edge.from);
+                connectedNodes.add(edge.to);
+                return true;
+            }
+            return false;
+        }
+    });
+    
+    // Store original colors and gray out non-connected nodes
+    const allNodes = nodes.get();
+    const updates = [];
+    
+    allNodes.forEach(node => {
+        originalNodeColors.set(node.id, node.color);
+        
+        if (!connectedNodes.has(node.id)) {
+            updates.push({
+                id: node.id,
+                color: {
+                    background: '#333333',
+                    border: '#222222'
+                },
+                font: {
+                    color: '#555555'
+                }
+            });
+        } else {
+            // Make connected nodes brighter
+            updates.push({
+                id: node.id,
+                color: {
+                    background: node.color,
+                    border: '#ffffff'
+                },
+                borderWidth: 3
+            });
+        }
+    });
+    
+    nodes.update(updates);
+    
+    // Fade non-connected edges
+    const allEdges = edges.get();
+    const edgeUpdates = [];
+    
+    allEdges.forEach(edge => {
+        if (!connectedEdges.find(e => e.id === edge.id)) {
+            edgeUpdates.push({
+                id: edge.id,
+                color: {
+                    color: '#333333'
+                },
+                font: {
+                    color: '#333333'
+                }
+            });
+        }
+    });
+    
+    edges.update(edgeUpdates);
+}
+
+// Release focus and restore original colors
+function releaseFocus() {
+    if (!focusedNode) return;
+    
+    focusedNode = null;
+    
+    // Restore node colors
+    const updates = [];
+    originalNodeColors.forEach((color, nodeId) => {
+        updates.push({
+            id: nodeId,
+            color: color,
+            borderWidth: 2,
+            font: {
+                color: '#000000'
+            }
+        });
+    });
+    
+    nodes.update(updates);
+    originalNodeColors.clear();
+    
+    // Restore edge colors
+    const allEdges = edges.get();
+    const edgeUpdates = allEdges.map(edge => ({
+        id: edge.id,
+        color: {
+            color: '#00ff00'
+        },
+        font: {
+            color: '#00ff00'
+        }
+    }));
+    
+    edges.update(edgeUpdates);
+}
+
+// Switch tabs
+window.switchTab = function(tabName) {
+    // Update tab buttons
+    document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    // Update tab content
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    document.getElementById(`${tabName}-tab`).classList.add('active');
+    
+    if (tabName === 'cache') {
+        viewCacheAsMap(); // Default to map view
+    }
+}
+
+// View cache as map
+window.viewCacheAsMap = function() {
+    const cacheView = document.getElementById('cache-view');
+    let html = '<h3>Cache Map View</h3>';
+    
+    html += '<div style="margin-bottom: 20px;">';
+    html += `<p>Search Cache: ${searchCache.size} entries</p>`;
+    html += `<p>Node Expansion Cache: ${nodeExpansionCache.size} entries</p>`;
+    html += `<p>Value-to-Node Map: ${valueToNodeMap.size} entries</p>`;
+    html += '</div>';
+    
+    // Show search cache as a tree
+    html += '<h4>Search Results by Query:</h4>';
+    html += '<div class="cache-map">';
+    
+    searchCache.forEach((data, key) => {
+        const [query, type] = key.split('_');
+        html += `<div class="cache-entry" style="cursor: pointer;" 
+                     oncontextmenu="loadCacheEntry('${key}'); return false;" 
+                     ondblclick="loadCacheEntry('${key}'); switchTab('graph');" 
+                     title="Double-click or right-click to load in graph">`;
+        html += `<strong>${escapeHtml(query)}</strong> (${type})`;
+        if (data.results) {
+            html += `<ul>`;
+            data.results.forEach(breach => {
+                html += `<li>${breach.database_name || 'Unknown'} - `;
+                const items = [];
+                if (breach.email?.length) items.push(`${breach.email.length} emails`);
+                if (breach.username?.length) items.push(`${breach.username.length} usernames`);
+                if (breach.password?.length) items.push(`${breach.password.length} passwords`);
+                if (breach.ip_address?.length) items.push(`${breach.ip_address.length} IPs`);
+                html += items.join(', ');
+                html += `</li>`;
+            });
+            html += `</ul>`;
+        }
+        html += '</div>';
+    });
+    
+    html += '</div>';
+    cacheView.innerHTML = html;
+}
+
+// View cache as list
+window.viewCacheAsList = function() {
+    const cacheView = document.getElementById('cache-view');
+    let html = '<h3>Cache List View</h3>';
+    
+    // Collect all unique values from cache
+    const allValues = new Map();
+    
+    searchCache.forEach((data, key) => {
+        if (data.results) {
+            data.results.forEach(breach => {
+                // Collect emails
+                if (breach.email) {
+                    breach.email.forEach(email => {
+                        if (!allValues.has(email)) {
+                            allValues.set(email, { type: 'email', databases: [] });
+                        }
+                        allValues.get(email).databases.push(breach.database_name || 'Unknown');
+                    });
+                }
+                
+                // Collect usernames
+                if (breach.username) {
+                    breach.username.forEach(username => {
+                        if (!allValues.has(username)) {
+                            allValues.set(username, { type: 'username', databases: [] });
+                        }
+                        allValues.get(username).databases.push(breach.database_name || 'Unknown');
+                    });
+                }
+                
+                // Collect passwords
+                if (breach.password) {
+                    breach.password.forEach(password => {
+                        if (!allValues.has(password)) {
+                            allValues.set(password, { type: 'password', databases: [] });
+                        }
+                        allValues.get(password).databases.push(breach.database_name || 'Unknown');
+                    });
+                }
+                
+                // Collect IPs
+                if (breach.ip_address) {
+                    breach.ip_address.forEach(ip => {
+                        if (!allValues.has(ip)) {
+                            allValues.set(ip, { type: 'ip_address', databases: [] });
+                        }
+                        allValues.get(ip).databases.push(breach.database_name || 'Unknown');
+                    });
+                }
+            });
+        }
+    });
+    
+    // Display as sorted list
+    html += '<table style="width: 100%; border-collapse: collapse;">';
+    html += '<tr><th>Type</th><th>Value</th><th>Found In</th></tr>';
+    
+    const sortedValues = Array.from(allValues.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+    
+    sortedValues.forEach(([value, info]) => {
+        const escapedValue = escapeHtml(value);
+        html += `<tr style="border-bottom: 1px solid #003300; cursor: pointer;" 
+                     oncontextmenu="loadValueIntoGraph('${escapedValue}', '${info.type}'); return false;" 
+                     ondblclick="loadValueIntoGraph('${escapedValue}', '${info.type}'); switchTab('graph');" 
+                     title="Double-click or right-click to load in graph">`;
+        html += `<td style="color: ${getNodeColor(info.type)}; padding: 5px;">${info.type}</td>`;
+        html += `<td style="padding: 5px;">${escapedValue}</td>`;
+        html += `<td style="padding: 5px;">${[...new Set(info.databases)].join(', ')}</td>`;
+        html += '</tr>';
+    });
+    
+    html += '</table>';
+    html += `<p style="margin-top: 10px;">Total unique values: ${allValues.size}</p>`;
+    
+    cacheView.innerHTML = html;
+}
+
+// Clear cache
+window.clearCache = async function() {
+    if (confirm('Clear all cached data? This will permanently delete all stored search results from disk.')) {
+        try {
+            const response = await fetch('/api/cache/clear', {
+                method: 'POST'
+            });
+            
+            const result = await response.json();
+            if (result.success) {
+                searchCache.clear();
+                nodeExpansionCache.clear();
+                updateStatus('Cache cleared from disk');
+                
+                // Refresh cache view
+                if (document.getElementById('cache-tab').classList.contains('active')) {
+                    viewCacheAsMap();
+                }
+            } else {
+                updateStatus('Error clearing cache');
+            }
+        } catch (e) {
+            console.error('Error clearing cache:', e);
+            updateStatus('Error clearing cache');
+        }
+    }
+}
+
+// Load cache entry into graph
+window.loadCacheEntry = function(cacheKey) {
+    const data = searchCache.get(cacheKey);
+    if (!data || !data.results) return;
+    
+    // Switch to graph tab
+    document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector('.tab-button').classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    document.getElementById('graph-tab').classList.add('active');
+    
+    // Process the cached results
+    processCachedResults(data.results, null);
+    updateStatus(`Loaded ${data.results.length} cached results into graph`);
+}
+
+// Load specific value into graph
+window.loadValueIntoGraph = function(value, type) {
+    // Switch to graph tab
+    document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector('.tab-button').classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    document.getElementById('graph-tab').classList.add('active');
+    
+    // Search for this value in the cache
+    let found = false;
+    searchCache.forEach((data, key) => {
+        if (data.results) {
+            data.results.forEach(breach => {
+                // Check if this breach contains the value
+                let hasValue = false;
+                if (type === 'email' && breach.email?.includes(value)) hasValue = true;
+                else if (type === 'username' && breach.username?.includes(value)) hasValue = true;
+                else if (type === 'password' && breach.password?.includes(value)) hasValue = true;
+                else if (type === 'ip_address' && breach.ip_address?.includes(value)) hasValue = true;
+                else if (type === 'phone' && breach.phone?.includes(value)) hasValue = true;
+                else if (type === 'name' && breach.name?.includes(value)) hasValue = true;
+                else if (type === 'address' && breach.address?.includes(value)) hasValue = true;
+                else if (type === 'domain' && breach.domain?.includes(value)) hasValue = true;
+                
+                if (hasValue) {
+                    // Process just this breach for this value
+                    processCachedResults([breach], null);
+                    found = true;
+                }
+            });
+        }
+    });
+    
+    if (found) {
+        updateStatus(`Loaded "${value}" into graph`);
+        
+        // Focus on the loaded node
+        const nodeId = valueToNodeMap.get(`${type}_${value}`);
+        if (nodeId) {
+            network.focus(nodeId, {
+                scale: 1.5,
+                animation: {
+                    duration: 500,
+                    easingFunction: 'easeInOutQuad'
+                }
+            });
+            
+            // Select the node
+            network.selectNodes([nodeId]);
+        }
+    } else {
+        updateStatus(`Value "${value}" not found in cache`);
+    }
+}
+
+// Save node notes
+window.saveNodeNotes = function() {
+    if (!currentProfileNode) return;
+    
+    const notes = document.getElementById('node-notes').value;
+    
+    // Update node data
+    const updatedData = {
+        ...currentProfileNode.data,
+        notes: notes
+    };
+    
+    nodes.update({
+        id: currentProfileNode.id,
+        data: updatedData
+    });
+    
+    // Save to storage
+    saveGraphState();
+    updateStatus('Notes saved');
+}
+
+// Open node profile for editing (deprecated - keeping for compatibility)
+window.openProfile = function(nodeId) {
+    const node = nodes.get(nodeId);
+    if (!node) return;
+    
+    currentProfileNode = node;
+    
+    // Show profile panel
+    document.getElementById('node-details').style.display = 'none';
+    document.getElementById('node-profile').style.display = 'block';
+    
+    // Build editable form
+    let html = '<form id="profile-form">';
+    html += `<h4>${node.type.toUpperCase()} - ${node.data.value || node.label}</h4>`;
+    
+    // Core fields (read-only)
+    html += '<fieldset><legend>Core Data</legend>';
+    html += `<label>Value: <input type="text" name="value" value="${escapeHtml(node.data.value || '')}" readonly style="background: #333;"></label><br>`;
+    html += `<label>Type: <input type="text" value="${node.type}" readonly style="background: #333;"></label><br>`;
+    if (node.data.breach) {
+        html += `<label>Breach: <input type="text" value="${escapeHtml(node.data.breach)}" readonly style="background: #333;"></label><br>`;
+    }
+    html += '</fieldset>';
+    
+    // Editable metadata
+    html += '<fieldset><legend>Custom Metadata</legend>';
+    html += `<label>Label: <input type="text" name="label" value="${escapeHtml(node.label || '')}"></label><br>`;
+    html += `<label>Notes: <textarea name="notes" rows="3">${escapeHtml(node.data.notes || '')}</textarea></label><br>`;
+    html += `<label>Tags: <input type="text" name="tags" value="${escapeHtml(node.data.tags || '')}" placeholder="tag1, tag2, tag3"></label><br>`;
+    html += `<label>Real Name: <input type="text" name="realName" value="${escapeHtml(node.data.realName || '')}"></label><br>`;
+    html += `<label>Organization: <input type="text" name="organization" value="${escapeHtml(node.data.organization || '')}"></label><br>`;
+    html += `<label>Location: <input type="text" name="location" value="${escapeHtml(node.data.location || '')}"></label><br>`;
+    html += '</fieldset>';
+    
+    // Connections info
+    html += '<fieldset><legend>Connections</legend>';
+    const connectedEdges = edges.get({
+        filter: edge => edge.from === nodeId || edge.to === nodeId
+    });
+    html += `<p>Connected to ${connectedEdges.length} nodes</p>`;
+    
+    // List connected nodes
+    const connectedNodes = new Set();
+    connectedEdges.forEach(edge => {
+        connectedNodes.add(edge.from === nodeId ? edge.to : edge.from);
+    });
+    
+    html += '<ul>';
+    connectedNodes.forEach(connId => {
+        const connNode = nodes.get(connId);
+        if (connNode) {
+            html += `<li>${connNode.type}: ${escapeHtml(connNode.label)}</li>`;
+        }
+    });
+    html += '</ul>';
+    html += '</fieldset>';
+    
+    html += '</form>';
+    
+    document.getElementById('profile-content').innerHTML = html;
+}
+
+// Save profile changes
+window.saveProfile = function() {
+    if (!currentProfileNode) return;
+    
+    const form = document.getElementById('profile-form');
+    const formData = new FormData(form);
+    
+    // Update node data object first
+    const updatedData = {
+        ...currentProfileNode.data,
+        notes: formData.get('notes') || '',
+        tags: formData.get('tags') || '',
+        realName: formData.get('realName') || '',
+        organization: formData.get('organization') || '',
+        location: formData.get('location') || ''
+    };
+    
+    // Update node with new data
+    const updates = {
+        id: currentProfileNode.id,
+        label: formData.get('label') || currentProfileNode.label,
+        data: updatedData
+    };
+    
+    nodes.update(updates);
+    
+    // Get the updated node
+    currentProfileNode = nodes.get(currentProfileNode.id);
+    
+    // Update display
+    updateStatus('Profile saved');
+    saveGraphState(); // Save to localStorage
+    closeProfile();
+    showNodeDetails(currentProfileNode);
+    
+    // Update node list if it's visible
+    if (document.getElementById('panel-nodes').classList.contains('active')) {
+        updateNodeList();
+    }
+}
+
+// Close profile
+window.closeProfile = function() {
+    document.getElementById('node-profile').style.display = 'none';
+    document.getElementById('node-details').style.display = 'block';
+    currentProfileNode = null;
+}
+
+// Toggle hashed passwords inclusion
+window.toggleHashedPasswords = function(include) {
+    includeHashedPasswords = include;
+    updateStatus(include ? 'Hashed passwords will be included' : 'Hashed passwords will be excluded');
+    
+    // Save preference
+    localStorage.setItem('includeHashedPasswords', include);
+}
+
+// AI Suggestions toggle
+let aiSuggestionsEnabled = false;
+window.toggleAISuggestions = function(enabled) {
+    aiSuggestionsEnabled = enabled;
+    localStorage.setItem('aiSuggestionsEnabled', enabled.toString());
+    updateStatus(enabled ? 'AI suggestions enabled' : 'AI suggestions disabled');
+}
+
+// Toggle arrow display on edges
+window.toggleArrows = function(show) {
+    showArrows = show;
+    
+    // Update all existing edges
+    const allEdges = edges.get();
+    const updates = allEdges.map(edge => ({
+        id: edge.id,
+        arrows: {
+            to: {
+                enabled: showArrows,
+                scaleFactor: 0.8
+            }
+        }
+    }));
+    
+    edges.update(updates);
+    updateStatus(showArrows ? 'Arrows enabled' : 'Arrows disabled');
+}
+
+// Toggle query node display
+let autoShowQueries = false;
+
+window.toggleQueryDisplay = function(show) {
+    autoShowQueries = show;
+    
+    if (show) {
+        // Show search indicators (not query nodes by default)
+        drawSearchIndicators();
+        updateStatus('Query indicators enabled');
+    } else {
+        // Hide all query nodes AND search indicators
+        activeQueryNodes.forEach((searchData, queryNodeId) => {
+            hideQueryNode(queryNodeId, false);
+        });
+        clearSearchIndicators();
+        updateStatus('Query indicators disabled');
+    }
+}
+
+// Toggle highlighting of unsearched nodes
+let unsearchedHighlightActive = false;
+window.toggleUnsearchedHighlight = function(highlight) {
+    unsearchedHighlightActive = highlight;
+    
+    if (highlight) {
+        // Gray out everything except unsearched nodes
+        const allNodes = nodes.get();
+        const updates = [];
+        let unsearchedCount = 0;
+        
+        allNodes.forEach(node => {
+            const nodeKey = `${node.id}_${node.type}_${node.data?.value || node.data?.label || node.label}`;
+            const hasBeenSearched = nodeExpansionCache.has(nodeKey);
+            
+            if (hasBeenSearched) {
+                // Gray out searched nodes
+                updates.push({
+                    id: node.id,
+                    color: {
+                        background: '#222222',
+                        border: '#444444',
+                        highlight: {
+                            background: '#333333',
+                            border: '#555555'
+                        }
+                    },
+                    font: {
+                        color: '#666666',
+                        size: 12,
+                        face: 'monospace'
+                    }
+                });
+            } else {
+                // Keep unsearched nodes bright
+                const borderColor = getNodeColor(node.type);
+                updates.push({
+                    id: node.id,
+                    color: {
+                        background: '#000000',
+                        border: borderColor,
+                        highlight: {
+                            background: '#1a1a1a',
+                            border: borderColor
+                        }
+                    },
+                    font: {
+                        color: '#00ff00',
+                        size: 12,
+                        face: 'monospace'
+                    }
+                });
+                unsearchedCount++;
+            }
+        });
+        
+        nodes.update(updates);
+        updateStatus(`Highlighting ${unsearchedCount} unsearched nodes (${allNodes.length - unsearchedCount} searched)`);
+    } else {
+        // Restore normal colors
+        fixStuckFocus();
+        updateStatus('Normal view restored');
+    }
+}
+
+// Generate AI search suggestions for a node
+async function generateAISuggestions(nodeValue, nodeType) {
+    const prompt = `You are a cybersecurity investigator assistant. Given a piece of data from a breach, suggest search variations that might find related information in other breaches.
+
+Data: "${nodeValue}"
+Type: ${nodeType}
+
+Generate realistic variations that investigators commonly search for. For each suggestion, provide:
+1. The search query
+2. Brief reason why this variant might exist
+
+Rules:
+- For names: try firstname lastname, lastname firstname, no spaces, dots, underscores, nicknames, initials, middle names
+- For emails: Extract the username part, try it alone, with numbers, common variations. DO NOT suggest common domain names like yahoo.com, gmail.com etc as standalone searches - focus on the username part and unique patterns
+- For usernames: try with numbers, without numbers, common variations, email formats, year suffixes, prefixes
+- For phones: try different formats, country codes, without formatting, area codes only, last 4 digits
+- For passwords: try common patterns, year variations, similar strings, l33t speak variations
+- Generate EXACTLY 10 suggestions (be generous with variations)
+- Focus on practical variations that actually occur in breaches
+- Include both likely and creative variations
+- Be concise with explanations
+- IMPORTANT: Never suggest common email domains (gmail.com, yahoo.com, hotmail.com, etc.) as standalone searches
+
+Format as JSON array:
+[{"query": "search_term", "reason": "brief explanation", "type": "suggested_search_type"}]`;
+
+    try {
+        // Using Anthropic API with Claude Sonnet 4
+        const response = await fetch('/api/ai-suggestions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                model: 'claude-sonnet-4-20250514', // Claude Sonnet 4
+                max_tokens: 1000,
+                temperature: 0.7,
+                messages: [
+                    {
+                        role: 'user',
+                        content: prompt
+                    }
+                ]
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('AI service unavailable');
+        }
+
+        const data = await response.json();
+        
+        // Parse the response content as JSON
+        const content = data.content?.[0]?.text || data.response;
+        return JSON.parse(content);
+    } catch (error) {
+        console.error('AI suggestion error:', error);
+        
+        // Fallback: Generate basic suggestions locally
+        return generateFallbackSuggestions(nodeValue, nodeType);
+    }
+}
+
+// Fallback suggestions when AI is unavailable
+function generateFallbackSuggestions(value, type) {
+    const suggestions = [];
+    
+    switch (type) {
+        case 'name':
+            const nameParts = value.split(' ');
+            if (nameParts.length >= 2) {
+                const first = nameParts[0];
+                const last = nameParts[nameParts.length - 1];
+                suggestions.push(
+                    { query: nameParts.reverse().join(' '), reason: 'Last name first format', type: 'name' },
+                    { query: nameParts.join(''), reason: 'No spaces', type: 'username' },
+                    { query: nameParts.join('.'), reason: 'Dot separated', type: 'username' },
+                    { query: nameParts.join('_'), reason: 'Underscore separated', type: 'username' },
+                    { query: nameParts.join('-'), reason: 'Hyphen separated', type: 'username' },
+                    { query: first.toLowerCase() + last.toLowerCase(), reason: 'Lowercase concatenated', type: 'username' },
+                    { query: first[0] + last, reason: 'First initial + last name', type: 'username' },
+                    { query: first + last[0], reason: 'First name + last initial', type: 'username' },
+                    { query: last + first, reason: 'Reversed no space', type: 'username' },
+                    { query: first + '.' + last + '@gmail.com', reason: 'Common email pattern', type: 'email' }
+                );
+            }
+            break;
+            
+        case 'email':
+            const [username, domain] = value.split('@');
+            if (username && domain) {
+                // Only suggest domain if it's not a common one
+                const commonDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com', 'msn.com'];
+                const shouldSuggestDomain = !commonDomains.includes(domain.toLowerCase());
+                
+                suggestions.push(
+                    { query: username, reason: 'Username part only', type: 'username' },
+                    { query: username.replace(/[._]/g, ''), reason: 'Username without separators', type: 'username' },
+                    { query: username + '123', reason: 'Username with numbers', type: 'username' },
+                    { query: username + '2024', reason: 'Username with current year', type: 'username' },
+                    { query: username + '2023', reason: 'Username with last year', type: 'username' },
+                    { query: username + '_', reason: 'Username with underscore', type: 'username' },
+                    { query: username.toLowerCase(), reason: 'Lowercase username', type: 'username' },
+                    { query: username.charAt(0) + username.slice(1).toLowerCase(), reason: 'Capitalized username', type: 'username' },
+                    { query: value.replace('@', ''), reason: 'Email without @ symbol', type: 'username' }
+                );
+                
+                // Only add domain suggestion if it's unique/interesting
+                if (shouldSuggestDomain) {
+                    suggestions.push({ query: domain, reason: 'Unique domain', type: 'domain' });
+                } else {
+                    // Add another username variation instead
+                    suggestions.push({ query: username + '1', reason: 'Username with single digit', type: 'username' });
+                }
+            }
+            break;
+            
+        case 'username':
+            suggestions.push(
+                { query: value + '@gmail.com', reason: 'Gmail format', type: 'email' },
+                { query: value + '@yahoo.com', reason: 'Yahoo format', type: 'email' },
+                { query: value + '@hotmail.com', reason: 'Hotmail format', type: 'email' },
+                { query: value + '@outlook.com', reason: 'Outlook format', type: 'email' },
+                { query: value.replace(/\d+$/, ''), reason: 'Without trailing numbers', type: 'username' },
+                { query: value + '123', reason: 'Common number suffix', type: 'username' },
+                { query: value + '2024', reason: 'Current year suffix', type: 'username' },
+                { query: value + '_', reason: 'With underscore suffix', type: 'username' },
+                { query: value.toLowerCase(), reason: 'Lowercase variant', type: 'username' },
+                { query: value.toUpperCase(), reason: 'Uppercase variant', type: 'username' }
+            );
+            break;
+            
+        case 'phone':
+            const digits = value.replace(/\D/g, '');
+            if (digits.length >= 10) {
+                suggestions.push(
+                    { query: digits, reason: 'Digits only', type: 'phone' },
+                    { query: `+1${digits}`, reason: 'With country code', type: 'phone' },
+                    { query: digits.slice(-10), reason: 'Last 10 digits', type: 'phone' }
+                );
+            }
+            break;
+    }
+    
+    return suggestions.slice(0, 8); // Limit to 8 suggestions
+}
+
+// Toggle anchor state for a single node
+window.toggleAnchorNode = function(nodeId) {
+    selectedNodes.clear();
+    selectedNodes.add(nodeId);
+    anchorSelectedNodes();
+}
+
+// Anchor selected nodes
+window.anchorSelectedNodes = function() {
+    if (selectedNodes.size === 0) return;
+    
+    // Toggle anchor state for selected nodes
+    const allNodes = nodes.get();
+    const updates = [];
+    let anchorCount = 0;
+    let unanchorCount = 0;
+    
+    // Check if ALL selected nodes are already anchored
+    let allAlreadyAnchored = true;
+    selectedNodes.forEach(nodeId => {
+        if (!anchoredNodes.has(nodeId)) {
+            allAlreadyAnchored = false;
+        }
+    });
+    
+    if (allAlreadyAnchored) {
+        // If ALL are anchored, unanchor them all
+        selectedNodes.forEach(nodeId => {
+            anchoredNodes.delete(nodeId);
+            unanchorCount++;
+            
+            const node = nodes.get(nodeId);
+            if (node) {
+                const color = getNodeColor(node.type);
+                updates.push({
+                    id: nodeId,
+                    color: {
+                        background: '#000000',  // Back to black
+                        border: color,
+                        highlight: {
+                            background: '#1a1a1a',
+                            border: color
+                        }
+                    },
+                    font: {
+                        color: '#00ff00',  // Back to green text
+                        size: 12,  // FORCE back to normal size
+                        bold: false,  // Remove bold
+                        face: 'monospace'  // Ensure monospace
+                    }
+                });
+            }
+        });
+    } else {
+        // If ANY are not anchored, anchor ALL of them (keep already anchored ones anchored)
+        selectedNodes.forEach(nodeId => {
+            if (!anchoredNodes.has(nodeId)) {
+                // Only anchor the ones that aren't already anchored
+                anchoredNodes.add(nodeId);
+                anchorCount++;
+                
+                const node = nodes.get(nodeId);
+                if (node) {
+                    const typeColor = getNodeColor(node.type);
+                    updates.push({
+                        id: nodeId,
+                        color: {
+                            background: '#000000',  // Black background
+                            border: typeColor,
+                            highlight: {
+                                background: '#1a1a1a',
+                                border: typeColor
+                            }
+                        },
+                        font: {
+                            color: '#FFFFFF',  // White text only
+                            size: 18,  // 1.5x bigger font ONLY
+                            bold: true  // THICK/BOLD text only
+                        }
+                    });
+                }
+            }
+            // Already anchored nodes stay anchored - no changes needed
+        });
+    }
+    
+    // Apply updates
+    if (updates.length > 0) {
+        nodes.update(updates);
+        
+        // Force refresh to ensure changes take effect
+        setTimeout(() => {
+            network.redraw();
+        }, 100);
+    }
+    
+    // Update button text
+    const anchorBtn = document.getElementById('anchorSelectedBtn');
+    if (anchorCount > 0) {
+        updateStatus(`Anchored ${anchorCount} node${anchorCount > 1 ? 's' : ''}`);
+        anchorBtn.textContent = `Unanchor ${selectedNodes.size} Node${selectedNodes.size > 1 ? 's' : ''}`;
+    } else if (unanchorCount > 0) {
+        updateStatus(`Unanchored ${unanchorCount} node${unanchorCount > 1 ? 's' : ''}`);
+        anchorBtn.textContent = `Anchor ${selectedNodes.size} Node${selectedNodes.size > 1 ? 's' : ''}`;
+    }
+    
+    // Save state
+    saveGraphState();
+    
+    // Update anchored highlight if active
+    const highlightCheckbox = document.getElementById('highlightAnchored');
+    if (highlightCheckbox && highlightCheckbox.checked) {
+        toggleAnchoredHighlight(true);
+    }
+}
+
+// Toggle highlighting of anchored nodes
+window.toggleAnchoredHighlight = function(highlight) {
+    if (highlight) {
+        // Fade all non-anchored nodes and highlight anchored connections
+        const allNodes = nodes.get();
+        const nodeUpdates = [];
+        let anchoredCount = 0;
+        
+        allNodes.forEach(node => {
+            if (anchoredNodes.has(node.id)) {
+                // Anchored nodes in highlight mode - still just background change
+                anchoredCount++;
+                const typeColor = getNodeColor(node.type);
+                nodeUpdates.push({
+                    id: node.id,
+                    borderWidth: 2,  // NORMAL border even in highlight
+                    borderWidthSelected: 3,  // NORMAL selected border
+                    color: {
+                        background: '#000000',  // Black background
+                        border: typeColor,
+                        highlight: {
+                            background: '#1a1a1a',
+                            border: typeColor
+                        }
+                    },
+                    font: {
+                        color: '#FFFFFF'  // White text
+                    }
+                });
+            } else {
+                // Fade non-anchored nodes
+                nodeUpdates.push({
+                    id: node.id,
+                    borderWidth: 1,
+                    color: {
+                        background: '#0a0a0a',
+                        border: '#222222',
+                        highlight: {
+                            background: '#1a1a1a',
+                            border: '#333333'
+                        }
+                    },
+                    font: {
+                        color: '#333333',
+                        size: 10
+                    },
+                    shadow: false
+                });
+            }
+        });
+        
+        nodes.update(nodeUpdates);
+        
+        // Highlight edges between anchored nodes
+        const allEdges = edges.get();
+        const edgeUpdates = [];
+        
+        allEdges.forEach(edge => {
+            if (anchoredNodes.has(edge.from) && anchoredNodes.has(edge.to)) {
+                // Keep normal appearance for edges between anchored nodes
+                edgeUpdates.push({
+                    id: edge.id,
+                    width: edge.title && edge.title.includes('Same breach') ? 3 : 2,
+                    color: {
+                        color: '#00FF00',  // Keep normal green
+                        highlight: '#FF0000'
+                    },
+                    shadow: false
+                });
+            } else {
+                // Fade other edges
+                edgeUpdates.push({
+                    id: edge.id,
+                    width: 1,
+                    color: {
+                        color: '#222222',
+                        highlight: '#333333'
+                    },
+                    shadow: false
+                });
+            }
+        });
+        
+        edges.update(edgeUpdates);
+        updateStatus(`Highlighting ${anchoredCount} anchored nodes and their connections`);
+    } else {
+        // Restore normal view
+        fixStuckFocus();
+        
+        // Restore anchored nodes with ONLY background color changed
+        const updates = [];
+        anchoredNodes.forEach(nodeId => {
+            const node = nodes.get(nodeId);
+            if (node) {
+                const typeColor = getNodeColor(node.type);
+                updates.push({
+                    id: nodeId,
+                    color: {
+                        background: '#000000',  // Black background
+                        border: typeColor,
+                        highlight: {
+                            background: '#1a1a1a',
+                            border: typeColor
+                        }
+                    },
+                    font: {
+                        color: '#FFFFFF',  // White text only
+                        size: 18,  // 1.5x bigger font ONLY
+                        bold: true  // THICK/BOLD text only
+                    }
+                });
+            }
+        });
+        
+        if (updates.length > 0) {
+            nodes.update(updates);
+        }
+        
+        // Restore normal edge appearance
+        const allEdges = edges.get();
+        const edgeUpdates = allEdges.map(edge => ({
+            id: edge.id,
+            width: edge.title && edge.title.includes('Same breach') ? 3 : 2,
+            color: edge.color || { color: '#00ff00', highlight: '#ff0000' },
+            shadow: { enabled: false }
+        }));
+        
+        edges.update(edgeUpdates);
+        
+        updateStatus('Normal view restored');
+    }
+}
+
+// Show AI suggestions modal
+function showAISuggestionsModal(suggestions, originalNode) {
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 2000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    `;
+    
+    const content = document.createElement('div');
+    content.style.cssText = `
+        background: #000;
+        border: 2px solid #0f0;
+        padding: 20px;
+        max-width: 600px;
+        max-height: 80vh;
+        overflow-y: auto;
+        color: #0f0;
+        font-family: monospace;
+    `;
+    
+    // Get previously run searches for this node
+    const previousSearches = [];
+    nodeSearchQueries.forEach((searchData, searchKey) => {
+        if (searchData.sourceNode === originalNode.id) {
+            previousSearches.push({
+                query: searchData.query,
+                timestamp: searchData.timestamp,
+                results: searchData.results.length
+            });
+        }
+    });
+    
+    let html = `
+        <h3 style="color: #0f0; margin-bottom: 15px;">Search Variations for: ${escapeHtml(originalNode.label)}</h3>
+        <p style="color: #888; margin-bottom: 20px;">Select variations to search for:</p>
+    `;
+    
+    // Show previously run searches
+    if (previousSearches.length > 0) {
+        html += `
+            <div style="margin-bottom: 20px; padding: 10px; background: #001100; border: 1px solid #003300;">
+                <h4 style="color: #ffff00; margin: 0 0 10px 0;">Previously Run Searches:</h4>
+        `;
+        previousSearches.forEach(search => {
+            const date = new Date(search.timestamp).toLocaleString();
+            html += `
+                <div style="margin: 5px 0; padding: 5px; background: #000; border-left: 3px solid #666;">
+                    <span style="color: #888;">${escapeHtml(search.query)}</span> 
+                    <small style="color: #666;">(${search.results} results on ${date})</small>
+                </div>
+            `;
+        });
+        html += `</div>`;
+    }
+    
+    // AI suggestions
+    if (suggestions.length > 0) {
+        html += `<h4 style="color: #00ff00; margin: 10px 0;">AI Suggestions:</h4>`;
+        suggestions.forEach((suggestion, index) => {
+            html += `
+                <label style="display: block; margin: 10px 0; padding: 10px; border: 1px solid #333; cursor: pointer;">
+                    <input type="checkbox" id="suggestion-${index}" checked style="margin-right: 10px;">
+                    <strong style="color: ${getNodeColor(suggestion.type)}">${escapeHtml(suggestion.query)}</strong>
+                    <span style="color: #888; margin-left: 10px;">(${suggestion.type})</span>
+                    <br>
+                    <small style="color: #666; margin-left: 25px;">${escapeHtml(suggestion.reason)}</small>
+                </label>
+            `;
+        });
+    }
+    
+    // Custom variations section
+    html += `
+        <div style="margin-top: 20px; padding: 10px; background: #000011; border: 1px solid #000033;">
+            <h4 style="color: #66ff66; margin: 0 0 10px 0;">Add Custom Variations:</h4>
+            <div id="custom-variations">
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <input type="text" id="custom-query-0" placeholder="Enter search variation..." style="flex: 1; background: #000; color: #0f0; border: 1px solid #0f0; padding: 5px; font-family: monospace;">
+                    <select id="custom-type-0" style="background: #000; color: #0f0; border: 1px solid #0f0; padding: 5px;">
+                        <option value="">Auto</option>
+                        <option value="email">Email</option>
+                        <option value="username">Username</option>
+                        <option value="password">Password</option>
+                        <option value="phone">Phone</option>
+                        <option value="ip_address">IP</option>
+                        <option value="domain">Domain</option>
+                        <option value="name">Name</option>
+                    </select>
+                </div>
+            </div>
+            <button onclick="addCustomVariation()" style="padding: 5px 10px; margin-right: 10px;">Add Another</button>
+        </div>
+        
+        <div style="margin-top: 20px; display: flex; gap: 10px;">
+            <button onclick="executeAISuggestions()" style="flex: 1;">Search Selected</button>
+            <button onclick="cancelAISuggestions()" style="flex: 1;">Cancel</button>
+        </div>
+    `;
+    
+    content.innerHTML = html;
+    modal.appendChild(content);
+    document.body.appendChild(modal);
+    
+    // Store suggestions for execution
+    window.currentAISuggestions = suggestions;
+    window.currentOriginalNode = originalNode;
+}
+
+// Add custom variation input
+window.addCustomVariation = function() {
+    const container = document.getElementById('custom-variations');
+    const count = container.children.length;
+    
+    const newVariation = document.createElement('div');
+    newVariation.style.cssText = 'display: flex; gap: 10px; margin-bottom: 10px;';
+    newVariation.innerHTML = `
+        <input type="text" id="custom-query-${count}" placeholder="Enter search variation..." style="flex: 1; background: #000; color: #0f0; border: 1px solid #0f0; padding: 5px; font-family: monospace;">
+        <select id="custom-type-${count}" style="background: #000; color: #0f0; border: 1px solid #0f0; padding: 5px;">
+            <option value="">Auto</option>
+            <option value="email">Email</option>
+            <option value="username">Username</option>
+            <option value="password">Password</option>
+            <option value="phone">Phone</option>
+            <option value="ip_address">IP</option>
+            <option value="domain">Domain</option>
+            <option value="name">Name</option>
+        </select>
+        <button onclick="this.parentElement.remove()" style="background: #660000; color: #ff0000; border: 1px solid #ff0000; padding: 5px;">×</button>
+    `;
+    
+    container.appendChild(newVariation);
+}
+
+// Cancel AI suggestions modal
+window.cancelAISuggestions = function() {
+    const modal = document.querySelector('[style*="position: fixed"]');
+    if (modal) {
+        modal.remove();
+    }
+    updateStatus('AI suggestions cancelled');
+}
+
+// Execute selected AI suggestions
+window.executeAISuggestions = function() {
+    const modal = document.querySelector('[style*="position: fixed"]');
+    const selectedSuggestions = [];
+    
+    // Get AI suggestions
+    if (window.currentAISuggestions) {
+        window.currentAISuggestions.forEach((suggestion, index) => {
+            const checkbox = document.getElementById(`suggestion-${index}`);
+            if (checkbox && checkbox.checked) {
+                selectedSuggestions.push(suggestion);
+            }
+        });
+    }
+    
+    // Get custom variations
+    const customContainer = document.getElementById('custom-variations');
+    if (customContainer) {
+        for (let i = 0; i < customContainer.children.length; i++) {
+            const queryInput = document.getElementById(`custom-query-${i}`);
+            const typeSelect = document.getElementById(`custom-type-${i}`);
+            
+            if (queryInput && queryInput.value.trim()) {
+                selectedSuggestions.push({
+                    query: queryInput.value.trim(),
+                    type: typeSelect ? typeSelect.value : '',
+                    reason: 'Custom user variation'
+                });
+            }
+        }
+    }
+    
+    modal.remove();
+    
+    if (selectedSuggestions.length === 0) {
+        updateStatus('No variations selected');
+        return;
+    }
+    
+    updateStatus(`Searching for ${selectedSuggestions.length} AI suggestions...`);
+    
+    // Execute searches sequentially with delay
+    let searchIndex = 0;
+    const executeNext = async () => {
+        if (searchIndex >= selectedSuggestions.length) {
+            updateStatus(`Completed ${selectedSuggestions.length} AI-suggested searches`);
+            return;
+        }
+        
+        const suggestion = selectedSuggestions[searchIndex];
+        updateStatus(`AI Search ${searchIndex + 1}/${selectedSuggestions.length}: ${suggestion.query}`);
+        
+        await performSearch(suggestion.query, suggestion.type, window.currentOriginalNode.id);
+        
+        searchIndex++;
+        setTimeout(executeNext, 1000); // 1 second delay between searches
+    };
+    
+    executeNext();
+}
+
+// Chat interface functionality
+let chatHistory = [];
+// Update chat input to show selected nodes
+function updateChatInputWithSelection() {
+    const chatInput = document.getElementById('chat-input');
+    if (!chatInput) return;
+    
+    if (selectedNodes.size === 0) {
+        chatInput.placeholder = "Ask AI about connections, patterns, or observations...";
+        chatInput.value = chatInput.value.replace(/^Selected: [^:]+: /, '');
+    } else {
+        const selectedLabels = Array.from(selectedNodes).map(nodeId => {
+            const node = nodes.get(nodeId);
+            return node ? node.label : nodeId;
+        });
+        
+        const selectionText = selectedLabels.length === 1 
+            ? selectedLabels[0] 
+            : `${selectedLabels.length} nodes (${selectedLabels.slice(0, 2).join(', ')}${selectedLabels.length > 2 ? '...' : ''})`;
+            
+        chatInput.placeholder = `Ask about selected: ${selectionText}`;
+        
+        // Add selection prefix to input if user hasn't typed yet
+        if (!chatInput.value || chatInput.value.startsWith('Selected: ')) {
+            chatInput.value = `Selected: ${selectionText}: `;
+        }
+    }
+}
+
+// Toggle chat visibility
+window.toggleChatVisibility = function() {
+    const chatContainer = document.getElementById('ai-chat-container');
+    const toggleButton = document.getElementById('toggle-chat');
+    
+    if (chatContainer.style.height === '0px' || chatContainer.style.display === 'none') {
+        chatContainer.style.height = '200px';
+        chatContainer.style.display = 'flex';
+        toggleButton.textContent = 'Hide';
+    } else {
+        chatContainer.style.height = '0px';
+        chatContainer.style.display = 'none';
+        toggleButton.textContent = 'Show';
+    }
+}
+
+// Send chat message
+window.sendChatMessage = async function() {
+    const input = document.getElementById('chat-input');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    // Add user message to chat
+    addChatMessage('user', message);
+    input.value = '';
+    
+    // Show typing indicator
+    addChatMessage('ai', 'Analyzing graph data...', true);
+    
+    try {
+        // Generate graph context for AI
+        const graphContext = generateGraphContext();
+        
+        // Send to AI
+        const response = await getChatResponse(message, graphContext);
+        
+        // Remove typing indicator and add AI response
+        removeChatMessage();
+        addChatMessage('ai', response);
+        
+    } catch (error) {
+        removeChatMessage();
+        addChatMessage('ai', `Error: ${error.message}. Please check the console for details.`);
+        console.error('Chat error:', error);
+    }
+}
+
+// Add message to chat
+function addChatMessage(sender, message, isTyping = false) {
+    const chatMessages = document.getElementById('chat-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.style.cssText = `
+        margin-bottom: 10px;
+        padding: 8px;
+        border-radius: 4px;
+        ${sender === 'user' ? 
+            'background-color: #001100; border-left: 3px solid #00ff00; margin-left: 20px;' : 
+            'background-color: #000011; border-left: 3px solid #0088ff; margin-right: 20px;'
+        }
+        ${isTyping ? 'opacity: 0.7; font-style: italic;' : ''}
+    `;
+    
+    const senderSpan = document.createElement('span');
+    senderSpan.style.cssText = `
+        font-weight: bold;
+        color: ${sender === 'user' ? '#00ff00' : '#0088ff'};
+        font-size: 10px;
+        display: block;
+        margin-bottom: 5px;
+    `;
+    senderSpan.textContent = sender === 'user' ? 'YOU' : 'AI ASSISTANT';
+    
+    const messageSpan = document.createElement('span');
+    messageSpan.style.color = '#cccccc';
+    messageSpan.textContent = message;
+    
+    messageDiv.appendChild(senderSpan);
+    messageDiv.appendChild(messageSpan);
+    
+    if (isTyping) {
+        messageDiv.id = 'typing-indicator';
+    }
+    
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Remove last message (for typing indicator)
+function removeChatMessage() {
+    const typingIndicator = document.getElementById('typing-indicator');
+    if (typingIndicator) {
+        typingIndicator.remove();
+    }
+}
+
+// Generate graph context for AI
+function generateGraphContext() {
+    const allNodes = nodes.get();
+    const allEdges = edges.get();
+    
+    // Filter to only visible (non-hidden) nodes
+    const visibleNodes = allNodes.filter(node => !node.hidden);
+    const visibleEdges = allEdges.filter(edge => !edge.hidden);
+    
+    // Summarize visible nodes by type
+    const nodesByType = {};
+    visibleNodes.forEach(node => {
+        if (!nodesByType[node.type]) {
+            nodesByType[node.type] = [];
+        }
+        nodesByType[node.type].push({
+            label: node.label,
+            breach: node.data?.breach,
+            hasBeenSearched: nodeExpansionCache.has(`${node.id}_${node.type}_${node.data?.value || node.data?.label}`)
+        });
+    });
+    
+    // Summarize connections by breach (only for visible nodes)
+    const breachSummary = {};
+    breachConnections.forEach((nodeIds, breachName) => {
+        const visibleNodeIds = nodeIds.filter(nodeId => {
+            const node = nodes.get(nodeId);
+            return node && !node.hidden;
+        });
+        
+        if (visibleNodeIds.length > 0) {
+            const nodeTypes = new Set();
+            visibleNodeIds.forEach(nodeId => {
+                const node = nodes.get(nodeId);
+                if (node) nodeTypes.add(node.type);
+            });
+            breachSummary[breachName] = {
+                nodeCount: visibleNodeIds.length,
+                types: Array.from(nodeTypes)
+            };
+        }
+    });
+    
+    // Add selected node details if any nodes are selected
+    const selectedNodeDetails = [];
+    if (selectedNodes.size > 0) {
+        Array.from(selectedNodes).forEach(nodeId => {
+            const node = nodes.get(nodeId);
+            if (node && !node.hidden) {
+                // Get connected nodes
+                const connectedEdges = edges.get({
+                    filter: edge => (edge.from === nodeId || edge.to === nodeId) && !edge.hidden
+                });
+                
+                const connectedLabels = [];
+                connectedEdges.forEach(edge => {
+                    const connectedId = edge.from === nodeId ? edge.to : edge.from;
+                    const connectedNode = nodes.get(connectedId);
+                    if (connectedNode && !connectedNode.hidden) {
+                        connectedLabels.push(`${connectedNode.type}: ${connectedNode.label}`);
+                    }
+                });
+                
+                selectedNodeDetails.push({
+                    id: nodeId,
+                    type: node.type,
+                    label: node.label,
+                    value: node.data?.value || node.label,
+                    breach: node.data?.breach,
+                    notes: node.data?.notes,
+                    variations: node.data?.variations || [],
+                    connections: connectedLabels,
+                    hasBeenSearched: nodeExpansionCache.has(`${node.id}_${node.type}_${node.data?.value || node.data?.label}`)
+                });
+            }
+        });
+    }
+    
+    return {
+        totalNodes: visibleNodes.length,
+        totalEdges: visibleEdges.length,
+        nodesByType: nodesByType,
+        breachSummary: breachSummary,
+        searchedNodeCount: nodeExpansionCache.size,
+        selectedNodes: selectedNodeDetails
+    };
+}
+
+// Get AI chat response
+async function getChatResponse(userMessage, graphContext) {
+    let systemPrompt = `You are a cybersecurity investigator's AI assistant analyzing breach data connections.
+
+Current graph state (visible nodes only):
+- Total visible nodes: ${graphContext.totalNodes}
+- Total visible connections: ${graphContext.totalEdges}
+- Nodes searched/expanded: ${graphContext.searchedNodeCount}
+
+Node types and counts:
+${Object.entries(graphContext.nodesByType).map(([type, nodes]) => 
+    `- ${type}: ${nodes.length} (${nodes.filter(n => n.hasBeenSearched).length} searched)`
+).join('\n')}
+
+Breach data summary:
+${Object.entries(graphContext.breachSummary).map(([breach, info]) => 
+    `- ${breach}: ${info.nodeCount} items (${info.types.join(', ')})`
+).join('\n')}`;
+
+    // Add selected node details if any are selected
+    if (graphContext.selectedNodes && graphContext.selectedNodes.length > 0) {
+        systemPrompt += `\n\nCURRENTLY SELECTED NODES (${graphContext.selectedNodes.length}):`;
+        graphContext.selectedNodes.forEach((node, index) => {
+            systemPrompt += `\n${index + 1}. ${node.type.toUpperCase()}: "${node.label}"`;
+            if (node.breach) systemPrompt += `\n   - Found in breach: ${node.breach}`;
+            if (node.notes) systemPrompt += `\n   - Notes: ${node.notes}`;
+            if (node.variations && node.variations.length > 0) {
+                systemPrompt += `\n   - Has ${node.variations.length} merged variation(s)`;
+            }
+            if (node.connections.length > 0) {
+                systemPrompt += `\n   - Connected to: ${node.connections.slice(0, 5).join(', ')}${node.connections.length > 5 ? '...' : ''}`;
+            }
+            systemPrompt += `\n   - Searched: ${node.hasBeenSearched ? 'Yes' : 'No'}`;
+        });
+        
+        systemPrompt += `\n\nThe user is asking about these selected nodes. Focus your analysis on them and their relationships.`;
+    }
+
+    systemPrompt += `\n\nProvide insights about:
+- Patterns you notice in the data
+- Potential investigation leads
+- Relationships between different data types
+- Anomalies or interesting connections
+- Suggested next steps for investigation
+
+Be concise but insightful. Focus on actionable intelligence.`;
+
+    if (graphContext.selectedNodes && graphContext.selectedNodes.length > 0) {
+        systemPrompt += ` Pay special attention to the selected nodes and their significance.`;
+    }
+
+    try {
+        const response = await fetch('/api/ai-chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                model: 'claude-opus-4-20250514',
+                max_tokens: 800,
+                temperature: 0.7,
+                messages: [
+                    {
+                        role: 'system',
+                        content: systemPrompt
+                    },
+                    ...chatHistory,
+                    {
+                        role: 'user',
+                        content: userMessage
+                    }
+                ]
+            })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('API Error Response:', errorText);
+            throw new Error(`AI service error (${response.status}): ${errorText}`);
+        }
+
+        const data = await response.json();
+        console.log('AI Response Data:', data);
+        const aiResponse = data.content?.[0]?.text || 'Sorry, I could not generate a response.';
+        
+        // Update chat history
+        chatHistory.push(
+            { role: 'user', content: userMessage },
+            { role: 'assistant', content: aiResponse }
+        );
+        
+        // Keep chat history manageable (last 10 exchanges)
+        if (chatHistory.length > 20) {
+            chatHistory = chatHistory.slice(-20);
+        }
+        
+        return aiResponse;
+        
+    } catch (error) {
+        throw error;
+    }
+}
+
+// Handle Enter key in chat input - moved to window load event
+function initializeChatInput() {
+    const chatInput = document.getElementById('chat-input');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+        console.log('Chat input initialized');
+    } else {
+        console.error('Chat input not found');
+    }
+}
+
+// Recreate breach connections manually
+window.recreateBreachConnections = function() {
+    // Clear existing breach connections
+    const existingBreachEdges = edges.get({
+        filter: edge => edge.title && edge.title.includes('Same breach:')
+    });
+    edges.remove(existingBreachEdges.map(e => e.id));
+    
+    // Rebuild from node data
+    const nodesByBreach = new Map();
+    const allNodes = nodes.get();
+    
+    allNodes.forEach(node => {
+        if (node.data && node.data.breach) {
+            const breach = node.data.breach;
+            if (!nodesByBreach.has(breach)) {
+                nodesByBreach.set(breach, []);
+            }
+            nodesByBreach.get(breach).push(node.id);
+        }
+    });
+    
+    // Clear and rebuild breachConnections map
+    breachConnections.clear();
+    
+    // Connect nodes from same breach
+    let totalConnections = 0;
+    nodesByBreach.forEach((nodeIds, breachName) => {
+        if (nodeIds.length >= 2) {
+            connectBreachNodes(nodeIds, breachName);
+            totalConnections += (nodeIds.length * (nodeIds.length - 1)) / 2;
+        }
+    });
+    
+    saveGraphState();
+    updateStatus(`Recreated connections for ${nodesByBreach.size} breaches`);
+    console.log(`Created ${totalConnections} potential connections across ${nodesByBreach.size} breaches`);
+}
+
+// Debug connections
+window.debugConnections = function() {
+    console.log('=== BREACH CONNECTIONS DEBUG ===');
+    console.log('Breach connections map:', breachConnections);
+    console.log('Total breaches tracked:', breachConnections.size);
+    
+    breachConnections.forEach((nodes, breach) => {
+        console.log(`Breach: ${breach} has ${nodes.length} nodes:`, nodes);
+    });
+    
+    console.log('Total edges:', edges.length);
+    const breachEdges = edges.get({
+        filter: edge => edge.title && edge.title.includes('Same breach')
+    });
+    console.log('Breach connection edges:', breachEdges.length);
+    
+    // Make all edges more visible temporarily
+    const allEdges = edges.get();
+    const updates = allEdges.map(edge => ({
+        id: edge.id,
+        width: 5,
+        color: {
+            color: '#ffff00',
+            inherit: false
+        }
+    }));
+    edges.update(updates);
+    
+    setTimeout(() => {
+        // Restore original colors
+        const restore = allEdges.map(edge => ({
+            id: edge.id,
+            width: edge.title && edge.title.includes('Same breach') ? 3 : 2,
+            color: edge.color
+        }));
+        edges.update(restore);
+    }, 3000);
+    
+    updateStatus(`Highlighting ${edges.length} edges for 3 seconds`);
+}
+
+// Switch panel tabs
+window.switchPanelTab = function(tabName) {
+    // Update tab buttons
+    document.querySelectorAll('.panel-tab').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    // Update tab content
+    document.querySelectorAll('.panel-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    document.getElementById(`panel-${tabName}`).classList.add('active');
+    
+    if (tabName === 'nodes') {
+        updateNodeList();
+    }
+}
+
+// Update node list
+let currentNodeFilter = 'all';
+function updateNodeList() {
+    const nodeList = document.getElementById('node-list');
+    const allNodes = nodes.get();
+    
+    // Filter nodes by type
+    const filteredNodes = currentNodeFilter === 'all' 
+        ? allNodes 
+        : allNodes.filter(node => node.type === currentNodeFilter);
+    
+    // Sort by label
+    filteredNodes.sort((a, b) => (a.label || '').localeCompare(b.label || ''));
+    
+    let html = '';
+    filteredNodes.forEach(node => {
+        const isVisible = !node.hidden;
+        const color = getNodeColor(node.type);
+        const fullValue = node.label || node.data?.value || '';
+        const isLong = fullValue.length > 100;
+        
+        html += `
+            <div class="node-item" onclick="selectNodeInGraph('${node.id}')">
+                <input type="checkbox" 
+                    ${isVisible ? 'checked' : ''} 
+                    onclick="toggleNodeVisibility('${node.id}', this.checked); event.stopPropagation();">
+                <div class="node-item-content">
+                    <span class="node-item-label ${isLong ? 'expandable' : ''}" 
+                          onclick="${isLong ? `toggleExpand(this); event.stopPropagation();` : ''}">
+                        ${escapeHtml(fullValue)}
+                    </span>
+                    ${isLong ? '<span class="expand-hint">[Click to toggle]</span>' : ''}
+                    <span class="node-item-type" style="background-color: ${color}; color: #000;">
+                        ${node.type}
+                    </span>
+                </div>
+            </div>
+        `;
+    });
+    
+    nodeList.innerHTML = html || '<p>No nodes to display</p>';
+}
+
+// Filter node list
+window.filterNodeList = function(type) {
+    currentNodeFilter = type;
+    
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    updateNodeList();
+}
+
+// Toggle node visibility
+window.toggleNodeVisibility = function(nodeId, visible) {
+    const node = nodes.get(nodeId);
+    if (node) {
+        nodes.update({
+            id: nodeId,
+            hidden: !visible
+        });
+        
+        // Also hide/show connected edges
+        const connectedEdges = edges.get({
+            filter: edge => edge.from === nodeId || edge.to === nodeId
+        });
+        
+        connectedEdges.forEach(edge => {
+            edges.update({
+                id: edge.id,
+                hidden: !visible
+            });
+        });
+    }
+}
+
+// Toggle all nodes (filtered by current type selection)
+window.toggleAllNodes = function(visible) {
+    const allNodes = nodes.get();
+    
+    // Filter nodes by current filter selection
+    const filteredNodes = currentNodeFilter === 'all' 
+        ? allNodes 
+        : allNodes.filter(node => node.type === currentNodeFilter);
+    
+    // Update only the filtered nodes
+    const updates = filteredNodes.map(node => ({
+        id: node.id,
+        hidden: !visible
+    }));
+    
+    nodes.update(updates);
+    
+    // Hide/show edges connected to these nodes
+    const filteredNodeIds = new Set(filteredNodes.map(n => n.id));
+    const connectedEdges = edges.get({
+        filter: edge => filteredNodeIds.has(edge.from) || filteredNodeIds.has(edge.to)
+    });
+    
+    const edgeUpdates = connectedEdges.map(edge => ({
+        id: edge.id,
+        hidden: !visible
+    }));
+    
+    edges.update(edgeUpdates);
+    
+    const action = visible ? 'Showing' : 'Hiding';
+    const typeText = currentNodeFilter === 'all' ? 'all nodes' : `all ${currentNodeFilter} nodes`;
+    updateStatus(`${action} ${filteredNodes.length} ${typeText}`);
+    
+    updateNodeList();
+}
+
+// Select node in graph
+window.selectNodeInGraph = function(nodeId) {
+    network.selectNodes([nodeId]);
+    network.focus(nodeId, {
+        scale: 1.5,
+        animation: true
+    });
+    
+    // Switch to details tab and show node details
+    document.querySelectorAll('.panel-tab')[0].click();
+    const node = nodes.get(nodeId);
+    if (node) {
+        showNodeDetails(node);
+    }
+}
+
+// Toggle expand/collapse for long values
+window.toggleExpand = function(element) {
+    element.classList.toggle('collapsed');
+}
+
+// Show visual feedback when a node has already been searched
+function showNodeSearchedFeedback(nodeId) {
+    const nodePosition = network.getPositions([nodeId])[nodeId];
+    if (!nodePosition) return;
+    
+    // Convert network coordinates to DOM coordinates
+    const domPosition = network.canvasToDOM(nodePosition);
+    
+    // Create checkmark element
+    const checkmark = document.createElement('div');
+    checkmark.innerHTML = '✅';
+    checkmark.style.cssText = `
+        position: absolute;
+        left: ${domPosition.x}px;
+        top: ${domPosition.y - 30}px;
+        font-size: 24px;
+        z-index: 1000;
+        animation: fadeInOut 2s ease-in-out;
+        pointer-events: none;
+    `;
+    
+    // Add to the network container
+    const networkContainer = document.getElementById('network');
+    networkContainer.appendChild(checkmark);
+    
+    // Remove after animation
+    setTimeout(() => {
+        checkmark.remove();
+    }, 2000);
+}
+
+// Initialize header auto-hide functionality
+function initializeHeaderAutoHide() {
+    const header = document.getElementById('header');
+    let hideTimeout;
+    let isMouseOverHeader = false;
+    
+    // Auto-hide after 3 seconds of inactivity
+    function startHideTimer() {
+        clearTimeout(hideTimeout);
+        hideTimeout = setTimeout(() => {
+            if (!isMouseOverHeader) {
+                header.classList.add('minimized');
+            }
+        }, 3000);
+    }
+    
+    // Show header when mouse is at top of screen
+    document.addEventListener('mousemove', (e) => {
+        if (e.clientY <= 50) {
+            header.classList.remove('minimized');
+            startHideTimer();
+        }
+    });
+    
+    // Keep header visible when mouse is over it
+    header.addEventListener('mouseenter', () => {
+        isMouseOverHeader = true;
+        header.classList.remove('minimized');
+        clearTimeout(hideTimeout);
+    });
+    
+    header.addEventListener('mouseleave', () => {
+        isMouseOverHeader = false;
+        startHideTimer();
+    });
+    
+    // Keep header visible when typing in search
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('focus', () => {
+        header.classList.remove('minimized');
+        clearTimeout(hideTimeout);
+    });
+    
+    searchInput.addEventListener('blur', () => {
+        startHideTimer();
+    });
+    
+    // Start the timer initially
+    startHideTimer();
+}
+
+// Initialize sidebar resizing
+function initializeSidebarResize() {
+    const infoPanel = document.getElementById('info-panel');
+    let isResizing = false;
+    let startX = 0;
+    let startWidth = 0;
+    
+    // Create resize handle
+    const resizeHandle = document.createElement('div');
+    resizeHandle.style.cssText = `
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 6px;
+        cursor: ew-resize;
+        z-index: 10;
+    `;
+    
+    infoPanel.style.position = 'relative';
+    infoPanel.appendChild(resizeHandle);
+    
+    resizeHandle.addEventListener('mousedown', (e) => {
+        isResizing = true;
+        startX = e.clientX;
+        startWidth = parseInt(document.defaultView.getComputedStyle(infoPanel).width, 10);
+        document.body.style.cursor = 'ew-resize';
+        e.preventDefault();
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+        if (!isResizing) return;
+        const newWidth = startWidth - (e.clientX - startX);
+        infoPanel.style.width = Math.min(Math.max(newWidth, 200), window.innerWidth * 0.5) + 'px';
+    });
+    
+    document.addEventListener('mouseup', () => {
+        if (isResizing) {
+            isResizing = false;
+            document.body.style.cursor = '';
+            // Save the width preference
+            localStorage.setItem('infoPanelWidth', infoPanel.style.width);
+        }
+    });
+    
+    // Restore saved width
+    const savedWidth = localStorage.getItem('infoPanelWidth');
+    if (savedWidth) {
+        infoPanel.style.width = savedWidth;
+    }
+}
+
+// Initialize when page loads
+window.addEventListener('load', async () => {
+    // Load cache from disk first
+    const diskGraphState = await loadCacheFromStorage();
+    
+    // Load hashed password preference
+    const savedHashPref = localStorage.getItem('includeHashedPasswords');
+    if (savedHashPref !== null) {
+        includeHashedPasswords = savedHashPref === 'true';
+        document.getElementById('includeHashes').checked = includeHashedPasswords;
+    }
+    
+    // Load AI suggestions preference
+    const savedAIPref = localStorage.getItem('aiSuggestionsEnabled');
+    if (savedAIPref !== null) {
+        aiSuggestionsEnabled = savedAIPref === 'true';
+        document.getElementById('aiSuggestions').checked = aiSuggestionsEnabled;
+    }
+    
+    initializeGraph();
+    initializeChatInput();
+    
+    // Initialize sidebar resizing
+    initializeSidebarResize();
+    
+    // Initialize header auto-hide
+    initializeHeaderAutoHide();
+    
+    // Load saved graph state from disk
+    const graphLoaded = loadGraphState(diskGraphState);
+    
+    if (graphLoaded) {
+        // Draw search indicators if queries are enabled
+        if (autoShowQueries) {
+            setTimeout(() => {
+                drawSearchIndicators();
+            }, 500); // Wait for network to stabilize
+        }
+        // Always ensure breach connections exist
+        const breachEdges = edges.get({
+            filter: edge => edge.title && edge.title.includes('Same breach:')
+        });
+        
+        if (breachEdges.length === 0 && nodes.length > 0) {
+            // Auto-recreate connections if missing
+            const nodesByBreach = new Map();
+            const allNodes = nodes.get();
+            
+            allNodes.forEach(node => {
+                if (node.data && node.data.breach) {
+                    const breach = node.data.breach;
+                    if (!nodesByBreach.has(breach)) {
+                        nodesByBreach.set(breach, []);
+                    }
+                    nodesByBreach.get(breach).push(node.id);
+                }
+            });
+            
+            nodesByBreach.forEach((nodeIds, breachName) => {
+                if (nodeIds.length >= 2) {
+                    connectBreachNodes(nodeIds, breachName);
+                }
+            });
+            
+            saveGraphState();
+        }
+        
+        updateStatus(`Ready (Graph restored with ${nodes.length} nodes, ${searchCache.size} cached searches)`);
+    } else if (searchCache.size > 0) {
+        updateStatus(`Ready (${searchCache.size} cached searches loaded)`);
+    } else {
+        updateStatus('Ready');
+    }
+    
+    // Fix any stuck gray nodes after loading
+    setTimeout(() => {
+        fixStuckFocus();
+        removeSelfLoops();
+    }, 500);
+    
+    // Add CSS for context menu and cache view
+    const style = document.createElement('style');
+    style.textContent = `
+        .menu-item {
+            padding: 5px 10px;
+            cursor: pointer;
+            color: #0f0;
+        }
+        .menu-item:hover {
+            background: #0f0;
+            color: #000;
+        }
+        .cache-entry {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #003300;
+            background-color: #001100;
+            cursor: context-menu;
+        }
+        .cache-entry:hover {
+            border-color: #00ff00;
+        }
+        .cache-entry strong {
+            color: #ffff00;
+        }
+        .cache-entry ul {
+            margin-top: 5px;
+            margin-left: 20px;
+        }
+        .cache-entry li {
+            color: #00ff00;
+            margin: 2px 0;
+        }
+        #cache-view h3 {
+            color: #ffff00;
+            margin-bottom: 10px;
+        }
+        #cache-view h4 {
+            color: #00ffff;
+            margin: 15px 0 10px 0;
+        }
+        #cache-view table th {
+            text-align: left;
+            padding: 5px;
+            border-bottom: 2px solid #00ff00;
+            color: #ffff00;
+        }
+        #cache-view table tr {
+            cursor: context-menu;
+        }
+        #cache-view table tr:hover {
+            background-color: #002200;
+        }
+        .node-item-label.expandable {
+            cursor: pointer;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .node-item-label.expandable.collapsed {
+            max-height: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+        .node-item-label.expandable.collapsed::after {
+            content: '...';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: #050505;
+            padding: 0 5px;
+        }
+        .expand-hint {
+            font-size: 9px;
+            color: #888;
+            margin-left: 5px;
+        }
+    `;
+    document.head.appendChild(style);
+});
+
+// Save node notes (keeping for backwards compatibility)
+window.saveNodeNotes = function() {
+    if (currentProfileNode) {
+        saveNodeDetails(currentProfileNode.id);
+    }
+}
+
+// Save all node details including primary value and variations
+window.saveNodeDetails = function(nodeId) {
+    const node = nodes.get(nodeId);
+    if (!node) return;
+    
+    const primaryValue = document.getElementById('node-primary-value')?.value;
+    const notes = document.getElementById('node-notes')?.value;
+    
+    const nodeData = { ...node.data };
+    
+    // Update primary value
+    if (primaryValue) {
+        nodeData.value = primaryValue;
+    }
+    
+    // Update variations if they exist
+    if (nodeData.variations) {
+        nodeData.variations.forEach((v, idx) => {
+            const variationInput = document.getElementById(`variation-${idx}`);
+            if (variationInput) {
+                v.value = variationInput.value;
+            }
+        });
+    }
+    
+    // Update notes
+    nodeData.notes = notes || '';
+    
+    // Update the node
+    nodes.update({
+        id: nodeId,
+        data: nodeData,
+        label: primaryValue || node.label
+    });
+    
+    saveGraphState();
+    updateStatus('Changes saved');
+}
+
+// Show unmerge options
+window.showUnmergeOptions = function(nodeId) {
+    const node = nodes.get(nodeId);
+    if (!node || !node.data.mergeHistory) return;
+    
+    const menu = document.createElement('div');
+    menu.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #000;
+        border: 2px solid #0f0;
+        padding: 20px;
+        z-index: 2000;
+        max-width: 400px;
+        max-height: 400px;
+        overflow-y: auto;
+    `;
+    
+    let html = `
+        <h3 style="color: #0f0; margin-bottom: 10px;">Unmerge Variations</h3>
+        <p style="color: #0f0; margin-bottom: 15px;">Select variations to unmerge:</p>
+    `;
+    
+    node.data.mergeHistory.forEach((merge, idx) => {
+        html += `
+            <label style="display: block; margin: 5px 0; color: #0f0;">
+                <input type="checkbox" id="unmerge-${idx}" value="${idx}">
+                ${escapeHtml(merge.label)} (${merge.type}) - ${merge.breach || 'Unknown'}
+            </label>
+        `;
+    });
+    
+    html += `
+        <div style="margin-top: 15px;">
+            <button onclick="performUnmerge('${nodeId}')">Unmerge Selected</button>
+            <button onclick="this.parentElement.parentElement.remove()">Cancel</button>
+        </div>
+    `;
+    
+    menu.innerHTML = html;
+    document.body.appendChild(menu);
+}
+
+// Perform unmerge
+window.performUnmerge = function(nodeId) {
+    const node = nodes.get(nodeId);
+    if (!node || !node.data.mergeHistory) return;
+    
+    const selectedIndices = [];
+    node.data.mergeHistory.forEach((merge, idx) => {
+        const checkbox = document.getElementById(`unmerge-${idx}`);
+        if (checkbox && checkbox.checked) {
+            selectedIndices.push(idx);
+        }
+    });
+    
+    if (selectedIndices.length === 0) {
+        alert('No variations selected');
+        return;
+    }
+    
+    // Process unmerges in reverse order to maintain indices
+    selectedIndices.sort((a, b) => b - a);
+    
+    selectedIndices.forEach(idx => {
+        const mergeInfo = node.data.mergeHistory[idx];
+        
+        // Recreate the original node
+        const restoredNode = {
+            id: mergeInfo.nodeId,
+            label: mergeInfo.label,
+            title: `${mergeInfo.type.toUpperCase()}: ${mergeInfo.value}`,
+            color: getNodeColor(mergeInfo.type),
+            data: {
+                value: mergeInfo.value,
+                label: mergeInfo.label,
+                breach: mergeInfo.breach,
+                breachData: mergeInfo.breachData,
+                notes: mergeInfo.notes
+            },
+            type: mergeInfo.type,
+            x: mergeInfo.position.x,
+            y: mergeInfo.position.y,
+            font: {
+                multi: 'html',
+                size: 12
+            }
+        };
+        
+        nodes.add(restoredNode);
+        
+        // Restore original connections
+        mergeInfo.originalConnections.forEach(edge => {
+            // Skip if it would create a connection to the merged node
+            if ((edge.from === nodeId && edge.to === mergeInfo.nodeId) ||
+                (edge.to === nodeId && edge.from === mergeInfo.nodeId)) {
+                return;
+            }
+            
+            // Check if edge already exists
+            const exists = edges.get({
+                filter: e => e.from === edge.from && e.to === edge.to
+            }).length > 0;
+            
+            if (!exists) {
+                edges.add(edge);
+            }
+        });
+        
+        // Remove from variations and merge history
+        const nodeData = { ...node.data };
+        nodeData.variations = nodeData.variations.filter(v => v.id !== mergeInfo.nodeId);
+        nodeData.mergeHistory.splice(idx, 1);
+        
+        // Update the node
+        const variationCount = nodeData.variations.length;
+        nodes.update({
+            id: nodeId,
+            data: nodeData,
+            label: node.label.replace(/ \[\+\d+\]/, '') + (variationCount > 0 ? ` [+${variationCount}]` : ''),
+            title: `${node.label}\n${variationCount} variation(s)`,
+            borderWidth: variationCount > 0 ? 3 : 1
+        });
+    });
+    
+    // Close the menu
+    document.querySelector('div[style*="position: fixed"]').remove();
+    
+    saveGraphState();
+    updateStatus(`Unmerged ${selectedIndices.length} variation(s)`);
+    
+    // Refresh node details if still selected
+    if (network.getSelectedNodes().includes(nodeId)) {
+        showNodeDetails(nodes.get(nodeId));
+    }
+}

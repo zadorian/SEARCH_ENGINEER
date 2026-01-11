@@ -1,0 +1,194 @@
+{
+  "site": {
+    "current_detected_engines": [
+      "GO",
+      "BI",
+      "BR",
+      "DD",
+      "YA",
+      "BA",
+      "EX",
+      "YC"
+    ],
+    "recommended_additions": ["QW", "ST", "BS"],
+    "rationale": "Add Qwant, Startpage and BareSearch for coverage and locale; EX already used for includeDomains."
+  },
+  "filetype": {
+    "current_detected_engines": [
+      "GO",
+      "BI",
+      "YA",
+      "DD",
+      "YE",
+      "BR",
+      "BA",
+      "PW",
+      "YC"
+    ],
+    "recommended_additions": ["BS"],
+    "rationale": "Add BareSearch files vertical; retain PublicWWW for code/file signatures."
+  },
+  "news": {
+    "current_detected_engines": ["ST", "QW", "NA", "GD"],
+    "recommended_additions": ["GO", "BI", "BS"],
+    "rationale": "Startpage/Qwant present; add BareSearch news and Google/Bing as web backups; NewsAPI/GDELT are primary."
+  },
+  "location": {
+    "current_detected_engines": ["QW", "ST"],
+    "recommended_additions": ["GO", "BI"],
+    "rationale": "Qwant/Startpage used for open web domain/site discovery; add GO/BI for enriched recall."
+  },
+  "image_search": {
+    "current_detected_engines": ["GO_IMG", "BR_IMG", "DD_IMG", "AR"],
+    "recommended_additions": [],
+    "rationale": "Covers API+scraper images and Archive.org images."
+  },
+  "video": {
+    "current_detected_engines": ["YT", "BR_VID", "DD_VID", "AR", "QW"],
+    "recommended_additions": [],
+    "rationale": "YouTube, Brave videos, DDG videos, Archive.org videos, Qwant videos."
+  },
+  "inurl": {
+    "current_detected_engines": ["BA", "YC"],
+    "recommended_additions": ["GO", "BI", "DD", "YA"],
+    "rationale": "Extend URL keyword search to core web engines for higher recall."
+  },
+  "title": {
+    "current_detected_engines": ["BA"],
+    "recommended_additions": ["GO", "BI", "YA"],
+    "rationale": "Add intitle support engines; Baidu already wired."
+  },
+  "proximity": {
+    "current_detected_engines": ["GO", "BI", "YA", "YC"],
+    "recommended_additions": [],
+    "rationale": "Native proximity supported on GO/BI/YA only."
+  },
+  "language": {
+    "current_detected_engines": ["GO", "BI", "BR", "YA", "YC"],
+    "recommended_additions": [],
+    "rationale": "Lang routing via supported engines."
+  },
+  "date": {
+    "current_detected_engines": [
+      "GO",
+      "BI",
+      "YA",
+      "BR",
+      "NA",
+      "GD",
+      "AR",
+      "YC"
+    ],
+    "recommended_additions": ["BS", "ST"],
+    "rationale": "Add BareSearch (time_range day/week/month/year) and Startpage (month/year presets)."
+  },
+  "NOT": {
+    "current_detected_engines": ["GO", "BI", "YA", "BR", "DD", "W"],
+    "recommended_additions": [],
+    "rationale": "Exclusion supported; WikiLeaks included for document filtering."
+  },
+  "or_search": {
+    "current_detected_engines": ["router"],
+    "recommended_additions": ["GO", "BI", "BR", "DD", "YA"],
+    "rationale": "OR fanout should use core web engines."
+  },
+  "academic": {
+    "current_detected_engines": [
+      "OA",
+      "CR",
+      "PM",
+      "AX",
+      "JS",
+      "NT",
+      "SG",
+      "MU"
+    ],
+    "recommended_additions": ["GO", "BI"],
+    "rationale": "Add web overlays for recall."
+  },
+  "author_search": {
+    "current_detected_engines": ["OA", "CR", "PM", "AX"],
+    "recommended_additions": ["GO", "BI"],
+    "rationale": "Augment author discovery with web engines."
+  },
+  "dataset": {
+    "current_detected_engines": ["HF", "OA", "CR"],
+    "recommended_additions": [],
+    "rationale": "HuggingFace + scholarly indices."
+  },
+  "event": {
+    "current_detected_engines": ["GD", "NA"],
+    "recommended_additions": ["GO", "BI"],
+    "rationale": "Add web coverage to event streams."
+  },
+  "blog": {
+    "current_detected_engines": ["GO", "BI", "BR"],
+    "recommended_additions": ["DD", "YA", "QW"],
+    "rationale": "Add alt engines for long\u2011tail blogs."
+  },
+  "review": {
+    "current_detected_engines": ["GO", "BI", "BR"],
+    "recommended_additions": ["DD", "YA", "QW"],
+    "rationale": "Broaden product/site review recall."
+  },
+  "edu": {
+    "current_detected_engines": ["GO", "BI", "BR", "OA", "CR", "PM", "AX"],
+    "recommended_additions": [],
+    "rationale": "Education set plus web overlays."
+  },
+  "medical": {
+    "current_detected_engines": ["PM", "GO", "BI", "BR"],
+    "recommended_additions": [],
+    "rationale": "PubMed primary with web corroboration."
+  },
+  "book": {
+    "current_detected_engines": ["AA", "LG", "OL", "GU"],
+    "recommended_additions": ["OA", "CR"],
+    "rationale": "Books/doc repos; add academic indices for metadata."
+  },
+  "reverse_image": {
+    "current_detected_engines": ["GO_IMG", "BR_IMG", "DD_IMG"],
+    "recommended_additions": [],
+    "rationale": "Reverse image via image engines."
+  },
+  "social_media": {
+    "current_detected_engines": ["FB", "SS"],
+    "recommended_additions": ["BS"],
+    "rationale": "Integrate BareSearch social category to supplement social discovery."
+  },
+  "person": {
+    "current_detected_engines": ["FB"],
+    "recommended_additions": ["GO", "BI"],
+    "rationale": "Web corroboration for people searches."
+  },
+  "product": {
+    "current_detected_engines": ["ST"],
+    "recommended_additions": ["GO", "BI", "BR"],
+    "rationale": "Startpage shopping; add web engines."
+  },
+  "forum": {
+    "current_detected_engines": ["BARE_FORUM"],
+    "recommended_additions": ["QW", "DD"],
+    "rationale": "Add Qwant/DDG for forum discovery."
+  },
+  "email": {
+    "current_detected_engines": ["OSINT"],
+    "recommended_additions": ["SS"],
+    "rationale": "Integrate SocialSearcher for email footprinting."
+  },
+  "address": {
+    "current_detected_engines": ["LOCAL"],
+    "recommended_additions": [],
+    "rationale": "Geocode/maps (local)."
+  },
+  "eye_d_search": {
+    "current_detected_engines": ["MIXED"],
+    "recommended_additions": ["GO", "BI", "BR", "SS"],
+    "rationale": "OSINT orchestrations benefit from web and social engines."
+  },
+  "domain_intel": {
+    "current_detected_engines": ["SITE_PIPELINE"],
+    "recommended_additions": ["PW", "GO", "BI", "AH"],
+    "rationale": "Add PublicWWW and web engines for code/backlink discovery; include Ahrefs for anchor/backlink analysis."
+  }
+}

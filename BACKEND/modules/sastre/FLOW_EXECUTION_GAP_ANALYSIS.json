@@ -1,0 +1,397 @@
+{
+  "metadata": {
+    "created": "2026-01-01",
+    "purpose": "Comprehensive gap analysis for end-to-end flow execution",
+    "status": "FOR_EVALUATION"
+  },
+
+  "designed_flow": {
+    "description": "TEMPLATE -> WATCHERS -> QUERY ON SUBJECT -> RESULTS -> GRID ROTATION -> K-U INTENT -> FILL SECTIONS -> IDENTIFY GAPS -> LOOP",
+    "steps": [
+      "1. TEMPLATE: Load genre + jurisdiction template (defines sections, slots, required data)",
+      "2. WATCHERS: Auto-create watchers for each hungry section/slot",
+      "3. QUERY: Execute initial subject query based on template requirements",
+      "4. RESULTS: Stream results to grid, tag with source metadata",
+      "5. GRID ROTATION: Rotate through NARRATIVE/SUBJECT/LOCATION/NEXUS modes",
+      "6. K-U INTENT: Derive intent (ENRICH/DISCOVER) from K-U quadrant per rotation",
+      "7. FILL SECTIONS: Watchers capture findings and fill their bound sections",
+      "8. IDENTIFY GAPS: Compare state vs template requirements, find hungry slots",
+      "9. CRAFT QUERY: Generate new queries based on gap coordinates",
+      "10. LOOP: Repeat 3-9 until sufficient or exhausted"
+    ]
+  },
+
+  "what_exists": {
+    "template_system": {
+      "status": "PARTIAL",
+      "files": [
+        "~/.claude/skills/edith-templates/scripts/route.py",
+        "~/.claude/skills/edith-templates/scripts/compose.py",
+        "~/.claude/skills/edith-templates/genres/*.md",
+        "~/.claude/skills/edith-templates/jurisdictions/*.md"
+      ],
+      "capabilities": [
+        "219 jurisdiction templates",
+        "33 genre templates (COMPANY_DD, PERSON_DD, etc.)",
+        "Placeholder syntax: [SUBJECT], [JURISDICTION], [DATE]",
+        "IF-THEN conditionals: [IF CLEAN:], [IF ISSUES:]",
+        "Section routing based on genre + jurisdiction"
+      ],
+      "missing": [
+        "No 'template:genre:jurisdiction' operator to activate",
+        "No binding between template sections and SASTRE watchers",
+        "Template remains MCP tool, not integrated with executor"
+      ]
+    },
+
+    "watcher_system": {
+      "status": "MOSTLY_COMPLETE",
+      "files": [
+        "SASTRE/bridges.py (WatcherBridge - 2800+ lines)",
+        "SASTRE/executor.py (watcher operators)"
+      ],
+      "capabilities": [
+        "Create watchers: #note => +#w",
+        "Delete watchers: -#w:{id}",
+        "Toggle watchers: ~#w:{id}",
+        "Event watchers: +#w:evt:{type}",
+        "Topic watchers: +#w:top:{topic}",
+        "Entity watchers: +#w:ent:{entity}",
+        "15 tRPC procedures for watcher management",
+        "Finding streaming to watchers",
+        "parent_document_id tracking on watchers"
+      ],
+      "missing": [
+        "No auto-creation of watchers from template sections",
+        "No watcher-to-section binding (which watcher fills which section)",
+        "No fill_section_from_watcher() method"
+      ]
+    },
+
+    "ku_intent_system": {
+      "status": "COMPLETE",
+      "files": [
+        "SASTRE/intent_derivation.py (279 lines)",
+        "SASTRE/contracts.py (Intent enum, KUQuadrant)",
+        "SASTRE/grid/cognitive_engine.py"
+      ],
+      "capabilities": [
+        "K-U Matrix: {(T,T):VERIFY, (T,F):TRACE, (F,T):EXTRACT, (F,F):DISCOVER}",
+        "Intent derivation: ENRICH_SUBJECT, ENRICH_LOCATION, DISCOVER_SUBJECT, DISCOVER_LOCATION",
+        "Tactic mapping: SPEAR (focused), TRAP (balanced), NET (broad)",
+        "Engine recommendation: 'profile' for ENRICH, 'grid' for DISCOVER",
+        "Goal-aware intent override based on requirement tokens",
+        "Binary decision output (no probability framing)"
+      ]
+    },
+
+    "grid_rotation": {
+      "status": "COMPLETE",
+      "files": [
+        "SASTRE/grid/cognitive_engine.py",
+        "client/src/hooks/useGraphRotation.ts"
+      ],
+      "capabilities": [
+        "4-mode rotation: NARRATIVE, SUBJECT, LOCATION, NEXUS",
+        "_assess_narrative(), _assess_subject(), _assess_location(), _assess_nexus()",
+        "Frontend hook manages rotation state + caching",
+        "Rotation affects filtering and gap detection"
+      ]
+    },
+
+    "sufficiency_system": {
+      "status": "COMPLETE",
+      "files": [
+        "SASTRE/sufficiency.py",
+        "SASTRE/core/sufficiency.py"
+      ],
+      "capabilities": [
+        "5 structural constraints + semantic check",
+        "core_fields_populated, tasking_headers_addressed",
+        "no_high_weight_absences, disambiguation_resolved",
+        "surprising_ands_processed",
+        "should_stop_investigating() -> (bool, reason)"
+      ]
+    },
+
+    "gap_analysis": {
+      "status": "COMPLETE",
+      "files": [
+        "SASTRE/gap_analyzer.py",
+        "SASTRE/grid/gap_executor.py"
+      ],
+      "capabilities": [
+        "GapCoordinates dataclass with 3D + narrative dimensions",
+        "Gap classification by K-U quadrant",
+        "Priority calculation (0-100)",
+        "Gap executor resolves query templates"
+      ]
+    },
+
+    "query_construction": {
+      "status": "COMPLETE",
+      "files": [
+        "SASTRE/query/constructor.py",
+        "SASTRE/query_compiler.py"
+      ],
+      "capabilities": [
+        "QueryConstructor maps K-U quadrant to query shape",
+        "TRACE/EXTRACT/VERIFY/DISCOVER query templates",
+        "Supplementary query generation",
+        "IntentTranslator for operator selection"
+      ]
+    },
+
+    "investigation_loop": {
+      "status": "PARTIAL",
+      "files": [
+        "SASTRE/multi_agent_runner.py",
+        "SASTRE/orchestrator/thin.py"
+      ],
+      "capabilities": [
+        "While loop with max_iterations (default 10)",
+        "Phase delegation: ASSESS, EXECUTE, RESOLVE, CHECK",
+        "Sufficiency check terminates loop",
+        "K-U quadrant update per iteration (stubbed)"
+      ],
+      "missing": [
+        "Gap extraction from state not automatic",
+        "Gap ordering/prioritization not applied",
+        "Result->slot feeding pipeline missing",
+        "Tactic switching not adaptive",
+        "K-U transition logic stubbed",
+        "Loop escape hatch only uses max_iterations"
+      ]
+    }
+  },
+
+  "critical_gaps": {
+    "gap_1_template_activation": {
+      "description": "No way to activate a template and bind it to an investigation",
+      "current_state": "EDITH templates are MCP tools, not integrated with executor",
+      "what_needs_to_happen": [
+        "Operator to load template: template:genre:jurisdiction (no exclamation)",
+        "Parse template into section list with required fields",
+        "Create watcher per section with section binding",
+        "Initialize slot hunger based on template requirements"
+      ],
+      "proposed_operator": "template:company_dd:HU or template:person_dd:UK"
+    },
+
+    "gap_2_watcher_section_binding": {
+      "description": "Watchers exist but don't know which section they fill",
+      "current_state": "WatcherBridge has parent_document_id but no section_id",
+      "what_needs_to_happen": [
+        "Add section_id to watcher metadata",
+        "fill_section_from_watcher() method",
+        "Auto-stream findings to bound section content"
+      ],
+      "proposed_change": "Extend WatcherBridge with section binding"
+    },
+
+    "gap_3_automatic_gap_extraction": {
+      "description": "Gaps must be manually identified, not extracted from state",
+      "current_state": "gap_analyzer.py has classify/prioritize but no extract_from_state()",
+      "what_needs_to_happen": [
+        "identify_gaps_from_state(session) -> List[Gap]",
+        "Compare current state vs template requirements",
+        "Check hungry slots, empty sections, unresolved collisions"
+      ],
+      "proposed_operator": "gaps? or gaps?:#section - query current gaps"
+    },
+
+    "gap_4_result_slot_feeding": {
+      "description": "Query results don't automatically feed into entity slots",
+      "current_state": "PlanStep.feeds_slots exists but no feed_results_to_slots()",
+      "what_needs_to_happen": [
+        "Parse entities from query results",
+        "Match to hungry slots by attribute",
+        "Update entity properties",
+        "Track collisions when multiple values found"
+      ]
+    },
+
+    "gap_5_gap_ordering": {
+      "description": "Multiple gaps exist but no prioritization of which to resolve first",
+      "current_state": "calculate_priority() returns 0-100 but not used in loop",
+      "what_needs_to_happen": [
+        "order_gaps_by_priority() considering:",
+        "- Absence type (EXPECTED_NOT_FOUND > POSSIBLE)",
+        "- K-U quadrant (VERIFY most urgent)",
+        "- Narrative weight (section priority)",
+        "- Source exhaustion (deplete before moving on)"
+      ]
+    },
+
+    "gap_6_loop_orchestration": {
+      "description": "Investigation loop exists but lacks adaptive control",
+      "current_state": "multi_agent_runner.py has loop but K-U transitions stubbed",
+      "what_needs_to_happen": [
+        "K-U quadrant transition logic: DISCOVER->TRACE->VERIFY",
+        "Tactic switching: start balanced, focus if failing",
+        "Escape hatch: stop if 3 iterations with no progress",
+        "Source exhaustion: mark sources EMPTY after N hits"
+      ]
+    },
+
+    "gap_7_track_splitting": {
+      "description": "Watchers can't be assigned to separate tracks for parallel paths",
+      "current_state": "InvestigationPlan/PlanStep exist but no track management",
+      "what_needs_to_happen": [
+        "Track class with list of watchers",
+        "Split track when path diverges (e.g., UBO vs adverse media)",
+        "Merge/prune tracks based on findings",
+        "Each track has own sufficiency state"
+      ],
+      "proposed_operator": "track:split:name or track:merge:a:b"
+    },
+
+    "gap_8_conditional_flow": {
+      "description": "Flows can't branch based on findings",
+      "current_state": "IF-THEN in templates but not executable in SASTRE",
+      "what_needs_to_happen": [
+        "Conditional operator: IF #tag THEN ... ELSE ...",
+        "Evaluate tag presence/absence",
+        "Execute different operator chains based on condition"
+      ],
+      "proposed_operator": "IF #adverse_found THEN chain:escalation ELSE phase:writing"
+    }
+  },
+
+  "proposed_new_operators": {
+    "template_loading": {
+      "syntax": "template:genre:jurisdiction",
+      "examples": [
+        "template:company_dd:HU",
+        "template:person_dd:UK",
+        "template:asset_trace:CY"
+      ],
+      "action": "Load template, create section watchers, initialize hunger"
+    },
+    "gap_query": {
+      "syntax": "gaps? or gaps?:#section",
+      "examples": [
+        "gaps?",
+        "gaps?:#corporate_overview",
+        "gaps?:##high_priority"
+      ],
+      "action": "Return list of current gaps with K-U classification"
+    },
+    "sufficiency_check": {
+      "syntax": "sufficient?",
+      "examples": [
+        "sufficient?",
+        "sufficient?:#section",
+        "sufficient?:all"
+      ],
+      "action": "Return (bool, reason) for sufficiency state"
+    },
+    "phase_control": {
+      "syntax": "phase:name or =>phase:name",
+      "examples": [
+        "phase:investigating",
+        "phase:writing",
+        "=>phase:checking"
+      ],
+      "action": "Transition investigation phase"
+    },
+    "conditional_branching": {
+      "syntax": "IF condition THEN op1 ELSE op2",
+      "examples": [
+        "IF #adverse THEN phase:escalation ELSE phase:writing",
+        "IF #ubo_found THEN sufficient?:ownership ELSE chain:ubo"
+      ],
+      "action": "Evaluate condition, execute appropriate branch"
+    },
+    "foreach_iteration": {
+      "syntax": "foreach #tag => operator",
+      "examples": [
+        "foreach #officers => p?:#",
+        "foreach #subsidiaries => chu:#"
+      ],
+      "action": "Apply operator to each node with tag"
+    },
+    "track_management": {
+      "syntax": "track:action:name",
+      "examples": [
+        "track:split:ubo_path",
+        "track:merge:ubo_path:main",
+        "track:prune:dead_end"
+      ],
+      "action": "Manage parallel investigation tracks"
+    },
+    "source_query": {
+      "syntax": "sources? or sources?:##state",
+      "examples": [
+        "sources?:##unchecked",
+        "sources?:##exhausted",
+        "sources?:#registry"
+      ],
+      "action": "Query source exhaustion state"
+    }
+  },
+
+  "implementation_priority": {
+    "p0_must_have": [
+      "template:genre:jurisdiction - Activates the whole flow",
+      "gaps? - Enables loop iteration",
+      "sufficient? - Enables loop termination"
+    ],
+    "p1_high_value": [
+      "phase:name - Enables phase transitions",
+      "foreach #tag => op - Enables bulk entity processing",
+      "Watcher-to-section binding - Enables auto section fill"
+    ],
+    "p2_nice_to_have": [
+      "IF THEN ELSE - Conditional branching",
+      "track:split/merge - Parallel paths",
+      "sources?:##state - Source depletion"
+    ]
+  },
+
+  "infrastructure_changes_needed": {
+    "watcher_bridge": {
+      "file": "SASTRE/bridges.py",
+      "changes": [
+        "Add section_id to watcher metadata",
+        "Add fill_section_from_watcher() method",
+        "Add auto_create_from_template()"
+      ]
+    },
+    "executor": {
+      "file": "SASTRE/executor.py",
+      "changes": [
+        "Add template operator pattern and handler",
+        "Add gaps? operator pattern and handler",
+        "Add sufficient? operator pattern and handler",
+        "Add phase: operator pattern and handler"
+      ]
+    },
+    "gap_analyzer": {
+      "file": "SASTRE/gap_analyzer.py",
+      "changes": [
+        "Add identify_gaps_from_state(session) function",
+        "Add order_gaps_by_priority() function"
+      ]
+    },
+    "multi_agent_runner": {
+      "file": "SASTRE/multi_agent_runner.py",
+      "changes": [
+        "Implement _compute_ku_quadrant() properly",
+        "Add adaptive tactic switching",
+        "Add escape hatch for diminishing returns"
+      ]
+    },
+    "edith_integration": {
+      "files": [
+        "~/.claude/skills/edith-templates/SASTRE_INTEGRATION.md",
+        "New: SASTRE/template_loader.py"
+      ],
+      "changes": [
+        "Create template_loader.py to bridge EDITH->SASTRE",
+        "Parse template sections into watcher configs",
+        "Map template slots to entity hunger system"
+      ]
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "id": "",
+  "name": {
+    "value": "",
+    "variations": "",
+    "alias": "",
+    "source": ""
+  },
+  "node_class": "entity",
+  "type": "company",
+  "about": {
+    "company_number": "",
+    "identifier": {
+      "registration_number": "",
+      "tax_number": "",
+      "lei": "",
+      "other": "",
+      "comment": "Can be registration number, tax number, LEI, or other identifier",
+      "source": ""
+    },
+    "incorporation_date": "",
+    "jurisdiction": "",
+    "registered_address": {
+      "value": "",
+      "comment": "",
+      "source": ""
+    },
+    "website": {
+      "value": "",
+      "comment": "",
+      "source": ""
+    },
+    "contact_details": {
+      "phone": {
+        "value": "",
+        "comment": "",
+        "source": ""
+      },
+      "email": {
+        "value": "",
+        "comment": "",
+        "source": ""
+      },
+      "source": ""
+    },
+    "source": ""
+  },
+  "officers": [
+    {
+      "type": "director",
+      "name": "",
+      "details": "",
+      "source": ""
+    },
+    {
+      "type": "executive",
+      "name": "",
+      "details": "",
+      "source": ""
+    },
+    {
+      "type": "other",
+      "name": "",
+      "details": "",
+      "source": ""
+    }
+  ],
+  "officers_comment": "",
+  "ownership_structure": {
+    "shareholders": [
+      {
+        "name": "",
+        "entity_type": "person|company",
+        "nationality": "",
+        "residence": "",
+        "dob": "",
+        "company_number": "",
+        "details": "",
+        "source": ""
+      }
+    ],
+    "beneficial_owners": [
+      {
+        "name": "",
+        "entity_type": "person|company",
+        "nationality": "",
+        "residence": "",
+        "dob": "",
+        "company_number": "",
+        "details": "",
+        "source": ""
+      }
+    ],
+    "comment": "",
+    "source": ""
+  },
+  "financial_results": "",
+  "filings": [
+    {
+      "type": "",
+      "date": "",
+      "details": "",
+      "source": ""
+    }
+  ],
+  "assets": {
+    "property": {
+      "value": "",
+      "comment": "",
+      "source": ""
+    },
+    "vehicle": {
+      "value": "",
+      "comment": "",
+      "source": ""
+    },
+    "other": {
+      "value": "",
+      "comment": "",
+      "source": ""
+    },
+    "source": ""
+  },
+  "activity": "",
+  "compliance": {
+    "litigation": {
+      "source": ""
+    },
+    "regulatory": {
+      "summary": "",
+      "actions": "",
+      "source": ""
+    },
+    "reputation": {
+      "overview": "",
+      "source": ""
+    },
+    "other": {
+      "details": "",
+      "source": ""
+    },
+    "source": ""
+  },
+  "notes": ""
+}

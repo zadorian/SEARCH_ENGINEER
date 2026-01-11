@@ -1,0 +1,325 @@
+[
+  {
+    "code": "GO",
+    "name": "Google",
+    "requires_auth": true,
+    "category": "primary",
+    "status": "unknown",
+    "operators": ["date!", "filetype:", "site:", "lang:", "~N", "NOT"],
+    "scraper_based": false
+  },
+  {
+    "code": "BI",
+    "name": "Bing",
+    "requires_auth": true,
+    "category": "primary",
+    "status": "unknown",
+    "operators": ["date!", "filetype:", "site:", "lang:", "~N", "NOT"],
+    "scraper_based": false
+  },
+  {
+    "code": "BR",
+    "name": "Brave",
+    "requires_auth": true,
+    "category": "primary",
+    "status": "unknown",
+    "operators": ["filetype:", "site:", "lang:", "NOT"],
+    "scraper_based": false,
+    "min_interval_ms": 3000
+  },
+  {
+    "code": "DD",
+    "name": "DuckDuckGo",
+    "requires_auth": false,
+    "category": "primary(scraper)",
+    "status": "unknown",
+    "operators": ["exact", "filetype:", "site:", "NOT"],
+    "scraper_based": true
+  },
+  {
+    "code": "YA",
+    "name": "Yandex",
+    "requires_auth": false,
+    "category": "primary",
+    "status": "unknown",
+    "operators": ["~N", "site:", "lang:", "NOT"],
+    "scraper_based": true,
+    "geo_sensitive": true
+  },
+  {
+    "code": "YC",
+    "name": "YaCy",
+    "requires_auth": false,
+    "category": "primary",
+    "status": "unknown",
+    "operators": [
+      "\"\"",
+      "site:",
+      "inurl:",
+      "inlink:",
+      "filetype:",
+      "author:",
+      "tld:",
+      "keyword:",
+      "on:",
+      "from:",
+      "to:",
+      "NEAR",
+      "OR",
+      "-",
+      "/language/",
+      "/date",
+      "/location",
+      "/radius/",
+      "contentdom:",
+      "link:",
+      "collection:"
+    ],
+    "scraper_based": false,
+    "notes": "Supports protocol selectors (/http,/ftp,/smb,/file) and heuristic providers via heuristic:"
+  },
+  {
+    "code": "QW",
+    "name": "Qwant",
+    "requires_auth": false,
+    "category": "primary(scraper)",
+    "status": "unknown",
+    "operators": ["basic", "news", "videos", "images"],
+    "scraper_based": true,
+    "firecrawl_supported": true
+  },
+  {
+    "code": "BA",
+    "name": "Baidu",
+    "requires_auth": false,
+    "category": "primary(scraper)",
+    "status": "unknown",
+    "operators": ["filetype:", "inurl:", "intitle:"],
+    "scraper_based": true
+  },
+  {
+    "code": "EX",
+    "name": "Exa",
+    "requires_auth": true,
+    "category": "semantic",
+    "status": "unknown",
+    "operators": ["site:"],
+    "scraper_based": false
+  },
+  {
+    "code": "AR",
+    "name": "Archive.org",
+    "requires_auth": false,
+    "category": "archive",
+    "status": "unknown",
+    "operators": ["historic", "images", "videos"],
+    "scraper_based": false
+  },
+  {
+    "code": "NA",
+    "name": "NewsAPI",
+    "requires_auth": true,
+    "category": "news",
+    "status": "unknown",
+    "operators": ["date!"],
+    "scraper_based": false
+  },
+  {
+    "code": "GD",
+    "name": "GDELT",
+    "requires_auth": false,
+    "category": "news/events",
+    "status": "unknown",
+    "operators": ["date!", "historic"],
+    "scraper_based": false
+  },
+  {
+    "code": "PW",
+    "name": "PublicWWW",
+    "requires_auth": true,
+    "category": "code",
+    "status": "unknown",
+    "operators": ["filetype:"],
+    "scraper_based": false
+  },
+  {
+    "code": "SS",
+    "name": "SocialSearcher",
+    "requires_auth": true,
+    "category": "social",
+    "status": "unknown",
+    "operators": [],
+    "scraper_based": false
+  },
+  {
+    "code": "BO",
+    "name": "BoardReader",
+    "requires_auth": false,
+    "category": "forums",
+    "status": "unknown",
+    "operators": [],
+    "scraper_based": true
+  },
+  {
+    "code": "AL",
+    "name": "Aleph/OCCRP",
+    "requires_auth": true,
+    "category": "corporate/docs",
+    "status": "unknown",
+    "operators": [],
+    "scraper_based": false
+  },
+  {
+    "code": "HF",
+    "name": "HuggingFace",
+    "requires_auth": true,
+    "category": "datasets",
+    "status": "unknown",
+    "operators": [],
+    "scraper_based": false
+  },
+  {
+    "code": "W",
+    "name": "WikiLeaks",
+    "requires_auth": false,
+    "category": "docs",
+    "status": "unknown",
+    "operators": ["NOT"],
+    "scraper_based": false
+  },
+  {
+    "code": "OA",
+    "name": "OpenAlex",
+    "requires_auth": false,
+    "category": "academic",
+    "status": "unknown",
+    "operators": ["date!"],
+    "scraper_based": false
+  },
+  {
+    "code": "CR",
+    "name": "Crossref",
+    "requires_auth": false,
+    "category": "academic",
+    "status": "unknown",
+    "operators": ["date!"],
+    "scraper_based": false
+  },
+  {
+    "code": "PM",
+    "name": "PubMed",
+    "requires_auth": false,
+    "category": "academic",
+    "status": "unknown",
+    "operators": ["date!"],
+    "scraper_based": false
+  },
+  {
+    "code": "AX",
+    "name": "arXiv",
+    "requires_auth": false,
+    "category": "academic",
+    "status": "unknown",
+    "operators": ["date!"],
+    "scraper_based": false
+  },
+  {
+    "code": "JS",
+    "name": "JSTOR",
+    "requires_auth": false,
+    "category": "academic",
+    "status": "unknown",
+    "operators": ["date!"],
+    "scraper_based": false
+  },
+  {
+    "code": "NT",
+    "name": "Nature",
+    "requires_auth": false,
+    "category": "academic",
+    "status": "unknown",
+    "operators": ["date!"],
+    "scraper_based": false
+  },
+  {
+    "code": "SG",
+    "name": "SAGE",
+    "requires_auth": false,
+    "category": "academic",
+    "status": "unknown",
+    "operators": ["date!"],
+    "scraper_based": false
+  },
+  {
+    "code": "MU",
+    "name": "Project MUSE",
+    "requires_auth": false,
+    "category": "academic",
+    "status": "unknown",
+    "operators": ["date!"],
+    "scraper_based": false
+  },
+  {
+    "code": "OL",
+    "name": "OpenLibrary",
+    "requires_auth": false,
+    "category": "books",
+    "status": "unknown",
+    "operators": [],
+    "scraper_based": false
+  },
+  {
+    "code": "GU",
+    "name": "Gutenberg",
+    "requires_auth": false,
+    "category": "books",
+    "status": "unknown",
+    "operators": [],
+    "scraper_based": false
+  },
+  {
+    "code": "AA",
+    "name": "AnnasArchive",
+    "requires_auth": false,
+    "category": "books/docs",
+    "status": "unknown",
+    "operators": [],
+    "scraper_based": false
+  },
+  {
+    "code": "LG",
+    "name": "LibGen",
+    "requires_auth": false,
+    "category": "books/docs",
+    "status": "unknown",
+    "operators": [],
+    "scraper_based": false
+  },
+  {
+    "code": "GO_IMG",
+    "name": "Google Images",
+    "requires_auth": true,
+    "category": "images",
+    "status": "unknown",
+    "operators": [],
+    "scraper_based": false
+  },
+  {
+    "code": "BR_IMG",
+    "name": "Brave Images",
+    "requires_auth": true,
+    "category": "images",
+    "status": "unknown",
+    "operators": [],
+    "scraper_based": false
+  },
+  {
+    "code": "DD_IMG",
+    "name": "DDG Images",
+    "requires_auth": false,
+    "category": "images",
+    "status": "unknown",
+    "operators": [],
+    "scraper_based": true
+  }
+]

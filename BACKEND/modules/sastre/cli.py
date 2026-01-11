@@ -1,0 +1,958 @@
+#!/usr/bin/env python3
+import re
+"""
+SASTRE CLI - Interactive Autonomous Investigation System
+
+Conversational by default. Interrupt anytime. Review sections. Give commands.
+
+Usage:
+    python -m SASTRE.cli "Investigate John Smith"
+    python -m SASTRE.cli --review "Who owns Acme Corp?"   # Review each section
+    python -m SASTRE.cli --stream "Acme Corp"             # JSON stream mode (for frontend)
+"""
+
+import asyncio
+import argparse
+import logging
+import json
+import sys
+import os
+import tempfile
+import subprocess
+from pathlib import Path
+from typing import Optional, Dict, List, Any, Callable
+from datetime import datetime
+
+from .orchestrator.thin import ThinOrchestrator, InvestigationEvent
+
+# ANSI colors
+class C:
+    RESET = "\033[0m"
+    BOLD = "\033[1m"
+    DIM = "\033[2m"
+    RED = "\033[91m"
+    GREEN = "\033[92m"
+    YELLOW = "\033[93m"
+    BLUE = "\033[94m"
+    MAGENTA = "\033[95m"
+    CYAN = "\033[96m"
+    WHITE = "\033[97m"
+
+# IO Prefix Routing (p:, c:, e:, d:, t:, u:, cp:)
+# ─────────────────────────────────────────────────────────────────
+
+IO_PREFIX_MAP = {
+    'p': 'person',
+    'c': 'company',
+    'e': 'email',
+    'd': 'domain',
+    't': 'phone',
+    'u': 'username',
+    'cp': 'company_person',
+}
+
+def parse_io_prefix(query: str):
+    """
+    Check if query has IO prefix and extract entity_type + value.
+    Returns (entity_type, value) or (None, None).
+    """
+    query = query.strip()
+    # Check longer prefixes first (cp:)
+    for prefix in ['cp:', 'p:', 'c:', 'e:', 'd:', 't:', 'u:']:
+        if query.lower().startswith(prefix):
+            value = query[len(prefix):].strip()
+            if value:
+                entity_type = IO_PREFIX_MAP.get(prefix[:-1])
+                return (entity_type, value)
+    return (None, None)
+
+async def run_io_investigation(entity_type: str, value: str, project_id: str = 'default'):
+    """
+    Execute IO investigation via IOExecutor.
+    Returns result dict.
+    """
+    try:
+        import sys
+        if '/data' not in sys.path:
+            sys.path.insert(0, '/data')
+        
+        from INPUT_OUTPUT.matrix.io_cli import IOExecutor, IORouter
+        
+        router = IORouter()
+        executor = IOExecutor(router, project_id=project_id, dry_run=False)
+        
+        result = await executor.execute(entity_type=entity_type, value=value)
+        return result
+        
+    except Exception as e:
+        import traceback
+        return {
+            'error': str(e),
+            'traceback': traceback.format_exc(),
+            'entity_type': entity_type,
+            'value': value
+        }
+
+
+
+
+
+class InteractiveSASTRE:
+    """
+    Interactive SASTRE CLI with real-time conversation.
+
+    - Shows progress as investigation runs
+    - Accept commands anytime (type while running)
+    - Review sections before continuing
+    - Post-investigation commands
+    """
+
+    def __init__(
+        self,
+        project_id: str = "default",
+        max_iterations: int = 10,
+        genre: str = "due_diligence",
+        depth: str = "enhanced",
+        playbook_id: Optional[str] = None,
+        review_sections: bool = False,
+        verbose: bool = False,
+    ):
+        self.project_id = project_id
+        self.max_iterations = max_iterations
+        self.genre = genre
+        self.depth = depth
+        self.playbook_id = playbook_id
+        self.review_sections = review_sections
+        self.verbose = verbose
+
+        # State
+        self.orchestrator: Optional[ThinOrchestrator] = None
+        self.events: List[Dict] = []
+        self.findings: List[Dict] = []
+        self.sections: Dict[str, str] = {}
+        self.report_markdown: Optional[str] = None
+        self.current_section: Optional[str] = None
+        self.paused = False
+        self.user_context: List[str] = []
+        self.result: Optional[Dict] = None
+        self.running = False
+
+        # Commands
+        self.commands = {
+            "help": self._cmd_help,
+            "h": self._cmd_help,
+            "?": self._cmd_help,
+            "status": self._cmd_status,
+            "s": self._cmd_status,
+            "pause": self._cmd_pause,
+            "p": self._cmd_pause,
+            "continue": self._cmd_continue,
+            "c": self._cmd_continue,
+            "skip": self._cmd_skip,
+            "add": self._cmd_add,
+            "focus": self._cmd_focus,
+            "findings": self._cmd_findings,
+            "f": self._cmd_findings,
+            "sections": self._cmd_sections,
+            "export": self._cmd_export,
+            "eyed": self._cmd_eyed,
+            "quit": self._cmd_quit,
+            "q": self._cmd_quit,
+            "exit": self._cmd_quit,
+        }
+
+    def _convert_markdown_to_docx(self, markdown_text: str, output_path: str) -> Optional[str]:
+        """Convert markdown to a Sastre-style Word report via EDITH word generator."""
+        converter = Path("/data/EDITH/word_generator/markdown_to_docx.py")
+        template = Path("/data/EDITH/word_generator/Sastre_Report_Example.docx")
+
+        if not converter.exists():
+            return f"Converter not found: {converter}"
+        if not template.exists():
+            return f"Template not found: {template}"
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".md", delete=False, encoding="utf-8") as tmp:
+            tmp.write(markdown_text)
+            tmp_path = tmp.name
+
+        try:
+            cmd = ["python3", str(converter), tmp_path, output_path, str(template)]
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+            if result.returncode != 0:
+                return (result.stderr or result.stdout or "DOCX conversion failed").strip()
+            return None
+        except Exception as e:
+            return str(e)
+        finally:
+            try:
+                Path(tmp_path).unlink(missing_ok=True)
+            except Exception:
+                pass
+
+    def _print(self, msg: str, color: str = C.RESET):
+        """Print with color."""
+        print(f"{color}{msg}{C.RESET}")
+
+    def _print_event(self, event: InvestigationEvent):
+        """Pretty print an investigation event."""
+        phase = event.phase
+        action = event.action
+        status = event.status
+
+        # Phase colors
+        phase_colors = {
+            "routing": C.CYAN,
+            "complexity": C.MAGENTA,
+            "context": C.BLUE,
+            "execution": C.GREEN,
+            "analysis": C.YELLOW,
+            "writing": C.WHITE,
+            "validation": C.CYAN,
+            "complete": C.GREEN,
+            "error": C.RED,
+        }
+        # Use .value for enum comparison with string dict keys
+        phase_key = phase.value if hasattr(phase, 'value') else str(phase)
+        color = phase_colors.get(phase_key, C.WHITE)
+
+        # Status indicators
+        if status == "started":
+            indicator = "▶"
+        elif status == "completed":
+            indicator = "✓"
+        elif status == "failed":
+            indicator = "✗"
+            color = C.RED
+        else:
+            indicator = "•"
+
+        # Format message
+        msg = f"  {indicator} [{phase_key}] {action}"
+        # Check data dict for message (event.message doesn't exist)
+        message = event.data.get("message") or event.data.get("error") if event.data else None
+        if message:
+            msg += f" - {message}"
+
+        self._print(msg, color)
+
+        # Show data for important events
+        if event.data and self.verbose:
+            for k, v in event.data.items():
+                if isinstance(v, (str, int, float, bool)):
+                    self._print(f"      {k}: {v}", C.DIM)
+
+        # Track sections (use phase_key for string comparison)
+        if phase_key == "writing" and action == "section_complete":
+            section_name = event.data.get("section", "unknown")
+            section_content = event.data.get("content", "")
+            self.sections[section_name] = section_content
+            self.current_section = section_name
+
+        # Track findings
+        if event.data and "findings" in event.data:
+            self.findings.extend(event.data["findings"])
+
+    async def _prompt(self, msg: str = "> ") -> str:
+        """Async prompt for user input."""
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(None, lambda: input(f"{C.CYAN}{msg}{C.RESET}"))
+
+    async def _confirm(self, msg: str) -> bool:
+        """Ask yes/no confirmation."""
+        response = await self._prompt(f"{msg} [y/n]: ")
+        return response.lower() in ("y", "yes", "ok", "")
+
+    # ─────────────────────────────────────────────────────────────────
+    # Commands
+    # ─────────────────────────────────────────────────────────────────
+
+    async def _cmd_help(self, args: str = "") -> None:
+        """Show available commands."""
+        self._print("\n📚 SASTRE Commands:", C.BOLD)
+        self._print("""
+  help, h, ?     Show this help
+  status, s      Show investigation status
+  pause, p       Pause investigation
+  continue, c    Resume investigation
+  skip           Skip current section
+  add <text>     Add context/instruction for the agent
+  focus <topic>  Tell agent to focus on something
+  findings, f    Show current findings
+  sections       Show completed sections
+  eyed ...       Run EYE-D chain reaction (recursive OSINT)
+  export         Export current report
+  quit, q        Stop and exit
+        """, C.WHITE)
+
+    async def _cmd_status(self, args: str = "") -> None:
+        """Show current status."""
+        self._print("\nStatus:", C.BOLD)
+        self._print(f"  Running:    {'Yes' if self.running else 'No'}", C.WHITE)
+        self._print(f"  Paused:     {'Yes' if self.paused else 'No'}", C.WHITE)
+        self._print(f"  Events:     {len(self.events)}", C.WHITE)
+        self._print(f"  Findings:   {len(self.findings)}", C.WHITE)
+        self._print(f"  Sections:   {len(self.sections)}", C.WHITE)
+        if self.current_section:
+            self._print(f"  Current:    {self.current_section}", C.CYAN)
+        if self.user_context:
+            self._print(f"  Your notes: {len(self.user_context)}", C.GREEN)
+
+    async def _cmd_pause(self, args: str = "") -> None:
+        """Pause investigation."""
+        self.paused = True
+        self._print("⏸️  Paused. Type 'continue' to resume.", C.YELLOW)
+
+    async def _cmd_continue(self, args: str = "") -> None:
+        """Continue investigation."""
+        self.paused = False
+        self._print("▶️  Continuing...", C.GREEN)
+
+    async def _cmd_skip(self, args: str = "") -> None:
+        """Skip current section."""
+        if self.current_section:
+            self._print(f"⏭️  Skipping section: {self.current_section}", C.YELLOW)
+            # Signal orchestrator to skip (via user context)
+            self.user_context.append(f"[SKIP] Skip section: {self.current_section}")
+            self.paused = False
+        else:
+            self._print("Nothing to skip.", C.DIM)
+
+    async def _cmd_add(self, args: str = "") -> None:
+        """Add context for the agent."""
+        if args:
+            self.user_context.append(args)
+            self._print(f"Added: {args}", C.GREEN)
+        else:
+            self._print("Usage: add <your note or instruction>", C.YELLOW)
+
+    async def _cmd_focus(self, args: str = "") -> None:
+        """Tell agent to focus on something."""
+        if args:
+            self.user_context.append(f"[FOCUS] Pay special attention to: {args}")
+            self._print(f"🎯 Focus set: {args}", C.GREEN)
+        else:
+            self._print("Usage: focus <topic to focus on>", C.YELLOW)
+
+    async def _cmd_findings(self, args: str = "") -> None:
+        """Show current findings."""
+        if not self.findings:
+            self._print("No findings yet.", C.DIM)
+            return
+
+        self._print(f"\n📋 Findings ({len(self.findings)}):", C.BOLD)
+        for i, f in enumerate(self.findings[:20], 1):
+            source = f.get("source", "unknown")
+            content = f.get("content", str(f))[:100]
+            self._print(f"  {i}. [{source}] {content}", C.WHITE)
+
+        if len(self.findings) > 20:
+            self._print(f"  ... and {len(self.findings) - 20} more", C.DIM)
+
+    async def _cmd_sections(self, args: str = "") -> None:
+        """Show completed sections."""
+        if not self.sections:
+            self._print("No sections completed yet.", C.DIM)
+            return
+
+        self._print(f"\nSections ({len(self.sections)}):", C.BOLD)
+        for name, content in self.sections.items():
+            words = len(content.split())
+            self._print(f"  • {name} ({words} words)", C.WHITE)
+
+    async def _cmd_export(self, args: str = "") -> None:
+        """Export current report."""
+        if not self.sections and not self.report_markdown:
+            self._print("Nothing to export yet.", C.DIM)
+            return
+
+        filename = args or f"sastre_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
+
+        if self.report_markdown:
+            content = self.report_markdown
+        else:
+            content = f"# SASTRE Investigation Report\n\n"
+            content += f"Generated: {datetime.now().isoformat()}\n"
+            content += f"Project: {self.project_id}\n\n"
+            content += "---\n\n"
+
+            for name, text in self.sections.items():
+                content += f"## {name}\n\n{text}\n\n"
+
+        out_path = Path(filename).expanduser()
+        if out_path.suffix.lower() == ".docx":
+            err = self._convert_markdown_to_docx(content, str(out_path))
+            if err:
+                self._print(f"DOCX export failed: {err}", C.RED)
+                return
+        else:
+            out_path.write_text(content, encoding="utf-8")
+
+        self._print(f"Exported to: {out_path}", C.GREEN)
+
+
+    async def _cognito_chat(self, query: str) -> None:
+        """Chat with C0GN1T0 AI assistant."""
+        if not query:
+            self._print("Usage: cog: <your question>", C.YELLOW)
+            return
+        
+        self._print("Thinking...", C.CYAN)
+        
+        try:
+            import anthropic
+            client = anthropic.Anthropic()
+            
+            system = (
+                "You are C0GN1T0, SASTRE AI assistant for investigations. "
+                "Available operators: p:Name (person), c:Company, d:domain.com, "
+                "e:email, t:+phone, eyed <value> (recursive OSINT). Be concise."
+            )
+            
+            response = client.messages.create(
+                model="claude-sonnet-4-5-20250929",
+                max_tokens=1024,
+                system=system,
+                messages=[{"role": "user", "content": query}]
+            )
+            
+            answer = response.content[0].text
+            self._print("\nC0GN1T0:", C.BOLD)
+            self._print(answer, C.WHITE)
+            
+        except Exception as e:
+            self._print(f"Chat error: {e}", C.RED)
+
+    async def _cmd_eyed(self, args: str = "") -> None:
+        """
+        Run EYE-D recursive OSINT (chain reaction) and stage a report.
+
+        Usage:
+          eyed <value> [depth=2]
+          eyed phone <value> [depth=2]
+          eyed phone <v1> <v2> ... [depth=2]
+        """
+        tokens = [t for t in (args or "").strip().split() if t.strip()]
+        if not tokens:
+            self._print("Usage: eyed <value> [depth=2]  (default type=phone)", C.YELLOW)
+            return
+
+        start_type = "phone"
+        depth = 2
+
+        if tokens and tokens[0].lower() in ("email", "phone", "domain", "username", "linkedin"):
+            start_type = tokens[0].lower()
+            tokens = tokens[1:]
+
+        # Parse depth hints like depth=3 or depth 3
+        cleaned: List[str] = []
+        i = 0
+        while i < len(tokens):
+            tok = tokens[i]
+            if tok.lower().startswith("depth="):
+                try:
+                    depth = int(tok.split("=", 1)[1])
+                except Exception:
+                    pass
+                i += 1
+                continue
+            if tok.lower() == "depth" and i + 1 < len(tokens):
+                try:
+                    depth = int(tokens[i + 1])
+                except Exception:
+                    pass
+                i += 2
+                continue
+            cleaned.append(tok)
+            i += 1
+
+        if not cleaned:
+            self._print("No start values provided.", C.YELLOW)
+            return
+
+        self._print(f"🔎 Running EYE-D chain reaction ({start_type}, depth={depth}) on {len(cleaned)} value(s)...", C.CYAN)
+
+        try:
+            from SASTRE.bridges.eyed_osint import EyedOsintBridge
+            bridge = EyedOsintBridge(project_id=self.project_id)
+            chains = await bridge.chain_reaction_batch(
+                start_queries=cleaned,
+                start_type=start_type,
+                depth=depth,
+                project_id=self.project_id,
+                index_to_c1=True,
+                concurrency=1,
+            )
+            docs = [(f"EYE-D chain_reaction ({c.start_type}): {c.query}", c.result) for c in chains]
+            md = bridge.render_writeup(docs, include_raw=False)
+
+            # Re-title for SASTRE export context (keep single H1)
+            lines = md.splitlines()
+            if lines and lines[0].startswith("# "):
+                lines[0] = "# SASTRE OSINT Report (EYE-D)"
+            self.report_markdown = "\n".join(lines).rstrip() + "\n"
+
+            self._print("EYE-D report staged. Run: export /path/to/report.docx", C.GREEN)
+        except Exception as e:
+            self._print(f"EYE-D failed: {e}", C.RED)
+
+    async def _cmd_quit(self, args: str = "") -> None:
+        """Exit."""
+        self.running = False
+        self._print("Exiting...", C.YELLOW)
+
+    # ─────────────────────────────────────────────────────────────────
+    # Input handler (runs concurrently with investigation)
+    # ─────────────────────────────────────────────────────────────────
+
+    async def _handle_input(self):
+        """Handle user input while investigation runs."""
+        while self.running:
+            try:
+                # Non-blocking input check
+                loop = asyncio.get_event_loop()
+
+                # Use select on stdin for non-blocking
+                import select
+                if sys.stdin in select.select([sys.stdin], [], [], 0.1)[0]:
+                    line = sys.stdin.readline().strip()
+                    if line:
+                        await self._process_command(line)
+                else:
+                    await asyncio.sleep(0.1)
+            except EOFError:
+                break
+            except Exception:
+                await asyncio.sleep(0.1)
+
+    async def _process_command(self, line: str) -> None:
+        """Process a command or free-form input."""
+        parts = line.split(maxsplit=1)
+        cmd = parts[0].lower() if parts else ""
+        args = parts[1] if len(parts) > 1 else ""
+
+        # Handle cog: prefix - AI chat mode
+        if line.lower().startswith("cog:"):
+            query = line[4:].strip()
+            await self._cognito_chat(query)
+            return
+
+        # Handle operator syntax - start new investigation
+        if re.match(r"^[pcdetw]:", line.lower()):
+            self._print(f"Starting new investigation: {line}", C.CYAN)
+            await self.investigate(line)
+            return
+
+        if cmd in self.commands:
+            await self.commands[cmd](args)
+        else:
+            # Treat as context/instruction
+            self.user_context.append(line)
+            self._print(f"Noted: {line}", C.GREEN)
+
+    # ─────────────────────────────────────────────────────────────────
+    # Section review
+    # ─────────────────────────────────────────────────────────────────
+
+    async def _review_section(self, section: str, content: str) -> bool:
+        """Pause for user to review a section. Returns True to continue."""
+        self._print(f"\n{'─' * 60}", C.DIM)
+        self._print(f"📖 Section Complete: {section}", C.BOLD)
+        self._print(f"{'─' * 60}", C.DIM)
+
+        # Show preview
+        lines = content.split('\n')[:10]
+        for line in lines:
+            self._print(f"  {line[:80]}", C.WHITE)
+        if len(content.split('\n')) > 10:
+            self._print(f"  ... ({len(content.split())} words total)", C.DIM)
+
+        self._print(f"\n[Enter=continue, 'edit'=modify, 'skip'=skip, 'quit'=stop]", C.CYAN)
+
+        response = await self._prompt("Review: ")
+
+        if response.lower() in ("", "ok", "y", "yes", "continue", "c"):
+            return True
+        elif response.lower() in ("skip", "s"):
+            self._print("⏭️  Skipping...", C.YELLOW)
+            return True
+        elif response.lower() in ("quit", "q", "exit"):
+            self.running = False
+            return False
+        elif response.lower().startswith("edit"):
+            edit_instruction = response[4:].strip() or await self._prompt("What to change: ")
+            self.user_context.append(f"[EDIT {section}] {edit_instruction}")
+            self._print(f"✏️  Edit queued: {edit_instruction}", C.GREEN)
+            return True
+        else:
+            # Treat as additional context
+            self.user_context.append(f"[RE: {section}] {response}")
+            self._print(f"Noted for this section", C.GREEN)
+            return True
+
+    # ─────────────────────────────────────────────────────────────────
+    # Main investigation runner
+    # ─────────────────────────────────────────────────────────────────
+
+    async def investigate(self, tasking: str) -> Dict:
+        """Run interactive investigation."""
+        self.running = True
+
+        # CHECK FOR IO PREFIX - Route to IOExecutor instead of ThinOrchestrator
+        entity_type, io_value = parse_io_prefix(tasking)
+        if entity_type:
+            self._print("")
+            self._print("=" * 60, C.CYAN)
+            self._print("IO Investigation: " + entity_type.upper(), C.BOLD)
+            self._print("=" * 60, C.CYAN)
+            self._print("  Value:    " + io_value, C.WHITE)
+            self._print("  Project:  " + self.project_id, C.WHITE)
+            self._print("")
+            self._print("  Running IO pipeline...", C.DIM)
+            self._print("-" * 60, C.DIM)
+            self._print("")
+            
+            result = await run_io_investigation(entity_type, io_value, self.project_id)
+            
+            if result.get("error"):
+                self._print("Error: " + str(result["error"]), C.RED)
+            else:
+                modules = result.get("modules_run", [])
+                self._print("Modules executed: " + (", ".join(modules) if modules else "None"), C.GREEN)
+                
+                results = result.get("results", {})
+                for source, data in results.items():
+                    if isinstance(data, dict) and data.get("total", 0) > 0:
+                        self._print("  " + source + ": " + str(data.get("total", 0)) + " results", C.WHITE)
+                    elif isinstance(data, list) and len(data) > 0:
+                        self._print("  " + source + ": " + str(len(data)) + " results", C.WHITE)
+                
+                errors = result.get("errors", [])
+                for err in errors:
+                    self._print("  Warning: " + err, C.YELLOW)
+            
+            self._print("")
+            self._print("=" * 60, C.GREEN)
+            self._print("IO Investigation Complete", C.BOLD)
+            dur = result.get("duration_seconds", 0)
+            self._print("Duration: " + str(round(dur, 2)) + "s", C.WHITE)
+            self._print("=" * 60, C.GREEN)
+            
+            self.result = result
+            return result
+
+
+        # Header
+        self._print(f"\n{'═' * 60}", C.CYAN)
+        self._print(f"SASTRE Investigation", C.BOLD)
+        self._print(f"{'═' * 60}", C.CYAN)
+        self._print(f"  Tasking:  {tasking}", C.WHITE)
+        self._print(f"  Project:  {self.project_id}", C.WHITE)
+        self._print(f"  Genre:    {self.genre}", C.WHITE)
+        self._print(f"  Depth:    {self.depth}", C.WHITE)
+        if self.playbook_id:
+            self._print(f"  Playbook: {self.playbook_id}", C.WHITE)
+        self._print(f"\n  Type commands anytime (help for list)", C.DIM)
+        self._print(f"{'─' * 60}\n", C.DIM)
+
+        # Create orchestrator
+        self.orchestrator = ThinOrchestrator()
+        self.orchestrator._config = {
+            "project_id": self.project_id,
+            "max_iterations": self.max_iterations,
+            "genre": self.genre,
+            "depth": self.depth,
+            "playbook_id": self.playbook_id,
+        }
+
+        # Inject user context into orchestrator if available
+        if hasattr(self.orchestrator, 'user_context'):
+            self.orchestrator.user_context = self.user_context
+
+        try:
+            # Run investigation with streaming events
+            async for event in self.orchestrator.investigate_stream(tasking):
+                if not self.running:
+                    break
+
+                # Wait if paused
+                while self.paused and self.running:
+                    await asyncio.sleep(0.2)
+
+                self.events.append(event.to_dict())
+                self._print_event(event)
+
+                # Section review mode (use .value for enum comparison)
+                phase_val = event.phase.value if hasattr(event.phase, 'value') else str(event.phase)
+                if self.review_sections and phase_val == "writing" and event.action == "section_complete":
+                    section = event.data.get("section", "")
+                    content = event.data.get("content", "")
+                    if not await self._review_section(section, content):
+                        break
+
+            # Get final result
+            if hasattr(self.orchestrator, 'get_result'):
+                self.result = self.orchestrator.get_result()
+            else:
+                self.result = {
+                    "status": "complete",
+                    "events": len(self.events),
+                    "findings": len(self.findings),
+                    "sections": list(self.sections.keys()),
+                }
+
+        except KeyboardInterrupt:
+            self._print("\n\n⚠️  Interrupted by user", C.YELLOW)
+            self.result = {"status": "interrupted"}
+
+        except Exception as e:
+            self._print(f"\nError: {e}", C.RED)
+            if self.verbose:
+                import traceback
+                traceback.print_exc()
+            self.result = {"status": "error", "error": str(e)}
+
+        # Post-investigation interaction
+        if self.running:
+            await self._post_investigation()
+
+        return self.result or {}
+
+    async def _post_investigation(self):
+        """Interactive session after investigation completes."""
+        self._print(f"\n{'═' * 60}", C.GREEN)
+        self._print(f"Investigation Complete", C.BOLD)
+        self._print(f"{'═' * 60}", C.GREEN)
+
+        await self._cmd_status()
+
+        self._print(f"\nWhat would you like to do?", C.CYAN)
+        self._print(f"   (type commands, ask questions, or 'quit' to exit)\n", C.DIM)
+
+        while self.running:
+            try:
+                line = await self._prompt("sastre> ")
+                if not line:
+                    continue
+
+                await self._process_command(line)
+
+            except EOFError:
+                break
+            except KeyboardInterrupt:
+                self._print("\nGoodbye!", C.YELLOW)
+                break
+
+
+def stream_event(event: dict) -> None:
+    """Output event as JSON line for frontend consumption."""
+    print(json.dumps(event), flush=True)
+
+
+async def cognito_chat_standalone(query: str):
+    """Standalone AI chat for cog: prefix."""
+    if not query:
+        print("Usage: cog: <your question>")
+        return
+    
+    print("Thinking...")
+    
+    try:
+        import anthropic
+        client = anthropic.Anthropic()
+        
+        system = (
+            "You are C0GN1T0, SASTRE AI assistant for investigations. "
+            "Available operators: p:Name (person), c:Company, d:domain.com, "
+            "e:email, t:+phone. Jurisdiction exec: :cuk! :cde! :chr! etc. "
+            "Link analysis: bl? ol? @ent? "
+            "Be concise and helpful."
+        )
+        
+        response = client.messages.create(
+            model="claude-sonnet-4-5-20250929",
+            max_tokens=1024,
+            system=system,
+            messages=[{"role": "user", "content": query}]
+        )
+        
+        print("\nC0GN1T0:")
+        print(response.content[0].text)
+        
+    except Exception as e:
+        print(f"Chat error: {e}")
+
+
+async def main():
+    parser = argparse.ArgumentParser(
+        description="SASTRE: Interactive Autonomous Investigation System",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+    sastre "Investigate John Smith's corporate connections"
+    sastre --review "Who owns Acme Corp?"     # Review each section
+    sastre --project mycase "Corporate DD"
+    sastre --stream "Acme Corp"               # JSON stream (frontend)
+
+During investigation:
+    Type any command (help, status, pause, add, focus, etc.)
+    Type free text to add context/instructions for the agent
+    Ctrl+C to interrupt
+        """
+    )
+    parser.add_argument("tasking", nargs="?", help="Investigation tasking")
+    parser.add_argument("--project", "-p", default="default", help="Project ID")
+    parser.add_argument("--resume", "-r", help="Resume investigation by ID")
+    parser.add_argument("--iterations", "-i", type=int, default=10, help="Max iterations")
+    parser.add_argument("--genre", "-g", default="due_diligence",
+                       choices=["due_diligence", "background_check", "asset_trace",
+                               "corporate_intelligence", "litigation_support"],
+                       help="Report genre")
+    parser.add_argument("--depth", "-d", default="enhanced",
+                       choices=["basic", "enhanced", "comprehensive"],
+                       help="Report depth")
+    parser.add_argument("--review", "-R", action="store_true",
+                       help="Review each section before continuing")
+    parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
+    parser.add_argument("--json", "-j", action="store_true", help="Output as JSON")
+    parser.add_argument("--stream", "-s", action="store_true",
+                       help="Stream JSON events (non-interactive, for frontend)")
+    parser.add_argument("--playbook", "-b", help="Playbook ID to execute")
+    parser.add_argument("--document", help="Attach investigation to narrative document ID")
+    parser.add_argument("--output", "-o", help="Write report to this path (.md or .docx)")
+    parser.add_argument("--eyed", nargs="+", help="Run EYE-D chain reaction for these values (bypasses ThinOrchestrator)")
+    parser.add_argument("--eyed-type", default="phone", choices=["email", "phone", "domain", "username", "linkedin"], help="EYE-D start type")
+    parser.add_argument("--eyed-depth", type=int, default=2, help="EYE-D hop depth (1-3)")
+    parser.add_argument("--eyed-include-raw", action="store_true", help="Include raw JSON appendix in EYE-D write-up")
+
+    args = parser.parse_args()
+
+    # Handle cog: prefix - route to AI chat
+    if args.tasking and args.tasking.lower().startswith("cog:"):
+        query = args.tasking[4:].strip()
+        await cognito_chat_standalone(query)
+        return
+
+    # Configure logging
+    logging.basicConfig(
+        level=logging.DEBUG if args.verbose else logging.WARNING,
+        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+    )
+
+    # Stream mode (non-interactive, for frontend)
+    if args.stream:
+        from .orchestrator.thin import investigate, resume_investigation
+
+        if args.resume:
+            result = await resume_investigation(
+                project_id=args.project,
+                investigation_id=args.resume,
+                max_iterations=args.iterations,
+                event_callback=stream_event
+            )
+        elif args.tasking:
+            result = await investigate(
+                tasking=args.tasking,
+                project_id=args.project,
+                max_iterations=args.iterations,
+                autonomous=True,
+                event_callback=stream_event,
+                genre=args.genre,
+                depth=args.depth,
+                playbook_id=args.playbook,
+                document_id=args.document,
+            )
+        else:
+            parser.print_help()
+        return
+
+    # EYE-D mode (non-interactive, for direct OSINT → report export)
+    if args.eyed:
+        from SASTRE.bridges.eyed_osint import EyedOsintBridge
+
+        try:
+            bridge = EyedOsintBridge(project_id=args.project)
+            chains = await bridge.chain_reaction_batch(
+                start_queries=args.eyed,
+                start_type=args.eyed_type,
+                depth=args.eyed_depth,
+                project_id=args.project,
+                index_to_c1=True,
+                concurrency=1,
+            )
+            docs = [(f"EYE-D chain_reaction ({c.start_type}): {c.query}", c.result) for c in chains]
+            md = bridge.render_writeup(docs, include_raw=bool(args.eyed_include_raw))
+        except Exception as e:
+            print(f"EYE-D failed: {e}", file=sys.stderr)
+            raise SystemExit(1)
+
+        lines = md.splitlines()
+        if lines and lines[0].startswith("# "):
+            lines[0] = "# SASTRE OSINT Report (EYE-D)"
+        md = "\n".join(lines).rstrip() + "\n"
+
+        if args.output:
+            out_path = Path(args.output).expanduser()
+            if out_path.suffix.lower() == ".docx":
+                cli = InteractiveSASTRE(project_id=args.project)
+                err = cli._convert_markdown_to_docx(md, str(out_path))
+                if err:
+                    print(f"Export failed: {err}", file=sys.stderr)
+                    raise SystemExit(1)
+            else:
+                out_path.write_text(md, encoding="utf-8")
+            return
+
+        sys.stdout.write(md)
+        return
+
+    # Interactive mode (default)
+    if args.tasking:
+        cli = InteractiveSASTRE(
+            project_id=args.project,
+            max_iterations=args.iterations,
+            genre=args.genre,
+            depth=args.depth,
+            playbook_id=args.playbook,
+            review_sections=args.review,
+            verbose=args.verbose,
+        )
+
+        result = await cli.investigate(args.tasking)
+
+        if args.output:
+            await cli._cmd_export(args.output)
+
+        if args.json:
+            print(json.dumps(result, indent=2, default=str))
+
+    elif args.resume:
+        # TODO: Interactive resume
+        print("Resume not yet implemented in interactive mode. Use --stream for now.")
+
+    else:
+        # No tasking - enter prompt mode
+        print(f"{C.CYAN}{'═' * 60}{C.RESET}")
+        print(f"{C.BOLD}SASTRE - Interactive Investigation{C.RESET}")
+        print(f"{C.CYAN}{'═' * 60}{C.RESET}")
+        print(f"\n{C.DIM}Enter your investigation tasking:{C.RESET}\n")
+
+        try:
+            tasking = input(f"{C.CYAN}> {C.RESET}")
+            if tasking.strip():
+                cli = InteractiveSASTRE(
+                    project_id=args.project,
+                    max_iterations=args.iterations,
+                    genre=args.genre,
+                    depth=args.depth,
+                    review_sections=args.review,
+                    verbose=args.verbose,
+                )
+                await cli.investigate(tasking)
+        except (EOFError, KeyboardInterrupt):
+            print(f"\n{C.YELLOW}Goodbye!{C.RESET}")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+# ─────────────────────────────────────────────────────────────────

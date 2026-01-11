@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Jurisdiction Actions - Corporella Claude</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .status {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .status.connected {
+            border-left: 4px solid #28a745;
+        }
+
+        .status.searching {
+            border-left: 4px solid #ffc107;
+        }
+
+        .entity-profile {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .profile-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 3px solid #007bff;
+        }
+
+        .profile-section h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .wiki-sources {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .wiki-source-btn {
+            display: inline-block;
+            padding: 4px 10px;
+            margin: 3px;
+            background: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .wiki-source-btn:hover {
+            background: #5a6268;
+            transform: translateY(-1px);
+        }
+
+        .jurisdiction-actions {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        .jurisdiction-actions h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+
+        .wiki-sections {
+            background: #fff8e1;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .wiki-sections h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+
+        .wiki-section {
+            margin-bottom: 20px;
+            background: white;
+            padding: 12px;
+            border-radius: 4px;
+        }
+
+        .wiki-section h4 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .wiki-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .wiki-link {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .wiki-link:hover {
+            background: #0056b3;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .action-button.link {
+            background: #007bff;
+            color: white;
+        }
+
+        .action-button.link:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .action-button.search {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .action-button.search:hover {
+            background: #138496;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .action-button.fetch {
+            background: #28a745;
+            color: white;
+        }
+
+        .action-button.fetch:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .action-button.fetching {
+            background: #6c757d;
+            cursor: wait;
+            opacity: 0.7;
+        }
+
+        .action-description {
+            display: block;
+            font-size: 12px;
+            margin-top: 4px;
+            opacity: 0.8;
+        }
+
+        .log {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+        }
+
+        .fetch-result {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border-left: 4px solid #007bff;
+        }
+
+        .fetch-result h4 {
+            margin-top: 0;
+        }
+
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏢 Corporella Claude - Jurisdiction Actions Test</h1>
+
+    <div class="search-box">
+        <input type="text" id="companyQuery" placeholder="Enter company name..." value="Revolut Ltd">
+        <input type="text" id="countryCode" placeholder="Country code (optional)" value="GB">
+        <button onclick="searchCompany()">Search Company</button>
+    </div>
+
+    <div id="status" class="status">
+        Initializing WebSocket connection...
+    </div>
+
+    <div id="entityProfile" style="display: none;" class="entity-profile">
+        <h2 id="companyName"></h2>
+        <div id="companyDetails"></div>
+
+        <div id="jurisdictionActions" class="jurisdiction-actions" style="display: none;">
+            <h3>🌍 Jurisdiction-Specific Actions</h3>
+            <div id="actionButtons"></div>
+        </div>
+
+        <div id="wikiSections" class="wiki-sections" style="display: none;">
+            <h3>📚 Public Records Sources (WIKIMAN-PRO)</h3>
+            <div id="wikiContent"></div>
+        </div>
+
+        <div id="fetchResults"></div>
+    </div>
+
+    <div class="log" id="log"></div>
+
+    <script>
+        let ws = null;
+        let currentEntity = null;
+
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toISOString().substr(11, 8);
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.innerHTML = `[${timestamp}] ${type.toUpperCase()}: ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function updateStatus(message, className = '') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${className}`;
+        }
+
+        function connectWebSocket() {
+            ws = new WebSocket('ws://localhost:8765');
+
+            ws.onopen = () => {
+                log('WebSocket connected', 'success');
+                updateStatus('✅ Connected to Corporella Claude', 'connected');
+            };
+
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                log(`Received: ${data.type}`, 'info');
+
+                if (data.type === 'connection') {
+                    log(data.message, 'info');
+                }
+                else if (data.type === 'search_started') {
+                    updateStatus(`🔍 Searching for ${data.query}...`, 'searching');
+                }
+                else if (data.type === 'raw_result') {
+                    log(`Raw result from ${data.source}`, 'info');
+                }
+                else if (data.type === 'entity_update') {
+                    log(`Entity updated from ${data.source}`, 'info');
+                    currentEntity = data.entity;
+                }
+                else if (data.type === 'search_complete') {
+                    log('Search complete', 'success');
+                    displayEntity(data.entity, data.jurisdiction_actions);
+                    if (data.wiki_sections) {
+                        displayWikiSections(data.wiki_sections);
+                    }
+                    updateStatus(`✅ Search complete for ${data.query}`, 'connected');
+                }
+                else if (data.type === 'fetch_started') {
+                    log(`Fetch started: ${data.action}`, 'info');
+                }
+                else if (data.type === 'fetch_complete') {
+                    log(`Fetch complete: ${data.action}`, 'success');
+                    displayFetchResult(data);
+                }
+                else if (data.type === 'fetch_error') {
+                    log(`Fetch error: ${data.error}`, 'error');
+                    alert(`Fetch failed: ${data.error}`);
+                }
+                else if (data.type === 'search_error') {
+                    log(`Search error: ${data.error}`, 'error');
+                    updateStatus(`❌ Search failed: ${data.error}`, '');
+                }
+            };
+
+            ws.onerror = (error) => {
+                log('WebSocket error', 'error');
+                updateStatus('❌ Connection error', '');
+            };
+
+            ws.onclose = () => {
+                log('WebSocket disconnected', 'warning');
+                updateStatus('⚠️ Disconnected - Refresh to reconnect', '');
+            };
+        }
+
+        function searchCompany() {
+            const query = document.getElementById('companyQuery').value;
+            const countryCode = document.getElementById('countryCode').value || null;
+
+            if (!query) {
+                alert('Please enter a company name');
+                return;
+            }
+
+            log(`Searching for: ${query}`, 'info');
+
+            ws.send(JSON.stringify({
+                type: 'search',
+                query: query,
+                country_code: countryCode
+            }));
+
+            // Clear previous results
+            document.getElementById('entityProfile').style.display = 'none';
+            document.getElementById('fetchResults').innerHTML = '';
+        }
+
+        function displayEntity(entity, jurisdictionActions) {
+            if (!entity) return;
+
+            const profileDiv = document.getElementById('entityProfile');
+            const nameDiv = document.getElementById('companyName');
+            const detailsDiv = document.getElementById('companyDetails');
+
+            nameDiv.textContent = entity.name?.value || 'Unknown Company';
+
+            let detailsHTML = '';
+
+            // About/Identity Section with Corporate Registry sources
+            detailsHTML += '<div class="profile-section">';
+            detailsHTML += '<h4>🏢 Corporate Registry</h4>';
+            detailsHTML += '<ul>';
+            if (entity.about?.jurisdiction) {
+                detailsHTML += `<li><strong>Jurisdiction:</strong> ${entity.about.jurisdiction}</li>`;
+            }
+            if (entity.about?.company_number) {
+                detailsHTML += `<li><strong>Company Number:</strong> ${entity.about.company_number}</li>`;
+            }
+            if (entity.about?.status) {
+                detailsHTML += `<li><strong>Status:</strong> ${entity.about.status}</li>`;
+            }
+            detailsHTML += '</ul>';
+
+            // Add Corporate Registry wiki sources as dynamic buttons
+            if (entity.about?._corporate_registry_sources) {
+                detailsHTML += '<div class="wiki-sources">';
+                detailsHTML += '<strong>📚 Research Sources:</strong><br>';
+                entity.about._corporate_registry_sources.forEach(source => {
+                    detailsHTML += `<a href="${source.url}" target="_blank" class="wiki-source-btn">${source.title}</a> `;
+                });
+                detailsHTML += '</div>';
+            }
+            detailsHTML += '</div>';
+
+            // Compliance Sections
+            if (entity.compliance) {
+                // Litigation Section
+                if (entity.compliance.litigation || entity.compliance.litigation?._wiki_sources) {
+                    detailsHTML += '<div class="profile-section">';
+                    detailsHTML += '<h4>⚖️ Litigation</h4>';
+                    if (entity.compliance.litigation?.summary) {
+                        detailsHTML += `<p>${entity.compliance.litigation.summary}</p>`;
+                    }
+                    // Add Litigation wiki sources as dynamic buttons
+                    if (entity.compliance.litigation?._wiki_sources) {
+                        detailsHTML += '<div class="wiki-sources">';
+                        detailsHTML += '<strong>📚 Research Sources:</strong><br>';
+                        entity.compliance.litigation._wiki_sources.forEach(source => {
+                            detailsHTML += `<a href="${source.url}" target="_blank" class="wiki-source-btn">${source.title}</a> `;
+                        });
+                        detailsHTML += '</div>';
+                    }
+                    detailsHTML += '</div>';
+                }
+
+                // Regulatory Section
+                if (entity.compliance.regulatory || entity.compliance.regulatory?._wiki_sources) {
+                    detailsHTML += '<div class="profile-section">';
+                    detailsHTML += '<h4>📋 Regulatory</h4>';
+                    if (entity.compliance.regulatory?.summary) {
+                        detailsHTML += `<p>${entity.compliance.regulatory.summary}</p>`;
+                    }
+                    // Add Regulatory wiki sources as dynamic buttons
+                    if (entity.compliance.regulatory?._wiki_sources) {
+                        detailsHTML += '<div class="wiki-sources">';
+                        detailsHTML += '<strong>📚 Research Sources:</strong><br>';
+                        entity.compliance.regulatory._wiki_sources.forEach(source => {
+                            detailsHTML += `<a href="${source.url}" target="_blank" class="wiki-source-btn">${source.title}</a> `;
+                        });
+                        detailsHTML += '</div>';
+                    }
+                    detailsHTML += '</div>';
+                }
+
+                // Reputation/Media Section
+                if (entity.compliance.reputation || entity.compliance.reputation?._wiki_sources) {
+                    detailsHTML += '<div class="profile-section">';
+                    detailsHTML += '<h4>📰 Media & Reputation</h4>';
+                    if (entity.compliance.reputation?.overview) {
+                        detailsHTML += `<p>${entity.compliance.reputation.overview}</p>`;
+                    }
+                    // Add Media wiki sources as dynamic buttons
+                    if (entity.compliance.reputation?._wiki_sources) {
+                        detailsHTML += '<div class="wiki-sources">';
+                        detailsHTML += '<strong>📚 Media Sources:</strong><br>';
+                        entity.compliance.reputation._wiki_sources.forEach(source => {
+                            detailsHTML += `<a href="${source.url}" target="_blank" class="wiki-source-btn">${source.title}</a> `;
+                        });
+                        detailsHTML += '</div>';
+                    }
+                    detailsHTML += '</div>';
+                }
+
+                // Other/Further Public Records Section
+                if (entity.compliance.other || entity.compliance.other?._wiki_sources) {
+                    detailsHTML += '<div class="profile-section">';
+                    detailsHTML += '<h4>📁 Further Public Records</h4>';
+                    if (entity.compliance.other?.details) {
+                        detailsHTML += `<p>${entity.compliance.other.details}</p>`;
+                    }
+                    // Add Further Public Records wiki sources as dynamic buttons
+                    if (entity.compliance.other?._wiki_sources) {
+                        detailsHTML += '<div class="wiki-sources">';
+                        detailsHTML += '<strong>📚 Additional Sources:</strong><br>';
+                        entity.compliance.other._wiki_sources.forEach(source => {
+                            detailsHTML += `<a href="${source.url}" target="_blank" class="wiki-source-btn">${source.title}</a> `;
+                        });
+                        detailsHTML += '</div>';
+                    }
+                    detailsHTML += '</div>';
+                }
+            }
+
+            detailsDiv.innerHTML = detailsHTML;
+            profileDiv.style.display = 'block';
+
+            // Display jurisdiction actions
+            if (jurisdictionActions && jurisdictionActions.length > 0) {
+                displayJurisdictionActions(jurisdictionActions);
+            }
+        }
+
+        function displayJurisdictionActions(actions) {
+            const actionsDiv = document.getElementById('jurisdictionActions');
+            const buttonsDiv = document.getElementById('actionButtons');
+
+            buttonsDiv.innerHTML = '';
+
+            actions.forEach(action => {
+                if (action.type === 'link') {
+                    const a = document.createElement('a');
+                    a.href = action.url;
+                    a.target = '_blank';
+                    a.className = `action-button ${action.type}`;
+                    a.innerHTML = `${action.label}<span class="action-description">${action.description}</span>`;
+                    buttonsDiv.appendChild(a);
+                }
+                else if (action.type === 'search') {
+                    const button = document.createElement('button');
+                    button.className = `action-button ${action.type}`;
+                    button.innerHTML = `${action.label}<span class="action-description">${action.description}</span>`;
+                    button.onclick = () => {
+                        const ddgUrl = `https://duckduckgo.com/?q=${action.bang}+${encodeURIComponent(action.query)}`;
+                        window.open(ddgUrl, '_blank');
+                    };
+                    buttonsDiv.appendChild(button);
+                }
+                else if (action.type === 'fetch') {
+                    const button = document.createElement('button');
+                    button.className = `action-button ${action.type}`;
+                    button.innerHTML = `${action.label}<span class="action-description">${action.description}</span>`;
+                    button.onclick = () => {
+                        handleFetchAction(action, button);
+                    };
+                    buttonsDiv.appendChild(button);
+                }
+            });
+
+            actionsDiv.style.display = 'block';
+        }
+
+        function handleFetchAction(action, buttonElement) {
+            // Disable button during fetch
+            buttonElement.disabled = true;
+            buttonElement.className = 'action-button fetching';
+            buttonElement.innerHTML = '⏳ Fetching...';
+
+            // Send fetch request to WebSocket
+            const message = {
+                type: 'fetch_action',
+                action: action.action
+            };
+
+            // Add required parameters
+            if (action.company_number) {
+                message.company_number = action.company_number;
+            }
+            if (action.query) {
+                message.company_name = action.query;
+            }
+            if (action.jurisdiction) {
+                message.jurisdiction = action.jurisdiction;
+            }
+
+            log(`Sending fetch request: ${action.action}`, 'info');
+            ws.send(JSON.stringify(message));
+        }
+
+        function displayFetchResult(data) {
+            const resultsDiv = document.getElementById('fetchResults');
+
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'fetch-result';
+
+            let html = `<h4>📦 Fetch Result: ${data.action}</h4>`;
+
+            if (data.ok) {
+                html += '<p><strong>✅ Success!</strong></p>';
+
+                if (data.action === 'fetch_uk_ch') {
+                    const ukData = data.data;
+                    html += `<p><strong>Company:</strong> ${ukData.company_name}</p>`;
+                    html += `<p><strong>Status:</strong> ${ukData.company_status}</p>`;
+                    html += `<p><strong>Type:</strong> ${ukData.company_type}</p>`;
+                    html += `<p><strong>Officers:</strong> ${ukData.officers?.length || 0}</p>`;
+                    html += `<p><strong>Beneficial Owners (PSC):</strong> ${ukData.psc?.length || 0}</p>`;
+                    html += '<details><summary>Full Data</summary>';
+                    html += `<pre>${JSON.stringify(ukData, null, 2)}</pre>`;
+                    html += '</details>';
+                }
+                else {
+                    html += '<details><summary>Full Data</summary>';
+                    html += `<pre>${JSON.stringify(data.data, null, 2)}</pre>`;
+                    html += '</details>';
+                }
+            }
+            else {
+                html += `<p><strong>❌ Failed:</strong> ${data.data?.error || 'Unknown error'}</p>`;
+            }
+
+            resultDiv.innerHTML = html;
+            resultsDiv.appendChild(resultDiv);
+        }
+
+        function displayWikiSections(wikiData) {
+            // This function is for STANDALONE wiki browsing
+            // When user wants to explore sources without searching for a specific company
+            const wikiDiv = document.getElementById('wikiSections');
+            const wikiContent = document.getElementById('wikiContent');
+
+            wikiContent.innerHTML = '';
+
+            if (!wikiData || !wikiData.sections) {
+                wikiDiv.style.display = 'none';
+                return;
+            }
+
+            // Check if we're in company profile mode (entity exists)
+            // If so, wiki sources should be integrated into profile sections, not shown separately
+            if (currentEntity && currentEntity.about?.jurisdiction) {
+                // Wiki sources are already integrated into profile sections
+                // Hide the standalone wiki section
+                wikiDiv.style.display = 'none';
+                log('Wiki sources integrated into company profile sections', 'info');
+                return;
+            }
+
+            // STANDALONE MODE: Show wiki as a browsable reference section
+            // Section titles
+            const sectionTitles = {
+                'corporate_registry': '🏢 Corporate Registry',
+                'litigation': '⚖️ Litigation',
+                'regulatory': '📋 Regulatory',
+                'asset_registries': '🏦 Asset Registries',
+                'licensing': '📜 Licensing',
+                'political': '🏛️ Political',
+                'further_public_records': '📁 Further Public Records',
+                'media': '📰 Media',
+                'breaches': '🔓 Breaches'
+            };
+
+            let hasSections = false;
+
+            // Add jurisdiction info header if available
+            if (wikiData.jurisdiction) {
+                const headerDiv = document.createElement('div');
+                headerDiv.style.marginBottom = '15px';
+                headerDiv.innerHTML = `<strong>📍 Jurisdiction:</strong> ${wikiData.jurisdiction} | <strong>📄 Source:</strong> ${wikiData.wiki_file || 'WIKIMAN-PRO'}`;
+                wikiContent.appendChild(headerDiv);
+            }
+
+            // Display each section with links
+            for (const [sectionName, sectionData] of Object.entries(wikiData.sections)) {
+                if (sectionData.links && sectionData.links.length > 0) {
+                    hasSections = true;
+
+                    const sectionDiv = document.createElement('div');
+                    sectionDiv.className = 'wiki-section';
+
+                    const title = document.createElement('h4');
+                    title.textContent = sectionTitles[sectionName] || sectionName;
+                    sectionDiv.appendChild(title);
+
+                    const linksDiv = document.createElement('div');
+                    linksDiv.className = 'wiki-links';
+
+                    sectionData.links.forEach(link => {
+                        const a = document.createElement('a');
+                        a.href = link.url;
+                        a.target = '_blank';
+                        a.className = 'wiki-link';
+                        a.textContent = link.title;
+                        a.title = `Open ${link.title} in new tab`;
+                        linksDiv.appendChild(a);
+                    });
+
+                    sectionDiv.appendChild(linksDiv);
+                    wikiContent.appendChild(sectionDiv);
+                }
+            }
+
+            if (hasSections) {
+                wikiDiv.style.display = 'block';
+                log('Displaying standalone WIKIMAN-PRO sources browser', 'info');
+            } else {
+                wikiDiv.style.display = 'none';
+                log('No wiki sources available for this jurisdiction', 'warning');
+            }
+        }
+
+        // Connect on page load
+        connectWebSocket();
+    </script>
+</body>
+</html>
