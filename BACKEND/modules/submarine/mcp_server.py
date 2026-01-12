@@ -1,0 +1,1490 @@
+#!/usr/bin/env python3
+"""
+SUBMARINE MCP Server - Unified Scraping & Archive Search
+
+THE SINGLE ENTRY POINT for all web content acquisition via MCP.
+
+Combines:
+- JESTER: Tiered scraping (A→B→C→D→Firecrawl→BrightData)
+- BACKDRILL: Archive fetch (Common Crawl + Wayback Machine)
+- SUBMARINE CLI: Smart CC index search
+
+Tools:
+  SCRAPING (JESTER):
+  - scrape: Scrape a URL using JESTER hierarchy
+  - scrape_batch: Scrape multiple URLs concurrently
+  - classify_scrape_method: Determine best scraping method for a URL
+
+  ARCHIVE (BACKDRILL):
+  - archive_fetch: Fetch archived version of a URL
+  - archive_exists: Check if URL exists in archives
+  - archive_snapshots: List all archived snapshots of a URL
+
+  SUBMARINE (CC SEARCH):
+  - submarine_plan: Plan a dive (show what will be fetched)
+  - submarine_search: Execute archive search with entity extraction
+  - submarine_resume: Resume an interrupted search
+
+Usage:
+  python mcp_server.py
+"""
+
+import asyncio
+import json
+import logging
+import os
+import ipaddress
+import socket
+import sys
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+from urllib.parse import urlparse
+import time
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger("submarine-mcp")
+
+try:
+    from mcp.server import Server
+    from mcp.types import Tool, TextContent
+    import mcp.server.stdio
+except ImportError:
+    logger.error("MCP SDK not installed. Run: pip install mcp")
+    sys.exit(1)
+
+# Add module paths
+SUBMARINE_ROOT = Path(__file__).resolve().parent
+BACKEND_ROOT = Path("/data/SEARCH_ENGINEER/BACKEND")
+BACKEND_MODULES = BACKEND_ROOT / "modules"
+
+# Insert BACKEND_ROOT first to allow 'from modules.x import y'
+if str(BACKEND_ROOT) not in sys.path:
+    sys.path.insert(0, str(BACKEND_ROOT))
+# Insert BACKEND_MODULES to allow 'from jester import ...'
+if str(BACKEND_MODULES) not in sys.path:
+    sys.path.insert(0, str(BACKEND_MODULES))
+
+sys.path.insert(0, str(SUBMARINE_ROOT))
+sys.path.insert(0, "/data")
+
+# Load environment
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path("/data/.env"))
+except ImportError:
+    pass
+
+
+def _parse_archives(value: Any) -> Optional[List[str]]:
+    if value is None:
+        return None
+    if isinstance(value, list):
+        return [str(v).strip() for v in value if str(v).strip()]
+    s = str(value).strip()
+    if not s:
+        return None
+    return [p.strip() for p in s.split(",") if p.strip()]
+
+
+def _load_torpedo_news_domains(
+    jurisdiction: Optional[str],
+    *,
+    min_reliability: float = 0.0,
+    limit: int = 50000,
+) -> List[str]:
+    try:
+        from modules.torpedo.paths import news_sources_path  # type: ignore
+
+        path = Path(news_sources_path())
+    except Exception:
+        path = Path("/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/sources/news.json")
+
+    if not path.exists():
+        return []
+
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+
+    jur_key: Optional[str] = None
+    if jurisdiction:
+        jur = jurisdiction.strip().upper()
+        if jur == "UK":
+            jur = "GB"
+        jur_key = jur
+
+    sources: List[Dict[str, Any]] = []
+    if jur_key:
+        items = data.get(jur_key) or []
+        if isinstance(items, list):
+            sources = items
+    else:
+        for items in (data or {}).values():
+            if isinstance(items, list):
+                sources.extend(items)
+
+    best: Dict[str, float] = {}
+    for s in sources:
+        if not isinstance(s, dict):
+            continue
+        dom = (s.get("domain") or "").strip().lower()
+        if dom.startswith("www."):
+            dom = dom[4:]
+        if not dom or "." not in dom:
+            continue
+        try:
+            rel = float(s.get("reliability", 0.0) or 0.0)
+        except Exception:
+            rel = 0.0
+        if rel < float(min_reliability or 0.0):
+            continue
+        prev = best.get(dom, -1.0)
+        if rel > prev:
+            best[dom] = rel
+
+    ranked = sorted(best.items(), key=lambda kv: kv[1], reverse=True)
+    domains = [d for d, _ in ranked][: max(0, int(limit))]
+    return domains
+
+
+def _is_disallowed_ip(ip: ipaddress._BaseAddress) -> bool:  # type: ignore[name-defined]
+    return bool(
+        ip.is_private
+        or ip.is_loopback
+        or ip.is_link_local
+        or ip.is_reserved
+        or ip.is_multicast
+        or ip.is_unspecified
+    )
+
+
+def _host_resolves_to_disallowed_ip(hostname: str) -> bool:
+    host = (hostname or "").strip().lower()
+    if not host:
+        return True
+    if host in {"localhost", "localhost.localdomain"} or host.endswith(".localhost"):
+        return True
+
+    try:
+        ip = ipaddress.ip_address(host)
+        return _is_disallowed_ip(ip)
+    except ValueError:
+        pass
+
+    try:
+        infos = socket.getaddrinfo(host, None)
+        for info in infos:
+            addr = info[4][0]
+            try:
+                ip = ipaddress.ip_address(addr)
+            except ValueError:
+                continue
+            if _is_disallowed_ip(ip):
+                return True
+    except Exception:
+        # If DNS resolution fails, treat as disallowed to avoid SSRF via weird schemes.
+        return True
+
+    return False
+
+
+def _validate_external_url(url: str) -> Optional[str]:
+    """
+    Return an error string if the URL is unsafe for scraping, else None.
+    """
+    u = (url or "").strip()
+    if not u:
+        return "empty_url"
+
+    parsed = urlparse(u)
+    if parsed.scheme not in {"http", "https"}:
+        return f"unsupported_scheme:{parsed.scheme or 'none'}"
+    if not parsed.netloc:
+        return "missing_host"
+    if parsed.username or parsed.password:
+        return "userinfo_not_allowed"
+
+    hostname = parsed.hostname
+    if not hostname:
+        return "missing_hostname"
+
+    if os.getenv("SUBMARINE_ALLOW_PRIVATE_URLS") == "1":
+        return None
+
+    if _host_resolves_to_disallowed_ip(hostname):
+        return "blocked_host"
+
+    return None
+
+
+# Import JESTER
+JESTER_AVAILABLE = False
+Jester = None
+JesterMethod = None
+try:
+    from modules.jester import Jester, JesterMethod, JesterResult
+    JESTER_AVAILABLE = True
+    logger.info("JESTER loaded successfully")
+except ImportError as e:
+    logger.warning(f"JESTER not available: {e}")
+
+# Import BACKDRILL
+BACKDRILL_AVAILABLE = False
+Backdrill = None
+try:
+    from modules.backdrill import Backdrill, BackdrillResult, ArchiveSource
+    BACKDRILL_AVAILABLE = True
+    logger.info("BACKDRILL loaded successfully")
+except ImportError as e:
+    logger.warning(f"BACKDRILL not available: {e}")
+
+# Import SERDAVOS (Dark Web Search via LINKLATER)
+SERDAVOS_AVAILABLE = False
+AhmiaDiscovery = None
+OnionSearchDiscovery = None
+ONION_SEARCH_ENGINES = None
+try:
+    from modules.linklater.scraping.tor import AhmiaDiscovery, OnionSearchDiscovery, ONION_SEARCH_ENGINES
+    # Check if imports succeeded (graceful degradation in __init__.py)
+    if AhmiaDiscovery is not None:
+        SERDAVOS_AVAILABLE = True
+        logger.info("SERDAVOS loaded successfully (LINKLATER dark web)")
+    else:
+        logger.warning("SERDAVOS imports are None (missing dependencies)")
+except ImportError as e:
+    logger.warning(f"SERDAVOS not available: {e}")
+
+# Import ALLDOM
+ALLDOM_AVAILABLE = False
+AllDom = None
+try:
+    from modules.alldom.alldom import AllDom
+    ALLDOM_AVAILABLE = True
+    logger.info("ALLDOM loaded successfully")
+except ImportError as e:
+    logger.warning(f"ALLDOM not available: {e}")
+
+# Import SUBMARINE components
+SUBMARINE_AVAILABLE = False
+try:
+    from modules.submarine.sonar.elastic_scanner import Sonar
+    from modules.submarine.periscope.cc_index import Periscope
+    from modules.submarine.dive_planner.planner import DivePlanner
+    from modules.submarine.deep_dive.diver import DeepDiver
+    SUBMARINE_AVAILABLE = True
+    logger.info("SUBMARINE components loaded successfully")
+except ImportError as e:
+    logger.warning(f"SUBMARINE components not available: {e}")
+
+
+class SubmarineMCP:
+    """SUBMARINE MCP Server - Unified Scraping & Archive Search"""
+
+    def __init__(self):
+        self.server = Server("submarine")
+        self.jester = Jester() if JESTER_AVAILABLE else None
+        self.backdrill = Backdrill() if BACKDRILL_AVAILABLE else None
+        self.ahmia = AhmiaDiscovery() if SERDAVOS_AVAILABLE else None
+        self.alldom = AllDom() if ALLDOM_AVAILABLE else None
+        self.planner = DivePlanner() if SUBMARINE_AVAILABLE else None
+
+        self._scrape_rate_lock = asyncio.Lock()
+        self._last_request_by_domain: Dict[str, float] = {}
+        try:
+            self._scrape_min_interval = float(os.getenv("SUBMARINE_SCRAPE_MIN_INTERVAL_SEC", "0") or 0.0)
+        except Exception:
+            self._scrape_min_interval = 0.0
+
+        self._register_handlers()
+
+    async def _respect_rate_limit(self, url: str) -> None:
+        if self._scrape_min_interval <= 0:
+            return
+        host = urlparse(url).hostname or ""
+        if not host:
+            return
+        async with self._scrape_rate_lock:
+            now = time.monotonic()
+            last = self._last_request_by_domain.get(host)
+            if last is not None:
+                delta = now - last
+                if delta < self._scrape_min_interval:
+                    await asyncio.sleep(self._scrape_min_interval - delta)
+            self._last_request_by_domain[host] = time.monotonic()
+
+    def _register_handlers(self):
+        @self.server.list_tools()
+        async def list_tools() -> list[Tool]:
+            tools = []
+
+            # =================================================================
+            # ALLDOM TOOLS
+            # =================================================================
+            if ALLDOM_AVAILABLE:
+                tools.extend([
+                    Tool(
+                        name="alldom_execute",
+                        description="""Execute a specific domain intelligence operator via ALLDOM.
+
+Operators include:
+- bl? : Backlinks check (Linklater)
+- ol? : Outlinks check (Linklater)
+- whois: : WHOIS lookup
+- age! : Domain age check
+- map! : URL discovery (sitemaps, subdomains)
+- meta? : Metadata extraction
+- dates? : Date extraction from content""",
+                        inputSchema={
+                            "type": "object",
+                            "properties": {
+                                "operator": {
+                                    "type": "string", 
+                                    "description": "Operator code (e.g., bl?, whois:, age!)"
+                                },
+                                "target": {"type": "string", "description": "Domain or URL"}
+                            },
+                            "required": ["operator", "target"]
+                        }
+                    ),
+                    Tool(
+                        name="alldom_scan",
+                        description="Run a full multi-operator scan on a domain.",
+                        inputSchema={
+                            "type": "object",
+                            "properties": {
+                                "domain": {"type": "string", "description": "Target domain"},
+                                "depth": {
+                                    "type": "string", 
+                                    "enum": ["fast", "full"], 
+                                    "default": "fast",
+                                    "description": "Scan depth"
+                                }
+                            },
+                            "required": ["domain"]
+                        }
+                    )
+                ])
+
+            # =================================================================
+            # JESTER SCRAPING TOOLS
+            # =================================================================
+            if JESTER_AVAILABLE:
+                tools.extend([
+                    Tool(
+                        name="scrape",
+                        description="""Scrape a URL using JESTER hierarchy.
+
+Tries in order: JESTER_A (httpx) → JESTER_B (Colly) → JESTER_C (Rod) →
+JESTER_D (Crawlee) → Firecrawl → BrightData.
+
+Returns HTML content, method used, and extraction results.""",
+                        inputSchema={
+                            "type": "object",
+                            "properties": {
+                                "url": {"type": "string", "description": "URL to scrape"},
+                                "force_method": {
+                                    "type": "string",
+                                    "enum": ["JESTER_A", "JESTER_B", "JESTER_C", "JESTER_D", "FIRECRAWL", "BRIGHTDATA"],
+                                    "description": "Force a specific scraping method (optional)"
+                                },
+                                "extract_entities": {"type": "boolean", "default": True, "description": "Extract entities from content"},
+                                "watcher_id": {"type": "string", "description": "Optional watcher_id to drive PACMAN watcher-spec extraction/streaming"},
+                                "allow_ai": {"type": "boolean", "default": True, "description": "Allow Haiku extraction if watcher spec includes it"},
+                                "stream_to_watcher": {"type": "boolean", "default": False, "description": "If watcher_id is provided, stream extracted snippets to that watcher section"},
+                            },
+                            "required": ["url"]
+                        }
+                    ),
+                    Tool(
+                        name="scrape_batch",
+                        description="""Scrape multiple URLs concurrently using JESTER hierarchy.
+
+Efficient batch processing with automatic method selection per URL.
+Default concurrency: 50 (configurable up to 100).""",
+                        inputSchema={
+                            "type": "object",
+                            "properties": {
+                                "urls": {"type": "array", "items": {"type": "string"}, "description": "URLs to scrape"},
+                                "max_concurrent": {"type": "integer", "default": 50, "description": "Max concurrent requests (1-100)"}
+                            },
+                            "required": ["urls"]
+                        }
+                    ),
+                    Tool(
+                        name="classify_scrape_method",
+                        description="""Determine the best scraping method for a URL without actually scraping.
+
+Analyzes domain characteristics, historical success rates, and content type
+to recommend the optimal JESTER tier.""",
+                        inputSchema={
+                            "type": "object",
+                            "properties": {
+                                "url": {"type": "string", "description": "URL to classify"}
+                            },
+                            "required": ["url"]
+                        }
+                    )
+                ])
+
+            # =================================================================
+            # BACKDRILL ARCHIVE TOOLS
+            # =================================================================
+            if BACKDRILL_AVAILABLE:
+                tools.extend([
+                    Tool(
+                        name="archive_fetch",
+                        description="""Fetch archived version of a URL.
+
+Checks both Common Crawl and Wayback Machine, returns first available.
+Useful for historical research or when live site is unavailable.""",
+                        inputSchema={
+                            "type": "object",
+                            "properties": {
+                                "url": {"type": "string", "description": "URL to fetch from archives"},
+                                "timestamp": {"type": "string", "description": "Preferred timestamp (YYYYMMDD format, optional)"},
+                                "source": {
+                                    "type": "string",
+                                    "enum": ["any", "commoncrawl", "wayback"],
+                                    "default": "any",
+                                    "description": "Archive source preference"
+                                }
+                            },
+                            "required": ["url"]
+                        }
+                    ),
+                    Tool(
+                        name="archive_exists",
+                        description="""Check if a URL exists in archives without fetching content.
+
+Fast check for archive availability across Common Crawl and Wayback Machine.""",
+                        inputSchema={
+                            "type": "object",
+                            "properties": {
+                                "url": {"type": "string", "description": "URL to check"}
+                            },
+                            "required": ["url"]
+                        }
+                    ),
+                    Tool(
+                        name="archive_snapshots",
+                        description="""List all archived snapshots of a URL.
+
+Returns timestamps, sources, and status codes for each snapshot.
+Useful for tracking changes over time.""",
+                        inputSchema={
+                            "type": "object",
+                            "properties": {
+                                "url": {"type": "string", "description": "URL to list snapshots for"},
+                                "limit": {"type": "integer", "default": 100, "description": "Max snapshots to return"}
+                            },
+                            "required": ["url"]
+                        }
+                    )
+                ])
+
+
+            # =================================================================
+            # SERDAVOS DARK WEB SEARCH TOOLS  
+            # =================================================================
+            if SERDAVOS_AVAILABLE:
+                tools.extend([
+                    Tool(
+                        name="darkweb_search",
+                        description="""Search dark web (.onion sites) using Ahmia.
+
+Ahmia indexes .onion sites and provides clearnet access (no Tor needed).
+Returns onion URLs, titles, and descriptions.
+
+Use for dark web reconnaissance without Tor setup.""",
+                        inputSchema={
+                            "type": "object",
+                            "properties": {
+                                "query": {"type": "string", "description": "Search query for dark web content"},
+                                "limit": {"type": "integer", "description": "Max results (default: 50)", "default": 50}
+                            },
+                            "required": ["query"]
+                        }
+                    ),
+                    Tool(
+                        name="darkweb_status",
+                        description="Check dark web search availability and Tor status",
+                        inputSchema={"type": "object", "properties": {}}
+                    )
+                ])
+
+            # =================================================================
+            # SUBMARINE CC SEARCH TOOLS
+            # =================================================================
+            if SUBMARINE_AVAILABLE:
+                tools.extend([
+                    Tool(
+                        name="submarine_plan",
+                        description="""Plan a SUBMARINE dive (archive search) without executing.
+
+Uses multiple Common Crawl indices as submerging points to efficiently
+locate relevant archived pages before fetching.
+
+Shows: query type, domains found, pages to fetch, estimated time.""",
+                        inputSchema={
+                            "type": "object",
+                            "properties": {
+                                "query": {"type": "string", "description": "Search query (email, phone, company name, etc.)"},
+                                "max_domains": {"type": "integer", "default": 100, "description": "Max domains to include"},
+                                "max_pages": {"type": "integer", "default": 50, "description": "Max pages per domain"},
+                                "archive": {"type": "string", "description": "Specific CC archive (e.g., CC-MAIN-2024-10)"},
+                                "archives": {"type": "array", "items": {"type": "string"}, "description": "Optional list of CC archives (overrides archive)"},
+                                "status": {"type": "integer", "default": 200, "description": "HTTP status filter (default 200)"},
+                                "mime": {"type": "string", "description": "MIME filter (e.g., text/html, application/pdf, pdf)"},
+                                "language": {"type": "string", "description": "Language filter (e.g., eng)"},
+                                "from_ts": {"type": "string", "description": "From timestamp/date (YYYYMMDDhhmmss or YYYY-MM-DD)"},
+                                "to_ts": {"type": "string", "description": "To timestamp/date (YYYYMMDDhhmmss or YYYY-MM-DD)"},
+                                "keyword": {"type": "string", "description": "URL-contains keyword hint (CC wildcard)"},
+                                "news": {"type": "boolean", "default": False, "description": "Restrict domains to TORPEDO news sources"},
+                                "jurisdiction": {"type": "string", "description": "Jurisdiction code (e.g., US, GB/UK) for news sources"},
+                                "min_reliability": {"type": "number", "default": 0.0, "description": "Minimum source reliability for news sources"},
+                                "tld_include": {"type": "array", "items": {"type": "string"}, "description": "TLD suffixes to include (e.g., gov,co.uk)"},
+                                "tld_exclude": {"type": "array", "items": {"type": "string"}, "description": "TLD suffixes to exclude"},
+                            },
+                            "required": ["query"]
+                        }
+                    ),
+                    Tool(
+                        name="submarine_search",
+                        description="""Execute a SUBMARINE search with entity extraction.
+
+Full pipeline: Plan → Fetch WARC data → Extract entities (PACMAN).
+Results are stored in Elasticsearch for future queries.
+
+Query types auto-detected: email, phone, company, person, domain.""",
+                        inputSchema={
+                            "type": "object",
+                            "properties": {
+                                "query": {"type": "string", "description": "Search query"},
+                                "max_domains": {"type": "integer", "default": 50, "description": "Max domains"},
+                                "max_pages": {"type": "integer", "default": 20, "description": "Max pages per domain"},
+                                "archive": {"type": "string", "description": "Specific CC archive (e.g., CC-MAIN-2024-10)"},
+                                "archives": {"type": "array", "items": {"type": "string"}, "description": "Optional list of CC archives (overrides archive)"},
+                                "status": {"type": "integer", "default": 200, "description": "HTTP status filter (default 200)"},
+                                "mime": {"type": "string", "description": "MIME filter (e.g., text/html, application/pdf, pdf)"},
+                                "language": {"type": "string", "description": "Language filter (e.g., eng)"},
+                                "from_ts": {"type": "string", "description": "From timestamp/date (YYYYMMDDhhmmss or YYYY-MM-DD)"},
+                                "to_ts": {"type": "string", "description": "To timestamp/date (YYYYMMDDhhmmss or YYYY-MM-DD)"},
+                                "keyword": {"type": "string", "description": "URL-contains keyword hint (CC wildcard)"},
+                                "news": {"type": "boolean", "default": False, "description": "Restrict domains to TORPEDO news sources"},
+                                "jurisdiction": {"type": "string", "description": "Jurisdiction code (e.g., US, GB/UK) for news sources"},
+                                "min_reliability": {"type": "number", "default": 0.0, "description": "Minimum source reliability for news sources"},
+                                "tld_include": {"type": "array", "items": {"type": "string"}, "description": "TLD suffixes to include (e.g., gov,co.uk)"},
+                                "tld_exclude": {"type": "array", "items": {"type": "string"}, "description": "TLD suffixes to exclude"},
+                                "extract": {"type": "boolean", "default": True, "description": "Run entity extraction"},
+                                "watcher_id": {"type": "string", "description": "Optional watcher_id to drive PACMAN watcher-spec extraction/streaming"},
+                                "allow_ai": {"type": "boolean", "default": True, "description": "Allow Haiku extraction if watcher spec includes it"},
+                                "stream_to_watcher": {"type": "boolean", "default": False, "description": "If watcher_id is provided, stream extracted snippets to that watcher section"},
+                            },
+                            "required": ["query"]
+                        }
+                    ),
+                    Tool(
+                        name="submarine_resume",
+                        description="""Resume an interrupted SUBMARINE search.
+
+Picks up from the last checkpoint in a saved plan file.""",
+                        inputSchema={
+                            "type": "object",
+                            "properties": {
+                                "plan_file": {"type": "string", "description": "Path to saved plan JSON file"},
+                                "extract": {"type": "boolean", "default": True, "description": "Run entity extraction"},
+                                "watcher_id": {"type": "string", "description": "Optional watcher_id to drive PACMAN watcher-spec extraction/streaming"},
+                                "allow_ai": {"type": "boolean", "default": True, "description": "Allow Haiku extraction if watcher spec includes it"},
+                                "stream_to_watcher": {"type": "boolean", "default": False, "description": "If watcher_id is provided, stream extracted snippets to that watcher section"},
+                            },
+                            "required": ["plan_file"]
+                        }
+                    )
+                ])
+
+            # =================================================================
+            # DOMAIN CRAWLING TOOLS
+            # =================================================================
+            tools.extend([
+                Tool(
+                    name="crawl_domains",
+                    description="""Launch optimized parallel crawler for domain list.
+
+Crawls full domains (not just front pages) with PACMAN entity extraction.
+Uses 19 workers processing 20 domains concurrently each (380 total concurrent).
+
+Features:
+- Full domain crawling with depth
+- Internal link following
+- PACMAN entity extraction (EMAIL, PHONE, LEI, etc.)
+- Elasticsearch indexing
+- 6-8 hours for 2.8M domains""",
+                    inputSchema={
+                        "type": "object",
+                        "properties": {
+                            "domain_file": {
+                                "type": "string",
+                                "description": "Path to file with seed URLs (one per line). Must exist on server."
+                            },
+                            "max_pages": {
+                                "type": "integer",
+                                "description": "Max pages per domain (default: 50)",
+                                "default": 50
+                            },
+                            "max_depth": {
+                                "type": "integer",
+                                "description": "Crawl depth (default: 2)",
+                                "default": 2
+                            },
+                            "es_index": {
+                                "type": "string",
+                                "description": "Elasticsearch index (default: submarine-scrapes)",
+                                "default": "submarine-scrapes"
+                            }
+                        },
+                        "required": ["domain_file"]
+                    }
+                ),
+                Tool(
+                    name="crawl_status",
+                    description="""Check status of running crawl operation.
+
+Shows active workers, document count, index size, and progress.""",
+                    inputSchema={
+                        "type": "object",
+                        "properties": {
+                            "es_index": {
+                                "type": "string",
+                                "description": "Elasticsearch index to check (default: submarine-scrapes)",
+                                "default": "submarine-scrapes"
+                            }
+                        }
+                    }
+                )
+            ])
+
+            # Always available: status tool
+            tools.append(
+                Tool(
+                    name="submarine_status",
+                    description="Get SUBMARINE system status and available components.",
+                    inputSchema={"type": "object", "properties": {}}
+                )
+            )
+
+            return tools
+
+        @self.server.call_tool()
+        async def call_tool(name: str, arguments: Any) -> list[TextContent]:
+            try:
+                # =============================================================
+                # ALLDOM TOOLS
+                # =============================================================
+                if name == "alldom_execute":
+                    if not self.alldom:
+                        return [TextContent(type="text", text=json.dumps({"error": "ALLDOM not available"}))]
+
+                    operator = arguments["operator"]
+                    target = arguments["target"]
+                    
+                    try:
+                        result = await self.alldom.execute(operator, target)
+                        
+                        return [TextContent(type="text", text=json.dumps({
+                            "operator": result.operator,
+                            "target": result.target,
+                            "success": result.success,
+                            "data": result.data,
+                            "source": result.source,
+                            "error": result.error
+                        }, indent=2, default=str))]
+                    except Exception as e:
+                        return [TextContent(type="text", text=json.dumps({"error": str(e)}))]
+
+                elif name == "alldom_scan":
+                    if not self.alldom:
+                        return [TextContent(type="text", text=json.dumps({"error": "ALLDOM not available"}))]
+
+                    domain = arguments["domain"]
+                    depth = arguments.get("depth", "fast")
+                    
+                    try:
+                        scan_results = await self.alldom.scan(domain, depth=depth)
+                        
+                        # Convert to serializable dict
+                        output = {}
+                        for op, res in scan_results.items():
+                            output[op] = {
+                                "success": res.success,
+                                "data": res.data,
+                                "source": res.source,
+                                "error": res.error
+                            }
+
+                        return [TextContent(type="text", text=json.dumps({
+                            "domain": domain,
+                            "depth": depth,
+                            "results": output
+                        }, indent=2, default=str))]
+                    except Exception as e:
+                        return [TextContent(type="text", text=json.dumps({"error": str(e)}))]
+
+                # =============================================================
+                # JESTER TOOLS
+                # =============================================================
+                if name == "scrape":
+                    if not self.jester:
+                        return [TextContent(type="text", text=json.dumps({"error": "JESTER not available"}))]
+
+                    url = arguments["url"]
+                    url_error = _validate_external_url(url)
+                    if url_error:
+                        return [TextContent(type="text", text=json.dumps({"error": "unsafe_url", "reason": url_error, "url": url}, indent=2))]
+
+                    force = arguments.get("force_method")
+                    force_method = getattr(JesterMethod, force) if force else None
+                    extract_entities = bool(arguments.get("extract_entities", True))
+                    watcher_id = arguments.get("watcher_id")
+                    allow_ai = bool(arguments.get("allow_ai", True))
+                    stream_to_watcher = bool(arguments.get("stream_to_watcher", False))
+
+                    await self._respect_rate_limit(url)
+                    result = await self.jester.scrape(url, force_method=force_method)
+
+                    findings: List[Dict[str, Any]] = []
+                    extraction_error: Optional[str] = None
+                    stream_error: Optional[str] = None
+
+                    if extract_entities and result.html:
+                        try:
+                            from PACMAN.watcher_registry import WatcherSpec, default_targets, extract_for_watcher, get_watcher
+
+                            spec = get_watcher(str(watcher_id)) if watcher_id else None
+                            if spec is None:
+                                spec = WatcherSpec(
+                                    watcher_id=str(watcher_id or "ad-hoc"),
+                                    submarine_order=f"scrape:{url}",
+                                    domain_count=None,
+                                    targets=default_targets(),
+                                )
+                            findings = extract_for_watcher(watcher=spec, content=result.html, url=url, allow_ai=allow_ai)
+                        except Exception as e:
+                            extraction_error = str(e)
+
+                    if stream_to_watcher and watcher_id and findings:
+                        try:
+                            from SASTRE.bridges import WatcherBridge
+
+                            bridge = WatcherBridge()
+                            watcher_obj = await bridge.get(str(watcher_id))
+                            if watcher_obj is None:
+                                watcher_obj = await bridge.get_watcher(str(watcher_id))
+
+                            section_title = (
+                                (watcher_obj or {}).get("header")
+                                or (watcher_obj or {}).get("name")
+                                or (watcher_obj or {}).get("label")
+                                or (watcher_obj or {}).get("title")
+                            )
+                            document_id = (
+                                (watcher_obj or {}).get("parentDocumentId")
+                                or (watcher_obj or {}).get("parent_document_id")
+                                or (watcher_obj or {}).get("documentId")
+                                or (watcher_obj or {}).get("document_id")
+                                or (watcher_obj or {}).get("noteId")
+                                or (watcher_obj or {}).get("note_id")
+                            )
+
+                            if document_id and section_title:
+                                lines = [f"FROM {url}"]
+                                for f in findings[:50]:
+                                    lines.append(f"- ({f.get('target')}) {f.get('value')}")
+                                    snip = f.get("snippet") or ""
+                                    if snip:
+                                        lines.append(f"  {snip}")
+                                await bridge.stream_finding_to_section(
+                                    document_id=str(document_id),
+                                    section_title=str(section_title),
+                                    finding_text="\n".join(lines),
+                                    source_url=url,
+                                )
+                            await bridge.close()
+                        except Exception as e:
+                            stream_error = str(e)
+
+                    return [TextContent(type="text", text=json.dumps({
+                        "url": url,
+                        "method": result.method.name if result.method else "FAILED",
+                        "status_code": result.status_code,
+                        "content_length": len(result.html) if result.html else 0,
+                        "html_preview": result.html[:2000] if result.html else None,
+                        "findings_count": len(findings),
+                        "findings": findings[:200],
+                        "extraction_error": extraction_error,
+                        "stream_error": stream_error,
+                        "error": result.error
+                    }, indent=2))]
+
+                elif name == "scrape_batch":
+                    if not self.jester:
+                        return [TextContent(type="text", text=json.dumps({"error": "JESTER not available"}))]
+
+                    urls = arguments["urls"]
+                    max_concurrent = min(arguments.get("max_concurrent", 50), 100)
+
+                    safe_urls: List[str] = []
+                    blocked: List[Dict[str, str]] = []
+                    for u in urls:
+                        err = _validate_external_url(str(u))
+                        if err:
+                            blocked.append({"url": str(u), "reason": err})
+                            continue
+                        safe_urls.append(str(u))
+
+                    results = await self.jester.scrape_batch(safe_urls, max_concurrent=max_concurrent)
+
+                    summary = {
+                        "requested": len(urls),
+                        "blocked": blocked,
+                        "total": len(results),
+                        "success": sum(1 for r in results if r.html),
+                        "failed": sum(1 for r in results if not r.html),
+                        "by_method": {},
+                        "results": []
+                    }
+
+                    for r in results:
+                        method = r.method.name if r.method else "FAILED"
+                        summary["by_method"][method] = summary["by_method"].get(method, 0) + 1
+                        summary["results"].append({
+                            "url": r.url,
+                            "method": method,
+                            "status": r.status_code,
+                            "size": len(r.html) if r.html else 0
+                        })
+
+                    return [TextContent(type="text", text=json.dumps(summary, indent=2))]
+
+                elif name == "classify_scrape_method":
+                    if not self.jester:
+                        return [TextContent(type="text", text=json.dumps({"error": "JESTER not available"}))]
+
+                    url = arguments["url"]
+                    # Use JESTER's classify method if available
+                    if hasattr(self.jester, 'classify'):
+                        classification = await self.jester.classify(url)
+                    else:
+                        # Basic heuristics
+                        from urllib.parse import urlparse
+                        domain = urlparse(url).netloc
+                        classification = {
+                            "url": url,
+                            "domain": domain,
+                            "recommended": "JESTER_A",
+                            "reason": "Default to fastest method; will auto-fallback if needed"
+                        }
+
+                    return [TextContent(type="text", text=json.dumps(classification, indent=2))]
+
+                # =============================================================
+                # BACKDRILL TOOLS
+                # =============================================================
+                elif name == "archive_fetch":
+                    if not self.backdrill:
+                        return [TextContent(type="text", text=json.dumps({"error": "BACKDRILL not available"}))]
+
+                    url = arguments["url"]
+                    result = await self.backdrill.fetch(url)
+
+                    return [TextContent(type="text", text=json.dumps({
+                        "url": url,
+                        "source": result.source.name if result.source else None,
+                        "timestamp": result.timestamp,
+                        "status_code": result.status_code,
+                        "content_length": len(result.content) if result.content else 0,
+                        "content_preview": result.content[:2000] if result.content else None,
+                        "error": result.error
+                    }, indent=2))]
+
+                elif name == "archive_exists":
+                    if not self.backdrill:
+                        return [TextContent(type="text", text=json.dumps({"error": "BACKDRILL not available"}))]
+
+                    url = arguments["url"]
+                    exists = await self.backdrill.exists(url)
+
+                    return [TextContent(type="text", text=json.dumps({
+                        "url": url,
+                        "exists": exists
+                    }, indent=2))]
+
+                elif name == "archive_snapshots":
+                    if not self.backdrill:
+                        return [TextContent(type="text", text=json.dumps({"error": "BACKDRILL not available"}))]
+
+                    url = arguments["url"]
+                    limit = arguments.get("limit", 100)
+                    snapshots = await self.backdrill.list_snapshots(url)
+
+                    return [TextContent(type="text", text=json.dumps({
+                        "url": url,
+                        "total": len(snapshots),
+                        "snapshots": snapshots[:limit]
+                    }, indent=2))]
+
+                # =============================================================
+                # SUBMARINE CC SEARCH TOOLS
+                # =============================================================
+                # =================================================================
+                # SERDAVOS DARK WEB HANDLERS
+                # =================================================================
+                
+                elif name == "darkweb_search":
+                    if not SERDAVOS_AVAILABLE:
+                        return [TextContent(type="text", text=json.dumps({"error": "SERDAVOS not available"}))]
+                    
+                    query = arguments.get("query")
+                    limit = arguments.get("limit", 50)
+                    
+                    results = []
+                    try:
+                        for result in self.ahmia.search(query, limit=limit):
+                            results.append({
+                                "url": result.get("url", ""),
+                                "title": result.get("title", ""),
+                                "description": result.get("description", ""),
+                                "onion_url": result.get("url", "").endswith(".onion")
+                            })
+                        
+                        return [TextContent(type="text", text=json.dumps({
+                            "query": query,
+                            "engine": "ahmia",
+                            "results_count": len(results),
+                            "results": results
+                        }, indent=2))]
+                        
+                    except Exception as e:
+                        return [TextContent(type="text", text=json.dumps({
+                            "error": str(e),
+                            "traceback": __import__("traceback").format_exc()
+                        }))]
+                
+                elif name == "darkweb_status":
+                    status = {
+                        "serdavos_available": SERDAVOS_AVAILABLE,
+                        "engines": list(ONION_SEARCH_ENGINES.keys()) if (ONION_SEARCH_ENGINES and SERDAVOS_AVAILABLE) else ["ahmia"],
+                        "ahmia_ready": self.ahmia is not None
+                    }
+                    
+                    # Check Tor proxy
+                    try:
+                        import socket as _sock
+                        sock = _sock.socket(_sock.AF_INET, _sock.SOCK_STREAM)
+                        sock.settimeout(2)
+                        result = sock.connect_ex(('127.0.0.1', 9050))
+                        sock.close()
+                        status["tor_proxy"] = "online" if result == 0 else "offline"
+                    except:
+                        status["tor_proxy"] = "offline"
+                    
+                    return [TextContent(type="text", text=json.dumps(status, indent=2))]
+
+                elif name == "submarine_plan":
+                    if not self.planner:
+                        return [TextContent(type="text", text=json.dumps({"error": "SUBMARINE planner not available"}))]
+
+                    query = arguments["query"]
+                    cc_archives = _parse_archives(arguments.get("archives")) or _parse_archives(arguments.get("archive"))
+                    domain_allowlist = None
+                    if arguments.get("news"):
+                        domain_allowlist = _load_torpedo_news_domains(
+                            arguments.get("jurisdiction"),
+                            min_reliability=float(arguments.get("min_reliability", 0.0) or 0.0),
+                        )
+                    plan = await self.planner.create_plan(
+                        query,
+                        max_domains=arguments.get("max_domains", 100),
+                        max_pages_per_domain=arguments.get("max_pages", 50),
+                        cc_archives=cc_archives,
+                        filter_status=arguments.get("status", 200),
+                        filter_mime=arguments.get("mime"),
+                        filter_languages=arguments.get("language"),
+                        from_ts=arguments.get("from_ts"),
+                        to_ts=arguments.get("to_ts"),
+                        domain_allowlist=domain_allowlist,
+                        tld_include=_parse_archives(arguments.get("tld_include")),
+                        tld_exclude=_parse_archives(arguments.get("tld_exclude")),
+                        url_contains=arguments.get("keyword"),
+                    )
+
+                    return [TextContent(type="text", text=json.dumps({
+                        "query": query,
+                        "query_type": plan.query_type,
+                        "total_domains": plan.total_domains,
+                        "total_pages": plan.total_pages,
+                        "estimated_time_seconds": plan.estimated_time_seconds,
+                        "sonar_indices_used": len(plan.sonar_indices_used),
+                        "domains_preview": [t.domain for t in getattr(plan, "targets", [])[:20]]
+                    }, indent=2))]
+
+                elif name == "submarine_search":
+                    if not self.planner:
+                        return [TextContent(type="text", text=json.dumps({"error": "SUBMARINE planner not available"}))]
+
+                    query = arguments["query"]
+                    cc_archives = _parse_archives(arguments.get("archives")) or _parse_archives(arguments.get("archive"))
+                    domain_allowlist = None
+                    if arguments.get("news"):
+                        domain_allowlist = _load_torpedo_news_domains(
+                            arguments.get("jurisdiction"),
+                            min_reliability=float(arguments.get("min_reliability", 0.0) or 0.0),
+                        )
+                    plan = await self.planner.create_plan(
+                        query,
+                        max_domains=arguments.get("max_domains", 50),
+                        max_pages_per_domain=arguments.get("max_pages", 20),
+                        cc_archives=cc_archives,
+                        filter_status=arguments.get("status", 200),
+                        filter_mime=arguments.get("mime"),
+                        filter_languages=arguments.get("language"),
+                        from_ts=arguments.get("from_ts"),
+                        to_ts=arguments.get("to_ts"),
+                        domain_allowlist=domain_allowlist,
+                        tld_include=_parse_archives(arguments.get("tld_include")),
+                        tld_exclude=_parse_archives(arguments.get("tld_exclude")),
+                        url_contains=arguments.get("keyword"),
+                    )
+
+                    plan_dir = Path(os.getenv("SUBMARINE_PLAN_DIR", "/data/SUBMARINE/plans"))
+                    slug = "".join(ch for ch in (query or "query") if ch.isalnum() or ch in ("_", "-")).strip("_-")
+                    ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+                    plan_file = plan_dir / f"mcp_submarine_{slug[:40] or 'query'}_{ts}.json"
+                    try:
+                        plan.save(str(plan_file), full=True)
+                    except Exception:
+                        plan_file = None
+
+                    # Execute the dive
+                    diver = DeepDiver()
+                    pages_fetched = 0
+                    domains_covered: set[str] = set()
+
+                    max_domains = int(arguments.get("max_domains", 50))
+                    max_pages = int(arguments.get("max_pages", 20))
+                    try:
+                        overall_cap_setting = int(os.getenv("SUBMARINE_OVERALL_CAP", "500"))
+                    except Exception:
+                        overall_cap_setting = 500
+                    overall_cap_setting = max(1, min(overall_cap_setting, 5000))
+                    overall_cap = min(max_domains * max_pages, overall_cap_setting)
+
+                    # Optional extraction
+                    entities: List[Dict[str, Any]] = []
+                    extraction_error: Optional[str] = None
+                    stream_error: Optional[str] = None
+                    watcher_id = arguments.get("watcher_id")
+                    allow_ai = bool(arguments.get("allow_ai", True))
+                    stream_to_watcher = bool(arguments.get("stream_to_watcher", False))
+
+                    if arguments.get("extract", True):
+                        try:
+                            from PACMAN.watcher_registry import WatcherSpec, default_targets, extract_for_watcher, get_watcher
+
+                            spec = get_watcher(str(watcher_id)) if watcher_id else None
+                            if spec is None:
+                                spec = WatcherSpec(
+                                    watcher_id=str(watcher_id or "submarine_search"),
+                                    submarine_order=f"submarine_search:{query}",
+                                    domain_count=int(arguments.get("max_domains", 50)),
+                                    targets=default_targets(),
+                                )
+
+                            seen = set()
+                            extraction_page_cap = 100
+                            async for r in diver.execute_plan(plan, checkpoint_path=plan_file):
+                                pages_fetched += 1
+                                if getattr(r, "domain", None):
+                                    domains_covered.add(str(r.domain))
+                                if pages_fetched >= overall_cap:
+                                    break
+
+                                if pages_fetched > extraction_page_cap or not getattr(r, "content", None):
+                                    continue
+                                url_val = getattr(r, "url", "") or ""
+                                for f in extract_for_watcher(watcher=spec, content=r.content, url=url_val, allow_ai=allow_ai):
+                                    key = (f.get("target"), f.get("value"))
+                                    if key in seen:
+                                        continue
+                                    seen.add(key)
+                                    entities.append(f)
+                        except Exception as e:
+                            extraction_error = str(e)
+                    else:
+                        async for r in diver.execute_plan(plan, checkpoint_path=plan_file):
+                            pages_fetched += 1
+                            if getattr(r, "domain", None):
+                                domains_covered.add(str(r.domain))
+                            if pages_fetched >= overall_cap:
+                                break
+
+                    if stream_to_watcher and watcher_id and entities:
+                        try:
+                            from SASTRE.bridges import WatcherBridge
+
+                            bridge = WatcherBridge()
+                            watcher_obj = await bridge.get(str(watcher_id))
+                            if watcher_obj is None:
+                                watcher_obj = await bridge.get_watcher(str(watcher_id))
+
+                            section_title = (
+                                (watcher_obj or {}).get("header")
+                                or (watcher_obj or {}).get("name")
+                                or (watcher_obj or {}).get("label")
+                                or (watcher_obj or {}).get("title")
+                            )
+                            document_id = (
+                                (watcher_obj or {}).get("parentDocumentId")
+                                or (watcher_obj or {}).get("parent_document_id")
+                                or (watcher_obj or {}).get("documentId")
+                                or (watcher_obj or {}).get("document_id")
+                                or (watcher_obj or {}).get("noteId")
+                                or (watcher_obj or {}).get("note_id")
+                            )
+
+                            if document_id and section_title:
+                                lines = [f"SUBMARINE SEARCH: {query}"]
+                                for f in entities[:50]:
+                                    lines.append(f"- ({f.get('target')}) {f.get('value')}")
+                                    snip = f.get("snippet") or ""
+                                    if snip:
+                                        lines.append(f"  {snip}")
+                                await bridge.stream_finding_to_section(
+                                    document_id=str(document_id),
+                                    section_title=str(section_title),
+                                    finding_text="\n".join(lines),
+                                )
+                            await bridge.close()
+                        except Exception as e:
+                            stream_error = str(e)
+
+                    return [TextContent(type="text", text=json.dumps({
+                        "query": query,
+                        "plan_file": str(plan_file) if plan_file else None,
+                        "pages_fetched": pages_fetched,
+                        "entities_extracted": len(entities),
+                        "sample_entities": entities[:50],
+                        "extraction_error": extraction_error,
+                        "stream_error": stream_error,
+                        "domains_covered": list(domains_covered)[:20]
+                    }, indent=2))]
+
+                elif name == "submarine_resume":
+                    plan_path = Path(arguments["plan_file"])
+                    if not plan_path.exists():
+                        return [TextContent(type="text", text=json.dumps({"error": f"Plan file not found: {plan_path}"}))]
+
+                    try:
+                        from dive_planner.planner import DivePlan
+                        plan = DivePlan.load(str(plan_path))
+                    except Exception as e:
+                        return [TextContent(type="text", text=json.dumps({"error": f"Failed to load plan: {e}"}))]
+
+                    diver = DeepDiver()
+                    if not diver.available:
+                        return [TextContent(type="text", text=json.dumps({"error": "SUBMARINE DeepDiver not available (ccwarc missing)"}))]
+
+                    pages_fetched = 0
+                    domains_covered: set[str] = set()
+                    entities: List[Dict[str, Any]] = []
+                    extraction_error: Optional[str] = None
+                    stream_error: Optional[str] = None
+                    watcher_id = arguments.get("watcher_id")
+                    allow_ai = bool(arguments.get("allow_ai", True))
+                    stream_to_watcher = bool(arguments.get("stream_to_watcher", False))
+
+                    overall_cap = int(os.getenv("SUBMARINE_OVERALL_CAP", "500"))
+                    overall_cap = max(1, min(overall_cap, 5000))
+
+                    if arguments.get("extract", True):
+                        try:
+                            from PACMAN.watcher_registry import WatcherSpec, default_targets, extract_for_watcher, get_watcher
+
+                            spec = get_watcher(str(watcher_id)) if watcher_id else None
+                            if spec is None:
+                                spec = WatcherSpec(
+                                    watcher_id=str(watcher_id or "submarine_resume"),
+                                    submarine_order=f"submarine_resume:{plan.query}",
+                                    domain_count=int(getattr(plan, "total_domains", 0) or 0),
+                                    targets=default_targets(),
+                                )
+
+                            seen = set()
+                            extraction_page_cap = 100
+                            async for r in diver.execute_plan(plan, checkpoint_path=plan_path):
+                                pages_fetched += 1
+                                if getattr(r, "domain", None):
+                                    domains_covered.add(str(r.domain))
+                                if pages_fetched >= overall_cap:
+                                    break
+
+                                if pages_fetched > extraction_page_cap or not getattr(r, "content", None):
+                                    continue
+                                url_val = getattr(r, "url", "") or ""
+                                for f in extract_for_watcher(watcher=spec, content=r.content, url=url_val, allow_ai=allow_ai):
+                                    key = (f.get("target"), f.get("value"))
+                                    if key in seen:
+                                        continue
+                                    seen.add(key)
+                                    entities.append(f)
+                        except Exception as e:
+                            extraction_error = str(e)
+                    else:
+                        async for r in diver.execute_plan(plan, checkpoint_path=plan_path):
+                            pages_fetched += 1
+                            if getattr(r, "domain", None):
+                                domains_covered.add(str(r.domain))
+                            if pages_fetched >= overall_cap:
+                                break
+
+                    if stream_to_watcher and watcher_id and entities:
+                        try:
+                            from SASTRE.bridges import WatcherBridge
+
+                            bridge = WatcherBridge()
+                            watcher_obj = await bridge.get(str(watcher_id))
+                            if watcher_obj is None:
+                                watcher_obj = await bridge.get_watcher(str(watcher_id))
+
+                            section_title = (
+                                (watcher_obj or {}).get("header")
+                                or (watcher_obj or {}).get("name")
+                                or (watcher_obj or {}).get("label")
+                                or (watcher_obj or {}).get("title")
+                            )
+                            document_id = (
+                                (watcher_obj or {}).get("parentDocumentId")
+                                or (watcher_obj or {}).get("parent_document_id")
+                                or (watcher_obj or {}).get("documentId")
+                                or (watcher_obj or {}).get("document_id")
+                                or (watcher_obj or {}).get("noteId")
+                                or (watcher_obj or {}).get("note_id")
+                            )
+
+                            if document_id and section_title:
+                                lines = [f"SUBMARINE RESUME: {plan.query}"]
+                                lines.append(f"- plan_file: {plan_path}")
+                                for f in entities[:50]:
+                                    lines.append(f"- ({f.get('target')}) {f.get('value')}")
+                                    snip = f.get("snippet") or ""
+                                    if snip:
+                                        lines.append(f"  {snip}")
+                                await bridge.stream_finding_to_section(
+                                    document_id=str(document_id),
+                                    section_title=str(section_title),
+                                    finding_text="\n".join(lines),
+                                )
+                            await bridge.close()
+                        except Exception as e:
+                            stream_error = str(e)
+
+                    return [TextContent(type="text", text=json.dumps({
+                        "query": getattr(plan, "query", None),
+                        "plan_file": str(plan_path),
+                        "pages_fetched": pages_fetched,
+                        "entities_extracted": len(entities),
+                        "sample_entities": entities[:50],
+                        "extraction_error": extraction_error,
+                        "stream_error": stream_error,
+                        "domains_covered": list(domains_covered)[:20],
+                        "completed_domains": len(getattr(plan, "completed_domains", set()) or set()),
+                        "total_domains": getattr(plan, "total_domains", 0),
+                    }, indent=2))]
+
+                # =============================================================
+                # STATUS TOOL
+                # =============================================================
+                # =============================================================
+                # DOMAIN CRAWLING TOOLS
+                # =============================================================
+                elif name == "crawl_domains":
+                    import subprocess
+                    from pathlib import Path
+
+                    domain_file = arguments.get("domain_file")
+                    max_pages = arguments.get("max_pages", 50)
+                    max_depth = arguments.get("max_depth", 2)
+                    es_index = arguments.get("es_index", "submarine-scrapes")
+
+                    # Validate domain file
+                    domain_path = Path(domain_file)
+                    if not domain_path.exists():
+                        return [TextContent(
+                            type="text",
+                            text=json.dumps({
+                                "error": f"Domain file not found: {domain_file}",
+                                "status": "failed"
+                            }, indent=2)
+                        )]
+
+                    # Count domains
+                    with open(domain_path) as f:
+                        domain_count = sum(1 for line in f if line.strip().startswith("http"))
+
+                    # Launch crawler
+                    cmd = [
+                        "bash",
+                        "/data/SUBMARINE/launch_parallel_crawl.sh",
+                        str(domain_path),
+                        str(max_pages),
+                        str(max_depth)
+                    ]
+
+                    try:
+                        result = subprocess.run(
+                            cmd,
+                            capture_output=True,
+                            text=True,
+                            timeout=120
+                        )
+
+                        workers = 19
+                        concurrent_per_worker = 20
+                        total_concurrent = workers * concurrent_per_worker
+                        avg_time_per_domain = 7
+                        estimated_hours = (domain_count / total_concurrent * avg_time_per_domain) / 3600
+
+                        return [TextContent(
+                            type="text",
+                            text=json.dumps({
+                                "status": "launched" if result.returncode == 0 else "failed",
+                                "domains": domain_count,
+                                "workers": workers,
+                                "concurrent_per_worker": concurrent_per_worker,
+                                "total_concurrent": total_concurrent,
+                                "max_pages_per_domain": max_pages,
+                                "crawl_depth": max_depth,
+                                "es_index": es_index,
+                                "estimated_hours": round(estimated_hours, 1),
+                                "estimated_pages": domain_count * max_pages,
+                                "monitor_command": "./monitor_crawl.sh " + es_index,
+                                "check_progress": f"curl -s http://localhost:9200/{es_index}/_count | jq .count",
+                                "stdout": result.stdout[-500:] if result.stdout else None,
+                                "stderr": result.stderr[-500:] if result.returncode != 0 and result.stderr else None
+                            }, indent=2)
+                        )]
+                    except subprocess.TimeoutExpired:
+                        return [TextContent(
+                            type="text",
+                            text=json.dumps({
+                                "error": "Launch timeout (crawlers may still be starting)",
+                                "status": "unknown",
+                                "note": "Check screen -ls | grep crawler to verify"
+                            }, indent=2)
+                        )]
+                    except Exception as e:
+                        return [TextContent(
+                            type="text",
+                            text=json.dumps({
+                                "error": str(e),
+                                "status": "failed"
+                            }, indent=2)
+                        )]
+
+                elif name == "crawl_status":
+                    import subprocess
+
+                    es_index = arguments.get("es_index", "submarine-scrapes")
+
+                    try:
+                        # Count active workers
+                        workers_result = subprocess.run(
+                            ["ps", "aux"],
+                            capture_output=True,
+                            text=True
+                        )
+                        active_workers = len([
+                            line for line in workers_result.stdout.split("\n")
+                            if "jester_crawler_pacman" in line and "grep" not in line
+                        ])
+
+                        # Get document count from ES
+                        es_result = subprocess.run(
+                            ["curl", "-s", f"http://localhost:9200/{es_index}/_count"],
+                            capture_output=True,
+                            text=True
+                        )
+
+                        try:
+                            es_data = json.loads(es_result.stdout)
+                            doc_count = es_data.get("count", 0)
+                        except:
+                            doc_count = None
+
+                        # Get index size
+                        size_result = subprocess.run(
+                            ["curl", "-s", f"http://localhost:9200/_cat/indices/{es_index}?h=docs.count,store.size"],
+                            capture_output=True,
+                            text=True
+                        )
+
+                        return [TextContent(
+                            type="text",
+                            text=json.dumps({
+                                "active_workers": active_workers,
+                                "documents_indexed": doc_count,
+                                "index_size": size_result.stdout.strip() if size_result.returncode == 0 else None,
+                                "status": "running" if active_workers > 0 else "idle",
+                                "es_index": es_index
+                            }, indent=2)
+                        )]
+                    except Exception as e:
+                        return [TextContent(
+                            type="text",
+                            text=json.dumps({"error": str(e)}, indent=2)
+                        )]
+
+
+                elif name == "submarine_status":
+                    return [TextContent(type="text", text=json.dumps({
+                        "status": "operational",
+                        "components": {
+                            "jester": JESTER_AVAILABLE,
+                            "backdrill": BACKDRILL_AVAILABLE,
+                            "submarine": SUBMARINE_AVAILABLE
+                        },
+                        "jester_methods": ["JESTER_A", "JESTER_B", "JESTER_C", "JESTER_D", "FIRECRAWL", "BRIGHTDATA"] if JESTER_AVAILABLE else [],
+                        "archive_sources": ["commoncrawl", "wayback"] if BACKDRILL_AVAILABLE else []
+                    }, indent=2))]
+
+                else:
+                    return [TextContent(type="text", text=json.dumps({"error": f"Unknown tool: {name}"}))]
+
+            except Exception as e:
+                logger.error(f"Tool {name} error: {e}")
+                import traceback
+                return [TextContent(type="text", text=json.dumps({
+                    "error": str(e),
+                    "traceback": traceback.format_exc()
+                }))]
+
+    async def run(self):
+        """Run the MCP server."""
+        async with mcp.server.stdio.stdio_server() as (read_stream, write_stream):
+            await self.server.run(
+                read_stream,
+                write_stream,
+                self.server.create_initialization_options()
+            )
+
+
+def main():
+    """Entry point."""
+    server = SubmarineMCP()
+    asyncio.run(server.run())
+
+
+if __name__ == "__main__":
+    main()

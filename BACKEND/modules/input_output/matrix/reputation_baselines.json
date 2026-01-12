@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "description": "Baseline expectations for reputation profiles by entity type",
+    "purpose": "Enable comparison of subject profile to 'normal' for their category",
+    "updated": "2025-12-29"
+  },
+  "entity_types": {
+    "fortune_500_ceo": {
+      "label": "Fortune 500 CEO",
+      "description": "Chief executive of major publicly traded corporation",
+      "expectations": {
+        "mentions": {"min": 500, "max": 5000, "typical": 1500},
+        "unique_after_dedup": {"min": 200, "max": 2000, "typical": 600},
+        "tier_1_pct": {"min": 20, "max": 50, "typical": 30},
+        "tier_2_pct": {"min": 20, "max": 40, "typical": 30},
+        "countries_covered": {"min": 3, "max": 20, "typical": 8},
+        "languages": {"min": 2, "max": 10, "typical": 4},
+        "coverage_span_years": {"min": 5, "max": 30, "typical": 15},
+        "original_editorial_pct": {"min": 40, "max": 80, "typical": 55},
+        "sentiment_negative_pct": {"min": 5, "max": 30, "typical": 15}
+      },
+      "red_flags": [
+        {"condition": "mentions < 100", "severity": "HIGH", "message": "Far below expected visibility for role"},
+        {"condition": "tier_1_pct < 5", "severity": "MEDIUM", "message": "Absence from major publications unusual"},
+        {"condition": "pr_pct > 70", "severity": "MEDIUM", "message": "Coverage dominated by PR, limited editorial"}
+      ],
+      "normal_patterns": [
+        "Quarterly earnings coverage",
+        "Annual meeting mentions",
+        "Industry conference speaking",
+        "M&A announcements",
+        "Regulatory filings coverage"
+      ]
+    },
+    "mid_market_exec": {
+      "label": "Mid-Market Executive",
+      "description": "Senior executive at medium-sized company",
+      "expectations": {
+        "mentions": {"min": 50, "max": 200, "typical": 100},
+        "unique_after_dedup": {"min": 20, "max": 100, "typical": 50},
+        "tier_1_pct": {"min": 0, "max": 10, "typical": 3},
+        "tier_2_pct": {"min": 5, "max": 25, "typical": 12},
+        "tier_3_pct": {"min": 20, "max": 50, "typical": 35},
+        "countries_covered": {"min": 1, "max": 3, "typical": 1},
+        "languages": {"min": 1, "max": 3, "typical": 1},
+        "coverage_span_years": {"min": 3, "max": 15, "typical": 7},
+        "original_editorial_pct": {"min": 20, "max": 60, "typical": 35},
+        "sentiment_negative_pct": {"min": 0, "max": 15, "typical": 5}
+      },
+      "red_flags": [
+        {"condition": "mentions > 500 AND tier_1_pct > 30", "severity": "INVESTIGATE", "message": "Profile higher than expected - verify claims"},
+        {"condition": "coverage_span < 2 AND claims_20_years_experience", "severity": "HIGH", "message": "Claims vs evidence mismatch"}
+      ],
+      "normal_patterns": [
+        "Trade publication features",
+        "Industry award mentions",
+        "Company press releases",
+        "LinkedIn activity",
+        "Regional business coverage"
+      ]
+    },
+    "startup_founder": {
+      "label": "Startup Founder",
+      "description": "Founder/CEO of venture-backed startup",
+      "expectations": {
+        "mentions": {"min": 10, "max": 100, "typical": 40},
+        "unique_after_dedup": {"min": 5, "max": 50, "typical": 20},
+        "tier_1_pct": {"min": 0, "max": 20, "typical": 5},
+        "tier_2_pct": {"min": 10, "max": 40, "typical": 20},
+        "countries_covered": {"min": 1, "max": 5, "typical": 2},
+        "languages": {"min": 1, "max": 3, "typical": 1},
+        "coverage_span_years": {"min": 1, "max": 7, "typical": 3},
+        "original_editorial_pct": {"min": 30, "max": 70, "typical": 45},
+        "sentiment_negative_pct": {"min": 0, "max": 20, "typical": 5}
+      },
+      "red_flags": [
+        {"condition": "mentions < 5 AND raised_series_b", "severity": "MEDIUM", "message": "Low visibility for funding stage"},
+        {"condition": "all_coverage_same_week", "severity": "HIGH", "message": "Burst pattern suggests PR campaign only"}
+      ],
+      "normal_patterns": [
+        "Funding announcement spikes",
+        "TechCrunch / tech press features",
+        "Podcast appearances",
+        "Conference speaking",
+        "Product launch coverage"
+      ]
+    },
+    "private_individual": {
+      "label": "Private Individual",
+      "description": "Non-public figure, private citizen",
+      "expectations": {
+        "mentions": {"min": 0, "max": 20, "typical": 5},
+        "unique_after_dedup": {"min": 0, "max": 15, "typical": 3},
+        "tier_1_pct": {"min": 0, "max": 5, "typical": 0},
+        "tier_2_pct": {"min": 0, "max": 10, "typical": 2},
+        "countries_covered": {"min": 0, "max": 2, "typical": 1},
+        "languages": {"min": 0, "max": 2, "typical": 1},
+        "coverage_span_years": {"min": 0, "max": 10, "typical": 3},
+        "original_editorial_pct": {"min": 0, "max": 100, "typical": 50},
+        "sentiment_negative_pct": {"min": 0, "max": 50, "typical": 10}
+      },
+      "red_flags": [
+        {"condition": "mentions > 50", "severity": "INVESTIGATE", "message": "Unusually high visibility - why?"},
+        {"condition": "negative_coverage_only", "severity": "HIGH", "message": "All coverage adverse - investigate"}
+      ],
+      "normal_patterns": [
+        "Wedding/obituary announcements",
+        "Sports results",
+        "Local news mentions",
+        "Professional directory listings",
+        "Academic publications"
+      ]
+    },
+    "pep_politician": {
+      "label": "PEP / Politician",
+      "description": "Politically Exposed Person, elected official, senior government",
+      "expectations": {
+        "mentions": {"min": 100, "max": 10000, "typical": 1000},
+        "unique_after_dedup": {"min": 50, "max": 5000, "typical": 500},
+        "tier_1_pct": {"min": 10, "max": 40, "typical": 25},
+        "tier_2_pct": {"min": 15, "max": 40, "typical": 30},
+        "countries_covered": {"min": 1, "max": 50, "typical": 5},
+        "languages": {"min": 1, "max": 20, "typical": 3},
+        "coverage_span_years": {"min": 5, "max": 40, "typical": 15},
+        "original_editorial_pct": {"min": 50, "max": 90, "typical": 70},
+        "sentiment_negative_pct": {"min": 10, "max": 60, "typical": 30}
+      },
+      "red_flags": [
+        {"condition": "mentions < 50", "severity": "HIGH", "message": "Suspiciously low visibility for public role"},
+        {"condition": "no_negative_coverage AND authoritarian_jurisdiction", "severity": "INVESTIGATE", "message": "Absence of criticism may indicate suppression"}
+      ],
+      "normal_patterns": [
+        "Policy announcements",
+        "Parliamentary/Congressional coverage",
+        "Election coverage",
+        "Investigation mentions (normal for PEPs)",
+        "Diplomatic events"
+      ]
+    },
+    "sme_company": {
+      "label": "SME Company",
+      "description": "Small to medium enterprise",
+      "expectations": {
+        "mentions": {"min": 5, "max": 50, "typical": 20},
+        "unique_after_dedup": {"min": 3, "max": 30, "typical": 12},
+        "tier_1_pct": {"min": 0, "max": 5, "typical": 0},
+        "tier_2_pct": {"min": 0, "max": 15, "typical": 5},
+        "tier_3_pct": {"min": 10, "max": 40, "typical": 25},
+        "countries_covered": {"min": 1, "max": 2, "typical": 1},
+        "languages": {"min": 1, "max": 2, "typical": 1},
+        "coverage_span_years": {"min": 2, "max": 20, "typical": 8},
+        "referring_domains": {"min": 10, "max": 500, "typical": 100},
+        "original_editorial_pct": {"min": 10, "max": 50, "typical": 25},
+        "sentiment_negative_pct": {"min": 0, "max": 20, "typical": 5}
+      },
+      "red_flags": [
+        {"condition": "referring_domains < 10 AND claims_major_clients", "severity": "MEDIUM", "message": "Web presence doesn't support client claims"},
+        {"condition": "all_pr_republication", "severity": "LOW", "message": "No organic editorial coverage"}
+      ],
+      "normal_patterns": [
+        "Local business features",
+        "Directory listings",
+        "Trade association mentions",
+        "Award announcements",
+        "Hiring announcements"
+      ]
+    },
+    "large_corporation": {
+      "label": "Large Corporation",
+      "description": "Major corporation, publicly traded or large private",
+      "expectations": {
+        "mentions": {"min": 1000, "max": 50000, "typical": 5000},
+        "unique_after_dedup": {"min": 400, "max": 20000, "typical": 2000},
+        "tier_1_pct": {"min": 15, "max": 40, "typical": 25},
+        "tier_2_pct": {"min": 20, "max": 40, "typical": 30},
+        "countries_covered": {"min": 5, "max": 100, "typical": 20},
+        "languages": {"min": 3, "max": 30, "typical": 10},
+        "coverage_span_years": {"min": 10, "max": 100, "typical": 30},
+        "referring_domains": {"min": 1000, "max": 100000, "typical": 10000},
+        "original_editorial_pct": {"min": 40, "max": 75, "typical": 55},
+        "sentiment_negative_pct": {"min": 10, "max": 40, "typical": 20}
+      },
+      "red_flags": [
+        {"condition": "mentions < 500", "severity": "HIGH", "message": "Visibility far below expected for size"},
+        {"condition": "referring_domains < 500", "severity": "MEDIUM", "message": "Web presence doesn't match claimed scale"}
+      ],
+      "normal_patterns": [
+        "Earnings coverage",
+        "Product launches",
+        "Executive changes",
+        "Regulatory filings",
+        "Industry analysis",
+        "ESG reporting"
+      ]
+    },
+    "industry_expert": {
+      "label": "Industry Expert / Thought Leader",
+      "description": "Recognized expert, consultant, author in their field",
+      "expectations": {
+        "mentions": {"min": 30, "max": 300, "typical": 100},
+        "unique_after_dedup": {"min": 15, "max": 150, "typical": 50},
+        "tier_1_pct": {"min": 0, "max": 15, "typical": 5},
+        "tier_2_pct": {"min": 5, "max": 30, "typical": 15},
+        "tier_3_pct": {"min": 30, "max": 60, "typical": 45},
+        "countries_covered": {"min": 1, "max": 10, "typical": 3},
+        "languages": {"min": 1, "max": 5, "typical": 2},
+        "coverage_span_years": {"min": 5, "max": 25, "typical": 12},
+        "original_editorial_pct": {"min": 40, "max": 80, "typical": 55},
+        "third_party_quotes_pct": {"min": 20, "max": 60, "typical": 35}
+      },
+      "red_flags": [
+        {"condition": "third_party_quotes_pct < 10", "severity": "MEDIUM", "message": "Claims expertise but rarely quoted by others"},
+        {"condition": "all_self_authored", "severity": "MEDIUM", "message": "No third-party validation of expertise"}
+      ],
+      "normal_patterns": [
+        "Expert commentary in news",
+        "Conference speaking",
+        "Book/article authorship",
+        "Podcast appearances",
+        "Industry report citations"
+      ]
+    },
+    "high_net_worth": {
+      "label": "High Net Worth Individual",
+      "description": "Wealthy private individual, family office principal",
+      "expectations": {
+        "mentions": {"min": 10, "max": 200, "typical": 50},
+        "unique_after_dedup": {"min": 5, "max": 100, "typical": 25},
+        "tier_1_pct": {"min": 0, "max": 20, "typical": 8},
+        "tier_2_pct": {"min": 5, "max": 30, "typical": 15},
+        "countries_covered": {"min": 1, "max": 10, "typical": 3},
+        "languages": {"min": 1, "max": 5, "typical": 2},
+        "coverage_span_years": {"min": 5, "max": 30, "typical": 15},
+        "original_editorial_pct": {"min": 30, "max": 70, "typical": 45},
+        "sentiment_negative_pct": {"min": 0, "max": 30, "typical": 10}
+      },
+      "red_flags": [
+        {"condition": "zero_mentions AND claims_billionaire", "severity": "HIGH", "message": "Claimed wealth not reflected in any coverage"},
+        {"condition": "only_wealth_list_mentions", "severity": "LOW", "message": "Profile limited to rich lists"}
+      ],
+      "normal_patterns": [
+        "Wealth rankings / rich lists",
+        "Philanthropy coverage",
+        "Investment announcements",
+        "Real estate deals",
+        "Society/lifestyle coverage"
+      ]
+    }
+  },
+  "mismatch_patterns": {
+    "description": "Common claim vs evidence mismatches",
+    "patterns": [
+      {
+        "id": "inflated_visibility",
+        "claim": "Industry leader / well-known / prominent",
+        "evidence_gap": "< 20 unique mentions, no T1/T2 coverage",
+        "severity": "HIGH",
+        "interpretation": "Claims not supported by media record"
+      },
+      {
+        "id": "ghost_company",
+        "claim": "Major corporation / global presence",
+        "evidence_gap": "< 50 referring domains, < 10 unique mentions",
+        "severity": "HIGH",
+        "interpretation": "Digital footprint doesn't match claimed scale"
+      },
+      {
+        "id": "pr_only",
+        "claim": "Award-winning / recognized",
+        "evidence_gap": "> 90% PR republication, 0 editorial features",
+        "severity": "MEDIUM",
+        "interpretation": "No third-party validation of claims"
+      },
+      {
+        "id": "sudden_emergence",
+        "claim": "20+ years experience",
+        "evidence_gap": "First mention < 3 years ago",
+        "severity": "MEDIUM",
+        "interpretation": "Track record not verifiable pre-recent period"
+      },
+      {
+        "id": "silent_expert",
+        "claim": "Thought leader / expert",
+        "evidence_gap": "Never quoted by others, all self-authored",
+        "severity": "MEDIUM",
+        "interpretation": "Expertise not validated by third parties"
+      },
+      {
+        "id": "hidden_adverse",
+        "claim": "Clean reputation",
+        "evidence_gap": "Coverage gap during known controversy period",
+        "severity": "INVESTIGATE",
+        "interpretation": "May indicate reputation management / removal"
+      }
+    ]
+  },
+  "authenticity_indicators": {
+    "high_authenticity": [
+      "Multiple T1/T2 sources independently covering same events",
+      "Third-party quotes about subject (not just subject's own quotes)",
+      "Investigative journalism pieces",
+      "Critical/analytical coverage (not just announcements)",
+      "Coverage span > 5 years with consistent presence"
+    ],
+    "low_authenticity": [
+      "Same press release text across 10+ outlets",
+      "Only company-issued statements republished",
+      "Coverage cluster in single week (PR burst)",
+      "No third-party validation of claims",
+      "Zero negative coverage despite high volume"
+    ]
+  }
+}

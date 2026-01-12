@@ -1,0 +1,150 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://io-matrix/source-schema.json",
+  "title": "I/O Matrix Source Definition",
+  "description": "Schema for data sources in the I/O Matrix system. All inputs/outputs use numeric codes from codes.json.",
+  "type": "object",
+  "required": ["id", "name", "category", "inputs", "outputs"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the source (snake_case)",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable display name"
+    },
+    "jurisdiction": {
+      "type": "string",
+      "description": "2-letter ISO country code or 'GLOBAL'",
+      "pattern": "^[A-Z]{2}$|^GLOBAL$"
+    },
+    "category": {
+      "type": "string",
+      "description": "Source category code",
+      "enum": [
+        "cr", "reg", "lit", "sanc", "news", "social", "at", "gov",
+        "finance", "legal", "leak", "osint", "geo", "edu", "hea",
+        "ecom", "life", "media", "tech", "sci", "ref", "lib",
+        "grey", "crea", "rec", "search", "map", "wea", "misc"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary URL for the source"
+    },
+    "module": {
+      "type": "object",
+      "description": "Module hierarchy for execution",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "Primary execution module (e.g., 'country_api', 'direct_api')"
+        },
+        "secondary": {
+          "type": "object",
+          "description": "Secondary/fallback execution",
+          "properties": {
+            "handler": {
+              "type": "string",
+              "description": "Main handler module (e.g., 'corporella', 'eye-d')"
+            },
+            "aggregators": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Aggregator sources (e.g., ['open_corporates', 'occrp_aleph'])"
+            }
+          }
+        }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "description": "Array of input field codes from codes.json",
+      "items": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 800
+      },
+      "minItems": 1
+    },
+    "outputs": {
+      "type": "object",
+      "description": "Output codes split by type",
+      "required": ["entities"],
+      "properties": {
+        "entities": {
+          "type": "array",
+          "description": "Entity codes that create nodes (from codes.json)",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 800
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "description": "NEXUS relationship codes (600-621) from relationship.json",
+          "items": {
+            "type": "integer",
+            "minimum": 600,
+            "maximum": 621
+          }
+        },
+        "attributes": {
+          "type": "array",
+          "description": "Attribute codes that attach to entities (metadata)",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 800
+          }
+        }
+      }
+    },
+    "friction": {
+      "type": "string",
+      "description": "Access friction level",
+      "enum": ["public", "free_registration", "paid", "restricted", "api_key"]
+    },
+    "has_api": {
+      "type": "boolean",
+      "description": "Whether source has programmatic API access"
+    },
+    "languages": {
+      "type": "array",
+      "description": "Supported languages (ISO 639-1 codes)",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      }
+    },
+    "update_frequency": {
+      "type": "string",
+      "description": "How often data is updated",
+      "enum": ["realtime", "daily", "weekly", "monthly", "quarterly", "annually", "irregular"]
+    },
+    "coverage": {
+      "type": "object",
+      "description": "Data coverage details",
+      "properties": {
+        "start_year": {"type": "integer"},
+        "jurisdictions": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes about the source"
+    },
+    "deprecated": {
+      "type": "boolean",
+      "description": "Whether source is deprecated/no longer active"
+    }
+  },
+  "additionalProperties": false
+}

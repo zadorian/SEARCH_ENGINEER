@@ -1,0 +1,1387 @@
+{
+  "$schema": "./output_graph_rules.schema.json",
+  "version": "1.1.0",
+  "generated_at": "2025-12-30",
+  "description": "Deterministic node/edge creation rules per output field code. Implements the PIVOT PRINCIPLE: if you can pivot from it, it's a NODE; if it describes, it's METADATA.",
+  "principle": {
+    "nodes": "Entities you can search FROM (person, company, email, domain, phone, username, address, url, temporal, industry, country)",
+    "edges": "Relationships BETWEEN nodes (officer_of, shareholder_of, has_email, located_in, operates_in, incorporated_in, registered_in, part_of)",
+    "metadata": "Properties ON nodes/edges (status, date, percentage, role)"
+  },
+  "axis_classification": {
+    "LOCATION": {
+      "description": "Static axis - fixed borders, don't change on their own",
+      "node_types": [
+        "address",
+        "country",
+        "day",
+        "domain",
+        "file",
+        "jurisdiction",
+        "language",
+        "month",
+        "municipality",
+        "region",
+        "temporal",
+        "url",
+        "year"
+      ],
+      "visual_style": "WHITE capsules",
+      "examples": [
+        "jurisdiction",
+        "year",
+        "postal address",
+        "domain"
+      ]
+    },
+    "SUBJECT": {
+      "description": "Dynamic axis - alive/animate, entities move and change",
+      "node_types": [
+        "company",
+        "crypto_wallet",
+        "email",
+        "event",
+        "industry",
+        "ip_address",
+        "person",
+        "phenomenon",
+        "phone",
+        "theme",
+        "topic",
+        "username",
+        "vehicle"
+      ],
+      "visual_style": "GREEN/colored capsules",
+      "examples": [
+        "CEO name",
+        "company",
+        "sector",
+        "lawsuit"
+      ]
+    }
+  },
+  "node_creating_codes": {
+    "1": {
+      "node_type": "email",
+      "label_from": "email"
+    },
+    "2": {
+      "node_type": "phone",
+      "label_from": "phone"
+    },
+    "3": {
+      "node_type": "username",
+      "label_from": "username"
+    },
+    "5": {
+      "node_type": "linkedin",
+      "label_from": "url"
+    },
+    "6": {
+      "node_type": "domain",
+      "label_from": "domain_url"
+    },
+    "7": {
+      "node_type": "person",
+      "label_from": "person_name"
+    },
+    "13": {
+      "node_type": "company",
+      "label_from": "company_name"
+    },
+    "16": {
+      "node_type": "company",
+      "label_from": "company_previous_name",
+      "notes": "Creates alias edge to current company"
+    },
+    "17": {
+      "node_type": "litigation",
+      "label_from": "litigation_id"
+    },
+    "20": {
+      "node_type": "address",
+      "label_from": "property_address"
+    },
+    "23": {
+      "node_type": "vehicle",
+      "label_from": "vehicle_reg_id"
+    },
+    "24": {
+      "node_type": "vessel",
+      "label_from": "vessel_imo_id"
+    },
+    "25": {
+      "node_type": "aircraft",
+      "label_from": "aircraft_reg_id"
+    },
+    "31": {
+      "node_type": "person",
+      "label_from": "person_name"
+    },
+    "32": {
+      "node_type": "email",
+      "label_from": "person_email"
+    },
+    "33": {
+      "node_type": "phone",
+      "label_from": "person_phone"
+    },
+    "34": {
+      "node_type": "url",
+      "label_from": "person_website"
+    },
+    "35": {
+      "node_type": "address",
+      "label_from": "person_address"
+    },
+    "38": {
+      "node_type": "url",
+      "label_from": "person_profile_url"
+    },
+    "42": {
+      "node_type": "company",
+      "label_from": "company_name"
+    },
+    "44": {
+      "node_type": "email",
+      "label_from": "company_email"
+    },
+    "45": {
+      "node_type": "phone",
+      "label_from": "company_phone"
+    },
+    "46": {
+      "node_type": "domain",
+      "label_from": "company_website"
+    },
+    "47": {
+      "node_type": "address",
+      "label_from": "company_address"
+    },
+    "59": {
+      "node_type": "person",
+      "label_from": "company_officer_name"
+    },
+    "65": {
+      "node_type": "address",
+      "label_from": "company_officer_address"
+    },
+    "67": {
+      "node_type": "person",
+      "label_from": "company_beneficial_owner_name"
+    },
+    "72": {
+      "node_type": "person",
+      "label_from": "company_shareholder_name"
+    },
+    "73": {
+      "node_type": "company",
+      "label_from": "company_shareholder_company"
+    },
+    "74": {
+      "node_type": "person",
+      "label_from": "company_shareholder_person"
+    },
+    "106": {
+      "node_type": "person",
+      "label_from": "property_owner"
+    },
+    "116": {
+      "node_type": "person",
+      "label_from": "vehicle_owner"
+    },
+    "121": {
+      "node_type": "person",
+      "label_from": "vessel_owner"
+    },
+    "122": {
+      "node_type": "vessel",
+      "label_from": "vessel_name"
+    },
+    "125": {
+      "node_type": "person",
+      "label_from": "aircraft_owner"
+    },
+    "129": {
+      "node_type": "domain",
+      "label_from": "domain_url"
+    },
+    "131": {
+      "node_type": "person",
+      "label_from": "domain_registrant_person"
+    },
+    "132": {
+      "node_type": "company",
+      "label_from": "domain_registrant_company"
+    },
+    "133": {
+      "node_type": "email",
+      "label_from": "domain_registrant_email"
+    },
+    "134": {
+      "node_type": "phone",
+      "label_from": "domain_registrant_phone"
+    },
+    "135": {
+      "node_type": "address",
+      "label_from": "domain_registrant_address"
+    },
+    "200": {
+      "node_type": "country",
+      "label_from": "jurisdiction",
+      "axis": "LOCATION",
+      "notes": "Country/jurisdiction node for registered_in edges"
+    },
+    "201": {
+      "node_type": "temporal",
+      "label_from": "incorporation_year",
+      "axis": "LOCATION",
+      "notes": "Year node for temporal pivoting (e.g., 'all 2020 companies')"
+    },
+    "202": {
+      "node_type": "industry",
+      "label_from": "industry_code",
+      "axis": "SUBJECT",
+      "notes": "NACE/SIC sector node for industry pivoting"
+    },
+    "203": {
+      "node_type": "industry",
+      "label_from": "industry_section",
+      "axis": "SUBJECT",
+      "notes": "Top-level NACE section (A-U)"
+    },
+    "204": {
+      "node_type": "industry",
+      "label_from": "industry_division",
+      "axis": "SUBJECT",
+      "notes": "NACE division (2-digit)"
+    },
+    "205": {
+      "node_type": "industry",
+      "label_from": "industry_group",
+      "axis": "SUBJECT",
+      "notes": "NACE group (3-digit)"
+    },
+    "206": {
+      "node_type": "industry",
+      "label_from": "industry_class",
+      "axis": "SUBJECT",
+      "notes": "NACE class (4-digit, most specific)"
+    },
+    "211": {
+      "node_type": "url",
+      "label_from": "search_engine_hits"
+    },
+    "422": {
+      "node_type": "company",
+      "label_from": "company_parent",
+      "notes": "Direct parent company from GLEIF ownership structure"
+    },
+    "423": {
+      "node_type": "company",
+      "label_from": "company_ultimate_parent",
+      "notes": "Ultimate parent company from GLEIF (top of hierarchy)"
+    },
+    "424": {
+      "node_type": "company",
+      "label_from": "company_subsidiary",
+      "notes": "Subsidiary company from GLEIF ownership structure"
+    },
+    "425": {
+      "node_type": "address",
+      "label_from": "company_headquarters_address",
+      "notes": "Headquarters address (distinct from registered address)"
+    },
+    "516": {
+      "node_type": "person",
+      "label_from": "person_associated_persons"
+    },
+    "517": {
+      "node_type": "company",
+      "label_from": "person_associated_companies"
+    },
+    "518": {
+      "node_type": "domain",
+      "label_from": "person_domains"
+    },
+    "519": {
+      "node_type": "file",
+      "label_from": "person_documents"
+    }
+  },
+  "edge_creating_codes": {
+    "59": {
+      "edge_type": "officer_of",
+      "source_node_code": 59,
+      "target_node_code": 13,
+      "source_type": "person",
+      "target_type": "company",
+      "metadata_codes": [
+        60,
+        61,
+        62,
+        63,
+        64
+      ],
+      "notes": "company_officer_name \u2192 officer_of \u2192 company_name, with role/dates as edge metadata"
+    },
+    "67": {
+      "edge_type": "beneficial_owner_of",
+      "source_node_code": 67,
+      "target_node_code": 13,
+      "source_type": "person",
+      "target_type": "company",
+      "metadata_codes": [
+        68,
+        69,
+        70
+      ],
+      "notes": "beneficial_owner_name \u2192 beneficial_owner_of \u2192 company, with ownership_pct/control_nature as metadata"
+    },
+    "72": {
+      "edge_type": "shareholder_of",
+      "source_node_code": 72,
+      "target_node_code": 13,
+      "source_type": "person",
+      "target_type": "company",
+      "metadata_codes": [
+        75,
+        76,
+        77
+      ],
+      "notes": "shareholder_name \u2192 shareholder_of \u2192 company, with shares/class as metadata"
+    },
+    "73": {
+      "edge_type": "shareholder_of",
+      "source_node_code": 73,
+      "target_node_code": 13,
+      "source_type": "company",
+      "target_type": "company",
+      "metadata_codes": [
+        75,
+        76,
+        77
+      ],
+      "notes": "shareholder_company \u2192 shareholder_of \u2192 company (corporate shareholder)"
+    },
+    "106": {
+      "edge_type": "owner_of",
+      "source_node_code": 106,
+      "target_node_code": 20,
+      "source_type": "person",
+      "target_type": "address",
+      "metadata_codes": [
+        112,
+        113
+      ],
+      "notes": "property_owner \u2192 owner_of \u2192 property_address"
+    },
+    "116": {
+      "edge_type": "owner_of",
+      "source_node_code": 116,
+      "target_node_code": 23,
+      "source_type": "person",
+      "target_type": "vehicle",
+      "notes": "vehicle_owner \u2192 owner_of \u2192 vehicle"
+    },
+    "121": {
+      "edge_type": "owner_of",
+      "source_node_code": 121,
+      "target_node_code": 24,
+      "source_type": "person",
+      "target_type": "vessel",
+      "notes": "vessel_owner \u2192 owner_of \u2192 vessel"
+    },
+    "125": {
+      "edge_type": "owner_of",
+      "source_node_code": 125,
+      "target_node_code": 25,
+      "source_type": "person",
+      "target_type": "aircraft",
+      "notes": "aircraft_owner \u2192 owner_of \u2192 aircraft"
+    },
+    "131": {
+      "edge_type": "registrant_of",
+      "source_node_code": 131,
+      "target_node_code": 129,
+      "source_type": "person",
+      "target_type": "domain",
+      "notes": "domain_registrant_person \u2192 registrant_of \u2192 domain"
+    },
+    "132": {
+      "edge_type": "registrant_of",
+      "source_node_code": 132,
+      "target_node_code": 129,
+      "source_type": "company",
+      "target_type": "domain",
+      "notes": "domain_registrant_company \u2192 registrant_of \u2192 domain"
+    },
+    "32": {
+      "edge_type": "has_email",
+      "source_node_code": 7,
+      "target_node_code": 32,
+      "source_type": "person",
+      "target_type": "email",
+      "notes": "person \u2192 has_email \u2192 email (from person enrichment)"
+    },
+    "33": {
+      "edge_type": "has_phone",
+      "source_node_code": 7,
+      "target_node_code": 33,
+      "source_type": "person",
+      "target_type": "phone",
+      "notes": "person \u2192 has_phone \u2192 phone"
+    },
+    "34": {
+      "edge_type": "has_profile",
+      "source_node_code": 7,
+      "target_node_code": 34,
+      "source_type": "person",
+      "target_type": "url",
+      "notes": "person \u2192 has_profile \u2192 url (website/profile)"
+    },
+    "44": {
+      "edge_type": "has_email",
+      "source_node_code": 13,
+      "target_node_code": 44,
+      "source_type": "company",
+      "target_type": "email",
+      "notes": "company \u2192 has_email \u2192 email"
+    },
+    "45": {
+      "edge_type": "has_phone",
+      "source_node_code": 13,
+      "target_node_code": 45,
+      "source_type": "company",
+      "target_type": "phone",
+      "notes": "company \u2192 has_phone \u2192 phone"
+    },
+    "46": {
+      "edge_type": "has_website",
+      "source_node_code": 13,
+      "target_node_code": 46,
+      "source_type": "company",
+      "target_type": "domain",
+      "notes": "company \u2192 has_website \u2192 domain"
+    },
+    "47": {
+      "edge_type": "located_at",
+      "source_node_code": 13,
+      "target_node_code": 47,
+      "source_type": "company",
+      "target_type": "address",
+      "notes": "company \u2192 located_at \u2192 address"
+    },
+    "35": {
+      "edge_type": "has_address",
+      "source_node_code": 7,
+      "target_node_code": 35,
+      "source_type": "person",
+      "target_type": "address",
+      "notes": "person \u2192 has_address \u2192 address"
+    },
+    "38": {
+      "edge_type": "has_profile",
+      "source_node_code": 7,
+      "target_node_code": 38,
+      "source_type": "person",
+      "target_type": "url",
+      "notes": "person \u2192 has_profile \u2192 url (social profile)"
+    },
+    "211": {
+      "edge_type": "mentioned_in",
+      "source_node_code": 7,
+      "target_node_code": 211,
+      "source_type": "person",
+      "target_type": "url",
+      "notes": "person \u2192 mentioned_in \u2192 url (brute search hits)"
+    },
+    "200": {
+      "edge_type": "registered_in",
+      "source_node_code": 13,
+      "target_node_code": 200,
+      "source_type": "company",
+      "target_type": "country",
+      "metadata_codes": [
+        14
+      ],
+      "notes": "company \u2192 registered_in \u2192 country, with registration_number as metadata"
+    },
+    "201": {
+      "edge_type": "incorporated_in",
+      "source_node_code": 13,
+      "target_node_code": 201,
+      "source_type": "company",
+      "target_type": "temporal",
+      "metadata_codes": [
+        50
+      ],
+      "notes": "company \u2192 incorporated_in \u2192 year (LOCATION axis temporal pivot)"
+    },
+    "202": {
+      "edge_type": "operates_in",
+      "source_node_code": 13,
+      "target_node_code": 202,
+      "source_type": "company",
+      "target_type": "industry",
+      "metadata_codes": [
+        53
+      ],
+      "notes": "company \u2192 operates_in \u2192 industry/sector (SUBJECT axis pivot)"
+    },
+    "203": {
+      "edge_type": "part_of",
+      "source_node_code": 206,
+      "target_node_code": 205,
+      "source_type": "industry",
+      "target_type": "industry",
+      "notes": "industry_class \u2192 part_of \u2192 industry_group (NACE hierarchy)"
+    },
+    "204": {
+      "edge_type": "part_of",
+      "source_node_code": 205,
+      "target_node_code": 204,
+      "source_type": "industry",
+      "target_type": "industry",
+      "notes": "industry_group \u2192 part_of \u2192 industry_division"
+    },
+    "205": {
+      "edge_type": "part_of",
+      "source_node_code": 204,
+      "target_node_code": 203,
+      "source_type": "industry",
+      "target_type": "industry",
+      "notes": "industry_division \u2192 part_of \u2192 industry_section"
+    },
+    "422": {
+      "edge_type": "subsidiary_of",
+      "source_node_code": 13,
+      "target_node_code": 422,
+      "source_type": "company",
+      "target_type": "company",
+      "metadata_codes": [
+        420
+      ],
+      "notes": "company \u2192 subsidiary_of \u2192 parent_company (from GLEIF ownership structure). LEI stored as edge metadata."
+    },
+    "423": {
+      "edge_type": "subsidiary_of",
+      "source_node_code": 13,
+      "target_node_code": 423,
+      "source_type": "company",
+      "target_type": "company",
+      "metadata_codes": [
+        420
+      ],
+      "notes": "company \u2192 subsidiary_of \u2192 ultimate_parent (from GLEIF, top of hierarchy)"
+    },
+    "424": {
+      "edge_type": "subsidiary_of",
+      "source_node_code": 424,
+      "target_node_code": 13,
+      "source_type": "company",
+      "target_type": "company",
+      "notes": "subsidiary \u2192 subsidiary_of \u2192 company (reverse direction for children)"
+    },
+    "425": {
+      "edge_type": "headquartered_at",
+      "source_node_code": 13,
+      "target_node_code": 425,
+      "source_type": "company",
+      "target_type": "address",
+      "notes": "company \u2192 headquartered_at \u2192 address (distinct from registered_address/located_at)"
+    },
+    "440": {
+      "edge_type": "same_as",
+      "source_node_code": 13,
+      "target_node_code": 13,
+      "source_type": "company",
+      "target_type": "company",
+      "bidirectional": true,
+      "notes": "CROSS-SOURCE DEDUPLICATION: Links same entity from different sources (e.g., GLEIF LEI \u2194 Companies House number)"
+    },
+    "441": {
+      "edge_type": "same_as",
+      "source_node_code": 7,
+      "target_node_code": 7,
+      "source_type": "person",
+      "target_type": "person",
+      "bidirectional": true,
+      "notes": "CROSS-SOURCE DEDUPLICATION: Links same person from different sources"
+    },
+    "516": {
+      "edge_type": "linked_to",
+      "source_node_code": 7,
+      "target_node_code": 516,
+      "source_type": "person",
+      "target_type": "person",
+      "notes": "person \u2192 linked_to \u2192 person (associated persons)"
+    },
+    "517": {
+      "edge_type": "linked_to",
+      "source_node_code": 7,
+      "target_node_code": 517,
+      "source_type": "person",
+      "target_type": "company",
+      "notes": "person \u2192 linked_to \u2192 company (associated companies)"
+    },
+    "518": {
+      "edge_type": "related_to",
+      "source_node_code": 7,
+      "target_node_code": 518,
+      "source_type": "person",
+      "target_type": "domain",
+      "notes": "person \u2192 related_to \u2192 domain (associated domains)"
+    },
+    "519": {
+      "edge_type": "documented_by",
+      "source_node_code": 7,
+      "target_node_code": 519,
+      "source_type": "person",
+      "target_type": "file",
+      "notes": "person \u2192 documented_by \u2192 file (evidence documents)"
+    }
+  },
+  "metadata_codes": {
+    "4": {
+      "property": "password",
+      "attach_to": "email",
+      "notes": "From breach data"
+    },
+    "8": {
+      "property": "national_id",
+      "attach_to": "person"
+    },
+    "9": {
+      "property": "tax_id",
+      "attach_to": "person"
+    },
+    "10": {
+      "property": "passport_id",
+      "attach_to": "person"
+    },
+    "11": {
+      "property": "driver_license_id",
+      "attach_to": "person"
+    },
+    "12": {
+      "property": "dob",
+      "attach_to": "person"
+    },
+    "14": {
+      "property": "reg_id",
+      "attach_to": "company"
+    },
+    "15": {
+      "property": "vat_id",
+      "attach_to": "company"
+    },
+    "36": {
+      "property": "country",
+      "attach_to": "person"
+    },
+    "37": {
+      "property": "dob",
+      "attach_to": "person"
+    },
+    "39": {
+      "property": "platform",
+      "attach_to": "profile_url"
+    },
+    "40": {
+      "property": "role_job",
+      "attach_to": "person"
+    },
+    "41": {
+      "property": "employer_job",
+      "attach_to": "person"
+    },
+    "48": {
+      "property": "country",
+      "attach_to": "company"
+    },
+    "49": {
+      "property": "status",
+      "attach_to": "company"
+    },
+    "50": {
+      "property": "incorporation_date",
+      "attach_to": "company"
+    },
+    "51": {
+      "property": "dissolution_date",
+      "attach_to": "company"
+    },
+    "52": {
+      "property": "company_type",
+      "attach_to": "company"
+    },
+    "53": {
+      "property": "sic_code",
+      "attach_to": "company"
+    },
+    "54": {
+      "property": "financial_statements",
+      "attach_to": "company"
+    },
+    "55": {
+      "property": "financial_year_end",
+      "attach_to": "company"
+    },
+    "56": {
+      "property": "share_capital",
+      "attach_to": "company"
+    },
+    "57": {
+      "property": "accounts_filing_date",
+      "attach_to": "company"
+    },
+    "60": {
+      "property": "role",
+      "attach_to": "officer_of",
+      "notes": "Edge metadata"
+    },
+    "61": {
+      "property": "appointment_date",
+      "attach_to": "officer_of",
+      "notes": "Edge metadata"
+    },
+    "62": {
+      "property": "resignation_date",
+      "attach_to": "officer_of",
+      "notes": "Edge metadata"
+    },
+    "63": {
+      "property": "nationality",
+      "attach_to": "officer_of",
+      "notes": "Edge metadata"
+    },
+    "64": {
+      "property": "dob",
+      "attach_to": "officer_of",
+      "notes": "Edge metadata (partial)"
+    },
+    "68": {
+      "property": "ownership_pct",
+      "attach_to": "beneficial_owner_of"
+    },
+    "69": {
+      "property": "control_nature",
+      "attach_to": "beneficial_owner_of"
+    },
+    "70": {
+      "property": "nationality",
+      "attach_to": "beneficial_owner_of"
+    },
+    "75": {
+      "property": "shareholder_type",
+      "attach_to": "shareholder_of"
+    },
+    "76": {
+      "property": "shares",
+      "attach_to": "shareholder_of"
+    },
+    "77": {
+      "property": "share_class",
+      "attach_to": "shareholder_of"
+    },
+    "81": {
+      "property": "title",
+      "attach_to": "litigation"
+    },
+    "83": {
+      "property": "court",
+      "attach_to": "litigation"
+    },
+    "84": {
+      "property": "filing_date",
+      "attach_to": "litigation"
+    },
+    "85": {
+      "property": "status",
+      "attach_to": "litigation"
+    },
+    "86": {
+      "property": "judgment",
+      "attach_to": "litigation"
+    },
+    "87": {
+      "property": "judgment_date",
+      "attach_to": "litigation"
+    },
+    "88": {
+      "property": "outcome",
+      "attach_to": "litigation"
+    },
+    "91": {
+      "property": "license_status",
+      "attach_to": "company"
+    },
+    "92": {
+      "property": "license_type",
+      "attach_to": "company"
+    },
+    "93": {
+      "property": "license_issued_date",
+      "attach_to": "company"
+    },
+    "94": {
+      "property": "license_expiry_date",
+      "attach_to": "company"
+    },
+    "99": {
+      "property": "sanction_status",
+      "attach_to": [
+        "person",
+        "company"
+      ]
+    },
+    "100": {
+      "property": "sanction_list",
+      "attach_to": [
+        "person",
+        "company"
+      ]
+    },
+    "101": {
+      "property": "sanction_program",
+      "attach_to": [
+        "person",
+        "company"
+      ]
+    },
+    "102": {
+      "property": "sanction_date_added",
+      "attach_to": [
+        "person",
+        "company"
+      ]
+    },
+    "104": {
+      "property": "sanction_reason",
+      "attach_to": [
+        "person",
+        "company"
+      ]
+    },
+    "110": {
+      "property": "size",
+      "attach_to": "address"
+    },
+    "111": {
+      "property": "value",
+      "attach_to": "address"
+    },
+    "112": {
+      "property": "purchase_date",
+      "attach_to": "owner_of"
+    },
+    "113": {
+      "property": "purchase_price",
+      "attach_to": "owner_of"
+    },
+    "114": {
+      "property": "mortgage",
+      "attach_to": "address"
+    },
+    "115": {
+      "property": "property_type",
+      "attach_to": "address"
+    },
+    "119": {
+      "property": "make_model",
+      "attach_to": "vehicle"
+    },
+    "120": {
+      "property": "year",
+      "attach_to": "vehicle"
+    },
+    "124": {
+      "property": "flag",
+      "attach_to": "vessel"
+    },
+    "128": {
+      "property": "aircraft_type",
+      "attach_to": "aircraft"
+    },
+    "130": {
+      "property": "ip",
+      "attach_to": "domain"
+    },
+    "136": {
+      "property": "creation_date",
+      "attach_to": "domain"
+    },
+    "137": {
+      "property": "update_date",
+      "attach_to": "domain"
+    },
+    "138": {
+      "property": "expiry_date",
+      "attach_to": "domain"
+    },
+    "139": {
+      "property": "nameservers",
+      "attach_to": "domain"
+    },
+    "140": {
+      "property": "status_codes",
+      "attach_to": "domain"
+    },
+    "142": {
+      "property": "password_hash",
+      "attach_to": "email",
+      "notes": "From breach"
+    },
+    "143": {
+      "property": "password_plain",
+      "attach_to": "email",
+      "notes": "From breach"
+    },
+    "144": {
+      "property": "breach_source",
+      "attach_to": "email"
+    },
+    "145": {
+      "property": "breach_date",
+      "attach_to": "email"
+    },
+    "210": {
+      "property": "nace_code",
+      "attach_to": "industry",
+      "notes": "NACE Rev 2 code (e.g., 06.10)"
+    },
+    "211": {
+      "property": "nace_name",
+      "attach_to": "industry",
+      "notes": "Official NACE description"
+    },
+    "212": {
+      "property": "nace_level",
+      "attach_to": "industry",
+      "notes": "Hierarchy level (1=Section, 2=Division, 3=Group, 4=Class)"
+    },
+    "213": {
+      "property": "nace_section",
+      "attach_to": "industry",
+      "notes": "Parent section letter (A-U)"
+    },
+    "214": {
+      "property": "classification",
+      "attach_to": "industry",
+      "notes": "Classification standard (NACE_REV2, SIC_2007, etc.)"
+    },
+    "220": {
+      "property": "iso_code",
+      "attach_to": "country",
+      "notes": "ISO 3166-1 alpha-2 code (GB, NO, FI)"
+    },
+    "221": {
+      "property": "iso_code_3",
+      "attach_to": "country",
+      "notes": "ISO 3166-1 alpha-3 code (GBR, NOR, FIN)"
+    },
+    "230": {
+      "property": "year_value",
+      "attach_to": "temporal",
+      "notes": "Integer year for temporal nodes"
+    },
+    "231": {
+      "property": "temporal_type",
+      "attach_to": "temporal",
+      "notes": "Type of temporal node (year, month, date)"
+    },
+    "420": {
+      "property": "lei",
+      "attach_to": "company",
+      "notes": "Legal Entity Identifier from GLEIF (20-char)"
+    },
+    "421": {
+      "property": "bic",
+      "attach_to": "company",
+      "notes": "BIC/SWIFT codes from GLEIF (array)"
+    },
+    "426": {
+      "property": "legal_form",
+      "attach_to": "company",
+      "notes": "GLEIF legal form code (e.g., SVFB, 8888)"
+    },
+    "427": {
+      "property": "previous_names",
+      "attach_to": "company",
+      "notes": "List of former company names from GLEIF"
+    },
+    "428": {
+      "property": "registration_authority",
+      "attach_to": "company",
+      "notes": "National registry ID that issued registration"
+    },
+    "429": {
+      "property": "managing_lou",
+      "attach_to": "company",
+      "notes": "Local Operating Unit that manages the LEI"
+    },
+    "430": {
+      "property": "registration_status",
+      "attach_to": "company",
+      "notes": "LEI status (ISSUED, LAPSED, PENDING, etc.)"
+    },
+    "431": {
+      "property": "lei_renewal_date",
+      "attach_to": "company",
+      "notes": "Next LEI renewal date from GLEIF"
+    },
+    "432": {
+      "property": "lei_initial_registration",
+      "attach_to": "company",
+      "notes": "Date LEI was first issued"
+    },
+    "433": {
+      "property": "ocid",
+      "attach_to": "company",
+      "notes": "OpenCorporates ID if available in GLEIF data"
+    },
+    "520": {
+      "property": "assets",
+      "attach_to": [
+        "person",
+        "company"
+      ]
+    },
+    "521": {
+      "property": "pep_status",
+      "attach_to": [
+        "person"
+      ]
+    }
+  },
+  "rule_to_graph_mapping": {
+    "description": "When a rule is executed, these are the graph operations",
+    "example": {
+      "rule_id": "COMPANY_OFFICERS_GB",
+      "returns": [
+        13,
+        58,
+        59,
+        60,
+        61
+      ],
+      "graph_operations": [
+        {
+          "action": "CREATE_NODE",
+          "type": "company",
+          "from_code": 13
+        },
+        {
+          "action": "CREATE_NODE",
+          "type": "person",
+          "from_code": 59,
+          "for_each": true
+        },
+        {
+          "action": "CREATE_EDGE",
+          "type": "officer_of",
+          "source_code": 59,
+          "target_code": 13
+        },
+        {
+          "action": "SET_EDGE_METADATA",
+          "property": "role",
+          "from_code": 60
+        },
+        {
+          "action": "SET_EDGE_METADATA",
+          "property": "appointment_date",
+          "from_code": 61
+        }
+      ]
+    }
+  },
+  "composite_rules": {
+    "58": {
+      "description": "company_officers is a composite that triggers array processing",
+      "treatment": "iterate",
+      "child_codes": [
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65
+      ],
+      "per_item_operations": [
+        {
+          "action": "CREATE_NODE",
+          "type": "person",
+          "from_code": 59
+        },
+        {
+          "action": "CREATE_EDGE",
+          "type": "officer_of",
+          "source_code": 59,
+          "target_code": 13
+        },
+        {
+          "action": "SET_EDGE_METADATA",
+          "codes": [
+            60,
+            61,
+            62,
+            63,
+            64
+          ]
+        }
+      ]
+    },
+    "66": {
+      "description": "company_beneficial_owners is a composite",
+      "treatment": "iterate",
+      "child_codes": [
+        67,
+        68,
+        69,
+        70
+      ],
+      "per_item_operations": [
+        {
+          "action": "CREATE_NODE",
+          "type": "person",
+          "from_code": 67
+        },
+        {
+          "action": "CREATE_EDGE",
+          "type": "beneficial_owner_of",
+          "source_code": 67,
+          "target_code": 13
+        },
+        {
+          "action": "SET_EDGE_METADATA",
+          "codes": [
+            68,
+            69,
+            70
+          ]
+        }
+      ]
+    },
+    "71": {
+      "description": "company_shareholders is a composite",
+      "treatment": "iterate",
+      "child_codes": [
+        72,
+        73,
+        74,
+        75,
+        76,
+        77
+      ],
+      "per_item_operations": [
+        {
+          "action": "CREATE_NODE",
+          "type": "person",
+          "from_code": 72,
+          "if_present": true
+        },
+        {
+          "action": "CREATE_NODE",
+          "type": "company",
+          "from_code": 73,
+          "if_present": true
+        },
+        {
+          "action": "CREATE_EDGE",
+          "type": "shareholder_of",
+          "source_codes": [
+            72,
+            73
+          ],
+          "target_code": 13
+        },
+        {
+          "action": "SET_EDGE_METADATA",
+          "codes": [
+            75,
+            76,
+            77
+          ]
+        }
+      ]
+    },
+    "82": {
+      "description": "litigation_parties is a composite",
+      "treatment": "iterate",
+      "child_codes": [
+        18,
+        79,
+        80
+      ],
+      "per_item_operations": [
+        {
+          "action": "CREATE_NODE",
+          "type": "person",
+          "from_code": 80,
+          "if_present": true
+        },
+        {
+          "action": "CREATE_NODE",
+          "type": "company",
+          "from_code": 79,
+          "if_present": true
+        },
+        {
+          "action": "CREATE_EDGE",
+          "type": "party_to",
+          "source_codes": [
+            79,
+            80
+          ],
+          "target_code": 17
+        }
+      ]
+    },
+    "434": {
+      "description": "gleif_ownership_structure is a composite for GLEIF parent/child relationships",
+      "treatment": "special",
+      "source": "GLEIF",
+      "operations": [
+        {
+          "action": "CREATE_NODE",
+          "type": "company",
+          "from_code": 422,
+          "if_present": true,
+          "notes": "Direct parent company"
+        },
+        {
+          "action": "CREATE_NODE",
+          "type": "company",
+          "from_code": 423,
+          "if_present": true,
+          "notes": "Ultimate parent company"
+        },
+        {
+          "action": "CREATE_EDGE",
+          "type": "subsidiary_of",
+          "source_code": 13,
+          "target_code": 422,
+          "metadata_codes": [
+            420
+          ]
+        },
+        {
+          "action": "CREATE_EDGE",
+          "type": "subsidiary_of",
+          "source_code": 13,
+          "target_code": 423,
+          "metadata_codes": [
+            420
+          ]
+        }
+      ],
+      "child_composite": {
+        "description": "gleif_subsidiaries processes child companies",
+        "treatment": "iterate",
+        "child_codes": [
+          424,
+          420
+        ],
+        "per_item_operations": [
+          {
+            "action": "CREATE_NODE",
+            "type": "company",
+            "from_code": 424
+          },
+          {
+            "action": "CREATE_EDGE",
+            "type": "subsidiary_of",
+            "source_code": 424,
+            "target_code": 13
+          },
+          {
+            "action": "SET_EDGE_METADATA",
+            "codes": [
+              420
+            ]
+          }
+        ]
+      }
+    },
+    "435": {
+      "description": "cross_source_linking for same_as edge creation",
+      "treatment": "special",
+      "notes": "When a source returns identifiers that match another source, create same_as edge",
+      "matching_strategies": [
+        {
+          "field": "lei",
+          "code": 420,
+          "match_to": "company.metadata.lei",
+          "create_edge": "same_as"
+        },
+        {
+          "field": "reg_id",
+          "code": 14,
+          "match_to": "company.metadata.reg_id",
+          "create_edge": "same_as"
+        },
+        {
+          "field": "vat_id",
+          "code": 15,
+          "match_to": "company.metadata.vat_id",
+          "create_edge": "same_as"
+        },
+        {
+          "field": "ocid",
+          "code": 433,
+          "match_to": "company.metadata.ocid",
+          "create_edge": "same_as"
+        }
+      ]
+    }
+  },
+  "external_classifications": {
+    "industry": {
+      "standard": "NACE Rev 2",
+      "source_url": "https://ec.europa.eu/eurostat/web/nace",
+      "local_file": "sectors_nace_rev2.json",
+      "config_file": "sectors.json",
+      "total_entries": 996,
+      "levels": {
+        "1": {
+          "name": "Section",
+          "count": 21,
+          "example": "B - Mining and Quarrying"
+        },
+        "2": {
+          "name": "Division",
+          "count": 88,
+          "example": "06 - Extraction of crude petroleum and natural gas"
+        },
+        "3": {
+          "name": "Group",
+          "count": 272,
+          "example": "06.1 - Extraction of crude petroleum"
+        },
+        "4": {
+          "name": "Class",
+          "count": 615,
+          "example": "06.10 - Extraction of crude petroleum"
+        }
+      },
+      "national_variants": [
+        "SN2007 (NO)",
+        "TOL 2008 (FI)",
+        "SIC 2007 (GB)",
+        "WZ 2008 (DE)",
+        "NAF Rev 2 (FR)"
+      ]
+    },
+    "country": {
+      "standard": "ISO 3166-1",
+      "notes": "Country nodes use ISO alpha-2 codes as identifiers"
+    },
+    "temporal": {
+      "standard": "ISO 8601",
+      "notes": "Temporal nodes typically represent years for incorporation/dissolution pivoting"
+    }
+  }
+}

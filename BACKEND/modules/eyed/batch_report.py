@@ -5,7 +5,7 @@ EYE-D Batch Report Generator
 Run a list of emails, phones, and names through EYE-D and generate full reports.
 
 Usage:
-    python batch_report.py --input entities.txt --output reports/
+    python batch_report.py --input entities.txt --output output/
     python batch_report.py --emails "a@b.com,c@d.com" --phones "+1234567890" --names "John Doe"
 """
 
@@ -28,7 +28,7 @@ from unified_osint import UnifiedSearcher
 class BatchReporter:
     """Run batch OSINT searches and generate reports."""
 
-    def __init__(self, output_dir: str = "reports"):
+    def __init__(self, output_dir: str = "output"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.searcher = UnifiedSearcher()
@@ -356,7 +356,7 @@ def parse_input_file(filepath: str) -> Dict[str, List[str]]:
 async def main():
     parser = argparse.ArgumentParser(description='EYE-D Batch OSINT Report Generator')
     parser.add_argument('--input', '-i', help='Input file with entities (one per line)')
-    parser.add_argument('--output', '-o', default='reports', help='Output directory for reports')
+    parser.add_argument('--output', '-o', default='output', help='Output directory for reports')
     parser.add_argument('--emails', '-e', help='Comma-separated emails')
     parser.add_argument('--phones', '-p', help='Comma-separated phones')
     parser.add_argument('--names', '-n', help='Comma-separated names')

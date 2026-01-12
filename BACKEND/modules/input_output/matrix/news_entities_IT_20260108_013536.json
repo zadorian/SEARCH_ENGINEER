@@ -1,0 +1,80 @@
+{
+  "harvested_at": "2026-01-08T01:35:36.995881",
+  "jurisdictions_processed": [],
+  "stats": {
+    "total_searches": 2,
+    "total_articles": 71,
+    "total_snippets_processed": 65,
+    "companies_extracted": 4,
+    "persons_extracted": 2,
+    "unique_companies": 2,
+    "unique_persons": 1,
+    "errors": 0,
+    "jurisdictions_processed": []
+  },
+  "total_entities": 3,
+  "companies": [
+    {
+      "entity_type": "company",
+      "name": "Gli scienziati",
+      "normalized_name": "gli scienziati",
+      "confidence": 0.8084113597869873,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.p.A.",
+      "sources": [
+        {
+          "url": "https://www.lescienze.it/spazio-e-astronomia/2026/01/05/news/gli_scienziati_hanno_individuato_un_pianeta_vagabondo_delle_dimensioni_di_saturno-20887295/",
+          "domain": "lescienze.it",
+          "title": "Gli scienziati hanno individuato un pianeta \"vagabondo\" delle dimensioni di Saturno",
+          "snippet": ""
+        }
+      ],
+      "source_urls": [
+        "https://www.lescienze.it/spazio-e-astronomia/2026/01/05/news/gli_scienziati_hanno_individuato_un_pianeta_vagabondo_delle_dimensioni_di_saturno-20887295/"
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "entity_type": "company",
+      "name": "La scienza",
+      "normalized_name": "la scienza",
+      "confidence": 0.69160395860672,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.p.A.",
+      "sources": [
+        {
+          "url": "https://www.lescienze.it/tecnologia-e-intelligenza-artificiale/2025/12/31/news/la_scienza_nel_2026_gli_eventi_da_tenere_d_occhio_nel_prossimo_anno-20857600/",
+          "domain": "lescienze.it",
+          "title": "La scienza nel 2026: gli eventi da tenere d'occhio nel nuovo anno",
+          "snippet": ""
+        }
+      ],
+      "source_urls": [
+        "https://www.lescienze.it/tecnologia-e-intelligenza-artificiale/2025/12/31/news/la_scienza_nel_2026_gli_eventi_da_tenere_d_occhio_nel_prossimo_anno-20857600/"
+      ],
+      "occurrence_count": 2
+    }
+  ],
+  "persons": [
+    {
+      "entity_type": "person",
+      "name": "Neandertal e Denisoviani",
+      "normalized_name": "neandertal e denisoviani",
+      "confidence": 0.5574433207511902,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.p.A.",
+      "sources": [
+        {
+          "url": "https://www.lescienze.it/comunicati-stampa/2026/01/07/news/l_ultimo_antenato_comune_di_sapiens_neandertal_e_denisoviani-20901792/",
+          "domain": "lescienze.it",
+          "title": "L’ultimo antenato comune di Sapiens, Neandertal e Denisoviani",
+          "snippet": ""
+        }
+      ],
+      "source_urls": [
+        "https://www.lescienze.it/comunicati-stampa/2026/01/07/news/l_ultimo_antenato_comune_di_sapiens_neandertal_e_denisoviani-20901792/"
+      ],
+      "occurrence_count": 2
+    }
+  ]
+}

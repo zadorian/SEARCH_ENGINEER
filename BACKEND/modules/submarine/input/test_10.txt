@@ -1,0 +1,10 @@
+microsoft.com
+apple.com
+google.com
+amazon.com
+meta.com
+ibm.com
+salesforce.com
+oracle.com
+nvidia.com
+adobe.com

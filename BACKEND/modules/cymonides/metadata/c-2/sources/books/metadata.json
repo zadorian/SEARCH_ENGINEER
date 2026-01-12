@@ -1,0 +1,38 @@
+{
+  "source_name": "Book Collection",
+  "source_type": "book",
+  "description": "Post-Soviet academic and research books, primarily focused on Central Asia, Russia, and regional topics",
+  "index": "cymonides-2",
+  "status": "merged",
+  "document_count_estimate": "unknown",
+  "indexed_at": "various",
+  "topics": [
+    "Post-Soviet studies",
+    "Central Asian politics",
+    "Russian affairs",
+    "Regional development",
+    "Academic research"
+  ],
+  "display_format": {
+    "url_field": "title",
+    "title_field": "author",
+    "snippet_field": "content",
+    "note": "Book title displayed where URL would be, author where title would be, relevant snippet remains the same"
+  },
+  "query_example": {
+    "description": "Search for books in cymonides-2",
+    "query": {
+      "bool": {
+        "must": [
+          {"term": {"source_type.keyword": "book"}},
+          {"match": {"content": "search_term"}}
+        ]
+      }
+    }
+  },
+  "notes": [
+    "Books are stored with full-text content in cymonides-2",
+    "Multiple instances of a search term should show 'more instances' indicator",
+    "All instances should be listable on a separate page"
+  ]
+}

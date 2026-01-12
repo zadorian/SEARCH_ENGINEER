@@ -1,0 +1,258 @@
+{
+  "meta": {
+    "name": "ID_DECODER",
+    "version": "1.0",
+    "description": "Deterministic decoder for 55+ international ID formats. Extracts DOB, gender, jurisdiction from ID numbers.",
+    "module": "wikiman_id_decoder.py",
+    "created": "2026-01-06",
+    "author": "Corporella",
+    "friction": "Open",
+    "cost": 0,
+    "notes": "Pure regex + rules - no API calls, instant, free"
+  },
+  "supported_id_types": [
+    {
+      "code": "NIK",
+      "country": "ID",
+      "name": "Indonesia National ID",
+      "digits": 16
+    },
+    {
+      "code": "CNPJ",
+      "country": "BR",
+      "name": "Brazil Company Tax ID",
+      "digits": 14
+    },
+    {
+      "code": "CPF",
+      "country": "BR",
+      "name": "Brazil Individual Tax ID",
+      "digits": 11
+    },
+    {
+      "code": "PERSONNUMMER",
+      "country": "SE",
+      "name": "Sweden Personal ID",
+      "digits": "10-12"
+    },
+    {
+      "code": "RUT",
+      "country": "CL",
+      "name": "Chile Tax ID",
+      "digits": "8-9"
+    },
+    {
+      "code": "NATIONAL_ID",
+      "country": "CN",
+      "name": "China National ID",
+      "digits": 18
+    },
+    {
+      "code": "NIR",
+      "country": "FR",
+      "name": "France Social Security",
+      "digits": 15
+    },
+    {
+      "code": "NRN",
+      "country": "BE",
+      "name": "Belgium National Register",
+      "digits": 11
+    },
+    {
+      "code": "RODNE_CISLO",
+      "country": "CZ/SK",
+      "name": "Czech/Slovak Birth Number",
+      "digits": "9-10"
+    },
+    {
+      "code": "CNP",
+      "country": "RO",
+      "name": "Romania Personal Code",
+      "digits": 13
+    },
+    {
+      "code": "RRN",
+      "country": "KR",
+      "name": "South Korea Resident Registration",
+      "digits": 13
+    }
+  ],
+  "input_codes": [
+    {
+      "code": 8,
+      "name": "person_national_id",
+      "description": "Raw national ID number string"
+    },
+    {
+      "code": 9,
+      "name": "person_tax_id",
+      "description": "Raw tax ID number string"
+    },
+    {
+      "code": 14,
+      "name": "company_reg_id",
+      "description": "Raw company registration ID"
+    }
+  ],
+  "output_codes": [
+    {
+      "code": 700,
+      "name": "decoded_id_country",
+      "type": "attribute",
+      "description": "Country of ID origin (ISO 2-letter)"
+    },
+    {
+      "code": 701,
+      "name": "decoded_id_type",
+      "type": "attribute",
+      "description": "ID type name (NIK, CPF, etc.)"
+    },
+    {
+      "code": 702,
+      "name": "decoded_dob",
+      "type": "attribute",
+      "description": "Date of birth extracted from ID"
+    },
+    {
+      "code": 703,
+      "name": "decoded_gender",
+      "type": "attribute",
+      "description": "Gender extracted from ID (Male/Female)"
+    },
+    {
+      "code": 704,
+      "name": "decoded_admin_division",
+      "type": "attribute",
+      "description": "Administrative division code (province, regency, department)"
+    },
+    {
+      "code": 705,
+      "name": "decoded_municipality",
+      "type": "attribute",
+      "description": "Municipality/district code"
+    },
+    {
+      "code": 706,
+      "name": "decoded_check_digit",
+      "type": "attribute",
+      "description": "Check digit for validation"
+    },
+    {
+      "code": 707,
+      "name": "decoded_formatted",
+      "type": "attribute",
+      "description": "Properly formatted ID string"
+    },
+    {
+      "code": 708,
+      "name": "decoded_valid",
+      "type": "attribute",
+      "description": "Boolean - whether ID passed validation"
+    }
+  ],
+  "chain_rules": [
+    {
+      "name": "ID_TO_DOB",
+      "input": [
+        8,
+        9
+      ],
+      "output": [
+        702
+      ],
+      "description": "Extract date of birth from national/tax ID",
+      "applicable_types": [
+        "NIK",
+        "PERSONNUMMER",
+        "NATIONAL_ID",
+        "NIR",
+        "NRN",
+        "RODNE_CISLO",
+        "CNP",
+        "RRN"
+      ]
+    },
+    {
+      "name": "ID_TO_GENDER",
+      "input": [
+        8,
+        9
+      ],
+      "output": [
+        703
+      ],
+      "description": "Extract gender from national/tax ID",
+      "applicable_types": [
+        "NIK",
+        "NATIONAL_ID",
+        "NIR",
+        "NRN",
+        "RODNE_CISLO",
+        "CNP",
+        "RRN"
+      ]
+    },
+    {
+      "name": "ID_TO_JURISDICTION",
+      "input": [
+        8,
+        9,
+        14
+      ],
+      "output": [
+        700,
+        704,
+        705
+      ],
+      "description": "Extract jurisdiction/administrative division from ID",
+      "applicable_types": [
+        "NIK",
+        "NATIONAL_ID",
+        "NIR",
+        "CNP"
+      ]
+    },
+    {
+      "name": "ID_VALIDATE",
+      "input": [
+        8,
+        9,
+        14
+      ],
+      "output": [
+        708
+      ],
+      "description": "Validate ID format and checksum",
+      "applicable_types": "ALL"
+    },
+    {
+      "name": "ID_FORMAT",
+      "input": [
+        8,
+        9,
+        14
+      ],
+      "output": [
+        707
+      ],
+      "description": "Format ID with proper separators",
+      "applicable_types": "ALL"
+    }
+  ],
+  "operator_syntax": {
+    "pattern": "id{cc}:{value}",
+    "examples": [
+      "idid:3527091604810001",
+      "idbr:12345678901",
+      "idse:851125-5477",
+      "idcn:110101199003077654",
+      "idfr:185031234567890"
+    ],
+    "note": "cc = 2-letter country code (ID, BR, SE, CN, FR, BE, CZ, SK, RO, KR, CL)"
+  },
+  "usage": {
+    "python": "from wikiman_id_decoder import decode_id; result = decode_id('3527091604810001')",
+    "cli": "python wikiman_id_decoder.py 3527091604810001"
+  }
+}

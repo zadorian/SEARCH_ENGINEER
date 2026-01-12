@@ -1,0 +1,4978 @@
+{
+  "meta": {
+    "category": "social",
+    "count": 26,
+    "migrated_at": "2026-01-11T18:34:04.229973",
+    "version": "2.0",
+    "format": "code-based"
+  },
+  "sources": [
+    {
+      "id": "api.whatsapp.com_tech_imported",
+      "name": "WhatsApp",
+      "jurisdiction": "GLOBAL",
+      "category": "tec",
+      "url": "https://api.whatsapp.com/send",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "LINKLATER_ARCHIVE_CHANGES",
+          "label": "Detect content changes over time",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            227
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/archive/changes"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_TECHNICAL_DOCS_SEARCH",
+          "label": "Find technical documentation and code",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "SO",
+                "GO",
+                "BI",
+                "PX"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bsky.app_tech_imported",
+      "name": "Bluesky",
+      "jurisdiction": "GLOBAL",
+      "category": "tec",
+      "url": "https://bsky.app/search",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "LINKLATER_ARCHIVE_CHANGES",
+          "label": "Detect content changes over time",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            227
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/archive/changes"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_TECHNICAL_DOCS_SEARCH",
+          "label": "Find technical documentation and code",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "SO",
+                "GO",
+                "BI",
+                "PX"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "discordapp.com_tech_imported",
+      "name": "Discord Invite",
+      "jurisdiction": "GLOBAL",
+      "category": "tec",
+      "url": "https://discordapp.com/invite/{q}",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "LINKLATER_ARCHIVE_CHANGES",
+          "label": "Detect content changes over time",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            227
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/archive/changes"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_TECHNICAL_DOCS_SEARCH",
+          "label": "Find technical documentation and code",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "SO",
+                "GO",
+                "BI",
+                "PX"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "facebook.com_tech_imported",
+      "name": "Facebook",
+      "jurisdiction": "GLOBAL",
+      "category": "tec",
+      "url": "https://www.facebook.com/s.php",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "input": "company_name",
+          "outputs": [
+            "person_identity_graph",
+            "service_areas",
+            "represented_companies"
+          ],
+          "jurisdiction": "BR",
+          "reliability": "medium",
+          "notes": "Company page showed geographical coverage and client relationships",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "personal_details",
+            "family_information",
+            "person_country"
+          ],
+          "jurisdiction": "BR",
+          "reliability": "low",
+          "notes": "Personal social media information, may be incomplete or inaccurate",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "personal_relationships",
+            "lifestyle_indicators",
+            "property_owner",
+            "timeline_posts"
+          ],
+          "jurisdiction": "BY",
+          "reliability": "medium",
+          "notes": "Social media posts provide lifestyle context but may not be comprehensive",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "social_media_profile"
+          ],
+          "jurisdiction": "CZ",
+          "reliability": "low",
+          "notes": "Profile identified but no additional information obtained",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "company_financial_statements",
+            "personal_details"
+          ],
+          "jurisdiction": "DK",
+          "reliability": "low",
+          "notes": "affiliation could not be independently confirmed through other public sources",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "social_profile",
+            "person_name"
+          ],
+          "jurisdiction": "FR",
+          "reliability": "low",
+          "notes": "Limited content available on profile",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "family_connections",
+            "location_indicators",
+            "social_network"
+          ],
+          "jurisdiction": "GL",
+          "reliability": "medium",
+          "notes": "Profile accessibility limitations, multiple transliterations",
+          "kind": "mined"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "social_media_presence",
+            "engagement_metrics"
+          ],
+          "jurisdiction": "GL",
+          "reliability": "low",
+          "notes": "Limited engagement - only 76 likes",
+          "kind": "mined"
+        },
+        {
+          "jurisdiction": "GLOBAL",
+          "notes": "When OSINT Industries returns a Facebook user ID (id_int/id_str) from email or phone lookup, constructs profile URL (facebook.com/profile.php?id={id}) and scrapes via BrightData Web Unlocker.",
+          "kind": "rule"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "social_media_presence",
+            "customer_reviews",
+            "engagement_metrics"
+          ],
+          "jurisdiction": "HU",
+          "reliability": "medium",
+          "notes": "134 likes, 20 positive reviews, no negative comments",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "personal_relationships",
+            "residence_indicators",
+            "family_information"
+          ],
+          "jurisdiction": "IO",
+          "reliability": "low",
+          "notes": "Personal social media, limited professional relevance",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "biographical_details",
+            "person_employer_job",
+            "person_address"
+          ],
+          "jurisdiction": "IO",
+          "reliability": "medium",
+          "notes": "Self-reported information, not verified",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "personal_profile",
+            "employment_information",
+            "social_connections"
+          ],
+          "jurisdiction": "IT",
+          "reliability": "medium",
+          "notes": "Revealed employment at Reggio Calabria airport and family connections",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "company_financial_statements",
+            "photographs"
+          ],
+          "jurisdiction": "KZ",
+          "reliability": "low",
+          "notes": "Could not be definitively corroborated with other sources",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "personal_background",
+            "family_connections",
+            "company_financial_statements",
+            "political_affiliations"
+          ],
+          "jurisdiction": "NG",
+          "reliability": "medium",
+          "notes": "Multiple profiles found, limited public information available",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "social_media_profiles"
+          ],
+          "jurisdiction": "PE",
+          "reliability": "low",
+          "notes": "Multiple profiles found but none definitively linked to subject",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_name",
+            "residential_location"
+          ],
+          "jurisdiction": "SK",
+          "reliability": "medium",
+          "notes": "Limited biographical information available",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "personal_information",
+            "residence_history",
+            "social_connections",
+            "political_views"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "medium",
+          "notes": "Privacy settings may limit visibility of information",
+          "kind": "mined"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "company_sic_code",
+            "opening_dates",
+            "product_offerings"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "medium",
+          "notes": "Company-controlled social media accounts",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "personal_photos",
+            "family_connections",
+            "person_country"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "medium",
+          "notes": "Personal posts used to establish family relationships",
+          "kind": "mined"
+        },
+        {
+          "input": "phone_number",
+          "outputs": [
+            "personal_connections",
+            "person_country"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "medium",
+          "notes": "Privacy settings may limit available information",
+          "kind": "mined"
+        },
+        {
+          "input": "profile_picture",
+          "outputs": [
+            "personal_profile",
+            "person_name",
+            "person_country"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "medium",
+          "notes": "Social media profiles can be falsified",
+          "kind": "mined"
+        }
+      ]
+    },
+    {
+      "id": "gaming.youtube.com_video_imported",
+      "name": "YouTube Gaming",
+      "jurisdiction": "GLOBAL",
+      "category": "mul",
+      "url": "https://gaming.youtube.com/results",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "BRUTE_SEARCH",
+          "label": "Multi-engine discovery search",
+          "requires_any": [
+            7,
+            13,
+            1,
+            6,
+            3
+          ],
+          "requires_all": [],
+          "returns": [
+            6,
+            217,
+            218,
+            240,
+            241,
+            242
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "service",
+              "import": "server/engines/BruteSearch",
+              "method": "search"
+            },
+            {
+              "type": "api",
+              "endpoint": "/api/brute-search"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_CC_GRAPH",
+          "label": "Query Common Crawl web graph (multi-hop)",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            215,
+            216
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/query-graph"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_SHARED_TARGETS",
+          "label": "Find domains linked by multiple sources",
+          "requires_any": [
+            217,
+            219
+          ],
+          "requires_all": [],
+          "returns": [
+            223
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/links/shared-targets"
+            }
+          ]
+        },
+        {
+          "rule_id": "EYED_CHAIN_REACTION",
+          "label": "Multi-hop entity chain discovery (EYE-D)",
+          "requires_any": [
+            7,
+            31,
+            1,
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            7,
+            31,
+            1,
+            13,
+            58,
+            59,
+            35,
+            47,
+            2,
+            190
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "module",
+              "import": "EYE-D.unified_osint.UnifiedSearcher",
+              "method": "run_chain_reaction"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_PERSON_CONTACT_SEARCH",
+          "label": "Find person contact info via multi-engine search",
+          "requires_any": [
+            7,
+            31
+          ],
+          "requires_all": [],
+          "returns": [
+            1,
+            2,
+            5,
+            32,
+            33,
+            34,
+            38,
+            188
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "LI",
+                "SS",
+                "GK",
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "YO"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{person_name}\" email OR phone OR linkedin OR contact"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_COMPANY_OFFICERS_SEARCH",
+          "label": "Find company officers and directors via multi-engine search",
+          "requires_any": [
+            13,
+            42
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{company_name}\" (officers OR directors OR management OR CEO OR CFO)"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_MULTI_LANGUAGE_SEARCH",
+          "label": "Multi-language search with international engines",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "YA",
+                "BA",
+                "NV",
+                "GO",
+                "BI",
+                "QW"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "instagram.com_tech_imported",
+      "name": "Instagram",
+      "jurisdiction": "GLOBAL",
+      "category": "tec",
+      "url": "https://www.instagram.com/explore/tags/{q}/",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "input": "company_name",
+          "outputs": [
+            "company_sic_code",
+            "brand_representation"
+          ],
+          "jurisdiction": "BR",
+          "reliability": "medium",
+          "notes": "Limited posts, last update January 2022",
+          "kind": "mined"
+        }
+      ]
+    },
+    {
+      "id": "linkedin_companies_dataset",
+      "name": "LinkedIn Company Database",
+      "jurisdiction": "GLOBAL",
+      "category": "cr",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "internal",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "input": "email_address",
+          "outputs": [
+            "person_profile_url",
+            "person_country",
+            "company_financial_statements"
+          ],
+          "jurisdiction": "AE",
+          "reliability": "medium",
+          "notes": "Recently created profile, not yet indexed by search engines",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_role_job",
+            "company_financial_statements",
+            "person_country"
+          ],
+          "jurisdiction": "AE",
+          "reliability": "medium",
+          "notes": "Profile recently created and not yet indexed by search engines",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "professional_experience",
+            "current_positions",
+            "certifications"
+          ],
+          "jurisdiction": "BD",
+          "reliability": "medium",
+          "notes": "Self-reported professional information",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "current_location",
+            "person_employer_job",
+            "career_timeline"
+          ],
+          "jurisdiction": "BG",
+          "reliability": "medium",
+          "notes": "Self-reported information, useful for location and career verification",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "person_role_job"
+          ],
+          "jurisdiction": "BR",
+          "reliability": "medium",
+          "notes": "Self-reported professional information",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "company_financial_statements",
+            "person_employer_job",
+            "professional_connections"
+          ],
+          "jurisdiction": "BY",
+          "reliability": "medium",
+          "notes": "Profile information may be incomplete or inaccurate",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_profile_url",
+            "business_associations"
+          ],
+          "jurisdiction": "CA",
+          "reliability": "medium",
+          "notes": "Self-reported information",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_profile_url",
+            "person_role_job"
+          ],
+          "jurisdiction": "CL",
+          "reliability": "high",
+          "notes": "Personal profile maintained by subject",
+          "kind": "mined"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "management_profiles",
+            "company_information"
+          ],
+          "jurisdiction": "CO",
+          "reliability": "medium",
+          "notes": "Self-reported information by company and individuals",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "current_position",
+            "person_employer_job",
+            "geographic_responsibility"
+          ],
+          "jurisdiction": "CO",
+          "reliability": "medium",
+          "notes": "Self-reported professional information",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_role_job",
+            "person_employer_job",
+            "connections"
+          ],
+          "jurisdiction": "DE",
+          "reliability": "medium",
+          "notes": "Self-reported information, subject to user control",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_role_job",
+            "current_positions"
+          ],
+          "jurisdiction": "DK",
+          "reliability": "medium",
+          "notes": "Self-reported information",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_role_job",
+            "current_employment"
+          ],
+          "jurisdiction": "DK",
+          "reliability": "medium",
+          "notes": "Self-reported professional information",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "professional_positions"
+          ],
+          "jurisdiction": "EE",
+          "reliability": "medium",
+          "notes": "Self-reported information, may not be current",
+          "kind": "mined"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "company_financial_statements",
+            "employee_profiles"
+          ],
+          "jurisdiction": "EE",
+          "reliability": "medium",
+          "notes": "Only two employees connected on the platform",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "company_financial_statements",
+            "professional_timeline",
+            "person_identity_graph"
+          ],
+          "jurisdiction": "EG",
+          "reliability": "medium",
+          "notes": "Self-reported information with some timeline discrepancies noted",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "person_role_job"
+          ],
+          "jurisdiction": "EG",
+          "reliability": "medium",
+          "notes": "Self-reported information with limited verification",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_role_job",
+            "company_financial_statements",
+            "current_position"
+          ],
+          "jurisdiction": "ET",
+          "reliability": "low",
+          "notes": "Limited biographical information available",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_role_job",
+            "career_timeline",
+            "person_name"
+          ],
+          "jurisdiction": "FI",
+          "reliability": "medium",
+          "notes": "Self-reported information that cannot be taken at face value",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "person_role_job"
+          ],
+          "jurisdiction": "FR",
+          "reliability": "medium",
+          "notes": "Self-reported information",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_role_job",
+            "current_position",
+            "company_financial_statements",
+            "career_history"
+          ],
+          "jurisdiction": "GL",
+          "reliability": "medium",
+          "notes": "Self-reported information, may not be current",
+          "kind": "mined"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "employee_profiles",
+            "company_financial_statements",
+            "employee_locations"
+          ],
+          "jurisdiction": "GL",
+          "reliability": "medium",
+          "notes": "Only identified seemingly legitimate profiles, some profiles with same company name found to be different entities",
+          "kind": "mined"
+        },
+        {
+          "jurisdiction": "GLOBAL",
+          "kind": "rule"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "executive_profiles",
+            "company_history"
+          ],
+          "jurisdiction": "GR",
+          "reliability": "medium",
+          "notes": "Self-reported information, potential discrepancies with official records",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "professional_connections",
+            "person_country"
+          ],
+          "jurisdiction": "HR",
+          "reliability": "medium",
+          "notes": "Subject does not list IGH on LinkedIn profile despite being contact person",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "company_financial_statements",
+            "person_role_job"
+          ],
+          "jurisdiction": "HU",
+          "reliability": "medium",
+          "notes": "Self-reported information, not independently verified",
+          "kind": "mined"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "company_officers",
+            "person_employer_job"
+          ],
+          "jurisdiction": "ID",
+          "reliability": "medium",
+          "notes": "Only identified CEO through LinkedIn profile",
+          "kind": "mined"
+        },
+        {
+          "jurisdiction": "IE",
+          "notes": "Wiki Source. LinkedIn - University College Dublin] - Major university's LinkedIn page (''pub'')",
+          "kind": "rule"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "professional_history",
+            "company_financial_statements",
+            "current_roles"
+          ],
+          "jurisdiction": "IO",
+          "reliability": "medium",
+          "notes": "Self-reported information",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "company_financial_statements",
+            "professional_positions",
+            "person_identity_graph"
+          ],
+          "jurisdiction": "IO",
+          "reliability": "medium",
+          "notes": "Self-reported information, requires verification",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_role_job",
+            "company_financial_statements"
+          ],
+          "jurisdiction": "IO",
+          "reliability": "medium",
+          "notes": "Self-reported information, may be incomplete",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_role_job",
+            "company_financial_statements",
+            "current_positions"
+          ],
+          "jurisdiction": "IO",
+          "reliability": "medium",
+          "notes": "Self-reported information, may be incomplete",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "company_financial_statements",
+            "professional_positions"
+          ],
+          "jurisdiction": "IO",
+          "reliability": "medium",
+          "notes": "Self-reported information, cross-verified where possible",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "professional_positions"
+          ],
+          "jurisdiction": "IO",
+          "reliability": "medium",
+          "notes": "Used to identify current and previous employment of directors",
+          "kind": "mined"
+        },
+        {
+          "input": "email_address",
+          "outputs": [
+            "profile_data",
+            "person_country",
+            "company_financial_statements",
+            "employment"
+          ],
+          "jurisdiction": "IO",
+          "reliability": "medium",
+          "notes": "Email address confirmed through court records validates profile authenticity",
+          "kind": "mined"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "employee_locations",
+            "company_structure",
+            "operational_presence"
+          ],
+          "jurisdiction": "IO",
+          "reliability": "high",
+          "notes": "Professional network data generally reliable for business intelligence",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_profile_url",
+            "person_identity_graph"
+          ],
+          "jurisdiction": "IT",
+          "reliability": "medium",
+          "notes": "Self-reported information, useful for mapping relationships",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_role_job",
+            "current_positions",
+            "expertise"
+          ],
+          "jurisdiction": "LV",
+          "reliability": "medium",
+          "notes": "Self-reported information, good for professional context",
+          "kind": "mined"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "company_size",
+            "employee_profiles",
+            "executive_positions"
+          ],
+          "jurisdiction": "MX",
+          "reliability": "medium",
+          "notes": "Employee count varies between sources (50-199 vs 50-99)",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "professional_roles"
+          ],
+          "jurisdiction": "MX",
+          "reliability": "medium",
+          "notes": "Self-reported professional information",
+          "kind": "mined"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "company_financial_statements"
+          ],
+          "jurisdiction": "NL",
+          "reliability": "medium",
+          "notes": "Self-reported data, may not be completely accurate",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_role_job",
+            "company_financial_statements",
+            "current_roles"
+          ],
+          "jurisdiction": "NL",
+          "reliability": "medium",
+          "notes": "Self-reported information, not officially verified",
+          "kind": "mined"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "management_profiles",
+            "company_timeline"
+          ],
+          "jurisdiction": "PL",
+          "reliability": "medium",
+          "notes": "Self-reported professional information",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "professional_connections"
+          ],
+          "jurisdiction": "RO",
+          "reliability": "medium",
+          "notes": "Used to track career moves from regulatory positions to private sector",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "person_role_job"
+          ],
+          "jurisdiction": "RS",
+          "reliability": "medium",
+          "notes": "Self-reported information requiring verification",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "company_email",
+            "person_employer_job",
+            "professional_connections"
+          ],
+          "jurisdiction": "RS",
+          "reliability": "high",
+          "notes": "Used to identify former employees and obtain contact details for interviews",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "education_background",
+            "person_employer_job",
+            "professional_network"
+          ],
+          "jurisdiction": "TT",
+          "reliability": "medium",
+          "notes": "Self-reported information, may be incomplete or outdated",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "location_history",
+            "current_employer"
+          ],
+          "jurisdiction": "UA",
+          "reliability": "medium",
+          "notes": "Profile data used for geographical correlation with court records",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "company_addresses",
+            "professional_connections"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "medium",
+          "notes": "Self-reported information, potential for manipulation",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_profile_url",
+            "email_address"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "medium",
+          "notes": "Account no longer accessible",
+          "kind": "mined"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "employee_profiles",
+            "company_structure_indicators"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "medium",
+          "notes": "Self-reported employment information, limited management details available",
+          "kind": "mined"
+        },
+        {
+          "input": "email_address",
+          "outputs": [
+            "employment_details",
+            "professional_role"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "medium",
+          "notes": "Limited to publicly available professional information",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_role_job",
+            "company_financial_statements",
+            "current_positions"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "medium",
+          "notes": "Self-reported information",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "professional_connections",
+            "company_financial_statements"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "medium",
+          "notes": "Self-reported information, may be incomplete",
+          "kind": "mined"
+        },
+        {
+          "input": "phone_number",
+          "outputs": [
+            "person_employer_job",
+            "professional_connections"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "high",
+          "notes": "Provides current employment and professional network",
+          "kind": "mined"
+        },
+        {
+          "input": "company_name",
+          "outputs": [
+            "social_media_activity",
+            "follower_count",
+            "company_announcements"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "high",
+          "notes": "Most active social media presence for the subject",
+          "kind": "mined"
+        },
+        {
+          "input": "email_address",
+          "outputs": [
+            "company_financial_statements",
+            "person_employer_job",
+            "person_country"
+          ],
+          "jurisdiction": "UK",
+          "reliability": "medium",
+          "notes": "Self-reported information, but email confirmed through court records",
+          "kind": "mined"
+        },
+        {
+          "jurisdiction": "US",
+          "kind": "rule"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "person_employer_job",
+            "position_dates"
+          ],
+          "jurisdiction": "XX",
+          "reliability": "medium",
+          "notes": "Self-reported data, useful for cross-referencing dates",
+          "kind": "mined"
+        },
+        {
+          "jurisdiction": "none",
+          "notes": "Availability varies; 39=platform 'linkedin'.",
+          "kind": "rule"
+        },
+        {
+          "jurisdiction": "optional",
+          "notes": "Google/Bing dork: site:linkedin.com/in \"{person_name}\". Apollo.io and Proxycurl provide API access. Best results with additional context (company, location, job title).",
+          "kind": "rule"
+        }
+      ]
+    },
+    {
+      "id": "m.reddit.com_video_imported",
+      "name": "Reddit Mobile",
+      "jurisdiction": "GLOBAL",
+      "category": "mul",
+      "url": "https://m.reddit.com/search",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "BRUTE_SEARCH",
+          "label": "Multi-engine discovery search",
+          "requires_any": [
+            7,
+            13,
+            1,
+            6,
+            3
+          ],
+          "requires_all": [],
+          "returns": [
+            6,
+            217,
+            218,
+            240,
+            241,
+            242
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "service",
+              "import": "server/engines/BruteSearch",
+              "method": "search"
+            },
+            {
+              "type": "api",
+              "endpoint": "/api/brute-search"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_CC_GRAPH",
+          "label": "Query Common Crawl web graph (multi-hop)",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            215,
+            216
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/query-graph"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_SHARED_TARGETS",
+          "label": "Find domains linked by multiple sources",
+          "requires_any": [
+            217,
+            219
+          ],
+          "requires_all": [],
+          "returns": [
+            223
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/links/shared-targets"
+            }
+          ]
+        },
+        {
+          "rule_id": "EYED_CHAIN_REACTION",
+          "label": "Multi-hop entity chain discovery (EYE-D)",
+          "requires_any": [
+            7,
+            31,
+            1,
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            7,
+            31,
+            1,
+            13,
+            58,
+            59,
+            35,
+            47,
+            2,
+            190
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "module",
+              "import": "EYE-D.unified_osint.UnifiedSearcher",
+              "method": "run_chain_reaction"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_PERSON_CONTACT_SEARCH",
+          "label": "Find person contact info via multi-engine search",
+          "requires_any": [
+            7,
+            31
+          ],
+          "requires_all": [],
+          "returns": [
+            1,
+            2,
+            5,
+            32,
+            33,
+            34,
+            38,
+            188
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "LI",
+                "SS",
+                "GK",
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "YO"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{person_name}\" email OR phone OR linkedin OR contact"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_COMPANY_OFFICERS_SEARCH",
+          "label": "Find company officers and directors via multi-engine search",
+          "requires_any": [
+            13,
+            42
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{company_name}\" (officers OR directors OR management OR CEO OR CFO)"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_MULTI_LANGUAGE_SEARCH",
+          "label": "Multi-language search with international engines",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "YA",
+                "BA",
+                "NV",
+                "GO",
+                "BI",
+                "QW"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mastodon.social_tech_imported",
+      "name": "Mastodon Social",
+      "jurisdiction": "GLOBAL",
+      "category": "tec",
+      "url": "https://mastodon.social/tags/{q}",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "LINKLATER_ARCHIVE_CHANGES",
+          "label": "Detect content changes over time",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            227
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/archive/changes"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_TECHNICAL_DOCS_SEARCH",
+          "label": "Find technical documentation and code",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "SO",
+                "GO",
+                "BI",
+                "PX"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mbasic.facebook.com_video_imported",
+      "name": "Facebook Lite",
+      "jurisdiction": "GLOBAL",
+      "category": "mul",
+      "url": "https://mbasic.facebook.com/search/",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "BRUTE_SEARCH",
+          "label": "Multi-engine discovery search",
+          "requires_any": [
+            7,
+            13,
+            1,
+            6,
+            3
+          ],
+          "requires_all": [],
+          "returns": [
+            6,
+            217,
+            218,
+            240,
+            241,
+            242
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "service",
+              "import": "server/engines/BruteSearch",
+              "method": "search"
+            },
+            {
+              "type": "api",
+              "endpoint": "/api/brute-search"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_CC_GRAPH",
+          "label": "Query Common Crawl web graph (multi-hop)",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            215,
+            216
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/query-graph"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_SHARED_TARGETS",
+          "label": "Find domains linked by multiple sources",
+          "requires_any": [
+            217,
+            219
+          ],
+          "requires_all": [],
+          "returns": [
+            223
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/links/shared-targets"
+            }
+          ]
+        },
+        {
+          "rule_id": "EYED_CHAIN_REACTION",
+          "label": "Multi-hop entity chain discovery (EYE-D)",
+          "requires_any": [
+            7,
+            31,
+            1,
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            7,
+            31,
+            1,
+            13,
+            58,
+            59,
+            35,
+            47,
+            2,
+            190
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "module",
+              "import": "EYE-D.unified_osint.UnifiedSearcher",
+              "method": "run_chain_reaction"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_PERSON_CONTACT_SEARCH",
+          "label": "Find person contact info via multi-engine search",
+          "requires_any": [
+            7,
+            31
+          ],
+          "requires_all": [],
+          "returns": [
+            1,
+            2,
+            5,
+            32,
+            33,
+            34,
+            38,
+            188
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "LI",
+                "SS",
+                "GK",
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "YO"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{person_name}\" email OR phone OR linkedin OR contact"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_COMPANY_OFFICERS_SEARCH",
+          "label": "Find company officers and directors via multi-engine search",
+          "requires_any": [
+            13,
+            42
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{company_name}\" (officers OR directors OR management OR CEO OR CFO)"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_MULTI_LANGUAGE_SEARCH",
+          "label": "Multi-language search with international engines",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "YA",
+                "BA",
+                "NV",
+                "GO",
+                "BI",
+                "QW"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mobile.twitter.com_tech_imported",
+      "name": "Twitter",
+      "jurisdiction": "GLOBAL",
+      "category": "tec",
+      "url": "https://mobile.twitter.com/search",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "LINKLATER_ARCHIVE_CHANGES",
+          "label": "Detect content changes over time",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            227
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/archive/changes"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_TECHNICAL_DOCS_SEARCH",
+          "label": "Find technical documentation and code",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "SO",
+                "GO",
+                "BI",
+                "PX"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "music.youtube.com_video_imported",
+      "name": "YouTube Music",
+      "jurisdiction": "GLOBAL",
+      "category": "mul",
+      "url": "https://music.youtube.com/search",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "BRUTE_SEARCH",
+          "label": "Multi-engine discovery search",
+          "requires_any": [
+            7,
+            13,
+            1,
+            6,
+            3
+          ],
+          "requires_all": [],
+          "returns": [
+            6,
+            217,
+            218,
+            240,
+            241,
+            242
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "service",
+              "import": "server/engines/BruteSearch",
+              "method": "search"
+            },
+            {
+              "type": "api",
+              "endpoint": "/api/brute-search"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_CC_GRAPH",
+          "label": "Query Common Crawl web graph (multi-hop)",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            215,
+            216
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/query-graph"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_SHARED_TARGETS",
+          "label": "Find domains linked by multiple sources",
+          "requires_any": [
+            217,
+            219
+          ],
+          "requires_all": [],
+          "returns": [
+            223
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/links/shared-targets"
+            }
+          ]
+        },
+        {
+          "rule_id": "EYED_CHAIN_REACTION",
+          "label": "Multi-hop entity chain discovery (EYE-D)",
+          "requires_any": [
+            7,
+            31,
+            1,
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            7,
+            31,
+            1,
+            13,
+            58,
+            59,
+            35,
+            47,
+            2,
+            190
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "module",
+              "import": "EYE-D.unified_osint.UnifiedSearcher",
+              "method": "run_chain_reaction"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_PERSON_CONTACT_SEARCH",
+          "label": "Find person contact info via multi-engine search",
+          "requires_any": [
+            7,
+            31
+          ],
+          "requires_all": [],
+          "returns": [
+            1,
+            2,
+            5,
+            32,
+            33,
+            34,
+            38,
+            188
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "LI",
+                "SS",
+                "GK",
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "YO"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{person_name}\" email OR phone OR linkedin OR contact"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_COMPANY_OFFICERS_SEARCH",
+          "label": "Find company officers and directors via multi-engine search",
+          "requires_any": [
+            13,
+            42
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{company_name}\" (officers OR directors OR management OR CEO OR CFO)"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_MULTI_LANGUAGE_SEARCH",
+          "label": "Multi-language search with international engines",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "YA",
+                "BA",
+                "NV",
+                "GO",
+                "BI",
+                "QW"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "old.reddit.com_video_imported",
+      "name": "LiverpoolFC sub (old style)",
+      "jurisdiction": "GLOBAL",
+      "category": "mul",
+      "url": "https://old.reddit.com/r/LiverpoolFC/search",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "BRUTE_SEARCH",
+          "label": "Multi-engine discovery search",
+          "requires_any": [
+            7,
+            13,
+            1,
+            6,
+            3
+          ],
+          "requires_all": [],
+          "returns": [
+            6,
+            217,
+            218,
+            240,
+            241,
+            242
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "service",
+              "import": "server/engines/BruteSearch",
+              "method": "search"
+            },
+            {
+              "type": "api",
+              "endpoint": "/api/brute-search"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_CC_GRAPH",
+          "label": "Query Common Crawl web graph (multi-hop)",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            215,
+            216
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/query-graph"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_SHARED_TARGETS",
+          "label": "Find domains linked by multiple sources",
+          "requires_any": [
+            217,
+            219
+          ],
+          "requires_all": [],
+          "returns": [
+            223
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/links/shared-targets"
+            }
+          ]
+        },
+        {
+          "rule_id": "EYED_CHAIN_REACTION",
+          "label": "Multi-hop entity chain discovery (EYE-D)",
+          "requires_any": [
+            7,
+            31,
+            1,
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            7,
+            31,
+            1,
+            13,
+            58,
+            59,
+            35,
+            47,
+            2,
+            190
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "module",
+              "import": "EYE-D.unified_osint.UnifiedSearcher",
+              "method": "run_chain_reaction"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_PERSON_CONTACT_SEARCH",
+          "label": "Find person contact info via multi-engine search",
+          "requires_any": [
+            7,
+            31
+          ],
+          "requires_all": [],
+          "returns": [
+            1,
+            2,
+            5,
+            32,
+            33,
+            34,
+            38,
+            188
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "LI",
+                "SS",
+                "GK",
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "YO"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{person_name}\" email OR phone OR linkedin OR contact"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_COMPANY_OFFICERS_SEARCH",
+          "label": "Find company officers and directors via multi-engine search",
+          "requires_any": [
+            13,
+            42
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{company_name}\" (officers OR directors OR management OR CEO OR CFO)"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_MULTI_LANGUAGE_SEARCH",
+          "label": "Multi-language search with international engines",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "YA",
+                "BA",
+                "NV",
+                "GO",
+                "BI",
+                "QW"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pinterest.com_shopping_imported",
+      "name": "pinterest.com/",
+      "jurisdiction": "GLOBAL",
+      "category": "mar",
+      "url": "https://pinterest.com/search/",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false
+    },
+    {
+      "id": "s.weibo.com_tech_imported",
+      "name": "Sina Weibo",
+      "jurisdiction": "GLOBAL",
+      "category": "tec",
+      "url": "https://s.weibo.com/weibo/{q}",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "LINKLATER_ARCHIVE_CHANGES",
+          "label": "Detect content changes over time",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            227
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/archive/changes"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_TECHNICAL_DOCS_SEARCH",
+          "label": "Find technical documentation and code",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "SO",
+                "GO",
+                "BI",
+                "PX"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tiktok.com_video_imported",
+      "name": "TikTok",
+      "jurisdiction": "GLOBAL",
+      "category": "mul",
+      "url": "https://www.tiktok.com/search",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "BRUTE_SEARCH",
+          "label": "Multi-engine discovery search",
+          "requires_any": [
+            7,
+            13,
+            1,
+            6,
+            3
+          ],
+          "requires_all": [],
+          "returns": [
+            6,
+            217,
+            218,
+            240,
+            241,
+            242
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "service",
+              "import": "server/engines/BruteSearch",
+              "method": "search"
+            },
+            {
+              "type": "api",
+              "endpoint": "/api/brute-search"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_CC_GRAPH",
+          "label": "Query Common Crawl web graph (multi-hop)",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            215,
+            216
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/query-graph"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_SHARED_TARGETS",
+          "label": "Find domains linked by multiple sources",
+          "requires_any": [
+            217,
+            219
+          ],
+          "requires_all": [],
+          "returns": [
+            223
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/links/shared-targets"
+            }
+          ]
+        },
+        {
+          "rule_id": "EYED_CHAIN_REACTION",
+          "label": "Multi-hop entity chain discovery (EYE-D)",
+          "requires_any": [
+            7,
+            31,
+            1,
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            7,
+            31,
+            1,
+            13,
+            58,
+            59,
+            35,
+            47,
+            2,
+            190
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "module",
+              "import": "EYE-D.unified_osint.UnifiedSearcher",
+              "method": "run_chain_reaction"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_PERSON_CONTACT_SEARCH",
+          "label": "Find person contact info via multi-engine search",
+          "requires_any": [
+            7,
+            31
+          ],
+          "requires_all": [],
+          "returns": [
+            1,
+            2,
+            5,
+            32,
+            33,
+            34,
+            38,
+            188
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "LI",
+                "SS",
+                "GK",
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "YO"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{person_name}\" email OR phone OR linkedin OR contact"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_COMPANY_OFFICERS_SEARCH",
+          "label": "Find company officers and directors via multi-engine search",
+          "requires_any": [
+            13,
+            42
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{company_name}\" (officers OR directors OR management OR CEO OR CFO)"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_MULTI_LANGUAGE_SEARCH",
+          "label": "Multi-language search with international engines",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "YA",
+                "BA",
+                "NV",
+                "GO",
+                "BI",
+                "QW"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tumblr.com_video_imported",
+      "name": "tumblr",
+      "jurisdiction": "GLOBAL",
+      "category": "mul",
+      "url": "https://www.tumblr.com/search/{q}",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "BRUTE_SEARCH",
+          "label": "Multi-engine discovery search",
+          "requires_any": [
+            7,
+            13,
+            1,
+            6,
+            3
+          ],
+          "requires_all": [],
+          "returns": [
+            6,
+            217,
+            218,
+            240,
+            241,
+            242
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "service",
+              "import": "server/engines/BruteSearch",
+              "method": "search"
+            },
+            {
+              "type": "api",
+              "endpoint": "/api/brute-search"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_CC_GRAPH",
+          "label": "Query Common Crawl web graph (multi-hop)",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            215,
+            216
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/query-graph"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_SHARED_TARGETS",
+          "label": "Find domains linked by multiple sources",
+          "requires_any": [
+            217,
+            219
+          ],
+          "requires_all": [],
+          "returns": [
+            223
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/links/shared-targets"
+            }
+          ]
+        },
+        {
+          "rule_id": "EYED_CHAIN_REACTION",
+          "label": "Multi-hop entity chain discovery (EYE-D)",
+          "requires_any": [
+            7,
+            31,
+            1,
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            7,
+            31,
+            1,
+            13,
+            58,
+            59,
+            35,
+            47,
+            2,
+            190
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "module",
+              "import": "EYE-D.unified_osint.UnifiedSearcher",
+              "method": "run_chain_reaction"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_PERSON_CONTACT_SEARCH",
+          "label": "Find person contact info via multi-engine search",
+          "requires_any": [
+            7,
+            31
+          ],
+          "requires_all": [],
+          "returns": [
+            1,
+            2,
+            5,
+            32,
+            33,
+            34,
+            38,
+            188
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "LI",
+                "SS",
+                "GK",
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "YO"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{person_name}\" email OR phone OR linkedin OR contact"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_COMPANY_OFFICERS_SEARCH",
+          "label": "Find company officers and directors via multi-engine search",
+          "requires_any": [
+            13,
+            42
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{company_name}\" (officers OR directors OR management OR CEO OR CFO)"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_MULTI_LANGUAGE_SEARCH",
+          "label": "Multi-language search with international engines",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "YA",
+                "BA",
+                "NV",
+                "GO",
+                "BI",
+                "QW"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tv.youtube.com_video_imported",
+      "name": "YouTube TV",
+      "jurisdiction": "GLOBAL",
+      "category": "mul",
+      "url": "https://tv.youtube.com/search/{q}",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "BRUTE_SEARCH",
+          "label": "Multi-engine discovery search",
+          "requires_any": [
+            7,
+            13,
+            1,
+            6,
+            3
+          ],
+          "requires_all": [],
+          "returns": [
+            6,
+            217,
+            218,
+            240,
+            241,
+            242
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "service",
+              "import": "server/engines/BruteSearch",
+              "method": "search"
+            },
+            {
+              "type": "api",
+              "endpoint": "/api/brute-search"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_CC_GRAPH",
+          "label": "Query Common Crawl web graph (multi-hop)",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            215,
+            216
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/query-graph"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_SHARED_TARGETS",
+          "label": "Find domains linked by multiple sources",
+          "requires_any": [
+            217,
+            219
+          ],
+          "requires_all": [],
+          "returns": [
+            223
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/links/shared-targets"
+            }
+          ]
+        },
+        {
+          "rule_id": "EYED_CHAIN_REACTION",
+          "label": "Multi-hop entity chain discovery (EYE-D)",
+          "requires_any": [
+            7,
+            31,
+            1,
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            7,
+            31,
+            1,
+            13,
+            58,
+            59,
+            35,
+            47,
+            2,
+            190
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "module",
+              "import": "EYE-D.unified_osint.UnifiedSearcher",
+              "method": "run_chain_reaction"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_PERSON_CONTACT_SEARCH",
+          "label": "Find person contact info via multi-engine search",
+          "requires_any": [
+            7,
+            31
+          ],
+          "requires_all": [],
+          "returns": [
+            1,
+            2,
+            5,
+            32,
+            33,
+            34,
+            38,
+            188
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "LI",
+                "SS",
+                "GK",
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "YO"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{person_name}\" email OR phone OR linkedin OR contact"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_COMPANY_OFFICERS_SEARCH",
+          "label": "Find company officers and directors via multi-engine search",
+          "requires_any": [
+            13,
+            42
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{company_name}\" (officers OR directors OR management OR CEO OR CFO)"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_MULTI_LANGUAGE_SEARCH",
+          "label": "Multi-language search with international engines",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "YA",
+                "BA",
+                "NV",
+                "GO",
+                "BI",
+                "QW"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "twitter.com_land_registry",
+      "name": "Twitter - #Ireland] - Twitter hashtag for Ireland-related posts",
+      "jurisdiction": "IR",
+      "category": "misc",
+      "url": "https://twitter.com/search?q=%23Ireland",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [],
+      "outputs": {
+        "entities": [],
+        "relationships": []
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "input": "government_announcements",
+          "outputs": [
+            "project_initiation",
+            "MOU_signings"
+          ],
+          "jurisdiction": "ET",
+          "reliability": "high",
+          "notes": "Official government communications",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "political_views",
+            "current_activity",
+            "birth_year_inference"
+          ],
+          "jurisdiction": "NG",
+          "reliability": "medium",
+          "notes": "Handle suggests 1954 birth year, shows political support patterns",
+          "kind": "mined"
+        },
+        {
+          "input": "person_name",
+          "outputs": [
+            "social_media_presence",
+            "follower_count",
+            "activity_patterns"
+          ],
+          "jurisdiction": "TT",
+          "reliability": "medium",
+          "notes": "Profile inactive since 2017",
+          "kind": "mined"
+        },
+        {
+          "input": "username",
+          "outputs": [
+            "social_media_activity",
+            "news_mentions"
+          ],
+          "jurisdiction": "XX",
+          "reliability": "high",
+          "notes": "Confirmed account but inactive since May 2019",
+          "kind": "mined"
+        }
+      ]
+    },
+    {
+      "id": "vdisk.weibo.com_video_imported",
+      "name": "\u5fae\u76d8",
+      "jurisdiction": "GLOBAL",
+      "category": "mul",
+      "url": "https://vdisk.weibo.com/search/",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "BRUTE_SEARCH",
+          "label": "Multi-engine discovery search",
+          "requires_any": [
+            7,
+            13,
+            1,
+            6,
+            3
+          ],
+          "requires_all": [],
+          "returns": [
+            6,
+            217,
+            218,
+            240,
+            241,
+            242
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "service",
+              "import": "server/engines/BruteSearch",
+              "method": "search"
+            },
+            {
+              "type": "api",
+              "endpoint": "/api/brute-search"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_CC_GRAPH",
+          "label": "Query Common Crawl web graph (multi-hop)",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            215,
+            216
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/query-graph"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_SHARED_TARGETS",
+          "label": "Find domains linked by multiple sources",
+          "requires_any": [
+            217,
+            219
+          ],
+          "requires_all": [],
+          "returns": [
+            223
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/links/shared-targets"
+            }
+          ]
+        },
+        {
+          "rule_id": "EYED_CHAIN_REACTION",
+          "label": "Multi-hop entity chain discovery (EYE-D)",
+          "requires_any": [
+            7,
+            31,
+            1,
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            7,
+            31,
+            1,
+            13,
+            58,
+            59,
+            35,
+            47,
+            2,
+            190
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "module",
+              "import": "EYE-D.unified_osint.UnifiedSearcher",
+              "method": "run_chain_reaction"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_PERSON_CONTACT_SEARCH",
+          "label": "Find person contact info via multi-engine search",
+          "requires_any": [
+            7,
+            31
+          ],
+          "requires_all": [],
+          "returns": [
+            1,
+            2,
+            5,
+            32,
+            33,
+            34,
+            38,
+            188
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "LI",
+                "SS",
+                "GK",
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "YO"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{person_name}\" email OR phone OR linkedin OR contact"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_COMPANY_OFFICERS_SEARCH",
+          "label": "Find company officers and directors via multi-engine search",
+          "requires_any": [
+            13,
+            42
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{company_name}\" (officers OR directors OR management OR CEO OR CFO)"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_MULTI_LANGUAGE_SEARCH",
+          "label": "Multi-language search with international engines",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "YA",
+                "BA",
+                "NV",
+                "GO",
+                "BI",
+                "QW"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vk.com_video_imported",
+      "name": "Vkontakte video",
+      "jurisdiction": "GLOBAL",
+      "category": "mul",
+      "url": "https://vk.com/video",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "BRUTE_SEARCH",
+          "label": "Multi-engine discovery search",
+          "requires_any": [
+            7,
+            13,
+            1,
+            6,
+            3
+          ],
+          "requires_all": [],
+          "returns": [
+            6,
+            217,
+            218,
+            240,
+            241,
+            242
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "service",
+              "import": "server/engines/BruteSearch",
+              "method": "search"
+            },
+            {
+              "type": "api",
+              "endpoint": "/api/brute-search"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_CC_GRAPH",
+          "label": "Query Common Crawl web graph (multi-hop)",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            215,
+            216
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/query-graph"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_SHARED_TARGETS",
+          "label": "Find domains linked by multiple sources",
+          "requires_any": [
+            217,
+            219
+          ],
+          "requires_all": [],
+          "returns": [
+            223
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/links/shared-targets"
+            }
+          ]
+        },
+        {
+          "rule_id": "EYED_CHAIN_REACTION",
+          "label": "Multi-hop entity chain discovery (EYE-D)",
+          "requires_any": [
+            7,
+            31,
+            1,
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            7,
+            31,
+            1,
+            13,
+            58,
+            59,
+            35,
+            47,
+            2,
+            190
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "module",
+              "import": "EYE-D.unified_osint.UnifiedSearcher",
+              "method": "run_chain_reaction"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_PERSON_CONTACT_SEARCH",
+          "label": "Find person contact info via multi-engine search",
+          "requires_any": [
+            7,
+            31
+          ],
+          "requires_all": [],
+          "returns": [
+            1,
+            2,
+            5,
+            32,
+            33,
+            34,
+            38,
+            188
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "LI",
+                "SS",
+                "GK",
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "YO"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{person_name}\" email OR phone OR linkedin OR contact"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_COMPANY_OFFICERS_SEARCH",
+          "label": "Find company officers and directors via multi-engine search",
+          "requires_any": [
+            13,
+            42
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{company_name}\" (officers OR directors OR management OR CEO OR CFO)"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_MULTI_LANGUAGE_SEARCH",
+          "label": "Multi-language search with international engines",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "YA",
+                "BA",
+                "NV",
+                "GO",
+                "BI",
+                "QW"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "web.telegram.org_tech_imported",
+      "name": "Telegram",
+      "jurisdiction": "GLOBAL",
+      "category": "tec",
+      "url": "https://web.telegram.org/#/im",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "LINKLATER_ARCHIVE_CHANGES",
+          "label": "Detect content changes over time",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            227
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/archive/changes"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_TECHNICAL_DOCS_SEARCH",
+          "label": "Find technical documentation and code",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "SO",
+                "GO",
+                "BI",
+                "PX"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "www.linkedin.com_land_registry",
+      "name": "IDA Ireland] - Ireland's investment promotion agency",
+      "jurisdiction": "IR",
+      "category": "misc",
+      "url": "https://www.linkedin.com/company-beta/1017348/",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [],
+      "outputs": {
+        "entities": [],
+        "relationships": []
+      },
+      "friction": "public",
+      "has_api": false
+    },
+    {
+      "id": "www.reddit.com_public_records",
+      "name": "Hungary on Reddit",
+      "jurisdiction": "HU",
+      "category": "misc",
+      "url": "https://www.reddit.com/r/hungary/",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14,
+        20
+      ],
+      "outputs": {
+        "entities": [
+          13,
+          59,
+          67,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          612,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          51,
+          53,
+          80,
+          81,
+          83,
+          85,
+          90,
+          110,
+          403,
+          405,
+          406,
+          408
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "jurisdiction": "HU",
+          "notes": "Wiki Source. Hungary on Reddit]",
+          "kind": "rule"
+        }
+      ]
+    },
+    {
+      "id": "x.com_tech_imported",
+      "name": "X",
+      "jurisdiction": "GLOBAL",
+      "category": "tec",
+      "url": "https://x.com/search",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "LINKLATER_ARCHIVE_CHANGES",
+          "label": "Detect content changes over time",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            227
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/archive/changes"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_TECHNICAL_DOCS_SEARCH",
+          "label": "Find technical documentation and code",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "SO",
+                "GO",
+                "BI",
+                "PX"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "youtube.com_video_imported",
+      "name": "Game Grumps",
+      "jurisdiction": "GLOBAL",
+      "category": "mul",
+      "url": "https://www.youtube.com/user/GameGrumps/search",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "public",
+      "has_api": false,
+      "_legacy_capabilities": [
+        {
+          "rule_id": "BRUTE_SEARCH",
+          "label": "Multi-engine discovery search",
+          "requires_any": [
+            7,
+            13,
+            1,
+            6,
+            3
+          ],
+          "requires_all": [],
+          "returns": [
+            6,
+            217,
+            218,
+            240,
+            241,
+            242
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "service",
+              "import": "server/engines/BruteSearch",
+              "method": "search"
+            },
+            {
+              "type": "api",
+              "endpoint": "/api/brute-search"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_CC_GRAPH",
+          "label": "Query Common Crawl web graph (multi-hop)",
+          "requires_any": [
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            215,
+            216
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/query-graph"
+            }
+          ]
+        },
+        {
+          "rule_id": "LINKLATER_SHARED_TARGETS",
+          "label": "Find domains linked by multiple sources",
+          "requires_any": [
+            217,
+            219
+          ],
+          "requires_all": [],
+          "returns": [
+            223
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "api",
+              "endpoint": "/api/linklater/links/shared-targets"
+            }
+          ]
+        },
+        {
+          "rule_id": "EYED_CHAIN_REACTION",
+          "label": "Multi-hop entity chain discovery (EYE-D)",
+          "requires_any": [
+            7,
+            31,
+            1,
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            7,
+            31,
+            1,
+            13,
+            58,
+            59,
+            35,
+            47,
+            2,
+            190
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "module",
+              "import": "EYE-D.unified_osint.UnifiedSearcher",
+              "method": "run_chain_reaction"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_PERSON_CONTACT_SEARCH",
+          "label": "Find person contact info via multi-engine search",
+          "requires_any": [
+            7,
+            31
+          ],
+          "requires_all": [],
+          "returns": [
+            1,
+            2,
+            5,
+            32,
+            33,
+            34,
+            38,
+            188
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "LI",
+                "SS",
+                "GK",
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "YO"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{person_name}\" email OR phone OR linkedin OR contact"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_COMPANY_OFFICERS_SEARCH",
+          "label": "Find company officers and directors via multi-engine search",
+          "requires_any": [
+            13,
+            42
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "PX",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{company_name}\" (officers OR directors OR management OR CEO OR CFO)"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_MULTI_LANGUAGE_SEARCH",
+          "label": "Multi-language search with international engines",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146,
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "YA",
+                "BA",
+                "NV",
+                "GO",
+                "BI",
+                "QW"
+              ],
+              "wave": "specialized_serp",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

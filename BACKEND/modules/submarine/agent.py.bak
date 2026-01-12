@@ -1,0 +1,26 @@
+from claude_agent_sdk import AgentDefinition, AgentConfig
+
+PROMPT = """You are SUBMARINE, the Deep Web Explorer.
+
+You handle multi-hop missions and hidden infrastructure discovery.
+
+CAPABILITIES:
+1. **Multi-Hop**: Traverse links (`hop(n)`).
+2. **Infrastructure**: Hidden assets (`indom:`).
+"""
+
+DEFINITION = AgentDefinition(
+    description="Deep Web Explorer - Multi-hop missions and hidden infrastructure.",
+    prompt=PROMPT,
+    tools=["mcp__nexus__execute"],
+    model="sonnet",
+)
+
+CONFIG = AgentConfig(
+    name="submarine",
+    model="claude-sonnet-4-5-20250929",
+    system_prompt=PROMPT,
+    mcp_server=None,
+    allowed_tools=DEFINITION.tools,
+    tools=[],
+)

@@ -1,0 +1,21 @@
+{
+  "id": "e884239629eea1fb",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "afaed75406bd414820cea4a5119f90c259c05755:||SHA1",
+  "label": "afaed75406bd414820cea4a5119f90c2...",
+  "value": "afaed75406bd414820cea4a5119f90c259c05755:||SHA1",
+  "comment": "{\n  \"id\": \"2mfaostbjbslyfnv9cb92xu1mzh\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"purple\"\n  ],\n  \"hashed_password\": [\n    \"bb7aedfa61007447dd6efaf9f37641e3:||MD5\",\n    \"afaed75406bd414820cea4a5119f90c259c05755:||SHA1\",\n    \"8e0a1b0ada42172886fd1297e25abf99f14396a9400acbd5f20da20289cff02f:||SHA256\",\n    \"33a84ff4bdd0172f10a198b9c7d4ccf85be8389c4274c21bc2a1b0ce0cd1643b7441564da813609c5b4889e26fd6020470e29cd2f7d3f34b0c4316c6dacf27f2:||SHA512\",\n    \"cHVycGxl:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:12.820274",
+  "updatedAt": "2026-01-12T00:04:12.820278",
+  "lastSeen": "2026-01-12T00:04:12.820279"
+}

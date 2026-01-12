@@ -1,0 +1,167 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "discovery_routing_matrix_schema.json",
+  "title": "Discovery Routing Matrix Schema",
+  "description": "Schema for validating unknown node to action routing rules (KU matrix)",
+  "type": "object",
+  "required": ["version", "classes", "intents", "routing_rules"],
+  "properties": {
+    "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "last_updated": {"type": "string", "format": "date"},
+    "description": {"type": "string"},
+
+    "classes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["nature", "role", "types"],
+        "properties": {
+          "nature": {"enum": ["DYNAMIC", "STATIC", "CONNECTING", "DIRECTING"]},
+          "role": {"enum": ["ANCHOR", "VENUE", "RELATIONSHIP", "ORCHESTRATOR"]},
+          "description": {"type": "string"},
+          "types": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+
+    "intents": {
+      "type": "object",
+      "properties": {
+        "DISCOVER": {
+          "type": "object",
+          "required": ["symbol", "subtypes"],
+          "properties": {
+            "symbol": {"type": "string"},
+            "subtypes": {
+              "type": "object",
+              "properties": {
+                "TRACE": {"$ref": "#/definitions/subtype"},
+                "EXTRACT": {"$ref": "#/definitions/subtype"},
+                "NET": {"$ref": "#/definitions/subtype"}
+              }
+            }
+          }
+        },
+        "ENRICH": {
+          "type": "object",
+          "required": ["symbol", "subtypes"],
+          "properties": {
+            "symbol": {"type": "string"},
+            "subtypes": {
+              "type": "object",
+              "properties": {
+                "FILL": {"$ref": "#/definitions/subtype"},
+                "VERIFY": {"$ref": "#/definitions/subtype"}
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "routing_rules": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["rules"],
+        "properties": {
+          "description": {"type": "string"},
+          "rules": {
+            "type": "array",
+            "items": {"$ref": "#/definitions/routing_rule"}
+          }
+        }
+      }
+    },
+
+    "triad_patterns": {
+      "type": "object",
+      "properties": {
+        "patterns": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/triad_pattern"}
+        }
+      }
+    },
+
+    "unknown_node_schema": {"type": "object"},
+    "void_handling": {"type": "object"},
+    "path_illumination": {"type": "object"},
+    "fractal_levels": {"type": "object"}
+  },
+
+  "definitions": {
+    "subtype": {
+      "type": "object",
+      "properties": {
+        "anchor": {"enum": ["known", "unknown"]},
+        "venue": {"enum": ["known", "unknown"]},
+        "description": {"type": "string"}
+      }
+    },
+
+    "unknown_spec": {
+      "type": "object",
+      "required": ["class", "type"],
+      "properties": {
+        "class": {"enum": ["SUBJECT", "LOCATION", "NEXUS", "NARRATIVE"]},
+        "type": {"type": ["string", "array"]}
+      }
+    },
+
+    "known_spec": {
+      "oneOf": [
+        {"$ref": "#/definitions/unknown_spec"},
+        {"type": "array", "items": {"$ref": "#/definitions/unknown_spec"}},
+        {"type": "null"}
+      ]
+    },
+
+    "route": {
+      "type": "object",
+      "required": ["engine", "syntax"],
+      "properties": {
+        "jurisdiction": {"type": "string"},
+        "engine": {"type": "string"},
+        "syntax": {"type": "string"},
+        "fallback": {"type": "string"},
+        "method": {"type": "string"},
+        "extractor": {"type": "string"},
+        "creates_unknowns": {
+          "oneOf": [
+            {"type": "boolean"},
+            {"type": "array", "items": {"$ref": "#/definitions/unknown_spec"}}
+          ]
+        }
+      }
+    },
+
+    "routing_rule": {
+      "type": "object",
+      "required": ["id", "routes"],
+      "properties": {
+        "id": {"type": "string"},
+        "unknown": {"$ref": "#/definitions/unknown_spec"},
+        "known": {"$ref": "#/definitions/known_spec"},
+        "intent": {"enum": ["DISCOVER", "ENRICH", "TRACE", "EXTRACT", "NET", "VERIFY"]},
+        "routes": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/route"}
+        }
+      }
+    },
+
+    "triad_pattern": {
+      "type": "object",
+      "required": ["pattern", "name", "intent"],
+      "properties": {
+        "pattern": {"type": "string"},
+        "name": {"type": "string"},
+        "description": {"type": "string"},
+        "intent": {"enum": ["DISCOVER", "ENRICH"]},
+        "subtype": {"enum": ["TRACE", "EXTRACT", "NET", "FILL", "VERIFY"]},
+        "action": {"type": "string"}
+      }
+    }
+  }
+}

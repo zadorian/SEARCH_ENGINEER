@@ -1,0 +1,513 @@
+{
+  "timestamp": "2025-12-30 16:08:43",
+  "total": 100,
+  "summary": {
+    "DIRECT": 76,
+    "FIRECRAWL": 0,
+    "PROXY_NEEDED": 6,
+    "FAILED": 16,
+    "TIMEOUT": 2
+  },
+  "domains": {
+    "medienanstalt-mv.de": {
+      "method": "DIRECT",
+      "latency": 2.290177822113037,
+      "reason": "ok"
+    },
+    "spreezeitung.de": {
+      "method": "DIRECT",
+      "latency": 2.177957057952881,
+      "reason": "ok"
+    },
+    "menschenzeitung.de": {
+      "method": "PROXY_NEEDED",
+      "latency": 2.7961790561676025,
+      "reason": "captcha"
+    },
+    "emma.de": {
+      "method": "DIRECT",
+      "latency": 1.2424111366271973,
+      "reason": "ok"
+    },
+    "lz.de": {
+      "method": "DIRECT",
+      "latency": 1.53957200050354,
+      "reason": "ok"
+    },
+    "stadt-spiegel-krefeld.de": {
+      "method": "TIMEOUT",
+      "latency": 10.447115898132324,
+      "reason": "timeout"
+    },
+    "blog-fussball.de": {
+      "method": "FAILED",
+      "latency": 0.250230073928833,
+      "reason": "[Errno 8] nodename nor servnam"
+    },
+    "usedom-exclusiv.de": {
+      "method": "DIRECT",
+      "latency": 1.5710830688476562,
+      "reason": "ok"
+    },
+    "cosmopolitan.de": {
+      "method": "DIRECT",
+      "latency": 1.2684109210968018,
+      "reason": "ok"
+    },
+    "zib.de": {
+      "method": "DIRECT",
+      "latency": 1.3730170726776123,
+      "reason": "ok"
+    },
+    "ostsee-zeitung.de": {
+      "method": "DIRECT",
+      "latency": 1.5681860446929932,
+      "reason": "ok"
+    },
+    "lift-online.de": {
+      "method": "DIRECT",
+      "latency": 2.260861873626709,
+      "reason": "ok"
+    },
+    "ard-hauptstadtstudio.de": {
+      "method": "DIRECT",
+      "latency": 1.7784788608551025,
+      "reason": "ok"
+    },
+    "pressepreis.de": {
+      "method": "DIRECT",
+      "latency": 3.1088199615478516,
+      "reason": "ok"
+    },
+    "esslinger-zeitung.de": {
+      "method": "DIRECT",
+      "latency": 1.7308228015899658,
+      "reason": "ok"
+    },
+    "suedwestfalen-nachrichten.de": {
+      "method": "PROXY_NEEDED",
+      "latency": 1.7646071910858154,
+      "reason": "captcha"
+    },
+    "politikorange.de": {
+      "method": "DIRECT",
+      "latency": 3.3408899307250977,
+      "reason": "ok"
+    },
+    "schiller-verlag.de": {
+      "method": "FAILED",
+      "latency": 0.9717240333557129,
+      "reason": "[SSL: TLSV1_ALERT_INTERNAL_ERR"
+    },
+    "hellerthaler-zeitung.de": {
+      "method": "DIRECT",
+      "latency": 3.464136838912964,
+      "reason": "ok"
+    },
+    "nmg.de": {
+      "method": "FAILED",
+      "latency": 1.0384409427642822,
+      "reason": "[SSL: TLSV1_UNRECOGNIZED_NAME]"
+    },
+    "die-glocke.de": {
+      "method": "DIRECT",
+      "latency": 1.3002219200134277,
+      "reason": "ok"
+    },
+    "epd.de": {
+      "method": "DIRECT",
+      "latency": 1.1779289245605469,
+      "reason": "ok"
+    },
+    "press1.de": {
+      "method": "DIRECT",
+      "latency": 1.4081201553344727,
+      "reason": "ok"
+    },
+    "marbuch-verlag.de": {
+      "method": "DIRECT",
+      "latency": 1.2938690185546875,
+      "reason": "ok"
+    },
+    "owl-journal.de": {
+      "method": "DIRECT",
+      "latency": 1.7174980640411377,
+      "reason": "ok"
+    },
+    "blitz-aktuell.de": {
+      "method": "DIRECT",
+      "latency": 3.3761720657348633,
+      "reason": "ok"
+    },
+    "bs-net.de": {
+      "method": "DIRECT",
+      "latency": 1.3787248134613037,
+      "reason": "ok"
+    },
+    "tiervision.de": {
+      "method": "DIRECT",
+      "latency": 3.0723278522491455,
+      "reason": "ok"
+    },
+    "dk0mu.de": {
+      "method": "FAILED",
+      "latency": 0.6673798561096191,
+      "reason": "[SSL: CERTIFICATE_VERIFY_FAILE"
+    },
+    "ga-online.de": {
+      "method": "DIRECT",
+      "latency": 1.292186975479126,
+      "reason": "ok"
+    },
+    "presseportal.de": {
+      "method": "DIRECT",
+      "latency": 1.1830551624298096,
+      "reason": "ok"
+    },
+    "radiowerkstatt-wehe.de": {
+      "method": "FAILED",
+      "latency": 0.3013601303100586,
+      "reason": "[Errno 8] nodename nor servnam"
+    },
+    "lawinenwarndienst-bayern.de": {
+      "method": "DIRECT",
+      "latency": 6.471390247344971,
+      "reason": "ok"
+    },
+    "stadtkurier.de": {
+      "method": "FAILED",
+      "latency": 0.23169207572937012,
+      "reason": "[Errno 8] nodename nor servnam"
+    },
+    "supersonntag.de": {
+      "method": "PROXY_NEEDED",
+      "latency": 1.9779870510101318,
+      "reason": "blocked"
+    },
+    "radioguetersloh.de": {
+      "method": "DIRECT",
+      "latency": 1.4395887851715088,
+      "reason": "ok"
+    },
+    "okerwelle.de": {
+      "method": "DIRECT",
+      "latency": 5.115708112716675,
+      "reason": "ok"
+    },
+    "oldies-hannover.de": {
+      "method": "PROXY_NEEDED",
+      "latency": 0.867271900177002,
+      "reason": "blocked"
+    },
+    "fla.de": {
+      "method": "DIRECT",
+      "latency": 1.629178762435913,
+      "reason": "ok"
+    },
+    "newsburger.de": {
+      "method": "FAILED",
+      "latency": 0.6268417835235596,
+      "reason": ""
+    },
+    "myheimat.de": {
+      "method": "DIRECT",
+      "latency": 1.6359639167785645,
+      "reason": "ok"
+    },
+    "all-in.de": {
+      "method": "DIRECT",
+      "latency": 1.3245339393615723,
+      "reason": "ok"
+    },
+    "diebuntewelt.de": {
+      "method": "FAILED",
+      "latency": 0.8119089603424072,
+      "reason": "[SSL: CERTIFICATE_VERIFY_FAILE"
+    },
+    "bremische-landesmedienanstalt.de": {
+      "method": "DIRECT",
+      "latency": 3.116142749786377,
+      "reason": "ok"
+    },
+    "dnn.de": {
+      "method": "DIRECT",
+      "latency": 1.4233911037445068,
+      "reason": "ok"
+    },
+    "ef-magazin.de": {
+      "method": "DIRECT",
+      "latency": 2.1268999576568604,
+      "reason": "ok"
+    },
+    "tif-tuebingen.de": {
+      "method": "DIRECT",
+      "latency": 1.7220160961151123,
+      "reason": "ok"
+    },
+    "schaedelspalter.de": {
+      "method": "FAILED",
+      "latency": 0.8439738750457764,
+      "reason": "[SSL: CERTIFICATE_VERIFY_FAILE"
+    },
+    "medienzentrum-aachen.de": {
+      "method": "DIRECT",
+      "latency": 2.965198040008545,
+      "reason": "ok"
+    },
+    "vdmno.de": {
+      "method": "DIRECT",
+      "latency": 1.330996036529541,
+      "reason": "ok"
+    },
+    "petra.de": {
+      "method": "DIRECT",
+      "latency": 0.8402271270751953,
+      "reason": "ok"
+    },
+    "tikonline.de": {
+      "method": "DIRECT",
+      "latency": 1.7829241752624512,
+      "reason": "ok"
+    },
+    "hna.de": {
+      "method": "DIRECT",
+      "latency": 1.324873924255371,
+      "reason": "ok"
+    },
+    "abendblatt.de": {
+      "method": "DIRECT",
+      "latency": 3.737152099609375,
+      "reason": "ok"
+    },
+    "pressemeldung-rheinland-pfalz.de": {
+      "method": "DIRECT",
+      "latency": 1.6881628036499023,
+      "reason": "ok"
+    },
+    "evinger-leute.de": {
+      "method": "DIRECT",
+      "latency": 1.3195509910583496,
+      "reason": "ok"
+    },
+    "elternzeitung-luftballon.de": {
+      "method": "DIRECT",
+      "latency": 1.2149548530578613,
+      "reason": "ok"
+    },
+    "luebbecker-zeitung.de": {
+      "method": "FAILED",
+      "latency": 0.8811750411987305,
+      "reason": "[SSL: CERTIFICATE_VERIFY_FAILE"
+    },
+    "chemnitz-fernsehen.de": {
+      "method": "PROXY_NEEDED",
+      "latency": 2.745940923690796,
+      "reason": "captcha"
+    },
+    "emma-und-alice.de": {
+      "method": "TIMEOUT",
+      "latency": 10.447211027145386,
+      "reason": "timeout"
+    },
+    "presseclub-kassel.de": {
+      "method": "DIRECT",
+      "latency": 1.9368209838867188,
+      "reason": "ok"
+    },
+    "waltpolitik.powerbone.de": {
+      "method": "FAILED",
+      "latency": 0.643286943435669,
+      "reason": "[SSL: CERTIFICATE_VERIFY_FAILE"
+    },
+    "powerplay-tv-essen.de": {
+      "method": "PROXY_NEEDED",
+      "latency": 2.2820448875427246,
+      "reason": "captcha"
+    },
+    "filmgruppe-chaos.de": {
+      "method": "FAILED",
+      "latency": 0.7951018810272217,
+      "reason": "[SSL: TLSV1_UNRECOGNIZED_NAME]"
+    },
+    "crescendo.de": {
+      "method": "DIRECT",
+      "latency": 3.2647271156311035,
+      "reason": "ok"
+    },
+    "gfb.podspot.de": {
+      "method": "FAILED",
+      "latency": 0.6665229797363281,
+      "reason": "[SSL: CERTIFICATE_VERIFY_FAILE"
+    },
+    "hauspost.de": {
+      "method": "DIRECT",
+      "latency": 2.2317252159118652,
+      "reason": "ok"
+    },
+    "lpr-hessen.de": {
+      "method": "DIRECT",
+      "latency": 3.3265023231506348,
+      "reason": "ok"
+    },
+    "stimme.de": {
+      "method": "DIRECT",
+      "latency": 1.1656417846679688,
+      "reason": "ok"
+    },
+    "11freunde.de": {
+      "method": "DIRECT",
+      "latency": 1.309345006942749,
+      "reason": "ok"
+    },
+    "abendzeitung-muenchen.de": {
+      "method": "DIRECT",
+      "latency": 1.2398579120635986,
+      "reason": "ok"
+    },
+    "widersprueche-zeitschrift.de": {
+      "method": "DIRECT",
+      "latency": 1.1667876243591309,
+      "reason": "ok"
+    },
+    "djv-sachsen.de": {
+      "method": "DIRECT",
+      "latency": 1.441356897354126,
+      "reason": "ok"
+    },
+    "stemwede-tv.de": {
+      "method": "DIRECT",
+      "latency": 1.3079092502593994,
+      "reason": "ok"
+    },
+    "lvz.de": {
+      "method": "DIRECT",
+      "latency": 1.6443610191345215,
+      "reason": "ok"
+    },
+    "kirchenzeitung-koeln.de": {
+      "method": "DIRECT",
+      "latency": 1.8852288722991943,
+      "reason": "ok"
+    },
+    "osf-tv.de": {
+      "method": "FAILED",
+      "latency": 0.962860107421875,
+      "reason": "[SSL: CERTIFICATE_VERIFY_FAILE"
+    },
+    "blickpunkt-brandenburg.de": {
+      "method": "DIRECT",
+      "latency": 2.115513801574707,
+      "reason": "ok"
+    },
+    "fas-tv.de": {
+      "method": "DIRECT",
+      "latency": 1.6433300971984863,
+      "reason": "ok"
+    },
+    "stadtrevue.de": {
+      "method": "DIRECT",
+      "latency": 1.4239468574523926,
+      "reason": "ok"
+    },
+    "stadtgespraeche-rostock.de": {
+      "method": "DIRECT",
+      "latency": 1.776153802871704,
+      "reason": "ok"
+    },
+    "kreuzberger-chronik.de": {
+      "method": "DIRECT",
+      "latency": 3.0846118927001953,
+      "reason": "ok"
+    },
+    "pz-news.de": {
+      "method": "DIRECT",
+      "latency": 1.8970372676849365,
+      "reason": "ok"
+    },
+    "attendorner-geschichten.de": {
+      "method": "DIRECT",
+      "latency": 5.628572940826416,
+      "reason": "ok"
+    },
+    "gofeminin.de": {
+      "method": "DIRECT",
+      "latency": 0.923940896987915,
+      "reason": "ok"
+    },
+    "morgenweb.de": {
+      "method": "DIRECT",
+      "latency": 2.8954901695251465,
+      "reason": "ok"
+    },
+    "djv-saar.de": {
+      "method": "DIRECT",
+      "latency": 4.1523802280426025,
+      "reason": "ok"
+    },
+    "scaneg.de": {
+      "method": "FAILED",
+      "latency": 0.8928577899932861,
+      "reason": "[SSL: TLSV1_ALERT_INTERNAL_ERR"
+    },
+    "weird-bielefeld.de": {
+      "method": "DIRECT",
+      "latency": 1.3454511165618896,
+      "reason": "ok"
+    },
+    "travemuende-aktuell.de": {
+      "method": "DIRECT",
+      "latency": 2.65155291557312,
+      "reason": "ok"
+    },
+    "eifelzeitung.de": {
+      "method": "FAILED",
+      "latency": 0.2887721061706543,
+      "reason": "[Errno 8] nodename nor servnam"
+    },
+    "mauschristoph.de": {
+      "method": "DIRECT",
+      "latency": 1.5563647747039795,
+      "reason": "ok"
+    },
+    "forher.de": {
+      "method": "DIRECT",
+      "latency": 1.2989177703857422,
+      "reason": "ok"
+    },
+    "berchtesgadener-anzeiger.de": {
+      "method": "DIRECT",
+      "latency": 1.5306651592254639,
+      "reason": "ok"
+    },
+    "kna.de": {
+      "method": "DIRECT",
+      "latency": 1.034148931503296,
+      "reason": "ok"
+    },
+    "nachrichtenfuerkinder.de": {
+      "method": "DIRECT",
+      "latency": 4.423619031906128,
+      "reason": "ok"
+    },
+    "news-koblenz.de": {
+      "method": "DIRECT",
+      "latency": 5.564831018447876,
+      "reason": "ok"
+    },
+    "sandmann.de": {
+      "method": "DIRECT",
+      "latency": 1.4440889358520508,
+      "reason": "ok"
+    },
+    "vnzv.de": {
+      "method": "DIRECT",
+      "latency": 2.351191997528076,
+      "reason": "ok"
+    },
+    "siegener-zeitung.de": {
+      "method": "DIRECT",
+      "latency": 1.662743091583252,
+      "reason": "ok"
+    }
+  }
+}

@@ -1,0 +1,322 @@
+{
+  "_DEPRECATED": {
+    "warning": "THIS FILE IS DEPRECATED - DO NOT USE FOR NEW CODE",
+    "use_instead": {
+      "io_objects": "codes.json (722+ field codes for entities/attributes)",
+      "relationships": "relationship.json (22 edge types with reified codes)"
+    },
+    "reason": "Partial recreation of codes.json with only 18 codes. Canonical sources have full coverage.",
+    "deprecated_date": "2025-01-11"
+  },
+  "meta": {
+    "version": "2.0",
+    "description": "DEPRECATED - Unified I/O Matrix Schema",
+    "updated": "2025-01-11",
+    "status": "deprecated"
+  },
+
+  "entity_types": {
+    "person": {
+      "description": "A human individual",
+      "primary_code": 7,
+      "field_codes": {
+        "person_name": 7,
+        "dob": 12
+      }
+    },
+    "company": {
+      "description": "A legal entity / organization",
+      "primary_code": 13,
+      "field_codes": {
+        "company_name": 13,
+        "company_reg_id": 14,
+        "vat_id": 15,
+        "lei": 16
+      }
+    },
+    "domain": {
+      "description": "A web domain name",
+      "primary_code": 6,
+      "field_codes": {
+        "domain": 6,
+        "domain_url": 6
+      }
+    },
+    "email": {
+      "description": "An email address",
+      "primary_code": 1,
+      "field_codes": {
+        "email": 1
+      }
+    },
+    "phone": {
+      "description": "A phone number",
+      "primary_code": 2,
+      "field_codes": {
+        "phone": 2
+      }
+    },
+    "username": {
+      "description": "A username or handle",
+      "primary_code": 3,
+      "field_codes": {
+        "username": 3
+      }
+    },
+    "url": {
+      "description": "A full URL",
+      "primary_code": 5,
+      "field_codes": {
+        "url": 5
+      }
+    },
+    "ip_address": {
+      "description": "An IP address (v4 or v6)",
+      "primary_code": 8,
+      "field_codes": {
+        "ip_address": 8
+      }
+    },
+    "address": {
+      "description": "A physical/postal address",
+      "primary_code": 11,
+      "field_codes": {
+        "address": 11
+      }
+    },
+    "country": {
+      "description": "A country or jurisdiction",
+      "primary_code": 20,
+      "field_codes": {
+        "country": 20
+      }
+    },
+    "nameserver": {
+      "description": "A DNS nameserver",
+      "primary_code": 21,
+      "field_codes": {
+        "nameserver": 21
+      }
+    },
+    "registrar": {
+      "description": "A domain registrar",
+      "primary_code": 22,
+      "field_codes": {
+        "registrar": 22
+      }
+    },
+    "asn": {
+      "description": "Autonomous System Number",
+      "primary_code": 23,
+      "field_codes": {
+        "asn": 23
+      }
+    }
+  },
+
+  "relationships": {
+    "has_email": {
+      "description": "Entity has this email address",
+      "from_types": ["person", "company"],
+      "to_type": "email",
+      "direction": "outgoing"
+    },
+    "has_phone": {
+      "description": "Entity has this phone number",
+      "from_types": ["person", "company"],
+      "to_type": "phone",
+      "direction": "outgoing"
+    },
+    "has_address": {
+      "description": "Entity has this physical address",
+      "from_types": ["person", "company"],
+      "to_type": "address",
+      "direction": "outgoing"
+    },
+    "has_username": {
+      "description": "Person has this username/handle",
+      "from_types": ["person"],
+      "to_type": "username",
+      "direction": "outgoing"
+    },
+    "officer_of": {
+      "description": "Person is officer/director of company",
+      "from_types": ["person"],
+      "to_type": "company",
+      "direction": "outgoing",
+      "properties": ["role", "appointed_date", "resigned_date"]
+    },
+    "shareholder_of": {
+      "description": "Entity owns shares in company",
+      "from_types": ["person", "company"],
+      "to_type": "company",
+      "direction": "outgoing",
+      "properties": ["shares", "percentage"]
+    },
+    "beneficial_owner_of": {
+      "description": "Person is beneficial owner of company",
+      "from_types": ["person"],
+      "to_type": "company",
+      "direction": "outgoing",
+      "properties": ["percentage", "nature_of_control"]
+    },
+    "employed_by": {
+      "description": "Person is employed by company",
+      "from_types": ["person"],
+      "to_type": "company",
+      "direction": "outgoing",
+      "properties": ["role", "start_date", "end_date"]
+    },
+    "registrant_of": {
+      "description": "Entity is domain registrant",
+      "from_types": ["person", "company"],
+      "to_type": "domain",
+      "direction": "outgoing",
+      "properties": ["date", "historic"]
+    },
+    "registered_via": {
+      "description": "Domain registered through registrar",
+      "from_types": ["domain"],
+      "to_type": "registrar",
+      "direction": "outgoing"
+    },
+    "uses_nameserver": {
+      "description": "Domain uses this nameserver",
+      "from_types": ["domain"],
+      "to_type": "nameserver",
+      "direction": "outgoing"
+    },
+    "resolves_to": {
+      "description": "Domain resolves to IP address",
+      "from_types": ["domain"],
+      "to_type": "ip_address",
+      "direction": "outgoing"
+    },
+    "links_to": {
+      "description": "Domain has outgoing link TO target domain",
+      "from_types": ["domain"],
+      "to_type": "domain",
+      "direction": "outgoing",
+      "properties": ["anchor_text", "source_url", "first_seen"]
+    },
+    "backlink_from": {
+      "description": "Domain has incoming backlink FROM source domain",
+      "from_types": ["domain"],
+      "to_type": "domain",
+      "direction": "incoming",
+      "properties": ["anchor_text", "source_url", "first_seen"]
+    },
+    "subsidiary_of": {
+      "description": "Company is subsidiary of parent company",
+      "from_types": ["company"],
+      "to_type": "company",
+      "direction": "outgoing"
+    },
+    "registered_in": {
+      "description": "Company is registered in country/jurisdiction",
+      "from_types": ["company"],
+      "to_type": "country",
+      "direction": "outgoing"
+    },
+    "same_registrant_as": {
+      "description": "Domain shares registrant with another domain",
+      "from_types": ["domain"],
+      "to_type": "domain",
+      "direction": "bidirectional"
+    },
+    "same_nameserver_as": {
+      "description": "Domain shares nameserver with another domain",
+      "from_types": ["domain"],
+      "to_type": "domain",
+      "direction": "bidirectional"
+    },
+    "same_ip_as": {
+      "description": "Domain shares IP with another domain",
+      "from_types": ["domain"],
+      "to_type": "domain",
+      "direction": "bidirectional"
+    },
+    "sanctioned_match": {
+      "description": "Entity matches sanctioned entity",
+      "from_types": ["person", "company"],
+      "to_type": ["person", "company"],
+      "direction": "outgoing",
+      "properties": ["score", "datasets"]
+    }
+  },
+
+  "resources": {
+    "alldom_whois": {
+      "module": "alldom",
+      "operation": "whois",
+      "description": "WHOIS lookup (current and historic)",
+      "accepts_input": ["domain"],
+      "produces_entities": ["domain", "person", "company", "email", "nameserver", "registrar"],
+      "produces_relationships": ["registrant_of", "has_email", "uses_nameserver", "registered_via"]
+    },
+    "alldom_dns": {
+      "module": "alldom",
+      "operation": "dns",
+      "description": "DNS resolution",
+      "accepts_input": ["domain"],
+      "produces_entities": ["domain", "ip_address", "nameserver"],
+      "produces_relationships": ["resolves_to", "uses_nameserver"]
+    },
+    "alldom_backlinks": {
+      "module": "alldom",
+      "operation": "backlinks",
+      "description": "Backlink discovery (incoming links)",
+      "accepts_input": ["domain"],
+      "produces_entities": ["domain"],
+      "produces_relationships": ["backlink_from"]
+    },
+    "alldom_outlinks": {
+      "module": "alldom",
+      "operation": "outlinks",
+      "description": "Outlink discovery (outgoing links)",
+      "accepts_input": ["domain"],
+      "produces_entities": ["domain"],
+      "produces_relationships": ["links_to"]
+    },
+    "corporella_company": {
+      "module": "corporella",
+      "operation": "company_search",
+      "description": "Corporate registry lookup",
+      "accepts_input": ["company"],
+      "produces_entities": ["company", "person", "address", "country"],
+      "produces_relationships": ["officer_of", "shareholder_of", "beneficial_owner_of", "subsidiary_of", "registered_in", "has_address"]
+    },
+    "eyed_person": {
+      "module": "eyed",
+      "operation": "person_search",
+      "description": "Person OSINT lookup",
+      "accepts_input": ["person"],
+      "produces_entities": ["person", "email", "phone", "username", "address", "url", "company"],
+      "produces_relationships": ["has_email", "has_phone", "has_username", "has_address", "employed_by"]
+    },
+    "eyed_email": {
+      "module": "eyed",
+      "operation": "email_search",
+      "description": "Email reverse lookup",
+      "accepts_input": ["email"],
+      "produces_entities": ["email", "person", "phone", "username", "address", "url"],
+      "produces_relationships": ["has_email", "has_phone", "has_username", "has_address"]
+    },
+    "eyed_phone": {
+      "module": "eyed",
+      "operation": "phone_search",
+      "description": "Phone reverse lookup",
+      "accepts_input": ["phone"],
+      "produces_entities": ["phone", "person", "email", "address"],
+      "produces_relationships": ["has_phone", "has_email", "has_address"]
+    },
+    "opensanctions": {
+      "module": "opensanctions",
+      "operation": "sanctions_check",
+      "description": "Sanctions and PEP screening",
+      "accepts_input": ["person", "company"],
+      "produces_entities": ["person", "company"],
+      "produces_relationships": ["sanctioned_match"]
+    }
+  }
+}

@@ -47,6 +47,7 @@ logger = logging.getLogger(__name__)
 WHOIS_HISTORY_URL = "https://whois-history.whoisxmlapi.com/api/v1"
 WHOIS_REVERSE_URL = "https://reverse-whois-api.whoisxmlapi.com/api/v2"
 WHOIS_LOOKUP_URL = "https://www.whoisxmlapi.com/whoisserver/WhoisService"
+REVERSE_IP_URL = "https://reverse-ip.whoisxmlapi.com/api/v1"
 
 # Privacy indicators - if any appear, the field is redacted
 PRIVACY_INDICATORS = [
@@ -359,6 +360,64 @@ def reverse_whois_search(
     }
 
 
+def reverse_ip_search(ip_address: str, limit: int = 100) -> Dict[str, Any]:
+    """
+    REVERSE IP search - find domains hosted on an IP address.
+
+    Uses WhoisXMLAPI Reverse IP API to find domains sharing an IP.
+
+    Args:
+        ip_address: IPv4 or IPv6 address
+        limit: Max results to return
+
+    Returns:
+        Dict with domains list and count
+    """
+    api_key = _get_api_key()
+    if not api_key:
+        logger.warning("[REVERSE IP] Missing API key")
+        return {
+            "ip_address": ip_address,
+            "domains_count": 0,
+            "domains": [],
+            "error": "missing_api_key",
+        }
+
+    params = {
+        "apiKey": api_key,
+        "ip": ip_address,
+        "outputFormat": "JSON",
+    }
+
+    try:
+        data = _make_request("GET", REVERSE_IP_URL, params=params)
+        result_list = data.get("result", [])
+        domains = []
+
+        if isinstance(result_list, list):
+            for item in result_list[:limit]:
+                if isinstance(item, dict):
+                    domain = item.get("name")
+                    if domain:
+                        domains.append(domain)
+                elif isinstance(item, str):
+                    domains.append(item)
+
+        return {
+            "ip_address": ip_address,
+            "domains_count": len(domains),
+            "domains": domains,
+        }
+    except WhoisApiException as exc:
+        logger.warning("[REVERSE IP] Error for %s: %s", ip_address, exc)
+        return {
+            "ip_address": ip_address,
+            "domains_count": 0,
+            "domains": [],
+            "error": str(exc),
+        }
+
+
 def reverse_nameserver_search(nameserver: str, limit: int = 100) -> List[str]:
     """
     REVERSE NAMESERVER search - find domains using same nameserver.
@@ -391,8 +450,8 @@ def whois_lookup(query: str, query_type: str = "domain") -> Dict[str, Any]:
     Unified WHOIS lookup - routes to appropriate function based on query type.
 
     Args:
-        query: Domain, email, phone, or search terms
-        query_type: 'domain', 'email', 'terms', 'phone'
+        query: Domain, email, phone, IP, or search terms
+        query_type: 'domain', 'email', 'terms', 'phone', 'ip'
 
     Returns:
         Dict with results
@@ -413,6 +472,8 @@ def whois_lookup(query: str, query_type: str = "domain") -> Dict[str, Any]:
         if query_type == "phone":
             clean_number = re.sub(r"\D", "", query)
             return reverse_whois_search(clean_number, "basicSearchTerms", search_field="telephone")
+        if query_type == "ip":
+            return reverse_ip_search(query)
         return reverse_whois_search(query, "basicSearchTerms")
     except WhoisApiException as exc:
         logger.warning("[WHOIS] Lookup error for %s: %s", query, exc)

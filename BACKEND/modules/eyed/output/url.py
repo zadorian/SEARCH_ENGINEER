@@ -1,0 +1,79 @@
+import json
+import os
+import hashlib
+import time
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, Any, List
+
+try:
+    from elasticsearch import Elasticsearch
+    ES_AVAILABLE = True
+except ImportError:
+    ES_AVAILABLE = False
+
+class UrlOutputHandler:
+    def __init__(self, platform: str = None):
+        self.platform = platform or "generic"
+        self.results_root = Path(__file__).resolve().parent.parent / 'results' / 'url'
+        self.results_root.mkdir(parents=True, exist_ok=True)
+        self.es = None
+        if ES_AVAILABLE:
+            es_host = os.getenv("ELASTICSEARCH_HOST", "http://localhost:9200")
+            self.es_index = os.getenv("CYMONIDES_1_INDEX", "cymonides-1")
+            try:
+                self.es = Elasticsearch([es_host])
+            except Exception:
+                self.es = None
+
+    def process(self, value: str, context: Dict[str, Any], raw_data: Dict[str, Any] = None) -> Dict[str, Any]:
+        node_id = self._generate_id('url', value)
+        edges = []
+        
+        agg_ids = context.get('aggregator_ids', [])
+        if context.get('aggregator_id'):
+            agg_ids.append(context['aggregator_id'])
+            
+        relation = "input_of" if context.get('is_input') else "output_of"
+        
+        for agg_id in agg_ids:
+            edges.append({
+                "target_id": agg_id,
+                "relation": relation,
+                "verification_status": "VERIFIED" if context.get('is_input') else "UNVERIFIED",
+                "connection_reason": "aggregator_link"
+            })
+
+        metadata = context.get('metadata', {})
+        metadata['platform'] = self.platform
+
+        node = {
+            "id": node_id,
+            "node_class": "ENTITY",
+            "type": "url",
+            "canonicalValue": value.lower().strip(),
+            "label": value,
+            "value": value,
+            "comment": json.dumps(raw_data, indent=2, ensure_ascii=False) if raw_data else None,
+            "embedded_edges": edges,
+            "metadata": metadata,
+            "createdAt": datetime.utcnow().isoformat(),
+            "updatedAt": datetime.utcnow().isoformat(),
+            "lastSeen": datetime.utcnow().isoformat()
+        }
+        
+        self._save(node)
+        return node
+
+    def _generate_id(self, type: str, value: str) -> str:
+        raw = f"{type}:{str(value).lower().strip()}"
+        return hashlib.sha256(raw.encode('utf-8')).hexdigest()[:16]
+
+    def _save(self, node: Dict):
+        filename = f"{node['id']}_{int(time.time())}.json"
+        file_path = self.results_root / filename
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(node, f, indent=2, ensure_ascii=False)
+        if self.es:
+            try: self.es.index(index=self.es_index, id=node['id'], body=node)
+            except: pass

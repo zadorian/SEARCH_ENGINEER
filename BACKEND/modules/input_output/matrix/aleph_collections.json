@@ -1,0 +1,694 @@
+{
+  "meta": {
+    "version": "1.1",
+    "description": "OCCRP Aleph Collection Mappings - 237 collections mapped by jurisdiction and wiki section",
+    "api_endpoint": "https://aleph.occrp.org/api/2",
+    "generated_at": "2025-12-31T00:00:00Z",
+    "total_collections": 237,
+    "total_jurisdictions": 75,
+    "categories": [
+      "company", "court", "finance", "gazette", "grey", "land", "leak",
+      "library", "license", "news", "poi", "procurement", "regulatory", "sanctions", "transport"
+    ],
+    "section_mapping": {
+      "cr": {
+        "name": "Corporate Registry",
+        "categories": ["company", "gazette"],
+        "description": "Company registrations, filings, beneficial ownership"
+      },
+      "lit": {
+        "name": "Litigation",
+        "categories": ["court"],
+        "description": "Court cases, lawsuits, judgments, indictments"
+      },
+      "reg": {
+        "name": "Regulatory",
+        "categories": ["regulatory", "sanctions", "license", "procurement", "poi"],
+        "description": "Regulatory filings, sanctions, licenses, enforcement actions"
+      },
+      "ass": {
+        "name": "Assets",
+        "categories": ["land", "finance", "transport"],
+        "description": "Property, real estate, financial records, vehicles"
+      },
+      "leak": {
+        "name": "Leaks & Grey Literature",
+        "categories": ["leak", "grey", "library"],
+        "description": "Leaked documents, FOIA, investigative archives"
+      },
+      "news": {
+        "name": "News & Media",
+        "categories": ["news"],
+        "description": "News articles, press releases"
+      }
+    }
+  },
+  "by_jurisdiction": {
+    "GB": {
+      "name": "United Kingdom",
+      "collections": [
+        {"id": 809, "label": "UK Companies House", "category": "company", "inputs": ["company_name", "company_id", "person_name"], "outputs": ["company_profile", "officers", "filings"]},
+        {"id": 2053, "label": "UK People with Significant Control (PSC)", "category": "company", "inputs": ["company_name", "company_id"], "outputs": ["beneficial_ownership", "psc_records"]},
+        {"id": 2302, "label": "UK Disqualified Directors", "category": "poi", "inputs": ["person_name"], "outputs": ["disqualification_records", "person_dob"]},
+        {"id": 1303, "label": "HM Treasury Sanctions List", "category": "sanctions", "inputs": ["person_name", "company_name"], "outputs": ["sanctions_status", "person_nationality"]},
+        {"id": 153, "label": "UK Parliamentary Inquiries", "category": "library", "inputs": ["person_name", "company_name"], "outputs": ["political_exposure", "inquiry_records"]},
+        {"id": 2248, "label": "Overseas companies owning property in England/Wales", "category": "land", "inputs": ["company_name"], "outputs": ["property_ownership", "foreign_company_records"]},
+        {"id": 2705, "label": "Trump Scotland", "category": "grey", "inputs": ["company_name", "person_name"], "outputs": ["documents"]}
+      ]
+    },
+    "US": {
+      "name": "United States",
+      "collections": [
+        {"id": 246, "label": "US SEC Litigation (2019-2023)", "category": "court", "inputs": ["company_name", "person_name"], "outputs": ["litigation_records", "sec_filings"]},
+        {"id": 724, "label": "US OFAC Sanctions List", "category": "poi", "inputs": ["person_name", "company_name"], "outputs": ["sanctions_status"]},
+        {"id": 712, "label": "US Foreign Agent Registrations (FARA)", "category": "regulatory", "inputs": ["company_name", "person_name"], "outputs": ["foreign_agent_status", "registrations"]},
+        {"id": 753, "label": "Florida Land Property Database", "category": "land", "inputs": ["person_name", "company_name", "address"], "outputs": ["property_records"]},
+        {"id": 786, "label": "FBI FOIA Library", "category": "grey", "inputs": ["person_name", "company_name"], "outputs": ["documents"]},
+        {"id": 74, "label": "CIA FOIA Reading Room", "category": "library", "inputs": ["keyword"], "outputs": ["documents"]},
+        {"id": 1043, "label": "US DOJ Press Releases", "category": "court", "inputs": ["person_name", "company_name"], "outputs": ["press_releases", "indictments"]},
+        {"id": 1740, "label": "New York State Active Corporations", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile", "registration"]},
+        {"id": 923, "label": "US SEC (CorpWatch)", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile", "sec_filings"]},
+        {"id": 1300, "label": "FinCEN Enforcement Actions", "category": "regulatory", "inputs": ["company_name", "person_name"], "outputs": ["enforcement_actions"]},
+        {"id": 1065, "label": "Snowden Files Published Documents", "category": "grey", "inputs": ["keyword"], "outputs": ["documents"]},
+        {"id": 2637, "label": "Trial and Terror (2020)", "category": "poi", "inputs": ["person_name"], "outputs": ["terrorism_cases"]},
+        {"id": 7151, "label": "Donald Trump Tax Returns (2015-2020)", "category": "finance", "inputs": ["person_name"], "outputs": ["tax_records"]},
+        {"id": 12423, "label": "Epstein Estate documents", "category": "court", "inputs": ["person_name"], "outputs": ["court_documents"]},
+        {"id": 102, "label": "Wikileaks State Department Cables", "category": "leak", "inputs": ["keyword"], "outputs": ["cables"]},
+        {"id": 201, "label": "DNC / Hillary Clinton", "category": "leak", "inputs": ["keyword"], "outputs": ["emails"]},
+        {"id": 973, "label": "Internet Research Agency", "category": "court", "inputs": ["keyword"], "outputs": ["documents"]},
+        {"id": 1061, "label": "HBGary leaked emails", "category": "leak", "inputs": ["keyword"], "outputs": ["emails"]},
+        {"id": 1021, "label": "ENRON Emails", "category": "court", "inputs": ["keyword", "person_name"], "outputs": ["emails"]}
+      ]
+    },
+    "RU": {
+      "name": "Russia",
+      "collections": [
+        {"id": 750, "label": "Russian Company Index", "category": "company", "inputs": ["company_name", "inn"], "outputs": ["company_profile"]},
+        {"id": 780, "label": "Russian companies (OGRN, 2016)", "category": "company", "inputs": ["company_name", "ogrn"], "outputs": ["company_profile"]},
+        {"id": 956, "label": "Russian Registry of NGOs", "category": "company", "inputs": ["company_name"], "outputs": ["ngo_records"]},
+        {"id": 789, "label": "Declarator.org Asset Declarations", "category": "poi", "inputs": ["person_name"], "outputs": ["asset_declarations"]},
+        {"id": 845, "label": "Russian government officials declarations", "category": "poi", "inputs": ["person_name"], "outputs": ["asset_declarations", "income"]},
+        {"id": 972, "label": "Russian Court Cases (2015)", "category": "court", "inputs": ["person_name", "company_name"], "outputs": ["court_cases"]},
+        {"id": 1017, "label": "Russian Geological Fund Licenses", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]},
+        {"id": 1098, "label": "ClearSpending", "category": "procurement", "inputs": ["company_name"], "outputs": ["government_contracts"]},
+        {"id": 1310, "label": "Russian federal budget subsidies", "category": "procurement", "inputs": ["company_name"], "outputs": ["subsidies"]},
+        {"id": 726, "label": "RIIF", "category": "leak", "inputs": ["keyword"], "outputs": ["documents"]},
+        {"id": 1066, "label": "APT28 documents", "category": "grey", "inputs": ["keyword"], "outputs": ["documents"]}
+      ]
+    },
+    "DE": {
+      "name": "Germany",
+      "collections": [
+        {"id": 1027, "label": "German companies registry (OpenCorporates, 2019)", "category": "company", "inputs": ["company_name", "hrb"], "outputs": ["company_profile", "officers"]},
+        {"id": 718, "label": "Sparkasse Annual Reports", "category": "grey", "inputs": ["company_name"], "outputs": ["financial_reports"]}
+      ]
+    },
+    "GE": {
+      "name": "Georgia",
+      "collections": [
+        {"id": 11295, "label": "Georgian Asset Declarations 2025", "category": "finance", "inputs": ["person_name"], "outputs": ["asset_declarations"]},
+        {"id": 6589, "label": "Georgia Company Registry", "category": "company", "inputs": ["company_name", "company_id"], "outputs": ["company_profile"]},
+        {"id": 10735, "label": "Georgia Asset Declarations", "category": "finance", "inputs": ["person_name"], "outputs": ["asset_declarations"]},
+        {"id": 210, "label": "Georgian Company Documents", "category": "company", "inputs": ["company_name"], "outputs": ["documents"]},
+        {"id": 225, "label": "Georgian Contract Awards", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]},
+        {"id": 2651, "label": "Georgian 2020 Election Party Lists", "category": "poi", "inputs": ["person_name"], "outputs": ["political_affiliation"]},
+        {"id": 2654, "label": "Georgian Political Donations", "category": "finance", "inputs": ["person_name", "company_name"], "outputs": ["donations"]},
+        {"id": 120, "label": "Monitori.ge Documents", "category": "news", "inputs": ["keyword"], "outputs": ["documents"]}
+      ]
+    },
+    "KE": {
+      "name": "Kenya",
+      "collections": [
+        {"id": 2226, "label": "Audit reports from Kenyan Office of Auditor-General", "category": "grey", "inputs": ["company_name"], "outputs": ["audit_reports"]},
+        {"id": 1032, "label": "The Kenya Gazette", "category": "gazette", "inputs": ["company_name", "person_name"], "outputs": ["gazette_notices"]},
+        {"id": 814, "label": "Kenya Flexicadastre", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]},
+        {"id": 1797, "label": "Kenya Procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]},
+        {"id": 1815, "label": "Kenya Public procurement decisions (2005-2018)", "category": "procurement", "inputs": ["company_name"], "outputs": ["procurement_decisions"]},
+        {"id": 1887, "label": "Kenyan Law Cases Database", "category": "court", "inputs": ["person_name", "company_name"], "outputs": ["court_cases"]},
+        {"id": 1965, "label": "Makueni County Procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]},
+        {"id": 3897, "label": "Kenya Procurement (-2021)", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]}
+      ]
+    },
+    "CZ": {
+      "name": "Czech Republic",
+      "collections": [
+        {"id": 791, "label": "Czech Companies", "category": "company", "inputs": ["company_name", "ico"], "outputs": ["company_profile", "officers"]}
+      ]
+    },
+    "RS": {
+      "name": "Serbia",
+      "collections": [
+        {"id": 2313, "label": "Serbian government appointments", "category": "gazette", "inputs": ["person_name"], "outputs": ["appointments"]},
+        {"id": 154, "label": "CINS Documents", "category": "news", "inputs": ["keyword"], "outputs": ["documents"]},
+        {"id": 790, "label": "KRIK Documents", "category": "news", "inputs": ["keyword"], "outputs": ["documents"]},
+        {"id": 1559, "label": "Belgrade city gazette", "category": "gazette", "inputs": ["company_name", "person_name"], "outputs": ["gazette_notices"]},
+        {"id": 1994, "label": "Serbian Political Donations", "category": "finance", "inputs": ["person_name", "company_name"], "outputs": ["donations"]},
+        {"id": 4256, "label": "Fake Awards", "category": "poi", "inputs": ["person_name", "company_name"], "outputs": ["awards"]}
+      ]
+    },
+    "BY": {
+      "name": "Belarus",
+      "collections": [
+        {"id": 921, "label": "Belarus Registry of legal entities", "category": "company", "inputs": ["company_name", "unp"], "outputs": ["company_profile"]},
+        {"id": 881, "label": "Belarus Public Assembly delegates", "category": "poi", "inputs": ["person_name"], "outputs": ["political_role"]}
+      ]
+    },
+    "KG": {
+      "name": "Kyrgyzstan",
+      "collections": [
+        {"id": 138, "label": "Kyrgyzstan Ministry of Justice", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]},
+        {"id": 723, "label": "Kyrgyz FIU Sanctions List", "category": "sanctions", "inputs": ["person_name", "company_name"], "outputs": ["sanctions_status"]},
+        {"id": 787, "label": "Kyrgyz Stock Exchange documents", "category": "regulatory", "inputs": ["company_name"], "outputs": ["filings"]},
+        {"id": 836, "label": "Kyrgyzstan Mining Licenses", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]},
+        {"id": 1087, "label": "Kyrgyzstan contract awards", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]},
+        {"id": 1105, "label": "Erkintoo magazine", "category": "news", "inputs": ["keyword"], "outputs": ["articles"]}
+      ]
+    },
+    "UZ": {
+      "name": "Uzbekistan",
+      "collections": [
+        {"id": 1990, "label": "Uzbekistan corporate procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]},
+        {"id": 1991, "label": "Uzbekistan government procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]}
+      ]
+    },
+    "PA": {
+      "name": "Panama",
+      "collections": [
+        {"id": 96, "label": "Panama Companies Registry (2008)", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]},
+        {"id": 734, "label": "ICIJ Panama Papers (2016)", "category": "leak", "inputs": ["company_name", "person_name"], "outputs": ["offshore_records"]}
+      ]
+    },
+    "BS": {
+      "name": "Bahamas",
+      "collections": [
+        {"id": 276, "label": "ICIJ BahamasLeaks", "category": "leak", "inputs": ["company_name", "person_name"], "outputs": ["offshore_records"]},
+        {"id": 732, "label": "ICIJ Bahamas Leaks (2016)", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]},
+        {"id": 2079, "label": "Bahamas companies registry (2018)", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]}
+      ]
+    },
+    "VE": {
+      "name": "Venezuela",
+      "collections": [
+        {"id": 912, "label": "Venezuela Procurement Registration", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]},
+        {"id": 3166, "label": "El Feis (2020)", "category": "poi", "inputs": ["person_name"], "outputs": ["poi_records"]},
+        {"id": 10587, "label": "Venezuela Prosecutors Office", "category": "news", "inputs": ["keyword"], "outputs": ["press_releases"]}
+      ]
+    },
+    "MX": {
+      "name": "Mexico",
+      "collections": [
+        {"id": 506, "label": "Personas de Interes (2014)", "category": "poi", "inputs": ["person_name"], "outputs": ["poi_records"]},
+        {"id": 1872, "label": "OCCRP Most Wanted (2013)", "category": "poi", "inputs": ["person_name"], "outputs": ["poi_records"]},
+        {"id": 2006, "label": "Publicaciones de Sociedades Mercantiles", "category": "regulatory", "inputs": ["company_name"], "outputs": ["company_publications"]}
+      ]
+    },
+    "BR": {
+      "name": "Brazil",
+      "collections": [
+        {"id": 1193, "label": "Lava Jato", "category": "poi", "inputs": ["person_name", "company_name"], "outputs": ["investigation_records"]},
+        {"id": 2225, "label": "Brazilian government procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]},
+        {"id": 2973, "label": "Brazil National registry of legal entities", "category": "company", "inputs": ["company_name", "cnpj"], "outputs": ["company_profile"]}
+      ]
+    },
+    "BA": {
+      "name": "Bosnia and Herzegovina",
+      "collections": [
+        {"id": 68, "label": "CIN Bosnia", "category": "news", "inputs": ["keyword"], "outputs": ["documents"]},
+        {"id": 88, "label": "Bosnian Procurement Documents", "category": "procurement", "inputs": ["company_name"], "outputs": ["procurement_docs"]},
+        {"id": 439, "label": "Sarajevo Prosecutor", "category": "grey", "inputs": ["person_name"], "outputs": ["documents"]},
+        {"id": 737, "label": "FBiH Company Register", "category": "company", "inputs": ["company_name", "jib"], "outputs": ["company_profile"]},
+        {"id": 744, "label": "Republika Srpska Company Register", "category": "company", "inputs": ["company_name", "jib"], "outputs": ["company_profile"]},
+        {"id": 889, "label": "Bosnian foreign companies", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]},
+        {"id": 890, "label": "FBiH Land Register", "category": "land", "inputs": ["person_name", "company_name"], "outputs": ["property_records"]},
+        {"id": 891, "label": "Republika Srpska Land Records", "category": "land", "inputs": ["person_name", "company_name"], "outputs": ["property_records"]},
+        {"id": 922, "label": "Bosnian Registry of NGO", "category": "company", "inputs": ["company_name"], "outputs": ["ngo_records"]}
+      ]
+    },
+    "MD": {
+      "name": "Moldova",
+      "collections": [
+        {"id": 72, "label": "Moldova Courts", "category": "court", "inputs": ["person_name", "company_name"], "outputs": ["court_cases"]},
+        {"id": 152, "label": "RISE Moldova", "category": "news", "inputs": ["keyword"], "outputs": ["documents"]},
+        {"id": 187, "label": "Moldova Companies Registry", "category": "company", "inputs": ["company_name", "idno"], "outputs": ["company_profile"]},
+        {"id": 267, "label": "Moldova Capital Market & Gazette", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]},
+        {"id": 742, "label": "Moldova Procurement Blacklist", "category": "poi", "inputs": ["company_name"], "outputs": ["blacklist_status"]},
+        {"id": 760, "label": "Moldova Court Cases", "category": "court", "inputs": ["person_name", "company_name"], "outputs": ["court_cases"]},
+        {"id": 1840, "label": "Moldova procurement data", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]}
+      ]
+    },
+    "RO": {
+      "name": "Romania",
+      "collections": [
+        {"id": 100, "label": "Romania Foreign Companies", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]},
+        {"id": 151, "label": "RISE Project", "category": "news", "inputs": ["keyword"], "outputs": ["documents"]},
+        {"id": 924, "label": "Romania National Trade Register", "category": "company", "inputs": ["company_name", "cui"], "outputs": ["company_profile"]}
+      ]
+    },
+    "CY": {
+      "name": "Cyprus",
+      "collections": [
+        {"id": 738, "label": "Cyprus Companies", "category": "company", "inputs": ["company_name", "registration_number"], "outputs": ["company_profile"]},
+        {"id": 80, "label": "Cyprus Government Gazette", "category": "gazette", "inputs": ["company_name", "person_name"], "outputs": ["gazette_notices"]},
+        {"id": 1591, "label": "Cyprus Asset declarations", "category": "poi", "inputs": ["person_name"], "outputs": ["asset_declarations"]},
+        {"id": 1707, "label": "Cyprus Bar Association", "category": "poi", "inputs": ["person_name"], "outputs": ["lawyer_records"]},
+        {"id": 1741, "label": "Cyprus Register of accountants", "category": "company", "inputs": ["company_name", "person_name"], "outputs": ["accountant_records"]},
+        {"id": 1777, "label": "Cyprus SEC: Administrative service providers", "category": "company", "inputs": ["company_name"], "outputs": ["asp_records"]}
+      ]
+    },
+    "SI": {
+      "name": "Slovenia",
+      "collections": [
+        {"id": 954, "label": "Slovenia Vessels Registry", "category": "transport", "inputs": ["vessel_name", "company_name"], "outputs": ["vessel_records"]},
+        {"id": 8850, "label": "Slovenia Gifts received by officials", "category": "finance", "inputs": ["person_name"], "outputs": ["gift_records"]},
+        {"id": 8859, "label": "Slovenia Register of lobbying contacts", "category": "finance", "inputs": ["person_name", "company_name"], "outputs": ["lobbying_records"]},
+        {"id": 8867, "label": "Slovenia Business restrictions entities", "category": "finance", "inputs": ["company_name"], "outputs": ["restriction_records"]}
+      ]
+    },
+    "SK": {
+      "name": "Slovakia",
+      "collections": [
+        {"id": 4873, "label": "Slovakia Public Sector Partners Register", "category": "company", "inputs": ["company_name", "ico"], "outputs": ["company_profile", "beneficial_ownership"]},
+        {"id": 2208, "label": "Slovakia public procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]}
+      ]
+    },
+    "ME": {
+      "name": "Montenegro",
+      "collections": [
+        {"id": 254, "label": "Montenegro Gazette", "category": "gazette", "inputs": ["company_name", "person_name"], "outputs": ["gazette_notices"]},
+        {"id": 794, "label": "MANS Documents", "category": "news", "inputs": ["keyword"], "outputs": ["documents"]},
+        {"id": 853, "label": "Montenegro construction permits", "category": "land", "inputs": ["company_name", "address"], "outputs": ["permits"]}
+      ]
+    },
+    "MK": {
+      "name": "North Macedonia",
+      "collections": [
+        {"id": 731, "label": "North Macedonia Contract Awards", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]},
+        {"id": 1162, "label": "North Macedonia Asset Declarations", "category": "poi", "inputs": ["person_name"], "outputs": ["asset_declarations"]},
+        {"id": 4877, "label": "Official Gazette of North Macedonia", "category": "gazette", "inputs": ["company_name", "person_name"], "outputs": ["gazette_notices"]},
+        {"id": 6753, "label": "Macedonia Energy Licenses", "category": "license", "inputs": ["company_name"], "outputs": ["energy_licenses"]}
+      ]
+    },
+    "TJ": {
+      "name": "Tajikistan",
+      "collections": [
+        {"id": 106, "label": "Tajikistan Companies Registry", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]},
+        {"id": 870, "label": "Tajikistan Tax Blacklist", "category": "company", "inputs": ["company_name"], "outputs": ["blacklist_status"]},
+        {"id": 871, "label": "Tajikistan Banks shareholders", "category": "company", "inputs": ["company_name"], "outputs": ["shareholders"]}
+      ]
+    },
+    "AM": {
+      "name": "Armenia",
+      "collections": [
+        {"id": 79, "label": "Armenian Court Documents", "category": "court", "inputs": ["person_name", "company_name"], "outputs": ["court_cases"]},
+        {"id": 1216, "label": "Armenian legal entities register", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]}
+      ]
+    },
+    "AZ": {
+      "name": "Azerbaijan",
+      "collections": [
+        {"id": 144, "label": "Azerbaijan Tenders", "category": "procurement", "inputs": ["company_name"], "outputs": ["tenders"]},
+        {"id": 776, "label": "Azerbaijan Commercial Taxpayers", "category": "company", "inputs": ["company_name", "voen"], "outputs": ["company_profile"]}
+      ]
+    },
+    "KZ": {
+      "name": "Kazakhstan",
+      "collections": [
+        {"id": 953, "label": "Kazakhstan Registry of subsoil users", "category": "license", "inputs": ["company_name"], "outputs": ["subsoil_licenses"]},
+        {"id": 1044, "label": "Kazakhstan geological reports", "category": "library", "inputs": ["company_name"], "outputs": ["geological_reports"]}
+      ]
+    },
+    "TR": {
+      "name": "Turkey",
+      "collections": [
+        {"id": 1532, "label": "Istanbul Chamber of Commerce", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]}
+      ]
+    },
+    "LV": {
+      "name": "Latvia",
+      "collections": [
+        {"id": 3091, "label": "Register of Enterprises of Latvia", "category": "company", "inputs": ["company_name", "registration_number"], "outputs": ["company_profile", "officers"]}
+      ]
+    },
+    "LT": {
+      "name": "Lithuania",
+      "collections": [
+        {"id": 2009, "label": "Lithuanian Procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]}
+      ]
+    },
+    "BG": {
+      "name": "Bulgaria",
+      "collections": [
+        {"id": 2482, "label": "Bulgarian Asset Declarations", "category": "poi", "inputs": ["person_name"], "outputs": ["asset_declarations"]}
+      ]
+    },
+    "HU": {
+      "name": "Hungary",
+      "collections": [
+        {"id": 118, "label": "atlatszo.hu Documents", "category": "news", "inputs": ["keyword"], "outputs": ["documents"]}
+      ]
+    },
+    "CH": {
+      "name": "Switzerland",
+      "collections": [
+        {"id": 155, "label": "Swiss Official Gazette", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]},
+        {"id": 1197, "label": "Swiss Companies Registry", "category": "company", "inputs": ["company_name", "uid"], "outputs": ["company_profile"]}
+      ]
+    },
+    "AT": {
+      "name": "Austria",
+      "collections": [
+        {"id": 180, "label": "OSCE Austria", "category": "leak", "inputs": ["keyword"], "outputs": ["documents"]}
+      ]
+    },
+    "NL": {
+      "name": "Netherlands",
+      "collections": [
+        {"id": 215, "label": "Dutch Staatscourant", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]},
+        {"id": 170, "label": "One World", "category": "news", "inputs": ["keyword"], "outputs": ["documents"]}
+      ]
+    },
+    "LI": {
+      "name": "Liechtenstein",
+      "collections": [
+        {"id": 86, "label": "Liechtenstein Company Index", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]},
+        {"id": 82, "label": "Liechtensteinische Landesverwaltungen", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]}
+      ]
+    },
+    "IM": {
+      "name": "Isle of Man",
+      "collections": [
+        {"id": 184, "label": "Isle of Man Companies Registry", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]},
+        {"id": 639, "label": "Isle of Man Aircraft Registry", "category": "transport", "inputs": ["aircraft_registration", "company_name"], "outputs": ["aircraft_records"]}
+      ]
+    },
+    "GG": {
+      "name": "Guernsey",
+      "collections": [
+        {"id": 183, "label": "Guernsey Registry", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]}
+      ]
+    },
+    "VG": {
+      "name": "British Virgin Islands",
+      "collections": [
+        {"id": 113, "label": "BVI Gazette", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]}
+      ]
+    },
+    "KY": {
+      "name": "Cayman Islands",
+      "collections": [
+        {"id": 217, "label": "Caymans Gazette", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]}
+      ]
+    },
+    "CK": {
+      "name": "Cook Islands",
+      "collections": [
+        {"id": 1698, "label": "Cook Islands Companies Registry", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]}
+      ]
+    },
+    "PT": {
+      "name": "Portugal",
+      "collections": [
+        {"id": 907, "label": "Madeira International Business Center", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]}
+      ]
+    },
+    "ES": {
+      "name": "Spain",
+      "collections": [
+        {"id": 78, "label": "Spanish Gazette", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]},
+        {"id": 2297, "label": "Spanish Public Sector Contracting", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]}
+      ]
+    },
+    "FR": {
+      "name": "France",
+      "collections": [
+        {"id": 1903, "label": "France Procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]}
+      ]
+    },
+    "IT": {
+      "name": "Italy",
+      "collections": [
+        {"id": 3766, "label": "OPL 245 Investigation Court Documents", "category": "library", "inputs": ["company_name", "person_name"], "outputs": ["court_documents"]}
+      ]
+    },
+    "DK": {
+      "name": "Denmark",
+      "collections": [
+        {"id": 669, "label": "Denmark Statstidende", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]}
+      ]
+    },
+    "MT": {
+      "name": "Malta",
+      "collections": [
+        {"id": 711, "label": "Daphne's Notebook", "category": "news", "inputs": ["keyword"], "outputs": ["documents"]}
+      ]
+    },
+    "HK": {
+      "name": "Hong Kong",
+      "collections": [
+        {"id": 221, "label": "Hong Kong Gazette", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]}
+      ]
+    },
+    "AE": {
+      "name": "United Arab Emirates",
+      "collections": [
+        {"id": 87, "label": "Abu Dhabi Companies Registry", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]}
+      ]
+    },
+    "MU": {
+      "name": "Mauritius",
+      "collections": [
+        {"id": 747, "label": "Mauritius Companies", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]}
+      ]
+    },
+    "ZA": {
+      "name": "South Africa",
+      "collections": [
+        {"id": 758, "label": "SA Mines", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]},
+        {"id": 759, "label": "SA NPOs (2015)", "category": "company", "inputs": ["company_name"], "outputs": ["npo_records"]}
+      ]
+    },
+    "AO": {
+      "name": "Angola",
+      "collections": [
+        {"id": 874, "label": "Angola legal information", "category": "court", "inputs": ["company_name", "person_name"], "outputs": ["court_cases"]}
+      ]
+    },
+    "CM": {
+      "name": "Cameroon",
+      "collections": [
+        {"id": 2322, "label": "Cameroon Tribune archive", "category": "grey", "inputs": ["keyword"], "outputs": ["documents"]}
+      ]
+    },
+    "CD": {
+      "name": "Democratic Republic of Congo",
+      "collections": [
+        {"id": 423, "label": "DRC Gazette", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]},
+        {"id": 811, "label": "DR Congo Flexicadastre", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]}
+      ]
+    },
+    "UG": {
+      "name": "Uganda",
+      "collections": [
+        {"id": 822, "label": "Uganda Flexicadastre", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]}
+      ]
+    },
+    "MZ": {
+      "name": "Mozambique",
+      "collections": [
+        {"id": 816, "label": "Mozambique Flexicadastre", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]}
+      ]
+    },
+    "ZM": {
+      "name": "Zambia",
+      "collections": [
+        {"id": 821, "label": "Zambia Flexicadastre", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]}
+      ]
+    },
+    "MW": {
+      "name": "Malawi",
+      "collections": [
+        {"id": 815, "label": "Malawi Flexicadastre", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]}
+      ]
+    },
+    "NA": {
+      "name": "Namibia",
+      "collections": [
+        {"id": 818, "label": "Namibia Flexicadastre", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]}
+      ]
+    },
+    "RW": {
+      "name": "Rwanda",
+      "collections": [
+        {"id": 819, "label": "Rwanda Flexicadastre", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]}
+      ]
+    },
+    "GN": {
+      "name": "Guinea",
+      "collections": [
+        {"id": 813, "label": "Guinea Flexicadastre", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]}
+      ]
+    },
+    "CI": {
+      "name": "Ivory Coast",
+      "collections": [
+        {"id": 812, "label": "Ivory Coast Flexicadastre", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]}
+      ]
+    },
+    "ML": {
+      "name": "Mali",
+      "collections": [
+        {"id": 7098, "label": "Mali Official Gazette", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]}
+      ]
+    },
+    "SS": {
+      "name": "South Sudan",
+      "collections": [
+        {"id": 820, "label": "South Sudan Flexicadastre", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]}
+      ]
+    },
+    "SB": {
+      "name": "Solomon Islands",
+      "collections": [
+        {"id": 4845, "label": "Solomon Islands Company Registry", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]}
+      ]
+    },
+    "PG": {
+      "name": "Papua New Guinea",
+      "collections": [
+        {"id": 817, "label": "PNG Flexicadastre", "category": "license", "inputs": ["company_name"], "outputs": ["mining_licenses"]},
+        {"id": 4525, "label": "PNG Company Registry", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile"]},
+        {"id": 5595, "label": "PNG public inquiries/audits", "category": "library", "inputs": ["company_name"], "outputs": ["documents"]}
+      ]
+    },
+    "ID": {
+      "name": "Indonesia",
+      "collections": [
+        {"id": 1914, "label": "Indonesia Procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]}
+      ]
+    },
+    "LB": {
+      "name": "Lebanon",
+      "collections": [
+        {"id": 8213, "label": "Border Externalisation in Lebanon", "category": "library", "inputs": ["keyword"], "outputs": ["documents"]}
+      ]
+    },
+    "BD": {
+      "name": "Bangladesh",
+      "collections": [
+        {"id": 7950, "label": "Bangladesh tobacco industry documents", "category": "grey", "inputs": ["company_name"], "outputs": ["documents"]}
+      ]
+    },
+    "AR": {
+      "name": "Argentina",
+      "collections": [
+        {"id": 188, "label": "Argentina Gazette", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]},
+        {"id": 1901, "label": "Buenos Aires Procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]}
+      ]
+    },
+    "CL": {
+      "name": "Chile",
+      "collections": [
+        {"id": 85, "label": "Chilean Gazette", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]}
+      ]
+    },
+    "PY": {
+      "name": "Paraguay",
+      "collections": [
+        {"id": 1915, "label": "Paraguay Procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]},
+        {"id": 6259, "label": "Paraguay Official Gazette", "category": "gazette", "inputs": ["company_name"], "outputs": ["gazette_notices"]}
+      ]
+    },
+    "CO": {
+      "name": "Colombia",
+      "collections": [
+        {"id": 1931, "label": "Colombia Procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]}
+      ]
+    },
+    "HN": {
+      "name": "Honduras",
+      "collections": [
+        {"id": 1912, "label": "Honduras Procurement", "category": "procurement", "inputs": ["company_name"], "outputs": ["contracts"]}
+      ]
+    },
+    "DO": {
+      "name": "Dominican Republic",
+      "collections": [
+        {"id": 4937, "label": "Dominican Republic ONAPI", "category": "news", "inputs": ["company_name"], "outputs": ["publications"]}
+      ]
+    },
+    "CA": {
+      "name": "Canada",
+      "collections": [
+        {"id": 877, "label": "SEDAR (extractive industry)", "category": "regulatory", "inputs": ["company_name"], "outputs": ["sec_filings"]},
+        {"id": 1302, "label": "Sanctions imposed by Canada", "category": "sanctions", "inputs": ["person_name", "company_name"], "outputs": ["sanctions_status"]}
+      ]
+    },
+    "AU": {
+      "name": "Australia",
+      "collections": [
+        {"id": 1301, "label": "Australian Foreign Sanctions", "category": "sanctions", "inputs": ["person_name", "company_name"], "outputs": ["sanctions_status"]}
+      ]
+    },
+    "XK": {
+      "name": "Kosovo",
+      "collections": [
+        {"id": 2747, "label": "Kosovo Business Registration Agency", "category": "company", "inputs": ["company_name"], "outputs": ["company_profile", "beneficial_ownership"]}
+      ]
+    },
+    "UA": {
+      "name": "Ukraine",
+      "collections": [
+        {"id": 919, "label": "Kyiv Post", "category": "news", "inputs": ["keyword"], "outputs": ["articles"]},
+        {"id": 174, "label": "Gorodskoi Kurier", "category": "news", "inputs": ["keyword"], "outputs": ["articles"]}
+      ]
+    }
+  },
+  "global_collections": {
+    "description": "Collections that span multiple countries or are supranational",
+    "collections": [
+      {"id": 1, "label": "EU External Action Service Sanctions", "category": "sanctions", "jurisdictions": ["EU"], "inputs": ["person_name", "company_name"], "outputs": ["sanctions_status"]},
+      {"id": 505, "label": "European Court of Human Rights", "category": "court", "jurisdictions": ["EU"], "inputs": ["person_name", "company_name"], "outputs": ["court_cases"]},
+      {"id": 720, "label": "Members of European Parliament", "category": "poi", "jurisdictions": ["EU"], "inputs": ["person_name"], "outputs": ["political_records"]},
+      {"id": 755, "label": "Tenders Electronic Daily (TED)", "category": "procurement", "jurisdictions": ["EU"], "inputs": ["company_name"], "outputs": ["contracts"]},
+      {"id": 829, "label": "EU Financial Transparency", "category": "finance", "jurisdictions": ["EU"], "inputs": ["company_name"], "outputs": ["financial_records"]},
+      {"id": 830, "label": "EU SubsidyStories", "category": "procurement", "jurisdictions": ["EU"], "inputs": ["company_name"], "outputs": ["subsidies"]},
+      {"id": 1099, "label": "EU Farm Subsidies", "category": "procurement", "jurisdictions": ["EU"], "inputs": ["company_name"], "outputs": ["subsidies"]},
+      {"id": 1330, "label": "Frontex Public Register", "category": "grey", "jurisdictions": ["EU"], "inputs": ["keyword"], "outputs": ["documents"]},
+      {"id": 6630, "label": "TED 2006-2017", "category": "procurement", "jurisdictions": ["EU"], "inputs": ["company_name"], "outputs": ["contracts"]},
+      {"id": 6985, "label": "EU Water Framework Directive", "category": "regulatory", "jurisdictions": ["EU"], "inputs": ["keyword"], "outputs": ["documents"]},
+      {"id": 7387, "label": "Western Balkans", "category": "library", "jurisdictions": ["EU"], "inputs": ["keyword"], "outputs": ["documents"]},
+      {"id": 12415, "label": "EU Tobacco lobbying emails", "category": "other", "jurisdictions": ["EU"], "inputs": ["keyword"], "outputs": ["emails"]},
+      {"id": 182, "label": "UN ICTY Court Records", "category": "court", "jurisdictions": ["AL", "BA", "HR", "MK", "RS", "SI", "XK", "ME"], "inputs": ["person_name"], "outputs": ["court_records"]},
+      {"id": 514, "label": "Eastern Caribbean Supreme Court", "category": "court", "jurisdictions": ["KN", "AG", "TO", "VG", "VC", "GD", "DM", "LC", "AI"], "inputs": ["person_name", "company_name"], "outputs": ["court_cases"]},
+      {"id": 70, "label": "SourceAfrica.net", "category": "grey", "jurisdictions": ["TG", "TZ", "KE", "GH", "ZA"], "inputs": ["keyword"], "outputs": ["documents"]},
+      {"id": 97, "label": "OpenOil Concessions Database", "category": "license", "jurisdictions": ["GLOBAL"], "inputs": ["company_name"], "outputs": ["oil_concessions"]},
+      {"id": 1171, "label": "World Bank Contract Awards", "category": "procurement", "jurisdictions": ["GLOBAL"], "inputs": ["company_name"], "outputs": ["contracts"]},
+      {"id": 1305, "label": "CIA World Leaders", "category": "poi", "jurisdictions": ["GLOBAL"], "inputs": ["person_name"], "outputs": ["political_records"]},
+      {"id": 908, "label": "EveryPolitician", "category": "poi", "jurisdictions": ["GLOBAL"], "inputs": ["person_name"], "outputs": ["political_records"]},
+      {"id": 1343, "label": "UN Security Council Documents", "category": "grey", "jurisdictions": ["GLOBAL"], "inputs": ["keyword"], "outputs": ["documents"]},
+      {"id": 3894, "label": "Global Sanctions Database", "category": "sanctions", "jurisdictions": ["GLOBAL"], "inputs": ["person_name", "company_name"], "outputs": ["sanctions_status"]},
+      {"id": 10690, "label": "World Bank ICSID", "category": "court", "jurisdictions": ["GLOBAL"], "inputs": ["company_name"], "outputs": ["arbitration_cases"]},
+      {"id": 733, "label": "ICIJ Offshore Leaks (2013)", "category": "company", "jurisdictions": ["GLOBAL"], "inputs": ["company_name", "person_name"], "outputs": ["offshore_records"]},
+      {"id": 735, "label": "ICIJ Paradise Papers (2017)", "category": "company", "jurisdictions": ["GLOBAL"], "inputs": ["company_name", "person_name"], "outputs": ["offshore_records"]},
+      {"id": 1554, "label": "ICIJ Luanda Leaks (2019)", "category": "poi", "jurisdictions": ["PT", "AO"], "inputs": ["company_name", "person_name"], "outputs": ["offshore_records"]},
+      {"id": 1519, "label": "Cambridge Analytica", "category": "leak", "jurisdictions": ["MY", "KE", "BR", "IR"], "inputs": ["keyword"], "outputs": ["documents"]}
+    ]
+  },
+  "by_category": {
+    "company": [809, 2053, 750, 780, 956, 1027, 791, 921, 138, 737, 744, 889, 922, 187, 100, 924, 738, 1741, 1777, 4873, 106, 870, 871, 1216, 776, 1532, 3091, 1197, 86, 184, 183, 96, 732, 2079, 912, 2973, 87, 747, 759, 4845, 4525, 2747, 1740, 923, 1698, 907, 6589, 210, 733, 735],
+    "sanctions": [1303, 723, 1301, 1302, 1, 3894, 724],
+    "poi": [2302, 789, 845, 2651, 881, 506, 1872, 3166, 742, 1591, 1707, 1162, 2482, 908, 1305, 720, 2637, 1554],
+    "court": [246, 972, 79, 72, 760, 874, 505, 182, 514, 1043, 12423, 973, 1021, 1887, 10690, 3766],
+    "procurement": [1098, 1310, 1087, 1990, 1991, 88, 1840, 2208, 731, 144, 2009, 225, 1797, 1815, 1965, 3897, 2225, 1901, 1915, 1931, 1912, 1914, 755, 6630, 829, 830, 1099, 1171, 2297, 1903],
+    "gazette": [2313, 1559, 267, 254, 4877, 155, 82, 215, 113, 217, 80, 669, 221, 78, 188, 85, 6259, 423, 7098, 1032],
+    "finance": [11295, 10735, 2654, 1994, 8850, 8859, 8867, 7151],
+    "license": [1017, 836, 953, 758, 814, 813, 815, 820, 818, 812, 811, 816, 819, 821, 822, 817, 6753, 97],
+    "news": [154, 790, 120, 152, 151, 794, 1105, 919, 174, 711, 68, 118, 170, 10587, 4937, 2322],
+    "leak": [734, 276, 102, 201, 1061, 726, 180, 1519],
+    "grey": [2226, 786, 74, 1065, 1066, 439, 2705, 718, 70, 1343, 1330, 7950, 2322, 115, 194],
+    "library": [153, 1044, 436, 8213, 5595, 3766, 7387, 105],
+    "land": [753, 2248, 890, 891, 853],
+    "regulatory": [712, 787, 877, 1300, 2006, 6985],
+    "transport": [954, 639]
+  }
+}

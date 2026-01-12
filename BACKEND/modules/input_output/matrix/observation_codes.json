@@ -1,0 +1,466 @@
+{
+  "observation_codes": {
+    "UBO_NOT_PUBLIC": {
+      "description": "Beneficial ownership not publicly disclosed",
+      "examples": [
+        "company ownership details for private companies are not required to be disclosed",
+        "Publicly available corporate records do not identify the fund's owners or management",
+        "Offshore companies with undisclosed beneficial owners",
+        "Nominee structures obscure true beneficial ownership",
+        "Guernsey company ownership structure not publicly disclosed"
+      ]
+    },
+    "REGISTRY_PAYWALL": {
+      "description": "Corporate registry requires paid subscription or fee",
+      "examples": [
+        "comprehensive database requires paid subscription",
+        "Registry extracts only available for purchase",
+        "Information only available through formal registry searches with delays"
+      ]
+    },
+    "LANGUAGE_LOCAL_ONLY": {
+      "description": "Records only available in local language",
+      "examples": [
+        "No profile found in English or Arabic language press",
+        "NBKR website only has outdated 2008 version in English, current amendments only in local language",
+        "No references found in Russian and English language media"
+      ]
+    },
+    "COURT_IN_PERSON": {
+      "description": "Court or registry records require in-person access",
+      "examples": [
+        "cannot search speculatively, requires certificate of land title and in-person visit",
+        "Records must be obtained locally, not available online",
+        "Cadastral portal requires formal request or login credentials"
+      ]
+    },
+    "PRIVACY_LAW": {
+      "description": "Privacy legislation restricts access to records",
+      "examples": [
+        "not publicly available due to privacy regulations",
+        "Privacy restrictions on obtaining student data without explicit consent",
+        "German privacy laws prevent disclosure",
+        "Privacy laws result in heavy redaction including names of individuals"
+      ]
+    },
+    "NO_CENTRAL_REGISTRY": {
+      "description": "No centralized registry exists for this data type",
+      "examples": [
+        "No centralized corporate registry available",
+        "Kenya does not have a publicly accessible corporate registry",
+        "No insolvency register is available"
+      ]
+    },
+    "RECORDS_ANONYMIZED": {
+      "description": "Records are anonymized or redacted in public databases",
+      "examples": [
+        "Litigation records not public and anonymised, cannot search by name",
+        "Czech court records anonymize parties in most cases",
+        "German litigation databases have limited scope and anonymize natural person names",
+        "Individuals are anonymized in published litigation"
+      ]
+    },
+    "DISCLOSURE_NOT_REQUIRED": {
+      "description": "Disclosure not legally required for this entity type or jurisdiction",
+      "examples": [
+        "S.A.S. incorporation documents are not published",
+        "Private companies under no legal obligation to publicly disclose shareholders",
+        "shareholdings below 5% not subject to disclosure requirements",
+        "No publicly available financial reports for micro-enterprises"
+      ]
+    },
+    "REGISTRY_OFFLINE": {
+      "description": "Registry website offline or inaccessible during research",
+      "examples": [
+        "Website currently unavailable",
+        "Registry was offline at time of research",
+        "Commercial Register website was unavailable at the time of research",
+        "Nigeria Legal Information Institute website was down"
+      ]
+    },
+    "CRIMINAL_RECORDS_SEALED": {
+      "description": "Criminal records not publicly accessible",
+      "examples": [
+        "Criminal records are not a matter of public domain",
+        "Criminal records are not part of the public record",
+        "Full and comprehensive criminal records are not available in the public domain"
+      ]
+    },
+    "SEARCH_BY_NAME_BLOCKED": {
+      "description": "Registry does not allow searches by individual or party name",
+      "examples": [
+        "Registry search tool only enables searches by corporation registration number or name, not by person name",
+        "Property records cannot be searched by individual owners' names",
+        "Court records cannot be searched by party name",
+        "Land registry requires written requests, not searchable online"
+      ]
+    },
+    "INVESTIGATION_ONGOING": {
+      "description": "Investigation or legal proceedings ongoing with limited disclosure",
+      "examples": [
+        "Ongoing investigation with limited public disclosure",
+        "Investigation was ongoing as of last report, no final conclusions available",
+        "ongoing regulatory proceedings"
+      ]
+    },
+    "NO_RECORDS_FOUND": {
+      "description": "Comprehensive search found no relevant records",
+      "examples": [
+        "No references found in any searched databases or registries",
+        "No results returned from searches",
+        "No matches found in searched databases"
+      ]
+    },
+    "NOMINEE_STRUCTURE": {
+      "description": "Nominee or fiduciary structures obscure true ownership",
+      "examples": [
+        "Nominee structures with Cypriot lawyers obscure true ownership",
+        "Hidden behind nominee directors",
+        "Beneficial ownership concealed through nominee structures",
+        "Anonymous custody account structure"
+      ]
+    },
+    "OFFSHORE_SECRECY": {
+      "description": "Offshore jurisdiction provides enhanced privacy or secrecy",
+      "examples": [
+        "Corporate secrecy laws in Belize",
+        "Seychelles registration provides ownership anonymity",
+        "Privacy and confidentiality protections in offshore jurisdictions",
+        "Company registered in Virgin Islands with no transparency"
+      ]
+    },
+    "AUTHORITARIAN_OPACITY": {
+      "description": "Authoritarian regime limits transparency or media freedom",
+      "examples": [
+        "Authoritarian system enables informal control beyond legal ownership",
+        "hostile environment for investigative journalists",
+        "inconsistency in availability and reliability of public records, biased media, self-censorship"
+      ]
+    },
+    "SUBJECT_CONSENT_REQUIRED": {
+      "description": "Subject's consent or authorization required for access",
+      "examples": [
+        "Requires signed consent from the subject",
+        "UK universities do not confirm degrees without alumni's prior permission",
+        "Swiss institutions require subject consent",
+        "Authorization from the subject is required"
+      ]
+    },
+    "HISTORICAL_RECORDS_UNAVAILABLE": {
+      "description": "Historical records not digitized or accessible",
+      "examples": [
+        "Records not available from Romanian Corporate Registry for that time period",
+        "Bulgarian Trade Registry does not contain ownership or director details dated earlier than May 2010",
+        "Historical regulation not digitized or available online",
+        "Documents only available after 2015 in Greek corporate registry"
+      ]
+    },
+    "COMMON_NAME_DISAMBIGUATION": {
+      "description": "Common name prevents reliable identification",
+      "examples": [
+        "Large number of individuals with same name making isolation impossible",
+        "Common name with thousands of accounts, no distinguishing characteristics",
+        "Very common name in Romania",
+        "Name too common in region"
+      ]
+    },
+    "TIME_CONSTRAINTS": {
+      "description": "Research time constraints prevented comprehensive search",
+      "examples": [
+        "Limited information available within two-day research timeframe",
+        "Time constraints for assignment",
+        "Not identified in time allowed for assignment",
+        "Could not confirm with absolute certainty due to time constraints"
+      ]
+    },
+    "SOURCE_UNRESPONSIVE": {
+      "description": "Sources contacted did not respond or refused to comment",
+      "examples": [
+        "No responses to multiple contact attempts",
+        "Source unwilling to discuss patent details with unknown contact",
+        "Phone numbers go to voicemail or out of service, email addresses unresponsive",
+        "Subject refused multiple interview requests"
+      ]
+    },
+    "CONFIDENTIAL_COMMERCIAL": {
+      "description": "Commercial confidentiality prevents disclosure",
+      "examples": [
+        "Transaction price not disclosed in public filings",
+        "Private transaction details not publicly disclosed",
+        "Banking confidentiality",
+        "Regulatory confidentiality"
+      ]
+    },
+    "LOW_PROFILE_SUBJECT": {
+      "description": "Subject maintains unusually low public profile",
+      "examples": [
+        "Minimal public profile",
+        "Very limited information provided",
+        "Subject has unusually low online profile for an entrepreneur of his age",
+        "limited online presence and disclosure requirements"
+      ]
+    },
+    "INSOLVENCY_RECORDS_SEALED": {
+      "description": "Insolvency and bankruptcy records not publicly available",
+      "examples": [
+        "Comprehensive insolvency and bankruptcy records are not publicly available",
+        "No publicly available bankruptcy or insolvency register",
+        "No insolvency records are available"
+      ]
+    },
+    "LITIGATION_NOT_COMPREHENSIVE": {
+      "description": "Litigation database not comprehensive or complete",
+      "examples": [
+        "Limited litigation databases with non-public case details",
+        "Not all litigation records are made publicly available or accessible online",
+        "Publicly available court records are not comprehensive"
+      ]
+    },
+    "REGULATORY_RESTRICTION": {
+      "description": "Regulatory or governmental restrictions on information access",
+      "examples": [
+        "Classified intelligence information not accessible through open sources",
+        "Documents still under central review, not distributed to provincial levels",
+        "Regulatory process documentation restricted"
+      ]
+    },
+    "FINANCIAL_REPORTS_NOT_FILED": {
+      "description": "Company failed to file required financial reports",
+      "examples": [
+        "no financial reports published since 2009",
+        "Company appears not to have published required financial reports despite legal obligation",
+        "Company failed to submit despite regulatory requests"
+      ]
+    },
+    "LEGACY_ENTRY": {
+      "description": "Historical record with incomplete original documentation",
+      "examples": [
+        "Legacy entry - reason not recorded"
+      ]
+    },
+    "ENTITY_DISSOLVED": {
+      "description": "Entity is dissolved, liquidated, or no longer active",
+      "examples": [
+        "Company dissolved before filing annual returns",
+        "Company is defunct/dissolved",
+        "Entities have been liquidated",
+        "Company in administration, detailed records frozen"
+      ]
+    },
+    "PROPERTY_REGISTRY_RESTRICTIONS": {
+      "description": "Property or land registry has access restrictions",
+      "examples": [
+        "Property records in Cyprus are not made available to the public",
+        "Land registry requires written requests, not searchable online",
+        "No publicly accessible real estate registry",
+        "Land Registry information not publicly accessible without legal standing"
+      ]
+    },
+    "GOVERNMENT_DATA_NOT_PUBLISHED": {
+      "description": "Government has not published or systematized the data",
+      "examples": [
+        "Government does not regularly collect and publish formal migration databases",
+        "Data collected by individual agencies but not systematized or published",
+        "No regular publication of migration data by government institutions"
+      ]
+    },
+    "PENDING_DEVELOPMENT": {
+      "description": "Policy, system, or database still under development",
+      "examples": [
+        "Strategy not yet developed despite commission creation",
+        "Policy roadmap completed but not translated into official policy",
+        "Still under review with differing opinions"
+      ]
+    },
+    "CONFLICTING_SOURCES": {
+      "description": "Sources provide conflicting or unverifiable information",
+      "examples": [
+        "Multiple conflicting media reports, no verified ownership records",
+        "Conflicting information between sources and media reports",
+        "Contradictory dates in corporate filings and public statements"
+      ]
+    },
+    "SOCIAL_MEDIA_PRIVATE": {
+      "description": "Social media accounts are private or inaccessible",
+      "examples": [
+        "Private accounts with protected content",
+        "Profile is private",
+        "Private Instagram accounts could not be accessed"
+      ]
+    },
+    "NO_WEBSITE": {
+      "description": "Entity has no website or web presence",
+      "examples": [
+        "No website could be located",
+        "Company does not have its own website",
+        "Website not available currently"
+      ]
+    },
+    "SANCTIONS_NOT_MATCHED": {
+      "description": "No matches found in sanctions or watchlist databases",
+      "examples": [
+        "No matches found in OFAC, EU Sanctions, UN sanctions, Swiss SECO, Interpol",
+        "No adverse records found in databases searched"
+      ]
+    }
+  },
+  "reason_to_code_mapping": {
+    "Legacy entry - reason not recorded": "LEGACY_ENTRY",
+    "company ownership details for private companies are not required to be disclosed in Switzerland": "UBO_NOT_PUBLIC",
+    "Publicly available corporate records do not identify the fund's owners or management": "UBO_NOT_PUBLIC",
+    "Offshore companies with undisclosed beneficial owners": "UBO_NOT_PUBLIC",
+    "Nominee structures with Cypriot lawyers obscure true ownership": "NOMINEE_STRUCTURE",
+    "Cyprus privacy laws and nominee structures obscure beneficial ownership": "NOMINEE_STRUCTURE",
+    "Guernsey company ownership structure not publicly disclosed": "UBO_NOT_PUBLIC",
+    "Guernsey company law does not require public disclosure of detailed ownership": "DISCLOSURE_NOT_REQUIRED",
+    "comprehensive database requires paid subscription": "REGISTRY_PAYWALL",
+    "Registry extracts only available for purchase by Belarusian citizens": "REGISTRY_PAYWALL",
+    "not publicly available due to privacy regulations": "PRIVACY_LAW",
+    "Privacy restrictions on obtaining student data without explicit consent": "PRIVACY_LAW",
+    "German privacy laws prevent disclosure": "PRIVACY_LAW",
+    "Privacy laws result in heavy redaction including names of individuals, institutions, companies": "PRIVACY_LAW",
+    "cannot search speculatively, requires certificate of land title and in-person visit": "COURT_IN_PERSON",
+    "Records must be obtained locally, not available online": "COURT_IN_PERSON",
+    "Cadastral portal requires formal request or login credentials": "COURT_IN_PERSON",
+    "No centralized corporate registry available in Mali": "NO_CENTRAL_REGISTRY",
+    "Kenya does not have a publicly accessible corporate registry": "NO_CENTRAL_REGISTRY",
+    "No insolvency register is available in Belgium": "NO_CENTRAL_REGISTRY",
+    "Litigation records not public and anonymised, cannot search by name": "RECORDS_ANONYMIZED",
+    "Czech court records anonymize parties in most cases": "RECORDS_ANONYMIZED",
+    "German litigation databases have limited scope and anonymize natural person names": "RECORDS_ANONYMIZED",
+    "Individuals are anonymized in published litigation in Greece": "RECORDS_ANONYMIZED",
+    "Court records cannot be searched by party name and defendant names are usually abbreviated": "SEARCH_BY_NAME_BLOCKED",
+    "Property records cannot be searched by individual owners' names": "SEARCH_BY_NAME_BLOCKED",
+    "Registry search tool only enables searches by corporation registration number or name, not by person name": "SEARCH_BY_NAME_BLOCKED",
+    "S.A.S. incorporation documents are not published": "DISCLOSURE_NOT_REQUIRED",
+    "Private companies under no legal obligation to publicly disclose shareholders": "DISCLOSURE_NOT_REQUIRED",
+    "shareholdings below 5% not subject to disclosure requirements": "DISCLOSURE_NOT_REQUIRED",
+    "No publicly available financial reports for micro-enterprises": "DISCLOSURE_NOT_REQUIRED",
+    "Website currently unavailable": "REGISTRY_OFFLINE",
+    "Registry was offline at time of research": "REGISTRY_OFFLINE",
+    "Commercial Register website was unavailable at the time of research": "REGISTRY_OFFLINE",
+    "Nigeria Legal Information Institute website was down": "REGISTRY_OFFLINE",
+    "Criminal records are not a matter of public domain in Germany": "CRIMINAL_RECORDS_SEALED",
+    "Criminal records are not a matter of public record in Hungary": "CRIMINAL_RECORDS_SEALED",
+    "Full and comprehensive criminal records are not available in the public domain. Authorization from the subject is required": "CRIMINAL_RECORDS_SEALED",
+    "Ongoing investigation with limited public disclosure": "INVESTIGATION_ONGOING",
+    "Investigation was ongoing as of last report, no final conclusions available": "INVESTIGATION_ONGOING",
+    "ongoing regulatory proceedings": "INVESTIGATION_ONGOING",
+    "No references found in any searched databases or registries": "NO_RECORDS_FOUND",
+    "No results returned from searches": "NO_RECORDS_FOUND",
+    "No matches found in searched databases": "NO_RECORDS_FOUND",
+    "Hidden behind nominee directors": "NOMINEE_STRUCTURE",
+    "Beneficial ownership concealed through nominee structures": "NOMINEE_STRUCTURE",
+    "Anonymous custody account structure": "NOMINEE_STRUCTURE",
+    "Corporate secrecy laws in Belize": "OFFSHORE_SECRECY",
+    "Seychelles registration provides ownership anonymity": "OFFSHORE_SECRECY",
+    "Privacy and confidentiality protections in offshore jurisdictions": "OFFSHORE_SECRECY",
+    "Company registered in Virgin Islands with no transparency": "OFFSHORE_SECRECY",
+    "Authoritarian system enables informal control beyond legal ownership": "AUTHORITARIAN_OPACITY",
+    "hostile environment for investigative journalists": "AUTHORITARIAN_OPACITY",
+    "Requires signed consent from the subject": "SUBJECT_CONSENT_REQUIRED",
+    "UK universities do not confirm degrees without alumni's prior permission": "SUBJECT_CONSENT_REQUIRED",
+    "Swiss institutions require subject consent": "SUBJECT_CONSENT_REQUIRED",
+    "Records not available from Romanian Corporate Registry for that time period": "HISTORICAL_RECORDS_UNAVAILABLE",
+    "Bulgarian Trade Registry does not contain ownership or director details dated earlier than May 2010, earlier filings require special login privileges": "HISTORICAL_RECORDS_UNAVAILABLE",
+    "Historical regulation not digitized or available online": "HISTORICAL_RECORDS_UNAVAILABLE",
+    "Documents only available after 2015 in Greek corporate registry": "HISTORICAL_RECORDS_UNAVAILABLE",
+    "Large number of individuals with same name making isolation impossible": "COMMON_NAME_DISAMBIGUATION",
+    "Common name with thousands of accounts, no distinguishing characteristics to identify correct individual": "COMMON_NAME_DISAMBIGUATION",
+    "Very common name in Romania": "COMMON_NAME_DISAMBIGUATION",
+    "Name too common in region": "COMMON_NAME_DISAMBIGUATION",
+    "Limited information available within two-day research timeframe": "TIME_CONSTRAINTS",
+    "Time constraints for assignment": "TIME_CONSTRAINTS",
+    "Not identified in time allowed for assignment": "TIME_CONSTRAINTS",
+    "Could not confirm with absolute certainty due to time constraints": "TIME_CONSTRAINTS",
+    "No responses to multiple contact attempts": "SOURCE_UNRESPONSIVE",
+    "Source unwilling to discuss patent details with unknown contact": "SOURCE_UNRESPONSIVE",
+    "Phone numbers go to voicemail or out of service, email addresses unresponsive": "SOURCE_UNRESPONSIVE",
+    "Subject refused multiple interview requests": "SOURCE_UNRESPONSIVE",
+    "Transaction price not disclosed in public filings": "CONFIDENTIAL_COMMERCIAL",
+    "Private transaction details not publicly disclosed": "CONFIDENTIAL_COMMERCIAL",
+    "Banking confidentiality": "CONFIDENTIAL_COMMERCIAL",
+    "Regulatory confidentiality": "REGULATORY_RESTRICTION",
+    "Minimal public profile": "LOW_PROFILE_SUBJECT",
+    "Subject has unusually low online profile for an entrepreneur of his age": "LOW_PROFILE_SUBJECT",
+    "limited online presence and disclosure requirements": "LOW_PROFILE_SUBJECT",
+    "Comprehensive insolvency and bankruptcy records are not publicly available": "INSOLVENCY_RECORDS_SEALED",
+    "No publicly available bankruptcy or insolvency register in Switzerland": "INSOLVENCY_RECORDS_SEALED",
+    "No insolvency records are available in France": "INSOLVENCY_RECORDS_SEALED",
+    "Limited litigation databases with non-public case details": "LITIGATION_NOT_COMPREHENSIVE",
+    "Not all litigation records are made publicly available or accessible online": "LITIGATION_NOT_COMPREHENSIVE",
+    "Publicly available court records are not comprehensive": "LITIGATION_NOT_COMPREHENSIVE",
+    "Classified intelligence information not accessible through open sources": "REGULATORY_RESTRICTION",
+    "Documents still under central review, not distributed to provincial levels": "REGULATORY_RESTRICTION",
+    "Regulatory process documentation restricted": "REGULATORY_RESTRICTION",
+    "no financial reports published since 2009": "FINANCIAL_REPORTS_NOT_FILED",
+    "Company appears not to have published required financial reports despite legal obligation": "FINANCIAL_REPORTS_NOT_FILED",
+    "Company failed to submit despite regulatory requests": "FINANCIAL_REPORTS_NOT_FILED",
+    "Company dissolved before filing annual returns": "ENTITY_DISSOLVED",
+    "Company is defunct/dissolved": "ENTITY_DISSOLVED",
+    "Entities have been liquidated": "ENTITY_DISSOLVED",
+    "Company in administration, detailed records frozen": "ENTITY_DISSOLVED",
+    "Property records in Cyprus are not made available to the public": "PROPERTY_REGISTRY_RESTRICTIONS",
+    "Land registry requires written requests, not searchable online": "PROPERTY_REGISTRY_RESTRICTIONS",
+    "No publicly accessible real estate registry": "PROPERTY_REGISTRY_RESTRICTIONS",
+    "Land Registry information not publicly accessible without legal standing or proper documentation": "PROPERTY_REGISTRY_RESTRICTIONS",
+    "Government does not regularly collect and publish formal migration databases": "GOVERNMENT_DATA_NOT_PUBLISHED",
+    "Data collected by individual agencies but not systematized or published": "GOVERNMENT_DATA_NOT_PUBLISHED",
+    "No regular publication of migration data by government institutions": "GOVERNMENT_DATA_NOT_PUBLISHED",
+    "Strategy not yet developed despite commission creation": "PENDING_DEVELOPMENT",
+    "Policy roadmap completed but not translated into official policy": "PENDING_DEVELOPMENT",
+    "Multiple conflicting media reports, no verified ownership records": "CONFLICTING_SOURCES",
+    "Conflicting information between sources and media reports": "CONFLICTING_SOURCES",
+    "Contradictory dates in corporate filings and public statements": "CONFLICTING_SOURCES",
+    "Private accounts with protected content": "SOCIAL_MEDIA_PRIVATE",
+    "Profile is private": "SOCIAL_MEDIA_PRIVATE",
+    "Private Instagram accounts could not be accessed": "SOCIAL_MEDIA_PRIVATE",
+    "No website could be located": "NO_WEBSITE",
+    "Company does not have its own website": "NO_WEBSITE",
+    "Website not available currently": "NO_WEBSITE",
+    "No matches found in OFAC, EU Sanctions, UN sanctions, Swiss SECO, Interpol": "SANCTIONS_NOT_MATCHED",
+    "No adverse records found in databases searched": "SANCTIONS_NOT_MATCHED",
+    "Swiss litigation records are not generally made available to the general public": "LITIGATION_NOT_COMPREHENSIVE",
+    "Non-anonymised and comprehensive litigation records are not publicly accessible in Germany": "RECORDS_ANONYMIZED",
+    "Non-anonymised and comprehensive litigation records are not publicly accessible in France": "RECORDS_ANONYMIZED",
+    "Non-anonymised and comprehensive litigation records are not publicly accessible in Italy": "RECORDS_ANONYMIZED",
+    "Non-anonymised and comprehensive litigation records are not publicly available in Hungary": "RECORDS_ANONYMIZED",
+    "Polish litigation records are highly anonymised for privacy law compliance": "RECORDS_ANONYMIZED",
+    "Online court records of cases involving natural persons in Poland are anonymized": "RECORDS_ANONYMIZED",
+    "German insolvency register only retains publications for two weeks after publication": "HISTORICAL_RECORDS_UNAVAILABLE",
+    "no information available in accessible sources": "NO_RECORDS_FOUND",
+    "No information identified in public domain": "NO_RECORDS_FOUND",
+    "No information available through targeted research": "NO_RECORDS_FOUND",
+    "Belarus State Register of Legal Entities does not list company directors": "DISCLOSURE_NOT_REQUIRED",
+    "Irish Registry of Beneficial Owners lists no data for this entity": "DISCLOSURE_NOT_REQUIRED",
+    "TCMI registry does not provide beneficial ownership information": "DISCLOSURE_NOT_REQUIRED",
+    "Jersey registered companies not obliged to disclose ownership details": "DISCLOSURE_NOT_REQUIRED",
+    "disclosure of shareholders is not mandated by law": "DISCLOSURE_NOT_REQUIRED",
+    "Swiss AG shareholders not disclosed publicly": "UBO_NOT_PUBLIC",
+    "Swiss AG structures do not publicly disclose shareholders": "UBO_NOT_PUBLIC",
+    "Companies incorporated in Switzerland usually do not publicly disclose ownership information": "UBO_NOT_PUBLIC",
+    "Limited transparency in Liechtenstein corporate structures": "OFFSHORE_SECRECY",
+    "Liechtenstein privacy laws prevent disclosure": "OFFSHORE_SECRECY",
+    "foundation privacy structures limit disclosure": "OFFSHORE_SECRECY",
+    "Liechtenstein registry does not disclose ownership information to public": "OFFSHORE_SECRECY",
+    "bilateral agreement with Austria ensures anonymity": "OFFSHORE_SECRECY",
+    "Hungarian law restricts disclosure to beneficiaries only": "DISCLOSURE_NOT_REQUIRED",
+    "Information deliberately withheld and not publicly available": "UBO_NOT_PUBLIC",
+    "Financial arrangements kept private": "CONFIDENTIAL_COMMERCIAL",
+    "Records heavily redacted with names deleted": "RECORDS_ANONYMIZED",
+    "Court case results not accessible through public databases or media reporting": "LITIGATION_NOT_COMPREHENSIVE",
+    "No litigation found in database searches": "NO_RECORDS_FOUND",
+    "No coverage found": "NO_RECORDS_FOUND",
+    "Very limited information available online": "LOW_PROFILE_SUBJECT",
+    "Company has minimal public profile with no significant media mentions": "LOW_PROFILE_SUBJECT",
+    "Limited public profile for small regional construction company": "LOW_PROFILE_SUBJECT",
+    "Subject maintains low profile with no media mentions": "LOW_PROFILE_SUBJECT"
+  },
+  "metadata": {
+    "version": "1.0",
+    "created": "2025-12-29",
+    "total_codes": 37,
+    "source": "Extracted from jurisdictions.json dead_ends analysis",
+    "notes": "These codes represent systematic barriers encountered during OSINT investigations across 200+ jurisdictions. Use these codes to standardize dead_end documentation and enable pattern analysis across investigations."
+  }
+}

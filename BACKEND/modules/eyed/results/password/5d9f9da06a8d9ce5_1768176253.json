@@ -1,0 +1,21 @@
+{
+  "id": "5d9f9da06a8d9ce5",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "porsche",
+  "label": "porsche",
+  "value": "porsche",
+  "comment": "{\n  \"id\": \"2mfaojrkixod9mhqbjzksv2vz1i\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"porsche\"\n  ],\n  \"hashed_password\": [\n    \"d599eae7a636d54c1c707514b1a76d77:||MD5\",\n    \"9ec4236a09d01395a838f2e774923b4e8548fd19:||SHA1\",\n    \"9c15e816069946fbd20bed0935dd9d8e34d64034d657a2b852f8b66ad91af5b6:||SHA256\",\n    \"9ede80a744a895e8cb26ed1c78f2d7964a3a91845c9728097c226285e2858dd2b7e40ef9e9322cb4920c5c6f70fb4a2404744e988357726210e8ed0c9fb6976f:||SHA512\",\n    \"cG9yc2NoZQ==:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:13.003896",
+  "updatedAt": "2026-01-12T00:04:13.003899",
+  "lastSeen": "2026-01-12T00:04:13.003900"
+}

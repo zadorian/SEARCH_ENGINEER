@@ -1,0 +1,356 @@
+{
+  "generated_at": "2025-11-25T08:40:00Z",
+  "source": "Report Library Batch Ingestion (1,245 reports)",
+  "description": "Report generation configuration derived from mined insights",
+  "genre_profiles": {
+    "due_diligence": {
+      "description": "Standard corporate due diligence report",
+      "voice": "third_person",
+      "formality": "professional",
+      "stance": "neutral_observer",
+      "attribution_style": "footnoted",
+      "typical_sections": [
+        "Executive Summary",
+        "Company Overview",
+        "Ownership Structure",
+        "Directors and Management",
+        "Financial Overview",
+        "Regulatory Standing",
+        "Media Profile",
+        "Adverse Information Assessment",
+        "Conclusion"
+      ],
+      "depth_levels": {
+        "basic": {
+          "word_count": 2000,
+          "sections": 5
+        },
+        "enhanced": {
+          "word_count": 5000,
+          "sections": 8
+        },
+        "comprehensive": {
+          "word_count": 10000,
+          "sections": 12
+        }
+      }
+    },
+    "background_check": {
+      "description": "Individual background investigation",
+      "voice": "third_person",
+      "formality": "professional",
+      "stance": "neutral_observer",
+      "attribution_style": "footnoted",
+      "typical_sections": [
+        "Subject Summary",
+        "Identity Verification",
+        "Education and Qualifications",
+        "Career History",
+        "Corporate Affiliations",
+        "Media Profile",
+        "Social Media Presence",
+        "Litigation and Court Records",
+        "Sanctions and Watchlist Screening",
+        "Adverse Information Assessment"
+      ],
+      "depth_levels": {
+        "basic": {
+          "word_count": 1500,
+          "sections": 6
+        },
+        "enhanced": {
+          "word_count": 4000,
+          "sections": 9
+        },
+        "comprehensive": {
+          "word_count": 8000,
+          "sections": 12
+        }
+      }
+    },
+    "asset_trace": {
+      "description": "Asset investigation and trace report",
+      "voice": "third_person",
+      "formality": "professional",
+      "stance": "investigator",
+      "attribution_style": "footnoted",
+      "typical_sections": [
+        "Subject Overview",
+        "Corporate Holdings",
+        "Property Ownership",
+        "Vehicle and Vessel Assets",
+        "Aircraft Ownership",
+        "Art and Collectibles",
+        "Financial Instruments",
+        "Offshore Structures",
+        "Asset Valuation Summary"
+      ],
+      "depth_levels": {
+        "basic": {
+          "word_count": 3000,
+          "sections": 5
+        },
+        "enhanced": {
+          "word_count": 8000,
+          "sections": 8
+        },
+        "comprehensive": {
+          "word_count": 15000,
+          "sections": 12
+        }
+      }
+    },
+    "corporate_intelligence": {
+      "description": "Deep-dive corporate investigation",
+      "voice": "first_plural",
+      "formality": "analytical",
+      "stance": "investigator",
+      "attribution_style": "inline_with_footnotes",
+      "typical_sections": [
+        "Executive Summary",
+        "Corporate Structure Analysis",
+        "Ownership Investigation",
+        "Beneficial Ownership Assessment",
+        "Political Connections",
+        "Business Network Mapping",
+        "Risk Assessment",
+        "Red Flags Analysis",
+        "Conclusions and Recommendations"
+      ],
+      "depth_levels": {
+        "basic": {
+          "word_count": 5000,
+          "sections": 6
+        },
+        "enhanced": {
+          "word_count": 12000,
+          "sections": 9
+        },
+        "comprehensive": {
+          "word_count": 25000,
+          "sections": 15
+        }
+      }
+    },
+    "litigation_support": {
+      "description": "Investigation for legal proceedings",
+      "voice": "third_person",
+      "formality": "legal",
+      "stance": "factual_documenter",
+      "attribution_style": "comprehensive_footnotes",
+      "typical_sections": [
+        "Subject Identification",
+        "Factual Background",
+        "Evidence Summary",
+        "Corporate Records",
+        "Financial Trail",
+        "Witness Identification",
+        "Asset Discovery",
+        "Expert Analysis",
+        "Appendices"
+      ],
+      "depth_levels": {
+        "basic": {
+          "word_count": 4000,
+          "sections": 5
+        },
+        "enhanced": {
+          "word_count": 10000,
+          "sections": 8
+        },
+        "comprehensive": {
+          "word_count": 30000,
+          "sections": 15
+        }
+      }
+    }
+  },
+  "writing_style_rules": {
+    "voice_options": {
+      "third_person": {
+        "description": "Objective, detached observer voice",
+        "example_openings": [
+          "According to corporate registry records...",
+          "The subject was identified as...",
+          "Registry filings indicate that..."
+        ],
+        "prohibited_phrases": [
+          "we believe",
+          "in our opinion",
+          "I found"
+        ]
+      },
+      "first_plural": {
+        "description": "Professional investigative voice",
+        "example_openings": [
+          "Our investigation has identified...",
+          "We have established that...",
+          "Our sources indicate..."
+        ],
+        "prohibited_phrases": [
+          "I",
+          "me",
+          "my"
+        ]
+      }
+    },
+    "certainty_calibration": {
+      "verified_facts": {
+        "description": "Information from official sources",
+        "phrases": [
+          "According to [source]...",
+          "Registry records confirm that...",
+          "Official filings show...",
+          "It is a matter of public record that...",
+          "[Authority] records indicate..."
+        ],
+        "sources": [
+          "corporate registries",
+          "court records",
+          "regulatory filings",
+          "land registries"
+        ]
+      },
+      "high_confidence": {
+        "description": "Strong evidence from multiple sources",
+        "phrases": [
+          "It is highly likely that...",
+          "Multiple sources confirm...",
+          "There is strong evidence to suggest...",
+          "Based on corroborating evidence..."
+        ]
+      },
+      "medium_confidence": {
+        "description": "Single credible source or circumstantial evidence",
+        "phrases": [
+          "According to media reports...",
+          "It is generally believed that...",
+          "Sources indicate...",
+          "There are indications that..."
+        ]
+      },
+      "low_confidence_inference": {
+        "description": "Analytical inference or speculation",
+        "phrases": [
+          "This suggests that...",
+          "Based on available evidence, it appears...",
+          "Circumstantial evidence indicates...",
+          "We note that..."
+        ]
+      },
+      "unverified": {
+        "description": "Claims requiring verification",
+        "phrases": [
+          "Unverified reports suggest...",
+          "According to unconfirmed sources...",
+          "Allegations have been made that...",
+          "It has been claimed that..."
+        ]
+      }
+    },
+    "professional_conventions": {
+      "entity_introduction": {
+        "company": "Full legal name in quotes, jurisdiction in parentheses, abbreviated name in quotes for subsequent use. Example: \"MET Holding AG\" (Switzerland, \"MET\").",
+        "person": "Full name with title/role, birth date and place if available, surname only thereafter. Example: Benjamin Lakatos (born 1978, Hungary), CEO of MET Group. Lakatos subsequently..."
+      },
+      "date_formatting": {
+        "standard": "DD Month YYYY (e.g., 17 December 2009)",
+        "with_context": "On [DATE], [AUTHORITY/SOURCE] [ACTION]..."
+      },
+      "currency_formatting": {
+        "standard": "€53.02 million / USD 1.2 billion",
+        "with_conversion": "€53.02 million (approximately USD 58 million at the time)"
+      },
+      "negative_findings": {
+        "standard": "No adverse information pertaining to [SUBJECT] was identified.",
+        "with_scope": "No adverse information pertaining to [SUBJECT] was identified within the scope of this investigation."
+      }
+    }
+  },
+  "section_templates": {
+    "executive_summary": {
+      "purpose": "High-level overview of key findings",
+      "typical_word_count": 300,
+      "structure": [
+        "Subject identification",
+        "Scope of investigation",
+        "Key findings (3-5 bullet points)",
+        "Overall risk assessment"
+      ],
+      "key_phrases": [
+        "This report presents...",
+        "Key findings include...",
+        "Overall, the investigation identified..."
+      ]
+    },
+    "ownership_structure": {
+      "purpose": "Document corporate ownership hierarchy",
+      "typical_word_count": 800,
+      "structure": [
+        "Current shareholding",
+        "Ownership percentages",
+        "Ultimate beneficial owners",
+        "Recent ownership changes"
+      ],
+      "data_sources": [
+        "corporate registry",
+        "annual reports",
+        "regulatory filings"
+      ],
+      "key_phrases": [
+        "owns [X]% of",
+        "beneficial owner",
+        "shareholding structure",
+        "ultimate parent"
+      ]
+    },
+    "directors_management": {
+      "purpose": "List and profile key individuals",
+      "typical_word_count": 400,
+      "structure": [
+        "Board composition table",
+        "Key management profiles",
+        "Tenure and background"
+      ],
+      "data_sources": [
+        "corporate registry",
+        "LinkedIn",
+        "company website"
+      ],
+      "key_phrases": [
+        "According to the corporate registry",
+        "serves as",
+        "appointed on"
+      ]
+    },
+    "adverse_information": {
+      "purpose": "Document negative findings or confirm absence",
+      "typical_word_count": 500,
+      "structure": [
+        "Litigation search results",
+        "Sanctions screening",
+        "Regulatory actions",
+        "Media adverse coverage"
+      ],
+      "data_sources": [
+        "court records",
+        "OFAC/EU/UN sanctions lists",
+        "media monitoring"
+      ],
+      "key_phrases": [
+        "No adverse information was identified",
+        "Subject to litigation in",
+        "Named in enforcement action"
+      ]
+    }
+  },
+  "source_attribution_templates": {
+    "footnote_format": "[Number]. [Source Name], [Document Type], [Date if available], [URL if applicable].",
+    "inline_format": "According to [Source] ([Date])...",
+    "examples": [
+      "[1]. Companies House (UK), Company Filing History, accessed November 2025.",
+      "[2]. Der Spiegel, \"Article Title\", 15 March 2024, https://...",
+      "[3]. Source familiar with the matter, interviewed November 2025."
+    ]
+  }
+}

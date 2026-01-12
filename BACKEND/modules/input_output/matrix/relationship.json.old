@@ -1,0 +1,183 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Catalog of NEXUS relationships (Edge Types) used in the Drill Search Graph. Implements the 'Reified Relationship Node' concept from Abacus V5.0.",
+    "updated_at": "2026-01-05"
+  },
+  "relationships": {
+    "officer_of": {
+      "name": "Officer Of",
+      "description": "Person is an officer (director, secretary, etc.) of a company",
+      "source_type": "person",
+      "target_type": "company",
+      "inverse": "has_officer",
+      "reified_code": 600
+    },
+    "beneficial_owner_of": {
+      "name": "Beneficial Owner Of",
+      "description": "Person is a specific beneficial owner (UBO) of a company",
+      "source_type": "person",
+      "target_type": "company",
+      "inverse": "has_beneficial_owner",
+      "reified_code": 601
+    },
+    "shareholder_of": {
+      "name": "Shareholder Of",
+      "description": "Entity holds shares in a company",
+      "source_type": ["person", "company"],
+      "target_type": "company",
+      "inverse": "has_shareholder",
+      "reified_code": 602
+    },
+    "subsidiary_of": {
+      "name": "Subsidiary Of",
+      "description": "Company is a subsidiary of another company",
+      "source_type": "company",
+      "target_type": "company",
+      "inverse": "parent_of",
+      "reified_code": 603
+    },
+    "registered_in": {
+      "name": "Registered In",
+      "description": "Entity is registered in a jurisdiction",
+      "source_type": "company",
+      "target_type": "country",
+      "inverse": "registers",
+      "reified_code": 604
+    },
+    "located_at": {
+      "name": "Located At",
+      "description": "Entity is physically located at an address",
+      "source_type": ["company", "person"],
+      "target_type": "address",
+      "inverse": "location_of",
+      "reified_code": 605
+    },
+    "has_address": {
+      "name": "Has Address",
+      "description": "Entity is associated with an address",
+      "source_type": ["person", "company"],
+      "target_type": "address",
+      "inverse": "address_of",
+      "reified_code": 606
+    },
+    "has_email": {
+      "name": "Has Email",
+      "description": "Entity uses an email address",
+      "source_type": ["person", "company"],
+      "target_type": "email",
+      "inverse": "email_of",
+      "reified_code": 607
+    },
+    "has_phone": {
+      "name": "Has Phone",
+      "description": "Entity uses a phone number",
+      "source_type": ["person", "company"],
+      "target_type": "phone",
+      "inverse": "phone_of",
+      "reified_code": 608
+    },
+    "has_profile": {
+      "name": "Has Profile",
+      "description": "Entity has a profile on a platform/URL",
+      "source_type": ["person", "company"],
+      "target_type": "url",
+      "inverse": "profile_of",
+      "reified_code": 609
+    },
+    "has_website": {
+      "name": "Has Website",
+      "description": "Entity owns or uses a website domain",
+      "source_type": ["company", "person"],
+      "target_type": "domain",
+      "inverse": "website_of",
+      "reified_code": 610
+    },
+    "registrant_of": {
+      "name": "Registrant Of",
+      "description": "Entity is the registrant of a domain",
+      "source_type": ["person", "company"],
+      "target_type": "domain",
+      "inverse": "registered_by",
+      "reified_code": 611
+    },
+    "owner_of": {
+      "name": "Owner Of",
+      "description": "Person owns an asset (property, vehicle, etc.)",
+      "source_type": "person",
+      "target_type": ["address", "vehicle", "vessel", "aircraft"],
+      "inverse": "owned_by",
+      "reified_code": 612
+    },
+    "party_to": {
+      "name": "Party To",
+      "description": "Entity is a party in a litigation case",
+      "source_type": ["person", "company"],
+      "target_type": "litigation",
+      "inverse": "involves_party",
+      "reified_code": 613
+    },
+    "mentioned_in": {
+      "name": "Mentioned In",
+      "description": "Entity is mentioned in a document or URL",
+      "source_type": ["person", "company"],
+      "target_type": ["url", "file", "article"],
+      "inverse": "mentions",
+      "reified_code": 614
+    },
+    "operates_in": {
+      "name": "Operates In",
+      "description": "Company operates in an industry sector",
+      "source_type": "company",
+      "target_type": "industry",
+      "inverse": "sector_of",
+      "reified_code": 615
+    },
+    "incorporated_in": {
+      "name": "Incorporated In",
+      "description": "Company was incorporated in a specific year",
+      "source_type": "company",
+      "target_type": "temporal",
+      "inverse": "incorporation_of",
+      "reified_code": 616
+    },
+    "headquartered_at": {
+      "name": "Headquartered At",
+      "description": "Company has headquarters at address",
+      "source_type": "company",
+      "target_type": "address",
+      "inverse": "headquarters_of",
+      "reified_code": 617
+    },
+    "same_as": {
+      "name": "Same As",
+      "description": "Entity is the same as another entity (deduplication)",
+      "source_type": "any",
+      "target_type": "any",
+      "bidirectional": true,
+      "reified_code": 618
+    },
+    "linked_to": {
+      "name": "Linked To",
+      "description": "Generic link between entities",
+      "source_type": "any",
+      "target_type": "any",
+      "reified_code": 619
+    },
+    "related_to": {
+      "name": "Related To",
+      "description": "Generic relationship",
+      "source_type": "any",
+      "target_type": "any",
+      "reified_code": 620
+    },
+    "documented_by": {
+      "name": "Documented By",
+      "description": "Entity is documented by a file",
+      "source_type": "any",
+      "target_type": "file",
+      "inverse": "documents",
+      "reified_code": 621
+    }
+  }
+}

@@ -1,0 +1,411 @@
+{
+  "$schema": "index_clusters_v1",
+  "$description": "Logical clusters for unified querying across related indices",
+
+  "clusters": {
+
+    "corporate": {
+      "description": "Unified company/organization data from all sources",
+      "indices": [
+        "companies_unified",
+        "openownership",
+        "affiliate_linkedin_companies",
+        "wdc-organization-entities",
+        "wdc-localbusiness-entities",
+        "wdc-governmentorganization-entities",
+        "company_profiles"
+      ],
+      "primary_index": "companies_unified",
+      "total_docs_estimate": 27000000,
+      "unified_fields": {
+        "name": {
+          "companies_unified": "name",
+          "openownership": "name",
+          "affiliate_linkedin_companies": "name",
+          "wdc-organization-entities": "name",
+          "wdc-localbusiness-entities": "name",
+          "wdc-governmentorganization-entities": "name"
+        },
+        "company_number": {
+          "companies_unified": "company_number",
+          "openownership": "company_number"
+        },
+        "jurisdiction": {
+          "companies_unified": "jurisdiction",
+          "openownership": "jurisdiction",
+          "wdc-governmentorganization-entities": "jurisdiction"
+        },
+        "address": {
+          "companies_unified": "address",
+          "openownership": "address",
+          "wdc-organization-entities": "address",
+          "wdc-localbusiness-entities": "address"
+        },
+        "website": {
+          "affiliate_linkedin_companies": "linkedin_url",
+          "wdc-organization-entities": "url",
+          "wdc-governmentorganization-entities": "url"
+        }
+      },
+      "query_strategy": "parallel_then_merge",
+      "merge_key": ["company_number", "name_normalized"],
+      "dedup_priority": ["companies_unified", "openownership", "affiliate_linkedin_companies"]
+    },
+
+    "person": {
+      "description": "Unified person data from all sources",
+      "indices": [
+        "persons_unified",
+        "wdc-person-entities",
+        "linkedin_unified",
+        "openownership",
+        "breach_records"
+      ],
+      "primary_index": "persons_unified",
+      "total_docs_estimate": 140000000,
+      "unified_fields": {
+        "name": {
+          "persons_unified": "name",
+          "wdc-person-entities": "name",
+          "linkedin_unified": "name",
+          "openownership": "name",
+          "breach_records": "name"
+        },
+        "email": {
+          "persons_unified": "email",
+          "wdc-person-entities": "email",
+          "breach_records": "email"
+        },
+        "phone": {
+          "persons_unified": "phone",
+          "breach_records": "phone"
+        },
+        "company": {
+          "persons_unified": "company",
+          "wdc-person-entities": "worksFor",
+          "linkedin_unified": "company"
+        },
+        "title": {
+          "persons_unified": "title",
+          "wdc-person-entities": "jobTitle",
+          "linkedin_unified": "headline"
+        }
+      },
+      "query_strategy": "parallel_then_merge",
+      "merge_key": ["email", "name_normalized"],
+      "filters": {
+        "openownership": {"statement_type": "personStatement"}
+      }
+    },
+
+    "breach": {
+      "description": "Breach/credential data unified view",
+      "indices": [
+        "breach_records",
+        "nexus_breach_records",
+        "kazaword_emails"
+      ],
+      "primary_index": "breach_records",
+      "total_docs_estimate": 120000000,
+      "unified_fields": {
+        "email": {
+          "breach_records": "email",
+          "nexus_breach_records": "email",
+          "kazaword_emails": "email"
+        },
+        "username": {
+          "breach_records": "username",
+          "nexus_breach_records": "username"
+        },
+        "password": {
+          "breach_records": "password",
+          "nexus_breach_records": "password",
+          "kazaword_emails": "password"
+        },
+        "hash": {
+          "breach_records": "hash"
+        },
+        "source": {
+          "breach_records": "breach_name",
+          "nexus_breach_records": "source",
+          "kazaword_emails": "source"
+        }
+      },
+      "query_strategy": "parallel_then_merge",
+      "merge_key": ["email"],
+      "sensitivity": "high"
+    },
+
+    "domain": {
+      "description": "Domain intelligence unified view",
+      "indices": [
+        "domains_unified",
+        "cymonides_cc_domain_vertices",
+        "unified_domain_profiles",
+        "top_domains",
+        "atlas_unified_domains",
+        "wdc-domain-profiles"
+      ],
+      "primary_index": "domains_unified",
+      "total_docs_estimate": 300000000,
+      "unified_fields": {
+        "domain": {
+          "domains_unified": "domain",
+          "cymonides_cc_domain_vertices": "domain",
+          "unified_domain_profiles": "domain",
+          "top_domains": "domain",
+          "atlas_unified_domains": "domain",
+          "wdc-domain-profiles": "domain"
+        },
+        "rank": {
+          "top_domains": "rank"
+        },
+        "inlinks": {
+          "cymonides_cc_domain_vertices": "inlink_domains"
+        },
+        "technologies": {
+          "unified_domain_profiles": "technologies"
+        },
+        "whois": {
+          "domains_unified": ["registrar", "creation_date", "expiry_date"],
+          "atlas_unified_domains": "whois"
+        }
+      },
+      "query_strategy": "cascade",
+      "cascade_order": ["unified_domain_profiles", "domains_unified", "cymonides_cc_domain_vertices", "top_domains"],
+      "merge_key": ["domain"]
+    },
+
+    "web_graph": {
+      "description": "Common Crawl web graph (edges and vertices)",
+      "indices": [
+        "cymonides_cc_domain_edges",
+        "cymonides_cc_domain_vertices",
+        "cc_web_graph_host_edges",
+        "cc_host_vertices",
+        "cc_web_graph_edges"
+      ],
+      "primary_index": "cymonides_cc_domain_edges",
+      "total_docs_estimate": 1200000000,
+      "use_cases": {
+        "backlinks": {
+          "description": "Find domains linking TO a target domain",
+          "index": "cymonides_cc_domain_edges",
+          "query_field": "to_domain"
+        },
+        "outlinks": {
+          "description": "Find domains linked FROM a source domain",
+          "index": "cymonides_cc_domain_edges",
+          "query_field": "from_domain"
+        },
+        "domain_metrics": {
+          "description": "Get domain authority metrics",
+          "index": "cymonides_cc_domain_vertices",
+          "query_field": "domain"
+        },
+        "host_graph": {
+          "description": "Host-level aggregated graph",
+          "index": "cc_web_graph_host_edges",
+          "query_fields": ["from_host", "to_host"]
+        }
+      },
+      "query_strategy": "targeted"
+    },
+
+    "corpus": {
+      "description": "Full-text document search",
+      "indices": [
+        "cymonides-2",
+        "linklater_corpus"
+      ],
+      "primary_index": "cymonides-2",
+      "total_docs_estimate": 13000000,
+      "unified_fields": {
+        "content": {
+          "cymonides-2": "content",
+          "linklater_corpus": "content"
+        },
+        "title": {
+          "cymonides-2": "title"
+        },
+        "url": {
+          "cymonides-2": "url",
+          "linklater_corpus": "url"
+        },
+        "domain": {
+          "cymonides-2": "domain"
+        }
+      },
+      "query_strategy": "parallel_then_merge",
+      "merge_key": ["url"]
+    },
+
+    "wdc": {
+      "description": "Web Data Commons structured data",
+      "indices": [
+        "wdc-product-entities",
+        "wdc-organization-entities",
+        "wdc-person-entities",
+        "wdc-localbusiness-entities",
+        "wdc-governmentorganization-entities",
+        "wdc-domain-profiles"
+      ],
+      "primary_index": "wdc-organization-entities",
+      "total_docs_estimate": 47000000,
+      "query_strategy": "parallel_by_type",
+      "type_routing": {
+        "person": "wdc-person-entities",
+        "company": ["wdc-organization-entities", "wdc-localbusiness-entities", "wdc-governmentorganization-entities"],
+        "product": "wdc-product-entities"
+      }
+    },
+
+    "graph": {
+      "description": "Investigation graph (nodes and edges)",
+      "indices": [
+        "search_nodes_v3",
+        "search_edges"
+      ],
+      "primary_index": "search_nodes_v3",
+      "total_docs_estimate": 4000000,
+      "query_strategy": "graph_traversal",
+      "node_types": ["entity", "document", "query", "url"],
+      "edge_types": ["mentions", "links_to", "related_to", "officer_of", "shareholder_of"]
+    },
+
+    "et3": {
+      "description": "Event-Topic-Theme extraction graph",
+      "indices": [
+        "et3-nodes",
+        "et3-entity-edges",
+        "et3-url-edges",
+        "et3-jurisdiction-edges",
+        "et3-language-edges",
+        "et3-date-edges",
+        "et3-source-edges"
+      ],
+      "primary_index": "et3-nodes",
+      "total_docs_estimate": 700000,
+      "query_strategy": "graph_traversal"
+    },
+
+    "matrix": {
+      "description": "IO Matrix routing and embeddings",
+      "indices": [
+        "matrix_contrastive_routes",
+        "matrix_route_edges",
+        "matrix_graph_routes",
+        "input_output_wiki_matrix",
+        "io_routes"
+      ],
+      "primary_index": "matrix_graph_routes",
+      "total_docs_estimate": 40000,
+      "query_strategy": "semantic_routing"
+    },
+
+    "darkweb": {
+      "description": "Tor/onion service data",
+      "indices": [
+        "onion-graph-edges",
+        "onion-graph-nodes",
+        "onion-pages"
+      ],
+      "primary_index": "onion-pages",
+      "total_docs_estimate": 275000,
+      "query_strategy": "parallel_then_merge"
+    },
+
+    "uk_property": {
+      "description": "UK Land Registry property ownership data",
+      "indices": [
+        "uk_ccod",
+        "uk_ocod",
+        "uk_leases"
+      ],
+      "primary_index": "uk_ccod",
+      "total_docs_estimate": 12000000,
+      "unified_fields": {
+        "property_address": {
+          "uk_ccod": "property_address",
+          "uk_ocod": "property_address",
+          "uk_leases": "property_description"
+        },
+        "postcode": {
+          "uk_ccod": "postcode",
+          "uk_ocod": "postcode"
+        },
+        "title_number": {
+          "uk_ccod": "title_number",
+          "uk_ocod": "title_number"
+        },
+        "proprietor": {
+          "uk_ccod": "proprietor_name_1",
+          "uk_ocod": "proprietor_name"
+        },
+        "price_paid": {
+          "uk_ccod": "price_paid",
+          "uk_ocod": "price_paid",
+          "uk_leases": "price_paid"
+        }
+      },
+      "use_cases": {
+        "company_property_holdings": {
+          "description": "Find UK properties owned by a UK company",
+          "index": "uk_ccod",
+          "query_field": "proprietor_name_1"
+        },
+        "overseas_company_holdings": {
+          "description": "Find UK properties owned by an overseas company",
+          "index": "uk_ocod",
+          "query_field": "proprietor_name"
+        },
+        "overseas_by_jurisdiction": {
+          "description": "Find UK properties owned by companies from a specific jurisdiction",
+          "index": "uk_ocod",
+          "query_field": "proprietor_name",
+          "filter_field": "country_incorporated",
+          "filterable_values": ["JERSEY", "GUERNSEY", "ISLE OF MAN", "BRITISH VIRGIN ISLANDS", "CAYMAN ISLANDS", "CYPRUS", "PANAMA", "SEYCHELLES", "LUXEMBOURG", "NETHERLANDS", "DELAWARE", "HONG KONG"]
+        },
+        "property_by_address": {
+          "description": "Find property ownership by address/postcode",
+          "indices": ["uk_ccod", "uk_ocod"],
+          "query_fields": ["property_address", "postcode"]
+        },
+        "leases": {
+          "description": "Find lease records",
+          "index": "uk_leases",
+          "query_field": "property_description"
+        }
+      },
+      "query_strategy": "parallel_then_merge",
+      "merge_key": ["title_number"]
+    }
+  },
+
+  "query_strategies": {
+    "parallel_then_merge": {
+      "description": "Query all indices in parallel, merge results by merge_key, deduplicate",
+      "use_case": "Entity searches where data is spread across multiple sources"
+    },
+    "cascade": {
+      "description": "Query indices in priority order, stop when sufficient results found",
+      "use_case": "Domain lookups where authoritative source should be tried first"
+    },
+    "parallel_by_type": {
+      "description": "Route to specific index based on detected entity type",
+      "use_case": "WDC data where entity type determines the index"
+    },
+    "graph_traversal": {
+      "description": "Start from node, traverse edges to find related entities",
+      "use_case": "Investigation graph exploration"
+    },
+    "targeted": {
+      "description": "Query specific index based on use case (backlinks vs outlinks)",
+      "use_case": "Web graph queries with directional semantics"
+    },
+    "semantic_routing": {
+      "description": "Use embeddings to find similar routes/queries",
+      "use_case": "IO Matrix route discovery"
+    }
+  }
+}

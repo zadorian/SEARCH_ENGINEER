@@ -1,0 +1,48 @@
+{
+  "name": "DRILL SEARCH Matrix (Normalized)",
+  "version": "2.x",
+  "description": "Normalized matrix build (ISO jurisdictions, cleaned URLs/domains, stable enums). Generated from input_output/matrix/*",
+  "generated_at": "2025-12-21T19:20:59.829Z",
+  "last_updated": "2025-12-21T19:20:59.829Z",
+  "friction_order": [
+    "Open",
+    "Paywalled",
+    "Restricted",
+    "Cross-Border",
+    "Blocked"
+  ],
+  "files": {
+    "sources": "sources.json",
+    "legend": "legend.json",
+    "edge_types": "edge_types.json",
+    "rules": "rules.json",
+    "field_meta": "field_meta.json",
+    "flows": "flows.json",
+    "wiki_sections_processed": "wiki_sections_processed.json",
+    "jurisdiction_aliases": "jurisdiction_aliases.json",
+    "field_code_aliases": "field_code_aliases.json",
+    "schema_modules": "schema/modules.json",
+    "events_registry": "events_registry.json",
+    "styles": "styles.json",
+    "writing_guide": "writing_guide.json",
+    "section_templates_catalog": "section_templates_catalog.json",
+    "report_generation": "report_generation.json",
+    "chain_mappings": "chain_mappings.json",
+    "jurisdiction_intel": "jurisdiction_intel.json",
+    "jurisdiction_transfer": "jurisdiction_transfer.json",
+    "arbitrage_paths": "arbitrage_paths.json",
+    "merged_route_patterns": "_merged/route_patterns.json",
+    "merged_methodology_patterns": "_merged/methodology_patterns.json",
+    "merged_dead_ends_catalog": "_merged/dead_ends_catalog.json",
+    "merged_arbitrage_routes": "_merged/arbitrage_routes.json",
+    "merged_report_genres": "_merged/report_genres.json"
+  },
+  "stats": {
+    "total_sources": 2345,
+    "jurisdictions": 118,
+    "entity_types": 273,
+    "transformation_rules": 5620,
+    "field_meta_added": 46,
+    "copied_artifacts": 17
+  }
+}

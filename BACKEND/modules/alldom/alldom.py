@@ -72,21 +72,18 @@ class AllDom:
         "wb:": ("backdrill", "wayback"),
         "cc:": ("backdrill", "commoncrawl"),
 
-        # URL discovery → MAPPER
-        "map!": ("mapper", "discover"),
-        "sub!": ("mapper", "subdomains"),
-        "sitemap:": ("mapper", "sitemaps"),
-
-        # WHOIS → Native (moved from EYE-D Jan 2026)
-        "whois?": ("whois", "lookup"),
+        # URL discovery → MAPPER (JESTER)
+        "map?": ("mapper", "discover"),       # Authorized: map?
+        
+        # WHOIS → Native
+        "whois?": ("whois", "lookup"),        # Authorized: whois?
+        "whois:": ("whois", "lookup"),        # Authorized: whois:
 
         # DNS → EYE-D
         "dns:": ("eyed", "dns"),
 
         # Macros
-        "age!": ("macros", "age"),
-        "ga!": ("macros", "ga"),
-        "tech!": ("macros", "tech"),
+        "age?": ("macros", "age"),            # Authorized: age?
 
         # Entity extraction (delegates to operator_handlers)
         "@ent?": ("entities", "extract_all"),

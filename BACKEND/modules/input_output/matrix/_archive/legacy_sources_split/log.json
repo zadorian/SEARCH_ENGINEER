@@ -1,0 +1,42 @@
+{
+  "GLOBAL": [
+    {
+      "name": "IP Tracker",
+      "domain": "ip-tracker.org",
+      "url": "http://www.ip-tracker.org/locator/ip-lookup.php",
+      "search_url": "http://www.ip-tracker.org/locator/ip-lookup.php?ip={q}",
+      "type": "logistics",
+      "category": "log",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "ip-tracker.org_tracking_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "http://www.ip-tracker.org/locator/ip-lookup.php?ip={q}",
+      "section": "log",
+      "access": "public",
+      "notes": "Imported from tracking_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "tracking"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "ip"
+      ]
+    }
+  ]
+}

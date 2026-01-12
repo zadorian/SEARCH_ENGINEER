@@ -1,0 +1,1550 @@
+{
+  "generated_at": "2025-11-25T08:25:09.845357+00:00",
+  "source": "Report Library Batch Ingestion (1,245 reports)",
+  "description": "Report genre classification - types, purposes, and typical structures",
+  "stats": {
+    "total_reports": 1243,
+    "primary_types": 34,
+    "secondary_types": 124,
+    "scopes": 10,
+    "depth_levels": 4
+  },
+  "primary_type_distribution": {
+    "due_diligence": 587,
+    "corporate_intelligence": 233,
+    "background_check": 200,
+    "investigative_journalism": 73,
+    "asset_trace": 47,
+    "policy_assessment": 20,
+    "governance_assessment": 16,
+    "litigation_support": 14,
+    "fraud_investigation": 13,
+    "market_entry": 8,
+    "policy_analysis": 5,
+    "political_exposure": 4,
+    "policy_research": 2,
+    "market_intelligence": 1,
+    "cybersecurity_training_proposal": 1,
+    "regulatory_research": 1,
+    "regulatory_compliance_investigation": 1,
+    "criminal_intelligence": 1,
+    "forensic_analysis": 1,
+    "legal_services": 1,
+    "surveillance_analysis": 1,
+    "meeting_agenda": 1,
+    "documentation_standards": 1,
+    "political_intelligence": 1,
+    "legal_research": 1,
+    "migration_governance_assessment": 1,
+    "sanctions_screening": 1,
+    "cyber_threat_intelligence": 1,
+    "regulatory_assessment": 1,
+    "policy_intelligence": 1,
+    "government_policy_assessment": 1,
+    "telecommunications_intelligence": 1,
+    "logistics_planning": 1,
+    "cybersecurity_intelligence": 1
+  },
+  "secondary_type_distribution": {
+    "corporate_intelligence": 734,
+    "background_check": 653,
+    "due_diligence": 432,
+    "political_exposure": 173,
+    "sanctions_screening": 95,
+    "asset_trace": 75,
+    "investigative_journalism": 49,
+    "litigation_support": 32,
+    "policy_analysis": 28,
+    "fraud_investigation": 19,
+    "institutional_review": 16,
+    "institutional_analysis": 15,
+    "market_entry": 14,
+    "governance_evaluation": 12,
+    "network_analysis": 11,
+    "risk_assessment": 8,
+    "regulatory_analysis": 8,
+    "institutional_assessment": 8,
+    "regulatory_compliance": 7,
+    "corruption_investigation": 7,
+    "regulatory_intelligence": 5,
+    "governance_analysis": 5,
+    "compliance_review": 4,
+    "beneficial_ownership_analysis": 3,
+    "sector_analysis": 3,
+    "policy_assessment": 3,
+    "policy_research": 3,
+    "beneficial_ownership": 3,
+    "regulatory_review": 3,
+    "comparative_analysis": 3,
+    "regulatory_assessment": 3,
+    "employment_verification": 3,
+    "enhanced_due_diligence": 2,
+    "stakeholder_mapping": 2,
+    "financial_investigation": 2,
+    "expert_consultation": 2,
+    "employee_misconduct": 2,
+    "crisis_response_evaluation": 2,
+    "crisis_response_assessment": 2,
+    "biographical_research": 2,
+    "regulatory_screening": 2,
+    "ownership_analysis": 2,
+    "compliance_assessment": 2,
+    "migration_governance": 2,
+    "criminal_intelligence": 2,
+    "cyber_threat_intelligence": 2,
+    "business_development": 2,
+    "employment_reference": 1,
+    "integrity_check": 1,
+    "pep_screening": 1,
+    "reputational_risk_assessment": 1,
+    "integrity_checks": 1,
+    "political_risk_assessment": 1,
+    "reputational_analysis": 1,
+    "legal_compliance": 1,
+    "legal_compliance_review": 1,
+    "migrant_rights_assessment": 1,
+    "environmental_assessment": 1,
+    "regional_analysis": 1,
+    "source_of_wealth_analysis": 1,
+    "governance_assessment": 1,
+    "environmental_intelligence": 1,
+    "regional_cooperation_study": 1,
+    "family_business_analysis": 1,
+    "government_oversight": 1,
+    "court_records_analysis": 1,
+    "criminal_background_check": 1,
+    "debt_collection": 1,
+    "insurance_investigation": 1,
+    "court_records": 1,
+    "civil_dispute": 1,
+    "employment_dispute": 1,
+    "financial_audit": 1,
+    "confidentiality_agreement": 1,
+    "service_provider_contract": 1,
+    "financial_sector_analysis": 1,
+    "financial_inclusion_assessment": 1,
+    "technology_assessment": 1,
+    "customer_interview": 1,
+    "investigative_intelligence": 1,
+    "organizational_document": 1,
+    "foreign_influence": 1,
+    "style_guide": 1,
+    "editorial_guidelines": 1,
+    "project_documentation": 1,
+    "methodology_guide": 1,
+    "legal_framework_review": 1,
+    "strategic_analysis": 1,
+    "performance_evaluation": 1,
+    "regulatory_monitoring": 1,
+    "reputation_verification": 1,
+    "enhanced_screening": 1,
+    "family_dispute_analysis": 1,
+    "asset_tracing": 1,
+    "compliance_guidance": 1,
+    "government_structure_mapping": 1,
+    "reputation_analysis": 1,
+    "compliance_evaluation": 1,
+    "government_assessment": 1,
+    "institutional_evaluation": 1,
+    "government_intelligence": 1,
+    "administrative_review": 1,
+    "migration_assessment": 1,
+    "governance_review": 1,
+    "constitutional_law": 1,
+    "judicial_review": 1,
+    "criminal_network_analysis": 1,
+    "surveillance_report": 1,
+    "surveillance_analysis": 1,
+    "contact_mapping": 1,
+    "reputation_investigation": 1,
+    "communications_analysis": 1,
+    "financial_distress_analysis": 1,
+    "aviation_security": 1,
+    "route_optimization": 1,
+    "operational_planning": 1,
+    "surveillance": 1,
+    "operational_intelligence": 1,
+    "service_description": 1,
+    "document_verification": 1,
+    "identity_verification": 1,
+    "threat_analysis": 1,
+    "media_analysis": 1,
+    "security_assessment": 1
+  },
+  "scope_distribution": {
+    "corporate": 676,
+    "individual": 301,
+    "network": 158,
+    "jurisdiction": 67,
+    "sector": 35,
+    "institutional": 2,
+    "regional": 1,
+    "organizational": 1,
+    "methodology": 1,
+    "multi_location": 1
+  },
+  "depth_distribution": {
+    "enhanced": 787,
+    "standard": 367,
+    "deep_dive": 65,
+    "screening": 24
+  },
+  "client_type_distribution": {
+    "corporate": 780,
+    "law_firm": 122,
+    "government": 116,
+    "media": 88,
+    "investor": 84,
+    "international_organization": 25,
+    "ngo": 7,
+    "research_organization": 3,
+    "investigative_journalism": 3,
+    "investigative": 2,
+    "investigative_media": 2,
+    "law_enforcement": 2,
+    "research_institute": 1,
+    "policy_institute": 1,
+    "legal": 1,
+    "regulatory": 1,
+    "court": 1,
+    "research_institution": 1,
+    "unknown": 1,
+    "commercial_services": 1,
+    "": 1
+  },
+  "genre_profiles": {
+    "due_diligence": {
+      "count": 587,
+      "common_secondary_types": [
+        "corporate_intelligence",
+        "background_check",
+        "political_exposure",
+        "sanctions_screening",
+        "asset_trace"
+      ],
+      "scopes": [
+        "network",
+        "individual",
+        "sector",
+        "jurisdiction",
+        "corporate"
+      ],
+      "depths": [
+        "deep_dive",
+        "screening",
+        "standard",
+        "enhanced"
+      ],
+      "client_types": [
+        "investor",
+        "government",
+        "law_firm",
+        "ngo",
+        "media",
+        "corporate"
+      ],
+      "purpose_indicators": [
+        "risk assessment",
+        "Risk Assessment",
+        "background investigation",
+        "EIB Inspectorate General",
+        "Desktop Review",
+        "corporate structure analysis",
+        "pre-transaction due diligence",
+        "investigative research report",
+        "Background investigation",
+        "Assignment Completion Report"
+      ],
+      "example_reports": [
+        {
+          "filename": "1..json",
+          "report_id": "report_ff7ce78e5c05"
+        },
+        {
+          "filename": "2. OCCOFA 2021-A38 - Addiko Bank AD Podgorica.json",
+          "report_id": "report_fa2ee5136b5d"
+        },
+        {
+          "filename": "201117 - SASTRE - Sozanski & Ramut - Draft Report v2.json",
+          "report_id": "report_6b02faf037e6"
+        },
+        {
+          "filename": "201126 - SASTRE - Marston 3 - Draft Report v1.json",
+          "report_id": "report_f8643a7a8859"
+        },
+        {
+          "filename": "2020-A19  ATOR Terabank -OCCO- LOT 1 Integrity checks_Compliance support FINAL.json",
+          "report_id": "report_9c5d1b24da6e"
+        }
+      ]
+    },
+    "corporate_intelligence": {
+      "count": 233,
+      "common_secondary_types": [
+        "due_diligence",
+        "background_check",
+        "investigative_journalism",
+        "political_exposure",
+        "asset_trace"
+      ],
+      "scopes": [
+        "network",
+        "individual",
+        "sector",
+        "jurisdiction",
+        "corporate"
+      ],
+      "depths": [
+        "enhanced",
+        "screening",
+        "standard",
+        "deep_dive"
+      ],
+      "client_types": [
+        "investor",
+        "government",
+        "law_firm",
+        "investigative_media",
+        "legal",
+        "ngo",
+        "media",
+        "corporate"
+      ],
+      "purpose_indicators": [
+        "risk assessment",
+        "corporate structure analysis",
+        "Background investigation",
+        "investigative research report",
+        "Corporate structure analysis",
+        "background investigation",
+        "Risk assessment",
+        "background research",
+        "comprehensive background analysis",
+        "structured intelligence extraction"
+      ],
+      "example_reports": [
+        {
+          "filename": "1. MET - ownership.json",
+          "report_id": "report_4971b7641b03"
+        },
+        {
+          "filename": "2. MET - Control p1.json",
+          "report_id": "report_4815244b1605"
+        },
+        {
+          "filename": "20190809_Project FILTER_draft proposal TS.json",
+          "report_id": "report_4e1a91259963"
+        },
+        {
+          "filename": "20190809_Project_FILTER_draft_proposal_TS2.json",
+          "report_id": "report_2aba6b7a3095"
+        },
+        {
+          "filename": "20210406_Project ZISHA_ Note on nat standards_ (1).json",
+          "report_id": "report_7e0202cf943d"
+        }
+      ]
+    },
+    "background_check": {
+      "count": 200,
+      "common_secondary_types": [
+        "due_diligence",
+        "corporate_intelligence",
+        "political_exposure",
+        "asset_trace",
+        "sanctions_screening"
+      ],
+      "scopes": [
+        "network",
+        "corporate",
+        "individual"
+      ],
+      "depths": [
+        "deep_dive",
+        "screening",
+        "standard",
+        "enhanced"
+      ],
+      "client_types": [
+        "",
+        "government",
+        "law_firm",
+        "investigative",
+        "unknown",
+        "media",
+        "corporate"
+      ],
+      "purpose_indicators": [
+        "background investigation",
+        "risk assessment",
+        "Background investigation",
+        "investigative research report",
+        "Pursuant to your request",
+        "Background",
+        "targeted checks",
+        "comprehensive background research",
+        "Risk assessment",
+        "employment verification"
+      ],
+      "example_reports": [
+        {
+          "filename": "2.5 day update Cherwell 2 (1) (1).json",
+          "report_id": "report_86c87561a0c4"
+        },
+        {
+          "filename": "2013420001 ED - Randolphs Confidential Reference Check Form Liz Day Ref.docx.json",
+          "report_id": "report_62cc0737c9ed"
+        },
+        {
+          "filename": "20200611 HZ - Brief.json",
+          "report_id": "report_c80456c69f8d"
+        },
+        {
+          "filename": "Adias report.json",
+          "report_id": "report_aae523cfe63a"
+        },
+        {
+          "filename": "Ahmed Ezeldien (1).json",
+          "report_id": "report_c2e0ba1f17ae"
+        }
+      ]
+    },
+    "investigative_journalism": {
+      "count": 73,
+      "common_secondary_types": [
+        "corporate_intelligence",
+        "political_exposure",
+        "asset_trace",
+        "due_diligence",
+        "background_check"
+      ],
+      "scopes": [
+        "network",
+        "individual",
+        "sector",
+        "jurisdiction",
+        "methodology",
+        "corporate"
+      ],
+      "depths": [
+        "enhanced",
+        "screening",
+        "standard",
+        "deep_dive"
+      ],
+      "client_types": [
+        "media",
+        "government",
+        "law_firm",
+        "research_organization",
+        "ngo",
+        "law_enforcement",
+        "research_institute"
+      ],
+      "purpose_indicators": [
+        "investigative research report",
+        "corruption investigation",
+        "extract structured intelligence",
+        "corruption allegations",
+        "political exposure analysis",
+        "financial inclusion assessment",
+        "pattern identification",
+        "investigative research",
+        "structured intelligence",
+        "research conducted pursuant to your requests"
+      ],
+      "example_reports": [
+        {
+          "filename": "220907_Elicius_Intelligence note_F&M.json",
+          "report_id": "report_aadee650d3ac"
+        },
+        {
+          "filename": "22_10 Call notes.json",
+          "report_id": "report_d0c10ff3187c"
+        },
+        {
+          "filename": "Agrofert HUMINT.json",
+          "report_id": "report_78bee9a05261"
+        },
+        {
+          "filename": "Aigul.json",
+          "report_id": "report_b2329c195cc9"
+        },
+        {
+          "filename": "Beketayev notes 2.json",
+          "report_id": "report_82ee3293e891"
+        }
+      ]
+    },
+    "asset_trace": {
+      "count": 47,
+      "common_secondary_types": [
+        "due_diligence",
+        "corporate_intelligence",
+        "litigation_support",
+        "background_check",
+        "investigative_journalism"
+      ],
+      "scopes": [
+        "network",
+        "corporate",
+        "individual"
+      ],
+      "depths": [
+        "deep_dive",
+        "screening",
+        "standard",
+        "enhanced"
+      ],
+      "client_types": [
+        "investigative_journalism",
+        "government",
+        "law_firm",
+        "investigative",
+        "media",
+        "corporate"
+      ],
+      "purpose_indicators": [
+        "asset recovery",
+        "asset identification",
+        "corporate structure mapping",
+        "identify assets",
+        "movable assets",
+        "WEALTH REPORT",
+        "three-day investigative asset tracing report",
+        "assets located outside Indonesia",
+        "enforcement potential",
+        "located outside Indonesia"
+      ],
+      "example_reports": [
+        {
+          "filename": "2.5 day update Cherwell.json",
+          "report_id": "report_40da0234131b"
+        },
+        {
+          "filename": "201119 - SASTRE - United Capital Investments Corp. - Draft Report v1.json",
+          "report_id": "report_2db42c429e1d"
+        },
+        {
+          "filename": "20210329 - SASTRE - Mas family - Draft Report v1 (1).json",
+          "report_id": "report_970c888d3d21"
+        },
+        {
+          "filename": "220912_Elicius_Intelligence note_AK.json",
+          "report_id": "report_90c9568a2d29"
+        },
+        {
+          "filename": "3 day update Cherwell 2 (1).json",
+          "report_id": "report_c7a2c5e9366d"
+        }
+      ]
+    },
+    "policy_assessment": {
+      "count": 20,
+      "common_secondary_types": [
+        "institutional_analysis",
+        "governance_evaluation",
+        "institutional_review",
+        "governance_analysis",
+        "comparative_analysis"
+      ],
+      "scopes": [
+        "institutional",
+        "jurisdiction"
+      ],
+      "depths": [
+        "screening",
+        "standard",
+        "enhanced"
+      ],
+      "client_types": [
+        "international_organization",
+        "government"
+      ],
+      "purpose_indicators": [
+        "support well-managed migration policy",
+        "assess comprehensiveness of migration governance structures",
+        "identify priorities on the way forward",
+        "soutenir une politique migratoire bien gérée",
+        "governance assessment",
+        "identify priorities for development",
+        "identifier les priorités",
+        "assess migration governance structures",
+        "identify priorities for the way forward",
+        "institutional capacity evaluation"
+      ],
+      "example_reports": [
+        {
+          "filename": "IOM Liberia - Questions.json",
+          "report_id": "report_30cd23d7ed78"
+        },
+        {
+          "filename": "MGI Burkina Faso (28-05-21).json",
+          "report_id": "report_486c0a9fb3f4"
+        },
+        {
+          "filename": "MGI Burkina Faso 28.05 MSb.json",
+          "report_id": "report_908ad4d985ae"
+        },
+        {
+          "filename": "MGI Comoros (28-04-21).json",
+          "report_id": "report_e70a1a35d662"
+        },
+        {
+          "filename": "MGI Comoros_27 April MS.json",
+          "report_id": "report_fba99ecd5813"
+        }
+      ]
+    },
+    "governance_assessment": {
+      "count": 16,
+      "common_secondary_types": [
+        "policy_analysis",
+        "institutional_review",
+        "institutional_assessment",
+        "compliance_review",
+        "compliance_evaluation"
+      ],
+      "scopes": [
+        "jurisdiction"
+      ],
+      "depths": [
+        "standard",
+        "enhanced"
+      ],
+      "client_types": [
+        "government",
+        "international_organization"
+      ],
+      "purpose_indicators": [
+        "support well-managed migration policy",
+        "policy development support",
+        "policy evaluation",
+        "assess governance structures",
+        "governance evaluation",
+        "institutional capacity assessment",
+        "identify priorities for the way forward",
+        "migration governance evaluation",
+        "governance improvement",
+        "best practices identification"
+      ],
+      "example_reports": [
+        {
+          "filename": "MGI Burkina Faso 28.05 JDL.json",
+          "report_id": "report_73007d3537aa"
+        },
+        {
+          "filename": "MGI Burkina Faso 28.05 MS.json",
+          "report_id": "report_068143a681c3"
+        },
+        {
+          "filename": "MGI Comoros (23-04-21).json",
+          "report_id": "report_655502744433"
+        },
+        {
+          "filename": "MGI Comoros_26 Apri_EIU review.json",
+          "report_id": "report_07f75d37ce45"
+        },
+        {
+          "filename": "MGI Comoros_28 April JDL b.json",
+          "report_id": "report_eca90307c5fb"
+        }
+      ]
+    },
+    "litigation_support": {
+      "count": 14,
+      "common_secondary_types": [
+        "corporate_intelligence",
+        "due_diligence",
+        "background_check",
+        "asset_trace",
+        "debt_collection"
+      ],
+      "scopes": [
+        "corporate",
+        "individual"
+      ],
+      "depths": [
+        "deep_dive",
+        "standard",
+        "screening",
+        "enhanced"
+      ],
+      "client_types": [
+        "law_firm",
+        "court",
+        "government"
+      ],
+      "purpose_indicators": [
+        "PROJECT LAMB Litigation Support",
+        "investigative due diligence piece",
+        "litigation check",
+        "legal proceedings analysis",
+        "risk assessment",
+        "civil litigation",
+        "evidence gathering",
+        "legal proceedings support",
+        "court judgment",
+        "debt enforcement"
+      ],
+      "example_reports": [
+        {
+          "filename": "20191001_ Project LAMB_Template.json",
+          "report_id": "report_f26cb66a6b7d"
+        },
+        {
+          "filename": "20191001_ Project LAMB_Template_1.json",
+          "report_id": "report_08d547832ee9"
+        },
+        {
+          "filename": "20191001_ Project LAMB_Template_2.json",
+          "report_id": "report_bff48e672cbc"
+        },
+        {
+          "filename": "ALTEX ROMANIA S.R.L_Litigation check.json",
+          "report_id": "report_dec60b910164"
+        },
+        {
+          "filename": "Case 1 Hattrick - PSK.json",
+          "report_id": "report_d52907fec392"
+        }
+      ]
+    },
+    "fraud_investigation": {
+      "count": 13,
+      "common_secondary_types": [
+        "corporate_intelligence",
+        "due_diligence",
+        "asset_trace",
+        "employee_misconduct",
+        "background_check"
+      ],
+      "scopes": [
+        "network",
+        "individual"
+      ],
+      "depths": [
+        "enhanced",
+        "deep_dive"
+      ],
+      "client_types": [
+        "law_firm",
+        "corporate"
+      ],
+      "purpose_indicators": [
+        "investigation into organized crime connections",
+        "analysis of trading platform fraud",
+        "risk assessment",
+        "investigation to date",
+        "evidential standard",
+        "prepared for Brandsmiths",
+        "client contacts",
+        "further work is necessary",
+        "infrastructure analysis",
+        "coordinated fraud detection"
+      ],
+      "example_reports": [
+        {
+          "filename": "20220408 Interim Report re Razermarkets & Panda.json",
+          "report_id": "report_cd97c0f851f6"
+        },
+        {
+          "filename": "20220408 Interim Report re Razermarkets & Panda[8].json",
+          "report_id": "report_cdccbe14f3bd"
+        },
+        {
+          "filename": "Appendix.json",
+          "report_id": "report_9ae1045a5dfa"
+        },
+        {
+          "filename": "Cingulate - Phase 1 results 0710.json",
+          "report_id": "report_8537c97dab3a"
+        },
+        {
+          "filename": "Cingulate - Phase 1 results 0810.json",
+          "report_id": "report_12756274366f"
+        }
+      ]
+    },
+    "market_entry": {
+      "count": 8,
+      "common_secondary_types": [
+        "due_diligence",
+        "corporate_intelligence",
+        "regulatory_intelligence",
+        "stakeholder_mapping",
+        "political_risk_assessment"
+      ],
+      "scopes": [
+        "sector",
+        "jurisdiction"
+      ],
+      "depths": [
+        "standard",
+        "enhanced"
+      ],
+      "client_types": [
+        "investor",
+        "corporate"
+      ],
+      "purpose_indicators": [
+        "stakeholder engagement scenarios",
+        "market strategy development",
+        "stakeholder engagement planning",
+        "regulatory compliance assessment",
+        "stakeholder engagement strategy",
+        "regulatory risk assessment",
+        "prospective near-term development",
+        "prospective, near-term development of their market strategy",
+        "market entry assessment",
+        "financial inclusion efforts"
+      ],
+      "example_reports": [
+        {
+          "filename": "20210413_Project ZISHA_Phase 2 Draft (1).json",
+          "report_id": "report_69ae79943643"
+        },
+        {
+          "filename": "210211_Project ZISHA draft B.json",
+          "report_id": "report_b644be8a5618"
+        },
+        {
+          "filename": "210211_Project ZISHA.docx[19] (1).json",
+          "report_id": "report_dfdcf5482364"
+        },
+        {
+          "filename": "Country summary Nigeria 2020 [draft].json",
+          "report_id": "report_0dd03e29dca8"
+        },
+        {
+          "filename": "Project ZISHA v1.json",
+          "report_id": "report_08c340bdef0b"
+        }
+      ]
+    },
+    "policy_analysis": {
+      "count": 5,
+      "common_secondary_types": [
+        "legal_compliance_review",
+        "migrant_rights_assessment",
+        "institutional_assessment",
+        "environmental_intelligence",
+        "regional_cooperation_study"
+      ],
+      "scopes": [
+        "regional",
+        "jurisdiction",
+        "sector"
+      ],
+      "depths": [
+        "standard",
+        "enhanced"
+      ],
+      "client_types": [
+        "government",
+        "research_institution",
+        "research_organization",
+        "ngo",
+        "policy_institute"
+      ],
+      "purpose_indicators": [
+        "crisis response analysis",
+        "financial inclusion assessment",
+        "migrant access to services",
+        "legal framework analysis",
+        "implementation gaps identification",
+        "Blue Peace Index assessment",
+        "cooperation measurement",
+        "institutional effectiveness analysis",
+        "policy effectiveness evaluation",
+        "policy effectiveness review"
+      ],
+      "example_reports": [
+        {
+          "filename": "BF r2-4.json",
+          "report_id": "report_85d69ec7a454"
+        },
+        {
+          "filename": "Blue Peace Index_ Syr and Amu Darya basin summaries_DRAFT.json",
+          "report_id": "report_7a1685d92c73"
+        },
+        {
+          "filename": "Country summary Madagascar 2020.json",
+          "report_id": "report_36893c0f40e6"
+        },
+        {
+          "filename": "Country summary Russia 2020.json",
+          "report_id": "report_9cbef2d2a561"
+        },
+        {
+          "filename": "MGI Uzbekistan Interview Questions (1).json",
+          "report_id": "report_fef4671c2a20"
+        }
+      ]
+    },
+    "political_exposure": {
+      "count": 4,
+      "common_secondary_types": [
+        "due_diligence",
+        "corporate_intelligence",
+        "background_check",
+        "investigative_journalism",
+        "regulatory_intelligence"
+      ],
+      "scopes": [
+        "sector",
+        "network",
+        "jurisdiction",
+        "individual"
+      ],
+      "depths": [
+        "deep_dive",
+        "enhanced"
+      ],
+      "client_types": [
+        "investigative_journalism",
+        "corporate"
+      ],
+      "purpose_indicators": [
+        "respond to RBI's specific risk intelligence needs",
+        "political risk assessment",
+        "investment strategy disruption analysis",
+        "Project Palpatine",
+        "pursuant to your requests",
+        "Sastre Consulting Ltd",
+        "political and regulatory risk intelligence",
+        "RBI's strategy in the country",
+        "banking and financial regulation assessment",
+        "How close is Serbian President"
+      ],
+      "example_reports": [
+        {
+          "filename": "Political Methodology.json",
+          "report_id": "report_fb576a23b6c5"
+        },
+        {
+          "filename": "Project Palpatine.json",
+          "report_id": "report_ee77776de1d3"
+        },
+        {
+          "filename": "RBI UA RESEARCH.json",
+          "report_id": "report_714a21766fce"
+        },
+        {
+          "filename": "vucic.json",
+          "report_id": "report_41459d3bfd2a"
+        }
+      ]
+    },
+    "policy_research": {
+      "count": 2,
+      "common_secondary_types": [
+        "regulatory_analysis",
+        "institutional_assessment",
+        "expert_consultation",
+        "governance_assessment"
+      ],
+      "scopes": [
+        "sector",
+        "jurisdiction"
+      ],
+      "depths": [
+        "standard",
+        "enhanced"
+      ],
+      "client_types": [
+        "research_organization",
+        "ngo"
+      ],
+      "purpose_indicators": [
+        "migration policy analysis",
+        "financial inclusion assessment",
+        "government capacity evaluation",
+        "Blue Peace Index assessment",
+        "transboundary water resources management evaluation",
+        "promotion of peace and cooperation"
+      ],
+      "example_reports": [
+        {
+          "filename": "BF 67-68.json",
+          "report_id": "report_5e9e033bf164"
+        },
+        {
+          "filename": "Blue Peace Index Sastre correspondence 2.json",
+          "report_id": "report_19b72e667504"
+        }
+      ]
+    },
+    "market_intelligence": {
+      "count": 1,
+      "common_secondary_types": [
+        "regulatory_intelligence",
+        "sector_analysis"
+      ],
+      "scopes": [
+        "sector"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "corporate"
+      ],
+      "purpose_indicators": [
+        "market positioning",
+        "regulatory preparation",
+        "competitive intelligence"
+      ],
+      "example_reports": [
+        {
+          "filename": "20210413_Project ZISHA_ENDS sector HUMINT (1).json",
+          "report_id": "report_b6e8dac76211"
+        }
+      ]
+    },
+    "cybersecurity_training_proposal": {
+      "count": 1,
+      "common_secondary_types": [
+        "corporate_intelligence",
+        "risk_assessment"
+      ],
+      "scopes": [
+        "corporate"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "corporate"
+      ],
+      "purpose_indicators": [
+        "Executive cyber awareness training",
+        "Mitigate risks posed by cybercriminals",
+        "CEO fraud prevention"
+      ],
+      "example_reports": [
+        {
+          "filename": "210310_Proposal_CEO fraud training[draft].json",
+          "report_id": "report_7a442618136e"
+        }
+      ]
+    },
+    "regulatory_research": {
+      "count": 1,
+      "common_secondary_types": [
+        "policy_analysis",
+        "legal_compliance"
+      ],
+      "scopes": [
+        "jurisdiction"
+      ],
+      "depths": [
+        "standard"
+      ],
+      "client_types": [
+        "government"
+      ],
+      "purpose_indicators": [
+        "immigration policy review",
+        "student work authorization assessment",
+        "regulatory compliance analysis"
+      ],
+      "example_reports": [
+        {
+          "filename": "BF misc2 (1).json",
+          "report_id": "report_00f1467b4416"
+        }
+      ]
+    },
+    "regulatory_compliance_investigation": {
+      "count": 1,
+      "common_secondary_types": [
+        "corporate_intelligence",
+        "risk_assessment"
+      ],
+      "scopes": [
+        "corporate"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "regulatory"
+      ],
+      "purpose_indicators": [
+        "compliance monitoring",
+        "regulatory oversight",
+        "facility inspection analysis"
+      ],
+      "example_reports": [
+        {
+          "filename": "BrightPath regulatory detail.json",
+          "report_id": "report_6b7bb37bd435"
+        }
+      ]
+    },
+    "criminal_intelligence": {
+      "count": 1,
+      "common_secondary_types": [
+        "court_records_analysis",
+        "criminal_background_check"
+      ],
+      "scopes": [
+        "individual"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "law_enforcement"
+      ],
+      "purpose_indicators": [
+        "criminal prosecution",
+        "sentencing determination",
+        "risk assessment"
+      ],
+      "example_reports": [
+        {
+          "filename": "Case 1 Prva Sportska Kladionica.json",
+          "report_id": "report_d8ce47fbe550"
+        }
+      ]
+    },
+    "forensic_analysis": {
+      "count": 1,
+      "common_secondary_types": [
+        "corporate_intelligence",
+        "financial_investigation"
+      ],
+      "scopes": [
+        "network"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "law_firm"
+      ],
+      "purpose_indicators": [
+        "Email forensic analysis",
+        "Financial transaction tracking",
+        "Business relationship mapping"
+      ],
+      "example_reports": [
+        {
+          "filename": "Cingulate - suggested search terms.json",
+          "report_id": "report_54cbc4e80e58"
+        }
+      ]
+    },
+    "legal_services": {
+      "count": 1,
+      "common_secondary_types": [
+        "confidentiality_agreement",
+        "service_provider_contract"
+      ],
+      "scopes": [
+        "corporate"
+      ],
+      "depths": [
+        "standard"
+      ],
+      "client_types": [
+        "law_firm"
+      ],
+      "purpose_indicators": [
+        "confidentiality protection",
+        "service provider engagement",
+        "legal privilege preservation"
+      ],
+      "example_reports": [
+        {
+          "filename": "Confidentiality Deed - Sastre Consulting Ltd.json",
+          "report_id": "report_eaf219a6c67f"
+        }
+      ]
+    },
+    "surveillance_analysis": {
+      "count": 1,
+      "common_secondary_types": [
+        "due_diligence",
+        "background_check"
+      ],
+      "scopes": [
+        "individual"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "law_firm"
+      ],
+      "purpose_indicators": [
+        "Project Owens",
+        "time-limited assignment",
+        "contact pattern analysis"
+      ],
+      "example_reports": [
+        {
+          "filename": "Cowie phone 4.json",
+          "report_id": "report_9623bae42c55"
+        }
+      ]
+    },
+    "meeting_agenda": {
+      "count": 1,
+      "common_secondary_types": [
+        "organizational_document"
+      ],
+      "scopes": [
+        "organizational"
+      ],
+      "depths": [
+        "standard"
+      ],
+      "client_types": [
+        "government"
+      ],
+      "purpose_indicators": [
+        "briefing-meeting",
+        "Migration Governance Indicators",
+        "process coordination"
+      ],
+      "example_reports": [
+        {
+          "filename": "DraftAgenda-ENG (1).json",
+          "report_id": "report_ea7802ca90bb"
+        }
+      ]
+    },
+    "documentation_standards": {
+      "count": 1,
+      "common_secondary_types": [
+        "style_guide",
+        "editorial_guidelines"
+      ],
+      "scopes": [
+        "institutional"
+      ],
+      "depths": [
+        "standard"
+      ],
+      "client_types": [
+        "ngo"
+      ],
+      "purpose_indicators": [
+        "reporting standards",
+        "MGI reports",
+        "institutional guidelines"
+      ],
+      "example_reports": [
+        {
+          "filename": "Editing note for new national and local MGI reports_14_04_2021.json",
+          "report_id": "report_dd1703c371da"
+        }
+      ]
+    },
+    "political_intelligence": {
+      "count": 1,
+      "common_secondary_types": [
+        "policy_analysis",
+        "regulatory_intelligence",
+        "corporate_intelligence"
+      ],
+      "scopes": [
+        "sector"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "corporate"
+      ],
+      "purpose_indicators": [
+        "investment decision support",
+        "regulatory risk assessment",
+        "policy impact analysis"
+      ],
+      "example_reports": [
+        {
+          "filename": "KZ Tax Memo 031123.json",
+          "report_id": "report_995dc45942f2"
+        }
+      ]
+    },
+    "legal_research": {
+      "count": 1,
+      "common_secondary_types": [
+        "regulatory_analysis",
+        "compliance_guidance"
+      ],
+      "scopes": [
+        "jurisdiction"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "law_firm"
+      ],
+      "purpose_indicators": [
+        "admissibility as evidence",
+        "legal precedent analysis",
+        "compliance requirements"
+      ],
+      "example_reports": [
+        {
+          "filename": "Legality of covert voice recording_CZ.json",
+          "report_id": "report_3f7b5cf9eed9"
+        }
+      ]
+    },
+    "migration_governance_assessment": {
+      "count": 1,
+      "common_secondary_types": [
+        "policy_analysis",
+        "institutional_assessment",
+        "regulatory_review"
+      ],
+      "scopes": [
+        "jurisdiction"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "international_organization"
+      ],
+      "purpose_indicators": [
+        "support well-managed migration policy",
+        "assess comprehensiveness of migration governance structures",
+        "identify priorities on the way forward"
+      ],
+      "example_reports": [
+        {
+          "filename": "MGI Profile Trinidad and Tobago MS 13.9..json",
+          "report_id": "report_d5a4854300ce"
+        }
+      ]
+    },
+    "sanctions_screening": {
+      "count": 1,
+      "common_secondary_types": [
+        "political_exposure",
+        "asset_trace",
+        "corporate_intelligence"
+      ],
+      "scopes": [
+        "network"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "government"
+      ],
+      "purpose_indicators": [
+        "anti-corruption sanctions list",
+        "Magnitsky-style sanctions",
+        "asset freezing",
+        "travel restrictions"
+      ],
+      "example_reports": [
+        {
+          "filename": "Potential UK Sanctions.json",
+          "report_id": "report_7bdaad11b102"
+        }
+      ]
+    },
+    "cyber_threat_intelligence": {
+      "count": 1,
+      "common_secondary_types": [
+        "due_diligence",
+        "risk_assessment"
+      ],
+      "scopes": [
+        "corporate"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "corporate"
+      ],
+      "purpose_indicators": [
+        "cyber-attacks against the companies",
+        "risk assessments for the potential of future attacks",
+        "threat intelligence",
+        "dark web monitoring"
+      ],
+      "example_reports": [
+        {
+          "filename": "Proposal JOULE_2.json",
+          "report_id": "report_4e4e28c0b5ea"
+        }
+      ]
+    },
+    "regulatory_assessment": {
+      "count": 1,
+      "common_secondary_types": [
+        "policy_analysis",
+        "compliance_review"
+      ],
+      "scopes": [
+        "jurisdiction"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "government"
+      ],
+      "purpose_indicators": [
+        "regulatory compliance",
+        "policy implementation review",
+        "legal framework assessment"
+      ],
+      "example_reports": [
+        {
+          "filename": "Questionnaire MGI Madagascar 1.json",
+          "report_id": "report_b4e57aa468d5"
+        }
+      ]
+    },
+    "policy_intelligence": {
+      "count": 1,
+      "common_secondary_types": [
+        "regulatory_assessment",
+        "governance_analysis"
+      ],
+      "scopes": [
+        "jurisdiction"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "government"
+      ],
+      "purpose_indicators": [
+        "policy implementation assessment",
+        "regulatory framework analysis",
+        "migration governance evaluation"
+      ],
+      "example_reports": [
+        {
+          "filename": "Questionnaire MGI Niger 1.json",
+          "report_id": "report_ca9fee271997"
+        }
+      ]
+    },
+    "government_policy_assessment": {
+      "count": 1,
+      "common_secondary_types": [
+        "regulatory_compliance",
+        "institutional_analysis"
+      ],
+      "scopes": [
+        "jurisdiction"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "government"
+      ],
+      "purpose_indicators": [
+        "policy implementation assessment",
+        "regulatory framework evaluation",
+        "inter-agency coordination analysis"
+      ],
+      "example_reports": [
+        {
+          "filename": "Questionnaire MGI Niger 2.json",
+          "report_id": "report_877b2dccca73"
+        }
+      ]
+    },
+    "telecommunications_intelligence": {
+      "count": 1,
+      "common_secondary_types": [
+        "corporate_intelligence",
+        "contact_mapping"
+      ],
+      "scopes": [
+        "individual"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "law_firm"
+      ],
+      "purpose_indicators": [
+        "Project Cowie",
+        "surveillance period analysis",
+        "contact pattern mapping"
+      ],
+      "example_reports": [
+        {
+          "filename": "Report re GlenCowie_CDR reports Aug-19 to Jan-20 (Cowie’s UK mobile).json",
+          "report_id": "report_68491bac536b"
+        }
+      ]
+    },
+    "logistics_planning": {
+      "count": 1,
+      "common_secondary_types": [
+        "route_optimization",
+        "operational_planning"
+      ],
+      "scopes": [
+        "multi_location"
+      ],
+      "depths": [
+        "standard"
+      ],
+      "client_types": [
+        "commercial_services"
+      ],
+      "purpose_indicators": [
+        "route_efficiency",
+        "time_optimization",
+        "cost_analysis"
+      ],
+      "example_reports": [
+        {
+          "filename": "Test Purchase itinerary (1).json",
+          "report_id": "report_c496d17bc09d"
+        }
+      ]
+    },
+    "cybersecurity_intelligence": {
+      "count": 1,
+      "common_secondary_types": [
+        "fraud_investigation",
+        "threat_analysis"
+      ],
+      "scopes": [
+        "sector"
+      ],
+      "depths": [
+        "enhanced"
+      ],
+      "client_types": [
+        "corporate"
+      ],
+      "purpose_indicators": [
+        "threat awareness",
+        "risk assessment",
+        "defensive measures"
+      ],
+      "example_reports": [
+        {
+          "filename": "wailaway.json",
+          "report_id": "report_649d0dda3022"
+        }
+      ]
+    }
+  }
+}

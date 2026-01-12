@@ -1,0 +1,8 @@
+salesforce.com
+oracle.com
+amazon.com
+ibm.com
+microsoft.com
+meta.com
+adobe.com
+apple.com

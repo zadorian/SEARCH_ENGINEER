@@ -1,0 +1,1397 @@
+[
+  {
+    "id": "CHAIN_OFFICER_TO_ALL_COMPANIES",
+    "label": "Find all companies where person is officer/director (recursive)",
+    "requires_any": [
+      59,
+      7,
+      31
+    ],
+    "requires_all": [],
+    "returns": [
+      42,
+      13,
+      43,
+      58,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65
+    ],
+    "friction": "Paywalled",
+    "jurisdiction": "REQUIRED",
+    "notes": "Recursively finds all directorships for a person. Input: officer_name (59), person_name (7/31). Returns: All companies (42/13) + full officer details. For network mapping and directorship graphs.",
+    "category": "corporate",
+    "friction_raw": "Paywalled",
+    "chain": true,
+    "chain_config": {
+      "type": "recursive_expansion",
+      "max_depth": 3,
+      "deduplication_fields": [13, 42, 43],
+      "steps": [
+        {
+          "step": 1,
+          "action": "OFFICER_APPOINTMENTS_FROM_PERSON_NAME",
+          "input_fields": [59, 7, 31],
+          "output_fields": [42, 58, 59, 60, 61, 62, 63, 64, 65],
+          "description": "Get all companies where person is officer"
+        },
+        {
+          "step": 2,
+          "action": "COMPANY_CORE_FROM_NAME",
+          "input_fields": [42, 13],
+          "output_fields": [13, 14, 15, 42, 43, 47, 48, 49, 50],
+          "description": "Enrich company core data for each result"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "type": "module",
+        "import": "BACKEND.modules.corporella.company_search",
+        "method": "get_officer_appointments",
+        "description": "Primary officer search via Corporella"
+      },
+      {
+        "type": "api",
+        "name": "Companies House API",
+        "url": "https://api.company-information.service.gov.uk/",
+        "jurisdiction": "GB"
+      },
+      {
+        "type": "api",
+        "name": "OpenCorporates",
+        "url": "https://api.opencorporates.com/v0.4/",
+        "jurisdiction": "global"
+      }
+    ],
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_officer_to_companies_chain",
+      "params": {
+        "officer_name": "{59|7|31}",
+        "jurisdiction": "{jurisdiction}",
+        "max_depth": 3,
+        "include_resigned": false
+      }
+    }
+  },
+  {
+    "id": "CHAIN_BENEFICIAL_OWNER_CASCADE",
+    "label": "Trace ownership pyramids via beneficial owner (cascade)",
+    "requires_any": [
+      67,
+      7,
+      31,
+      42,
+      13
+    ],
+    "requires_all": [],
+    "returns": [
+      42,
+      13,
+      43,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77
+    ],
+    "friction": "Restricted",
+    "jurisdiction": "REQUIRED",
+    "notes": "Cascading search: Given beneficial owner name, find all owned companies, then recursively find companies owned by those companies. Reveals ownership pyramids and shell company networks.",
+    "category": "corporate",
+    "friction_raw": "Restricted/Paywalled",
+    "chain": true,
+    "chain_config": {
+      "type": "cascading_ownership",
+      "max_depth": 5,
+      "ownership_threshold_pct": 25.0,
+      "deduplication_fields": [13, 42, 43],
+      "steps": [
+        {
+          "step": 1,
+          "action": "COMPANY_FROM_BENEFICIAL_OWNER",
+          "input_fields": [67, 7, 31],
+          "output_fields": [42, 13, 66, 67, 68, 69, 70],
+          "description": "Find all companies owned by beneficial owner"
+        },
+        {
+          "step": 2,
+          "action": "COMPANY_SHAREHOLDERS",
+          "input_fields": [42, 13],
+          "output_fields": [71, 72, 73, 74, 75, 76, 77],
+          "description": "Get shareholder details for each company"
+        },
+        {
+          "step": 3,
+          "action": "RECURSIVE_OWNERSHIP_TRACE",
+          "input_fields": [72, 73],
+          "output_fields": [42, 13, 66, 67, 71, 72],
+          "description": "Recursively trace corporate shareholders",
+          "condition": "if shareholder_type == 'company'"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "type": "module",
+        "import": "BACKEND.modules.corporella.company_search",
+        "method": "get_beneficial_ownership_cascade"
+      },
+      {
+        "type": "api",
+        "name": "UK PSC Register",
+        "url": "https://api.company-information.service.gov.uk/company/{id}/persons-with-significant-control",
+        "jurisdiction": "GB"
+      },
+      {
+        "type": "api",
+        "name": "OpenOwnership",
+        "url": "https://api.openownership.org/v0.4/",
+        "jurisdiction": "global"
+      }
+    ],
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_beneficial_owner_cascade",
+      "params": {
+        "owner_name": "{67|7|31|42|13}",
+        "jurisdiction": "{jurisdiction}",
+        "max_depth": 5,
+        "ownership_threshold": 25.0,
+        "follow_corporate_shareholders": true
+      }
+    }
+  },
+  {
+    "id": "CHAIN_PROPERTY_TO_CORPORATE_NETWORK",
+    "label": "Find corporate networks via shared address (property clustering)",
+    "requires_any": [
+      20,
+      47,
+      35
+    ],
+    "requires_all": [],
+    "returns": [
+      42,
+      13,
+      43,
+      47,
+      58,
+      59,
+      60,
+      66,
+      67,
+      68,
+      106,
+      107
+    ],
+    "friction": "Paywalled",
+    "jurisdiction": "REQUIRED",
+    "notes": "Shell company cluster detection: Given address, find all companies registered there, then cross-reference officers and beneficial owners. Reveals mail-drop services and nominee director networks.",
+    "category": "corporate",
+    "friction_raw": "Paywalled",
+    "chain": true,
+    "chain_config": {
+      "type": "clustering_network",
+      "max_depth": 2,
+      "deduplication_fields": [13, 42, 43],
+      "cluster_threshold": 2,
+      "steps": [
+        {
+          "step": 1,
+          "action": "COMPANIES_AT_ADDRESS",
+          "input_fields": [20, 47, 35],
+          "output_fields": [42, 13, 43, 47, 48, 49],
+          "description": "Find all companies at given address"
+        },
+        {
+          "step": 2,
+          "action": "COMPANY_OFFICERS",
+          "input_fields": [42, 13],
+          "output_fields": [58, 59, 60, 61, 62, 63, 64, 65],
+          "description": "Get officers for each company at address"
+        },
+        {
+          "step": 3,
+          "action": "COMPANY_BENEFICIAL_OWNERS",
+          "input_fields": [42, 13],
+          "output_fields": [66, 67, 68, 69, 70],
+          "description": "Get beneficial owners for each company"
+        },
+        {
+          "step": 4,
+          "action": "CROSS_REFERENCE_OFFICERS",
+          "input_fields": [59],
+          "output_fields": [42, 59, 60],
+          "description": "Find shared officers across companies",
+          "condition": "cluster_analysis"
+        },
+        {
+          "step": 5,
+          "action": "PROPERTY_FROM_ADDRESS",
+          "input_fields": [20, 47],
+          "output_fields": [106, 107, 108, 109, 110, 111],
+          "description": "Get property ownership details"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "type": "module",
+        "import": "BACKEND.modules.corporella.company_search",
+        "method": "get_companies_at_address"
+      },
+      {
+        "type": "api",
+        "name": "Companies House Search",
+        "url": "https://api.company-information.service.gov.uk/search/companies",
+        "jurisdiction": "GB"
+      },
+      {
+        "type": "api",
+        "name": "OpenCorporates Address Search",
+        "url": "https://api.opencorporates.com/v0.4/companies/search",
+        "jurisdiction": "global"
+      }
+    ],
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_property_to_corporate_network",
+      "params": {
+        "address": "{20|47|35}",
+        "jurisdiction": "{jurisdiction}",
+        "cluster_threshold": 2,
+        "include_dissolved": false,
+        "analyze_officer_overlap": true
+      }
+    }
+  },
+  {
+    "id": "CHAIN_COMPANY_TO_SUBSIDIARY_NETWORK",
+    "label": "Map corporate structure: parent to subsidiaries + officers (recursive)",
+    "requires_any": [
+      13,
+      42,
+      14,
+      43
+    ],
+    "requires_all": [],
+    "returns": [
+      42,
+      13,
+      43,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65
+    ],
+    "friction": "Paywalled",
+    "jurisdiction": "REQUIRED",
+    "notes": "Full corporate structure mapping: Given parent company, recursively find all subsidiaries (via shareholdings), then get officers for each entity. Reveals complete corporate family tree.",
+    "category": "corporate",
+    "friction_raw": "Paywalled",
+    "chain": true,
+    "chain_config": {
+      "type": "hierarchical_expansion",
+      "max_depth": 4,
+      "ownership_threshold_pct": 50.0,
+      "deduplication_fields": [13, 42, 43],
+      "steps": [
+        {
+          "step": 1,
+          "action": "COMPANY_SHAREHOLDERS",
+          "input_fields": [13, 42, 14, 43],
+          "output_fields": [71, 72, 73, 74, 75, 76, 77],
+          "description": "Get all shareholders of parent company"
+        },
+        {
+          "step": 2,
+          "action": "FIND_SUBSIDIARIES",
+          "input_fields": [13, 42],
+          "output_fields": [42, 13, 72, 75, 76],
+          "description": "Identify subsidiaries where parent is shareholder",
+          "condition": "ownership_pct >= threshold"
+        },
+        {
+          "step": 3,
+          "action": "COMPANY_OFFICERS",
+          "input_fields": [42, 13],
+          "output_fields": [58, 59, 60, 61, 62, 63, 64, 65],
+          "description": "Get officers for parent and all subsidiaries"
+        },
+        {
+          "step": 4,
+          "action": "RECURSIVE_SUBSIDIARY_TRACE",
+          "input_fields": [42, 13],
+          "output_fields": [42, 13, 72, 73, 74, 75, 76, 77],
+          "description": "Recursively find subsidiaries of subsidiaries",
+          "condition": "depth < max_depth"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "type": "module",
+        "import": "BACKEND.modules.corporella.company_search",
+        "method": "get_subsidiary_network"
+      },
+      {
+        "type": "api",
+        "name": "Companies House Filing History",
+        "url": "https://api.company-information.service.gov.uk/company/{id}/filing-history",
+        "jurisdiction": "GB"
+      },
+      {
+        "type": "api",
+        "name": "SEC EDGAR API",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar",
+        "jurisdiction": "US"
+      }
+    ],
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_company_to_subsidiary_chain",
+      "params": {
+        "company_name": "{13|42}",
+        "company_reg_id": "{14|43}",
+        "jurisdiction": "{jurisdiction}",
+        "max_depth": 4,
+        "ownership_threshold": 50.0,
+        "include_officers": true
+      }
+    }
+  },
+  {
+    "id": "CHAIN_SHAREHOLDER_TO_PORTFOLIO",
+    "label": "Map investment portfolio: shareholder to all holdings (recursive)",
+    "requires_any": [
+      72,
+      73,
+      74,
+      7,
+      31,
+      13,
+      42
+    ],
+    "requires_all": [],
+    "returns": [
+      42,
+      13,
+      43,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      66,
+      67,
+      68,
+      69,
+      70
+    ],
+    "friction": "Paywalled",
+    "jurisdiction": "REQUIRED",
+    "notes": "Investment network mapping: Given shareholder (person or company), find all companies where they hold shares. If shareholder is a company, recursively trace its portfolio. Reveals investment strategies and connected entities.",
+    "category": "corporate",
+    "friction_raw": "Paywalled",
+    "chain": true,
+    "chain_config": {
+      "type": "portfolio_expansion",
+      "max_depth": 3,
+      "ownership_threshold_pct": 5.0,
+      "deduplication_fields": [13, 42, 43],
+      "steps": [
+        {
+          "step": 1,
+          "action": "FIND_SHAREHOLDINGS",
+          "input_fields": [72, 73, 74, 7, 31, 13, 42],
+          "output_fields": [42, 13, 71, 72, 73, 74, 75, 76, 77],
+          "description": "Find all companies where entity is shareholder"
+        },
+        {
+          "step": 2,
+          "action": "COMPANY_CORE_FROM_NAME",
+          "input_fields": [42, 13],
+          "output_fields": [13, 14, 15, 42, 43, 47, 48, 49, 50],
+          "description": "Enrich company data for each holding"
+        },
+        {
+          "step": 3,
+          "action": "COMPANY_BENEFICIAL_OWNERS",
+          "input_fields": [42, 13],
+          "output_fields": [66, 67, 68, 69, 70],
+          "description": "Get beneficial ownership for holdings"
+        },
+        {
+          "step": 4,
+          "action": "RECURSIVE_PORTFOLIO_TRACE",
+          "input_fields": [72, 73],
+          "output_fields": [42, 13, 71, 72, 75, 76, 77],
+          "description": "If shareholder is a company, trace its portfolio",
+          "condition": "if shareholder_type == 'company' and depth < max_depth"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "type": "module",
+        "import": "BACKEND.modules.corporella.company_search",
+        "method": "get_shareholder_portfolio"
+      },
+      {
+        "type": "api",
+        "name": "Companies House PSC",
+        "url": "https://api.company-information.service.gov.uk/",
+        "jurisdiction": "GB"
+      },
+      {
+        "type": "api",
+        "name": "SEC Ownership Filings",
+        "url": "https://www.sec.gov/cgi-bin/own-disp",
+        "jurisdiction": "US"
+      }
+    ],
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_shareholder_to_portfolio_chain",
+      "params": {
+        "shareholder_name": "{72|73|74|7|31|13|42}",
+        "jurisdiction": "{jurisdiction}",
+        "max_depth": 3,
+        "ownership_threshold": 5.0,
+        "follow_corporate_shareholders": true
+      }
+    }
+  },
+  {
+    "id": "CHAIN_OFFICER_CROSS_APPOINTMENTS",
+    "label": "Officer network: find shared directorships and connections",
+    "requires_any": [
+      59,
+      7,
+      31
+    ],
+    "requires_all": [],
+    "returns": [
+      42,
+      13,
+      43,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65
+    ],
+    "friction": "Paywalled",
+    "jurisdiction": "REQUIRED",
+    "notes": "Network analysis: Given officer name, find all their appointments, then find all other officers at those companies, then find their appointments. Reveals director networks and interlocking directorates.",
+    "category": "corporate",
+    "friction_raw": "Paywalled",
+    "chain": true,
+    "chain_config": {
+      "type": "network_expansion",
+      "max_depth": 2,
+      "deduplication_fields": [59, 7, 31],
+      "network_threshold": 2,
+      "steps": [
+        {
+          "step": 1,
+          "action": "OFFICER_APPOINTMENTS_FROM_PERSON_NAME",
+          "input_fields": [59, 7, 31],
+          "output_fields": [42, 58, 59, 60, 61, 62, 63, 64, 65],
+          "description": "Get all appointments for target officer"
+        },
+        {
+          "step": 2,
+          "action": "COMPANY_OFFICERS",
+          "input_fields": [42, 13],
+          "output_fields": [58, 59, 60, 61, 62, 63, 64, 65],
+          "description": "Get all officers at companies where target is officer"
+        },
+        {
+          "step": 3,
+          "action": "OFFICER_APPOINTMENTS_FROM_PERSON_NAME",
+          "input_fields": [59],
+          "output_fields": [42, 58, 59, 60, 61, 62, 63, 64, 65],
+          "description": "Get appointments for connected officers",
+          "condition": "depth < max_depth and officer_name != target_officer"
+        },
+        {
+          "step": 4,
+          "action": "CALCULATE_NETWORK_METRICS",
+          "input_fields": [59, 42],
+          "output_fields": [59, 42, 60],
+          "description": "Calculate shared appointment metrics",
+          "condition": "network_analysis"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "type": "module",
+        "import": "BACKEND.modules.corporella.company_search",
+        "method": "get_officer_network"
+      },
+      {
+        "type": "api",
+        "name": "Companies House Officers",
+        "url": "https://api.company-information.service.gov.uk/",
+        "jurisdiction": "GB"
+      }
+    ],
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_officer_cross_appointments",
+      "params": {
+        "officer_name": "{59|7|31}",
+        "jurisdiction": "{jurisdiction}",
+        "max_depth": 2,
+        "include_resigned": false,
+        "network_threshold": 2
+      }
+    }
+  },
+  {
+    "id": "CHAIN_COMPANY_TO_PERSON_NETWORK",
+    "label": "Full corporate-person network: company to all connected individuals",
+    "requires_any": [
+      13,
+      42,
+      14,
+      43
+    ],
+    "requires_all": [],
+    "returns": [
+      7,
+      31,
+      59,
+      67,
+      72,
+      73,
+      74,
+      58,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      68,
+      69,
+      70
+    ],
+    "friction": "Paywalled",
+    "jurisdiction": "REQUIRED",
+    "notes": "Comprehensive person mapping: Given company, extract all officers, beneficial owners, and shareholders, then cross-reference their other appointments. Maps entire human network around a company.",
+    "category": "corporate",
+    "friction_raw": "Paywalled",
+    "chain": true,
+    "chain_config": {
+      "type": "entity_network_extraction",
+      "max_depth": 2,
+      "deduplication_fields": [7, 31, 59, 67, 72],
+      "steps": [
+        {
+          "step": 1,
+          "action": "COMPANY_OFFICERS",
+          "input_fields": [13, 42, 14, 43],
+          "output_fields": [58, 59, 60, 61, 62, 63, 64, 65],
+          "description": "Get all officers for target company"
+        },
+        {
+          "step": 2,
+          "action": "COMPANY_BENEFICIAL_OWNERS",
+          "input_fields": [13, 42, 14, 43],
+          "output_fields": [66, 67, 68, 69, 70],
+          "description": "Get all beneficial owners"
+        },
+        {
+          "step": 3,
+          "action": "COMPANY_SHAREHOLDERS",
+          "input_fields": [13, 42],
+          "output_fields": [71, 72, 73, 74, 75, 76, 77],
+          "description": "Get all shareholders (person and company)"
+        },
+        {
+          "step": 4,
+          "action": "OFFICER_APPOINTMENTS_FROM_PERSON_NAME",
+          "input_fields": [59, 67, 72, 73, 74],
+          "output_fields": [42, 58, 59, 60, 61, 62, 63, 64, 65],
+          "description": "Find other appointments for all identified persons",
+          "condition": "depth < max_depth"
+        }
+      ]
+    },
+    "resources": [
+      {
+        "type": "module",
+        "import": "BACKEND.modules.corporella.company_search",
+        "method": "get_company_person_network"
+      }
+    ],
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_company_to_person_network",
+      "params": {
+        "company_name": "{13|42}",
+        "company_reg_id": "{14|43}",
+        "jurisdiction": "{jurisdiction}",
+        "max_depth": 2,
+        "include_shareholders": true,
+        "include_beneficial_owners": true,
+        "include_officers": true
+      }
+    }
+  },
+  {
+    "id": "CHAIN_PLAYBOOK_FULL_COMPANY_INTEL",
+    "label": "Full company intelligence via jurisdiction playbooks",
+    "requires_any": [13, 42, 14],
+    "requires_all": [],
+    "returns": [42, 43, 47, 48, 49, 50, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 99, 100],
+    "friction": "Medium",
+    "jurisdiction": "DYNAMIC",
+    "notes": "Comprehensive company investigation using auto-selected jurisdiction playbooks. Step 1: Identify jurisdiction. Step 2: Run best REGISTRY playbook. Step 3: Run LEGAL playbook. Step 4: Run COMPLIANCE playbook. Combines outputs from all playbooks.",
+    "category": "corporate",
+    "friction_raw": "Medium",
+    "chain": true,
+    "uses_playbooks": true,
+    "chain_config": {
+      "type": "playbook_cascade",
+      "max_depth": 1,
+      "deduplication_fields": [13, 42, 43],
+      "playbook_selection": "auto",
+      "steps": [
+        {
+          "step": 1,
+          "action": "RECOMMEND_PLAYBOOK",
+          "action_type": "playbook_recommendation",
+          "params": {
+            "entity_type": "company",
+            "jurisdiction": "{jurisdiction}",
+            "top_n": 1
+          },
+          "output_field": "selected_playbook",
+          "description": "Auto-select best registry playbook for jurisdiction"
+        },
+        {
+          "step": 2,
+          "action": "{selected_playbook.id}",
+          "action_type": "playbook",
+          "fallback_pattern": "PLY_{jurisdiction}_REGISTRY_*",
+          "input_fields": [13, 42, 14],
+          "output_fields": [42, 43, 47, 48, 49, 50, 58, 59, 60, 66, 67, 71, 72],
+          "description": "Execute selected registry playbook"
+        },
+        {
+          "step": 3,
+          "action": "PLY_{jurisdiction}_LEGAL_*",
+          "action_type": "playbook",
+          "input_fields": [13, 42],
+          "output_fields": [99, 100, 188, 189, 190],
+          "description": "Execute jurisdiction legal playbook"
+        },
+        {
+          "step": 4,
+          "action": "PLY_{jurisdiction}_COMPLIANCE_*",
+          "action_type": "playbook",
+          "input_fields": [13, 42],
+          "output_fields": [99, 100, 203, 204, 205],
+          "description": "Execute jurisdiction compliance playbook",
+          "condition": "if available"
+        }
+      ]
+    },
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_playbook_chain",
+      "params": {
+        "chain_id": "CHAIN_PLAYBOOK_FULL_COMPANY_INTEL",
+        "company_name": "{13|42}",
+        "jurisdiction": "{jurisdiction}",
+        "playbook_categories": ["REGISTRY", "LEGAL", "COMPLIANCE"]
+      }
+    }
+  },
+  {
+    "id": "CHAIN_PLAYBOOK_GLOBAL_PERSON_PROFILE",
+    "label": "Global person profiling via multi-jurisdiction playbooks",
+    "requires_any": [7, 31, 59],
+    "requires_all": [],
+    "returns": [7, 31, 42, 58, 59, 60, 61, 62, 63, 64, 65, 99, 100, 170, 171, 188, 240, 241, 242],
+    "friction": "Medium",
+    "jurisdiction": "GLOBAL",
+    "notes": "Comprehensive person investigation using HUMAN_SOURCES playbooks across multiple jurisdictions. Finds all company appointments, beneficial ownership, and media mentions globally.",
+    "category": "person",
+    "friction_raw": "Medium",
+    "chain": true,
+    "uses_playbooks": true,
+    "chain_config": {
+      "type": "multi_jurisdiction_sweep",
+      "max_depth": 2,
+      "deduplication_fields": [7, 31, 59],
+      "parallel_execution": true,
+      "steps": [
+        {
+          "step": 1,
+          "action": "PLY_GLOBAL_HUMAN_SOURCES_89R",
+          "action_type": "playbook",
+          "input_fields": [7, 31, 59],
+          "output_fields": [42, 58, 59, 60, 61, 240, 241],
+          "description": "Global human sources intelligence sweep"
+        },
+        {
+          "step": 2,
+          "action": "PLY_GB_HUMAN_SOURCES_150R",
+          "action_type": "playbook",
+          "input_fields": [7, 31, 59],
+          "output_fields": [42, 58, 59, 60, 61, 62, 63, 64, 65],
+          "description": "UK-specific person appointments lookup",
+          "condition": "if name appears in UK context"
+        },
+        {
+          "step": 3,
+          "action": "PLY_US_HUMAN_SOURCES_75R",
+          "action_type": "playbook",
+          "input_fields": [7, 31, 59],
+          "output_fields": [42, 58, 59, 60, 61],
+          "description": "US-specific person appointments lookup",
+          "condition": "if name appears in US context"
+        },
+        {
+          "step": 4,
+          "action": "OFFICER_APPOINTMENTS_FROM_PERSON_NAME",
+          "action_type": "rule",
+          "input_fields": [59, 7, 31],
+          "output_fields": [42, 58, 59, 60, 61, 62, 63, 64, 65],
+          "description": "Cross-reference appointments from all sources"
+        }
+      ]
+    },
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_playbook_chain",
+      "params": {
+        "chain_id": "CHAIN_PLAYBOOK_GLOBAL_PERSON_PROFILE",
+        "person_name": "{7|31|59}",
+        "playbook_categories": ["HUMAN_SOURCES"],
+        "jurisdictions": ["GLOBAL", "GB", "US", "DE", "HU"]
+      }
+    }
+  },
+  {
+    "id": "CHAIN_PLAYBOOK_DOMAIN_TO_CORPORATE",
+    "label": "Domain intelligence to corporate network mapping",
+    "requires_any": [6, 130, 191],
+    "requires_all": [],
+    "returns": [6, 13, 42, 43, 47, 58, 59, 130, 131, 132, 133, 134, 135, 141, 191, 193, 200, 240, 241],
+    "friction": "Open",
+    "jurisdiction": "GLOBAL",
+    "notes": "Start from domain, extract WHOIS and registrant info, then pivot to corporate registry lookups for registrant companies and officers. Reveals shell company networks behind domains.",
+    "category": "digital",
+    "friction_raw": "Open/Paywalled",
+    "chain": true,
+    "uses_playbooks": true,
+    "chain_config": {
+      "type": "domain_to_corporate_pivot",
+      "max_depth": 3,
+      "deduplication_fields": [6, 13, 42],
+      "steps": [
+        {
+          "step": 1,
+          "action": "PLY_GLOBAL_DIGITAL_89R",
+          "action_type": "playbook",
+          "input_fields": [6],
+          "output_fields": [130, 131, 132, 133, 134, 135, 141, 191, 193, 200],
+          "description": "Full domain intelligence via DIGITAL playbook"
+        },
+        {
+          "step": 2,
+          "action": "EXTRACT_ENTITIES",
+          "action_type": "rule",
+          "input_fields": [131, 132],
+          "output_fields": [7, 13, 240, 241],
+          "description": "Extract person and company names from registrant data"
+        },
+        {
+          "step": 3,
+          "action": "RECOMMEND_PLAYBOOK",
+          "action_type": "playbook_recommendation",
+          "params": {
+            "entity_type": "company",
+            "top_n": 1
+          },
+          "condition": "if registrant_company detected",
+          "description": "Select best playbook for registrant company"
+        },
+        {
+          "step": 4,
+          "action": "{recommended_playbook}",
+          "action_type": "playbook",
+          "fallback": "PLY_GLOBAL_REGISTRY_89R",
+          "input_fields": [13, 42],
+          "output_fields": [42, 43, 47, 58, 59, 60],
+          "description": "Enrich registrant company via registry playbook"
+        }
+      ]
+    },
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_playbook_chain",
+      "params": {
+        "chain_id": "CHAIN_PLAYBOOK_DOMAIN_TO_CORPORATE",
+        "domain": "{6}",
+        "follow_registrant_companies": true,
+        "follow_registrant_persons": true
+      }
+    }
+  },
+  {
+    "id": "CHAIN_PLAYBOOK_COMPLIANCE_DEEP_DIVE",
+    "label": "Deep compliance investigation via stacked playbooks",
+    "requires_any": [13, 42, 7, 31],
+    "requires_all": [],
+    "returns": [42, 43, 58, 59, 66, 67, 68, 99, 100, 101, 102, 103, 203, 204, 205, 206],
+    "friction": "Paywalled",
+    "jurisdiction": "GLOBAL",
+    "notes": "Comprehensive compliance check using COMPLIANCE + LEGAL playbooks in sequence. Covers sanctions, PEP screening, adverse media, and regulatory filings.",
+    "category": "compliance",
+    "friction_raw": "Paywalled",
+    "chain": true,
+    "uses_playbooks": true,
+    "chain_config": {
+      "type": "compliance_stack",
+      "max_depth": 2,
+      "deduplication_fields": [13, 42, 7],
+      "steps": [
+        {
+          "step": 1,
+          "action": "PLY_GLOBAL_COMPLIANCE_90R",
+          "action_type": "playbook",
+          "input_fields": [13, 42],
+          "output_fields": [99, 100, 101, 102, 103, 203, 204, 205],
+          "description": "Global compliance playbook for sanctions and PEP"
+        },
+        {
+          "step": 2,
+          "action": "PLY_GLOBAL_LEGAL_90R",
+          "action_type": "playbook",
+          "input_fields": [13, 42],
+          "output_fields": [188, 189, 190, 206],
+          "description": "Global legal playbook for litigation and regulatory"
+        },
+        {
+          "step": 3,
+          "action": "PLY_{jurisdiction}_COMPLIANCE_*",
+          "action_type": "playbook",
+          "input_fields": [13, 42],
+          "output_fields": [99, 100],
+          "condition": "if jurisdiction specified",
+          "description": "Jurisdiction-specific compliance overlay"
+        },
+        {
+          "step": 4,
+          "action": "COMPANY_OFFICERS",
+          "action_type": "rule",
+          "input_fields": [13, 42],
+          "output_fields": [58, 59, 60],
+          "description": "Get officers for individual PEP/sanctions checks"
+        },
+        {
+          "step": 5,
+          "action": "SANCTIONS_FROM_NAME",
+          "action_type": "rule",
+          "input_fields": [59, 7, 31],
+          "output_fields": [99, 100],
+          "description": "Individual sanctions screening for each officer"
+        }
+      ]
+    },
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_playbook_chain",
+      "params": {
+        "chain_id": "CHAIN_PLAYBOOK_COMPLIANCE_DEEP_DIVE",
+        "entity_name": "{13|42|7|31}",
+        "jurisdiction": "{jurisdiction}",
+        "check_officers": true,
+        "check_shareholders": true
+      }
+    }
+  },
+  {
+    "id": "CHAIN_PLAYBOOK_MEDIA_INTELLIGENCE",
+    "label": "Comprehensive media intelligence via MEDIA playbooks",
+    "requires_any": [13, 42, 7, 31],
+    "requires_all": [],
+    "returns": [188, 189, 190, 192, 194, 195, 240, 241, 242],
+    "friction": "Open",
+    "jurisdiction": "GLOBAL",
+    "notes": "Multi-source media sweep using MEDIA playbooks across jurisdictions. Aggregates news, adverse media, and investigative journalism references.",
+    "category": "media",
+    "friction_raw": "Open/Restricted",
+    "chain": true,
+    "uses_playbooks": true,
+    "chain_config": {
+      "type": "media_aggregation",
+      "max_depth": 1,
+      "parallel_execution": true,
+      "steps": [
+        {
+          "step": 1,
+          "action": "PLY_GLOBAL_MEDIA_90R",
+          "action_type": "playbook",
+          "input_fields": [13, 42, 7, 31],
+          "output_fields": [188, 189, 190, 192, 240, 241],
+          "description": "Global media intelligence sweep"
+        },
+        {
+          "step": 2,
+          "action": "PLY_GB_MEDIA_151R",
+          "action_type": "playbook",
+          "input_fields": [13, 42, 7, 31],
+          "output_fields": [188, 189, 190, 194, 195],
+          "description": "UK media sources (Financial Times, Guardian, etc.)",
+          "parallel": true
+        },
+        {
+          "step": 3,
+          "action": "PLY_US_MEDIA_76R",
+          "action_type": "playbook",
+          "input_fields": [13, 42, 7, 31],
+          "output_fields": [188, 189, 190, 194, 195],
+          "description": "US media sources (WSJ, NYT, etc.)",
+          "parallel": true
+        },
+        {
+          "step": 4,
+          "action": "PLY_{jurisdiction}_MEDIA_*",
+          "action_type": "playbook",
+          "input_fields": [13, 42, 7, 31],
+          "output_fields": [188, 189, 190],
+          "condition": "if jurisdiction specified and not GB/US",
+          "description": "Jurisdiction-specific local media",
+          "parallel": true
+        }
+      ]
+    },
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_playbook_chain",
+      "params": {
+        "chain_id": "CHAIN_PLAYBOOK_MEDIA_INTELLIGENCE",
+        "entity_name": "{13|42|7|31}",
+        "jurisdiction": "{jurisdiction}",
+        "include_global": true,
+        "parallel": true
+      }
+    }
+  },
+  {
+    "id": "CHAIN_OSINT_CASCADE",
+    "label": "Recursive OSINT entity expansion with relevance scoring",
+    "requires_any": [1, 2, 3, 4, 5, 6, 7],
+    "requires_all": [],
+    "returns": [1, 2, 3, 4, 5, 6, 7, 8, 20, 31, 130, 131, 240, 241],
+    "friction": "Paywalled",
+    "jurisdiction": "GLOBAL",
+    "notes": "Recursive chain-reaction OSINT search. Given any OSINT entity (email, phone, username, password, LinkedIn, domain, person), recursively discovers related entities via breach data and OSINT sources. Uses relevance scoring to prevent infinite loops: steps_from_target, name_commonality, connection_strength. Persists all entities to cymonides-1 in real-time.",
+    "category": "osint",
+    "friction_raw": "Paywalled",
+    "chain": true,
+    "real_time_streaming": true,
+    "cymonides_persistence": "always",
+    "chain_config": {
+      "type": "osint_cascade",
+      "max_depth": 3,
+      "relevance_threshold": 0.5,
+      "ai_filter_enabled": true,
+      "ai_filter_model": "gpt-4.1-nano",
+      "deduplication_fields": [1, 2, 3, 6, 7],
+      "scoring": {
+        "steps_weight": 0.4,
+        "name_commonality_weight": 0.3,
+        "connection_strength_weight": 0.3,
+        "common_name_penalty": 0.7,
+        "decay_per_step": 0.15
+      },
+      "stopping_conditions": {
+        "max_entities": 500,
+        "max_depth": 3,
+        "min_relevance": 0.3,
+        "ai_confidence_threshold": 0.6
+      },
+      "steps": [
+        {
+          "step": 1,
+          "action": "OSINT_ENTITY_LOOKUP",
+          "input_fields": [1, 2, 3, 4, 5, 6, 7],
+          "output_fields": [1, 2, 3, 4, 5, 6, 7, 8, 20, 31, 130, 240],
+          "description": "Initial OSINT lookup via EYE-D unified endpoint",
+          "persist_immediately": true
+        },
+        {
+          "step": 2,
+          "action": "EXTRACT_RELATED_ENTITIES",
+          "input_fields": [1, 2, 3, 6, 7],
+          "output_fields": [1, 2, 3, 4, 5, 6, 7],
+          "description": "Extract all related entities from OSINT results",
+          "entity_types": ["email", "phone", "username", "password", "linkedin", "domain", "person_name"]
+        },
+        {
+          "step": 3,
+          "action": "SCORE_RELEVANCE",
+          "input_fields": [1, 2, 3, 6, 7],
+          "output_fields": [1, 2, 3, 6, 7],
+          "description": "Calculate relevance score for each extracted entity",
+          "scoring_method": "weighted_composite"
+        },
+        {
+          "step": 4,
+          "action": "AI_FILTER_DECISION",
+          "input_fields": [1, 2, 3, 6, 7],
+          "output_fields": [1, 2, 3, 6, 7],
+          "description": "AI decides which entities warrant further exploration",
+          "condition": "if ai_filter_enabled and relevance >= threshold"
+        },
+        {
+          "step": 5,
+          "action": "RECURSIVE_OSINT_EXPANSION",
+          "input_fields": [1, 2, 3, 4, 5, 6, 7],
+          "output_fields": [1, 2, 3, 4, 5, 6, 7, 8, 20, 31, 130, 240],
+          "description": "Recursively expand approved entities",
+          "condition": "if depth < max_depth and relevance >= min_relevance",
+          "persist_immediately": true
+        }
+      ]
+    },
+    "resources": [
+      {
+        "type": "module",
+        "import": "EYE-D.unified_osint",
+        "method": "search_unified",
+        "description": "Primary OSINT search via EYE-D"
+      },
+      {
+        "type": "module",
+        "import": "CYMONIDES.atlas_node_creator",
+        "method": "process_atlas_results",
+        "description": "Persist entities to cymonides-1"
+      },
+      {
+        "type": "api",
+        "name": "DeHashed",
+        "url": "https://api.dehashed.com/",
+        "jurisdiction": "global"
+      },
+      {
+        "type": "api",
+        "name": "OSINT Industries",
+        "url": "https://osint.industries/",
+        "jurisdiction": "global"
+      }
+    ],
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_osint_cascade",
+      "params": {
+        "initial_entity": "{1|2|3|4|5|6|7}",
+        "max_depth": 3,
+        "relevance_threshold": 0.5,
+        "ai_filter": true,
+        "persist_to_cymonides": true,
+        "stream_events": true
+      }
+    }
+  },
+  {
+    "id": "CHAIN_OSINT_BREACH_NETWORK",
+    "label": "Breach-focused network mapping with credential clustering",
+    "requires_any": [1, 2, 3, 4],
+    "requires_all": [],
+    "returns": [1, 2, 3, 4, 5, 6, 7, 8, 130, 240, 241],
+    "friction": "Paywalled",
+    "jurisdiction": "GLOBAL",
+    "notes": "Specialized chain for breach data exploration. Given email, phone, username, or password, maps the full breach network including credential reuse patterns, shared passwords across accounts, and breach source clustering. Identifies password reuse risk and account compromise scope.",
+    "category": "osint",
+    "friction_raw": "Paywalled",
+    "chain": true,
+    "real_time_streaming": true,
+    "cymonides_persistence": "always",
+    "chain_config": {
+      "type": "osint_breach_network",
+      "max_depth": 2,
+      "relevance_threshold": 0.6,
+      "ai_filter_enabled": true,
+      "deduplication_fields": [1, 3, 4],
+      "breach_clustering": {
+        "cluster_by_password": true,
+        "cluster_by_breach_source": true,
+        "cluster_by_timeframe": true
+      },
+      "scoring": {
+        "password_reuse_weight": 0.5,
+        "breach_recency_weight": 0.3,
+        "account_importance_weight": 0.2
+      },
+      "steps": [
+        {
+          "step": 1,
+          "action": "BREACH_LOOKUP",
+          "input_fields": [1, 2, 3, 4],
+          "output_fields": [1, 2, 3, 4, 5, 6, 7, 8, 130],
+          "description": "Initial breach database lookup via DeHashed/LeakCheck",
+          "persist_immediately": true
+        },
+        {
+          "step": 2,
+          "action": "PASSWORD_CLUSTER_ANALYSIS",
+          "input_fields": [4],
+          "output_fields": [1, 3, 4],
+          "description": "Find all accounts sharing the same password hash/pattern",
+          "condition": "if password field present"
+        },
+        {
+          "step": 3,
+          "action": "BREACH_SOURCE_CLUSTERING",
+          "input_fields": [130],
+          "output_fields": [1, 2, 3, 4, 130],
+          "description": "Cluster accounts by breach source for scope analysis"
+        },
+        {
+          "step": 4,
+          "action": "EXPAND_RELATED_ACCOUNTS",
+          "input_fields": [1, 3],
+          "output_fields": [1, 2, 3, 4, 5, 6, 7],
+          "description": "Find other accounts for same email/username",
+          "persist_immediately": true
+        },
+        {
+          "step": 5,
+          "action": "RECURSIVE_BREACH_EXPANSION",
+          "input_fields": [1, 3],
+          "output_fields": [1, 2, 3, 4, 5, 6, 7, 8, 130],
+          "description": "Recursively expand newly discovered credentials",
+          "condition": "if depth < max_depth and not already_processed",
+          "persist_immediately": true
+        }
+      ]
+    },
+    "resources": [
+      {
+        "type": "module",
+        "import": "EYE-D.unified_osint",
+        "method": "search_breach_databases",
+        "description": "Breach database search"
+      },
+      {
+        "type": "module",
+        "import": "CYMONIDES.atlas_node_creator",
+        "method": "process_atlas_results",
+        "description": "Persist breach entities to cymonides-1"
+      },
+      {
+        "type": "api",
+        "name": "DeHashed",
+        "url": "https://api.dehashed.com/",
+        "jurisdiction": "global"
+      },
+      {
+        "type": "api",
+        "name": "LeakCheck",
+        "url": "https://leakcheck.io/api",
+        "jurisdiction": "global"
+      }
+    ],
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_osint_breach_network",
+      "params": {
+        "initial_credential": "{1|2|3|4}",
+        "max_depth": 2,
+        "cluster_passwords": true,
+        "cluster_breaches": true,
+        "persist_to_cymonides": true,
+        "stream_events": true
+      }
+    }
+  },
+  {
+    "id": "CHAIN_OSINT_PERSON_WEB",
+    "label": "Person-centric OSINT aggregation with identity resolution",
+    "requires_any": [7, 31, 1, 5],
+    "requires_all": [],
+    "returns": [1, 2, 3, 4, 5, 6, 7, 8, 13, 20, 31, 42, 58, 59, 130, 191, 240, 241, 242],
+    "friction": "Medium",
+    "jurisdiction": "GLOBAL",
+    "notes": "Comprehensive person profiling via OSINT. Given person name, email, or LinkedIn URL, builds complete digital footprint: social media accounts, breach exposure, corporate affiliations, domain ownership, and public records. Uses identity resolution to link fragmented data points.",
+    "category": "osint",
+    "friction_raw": "Medium/Paywalled",
+    "chain": true,
+    "real_time_streaming": true,
+    "cymonides_persistence": "always",
+    "chain_config": {
+      "type": "osint_person_web",
+      "max_depth": 2,
+      "relevance_threshold": 0.55,
+      "ai_filter_enabled": true,
+      "identity_resolution": {
+        "enabled": true,
+        "confidence_threshold": 0.75,
+        "merge_on_match": true
+      },
+      "deduplication_fields": [7, 31, 1, 5],
+      "scoring": {
+        "name_match_weight": 0.4,
+        "profile_photo_weight": 0.2,
+        "location_match_weight": 0.2,
+        "employer_match_weight": 0.2
+      },
+      "steps": [
+        {
+          "step": 1,
+          "action": "PERSON_OSINT_LOOKUP",
+          "input_fields": [7, 31, 1, 5],
+          "output_fields": [1, 2, 3, 5, 6, 7, 8, 20, 31, 240, 241],
+          "description": "Initial person OSINT lookup via OSINT Industries",
+          "persist_immediately": true
+        },
+        {
+          "step": 2,
+          "action": "SOCIAL_MEDIA_DISCOVERY",
+          "input_fields": [7, 1, 3],
+          "output_fields": [3, 5, 191, 240, 241, 242],
+          "description": "Discover social media accounts linked to person"
+        },
+        {
+          "step": 3,
+          "action": "BREACH_EXPOSURE_CHECK",
+          "input_fields": [1, 3],
+          "output_fields": [1, 2, 3, 4, 130],
+          "description": "Check for breach exposure of discovered accounts",
+          "persist_immediately": true
+        },
+        {
+          "step": 4,
+          "action": "CORPORATE_AFFILIATION_LOOKUP",
+          "input_fields": [7, 31],
+          "output_fields": [13, 42, 58, 59],
+          "description": "Find corporate directorships and affiliations",
+          "condition": "if person appears to have corporate ties"
+        },
+        {
+          "step": 5,
+          "action": "DOMAIN_OWNERSHIP_CHECK",
+          "input_fields": [7, 1],
+          "output_fields": [6, 130, 131, 132],
+          "description": "Check for domain registrations matching person"
+        },
+        {
+          "step": 6,
+          "action": "IDENTITY_RESOLUTION",
+          "input_fields": [7, 1, 3, 5, 240],
+          "output_fields": [7, 31, 240, 241],
+          "description": "Resolve and merge fragmented identity data",
+          "condition": "if identity_resolution.enabled"
+        },
+        {
+          "step": 7,
+          "action": "RECURSIVE_PERSON_EXPANSION",
+          "input_fields": [1, 3, 5],
+          "output_fields": [1, 2, 3, 4, 5, 6, 7, 8, 130, 191, 240],
+          "description": "Recursively expand newly discovered accounts",
+          "condition": "if depth < max_depth and relevance >= threshold",
+          "persist_immediately": true
+        }
+      ]
+    },
+    "resources": [
+      {
+        "type": "module",
+        "import": "EYE-D.unified_osint",
+        "method": "search_person",
+        "description": "Person-centric OSINT search"
+      },
+      {
+        "type": "module",
+        "import": "CORPORELLA.company_search",
+        "method": "search_officer_appointments",
+        "description": "Corporate affiliation lookup"
+      },
+      {
+        "type": "module",
+        "import": "CYMONIDES.atlas_node_creator",
+        "method": "process_atlas_results",
+        "description": "Persist person entities to cymonides-1"
+      },
+      {
+        "type": "api",
+        "name": "OSINT Industries",
+        "url": "https://osint.industries/",
+        "jurisdiction": "global"
+      },
+      {
+        "type": "api",
+        "name": "WhoisXMLAPI",
+        "url": "https://whois.whoisxmlapi.com/",
+        "jurisdiction": "global"
+      }
+    ],
+    "code": {
+      "type": "module",
+      "import": "input_output.matrix.chain_executor",
+      "method": "execute_osint_person_web",
+      "params": {
+        "person_identifier": "{7|31|1|5}",
+        "max_depth": 2,
+        "relevance_threshold": 0.55,
+        "identity_resolution": true,
+        "include_corporate": true,
+        "include_domains": true,
+        "persist_to_cymonides": true,
+        "stream_events": true
+      }
+    }
+  }
+]

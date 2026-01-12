@@ -50,14 +50,16 @@ Return structured profile
 
 ## Scraping Chain
 
-Torpedo uses the **JESTER chain** with Go crawlers:
+Torpedo uses the **JESTER chain** (all 4 tiers are your own system):
 
-1. **JESTER:**
-   - a) **Direct HTTP** (httpx) - fastest, works for ~60% of sites
-   - b) **Colly crawler** (Go) - high-performance static HTML, 500+ concurrent
-   - c) **Rod crawler** (Go) - JS rendering for SPAs, ~100 concurrent browsers
-2. **Firecrawl** - if JESTER fails
-3. **BrightData** - if Firecrawl fails too (LAST RESORT, costs money)
+1. **JESTER_A:** Direct HTTP (httpx) - fastest, ~60% of sites
+2. **JESTER_B:** Colly (Go) - high-performance static HTML, 500+ concurrent
+3. **JESTER_C:** Rod (Go) - JS rendering for SPAs, ~100 concurrent
+4. **JESTER_D:** Custom headless browser - your own Playwright-based hybrid
+
+**External Fallbacks (if all JESTER tiers fail):**
+5. **Firecrawl** - external API (paid)
+6. **BrightData** - external proxy API (LAST RESORT, costs money)
 
 ## Key Files
 
@@ -127,8 +129,8 @@ Response:
 
 ## CRITICAL RULES
 
-1. **USE** the JESTER chain: httpx → colly → rod → Firecrawl → BrightData
-2. **DO NOT** touch universal_scraper.py - it converts HTML to markdown (breaks extraction)
+1. **USE** the JESTER chain: JESTER_A → JESTER_B → JESTER_C → JESTER_D → Firecrawl → BrightData
+2. **DO NOT** touch scrape_orchestrator.py - it converts HTML to markdown (breaks extraction)
 3. **USE** the existing scrape_classification.json - 10,000+ sources already classified
 4. **CHECK** PROFILE_SOURCE_FALLBACKS first for curated sources
-5. **TRUST** the pipeline: JESTER (httpx/colly/rod) → Firecrawl → BrightData
+5. **TRUST** the pipeline: JESTER (A/B/C/D) → Firecrawl → BrightData

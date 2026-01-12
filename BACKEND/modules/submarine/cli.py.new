@@ -1,0 +1,589 @@
+#!/usr/bin/env python3
+"""
+SUBMARINE CLI - Smart Archive Search
+
+Intelligently searches Common Crawl using all available indices
+as "submerging points" to filter before touching raw WARC data.
+
+USAGE:
+    # Plan a search (shows what will be fetched)
+    python cli.py plan "+1-234-567-8900"
+
+    # Execute a search
+    python cli.py search "john.smith@example.com"
+
+    # Search with extraction
+    python cli.py search --extract "Company Name"
+
+    # Resume interrupted search
+    python cli.py resume /path/to/plan.json
+
+COMPONENTS:
+    PERISCOPE - CC Index API client
+    SONAR     - Our Elastic index scanner
+    PLANNER   - Dive plan orchestrator
+    DEEP_DIVE - Go-based WARC fetcher
+    EXTRACTION- PACMAN entity pipeline
+"""
+
+import asyncio
+import argparse
+import json
+import logging
+import os
+import signal
+import sys
+import traceback
+from pathlib import Path
+from datetime import datetime
+from typing import Optional
+
+# FIX #1: Use __file__ for relative import path instead of hardcoded path
+SUBMARINE_ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(SUBMARINE_ROOT))
+
+from sonar.elastic_scanner import Sonar
+from periscope.cc_index import Periscope
+from dive_planner.planner import DivePlanner, DivePlan
+from deep_dive.diver import DeepDiver
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+# FIX #5: Global flag for graceful shutdown
+_shutdown_requested = False
+
+
+def setup_signal_handlers():
+    """Setup handlers for graceful shutdown on SIGINT/SIGTERM."""
+    def signal_handler(signum, frame):
+        global _shutdown_requested
+        if _shutdown_requested:
+            # Second signal - force exit
+            logger.warning("\nForce shutdown requested")
+            sys.exit(1)
+        _shutdown_requested = True
+        logger.info("\nShutdown requested (Ctrl+C again to force)")
+    
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
+
+
+def check_shutdown():
+    """Check if shutdown was requested."""
+    if _shutdown_requested:
+        raise KeyboardInterrupt("Shutdown requested by user")
+
+
+def validate_query(query: str) -> str:
+    """FIX #4: Validate and sanitize query string."""
+    if not query or not query.strip():
+        raise ValueError("Query cannot be empty")
+    
+    query = query.strip()
+    
+    if len(query) < 2:
+        raise ValueError("Query too short (minimum 2 characters)")
+    
+    if len(query) > 500:
+        raise ValueError("Query too long (maximum 500 characters)")
+    
+    return query
+
+
+def validate_path(path_str: str, must_exist: bool = False, create_parent: bool = False) -> Path:
+    """FIX #4: Validate and optionally create path."""
+    path = Path(path_str).resolve()
+    
+    if must_exist and not path.exists():
+        raise ValueError(f"Path does not exist: {path}")
+    
+    if create_parent:
+        path.parent.mkdir(parents=True, exist_ok=True)
+    
+    return path
+
+
+def ensure_output_dir(output_path: Path) -> None:
+    """FIX #3: Ensure output directory exists before writing."""
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+
+def format_time(seconds: float) -> str:
+    """Format seconds into human-readable time."""
+    if seconds < 60:
+        return f"{seconds:.1f}s"
+    elif seconds < 3600:
+        return f"{seconds/60:.1f}m"
+    else:
+        return f"{seconds/3600:.1f}h"
+
+
+class ProgressReporter:
+    """FIX #6: Enhanced progress reporting with ETA."""
+    
+    def __init__(self, total: int, prefix: str = ""):
+        self.total = total
+        self.prefix = prefix
+        self.current = 0
+        self.start_time = datetime.now()
+        self.last_report_time = self.start_time
+    
+    def update(self, count: int = 1, message: str = "") -> None:
+        self.current += count
+        now = datetime.now()
+        
+        # Report every 2 seconds or on completion
+        elapsed = (now - self.last_report_time).total_seconds()
+        if elapsed >= 2.0 or self.current >= self.total:
+            self.last_report_time = now
+            self._print_progress(message)
+    
+    def _print_progress(self, message: str = "") -> None:
+        elapsed = (datetime.now() - self.start_time).total_seconds()
+        
+        if self.current > 0 and self.total > 0:
+            rate = self.current / max(elapsed, 0.001)
+            remaining = (self.total - self.current) / max(rate, 0.001)
+            pct = (self.current / self.total) * 100
+            
+            eta_str = format_time(remaining) if remaining > 0 else "done"
+            msg_part = f" - {message}" if message else ""
+            print(f"\r{self.prefix}[{self.current}/{self.total}] {pct:.1f}% | ETA: {eta_str}{msg_part}    ", end="", flush=True)
+        else:
+            print(f"\r{self.prefix}[{self.current}/?] {message}    ", end="", flush=True)
+    
+    def finish(self, message: str = "Complete") -> None:
+        elapsed = (datetime.now() - self.start_time).total_seconds()
+        print(f"\r{self.prefix}[{self.current}/{self.total}] {message} in {format_time(elapsed)}    ")
+
+
+async def cmd_plan(args):
+    """Create a dive plan without executing."""
+    planner = None
+    
+    try:
+        # FIX #4: Validate query
+        query = validate_query(args.query)
+        
+        planner = DivePlanner()
+
+        print(f"\n{'='*60}")
+        print(f"SUBMARINE DIVE PLAN")
+        print(f"{'='*60}")
+        print(f"Query: {query}")
+        print(f"Max domains: {args.max_domains}")
+        print(f"Archive: {args.archive}")
+        print()
+
+        # FIX #5: Check for shutdown before long operation
+        check_shutdown()
+
+        plan = await planner.create_plan(
+            query,
+            max_domains=args.max_domains,
+            max_pages_per_domain=args.max_pages,
+            cc_archives=[args.archive] if args.archive else None,
+        )
+
+        check_shutdown()
+
+        print(f"\n{'='*60}")
+        print(f"PLAN SUMMARY")
+        print(f"{'='*60}")
+        print(f"Query type: {plan.query_type}")
+        print(f"Domains found: {plan.total_domains}")
+        print(f"Pages to fetch: {plan.total_pages}")
+        print(f"Estimated time: {plan.estimated_time_seconds:.1f}s ({plan.estimated_time_seconds/60:.1f} min)")
+        print(f"SONAR indices used: {len(plan.sonar_indices_used)}")
+        print()
+
+        if plan.targets:
+            print("TOP TARGETS:")
+            for i, t in enumerate(plan.targets[:20], 1):
+                print(f"  {i:2}. [{t.priority}] {t.domain}: {t.estimated_pages} pages (from {t.source})")
+
+        # Compare to brute force
+        check_shutdown()
+        brute = await planner.estimate_brute_force()
+        brute_hours = brute["brute_force_estimate"]["total_time_hours"]
+        speedup = brute_hours * 3600 / max(plan.estimated_time_seconds, 1)
+
+        print(f"\n{'='*60}")
+        print(f"VS BRUTE FORCE")
+        print(f"{'='*60}")
+        print(f"Brute force: ~{brute_hours:.1f} hours ({brute_hours*60:.0f} minutes)")
+        print(f"SUBMARINE: ~{plan.estimated_time_seconds/60:.1f} minutes")
+        print(f"SPEEDUP: {speedup:.0f}x faster")
+
+        # Save plan
+        if args.output:
+            output = validate_path(args.output, create_parent=True)
+        else:
+            # Default output path - FIX #3: sanitize query for filename
+            safe_query = "".join(c if c.isalnum() or c in "-_" else "_" for c in query[:30])
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output = SUBMARINE_ROOT / "plans" / f"{safe_query}_{timestamp}.json"
+            ensure_output_dir(output)
+        
+        plan.save(str(output))
+        print(f"\nPlan saved to: {output}")
+
+    except KeyboardInterrupt:
+        logger.info("\nPlan creation interrupted")
+        raise
+    except Exception as e:
+        # FIX #2: Better async error handling
+        logger.error(f"Plan creation failed: {e}")
+        logger.debug(traceback.format_exc())
+        raise
+    finally:
+        # FIX #2: Guaranteed cleanup
+        if planner:
+            try:
+                await planner.close()
+            except Exception as e:
+                logger.warning(f"Error closing planner: {e}")
+
+
+async def cmd_search(args):
+    """Execute a full search: plan + dive + extract."""
+    planner = None
+    diver = None
+    results = []
+    output_path = None
+    
+    try:
+        # FIX #4: Validate query
+        query = validate_query(args.query)
+        
+        planner = DivePlanner()
+        diver = DeepDiver()
+
+        print(f"\n{'='*60}")
+        print(f"SUBMARINE SEARCH")
+        print(f"{'='*60}")
+        print(f"Query: {query}")
+        print()
+
+        # Step 1: Create plan
+        print("[1/3] Creating dive plan...")
+        check_shutdown()
+        
+        plan = await planner.create_plan(
+            query,
+            max_domains=args.max_domains,
+            max_pages_per_domain=args.max_pages,
+        )
+
+        print(f"      Found {plan.total_domains} domains, {plan.total_pages} pages")
+        print(f"      Estimated time: {format_time(plan.estimated_time_seconds)}")
+
+        if plan.total_pages == 0:
+            print("\n[!] No pages to fetch. Try a different query.")
+            return
+
+        # Step 2: Execute dive with enhanced progress reporting
+        print(f"\n[2/3] Executing dive ({plan.total_pages} pages)...")
+        check_shutdown()
+        
+        # FIX #6: Enhanced progress reporting
+        progress = ProgressReporter(plan.total_pages, prefix="      ")
+        
+        async for result in diver.execute_plan(plan):
+            check_shutdown()
+            
+            results.append(result)
+            content_len = len(result.content) if result.content else 0
+            
+            # Truncate URL for display
+            url_display = result.url[:50] + "..." if len(result.url) > 50 else result.url
+            progress.update(1, f"{url_display} ({content_len}B)")
+
+        progress.finish(f"Fetched {len(results)} pages")
+
+        # Step 3: Extract (if enabled)
+        if args.extract:
+            print(f"\n[3/3] Extracting entities...")
+            check_shutdown()
+            # TODO: Wire up PACMAN extraction
+            print("      [PACMAN extraction not yet wired]")
+        else:
+            print(f"\n[3/3] Extraction skipped (use --extract to enable)")
+
+        # Save results - FIX #3: Proper path handling
+        if args.output:
+            output_path = validate_path(args.output, create_parent=True)
+        else:
+            safe_query = "".join(c if c.isalnum() or c in "-_" else "_" for c in query[:30])
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_path = SUBMARINE_ROOT / "results" / f"{safe_query}_{timestamp}.ndjson"
+            ensure_output_dir(output_path)
+
+        with open(output_path, "w") as f:
+            for r in results:
+                f.write(json.dumps(r.to_dict()) + "\n")
+
+        print(f"\n{'='*60}")
+        print(f"SEARCH COMPLETE")
+        print(f"{'='*60}")
+        print(f"Pages fetched: {len(results)}")
+        print(f"Results saved: {output_path}")
+
+    except KeyboardInterrupt:
+        logger.info("\nSearch interrupted")
+        # Save partial results if we have any
+        if results and output_path:
+            try:
+                ensure_output_dir(output_path)
+                partial_path = output_path.with_suffix(".partial.ndjson")
+                with open(partial_path, "w") as f:
+                    for r in results:
+                        f.write(json.dumps(r.to_dict()) + "\n")
+                logger.info(f"Partial results saved to: {partial_path}")
+            except Exception as e:
+                logger.warning(f"Could not save partial results: {e}")
+        raise
+    except Exception as e:
+        # FIX #2: Better async error handling with context
+        logger.error(f"Search failed: {e}")
+        logger.debug(traceback.format_exc())
+        raise
+    finally:
+        # FIX #2: Guaranteed cleanup for all resources
+        cleanup_errors = []
+        
+        if planner:
+            try:
+                await planner.close()
+            except Exception as e:
+                cleanup_errors.append(f"planner: {e}")
+        
+        if diver:
+            try:
+                await diver.close() if hasattr(diver, 'close') else None
+            except Exception as e:
+                cleanup_errors.append(f"diver: {e}")
+        
+        if cleanup_errors:
+            logger.warning(f"Cleanup errors: {', '.join(cleanup_errors)}")
+
+
+async def cmd_resume(args):
+    """Resume an interrupted search from a plan file."""
+    diver = None
+    
+    try:
+        # FIX #4: Validate plan file exists
+        plan_path = validate_path(args.plan_file, must_exist=True)
+        
+        plan = DivePlan.load(str(plan_path))
+        diver = DeepDiver()
+
+        print(f"\n{'='*60}")
+        print(f"RESUMING DIVE")
+        print(f"{'='*60}")
+        print(f"Plan: {plan_path}")
+        print(f"Completed: {len(plan.completed_domains)} domains")
+        print(f"Remaining: {plan.total_domains - len(plan.completed_domains)} domains")
+
+        check_shutdown()
+
+        # TODO: Implement resume logic
+        print("\n[Resume not fully implemented yet]")
+
+    except KeyboardInterrupt:
+        logger.info("\nResume interrupted")
+        raise
+    except Exception as e:
+        logger.error(f"Resume failed: {e}")
+        logger.debug(traceback.format_exc())
+        raise
+    finally:
+        if diver and hasattr(diver, 'close'):
+            try:
+                await diver.close()
+            except Exception as e:
+                logger.warning(f"Error closing diver: {e}")
+
+
+async def cmd_sonar(args):
+    """Test SONAR index scanning."""
+    sonar = None
+    
+    try:
+        # FIX #4: Validate query
+        query = validate_query(args.query)
+        
+        sonar = Sonar()
+
+        print(f"\n{'='*60}")
+        print(f"SONAR INDEX SCAN")
+        print(f"{'='*60}")
+        print(f"Query: {query}")
+        print()
+
+        check_shutdown()
+
+        result = await sonar.scan_all(query, limit=args.limit)
+
+        print(f"Type detected: {sonar._detect_query_type(query)}")
+        print(f"Domains found: {len(result.domains)}")
+        print(f"URLs found: {len(result.urls)}")
+        print(f"Total hits: {result.total_hits}")
+        print(f"Indices scanned: {result.indices_scanned}")
+
+        if result.domains:
+            print(f"\nSample domains:")
+            for d in list(result.domains)[:20]:
+                print(f"  - {d}")
+
+    except KeyboardInterrupt:
+        logger.info("\nSonar scan interrupted")
+        raise
+    except Exception as e:
+        logger.error(f"Sonar scan failed: {e}")
+        logger.debug(traceback.format_exc())
+        raise
+    finally:
+        if sonar:
+            try:
+                await sonar.close()
+            except Exception as e:
+                logger.warning(f"Error closing sonar: {e}")
+
+
+async def cmd_periscope(args):
+    """Test PERISCOPE CC Index lookup."""
+    periscope = None
+    
+    try:
+        # FIX #4: Validate domain
+        domain = validate_query(args.domain)
+        
+        periscope = Periscope(archive=args.archive)
+
+        print(f"\n{'='*60}")
+        print(f"PERISCOPE CC INDEX LOOKUP")
+        print(f"{'='*60}")
+        print(f"Domain: {domain}")
+        print(f"Archive: {args.archive}")
+        print()
+
+        check_shutdown()
+
+        records = await periscope.lookup_domain(domain, limit=args.limit)
+        estimate = periscope.estimate_fetch_size(records)
+
+        print(f"Records found: {len(records)}")
+        print(f"Total size: {estimate['total_mb']:.2f} MB")
+        print(f"Unique WARCs: {estimate['unique_warc_files']}")
+        print(f"Est. fetch time: {estimate['est_minutes']:.1f} min")
+
+        if records:
+            print(f"\nSample records:")
+            for r in records[:10]:
+                print(f"  - {r.url[:70]}...")
+
+    except KeyboardInterrupt:
+        logger.info("\nPeriscope lookup interrupted")
+        raise
+    except Exception as e:
+        logger.error(f"Periscope lookup failed: {e}")
+        logger.debug(traceback.format_exc())
+        raise
+    finally:
+        if periscope:
+            try:
+                await periscope.close()
+            except Exception as e:
+                logger.warning(f"Error closing periscope: {e}")
+
+
+def main():
+    """Main entry point with signal handling."""
+    # FIX #5: Setup graceful shutdown handlers
+    setup_signal_handlers()
+    
+    parser = argparse.ArgumentParser(
+        description="SUBMARINE - Smart Archive Search",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=__doc__
+    )
+
+    subparsers = parser.add_subparsers(dest="command", help="Commands")
+
+    # plan command
+    plan_parser = subparsers.add_parser("plan", help="Create a dive plan")
+    plan_parser.add_argument("query", help="Search query (phone, email, name, domain)")
+    plan_parser.add_argument("--max-domains", type=int, default=100, help="Max domains to include")
+    plan_parser.add_argument("--max-pages", type=int, default=100, help="Max pages per domain")
+    plan_parser.add_argument("--archive", default="CC-MAIN-2025-51", help="CC archive to search")
+    plan_parser.add_argument("--output", "-o", help="Output file for plan")
+
+    # search command
+    search_parser = subparsers.add_parser("search", help="Execute a full search")
+    search_parser.add_argument("query", help="Search query")
+    search_parser.add_argument("--max-domains", type=int, default=50, help="Max domains")
+    search_parser.add_argument("--max-pages", type=int, default=50, help="Max pages per domain")
+    search_parser.add_argument("--extract", action="store_true", help="Enable entity extraction")
+    search_parser.add_argument("--output", "-o", help="Output file")
+
+    # resume command
+    resume_parser = subparsers.add_parser("resume", help="Resume interrupted search")
+    resume_parser.add_argument("plan_file", help="Path to plan JSON file")
+
+    # sonar command (testing)
+    sonar_parser = subparsers.add_parser("sonar", help="Test SONAR index scanning")
+    sonar_parser.add_argument("query", help="Search query")
+    sonar_parser.add_argument("--limit", type=int, default=1000, help="Max results")
+
+    # periscope command (testing)
+    periscope_parser = subparsers.add_parser("periscope", help="Test PERISCOPE CC lookup")
+    periscope_parser.add_argument("domain", help="Domain to lookup")
+    periscope_parser.add_argument("--archive", default="CC-MAIN-2025-51", help="CC archive")
+    periscope_parser.add_argument("--limit", type=int, default=100, help="Max records")
+
+    args = parser.parse_args()
+
+    if not args.command:
+        parser.print_help()
+        return 0
+
+    # FIX #2: Wrap command execution with proper error handling
+    exit_code = 0
+    try:
+        if args.command == "plan":
+            asyncio.run(cmd_plan(args))
+        elif args.command == "search":
+            asyncio.run(cmd_search(args))
+        elif args.command == "resume":
+            asyncio.run(cmd_resume(args))
+        elif args.command == "sonar":
+            asyncio.run(cmd_sonar(args))
+        elif args.command == "periscope":
+            asyncio.run(cmd_periscope(args))
+    except KeyboardInterrupt:
+        print("\n[Interrupted by user]")
+        exit_code = 130  # Standard exit code for SIGINT
+    except ValueError as e:
+        # FIX #4: Validation errors get clean message
+        logger.error(f"Invalid input: {e}")
+        exit_code = 1
+    except FileNotFoundError as e:
+        logger.error(f"File not found: {e}")
+        exit_code = 1
+    except Exception as e:
+        logger.error(f"Command failed: {e}")
+        if os.environ.get("SUBMARINE_DEBUG"):
+            traceback.print_exc()
+        exit_code = 1
+    
+    return exit_code
+
+
+if __name__ == "__main__":
+    sys.exit(main())

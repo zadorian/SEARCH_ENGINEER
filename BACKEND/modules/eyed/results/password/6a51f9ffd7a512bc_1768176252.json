@@ -1,0 +1,21 @@
+{
+  "id": "6a51f9ffd7a512bc",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "bWFydmlu:||BASE64",
+  "label": "bWFydmlu:||BASE64",
+  "value": "bWFydmlu:||BASE64",
+  "comment": "{\n  \"id\": \"2mfaos9s3w4mhh7djbgwaeqcmku\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"marvin\"\n  ],\n  \"hashed_password\": [\n    \"dba0079f1cb3a3b56e102dd5e04fa2af:||MD5\",\n    \"a4cac82164ef67d9d07d379b5d5d8c4abe1e02ff:||SHA1\",\n    \"d3f40079ab5385e2d3dfbcf07d4b088853feda1e6496c17c287a88ef02fecd68:||SHA256\",\n    \"494dfb3b5d9cb87a99d9e8607717f826b1011dcc3635a39ab5d310f57a9a9e45efc3a883b9829ee2e7159fd574485041ac38da6c8fe9e90ccab8f76daf8cb1fd:||SHA512\",\n    \"bWFydmlu:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:12.618564",
+  "updatedAt": "2026-01-12T00:04:12.618568",
+  "lastSeen": "2026-01-12T00:04:12.618569"
+}

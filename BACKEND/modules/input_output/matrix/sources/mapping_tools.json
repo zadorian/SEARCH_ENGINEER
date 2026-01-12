@@ -1,0 +1,263 @@
+{
+  "GLOBAL": [
+    {
+      "name": "Bellissimi Jewelry BG",
+      "domain": "bellissimi.bg",
+      "url": "https://bellissimi.bg/index.php",
+      "search_url": "https://bellissimi.bg/index.php?route=product/search&search={q}",
+      "type": "map_service",
+      "category": "map",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "bellissimi.bg_maps_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://bellissimi.bg/index.php?route=product/search&search={q}",
+      "section": "map",
+      "access": "public",
+      "notes": "Imported from maps_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "maps"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "route"
+      ]
+    },
+    {
+      "name": "UK Grid Reference",
+      "domain": "gridreferencefinder.com",
+      "url": "https://gridreferencefinder.com/bing.php",
+      "search_url": "https://gridreferencefinder.com/bing.php?gr={q}",
+      "type": "map_service",
+      "category": "map",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "gridreferencefinder.com_maps_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://gridreferencefinder.com/bing.php?gr={q}",
+      "section": "map",
+      "access": "public",
+      "notes": "Imported from maps_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "maps"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "gr"
+      ]
+    },
+    {
+      "name": "Plus Codes",
+      "domain": "plus.codes",
+      "url": "https://plus.codes/{q}",
+      "search_url": "https://plus.codes/{q}",
+      "type": "map_service",
+      "category": "map",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "plus.codes_maps_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://plus.codes/{q}",
+      "section": "map",
+      "access": "public",
+      "notes": "Imported from maps_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "maps"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}"
+    },
+    {
+      "name": "Vim Scripts",
+      "domain": "vim.org",
+      "url": "https://www.vim.org/scripts/script_search_results.php",
+      "search_url": "https://www.vim.org/scripts/script_search_results.php?keywords={q}&script_type=&order_by=rating&direction=descending&search=search",
+      "type": "map_service",
+      "category": "map",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "vim.org_maps_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.vim.org/scripts/script_search_results.php?keywords={q}&script_type=&order_by=rating&direction=descending&search=search",
+      "section": "map",
+      "access": "public",
+      "notes": "Imported from maps_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "maps"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "keywords"
+      ]
+    },
+    {
+      "name": "Wikimapia",
+      "domain": "wikimapia.org",
+      "url": "http://www.wikimapia.org/#search={q}",
+      "search_url": "http://www.wikimapia.org/#search={q}",
+      "type": "map_service",
+      "category": "map",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "wikimapia.org_maps_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "http://www.wikimapia.org/#search={q}",
+      "section": "map",
+      "access": "public",
+      "notes": "Imported from maps_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "maps"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}"
+    }
+  ],
+  "US": [
+    {
+      "name": "GoFundMe",
+      "domain": "gofundme.com",
+      "url": "https://www.gofundme.com/mvc.php",
+      "search_url": "https://www.gofundme.com/mvc.php?route=search&term={q}",
+      "type": "map_service",
+      "category": "map",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "gofundme.com_maps_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.gofundme.com/mvc.php?route=search&term={q}",
+      "section": "map",
+      "access": "public",
+      "notes": "Imported from maps_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "maps"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "route"
+      ],
+      "capabilities": [
+        {
+          "rule_id": "PLAYBOOK_US_CORPORATE_NETWORK_MAPPING_461",
+          "label": "US: Corporate Network Mapping",
+          "requires_any": [
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            42,
+            43,
+            46,
+            47,
+            48,
+            49
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{query}\"",
+              "note": "Auto-added: Playbook execution via comprehensive search"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

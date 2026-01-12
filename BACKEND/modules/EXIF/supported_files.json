@@ -1,0 +1,80 @@
+{
+  "$schema": "supported_files_schema.json",
+  "source": "exiftool -listf",
+  "exiftool_version": "12.x",
+  "total_formats": 376,
+  "categories": {
+    "images": {
+      "raw": ["3FR", "ARW", "CR2", "CR3", "CRW", "DCR", "DNG", "ERF", "FFF", "GPR", "IIQ", "K25", "KDC", "MEF", "MOS", "MRW", "NEF", "NRW", "ORF", "PEF", "RAF", "RAW", "RW2", "RWL", "SR2", "SRF", "SRW", "X3F"],
+      "standard": ["BMP", "GIF", "HEIC", "HEIF", "ICO", "JPEG", "JPG", "JPE", "PNG", "TIFF", "TIF", "WEBP"],
+      "other": ["AVIF", "CUR", "DPX", "EXR", "HDR", "JXL", "JXR", "PBM", "PCX", "PGM", "PNM", "PPM", "PSB", "PSD", "SVG", "TGA"]
+    },
+    "documents": {
+      "pdf": ["PDF"],
+      "office": ["DOC", "DOCX", "DOCM", "DOT", "DOTX", "DOTM", "XLS", "XLSX", "XLSM", "XLSB", "XLT", "XLTX", "PPT", "PPTX", "PPTM", "PPS", "PPSX", "POT", "POTX"],
+      "openoffice": ["ODT", "ODS", "ODP", "ODF", "ODG"],
+      "apple": ["PAGES", "NUMBERS", "KEY"],
+      "ebook": ["EPUB", "MOBI", "AZW", "AZW3"]
+    },
+    "video": {
+      "common": ["MP4", "MOV", "AVI", "MKV", "WEBM", "WMV", "FLV", "M4V", "3GP", "3G2"],
+      "professional": ["MXF", "R3D", "BRAW"],
+      "broadcast": ["M2TS", "MTS", "TS", "VOB", "DVR-MS"]
+    },
+    "audio": {
+      "common": ["MP3", "M4A", "WAV", "FLAC", "OGG", "WMA", "AAC", "AIFF", "AIF"],
+      "other": ["APE", "MPC", "OPUS", "RA", "WV"]
+    },
+    "archives": ["ZIP", "7Z", "GZ", "GZIP", "TAR", "RAR"],
+    "executables": ["EXE", "DLL", "SO", "DYLIB"],
+    "fonts": ["TTF", "OTF", "WOFF", "WOFF2", "PFA", "PFB"],
+    "web": ["HTML", "HTM", "CSS", "JS", "JSON", "XML", "XHTML"],
+    "other": ["ISO", "TORRENT", "VCF", "VCARD", "ICS", "ICAL"]
+  },
+  "investigation_priority": {
+    "high": {
+      "description": "Most likely to contain author/GPS/timestamp metadata",
+      "extensions": ["JPG", "JPEG", "HEIC", "PNG", "TIFF", "CR2", "NEF", "ARW", "DNG", "PDF", "DOCX", "XLSX", "PPTX", "DOC", "XLS", "PPT", "MP4", "MOV"]
+    },
+    "medium": {
+      "description": "May contain useful metadata",
+      "extensions": ["GIF", "BMP", "WEBP", "MP3", "M4A", "WAV", "AVI", "MKV", "EPUB", "ODT", "ODS"]
+    },
+    "low": {
+      "description": "Rarely contains investigation-relevant metadata",
+      "extensions": ["ZIP", "EXE", "DLL", "TTF", "HTML", "CSS", "JS"]
+    }
+  },
+  "all_extensions": [
+    "360", "3FR", "3G2", "3GP", "3GP2", "3GPP", "7Z", "A", "AA", "AAC", "AAE", "AAX",
+    "ACFM", "ACR", "AFM", "AI", "AIF", "AIFC", "AIFF", "AIT", "AMFM", "APE", "APNG",
+    "ARQ", "ARW", "ASF", "AVI", "AVIF", "AZW", "AZW3", "BMP", "BPG", "BTF", "C2PA",
+    "CHM", "CIFF", "COS", "CR2", "CR3", "CRM", "CRW", "CS1", "CSV", "CUR", "CZI",
+    "DC3", "DCM", "DCP", "DCR", "DFONT", "DIB", "DIC", "DICM", "DIVX", "DJV", "DJVU",
+    "DLL", "DNG", "DOC", "DOCM", "DOCX", "DOT", "DOTM", "DOTX", "DPX", "DR4", "DS2",
+    "DSS", "DV", "DVB", "DVR-MS", "DYLIB", "EIP", "EPS", "EPS2", "EPS3", "EPSF",
+    "EPUB", "ERF", "EXE", "EXIF", "EXR", "EXV", "F4A", "F4B", "F4P", "F4V", "FFF",
+    "FIT", "FITS", "FLA", "FLAC", "FLIF", "FLIR", "FLV", "FPF", "FPX", "GIF", "GLV",
+    "GPR", "GZ", "GZIP", "HDP", "HDR", "HEIC", "HEIF", "HIF", "HTM", "HTML", "ICAL",
+    "ICC", "ICM", "ICO", "ICS", "IDML", "IIQ", "IND", "INDD", "INDT", "INSP", "INSV",
+    "INX", "ISO", "ITC", "J2C", "J2K", "JNG", "JP2", "JPC", "JPE", "JPEG", "JPF",
+    "JPG", "JPH", "JPM", "JPS", "JPX", "JSON", "JUMBF", "JXL", "JXR", "K25", "KDC",
+    "KEY", "KTH", "LA", "LFP", "LFR", "LIF", "LNK", "LRV", "M2T", "M2TS", "M2V",
+    "M4A", "M4B", "M4P", "M4V", "MACOS", "MAX", "MEF", "MIE", "MIF", "MIFF", "MKA",
+    "MKS", "MKV", "MNG", "MOBI", "MODD", "MOI", "MOS", "MOV", "MP3", "MP4", "MPC",
+    "MPEG", "MPG", "MPO", "MQV", "MRC", "MRW", "MTS", "MXF", "NEF", "NEWER", "NKSC",
+    "NMBTEMPLATE", "NRW", "NUMBERS", "O", "ODB", "ODC", "ODF", "ODG", "ODI", "ODP",
+    "ODS", "ODT", "OFR", "OGG", "OGV", "ONP", "OPUS", "ORF", "ORI", "OTF", "PAC",
+    "PAGES", "PBM", "PCD", "PCT", "PCX", "PDB", "PDF", "PEF", "PFA", "PFB", "PFM",
+    "PGF", "PGM", "PICT", "PLIST", "PMP", "PNG", "POT", "POTM", "POTX", "PPAM",
+    "PPAX", "PPM", "PPS", "PPSM", "PPSX", "PPT", "PPTM", "PPTX", "PRC", "PS", "PS2",
+    "PS3", "PSB", "PSD", "PSDT", "PSP", "PSPFRAME", "PSPIMAGE", "PSPSHAPE", "PSPTUBE",
+    "QIF", "QT", "QTI", "QTIF", "R3D", "RA", "RAF", "RAM", "RAR", "RAW", "RIF",
+    "RIFF", "RM", "RMVB", "RPM", "RSRC", "RTF", "RV", "RW2", "RWL", "RWZ", "SEQ",
+    "SKETCH", "SO", "SR2", "SRF", "SRW", "SVG", "SWF", "THM", "THMX", "TIF", "TIFF",
+    "TORRENT", "TS", "TTC", "TTF", "TUB", "TXT", "VCARD", "VCF", "VNT", "VOB", "VRD",
+    "VSD", "WAV", "WDP", "WEBM", "WEBP", "WMA", "WMV", "WOFF", "WOFF2", "WPG", "WTV",
+    "WV", "X3F", "XCF", "XHTML", "XISF", "XLA", "XLAM", "XLS", "XLSB", "XLSM",
+    "XLSX", "XLT", "XLTM", "XLTX", "XMP", "ZIP"
+  ]
+}

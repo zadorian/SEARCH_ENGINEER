@@ -1,0 +1,386 @@
+{
+  "meta": {
+    "generated": "2025-12-29",
+    "total_problematic": 32,
+    "categories": {
+      "delete_empty": 8,
+      "merge_into_iso": 8,
+      "rename_to_iso": 4,
+      "convert_to_subregion": 11,
+      "special_handling": 1
+    }
+  },
+  "recommendations": [
+    {
+      "code": "CIVIL_SOCIETY",
+      "action": "DELETE",
+      "reason": "Category name mistakenly used as jurisdiction code. Entry is empty (no links, no content, no dead_ends).",
+      "data_to_preserve": null
+    },
+    {
+      "code": "COMMERCIAL",
+      "action": "DELETE",
+      "reason": "Category name mistakenly used as jurisdiction code. Entry is empty.",
+      "data_to_preserve": null
+    },
+    {
+      "code": "CORPORATE_REGISTRY",
+      "action": "DELETE",
+      "reason": "Category name mistakenly used as jurisdiction code. Entry is empty.",
+      "data_to_preserve": null
+    },
+    {
+      "code": "COUNTRIES",
+      "action": "DELETE",
+      "reason": "Category name mistakenly used as jurisdiction code. Entry is empty.",
+      "data_to_preserve": null
+    },
+    {
+      "code": "ASSET_REGISTRIES",
+      "action": "DELETE",
+      "reason": "Category name mistakenly used as jurisdiction code. Entry is empty.",
+      "data_to_preserve": null
+    },
+    {
+      "code": "FURTHER_PUBLIC_RECORDS",
+      "action": "DELETE",
+      "reason": "Category name mistakenly used as jurisdiction code. Entry is empty.",
+      "data_to_preserve": null
+    },
+    {
+      "code": "PUBLIC_RECORD",
+      "action": "DELETE",
+      "reason": "Category name mistakenly used as jurisdiction code. Entry is empty.",
+      "data_to_preserve": null
+    },
+    {
+      "code": "TEST_COUNTRY_1",
+      "action": "DELETE",
+      "reason": "Test entry. Entry is empty.",
+      "data_to_preserve": null
+    },
+    {
+      "code": "C_TE_D_IVOIRE",
+      "action": "MERGE_INTO",
+      "target": "CI",
+      "reason": "Duplicate of CI (Cote d'Ivoire). Long form has 7 links, 5136 chars content. ISO has dead_ends/proven_methods to preserve.",
+      "data_to_preserve": {
+        "source_has": {
+          "links": 7,
+          "content_len": 5136
+        },
+        "target_has": {
+          "dead_ends": 2,
+          "proven_methods": 2
+        },
+        "merge_strategy": "Combine wiki_sections from both, keep target's dead_ends and proven_methods"
+      }
+    },
+    {
+      "code": "CONGO",
+      "action": "MERGE_INTO",
+      "target": "CG",
+      "reason": "Ambiguous - 'Congo' typically refers to Republic of Congo (CG). Has 6 links, 860 chars. CG is empty.",
+      "data_to_preserve": {
+        "source_has": {
+          "links": 6,
+          "content_len": 860
+        },
+        "merge_strategy": "Move all content to CG"
+      },
+      "note": "CONGO is ambiguous (CG=Republic of Congo, CD=DRC). Mapping to CG based on common usage."
+    },
+    {
+      "code": "DEMOCRATIC_REPUBLIC_OF_THE_CONGO",
+      "action": "MERGE_INTO",
+      "target": "CD",
+      "reason": "Duplicate of CD (DRC). Long form has 15 links, 6644 chars. CD has valuable dead_ends/proven_methods.",
+      "data_to_preserve": {
+        "source_has": {
+          "links": 15,
+          "content_len": 6644
+        },
+        "target_has": {
+          "dead_ends": 8,
+          "proven_methods": 4
+        },
+        "merge_strategy": "Combine wiki_sections, preserve CD's operational data"
+      }
+    },
+    {
+      "code": "ESWATINI_FMR_SWAZILAND",
+      "action": "MERGE_INTO",
+      "target": "SZ",
+      "reason": "Duplicate of SZ (Eswatini). Long form has slightly more content (6 vs 4 links).",
+      "data_to_preserve": {
+        "source_has": {
+          "links": 6,
+          "content_len": 1200
+        },
+        "target_has": {
+          "links": 4,
+          "content_len": 1022
+        },
+        "merge_strategy": "Merge wiki_sections, dedupe links"
+      }
+    },
+    {
+      "code": "PALESTINE_STATE",
+      "action": "DELETE",
+      "target": "PS",
+      "reason": "Duplicate of PS. Long form is completely empty, PS has operational data.",
+      "data_to_preserve": null
+    },
+    {
+      "code": "SAINT_KITTS_AND_NEVIS",
+      "action": "MERGE_INTO",
+      "target": "KN",
+      "reason": "Duplicate of KN. Long form has 3 links, KN is empty.",
+      "data_to_preserve": {
+        "source_has": {
+          "links": 3,
+          "content_len": 454
+        },
+        "merge_strategy": "Move all content to KN"
+      }
+    },
+    {
+      "code": "SAINT_VINCENT_AND_THE_GRENADINES",
+      "action": "MERGE_INTO",
+      "target": "VC",
+      "reason": "Duplicate of VC. Long form has 4 links, VC is empty.",
+      "data_to_preserve": {
+        "source_has": {
+          "links": 4,
+          "content_len": 708
+        },
+        "merge_strategy": "Move all content to VC"
+      }
+    },
+    {
+      "code": "TRINIDAD_AND_TOBAGO",
+      "action": "MERGE_INTO",
+      "target": "TT",
+      "reason": "Duplicate of TT. Long form has 10 links. TT has dead_ends/proven_methods.",
+      "data_to_preserve": {
+        "source_has": {
+          "links": 10,
+          "content_len": 1917
+        },
+        "target_has": {
+          "dead_ends": 6,
+          "proven_methods": 3
+        },
+        "merge_strategy": "Combine wiki_sections, preserve TT's operational data"
+      }
+    },
+    {
+      "code": "ANTIGUA_AND_BARBUDA",
+      "action": "RENAME_TO",
+      "target": "AG",
+      "reason": "ISO code AG does not exist. Rename and create proper entry.",
+      "data_to_preserve": {
+        "has": {
+          "links": 3,
+          "content_len": 1924
+        },
+        "strategy": "Rename key from ANTIGUA_AND_BARBUDA to AG, update name field"
+      }
+    },
+    {
+      "code": "MYANMAR_FORMERLY_BURMA",
+      "action": "RENAME_TO",
+      "target": "MM",
+      "reason": "ISO code MM does not exist. Substantial content (16 links, 6344 chars).",
+      "data_to_preserve": {
+        "has": {
+          "links": 16,
+          "content_len": 6344
+        },
+        "strategy": "Rename key to MM, update name to 'Myanmar'"
+      }
+    },
+    {
+      "code": "SAINT_LUCIA",
+      "action": "RENAME_TO",
+      "target": "LC",
+      "reason": "ISO code LC does not exist. Has 6 links.",
+      "data_to_preserve": {
+        "has": {
+          "links": 6,
+          "content_len": 1386
+        },
+        "strategy": "Rename key to LC"
+      }
+    },
+    {
+      "code": "SAO_TOME_AND_PRINCIPE",
+      "action": "RENAME_TO",
+      "target": "ST",
+      "reason": "ISO code ST does not exist. Has 1 link.",
+      "data_to_preserve": {
+        "has": {
+          "links": 1,
+          "content_len": 268
+        },
+        "strategy": "Rename key to ST"
+      }
+    },
+    {
+      "code": "USA__ALABAMA",
+      "action": "CONVERT_TO_SUBREGION",
+      "target": "US-AL",
+      "reason": "US state should use ISO 3166-2 format (US-XX)",
+      "parent_jurisdiction": "US"
+    },
+    {
+      "code": "USA__ALASKA",
+      "action": "CONVERT_TO_SUBREGION",
+      "target": "US-AK",
+      "reason": "US state should use ISO 3166-2 format",
+      "parent_jurisdiction": "US"
+    },
+    {
+      "code": "USA__ARIZONA",
+      "action": "CONVERT_TO_SUBREGION",
+      "target": "US-AZ",
+      "reason": "US state should use ISO 3166-2 format",
+      "parent_jurisdiction": "US"
+    },
+    {
+      "code": "USA__ARKANSAS",
+      "action": "CONVERT_TO_SUBREGION",
+      "target": "US-AR",
+      "reason": "US state should use ISO 3166-2 format",
+      "parent_jurisdiction": "US"
+    },
+    {
+      "code": "USA__NEW_JERSEY",
+      "action": "CONVERT_TO_SUBREGION",
+      "target": "US-NJ",
+      "reason": "US state should use ISO 3166-2 format",
+      "parent_jurisdiction": "US"
+    },
+    {
+      "code": "USA__NEW_YORK",
+      "action": "CONVERT_TO_SUBREGION",
+      "target": "US-NY",
+      "reason": "US state should use ISO 3166-2 format",
+      "parent_jurisdiction": "US"
+    },
+    {
+      "code": "USA__WASHINGTON",
+      "action": "CONVERT_TO_SUBREGION",
+      "target": "US-WA",
+      "reason": "US state should use ISO 3166-2 format",
+      "parent_jurisdiction": "US"
+    },
+    {
+      "code": "USA_FEDERAL",
+      "action": "CONVERT_TO_SUBREGION",
+      "target": "US-FED",
+      "reason": "Federal US should be subregion marker",
+      "parent_jurisdiction": "US",
+      "note": "Non-standard but useful for federal-level records"
+    },
+    {
+      "code": "USA_FLORIDA",
+      "action": "CONVERT_TO_SUBREGION",
+      "target": "US-FL",
+      "reason": "US state should use ISO 3166-2 format",
+      "parent_jurisdiction": "US"
+    },
+    {
+      "code": "USA_MICHIGAN",
+      "action": "CONVERT_TO_SUBREGION",
+      "target": "US-MI",
+      "reason": "US state should use ISO 3166-2 format",
+      "parent_jurisdiction": "US"
+    },
+    {
+      "code": "MULTIPLE_CEE",
+      "action": "CONVERT_TO_REGION_GROUP",
+      "target": "REGION_CEE",
+      "reason": "Multi-country region grouping. Has proven_methods to preserve.",
+      "data_to_preserve": {
+        "proven_methods": [
+          "HUMINT",
+          "OSINT_GENERAL"
+        ]
+      },
+      "note": "Consider moving to separate region_groups.json or keeping with REGION_ prefix"
+    },
+    {
+      "code": "AE,CZ",
+      "action": "SPLIT_AND_DISTRIBUTE",
+      "targets": [
+        "AE",
+        "CZ"
+      ],
+      "reason": "Invalid code format - comma-separated jurisdictions. Contains Tleubayev asset search dead_ends.",
+      "data_to_preserve": {
+        "dead_ends": [
+          {
+            "sought": "Tleubayev assets in UAE and Czech Republic",
+            "sought_category": "asset_information",
+            "reason": "No information identified relating Tleubayev to assets in these jurisdictions",
+            "reason_category": "no_records_found",
+            "attempted_sources": [
+              "various registries"
+            ],
+            "distribute_to": "BOTH_AE_AND_CZ"
+          }
+        ]
+      },
+      "migration_strategy": "Add dead_end to both AE and CZ entries with cross-reference note"
+    }
+  ],
+  "aliases_to_add": {
+    "Ivory Coast": "CI",
+    "Cote d'Ivoire": "CI",
+    "Cote d Ivoire": "CI",
+    "Congo": "CG",
+    "Republic of Congo": "CG",
+    "Congo-Brazzaville": "CG",
+    "DRC": "CD",
+    "Democratic Republic of Congo": "CD",
+    "Congo-Kinshasa": "CD",
+    "Swaziland": "SZ",
+    "Eswatini": "SZ",
+    "Myanmar": "MM",
+    "Burma": "MM",
+    "Palestine": "PS",
+    "St Kitts": "KN",
+    "St. Kitts and Nevis": "KN",
+    "St Lucia": "LC",
+    "St. Lucia": "LC",
+    "St Vincent": "VC",
+    "St. Vincent and the Grenadines": "VC",
+    "Trinidad": "TT",
+    "Tobago": "TT",
+    "Sao Tome": "ST",
+    "Sao Tome and Principe": "ST"
+  },
+  "summary": {
+    "actions": {
+      "DELETE": 9,
+      "MERGE_INTO": 7,
+      "RENAME_TO": 4,
+      "CONVERT_TO_SUBREGION": 10,
+      "CONVERT_TO_REGION_GROUP": 1,
+      "SPLIT_AND_DISTRIBUTE": 1
+    },
+    "data_preservation_required": [
+      "CI (merge from C_TE_D_IVOIRE)",
+      "CG (merge from CONGO)",
+      "CD (merge from DEMOCRATIC_REPUBLIC_OF_THE_CONGO)",
+      "SZ (merge from ESWATINI_FMR_SWAZILAND)",
+      "KN (merge from SAINT_KITTS_AND_NEVIS)",
+      "VC (merge from SAINT_VINCENT_AND_THE_GRENADINES)",
+      "TT (merge from TRINIDAD_AND_TOBAGO)",
+      "AE (dead_ends from AE,CZ)",
+      "CZ (dead_ends from AE,CZ)",
+      "REGION_CEE (proven_methods from MULTIPLE_CEE)"
+    ]
+  }
+}

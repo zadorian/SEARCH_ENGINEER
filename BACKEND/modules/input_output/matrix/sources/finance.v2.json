@@ -1,0 +1,435 @@
+{
+  "meta": {
+    "category": "finance",
+    "count": 9,
+    "migrated_at": "2026-01-11T18:34:02.949520",
+    "version": "2.0",
+    "format": "code-based"
+  },
+  "sources": [
+    {
+      "id": "aleph_collection_7151",
+      "name": "Donald Trump Tax Returns (2015-2020)",
+      "jurisdiction": "US",
+      "category": "finance",
+      "url": "https://aleph.occrp.org/datasets/7151",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        6,
+        7,
+        8,
+        11,
+        13,
+        14,
+        20,
+        46,
+        47
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          7,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          11,
+          14,
+          50,
+          51,
+          52,
+          80,
+          81,
+          82,
+          85,
+          90,
+          102,
+          111,
+          403,
+          404,
+          405,
+          407,
+          408
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_11295",
+      "name": "Georgian Asset Declarations 2025",
+      "jurisdiction": "GE",
+      "category": "finance",
+      "url": "https://aleph.occrp.org/datasets/11295",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          51,
+          81,
+          90,
+          406
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_10735",
+      "name": "Georgia Asset Declarations",
+      "jurisdiction": "GE",
+      "category": "finance",
+      "url": "https://aleph.occrp.org/datasets/10735",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          51,
+          81,
+          90,
+          406
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_2654",
+      "name": "Georgian Political Donations",
+      "jurisdiction": "GE",
+      "category": "finance",
+      "url": "https://aleph.occrp.org/datasets/2654",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          51,
+          81,
+          90,
+          406
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_1994",
+      "name": "Serbian Political Donations",
+      "jurisdiction": "RS",
+      "category": "finance",
+      "url": "https://aleph.occrp.org/datasets/1994",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          52,
+          81,
+          85,
+          407
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_8850",
+      "name": "Slovenia Gifts received by officials",
+      "jurisdiction": "SI",
+      "category": "finance",
+      "url": "https://aleph.occrp.org/datasets/8850",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        11,
+        13,
+        14
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          606,
+          612
+        ],
+        "attributes": [
+          11,
+          50,
+          53,
+          54,
+          90,
+          406
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_8859",
+      "name": "Slovenia Register of lobbying contacts",
+      "jurisdiction": "SI",
+      "category": "finance",
+      "url": "https://aleph.occrp.org/datasets/8859",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        11,
+        13,
+        14
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          606,
+          612
+        ],
+        "attributes": [
+          11,
+          50,
+          53,
+          54,
+          90,
+          406
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_8867",
+      "name": "Slovenia Business restrictions entities",
+      "jurisdiction": "SI",
+      "category": "finance",
+      "url": "https://aleph.occrp.org/datasets/8867",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        11,
+        13,
+        14
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          606,
+          612
+        ],
+        "attributes": [
+          11,
+          50,
+          53,
+          54,
+          90,
+          406
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_829",
+      "name": "EU Financial Transparency",
+      "jurisdiction": "EU",
+      "category": "finance",
+      "url": "https://aleph.occrp.org/datasets/829",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13
+      ],
+      "outputs": {
+        "entities": [
+          67
+        ],
+        "relationships": [
+          601,
+          602,
+          613
+        ],
+        "attributes": [
+          81,
+          90,
+          405
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "75021956f1da80ed",
+  "node_class": "ENTITY",
+  "type": "username",
+  "canonicalValue": "tyrion1",
+  "label": "tyrion1",
+  "value": "tyrion1",
+  "comment": "{\n  \"module\": \"smule\",\n  \"category\": {\n    \"type\": \"Activity\",\n    \"name\": \"Entertainment\",\n    \"description\": \"Platforms offering entertainment content.\"\n  },\n  \"front_schemas\": [\n    {\n      \"module\": \"Smule\",\n      \"image\": \"https://c-sf.smule.com/rs-z0/account/icon/v4_defpic.png\",\n      \"body\": {\n        \"Apps\": \"minipiano\"\n      },\n      \"tags\": [],\n      \"timeline\": {\n        \"last_seen\": true,\n        \"registered\": true,\n        \"last_seen_date\": null,\n        \"registered_date\": null,\n        \"groups\": {\n          \"smule\": {\n            \"color\": \"#663399\",\n            \"flavor_text\": \"$count$ activites in $year$\",\n            \"tolerance\": 5\n          }\n        },\n        \"group_items\": {},\n        \"group_years\": {}\n      }\n    }\n  ],\n  \"spec_format\": [\n    {\n      \"registered\": {\n        \"type\": \"bool\",\n        \"proper_key\": \"Registered\",\n        \"value\": true\n      },\n      \"id\": {\n        \"type\": \"int\",\n        \"proper_key\": \"Id\",\n        \"value\": 276365901\n      },\n      \"picture_url\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Picture Url\",\n        \"value\": \"https://c-sf.smule.com/rs-z0/account/icon/v4_defpic.png\"\n      },\n      \"username\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Username\",\n        \"value\": \"tyrion1\"\n      },\n      \"profile_url\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Profile Url\",\n        \"value\": \"https://www.smule.com/tyrion1\"\n      },\n      \"verified\": {\n        \"type\": \"bool\",\n        \"proper_key\": \"Verified\",\n        \"value\": false\n      },\n      \"platform_variables\": [\n        {\n          \"key\": \"apps\",\n          \"proper_key\": \"Apps\",\n          \"value\": [\n            \"minipiano\"\n          ],\n          \"type\": \"list\"\n        }\n      ]\n    }\n  ],\n  \"data\": {\n    \"data\": true\n  },\n  \"status\": \"found\",\n  \"query\": \"tyrion@gmail.com\",\n  \"from\": \"User supplied email.\",\n  \"reliable_source\": true\n}",
+  "embedded_edges": [
+    {
+      "target_id": "c3f8a498f50c4de6",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-11T23:53:05.620750",
+  "updatedAt": "2026-01-11T23:53:05.620754",
+  "lastSeen": "2026-01-11T23:53:05.620756"
+}

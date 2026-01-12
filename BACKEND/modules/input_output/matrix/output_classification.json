@@ -1,0 +1,345 @@
+{
+  "_DEPRECATED": {
+    "warning": "THIS FILE IS DEPRECATED - DO NOT USE FOR NEW CODE",
+    "use_instead": {
+      "io_objects": "codes.json (722+ field codes with type/creates metadata)",
+      "relationships": "relationship.json (22 edge types)",
+      "output_mapping": "output_mapper.py (OUTPUT_TO_CODE and OUTPUT_TO_RELATIONSHIP dicts)"
+    },
+    "reason": "String-based output classification now handled in output_mapper.py using canonical codes.json",
+    "deprecated_date": "2025-01-11"
+  },
+  "meta": {
+    "version": "1.0",
+    "description": "DEPRECATED - Classification of source outputs into nodes, relationships, and attributes",
+    "updated": "2025-01-11",
+    "status": "deprecated"
+  },
+
+  "relationship_outputs": {
+    "_doc": "Outputs that produce EDGES (relationships between entities)",
+
+    "officer_of": {
+      "outputs": [
+        "company_officers", "officers", "directors", "director_positions",
+        "board_members", "board_memberships", "board_positions", "board_composition",
+        "company_directorships", "directorships", "directorship_history",
+        "director_appointments", "alternate_directors", "executive_officers",
+        "management_team", "corporate_officers", "key_personnel", "executives"
+      ],
+      "produces_entity": "person",
+      "relationship": "officer_of",
+      "target_entity": "company",
+      "properties": ["role", "appointed_date", "resigned_date", "status"]
+    },
+
+    "shareholder_of": {
+      "outputs": [
+        "shareholders", "company_shareholders", "shareholdings", "company_shareholdings",
+        "shareholding_structure", "shareholder_history", "share_ownership",
+        "equity_holders", "equity_ownership", "share_capital_holders"
+      ],
+      "produces_entity": ["person", "company"],
+      "relationship": "shareholder_of",
+      "target_entity": "company",
+      "properties": ["shares", "percentage", "share_class", "voting_rights"]
+    },
+
+    "beneficial_owner_of": {
+      "outputs": [
+        "beneficial_owners", "company_beneficial_owners", "beneficial_ownership",
+        "company_beneficial_owner_ownership_pct", "ultimate_beneficial_owners",
+        "UBOs", "controlling_persons", "persons_with_significant_control",
+        "PSCs", "real_owners"
+      ],
+      "produces_entity": "person",
+      "relationship": "beneficial_owner_of",
+      "target_entity": "company",
+      "properties": ["percentage", "nature_of_control", "notification_date"]
+    },
+
+    "subsidiary_of": {
+      "outputs": [
+        "subsidiaries", "subsidiary_information", "subsidiary_presence",
+        "subsidiary_companies", "controlled_companies", "group_companies",
+        "daughter_companies"
+      ],
+      "produces_entity": "company",
+      "relationship": "subsidiary_of",
+      "target_entity": "company",
+      "properties": ["ownership_percentage", "control_type"]
+    },
+
+    "parent_company": {
+      "outputs": [
+        "parent_company", "parent_companies", "holding_company", "ultimate_parent",
+        "group_parent", "controlling_company"
+      ],
+      "produces_entity": "company",
+      "relationship": "subsidiary_of",
+      "target_entity": "company",
+      "direction": "reverse",
+      "properties": ["ownership_percentage"]
+    },
+
+    "affiliated_company": {
+      "outputs": [
+        "affiliated_companies", "affiliated_entities", "corporate_affiliations",
+        "company_affiliations", "affiliate_companies", "affiliates", "affiliate_list",
+        "related_companies", "associated_companies", "sister_companies",
+        "business_associations", "corporate_relationships", "business_relationships"
+      ],
+      "produces_entity": "company",
+      "relationship": "affiliated_with",
+      "target_entity": "company",
+      "properties": ["relationship_type", "nature"]
+    },
+
+    "employed_by": {
+      "outputs": [
+        "employment_history", "career_history", "professional_background",
+        "work_history", "job_history", "employers", "current_employer",
+        "previous_employers", "position_history", "career_progression"
+      ],
+      "produces_entity": "company",
+      "relationship": "employed_by",
+      "target_entity": "person",
+      "direction": "reverse",
+      "properties": ["role", "start_date", "end_date", "department"]
+    },
+
+    "authorized_signatory": {
+      "outputs": [
+        "authorized_signatories", "signatories", "signing_authority",
+        "authorized_representatives", "legal_representatives", "prokura_holders"
+      ],
+      "produces_entity": "person",
+      "relationship": "signatory_for",
+      "target_entity": "company",
+      "properties": ["signature_type", "limitations"]
+    },
+
+    "registered_agent": {
+      "outputs": [
+        "registered_agent", "agent_records", "agent_registrations",
+        "service_agent", "process_agent"
+      ],
+      "produces_entity": ["person", "company"],
+      "relationship": "agent_for",
+      "target_entity": "company",
+      "properties": ["agent_type", "appointment_date"]
+    },
+
+    "auditor": {
+      "outputs": [
+        "auditors", "external_auditors", "audit_firm", "accountants",
+        "accountant_records"
+      ],
+      "produces_entity": "company",
+      "relationship": "auditor_of",
+      "target_entity": "company",
+      "properties": ["appointment_date", "fiscal_year"]
+    },
+
+    "family_connection": {
+      "outputs": [
+        "family_connections", "family_information", "family_members",
+        "family_relationships", "relatives", "family_ties", "kinship"
+      ],
+      "produces_entity": "person",
+      "relationship": "related_to",
+      "target_entity": "person",
+      "properties": ["relationship_type"]
+    },
+
+    "property_owner": {
+      "outputs": [
+        "property_owners", "property_ownership", "land_ownership",
+        "real_estate_ownership", "property_holdings"
+      ],
+      "produces_entity": ["person", "company"],
+      "relationship": "owns_property",
+      "target_entity": "address",
+      "properties": ["ownership_percentage", "acquisition_date"]
+    }
+  },
+
+  "node_outputs": {
+    "_doc": "Outputs that produce separate NODES (not relationships)",
+
+    "address": {
+      "outputs": [
+        "company_address", "registered_address", "legal_address", "address",
+        "addresses", "address_data", "address_history", "business_address",
+        "head_office_address", "principal_place_of_business", "trading_address",
+        "mailing_address", "correspondence_address", "registration_address"
+      ],
+      "entity_type": "address",
+      "field_code": 11,
+      "creates_relationship": "has_address",
+      "from_entity": "company"
+    },
+
+    "email": {
+      "outputs": [
+        "email_address", "email_addresses", "contact_email", "corporate_email",
+        "alternative_emails", "email"
+      ],
+      "entity_type": "email",
+      "field_code": 1,
+      "creates_relationship": "has_email",
+      "from_entity": ["person", "company"]
+    },
+
+    "phone": {
+      "outputs": [
+        "phone_number", "phone_numbers", "contact_phone", "telephone",
+        "fax_number", "mobile_number"
+      ],
+      "entity_type": "phone",
+      "field_code": 2,
+      "creates_relationship": "has_phone",
+      "from_entity": ["person", "company"]
+    },
+
+    "country": {
+      "outputs": [
+        "jurisdiction", "country_of_incorporation", "country_of_registration",
+        "registered_country", "domicile"
+      ],
+      "entity_type": "country",
+      "field_code": 20,
+      "creates_relationship": "registered_in",
+      "from_entity": "company"
+    }
+  },
+
+  "attribute_outputs": {
+    "_doc": "Outputs that are ATTRIBUTES of the main entity (not separate nodes)",
+
+    "company_identifiers": {
+      "outputs": [
+        "company_reg_id", "company_registration_number", "registration_number",
+        "company_number", "business_registration_number", "CRN", "company_id",
+        "OGRN", "CNPJ", "SIREN", "SIRET", "KRS", "CVR", "CHE"
+      ],
+      "attribute_of": "company",
+      "field_code": 14
+    },
+
+    "tax_identifiers": {
+      "outputs": [
+        "company_vat_id", "vat_id", "VAT_number", "tax_id", "tax_identification",
+        "TIN", "EIN", "tax_number", "fiscal_code", "INN"
+      ],
+      "attribute_of": "company",
+      "field_code": 15
+    },
+
+    "lei": {
+      "outputs": [
+        "LEI", "lei", "legal_entity_identifier"
+      ],
+      "attribute_of": "company",
+      "field_code": 16
+    },
+
+    "company_dates": {
+      "outputs": [
+        "company_incorporation_date", "incorporation_date", "establishment_date",
+        "registration_date", "formation_date", "date_of_incorporation",
+        "dissolution_date", "liquidation_date", "termination_date",
+        "registration_dates", "exit_dates"
+      ],
+      "attribute_of": "company",
+      "field_code": null
+    },
+
+    "company_status": {
+      "outputs": [
+        "company_status", "activity_status", "business_status", "trading_status",
+        "liquidation_status", "operational_status", "active_status",
+        "dormant_status", "struck_off_status"
+      ],
+      "attribute_of": "company",
+      "field_code": null
+    },
+
+    "company_type": {
+      "outputs": [
+        "company_type", "legal_form", "entity_type", "business_type",
+        "organization_type", "corporate_form"
+      ],
+      "attribute_of": "company",
+      "field_code": null
+    },
+
+    "share_capital": {
+      "outputs": [
+        "company_share_capital", "share_capital", "authorized_capital",
+        "paid_up_capital", "capital_structure", "issued_capital"
+      ],
+      "attribute_of": "company",
+      "field_code": null
+    },
+
+    "sic_codes": {
+      "outputs": [
+        "SIC_code", "company_sic_code", "NACE_code", "industry_code",
+        "business_classification", "activity_code"
+      ],
+      "attribute_of": "company",
+      "field_code": null
+    },
+
+    "person_identifiers": {
+      "outputs": [
+        "birth_date", "date_of_birth", "DOB", "age", "nationality",
+        "place_of_birth", "passport_number", "ID_number"
+      ],
+      "attribute_of": "person",
+      "field_code": 12
+    },
+
+    "person_aliases": {
+      "outputs": [
+        "aliases", "alternate_names", "also_known_as", "AKA", "former_names",
+        "maiden_name", "name_variants"
+      ],
+      "attribute_of": "person",
+      "field_code": null
+    }
+  },
+
+  "document_outputs": {
+    "_doc": "Outputs that reference documents/filings (metadata, not entities)",
+    "outputs": [
+      "annual_accounts", "annual_filings", "annual_reports", "annual_returns",
+      "financial_statements", "profit_loss_statements", "balance_sheets",
+      "accounts", "filed_accounts", "abbreviated_accounts",
+      "court_cases", "court_decisions", "court_judgments", "court_proceedings",
+      "civil_cases", "civil_judgements", "civil_litigation", "civil_proceedings",
+      "criminal_cases", "criminal_proceedings", "criminal_records",
+      "bankruptcy_filings", "insolvency_records", "insolvency_proceedings",
+      "liquidation_records", "winding_up_petitions",
+      "litigation_history", "litigation_records", "legal_proceedings",
+      "regulatory_filings", "statutory_filings", "confirmation_statements",
+      "charges", "mortgages", "security_interests",
+      "gazette_notices", "official_announcements", "commercial_announcements",
+      "adverse_media", "news_articles", "press_releases"
+    ]
+  },
+
+  "complex_outputs": {
+    "_doc": "Outputs that contain nested/aggregated data requiring decomposition",
+    "outputs": [
+      "ownership_structure", "corporate_structure", "organizational_structure",
+      "group_structure", "shareholding_structure", "capital_structure",
+      "corporate_hierarchy", "ownership_chain", "UBO_chain",
+      "contact_information", "biographical_data", "biographical_information",
+      "personal_details", "company_details", "corporate_details",
+      "business_information", "registration_details"
+    ],
+    "note": "These outputs need special handling - they contain multiple entities and relationships"
+  }
+}

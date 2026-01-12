@@ -1,0 +1,217 @@
+{
+  "UK": [
+    {
+      "name": "UK Judiciary",
+      "domain": "judiciary.uk",
+      "url": "https://www.judiciary.uk/?s=",
+      "search_url": "https://www.judiciary.uk/?s={q}",
+      "type": "public_record",
+      "category": "legal",
+      "section": "litigation",
+      "friction": "public",
+      "jurisdictions": [
+        "UK"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_template": "https://www.judiciary.uk/?s={q}",
+      "search_placeholder": "{q}",
+      "notes": "UK public record - legal",
+      "metadata": {
+        "source": "uk_public_batch_2025-12-31",
+        "original_category": "legal",
+        "scrape_method": "JESTER_A",
+        "added_at": "2025-12-31T22:17:40.525486"
+      },
+      "output_schema": {
+        "results_container": "article.post",
+        "article_link_selector": "h2.entry-title a",
+        "article_title_selector": "h2.entry-title",
+        "article_snippet_selector": "p.entry-excerpt",
+        "confidence": "medium"
+      }
+    },
+    {
+      "name": "UK Supreme Court",
+      "domain": "supremecourt.uk",
+      "url": "https://www.supremecourt.uk/search-results.html?q=",
+      "search_url": "https://www.supremecourt.uk/decided-cases/index.html",
+      "type": "public_record",
+      "category": "legal",
+      "section": "litigation",
+      "friction": "public",
+      "jurisdictions": [
+        "UK"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_template": "https://www.supremecourt.uk/decided-cases/index.html",
+      "search_placeholder": "{q}",
+      "notes": "Native search deprecated; this is the full decided cases list",
+      "metadata": {
+        "source": "uk_public_batch_2025-12-31",
+        "original_category": "legal",
+        "scrape_method": "JESTER_A",
+        "added_at": "2025-12-31T22:17:40.525513"
+      },
+      "output_schema": {
+        "results_container": "div.gsc-result",
+        "article_link_selector": "div.gs-title a",
+        "article_title_selector": "div.gs-title a",
+        "article_snippet_selector": "div.gs-snippet",
+        "confidence": "high"
+      }
+    },
+    {
+      "name": "Scottish Courts",
+      "domain": "scotcourts.gov.uk",
+      "url": "https://www.scotcourts.gov.uk/search-results?q=",
+      "search_url": "https://www.scotcourts.gov.uk/search-judgments",
+      "type": "public_record",
+      "category": "legal",
+      "section": "litigation",
+      "friction": "public",
+      "jurisdictions": [
+        "UK"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_template": "https://www.scotcourts.gov.uk/search-judgments",
+      "search_placeholder": "{q}",
+      "notes": "Dedicated judgments search - uses JS filtering",
+      "metadata": {
+        "source": "uk_public_batch_2025-12-31",
+        "original_category": "legal",
+        "scrape_method": "JESTER_C",
+        "added_at": "2025-12-31T22:17:40.525518"
+      }
+    },
+    {
+      "name": "Northern Ireland Courts",
+      "domain": "courtsni.gov.uk",
+      "url": "https://www.justice-ni.gov.uk/search?query=",
+      "search_url": "https://www.justice-ni.gov.uk/search?query={q}",
+      "type": "public_record",
+      "category": "legal",
+      "section": "litigation",
+      "friction": "public",
+      "jurisdictions": [
+        "UK"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_template": "https://www.justice-ni.gov.uk/search?query={q}",
+      "search_placeholder": "{q}",
+      "notes": "UK public record - legal",
+      "metadata": {
+        "source": "uk_public_batch_2025-12-31",
+        "original_category": "legal",
+        "scrape_method": "JESTER_A",
+        "added_at": "2025-12-31T22:17:40.525522"
+      },
+      "output_schema": {
+        "results_container": ".view-search .views-row",
+        "article_link_selector": "a",
+        "article_title_selector": "h3, .views-field-title",
+        "article_snippet_selector": ".views-field-body, p",
+        "confidence": "low"
+      }
+    },
+    {
+      "name": "Competition Appeal Tribunal",
+      "domain": "catribunal.org.uk",
+      "url": "https://www.catribunal.org.uk/search/node?keys=",
+      "search_url": "https://www.catribunal.org.uk/judgments",
+      "type": "public_record",
+      "category": "legal",
+      "section": "litigation",
+      "friction": "public",
+      "jurisdictions": [
+        "UK"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_template": "https://www.catribunal.org.uk/judgments",
+      "search_placeholder": "{q}",
+      "notes": "Direct judgments listing (no native search)",
+      "metadata": {
+        "source": "uk_public_batch_2025-12-31",
+        "original_category": "legal",
+        "scrape_method": "JESTER_A",
+        "added_at": "2025-12-31T22:17:40.525525"
+      }
+    },
+    {
+      "name": "Employment Appeal Tribunal",
+      "domain": "gov.uk/employment-appeal-tribunal",
+      "url": "https://www.gov.uk/employment-appeal-tribunal-decisions?keywords=",
+      "search_url": "https://www.gov.uk/employment-appeal-tribunal-decisions?keywords={q}",
+      "type": "public_record",
+      "category": "legal",
+      "section": "litigation",
+      "friction": "public",
+      "jurisdictions": [
+        "UK"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_template": "https://www.gov.uk/employment-appeal-tribunal-decisions?keywords={q}",
+      "search_placeholder": "{q}",
+      "notes": "UK public record - legal",
+      "metadata": {
+        "source": "uk_public_batch_2025-12-31",
+        "original_category": "legal",
+        "scrape_method": "JESTER_A",
+        "added_at": "2025-12-31T22:17:40.525528"
+      }
+    }
+  ]
+}

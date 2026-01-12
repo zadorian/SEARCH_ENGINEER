@@ -1,0 +1,5 @@
+- [x] Add GLiNER fallback snippets when regex signals miss
+  - Priority: Medium
+  - Added: 2026-01-05 by GPT-5
+  - Completed: 2026-01-05 by GPT-5
+  - Notes: Use head/tail chunks to avoid zero-entity outputs on non-English text.

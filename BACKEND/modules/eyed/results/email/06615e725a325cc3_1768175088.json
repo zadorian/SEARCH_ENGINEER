@@ -1,0 +1,33 @@
+{
+  "id": "06615e725a325cc3",
+  "node_class": "ENTITY",
+  "type": "email",
+  "canonicalValue": "test@example.com",
+  "label": "test@example.com",
+  "value": "test@example.com",
+  "comment": null,
+  "embedded_edges": [
+    {
+      "target_id": "b1eb825eca7d199d",
+      "relation": "input_of",
+      "verification_status": "VERIFIED",
+      "connection_reason": "aggregator_link"
+    },
+    {
+      "target_id": "ca895d4e6babe356",
+      "relation": "input_of",
+      "verification_status": "VERIFIED",
+      "connection_reason": "aggregator_link"
+    },
+    {
+      "target_id": "23cf84cad930419d",
+      "relation": "input_of",
+      "verification_status": "VERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-11T23:44:48.789919",
+  "updatedAt": "2026-01-11T23:44:48.789922",
+  "lastSeen": "2026-01-11T23:44:48.789924"
+}

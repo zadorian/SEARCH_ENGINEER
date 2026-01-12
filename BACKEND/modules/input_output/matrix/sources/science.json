@@ -1,0 +1,537 @@
+{
+  "GLOBAL": [
+    {
+      "name": "The News Journal",
+      "domain": "delawareonline.com",
+      "url": "https://www.delawareonline.com/search/{q}/",
+      "search_url": "https://www.delawareonline.com/search/{q}/",
+      "type": "scientific_resource",
+      "category": "sci",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "delawareonline.com_journal_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.delawareonline.com/search/{q}/",
+      "section": "sci",
+      "access": "public",
+      "notes": "Imported from journal_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "journal"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "capabilities": [
+        {
+          "rule_id": "BRUTE_SCIENTIFIC_JOURNALS_SEARCH",
+          "label": "Find scientific journal articles",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "JS",
+                "MU",
+                "NT",
+                "SE",
+                "OA"
+              ],
+              "wave": "remaining",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ],
+      "scrape_method": "Firecrawl"
+    },
+    {
+      "name": "Digital Photgrapy Review",
+      "domain": "dpreview.com",
+      "url": "https://www.dpreview.com/search/",
+      "search_url": "https://www.dpreview.com/search/?query={q}",
+      "type": "scientific_resource",
+      "category": "sci",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "dpreview.com_journal_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.dpreview.com/search/?query={q}",
+      "section": "sci",
+      "access": "public",
+      "notes": "Imported from journal_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "journal"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "query"
+      ],
+      "capabilities": [
+        {
+          "jurisdiction": "GLOBAL",
+          "kind": "rule"
+        }
+      ],
+      "scrape_method": "Firecrawl"
+    },
+    {
+      "name": "Journal des femmes",
+      "domain": "journaldesfemmes.com",
+      "url": "https://www.journaldesfemmes.com/s/{q}",
+      "search_url": "https://www.journaldesfemmes.com/s/{q}",
+      "type": "scientific_resource",
+      "category": "sci",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "journaldesfemmes.com_journal_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.journaldesfemmes.com/s/{q}",
+      "section": "sci",
+      "access": "public",
+      "notes": "Imported from journal_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "journal"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "capabilities": [
+        {
+          "rule_id": "BRUTE_SCIENTIFIC_JOURNALS_SEARCH",
+          "label": "Find scientific journal articles",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "JS",
+                "MU",
+                "NT",
+                "SE",
+                "OA"
+              ],
+              "wave": "remaining",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ],
+      "scrape_method": "Jester_A"
+    },
+    {
+      "name": "JournalDuNet",
+      "domain": "journaldunet.com",
+      "url": "https://www.journaldunet.com/s/{q}",
+      "search_url": "https://www.journaldunet.com/s/{q}",
+      "type": "scientific_resource",
+      "category": "sci",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "journaldunet.com_journal_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.journaldunet.com/s/{q}",
+      "section": "sci",
+      "access": "public",
+      "notes": "Imported from journal_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "journal"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "capabilities": [
+        {
+          "rule_id": "BRUTE_SCIENTIFIC_JOURNALS_SEARCH",
+          "label": "Find scientific journal articles",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "JS",
+                "MU",
+                "NT",
+                "SE",
+                "OA"
+              ],
+              "wave": "remaining",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ],
+      "scrape_method": "Jester_A"
+    },
+    {
+      "name": "National Review",
+      "domain": "nationalreview.com",
+      "url": "https://www.nationalreview.com/",
+      "search_url": "https://www.nationalreview.com/?s={q}",
+      "type": "scientific_resource",
+      "category": "sci",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "nationalreview.com_journal_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.nationalreview.com/?s={q}",
+      "section": "sci",
+      "access": "public",
+      "notes": "Imported from journal_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "journal"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ],
+      "capabilities": [
+        {
+          "jurisdiction": "GLOBAL",
+          "kind": "rule"
+        }
+      ],
+      "scrape_method": "Firecrawl"
+    },
+    {
+      "name": "New York Review of Books",
+      "domain": "nybooks.com",
+      "url": "https://www.nybooks.com/search/",
+      "search_url": "https://www.nybooks.com/search/?s={q}&option_match=&year_after=1963&year_before=2017&type=all&orderby=relevance",
+      "type": "scientific_resource",
+      "category": "sci",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "nybooks.com_journal_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.nybooks.com/search/?s={q}&option_match=&year_after=1963&year_before=2017&type=all&orderby=relevance",
+      "section": "sci",
+      "access": "public",
+      "notes": "Imported from journal_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "journal"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ],
+      "capabilities": [
+        {
+          "rule_id": "BRUTE_SCIENTIFIC_JOURNALS_SEARCH",
+          "label": "Find scientific journal articles",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "JS",
+                "MU",
+                "NT",
+                "SE",
+                "OA"
+              ],
+              "wave": "remaining",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ],
+      "scrape_method": "Jester_A"
+    },
+    {
+      "name": "The Wall Street Journal",
+      "domain": "wsj.com",
+      "url": "https://www.wsj.com/search/term.html",
+      "search_url": "https://www.wsj.com/search/term.html?KEYWORDS={q}&isAdvanced=true&daysback=90d&andor=AND&sort=date-desc&source=wsjarticle,wsjblogs,wsjvideo,interactivemedia,sitesearch,wsjpro",
+      "type": "scientific_resource",
+      "category": "sci",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "wsj.com_journal_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.wsj.com/search/term.html?KEYWORDS={q}&isAdvanced=true&daysback=90d&andor=AND&sort=date-desc&source=wsjarticle,wsjblogs,wsjvideo,interactivemedia,sitesearch,wsjpro",
+      "section": "sci",
+      "access": "public",
+      "notes": "Imported from journal_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "journal"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "KEYWORDS"
+      ],
+      "capabilities": [
+        {
+          "rule_id": "BRUTE_SCIENTIFIC_JOURNALS_SEARCH",
+          "label": "Find scientific journal articles",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "JS",
+                "MU",
+                "NT",
+                "SE",
+                "OA"
+              ],
+              "wave": "remaining",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ],
+      "scrape_method": "Firecrawl"
+    }
+  ],
+  "UK": [
+    {
+      "name": "The London Review of Books",
+      "domain": "lrb.co.uk",
+      "url": "https://www.lrb.co.uk/search",
+      "search_url": "https://www.lrb.co.uk/search?q={q}",
+      "type": "scientific_resource",
+      "category": "sci",
+      "friction": "public",
+      "jurisdictions": [
+        "UK"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "lrb.co.uk_journal_imported",
+      "jurisdiction": "UK",
+      "search_template": "https://www.lrb.co.uk/search?q={q}",
+      "section": "sci",
+      "access": "public",
+      "notes": "Imported from journal_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "journal"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ],
+      "capabilities": [
+        {
+          "jurisdiction": "UK",
+          "notes": "Runs datasets/land_registry_search.py on CCOD CSV to filter by postcode/owner/address and emit structured matches.",
+          "kind": "rule"
+        }
+      ],
+      "scrape_method": "Jester_A"
+    }
+  ],
+  "RU": [
+    {
+      "name": "RobotReview",
+      "domain": "robot-review.ru",
+      "url": "https://robot-review.ru/search",
+      "search_url": "https://robot-review.ru/search?q={q}",
+      "type": "scientific_resource",
+      "category": "sci",
+      "friction": "public",
+      "jurisdictions": [
+        "RU"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "robot-review.ru_journal_imported",
+      "jurisdiction": "RU",
+      "search_template": "https://robot-review.ru/search?q={q}",
+      "section": "sci",
+      "access": "public",
+      "notes": "Imported from journal_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "journal"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ],
+      "capabilities": [
+        {
+          "rule_id": "BRUTE_SCIENTIFIC_JOURNALS_SEARCH",
+          "label": "Find scientific journal articles",
+          "requires_any": [
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            146
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "JS",
+                "MU",
+                "NT",
+                "SE",
+                "OA"
+              ],
+              "wave": "remaining",
+              "query_template": "{search_term}"
+            }
+          ]
+        }
+      ],
+      "scrape_method": "Firecrawl"
+    }
+  ]
+}

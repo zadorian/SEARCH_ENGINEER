@@ -42,7 +42,7 @@ from .extractors import EntityExtractor, ExtractedEntities
 from .embedder import DrillEmbedder, FASTEMBED_AVAILABLE
 from .indexer import DrillIndexer, PageDocument
 from .discovery import DrillDiscovery, DiscoveryResult
-from modules.jester.scraping.universal_scraper import UniversalScraper
+from modules.jester.scraping.scrape_orchestrator import UniversalScraper
 from modules.jester.core.storage import MemoryStorage, SQLiteStorage, RedisStorage, StorageBackend, QueueItem
 from modules.jester.extraction.universal_extractor import UniversalExtractor
 from .cc_offline_sniper import CCIndexOfflineLookup

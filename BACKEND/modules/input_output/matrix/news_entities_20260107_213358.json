@@ -1,0 +1,18 @@
+{
+  "harvested_at": "2026-01-07T21:33:58.173873",
+  "jurisdictions_processed": [],
+  "stats": {
+    "total_searches": 4,
+    "total_articles": 0,
+    "total_snippets_processed": 0,
+    "companies_extracted": 0,
+    "persons_extracted": 0,
+    "unique_companies": 0,
+    "unique_persons": 0,
+    "errors": 0,
+    "jurisdictions_processed": []
+  },
+  "total_entities": 0,
+  "companies": [],
+  "persons": []
+}

@@ -1,0 +1,79 @@
+{
+  "description": "Mined files from report_library_ingestion - archived after integration",
+  "archived_at": "2025-12-29T13:33:00Z",
+  "source_directory": "input_output/matrix_backup_20251125/mined/",
+  "integration_status": {
+    "mined_dead_ends.json": {
+      "status": "INTEGRATED",
+      "target": "jurisdictions.json",
+      "records": 2196,
+      "integrated_at": "2025-12-29",
+      "notes": "Added as structured dead_ends per jurisdiction with categorization"
+    },
+    "mined_arbitrage.json": {
+      "status": "INTEGRATED",
+      "target": "flows.json",
+      "records": 754,
+      "integrated_at": "2025-12-29",
+      "notes": "Added as ARBITRAGE_* flows"
+    },
+    "mined_section_templates.json": {
+      "status": "EXTRACTED",
+      "target": "~/.claude/skills/edith-templates/mined/section_templates.json",
+      "records": 4568,
+      "integrated_at": "2025-12-29",
+      "notes": "Extracted to EDITH skill for document generation"
+    },
+    "mined_writing_styles.json": {
+      "status": "EXTRACTED",
+      "target": "~/.claude/skills/edith-templates/mined/writing_styles.json",
+      "records": 1245,
+      "integrated_at": "2025-12-29",
+      "notes": "Extracted to EDITH skill for writing style patterns"
+    },
+    "mined_methodology.json": {
+      "status": "INTEGRATED",
+      "target": "jurisdictions.json (proven_methods)",
+      "records": 5269,
+      "integrated_at": "2025-12-29",
+      "notes": "Added as proven_methods per jurisdiction with friction profiles"
+    },
+    "mined_routes.json": {
+      "status": "PREVIOUSLY_INTEGRATED",
+      "target": "flows.json (via rules.json)",
+      "records": 2921,
+      "notes": "Already merged in earlier phase"
+    },
+    "mined_genres.json": {
+      "status": "EXTRACTED",
+      "target": "~/.claude/skills/edith-templates/mined/genres.json",
+      "records": 1243,
+      "integrated_at": "2025-12-29",
+      "notes": "Report genre definitions for EDITH document generation"
+    },
+    "mined_jurisdictions.json": {
+      "status": "PREVIOUSLY_INTEGRATED",
+      "target": "jurisdictions.json",
+      "notes": "Jurisdiction patterns already merged"
+    },
+    "mined_registry_domains.json": {
+      "status": "PREVIOUSLY_INTEGRATED",
+      "target": "sources.json",
+      "records": 355,
+      "notes": "Registry domains already in sources"
+    },
+    "mined_sectors.json": {
+      "status": "EXTRACTED",
+      "target": "~/.claude/skills/edith-templates/mined/sectors.json",
+      "records": 2094,
+      "integrated_at": "2025-12-29",
+      "notes": "Sector definitions for EDITH document generation"
+    },
+    "aggregated_sectors.json": {
+      "status": "EXTRACTED",
+      "target": "~/.claude/skills/edith-templates/mined/aggregated_sectors.json",
+      "integrated_at": "2025-12-29",
+      "notes": "Aggregated sector data for EDITH"
+    }
+  }
+}

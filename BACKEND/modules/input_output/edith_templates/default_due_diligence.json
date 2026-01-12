@@ -1,0 +1,10 @@
+{
+  "id": "default_due_diligence",
+  "kind": "report",
+  "title": "Due Diligence Report",
+  "genre": "due_diligence",
+  "depth": "enhanced",
+  "jurisdiction": "",
+  "sector": "",
+  "subjectName": "[?:subject name]"
+}

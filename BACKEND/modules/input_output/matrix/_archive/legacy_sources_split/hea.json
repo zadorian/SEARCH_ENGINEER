@@ -1,0 +1,500 @@
+{
+  "GLOBAL": [
+    {
+      "name": "Wikimedia Commons",
+      "domain": "commons.wikimedia.org",
+      "url": "https://commons.wikimedia.org/w/index.php",
+      "search_url": "https://commons.wikimedia.org/w/index.php?search={q}",
+      "type": "health_resource",
+      "category": "hea",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "commons.wikimedia.org_health_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://commons.wikimedia.org/w/index.php?search={q}",
+      "section": "hea",
+      "access": "public",
+      "notes": "Imported from health_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "health"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Dr. Axe",
+      "domain": "draxe.com",
+      "url": "https://draxe.com/",
+      "search_url": "https://draxe.com/?s={q}",
+      "type": "health_resource",
+      "category": "hea",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "draxe.com_health_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://draxe.com/?s={q}",
+      "section": "hea",
+      "access": "public",
+      "notes": "Imported from health_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "health"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ]
+    },
+    {
+      "name": "Dr Workout",
+      "domain": "drworkout.fitness",
+      "url": "https://www.drworkout.fitness/",
+      "search_url": "https://www.drworkout.fitness/?s={q}",
+      "type": "health_resource",
+      "category": "hea",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "drworkout.fitness_health_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.drworkout.fitness/?s={q}",
+      "section": "hea",
+      "access": "public",
+      "notes": "Imported from health_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "health"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ]
+    },
+    {
+      "name": "Media Bias Fact Check",
+      "domain": "mediabiasfactcheck.com",
+      "url": "https://mediabiasfactcheck.com/",
+      "search_url": "https://mediabiasfactcheck.com/?s={q}",
+      "type": "health_resource",
+      "category": "hea",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "mediabiasfactcheck.com_health_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://mediabiasfactcheck.com/?s={q}",
+      "section": "hea",
+      "access": "public",
+      "notes": "Imported from health_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "health"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ],
+      "scrape_method": "Jester_A"
+    },
+    {
+      "name": "Mediatize",
+      "domain": "mediatize.info",
+      "url": "https://www.mediatize.info/search",
+      "search_url": "https://www.mediatize.info/search?q={q}",
+      "type": "health_resource",
+      "category": "hea",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "mediatize.info_health_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.mediatize.info/search?q={q}",
+      "section": "hea",
+      "access": "public",
+      "notes": "Imported from health_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "health"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "Wikimedia Meta",
+      "domain": "meta.wikimedia.org",
+      "url": "https://meta.wikimedia.org/w/index.php",
+      "search_url": "https://meta.wikimedia.org/w/index.php?&title=Special:Search&go=Go&search={q}",
+      "type": "health_resource",
+      "category": "hea",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "meta.wikimedia.org_health_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://meta.wikimedia.org/w/index.php?&title=Special:Search&go=Go&search={q}",
+      "section": "hea",
+      "access": "public",
+      "notes": "Imported from health_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "health"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "&title"
+      ]
+    },
+    {
+      "name": "MeteoMedia",
+      "domain": "meteomedia.com",
+      "url": "https://www.meteomedia.com/ca/search",
+      "search_url": "https://www.meteomedia.com/ca/search?q={q}",
+      "type": "health_resource",
+      "category": "hea",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "meteomedia.com_health_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.meteomedia.com/ca/search?q={q}",
+      "section": "hea",
+      "access": "public",
+      "notes": "Imported from health_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "health"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ],
+      "scrape_method": "Firecrawl"
+    },
+    {
+      "name": "Wikimedia Phabricator installation",
+      "domain": "phabricator.wikimedia.org",
+      "url": "https://phabricator.wikimedia.org/search/",
+      "search_url": "https://phabricator.wikimedia.org/search/?query={q}",
+      "type": "health_resource",
+      "category": "hea",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "phabricator.wikimedia.org_health_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://phabricator.wikimedia.org/search/?query={q}",
+      "section": "hea",
+      "access": "public",
+      "notes": "Imported from health_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "health"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "query"
+      ]
+    },
+    {
+      "name": "PJ Media",
+      "domain": "pjmedia.com",
+      "url": "https://pjmedia.com/search/",
+      "search_url": "https://pjmedia.com/search/?s={q}",
+      "type": "health_resource",
+      "category": "hea",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "pjmedia.com_health_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://pjmedia.com/search/?s={q}",
+      "section": "hea",
+      "access": "public",
+      "notes": "Imported from health_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "health"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ],
+      "scrape_method": "Jester_A"
+    },
+    {
+      "name": "Medios y Opinión",
+      "domain": "plazademayo.com",
+      "url": "http://www.plazademayo.com/mediosyopinion/",
+      "search_url": "http://www.plazademayo.com/mediosyopinion/?s={q}",
+      "type": "health_resource",
+      "category": "hea",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "plazademayo.com_health_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "http://www.plazademayo.com/mediosyopinion/?s={q}",
+      "section": "hea",
+      "access": "public",
+      "notes": "Imported from health_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "health"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ],
+      "scrape_method": "Firecrawl"
+    },
+    {
+      "name": "Wolne Media",
+      "domain": "wolnemedia.net",
+      "url": "https://wolnemedia.net/",
+      "search_url": "https://wolnemedia.net/?s={q}",
+      "type": "health_resource",
+      "category": "hea",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "wolnemedia.net_health_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://wolnemedia.net/?s={q}",
+      "section": "hea",
+      "access": "public",
+      "notes": "Imported from health_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "health"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ],
+      "scrape_method": "Jester_A"
+    }
+  ],
+  "AT": [
+    {
+      "name": "Metalab Mediawiki",
+      "domain": "metalab.at",
+      "url": "https://metalab.at/wiki/index.php",
+      "search_url": "https://metalab.at/wiki/index.php?search={q}",
+      "type": "health_resource",
+      "category": "hea",
+      "friction": "public",
+      "jurisdictions": [
+        "AT"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "metalab.at_health_imported",
+      "jurisdiction": "AT",
+      "search_template": "https://metalab.at/wiki/index.php?search={q}",
+      "section": "hea",
+      "access": "public",
+      "notes": "Imported from health_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "health"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ],
+      "input_schema": {
+        "search_by_name": {
+          "input_type": "mixed",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null,
+          "min_length": null
+        }
+      },
+      "thematic_tags": [],
+      "language": "de",
+      "requires_translation": false,
+      "enhanced_at": "2025-12-18T07:55:08.716455",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 1.0
+      },
+      "capabilities": [
+        {
+          "jurisdiction": "AT",
+          "kind": "rule"
+        }
+      ]
+    }
+  ]
+}

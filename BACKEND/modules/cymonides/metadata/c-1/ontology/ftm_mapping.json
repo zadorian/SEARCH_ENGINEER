@@ -1,0 +1,342 @@
+{
+  "mappings": {
+    "person": {
+      "ftm_schema": "Person",
+      "properties": {
+        "name": "name",
+        "alias": "alias",
+        "birth_date": "birthDate",
+        "nationality": "nationality",
+        "country": "country"
+      }
+    },
+    "company": {
+      "ftm_schema": "Company",
+      "properties": {
+        "name": "name",
+        "jurisdiction": "jurisdiction",
+        "registration_number": "registrationNumber",
+        "incorporation_date": "incorporationDate",
+        "status": "status",
+        "address": "address",
+        "industry": "sector"
+      }
+    },
+    "organization": {
+      "ftm_schema": "Organization",
+      "properties": {
+        "name": "name",
+        "jurisdiction": "jurisdiction"
+      }
+    },
+    "address": {
+      "ftm_schema": "Address",
+      "properties": {
+        "full_address": "full",
+        "street": "street",
+        "city": "city",
+        "country": "country",
+        "postal_code": "postalCode"
+      }
+    },
+    "vessel": {
+      "ftm_schema": "Vessel",
+      "properties": {
+        "name": "name",
+        "imo": "imoNumber",
+        "mmsi": "mmsi",
+        "flag": "flag",
+        "type": "type"
+      }
+    },
+    "plane": {
+      "ftm_schema": "Airplane",
+      "properties": {
+        "name": "name",
+        "tail_number": "registrationNumber",
+        "icao": "icaoCode",
+        "model": "model"
+      }
+    },
+    "vehicle": {
+      "ftm_schema": "Vehicle",
+      "properties": {
+        "name": "name",
+        "plate": "registrationNumber",
+        "vin": "vinCode"
+      }
+    },
+    "email": {
+      "ftm_schema": "LegalEntity",
+      "properties": {
+        "email_address": "email"
+      },
+      "note": "Mapped to LegalEntity as FtM lacks a dedicated Email node type"
+    },
+    "phone": {
+      "ftm_schema": "LegalEntity",
+      "properties": {
+        "phone_number": "phone"
+      },
+      "note": "Mapped to LegalEntity as FtM lacks a dedicated Phone node type"
+    },
+    "asset": {
+      "ftm_schema": "Asset",
+      "properties": {
+        "name": "name",
+        "description": "description",
+        "registration_number": "registrationNumber",
+        "country": "country"
+      }
+    }
+  },
+  "relationships": {
+    "_comment": "Edge types aligned with graphModel.ts and EntityBridge.tsx",
+
+    "officer_of": {
+      "ftm_schema": "Directorship",
+      "source": "director",
+      "target": "organization",
+      "properties": {
+        "role": "role",
+        "start_date": "startDate",
+        "end_date": "endDate"
+      }
+    },
+    "director_of": {
+      "ftm_schema": "Directorship",
+      "source": "director",
+      "target": "organization",
+      "properties": {
+        "role": "role",
+        "start_date": "startDate",
+        "end_date": "endDate"
+      }
+    },
+    "shareholder_of": {
+      "ftm_schema": "Ownership",
+      "source": "owner",
+      "target": "asset",
+      "properties": {
+        "percentage": "percentage",
+        "shares": "sharesCount",
+        "start_date": "startDate"
+      }
+    },
+    "beneficial_owner_of": {
+      "ftm_schema": "Ownership",
+      "source": "owner",
+      "target": "asset",
+      "note": "Ownership with beneficial control",
+      "properties": {
+        "percentage": "percentage",
+        "control_type": "controlType",
+        "start_date": "startDate"
+      }
+    },
+    "owner_of": {
+      "ftm_schema": "Ownership",
+      "source": "owner",
+      "target": "asset",
+      "properties": {
+        "percentage": "percentage",
+        "shares": "sharesCount",
+        "start_date": "startDate"
+      }
+    },
+    "owns": {
+      "ftm_schema": "Ownership",
+      "source": "owner",
+      "target": "asset",
+      "properties": {
+        "percentage": "percentage",
+        "shares": "sharesCount",
+        "start_date": "startDate"
+      }
+    },
+    "employed_by": {
+      "ftm_schema": "Employment",
+      "source": "employee",
+      "target": "employer",
+      "properties": {
+        "role": "role",
+        "start_date": "startDate",
+        "end_date": "endDate"
+      }
+    },
+    "employs": {
+      "ftm_schema": "Employment",
+      "source": "employer",
+      "target": "employee",
+      "properties": {
+        "role": "role",
+        "start_date": "startDate",
+        "end_date": "endDate"
+      }
+    },
+    "legal_parent_of": {
+      "ftm_schema": "Ownership",
+      "source": "parent",
+      "target": "subsidiary",
+      "aliases": ["parent"],
+      "properties": {
+        "share_pct": "percentage"
+      }
+    },
+    "subsidiary_of": {
+      "ftm_schema": "Ownership",
+      "source": "subsidiary",
+      "target": "parent",
+      "aliases": ["subsidiaries", "subsidiary"],
+      "properties": {
+        "share_pct": "percentage"
+      }
+    },
+    "partner_of": {
+      "ftm_schema": "Associate",
+      "source": "entity",
+      "target": "associate",
+      "bidirectional": true,
+      "properties": {
+        "relationship": "relationship"
+      }
+    },
+    "affiliated_with": {
+      "ftm_schema": "Associate",
+      "source": "entity",
+      "target": "associate",
+      "properties": {
+        "relationship": "relationship"
+      }
+    },
+    "married_to": {
+      "ftm_schema": "Family",
+      "source": "person",
+      "target": "relative",
+      "bidirectional": true,
+      "properties": {
+        "relationship": "relationship"
+      }
+    },
+    "child_of": {
+      "ftm_schema": "Family",
+      "source": "person",
+      "target": "relative",
+      "properties": {
+        "relationship": "relationship"
+      }
+    },
+    "parent_of": {
+      "ftm_schema": "Family",
+      "source": "relative",
+      "target": "person",
+      "properties": {
+        "relationship": "relationship"
+      }
+    },
+    "sibling_of": {
+      "ftm_schema": "Family",
+      "source": "person",
+      "target": "relative",
+      "bidirectional": true,
+      "properties": {
+        "relationship": "relationship"
+      }
+    },
+    "has_member": {
+      "ftm_schema": "Membership",
+      "source": "organization",
+      "target": "member",
+      "properties": {
+        "role": "role"
+      }
+    },
+    "related_to": {
+      "ftm_schema": "UnknownLink",
+      "source": "subject",
+      "target": "object",
+      "bidirectional": true,
+      "properties": {
+        "role": "role"
+      }
+    },
+    "has_phone": {
+      "ftm_schema": null,
+      "note": "No FTM equivalent - contact info stored on entity",
+      "source": "entity",
+      "target": "phone"
+    },
+    "has_email": {
+      "ftm_schema": null,
+      "note": "No FTM equivalent - contact info stored on entity",
+      "source": "entity",
+      "target": "email"
+    },
+    "has_address": {
+      "ftm_schema": "Address",
+      "note": "In FTM, address is typically a property, not a separate edge",
+      "source": "entity",
+      "target": "address"
+    },
+    "headquartered_at": {
+      "ftm_schema": "Address",
+      "note": "Company HQ address",
+      "source": "company",
+      "target": "address"
+    },
+    "registered_in": {
+      "ftm_schema": null,
+      "note": "Jurisdiction - stored as property in FTM",
+      "source": "company",
+      "target": "jurisdiction"
+    },
+    "resides_at": {
+      "ftm_schema": "Address",
+      "note": "Person residence",
+      "source": "person",
+      "target": "address"
+    },
+    "educated_at": {
+      "ftm_schema": null,
+      "note": "No direct FTM equivalent",
+      "source": "person",
+      "target": "organization"
+    },
+    "has_website": {
+      "ftm_schema": null,
+      "note": "Website URL - stored as property in FTM",
+      "source": "entity",
+      "target": "domain"
+    },
+    "has_linkedin": {
+      "ftm_schema": null,
+      "note": "Social profile - stored as property in FTM",
+      "source": "entity",
+      "target": "url"
+    },
+    "has_twitter": {
+      "ftm_schema": null,
+      "note": "Social profile - stored as property in FTM",
+      "source": "entity",
+      "target": "url"
+    },
+    "flagged_with": {
+      "ftm_schema": "Sanction",
+      "note": "Risk flags, sanctions, PEP status",
+      "source": "entity",
+      "target": "flag"
+    },
+    "involved_in_litigation": {
+      "ftm_schema": "CourtCase",
+      "note": "Legal case involvement",
+      "source": "entity",
+      "target": "case"
+    },
+    "mentioned_in": {
+      "ftm_schema": null,
+      "note": "Document mention - no direct FTM equivalent",
+      "source": "entity",
+      "target": "document"
+    }
+  }
+}

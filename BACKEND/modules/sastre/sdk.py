@@ -254,7 +254,7 @@ def _external_mcp_servers() -> Dict[str, Any]:
         ("linklater", "/data/LINKLATER/mcp_server.py"),
         ("cymonides", "/data/CYMONIDES/mcp_server.py"),
         ("torpedo_mcp", "/data/TORPEDO/mcp_server.py"),
-        ("matrix", "/data/INPUT_OUTPUT/matrix/io_mcp_v2.py"),
+        ("matrix", "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/io_mcp_v2.py"),
         ("edith_templates", "/data/CLASSES/NARRATIVE/EDITH/templates/edith_mcp.py"),
         ("eyed", "/data/EYE-D/mcp_server.py"),
         ("corporella", "/data/CORPORELLA/mcp_server.py"),
@@ -1480,7 +1480,7 @@ async def torpedo_process_tool(args: Dict[str, Any]) -> Dict[str, Any]:
         return {"content": [{"type": "text", "text": "Error: Torpedo modules not found"}], "is_error": True}
 
     process_type = args["type"].lower()
-    sources_path = Path(args.get("sources_file", "/data/INPUT_OUTPUT/matrix/sources.json"))
+    sources_path = Path(args.get("sources_file", "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/sources.json"))
     jurisdiction = args.get("jurisdiction")
     limit = args.get("limit")
 
@@ -1517,7 +1517,7 @@ async def torpedo_process_tool(args: Dict[str, Any]) -> Dict[str, Any]:
 )
 async def torpedo_template_tool(args: Dict[str, Any]) -> Dict[str, Any]:
     """Retrieve Torpedo templates."""
-    sources_path = Path("/data/INPUT_OUTPUT/matrix/sources.json")
+    sources_path = Path("/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/sources.json")
     if not sources_path.exists():
         return {"content": [{"type": "text", "text": "Sources matrix not found"}], "is_error": True}
 
@@ -2808,7 +2808,7 @@ TOOLS = {
             "type": "object",
             "properties": {
                 "type": {"type": "string", "description": "cr|news", "default": "cr"},
-                "sources_file": {"type": "string", "description": "Path to sources JSON", "default": "/data/INPUT_OUTPUT/matrix/sources.json"},
+                "sources_file": {"type": "string", "description": "Path to sources JSON", "default": "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/sources.json"},
                 "jurisdiction": {"type": "string", "description": "Comma-separated jurisdictions filter (optional)"},
                 "limit": {"type": "integer", "description": "Limit (optional)"},
             },
@@ -2922,7 +2922,7 @@ async def handle_torpedo_search(query: str, type: str = "cr", jurisdiction: str 
     return await _call_tool(torpedo_search_tool, {"query": query, "type": type, "jurisdiction": jurisdiction, "limit": limit})
 
 
-async def handle_torpedo_process(type: str = "cr", sources_file: str = "/data/INPUT_OUTPUT/matrix/sources.json", jurisdiction: str = None, limit: int = None) -> Dict:
+async def handle_torpedo_process(type: str = "cr", sources_file: str = "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/sources.json", jurisdiction: str = None, limit: int = None) -> Dict:
     return await _call_tool(torpedo_process_tool, {"type": type, "sources_file": sources_file, "jurisdiction": jurisdiction, "limit": limit})
 
 

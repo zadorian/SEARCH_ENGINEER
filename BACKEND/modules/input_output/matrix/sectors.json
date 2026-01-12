@@ -1,0 +1,193 @@
+{
+  "$schema": "./sectors.schema.json",
+  "version": "1.0.0",
+  "generated_at": "2025-12-30",
+  "description": "Unified sector classification for SUBJECT axis pivoting. Based on NACE Rev 2 (EU standard), with mappings for national variants.",
+
+  "principle": {
+    "axis": "SUBJECT",
+    "nature": "Dynamic - sectors evolve, companies move between them",
+    "pivot_queries": [
+      "All companies in Oil & Gas",
+      "All tech companies (Section J)",
+      "All manufacturing companies with SIC 2511"
+    ]
+  },
+
+  "classification_standard": {
+    "name": "NACE Rev 2",
+    "source": "Eurostat",
+    "url": "https://ec.europa.eu/eurostat/web/nace",
+    "levels": {
+      "1": {"name": "Section", "format": "letter", "example": "C", "count": 21},
+      "2": {"name": "Division", "format": "2-digit", "example": "25", "count": 88},
+      "3": {"name": "Group", "format": "3-digit", "example": "25.1", "count": 272},
+      "4": {"name": "Class", "format": "4-digit", "example": "25.11", "count": 615}
+    }
+  },
+
+  "sections": {
+    "A": {
+      "name": "Agriculture, Forestry and Fishing",
+      "short_name": "Agriculture",
+      "divisions": ["01", "02", "03"]
+    },
+    "B": {
+      "name": "Mining and Quarrying",
+      "short_name": "Mining",
+      "divisions": ["05", "06", "07", "08", "09"],
+      "includes": ["Oil & Gas Extraction"]
+    },
+    "C": {
+      "name": "Manufacturing",
+      "short_name": "Manufacturing",
+      "divisions": ["10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33"]
+    },
+    "D": {
+      "name": "Electricity, Gas, Steam and Air Conditioning Supply",
+      "short_name": "Utilities",
+      "divisions": ["35"]
+    },
+    "E": {
+      "name": "Water Supply; Sewerage, Waste Management",
+      "short_name": "Water & Waste",
+      "divisions": ["36", "37", "38", "39"]
+    },
+    "F": {
+      "name": "Construction",
+      "short_name": "Construction",
+      "divisions": ["41", "42", "43"]
+    },
+    "G": {
+      "name": "Wholesale and Retail Trade; Repair of Motor Vehicles",
+      "short_name": "Trade",
+      "divisions": ["45", "46", "47"]
+    },
+    "H": {
+      "name": "Transportation and Storage",
+      "short_name": "Transport",
+      "divisions": ["49", "50", "51", "52", "53"]
+    },
+    "I": {
+      "name": "Accommodation and Food Service Activities",
+      "short_name": "Hospitality",
+      "divisions": ["55", "56"]
+    },
+    "J": {
+      "name": "Information and Communication",
+      "short_name": "Tech & Media",
+      "divisions": ["58", "59", "60", "61", "62", "63"],
+      "includes": ["Software", "IT Services", "Telecommunications", "Broadcasting"]
+    },
+    "K": {
+      "name": "Financial and Insurance Activities",
+      "short_name": "Finance",
+      "divisions": ["64", "65", "66"],
+      "includes": ["Banking", "Insurance", "Investment"]
+    },
+    "L": {
+      "name": "Real Estate Activities",
+      "short_name": "Real Estate",
+      "divisions": ["68"]
+    },
+    "M": {
+      "name": "Professional, Scientific and Technical Activities",
+      "short_name": "Professional Services",
+      "divisions": ["69", "70", "71", "72", "73", "74", "75"],
+      "includes": ["Legal", "Accounting", "Consulting", "R&D", "Advertising"]
+    },
+    "N": {
+      "name": "Administrative and Support Service Activities",
+      "short_name": "Admin Services",
+      "divisions": ["77", "78", "79", "80", "81", "82"]
+    },
+    "O": {
+      "name": "Public Administration and Defence; Compulsory Social Security",
+      "short_name": "Public Admin",
+      "divisions": ["84"]
+    },
+    "P": {
+      "name": "Education",
+      "short_name": "Education",
+      "divisions": ["85"]
+    },
+    "Q": {
+      "name": "Human Health and Social Work Activities",
+      "short_name": "Healthcare",
+      "divisions": ["86", "87", "88"]
+    },
+    "R": {
+      "name": "Arts, Entertainment and Recreation",
+      "short_name": "Entertainment",
+      "divisions": ["90", "91", "92", "93"]
+    },
+    "S": {
+      "name": "Other Service Activities",
+      "short_name": "Other Services",
+      "divisions": ["94", "95", "96"]
+    },
+    "T": {
+      "name": "Activities of Households as Employers",
+      "short_name": "Households",
+      "divisions": ["97", "98"]
+    },
+    "U": {
+      "name": "Activities of Extraterritorial Organisations and Bodies",
+      "short_name": "International Orgs",
+      "divisions": ["99"]
+    }
+  },
+
+  "national_mappings": {
+    "NO": {
+      "name": "SN2007 (Norway)",
+      "based_on": "NACE Rev 2",
+      "direct_mapping": true,
+      "notes": "Norwegian SN2007 is identical to NACE Rev 2"
+    },
+    "FI": {
+      "name": "TOL 2008 (Finland)",
+      "based_on": "NACE Rev 2",
+      "direct_mapping": true,
+      "notes": "Finnish TOL 2008 is identical to NACE Rev 2"
+    },
+    "GB": {
+      "name": "UK SIC 2007",
+      "based_on": "NACE Rev 2",
+      "direct_mapping": true,
+      "notes": "UK SIC 2007 adds 5-digit subclasses but 4-digit codes are identical to NACE"
+    },
+    "DE": {
+      "name": "WZ 2008 (Germany)",
+      "based_on": "NACE Rev 2",
+      "direct_mapping": true
+    },
+    "FR": {
+      "name": "NAF Rev 2 (France)",
+      "based_on": "NACE Rev 2",
+      "direct_mapping": true
+    }
+  },
+
+  "common_aliases": {
+    "oil_gas": {"sections": ["B"], "divisions": ["06", "09"], "keywords": ["petroleum", "natural gas", "drilling"]},
+    "tech": {"sections": ["J"], "divisions": ["62", "63"], "keywords": ["software", "IT", "computer", "digital"]},
+    "finance": {"sections": ["K"], "divisions": ["64", "65", "66"], "keywords": ["bank", "insurance", "investment"]},
+    "pharma": {"sections": ["C"], "divisions": ["21"], "keywords": ["pharmaceutical", "drugs", "medicine"]},
+    "retail": {"sections": ["G"], "divisions": ["47"], "keywords": ["shop", "store", "consumer"]},
+    "healthcare": {"sections": ["Q"], "divisions": ["86", "87", "88"], "keywords": ["hospital", "medical", "health"]}
+  },
+
+  "graph_config": {
+    "node_type": "industry",
+    "label_strategy": "code_first",
+    "hierarchy_edges": {
+      "class_to_group": "part_of",
+      "group_to_division": "part_of",
+      "division_to_section": "part_of"
+    },
+    "entity_edge": "operates_in"
+  },
+
+  "full_classification_file": "sectors_nace_rev2.json"
+}

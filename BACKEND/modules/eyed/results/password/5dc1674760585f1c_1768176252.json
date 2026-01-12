@@ -1,0 +1,21 @@
+{
+  "id": "5dc1674760585f1c",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "Yamaha",
+  "label": "Yamaha",
+  "value": "Yamaha",
+  "comment": "{\n  \"id\": \"2jckd4uog9vbrwatkd2t9z9klbr\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"Yamaha\"\n  ],\n  \"hashed_password\": [\n    \"7f3d81afcac800334f650090bd23b1e6:||MD5\",\n    \"7364d9d4bcf56ddc6ba69ebe587d77ed6f7d4e29:||SHA1\",\n    \"aea33831119b12a0038ee5ecb4d456618891bfae910cf430002826b0ac97c23d:||SHA256\",\n    \"861ec3cd4226b938607f97456355ccd5b6c7864a505a9842a9f27ce5a3f1e9a1bad82c87e2987603bf3d561420272a0517e2b21c749e8c784ae996daeb550d74:||SHA512\",\n    \"WWFtYWhh:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:12.675981",
+  "updatedAt": "2026-01-12T00:04:12.675984",
+  "lastSeen": "2026-01-12T00:04:12.675984"
+}

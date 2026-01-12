@@ -1,0 +1,139 @@
+{
+  "index_name": "cymonides_bangs",
+  "stats": "green  open   cymonides_bangs rezCc73YQxi35UzaAEcXag   2   0      20389          313      5.2mb 2025-12-01T00:59:37.046Z",
+  "mapping": {
+    "cymonides_bangs": {
+      "mappings": {
+        "properties": {
+          "category": {
+            "type": "keyword"
+          },
+          "cc_page_count": {
+            "type": "integer"
+          },
+          "country": {
+            "type": "keyword"
+          },
+          "description": {
+            "type": "text"
+          },
+          "domain": {
+            "type": "keyword"
+          },
+          "has_cc_coverage": {
+            "type": "boolean"
+          },
+          "imported_at": {
+            "type": "date"
+          },
+          "is_global": {
+            "type": "boolean"
+          },
+          "last_checked": {
+            "type": "date"
+          },
+          "metadata": {
+            "type": "object",
+            "enabled": false
+          },
+          "site": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
+          },
+          "source": {
+            "type": "keyword"
+          },
+          "trigger": {
+            "type": "keyword"
+          },
+          "url_template": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "cymonides_bangs": {
+      "settings": {
+        "index": {
+          "routing": {
+            "allocation": {
+              "include": {
+                "_tier_preference": "data_content"
+              }
+            }
+          },
+          "number_of_shards": "2",
+          "provided_name": "cymonides_bangs",
+          "creation_date": "1764550777046",
+          "analysis": {
+            "analyzer": {
+              "domain_analyzer": {
+                "filter": [
+                  "lowercase"
+                ],
+                "type": "custom",
+                "tokenizer": "standard"
+              }
+            }
+          },
+          "number_of_replicas": "0",
+          "uuid": "rezCc73YQxi35UzaAEcXag",
+          "version": {
+            "created": "8500003"
+          }
+        }
+      }
+    }
+  },
+  "sample_document": {
+    "took": 6,
+    "timed_out": false,
+    "_shards": {
+      "total": 2,
+      "successful": 2,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 10000,
+        "relation": "gte"
+      },
+      "max_score": 1.0,
+      "hits": [
+        {
+          "_index": "cymonides_bangs",
+          "_id": "a4b21a9e80ca11b8",
+          "_score": 1.0,
+          "_source": {
+            "trigger": "neb",
+            "url_template": "https://www.neb.com/search?q={q}",
+            "site": "New England BioLabs",
+            "domain": "www.neb.com",
+            "category": "other",
+            "country": "global",
+            "description": "Search New England BioLabs (Academic)",
+            "source": "duckduckgo",
+            "is_global": true,
+            "has_cc_coverage": null,
+            "cc_page_count": null,
+            "last_checked": null,
+            "imported_at": "2025-12-01T00:59:40.667700+00:00",
+            "metadata": {
+              "original_category": "Research",
+              "subcategory": "Academic",
+              "is_global": true,
+              "extracted_at": "2025-11-30T23:48:00.603998"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

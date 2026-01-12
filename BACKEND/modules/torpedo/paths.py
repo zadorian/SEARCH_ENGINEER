@@ -27,11 +27,12 @@ def repo_root() -> Path:
     Falls back to `/data` if present.
     """
     here = Path(__file__).resolve()
+    # Check canonical location first
+    if Path("/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix").exists():
+        return Path("/data/SEARCH_ENGINEER/BACKEND/modules")
     for parent in [here] + list(here.parents):
-        if (parent / "INPUT_OUTPUT" / "matrix").exists():
+        if (parent / "input_output" / "matrix").exists():
             return parent
-    if Path("/data/INPUT_OUTPUT/matrix").exists():
-        return Path("/data")
     return here.parents[0]
 
 

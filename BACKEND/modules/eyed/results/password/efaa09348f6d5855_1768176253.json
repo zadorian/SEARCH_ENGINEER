@@ -1,0 +1,21 @@
+{
+  "id": "efaa09348f6d5855",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "itch",
+  "label": "itch",
+  "value": "itch",
+  "comment": "{\n  \"id\": \"2mfaourdyzyvmbicewdkg3siguy\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"itch\"\n  ],\n  \"hashed_password\": [\n    \"c0db02dc3acfab553a6c97106724f1b8:||MD5\",\n    \"981b3ccb57ad132fc33fb3091b09772bdad066d7:||SHA1\",\n    \"5f668d7185e0fd2ddcfab04a38c0507cd62ad8c52afa37700c6c21a20964c95c:||SHA256\",\n    \"388f395d4ede4412d908332a6af6934b861b0d3a65bb0b9b461ed7eb8c9d727b3f11dd805e3892177da5ac9c56cc02bec89173be1a4cce615a2fbb41e355ea90:||SHA512\",\n    \"aXRjaA==:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:13.196837",
+  "updatedAt": "2026-01-12T00:04:13.196841",
+  "lastSeen": "2026-01-12T00:04:13.196841"
+}

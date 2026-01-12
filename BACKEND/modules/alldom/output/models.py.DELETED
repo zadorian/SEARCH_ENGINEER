@@ -1,0 +1,69 @@
+"""
+Legend-aligned output dataclasses for ALLDOM.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field, asdict
+from typing import Dict, List, Optional
+
+
+@dataclass
+class WhoisHistoryEntry:
+    """Legend 195: domain_whois_history entry."""
+    observed_at: str
+    registrar: Optional[str] = None
+    registrant: Optional[str] = None
+    registrant_email: Optional[str] = None
+    name_servers: List[str] = field(default_factory=list)
+    raw: Optional[Dict] = None
+
+    def to_dict(self):
+        return asdict(self)
+
+@dataclass
+class DNSRecord:
+    """Legend 193: domain_dns_records entry."""
+    record_type: str
+    value: str
+    ttl: Optional[int] = None
+    last_seen: Optional[str] = None
+
+    def to_dict(self):
+        return asdict(self)
+
+@dataclass
+class DomainDNSRecords:
+    """Legend 193: domain_dns_records aggregate."""
+    domain: str
+    records: List[DNSRecord] = field(default_factory=list)
+
+    def to_dict(self):
+        return asdict(self)
+
+@dataclass
+class SSLCertificate:
+    """Legend 196: domain_ssl_certificates entry."""
+    fingerprint: str
+    issuer: str
+    subject: str
+    not_before: Optional[str] = None
+    not_after: Optional[str] = None
+    alternative_names: List[str] = field(default_factory=list)
+
+    def to_dict(self):
+        return asdict(self)
+
+@dataclass
+class UrlTimeline:
+    """Legend 197: domain_url_timelines entry."""
+    url: str
+    live: bool
+    http_status: Optional[int] = None
+    first_seen: Optional[str] = None
+    last_seen: Optional[str] = None
+    discovery_sources: List[str] = field(default_factory=list)
+    archive_count: int = 0
+
+    def to_dict(self):
+        return asdict(self)

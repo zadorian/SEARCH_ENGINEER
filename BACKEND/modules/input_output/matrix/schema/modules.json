@@ -1,0 +1,1309 @@
+{
+  "meta": {
+    "version": "4.0",
+    "description": "Unified Module Registry v4 - Consolidates module specs with input/output routing.",
+    "purpose": "Defines which modules handle which entity types and what they can discover"
+  },
+  "modules": {
+    "corporella": {
+      "display_name": "Corporella - Company Intelligence",
+      "location": "BACKEND/modules/corporella/",
+      "main_file": "module.py",
+      "suite": "corporella",
+      "friction": "Open/Paywalled",
+      "description": "Company registry data, officers, beneficial owners, shareholders, and corporate structure.",
+      "inputs": {
+        "primary": [
+          {
+            "code": 13,
+            "name": "company_name",
+            "type": "company",
+            "required": true
+          },
+          {
+            "code": 14,
+            "name": "company_reg_id",
+            "type": "company",
+            "required": false
+          },
+          {
+            "code": 15,
+            "name": "company_vat_id",
+            "type": "company",
+            "required": false
+          },
+          {
+            "code": 16,
+            "name": "company_previous_name",
+            "type": "company",
+            "required": false
+          }
+        ]
+      },
+      "actions": [
+        {
+          "key": "company_enrich",
+          "label": "Enrich Company",
+          "endpoint": "/api/corporate/search",
+          "params": {
+            "mode": "enrich"
+          },
+          "required_inputs": [
+            13,
+            14,
+            15
+          ],
+          "outputs": [
+            "company_officers",
+            "company_shareholders",
+            "company_address",
+            "company_status"
+          ]
+        },
+        {
+          "key": "officer_search",
+          "label": "Find Officers",
+          "endpoint": "/api/corporate/officers",
+          "params": {
+            "jurisdiction": "metadata.country"
+          },
+          "required_inputs": [
+            13,
+            14,
+            15
+          ],
+          "outputs": [
+            "company_officers"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "codes": [
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "node_types": [
+            "company"
+          ],
+          "description": "Complete company profile with registration details"
+        },
+        {
+          "codes": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58
+          ],
+          "node_types": [
+            "person"
+          ],
+          "edge_types": [
+            "officer_of",
+            "director_of",
+            "shareholder_of"
+          ],
+          "description": "Company officers, directors, and shareholders"
+        },
+        {
+          "codes": [
+            59,
+            60,
+            61,
+            62,
+            63
+          ],
+          "node_types": [
+            "person"
+          ],
+          "edge_types": [
+            "beneficial_owner_of"
+          ],
+          "description": "Beneficial owners and UBO data"
+        }
+      ],
+      "data_sources": [
+        {
+          "name": "OpenCorporates",
+          "type": "api",
+          "coverage": "global",
+          "friction": "freemium"
+        },
+        {
+          "name": "Companies House (UK)",
+          "type": "api",
+          "coverage": "GB",
+          "friction": "open"
+        },
+        {
+          "name": "Aleph Collections",
+          "type": "dataset",
+          "coverage": "multi-country",
+          "friction": "open"
+        },
+        {
+          "name": "OpenOwnership",
+          "type": "api",
+          "coverage": "global",
+          "friction": "open"
+        }
+      ],
+      "resource_files": [
+        "resources/opencorporates.py",
+        "resources/companies_house.py",
+        "resources/aleph.py",
+        "resources/open_ownership.py"
+      ]
+    },
+    "eyed": {
+      "display_name": "EYE-D - OSINT Intelligence Platform",
+      "location": "BACKEND/modules/eyed/",
+      "main_file": "module.py",
+      "suite": "eyed",
+      "friction": "Paywalled",
+      "description": "Breach data, social profiles, contact discovery, domain WHOIS, and identity graph building.",
+      "inputs": {
+        "primary": [
+          {
+            "code": 1,
+            "name": "email",
+            "type": "email",
+            "required": false
+          },
+          {
+            "code": 6,
+            "name": "domain_url",
+            "type": "webdomain",
+            "required": false
+          }
+        ],
+        "secondary": [
+          {
+            "code": 2,
+            "name": "phone",
+            "type": "phone",
+            "required": false
+          },
+          {
+            "code": 7,
+            "name": "person_name",
+            "type": "person",
+            "required": false
+          },
+          {
+            "code": 13,
+            "name": "company_name",
+            "type": "company",
+            "required": false
+          }
+        ]
+      },
+      "actions": [
+        {
+          "key": "social_search",
+          "label": "Social Discovery",
+          "endpoint": "/api/eyed/unified",
+          "params": {
+            "query": "$query",
+            "mode": "discovery",
+            "type": "auto"
+          },
+          "required_inputs": [
+            1,
+            3,
+            7
+          ],
+          "outputs": [
+            "person_profile_url",
+            "person_platform"
+          ]
+        },
+        {
+          "key": "whois",
+          "label": "Domain Whois",
+          "endpoint": "/api/eyed/unified",
+          "params": {
+            "query": "$query",
+            "mode": "whois",
+            "type": "whois"
+          },
+          "required_inputs": [
+            1,
+            6
+          ],
+          "outputs": [
+            "domain_registrant",
+            "domain_creation_date"
+          ]
+        },
+        {
+          "key": "entity_extract",
+          "label": "Extract Entities",
+          "endpoint": "/api/entities/extract-entities",
+          "params": {
+            "url": "$url",
+            "extractTypes": [
+              "email",
+              "phone",
+              "person",
+              "company"
+            ]
+          },
+          "required_inputs": [],
+          "outputs": [
+            "email",
+            "phone",
+            "person_name",
+            "company_name"
+          ]
+        },
+        {
+          "key": "scrape_quick",
+          "label": "Quick Scrape",
+          "endpoint": "/api/entities/extract-entities",
+          "params": {
+            "url": "$url"
+          },
+          "required_inputs": [],
+          "outputs": []
+        },
+        {
+          "key": "scrape_deep",
+          "label": "Deep Scrape (Outlinks)",
+          "endpoint": "/api/linklater/outlinks/extract",
+          "params": {
+            "url": "$url"
+          },
+          "required_inputs": [],
+          "outputs": []
+        }
+      ],
+      "outputs": [
+        {
+          "codes": [
+            187
+          ],
+          "node_types": [
+            "dataset"
+          ],
+          "edge_types": [
+            "has_breach_record"
+          ],
+          "description": "Breach exposure data (passwords, hashes, IPs)"
+        },
+        {
+          "codes": [
+            188,
+            189
+          ],
+          "node_types": [
+            "username",
+            "url"
+          ],
+          "edge_types": [
+            "has_social_profile"
+          ],
+          "description": "Social media profiles and usernames"
+        },
+        {
+          "codes": [
+            190
+          ],
+          "node_types": [
+            "person",
+            "email",
+            "phone"
+          ],
+          "edge_types": [
+            "has_email",
+            "has_phone"
+          ],
+          "description": "Contact discovery and enrichment"
+        },
+        {
+          "codes": [
+            191,
+            192,
+            193
+          ],
+          "node_types": [
+            "webdomain",
+            "email",
+            "person"
+          ],
+          "edge_types": [
+            "registered_by",
+            "has_registrant"
+          ],
+          "description": "WHOIS history and domain ownership"
+        },
+        {
+          "codes": [
+            195
+          ],
+          "node_types": [
+            "person"
+          ],
+          "edge_types": [
+            "associate_of",
+            "family_of"
+          ],
+          "description": "Identity graph and relationship mapping"
+        }
+      ],
+      "data_sources": [
+        {
+          "name": "DeHashed",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "OSINT Industries",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "RocketReach",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "ContactOut",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "Kaspr",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "WhoisXML",
+          "type": "api",
+          "coverage": "global",
+          "friction": "freemium"
+        },
+        {
+          "name": "Archive.org",
+          "type": "api",
+          "coverage": "global",
+          "friction": "open"
+        }
+      ],
+      "resource_files": [
+        "resources/dehashed.py",
+        "resources/osint_industries.py",
+        "resources/rocketreach.py",
+        "resources/contactout.py",
+        "resources/kaspr.py",
+        "resources/whoisxml.py",
+        "resources/archive_org.py"
+      ]
+    },
+    "alldom": {
+      "display_name": "ALLDOM - Domain Mapper",
+      "location": "BACKEND/modules/alldom/",
+      "main_file": "module.py",
+      "suite": "alldom",
+      "friction": "Open/Paywalled",
+      "description": "Comprehensive domain mapping, subdomain discovery, backlinks, GA codes, and infrastructure analysis.",
+      "inputs": {
+        "primary": [
+          {
+            "code": 6,
+            "name": "domain_url",
+            "type": "webdomain",
+            "required": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "key": "domain_profile",
+          "label": "Domain Discovery",
+          "endpoint": "/api/alldomain/discover",
+          "params": {
+            "domain": "$domain",
+            "sources": [
+              "search_engines",
+              "firecrawl"
+            ]
+          },
+          "required_inputs": [
+            6
+          ],
+          "outputs": [
+            "webdomain",
+            "ip_address",
+            "backlinks"
+          ]
+        },
+        {
+          "key": "subdomain_discovery",
+          "label": "Find Subdomains",
+          "endpoint": "/api/alldomain/discover",
+          "params": {
+            "domain": "$domain",
+            "sources": [
+              "search_engines"
+            ]
+          },
+          "required_inputs": [
+            6
+          ],
+          "outputs": [
+            "subdomains"
+          ]
+        },
+        {
+          "key": "backlink_analysis",
+          "label": "Analyze Backlinks",
+          "endpoint": "/api/backlinks",
+          "params": {
+            "target": "$url",
+            "limit": 100
+          },
+          "required_inputs": [
+            6
+          ],
+          "outputs": [
+            "backlinks"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "codes": [
+            191
+          ],
+          "node_types": [
+            "webdomain"
+          ],
+          "edge_types": [
+            "linked_from",
+            "links_to"
+          ],
+          "description": "Backlink profiles and outbound links"
+        },
+        {
+          "codes": [
+            200,
+            201,
+            202
+          ],
+          "node_types": [
+            "webdomain",
+            "ip_address"
+          ],
+          "edge_types": [
+            "hosted_on",
+            "resolves_to"
+          ],
+          "description": "DNS records, IP resolution, hosting infrastructure"
+        },
+        {
+          "codes": [
+            203,
+            204
+          ],
+          "node_types": [
+            "webdomain"
+          ],
+          "edge_types": [
+            "shares_ga_with",
+            "shares_adsense_with"
+          ],
+          "description": "Google Analytics and AdSense code sharing"
+        },
+        {
+          "codes": [
+            205,
+            206
+          ],
+          "node_types": [
+            "webdomain"
+          ],
+          "edge_types": [
+            "subdomain_of"
+          ],
+          "description": "Subdomain enumeration"
+        },
+        {
+          "codes": [
+            209,
+            211,
+            212
+          ],
+          "node_types": [
+            "webdomain",
+            "document"
+          ],
+          "edge_types": [
+            "has_document"
+          ],
+          "description": "Sitemaps, robots.txt, site structure"
+        },
+        {
+          "codes": [
+            213,
+            214
+          ],
+          "node_types": [
+            "webdomain"
+          ],
+          "edge_types": [
+            "similar_to"
+          ],
+          "description": "Similar domains and alternatives"
+        }
+      ],
+      "data_sources": [
+        {
+          "name": "Firecrawl",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "Majestic",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "Common Crawl",
+          "type": "dataset",
+          "coverage": "global",
+          "friction": "open"
+        },
+        {
+          "name": "BuiltWith",
+          "type": "api",
+          "coverage": "global",
+          "friction": "freemium"
+        },
+        {
+          "name": "Wayback Machine",
+          "type": "api",
+          "coverage": "global",
+          "friction": "open"
+        }
+      ],
+      "resource_files": [
+        "resources/firecrawl.py",
+        "resources/majestic.py",
+        "resources/outlinks.py",
+        "resources/ga_analysis.py",
+        "resources/age.py",
+        "resources/search_engines.py",
+        "resources/similar.py",
+        "resources/sitemaps.py",
+        "resources/subdomains.py",
+        "resources/wayback.py"
+      ]
+    },
+    "linklater": {
+      "display_name": "LINKLATER - Domain Intelligence",
+      "location": "BACKEND/modules/LINKLATER/",
+      "main_file": "linklater.py",
+      "suite": "linklater",
+      "friction": "Open/Paywalled",
+      "description": "Archive research, link graphs, analytics codes, and historical change tracking.",
+      "inputs": {
+        "primary": [
+          {
+            "code": 6,
+            "name": "domain_url",
+            "type": "webdomain",
+            "required": true
+          }
+        ]
+      },
+      "actions": [
+        {
+          "key": "linklater_backlinks",
+          "label": "Backlinks (Archive)",
+          "endpoint": "/api/linklater/backlinks/pages",
+          "params": {
+            "domain": "$domain",
+            "limit": 200
+          },
+          "required_inputs": [
+            6
+          ],
+          "outputs": [
+            "backlinks"
+          ]
+        },
+        {
+          "key": "linklater_outlinks",
+          "label": "Outlinks (Domains)",
+          "endpoint": "/api/linklater/outlinks/domains",
+          "params": {
+            "url": "$url",
+            "timeout": 30
+          },
+          "required_inputs": [
+            6
+          ],
+          "outputs": [
+            "outlinks"
+          ]
+        },
+        {
+          "key": "linklater_subdomains",
+          "label": "Discover Subdomains",
+          "endpoint": "/api/linklater/discovery/subdomains",
+          "params": {
+            "domain": "$domain"
+          },
+          "required_inputs": [
+            6
+          ],
+          "outputs": [
+            "subdomains"
+          ]
+        },
+        {
+          "key": "linklater_ga_discover",
+          "label": "GA Codes",
+          "endpoint": "/api/linklater/ga/discover",
+          "params": {
+            "domain": "$domain"
+          },
+          "required_inputs": [
+            6
+          ],
+          "outputs": [
+            "ga_code"
+          ]
+        },
+        {
+          "key": "linklater_ga_related",
+          "label": "GA Related Domains",
+          "endpoint": "/api/linklater/ga/related",
+          "params": {
+            "domain": "$domain"
+          },
+          "required_inputs": [
+            6
+          ],
+          "outputs": [
+            "related_domains"
+          ]
+        },
+        {
+          "key": "linklater_archive_changes",
+          "label": "Archive Changes",
+          "endpoint": "/api/linklater/archive/changes",
+          "params": {
+            "url": "$url"
+          },
+          "required_inputs": [
+            6
+          ],
+          "outputs": [
+            "archive_changes"
+          ]
+        },
+        {
+          "key": "linklater_intelligence",
+          "label": "Domain Intelligence",
+          "endpoint": "/api/linklater/intelligence/gather",
+          "params": {
+            "domain": "$domain",
+            "deep_analysis": true
+          },
+          "required_inputs": [
+            6
+          ],
+          "outputs": [
+            "domain_intel"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "codes": [],
+          "node_types": [
+            "webdomain",
+            "document"
+          ],
+          "edge_types": [
+            "linked_from",
+            "links_to"
+          ],
+          "description": "Archive and link graph findings"
+        }
+      ],
+      "data_sources": [
+        {
+          "name": "Wayback Machine",
+          "type": "api",
+          "coverage": "global",
+          "friction": "open"
+        },
+        {
+          "name": "Common Crawl",
+          "type": "dataset",
+          "coverage": "global",
+          "friction": "open"
+        },
+        {
+          "name": "GlobalLinks",
+          "type": "dataset",
+          "coverage": "global",
+          "friction": "paid"
+        }
+      ],
+      "resource_files": [
+        "archives/snapshot_differ.py",
+        "backlinks.py",
+        "mapping/ga_tracker.py",
+        "scraping/web/globallinks_intel.py"
+      ]
+    },
+    "social_media": {
+      "display_name": "Social Media Targeted Search",
+      "location": "BACKEND/modules/BRUTE/targeted_searches/community/",
+      "main_file": "social_media.py",
+      "suite": "brute",
+      "friction": "Open",
+      "description": "Targeted social search across Facebook, Twitter/X, LinkedIn, Instagram, and Threads.",
+      "inputs": {
+        "primary": [
+          {
+            "code": 3,
+            "name": "username",
+            "type": "username",
+            "required": false
+          },
+          {
+            "code": 7,
+            "name": "person_name",
+            "type": "person",
+            "required": false
+          },
+          {
+            "code": 13,
+            "name": "company_name",
+            "type": "company",
+            "required": false
+          }
+        ]
+      },
+      "actions": [
+        {
+          "key": "social_media_person",
+          "label": "Social Search (Person)",
+          "endpoint": "/api/social-media/search",
+          "params": {
+            "query": "$query",
+            "input_type": "person"
+          },
+          "required_inputs": [
+            7
+          ],
+          "outputs": [
+            "person_profile_url",
+            "person_platform"
+          ]
+        },
+        {
+          "key": "social_media_username",
+          "label": "Social Search (Username)",
+          "endpoint": "/api/social-media/search",
+          "params": {
+            "query": "$query",
+            "input_type": "username"
+          },
+          "required_inputs": [
+            3
+          ],
+          "outputs": [
+            "person_profile_url",
+            "person_platform"
+          ]
+        },
+        {
+          "key": "social_media_company",
+          "label": "Social Search (Company)",
+          "endpoint": "/api/social-media/search",
+          "params": {
+            "query": "$query",
+            "input_type": "company"
+          },
+          "required_inputs": [
+            13
+          ],
+          "outputs": [
+            "person_profile_url",
+            "person_platform"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "codes": [],
+          "node_types": [
+            "person",
+            "company",
+            "username"
+          ],
+          "edge_types": [
+            "has_social_profile"
+          ],
+          "description": "Social profile URLs and platform links"
+        }
+      ],
+      "data_sources": [
+        {
+          "name": "Facebook",
+          "type": "web",
+          "coverage": "global",
+          "friction": "open"
+        },
+        {
+          "name": "Twitter/X",
+          "type": "web",
+          "coverage": "global",
+          "friction": "open"
+        },
+        {
+          "name": "LinkedIn",
+          "type": "web",
+          "coverage": "global",
+          "friction": "open"
+        },
+        {
+          "name": "Instagram",
+          "type": "web",
+          "coverage": "global",
+          "friction": "open"
+        },
+        {
+          "name": "Threads",
+          "type": "web",
+          "coverage": "global",
+          "friction": "open"
+        }
+      ],
+      "resource_files": [
+        "social_media.py"
+      ]
+    },
+    "factassembler": {
+      "display_name": "FactAssembler - Document Intelligence",
+      "location": "python-backend/modules/fact_assembler/",
+      "main_file": "mukodik_enhanced_final.py",
+      "suite": "factassembler",
+      "friction": "Hybrid",
+      "description": "Multi-phase document assembly pipeline for research compilation and gap filling.",
+      "inputs": {
+        "primary": [
+          {
+            "code": null,
+            "name": "query",
+            "type": "text",
+            "required": true
+          },
+          {
+            "code": null,
+            "name": "context",
+            "type": "text",
+            "required": false
+          }
+        ]
+      },
+      "outputs": [
+        {
+          "codes": [],
+          "node_types": [
+            "document",
+            "note"
+          ],
+          "edge_types": [
+            "compiled_from"
+          ],
+          "description": "Compiled research documents with footnotes and sources"
+        }
+      ],
+      "phases": [
+        {
+          "phase": 0,
+          "name": "Search & Discovery",
+          "description": "Brave Search + Firecrawl parallel scraping"
+        },
+        {
+          "phase": 1,
+          "name": "Extraction",
+          "description": "GPT-5.1 parallel fact extraction"
+        },
+        {
+          "phase": 2,
+          "name": "Verification",
+          "description": "GPT-5-nano verification"
+        },
+        {
+          "phase": 3,
+          "name": "Merging",
+          "description": "Claude Sonnet 4.5 intelligent merging"
+        },
+        {
+          "phase": 4,
+          "name": "Rewrite",
+          "description": "Claude Sonnet 4.5 coherent rewrite"
+        },
+        {
+          "phase": 5,
+          "name": "Final Verification",
+          "description": "Gemini 2.5 Pro final check"
+        }
+      ],
+      "data_sources": [
+        {
+          "name": "Brave Search",
+          "type": "api",
+          "coverage": "global",
+          "friction": "freemium"
+        },
+        {
+          "name": "Firecrawl",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        }
+      ],
+      "resource_files": [
+        "cli_wrapper.py",
+        "mukodik.py",
+        "mukodik_enhanced_final.py",
+        "brave_search_service.py"
+      ]
+    },
+    "et3": {
+      "display_name": "ET3 - Event/Topic/Theme Intelligence",
+      "location": "server/services/",
+      "main_file": "SubjectExtractionService.ts",
+      "suite": "et3",
+      "friction": "Open",
+      "description": "Extract Events, Topics, and Themes from content. Deep Y-Axis resolution for narrative intelligence. Topics/Themes are project-scoped via RegistryService.",
+      "inputs": {
+        "primary": [
+          {
+            "code": 6,
+            "name": "domain_url",
+            "type": "webdomain",
+            "required": false
+          },
+          {
+            "code": 129,
+            "name": "snippet",
+            "type": "text",
+            "required": false
+          }
+        ],
+        "secondary": [
+          {
+            "code": 240,
+            "name": "person_name",
+            "type": "person",
+            "required": false
+          },
+          {
+            "code": 241,
+            "name": "company_name",
+            "type": "company",
+            "required": false
+          }
+        ]
+      },
+      "actions": [
+        {
+          "key": "extract_events",
+          "label": "Extract Events",
+          "icon": "calendar",
+          "endpoint": "/api/et3/extract",
+          "params": {
+            "type": "events",
+            "text": "$snippet",
+            "url": "$url"
+          },
+          "required_inputs": [
+            6,
+            129
+          ],
+          "outputs": [
+            "extracted_events"
+          ]
+        },
+        {
+          "key": "extract_topics",
+          "label": "Extract Topics",
+          "icon": "message-square",
+          "endpoint": "/api/et3/extract",
+          "params": {
+            "type": "topics",
+            "text": "$snippet",
+            "url": "$url"
+          },
+          "required_inputs": [
+            6,
+            129
+          ],
+          "outputs": [
+            "extracted_topics"
+          ]
+        },
+        {
+          "key": "extract_et3",
+          "label": "Extract ET3 (All)",
+          "icon": "sparkles",
+          "endpoint": "/api/et3/extract",
+          "params": {
+            "type": "all",
+            "text": "$snippet",
+            "url": "$url"
+          },
+          "required_inputs": [
+            6,
+            129
+          ],
+          "outputs": [
+            "extracted_events",
+            "extracted_topics",
+            "extracted_themes"
+          ]
+        },
+        {
+          "key": "generate_timeline",
+          "label": "Generate Timeline",
+          "icon": "clock",
+          "endpoint": "/api/et3/timeline",
+          "params": {
+            "subjectId": "$nodeId"
+          },
+          "required_inputs": [],
+          "outputs": [
+            "event_timeline"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "codes": [
+            267,
+            268,
+            269
+          ],
+          "node_types": [
+            "source",
+            "entity"
+          ],
+          "description": "Extracted events, topics, and themes from content"
+        },
+        {
+          "codes": [
+            270
+          ],
+          "node_types": [
+            "entity"
+          ],
+          "edge_types": [
+            "initiated_event",
+            "targeted_by_event",
+            "participated_in_event"
+          ],
+          "description": "Event timeline with directional entity relationships"
+        },
+        {
+          "codes": [
+            273,
+            274
+          ],
+          "node_types": [
+            "event",
+            "topic"
+          ],
+          "description": "Locked event/topic coordinates with spatial payload"
+        }
+      ],
+      "data_sources": [
+        {
+          "name": "Claude Haiku 4.5",
+          "type": "llm",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "RegistryService",
+          "type": "internal",
+          "coverage": "project-scoped",
+          "friction": "open",
+          "notes": "GPT-built semantic registry with alias/embedding reuse"
+        }
+      ],
+      "resource_files": [
+        "SubjectExtractionService.ts",
+        "RegistryService.ts",
+        "et3ExtractionService.ts",
+        "timelineGenerationService.ts"
+      ]
+    },
+    "core_actions": {
+      "display_name": "Core Actions",
+      "location": "server/routers/",
+      "main_file": "narrativeEvidenceRouter.ts",
+      "suite": "core",
+      "friction": "Open",
+      "description": "Universal system actions available on all nodes (implemented in Node.js, Elastic-only).",
+      "inputs": {
+        "primary": []
+      },
+      "actions": [
+        {
+          "key": "add_to_narrative",
+          "label": "Add to Narrative",
+          "icon": "book-open",
+          "endpoint": "/api/narrative/evidence/add",
+          "params": {
+            "nodeId": "$nodeId",
+            "projectId": "$projectId",
+            "nodeData": "$node"
+          },
+          "required_inputs": [],
+          "outputs": [],
+          "skipPersistence": true
+        }
+      ],
+      "outputs": [],
+      "data_sources": [],
+      "resource_files": []
+    },
+    "io_matrix": {
+      "display_name": "IO Matrix - Full Investigation",
+      "location": "input_output/matrix/",
+      "main_file": "io_cli.py",
+      "suite": "io",
+      "friction": "Open/Paywalled",
+      "description": "Full multi-source investigation using IO Matrix routing. Runs all relevant modules for an entity type and returns comprehensive graph of discovered entities.",
+      "inputs": {
+        "primary": [
+          {
+            "code": 7,
+            "name": "person_name",
+            "type": "person",
+            "required": false
+          },
+          {
+            "code": 13,
+            "name": "company_name",
+            "type": "company",
+            "required": false
+          },
+          {
+            "code": 1,
+            "name": "email",
+            "type": "email",
+            "required": false
+          },
+          {
+            "code": 6,
+            "name": "domain_url",
+            "type": "webdomain",
+            "required": false
+          },
+          {
+            "code": 2,
+            "name": "phone",
+            "type": "phone",
+            "required": false
+          }
+        ]
+      },
+      "actions": [
+        {
+          "key": "io_full_investigation",
+          "label": "Full IO Investigation",
+          "icon": "search",
+          "endpoint": "/api/io/investigate",
+          "params": {
+            "subject": "$label",
+            "subjectType": "$type",
+            "nodeId": "$nodeId",
+            "projectId": "$projectId",
+            "returnGraph": true
+          },
+          "required_inputs": [1, 2, 6, 7, 13],
+          "outputs": [
+            "person_name",
+            "company_name",
+            "email",
+            "phone",
+            "domain_url",
+            "address",
+            "social_profile"
+          ]
+        },
+        {
+          "key": "io_quick_lookup",
+          "label": "Quick IO Lookup",
+          "icon": "zap",
+          "endpoint": "/api/io/investigate",
+          "params": {
+            "subject": "$label",
+            "subjectType": "$type",
+            "nodeId": "$nodeId",
+            "projectId": "$projectId",
+            "returnGraph": true,
+            "quick": true
+          },
+          "required_inputs": [1, 2, 6, 7, 13],
+          "outputs": [
+            "person_name",
+            "company_name",
+            "email"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "codes": [7, 13, 1, 2, 6],
+          "node_types": ["person", "company", "email", "phone", "webdomain"],
+          "edge_types": ["related_to", "officer_of", "has_email", "owns_domain"],
+          "description": "Full entity graph from investigation"
+        }
+      ],
+      "data_sources": [
+        {
+          "name": "All IO Matrix Sources",
+          "type": "aggregated",
+          "coverage": "global",
+          "friction": "mixed"
+        }
+      ],
+      "resource_files": [
+        "io_cli.py",
+        "chain_executor.py",
+        "flows.json",
+        "registries.json"
+      ]
+    }
+  }
+}

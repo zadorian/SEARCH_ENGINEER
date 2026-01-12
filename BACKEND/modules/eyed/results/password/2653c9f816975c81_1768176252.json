@@ -1,0 +1,21 @@
+{
+  "id": "2653c9f816975c81",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "gators",
+  "label": "gators",
+  "value": "gators",
+  "comment": "{\n  \"id\": \"2mfaomqujmnep4dekuhakw48eiy\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"gators\"\n  ],\n  \"hashed_password\": [\n    \"b89f5b98822f749b260b01a77ac23c62:||MD5\",\n    \"1abd2c47dc248f9136d6e48862c75bac09d1b05d:||SHA1\",\n    \"b7249cd073d74a83f38be932ffc7bcecddf624d0e82de38b7be66aa296b1523f:||SHA256\",\n    \"3178d75e2afd89e704c80044e98b97f15499f6a735c6980670d0a318070ee84dd689264803397e15dfebe47cf42fcd7b1ab787abddc79af41c98dd8790e55aa6:||SHA512\",\n    \"Z2F0b3Jz:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:12.391132",
+  "updatedAt": "2026-01-12T00:04:12.391138",
+  "lastSeen": "2026-01-12T00:04:12.391139"
+}

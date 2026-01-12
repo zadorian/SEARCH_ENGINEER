@@ -1,0 +1,682 @@
+{
+  "$schema": "object_superindex_v1",
+  "$description": "Maps object types to indices containing that type, with field mappings and query patterns",
+
+  "object_types": {
+
+    "email": {
+      "io_field_code": 1,
+      "prefix": "e:",
+      "description": "Email addresses",
+      "indices": [
+        {
+          "index": "breach_records",
+          "field": "email",
+          "query_type": "term",
+          "priority": 1,
+          "doc_count_estimate": 119000000,
+          "additional_fields": ["email_domain", "username", "password", "hash", "breach_name"]
+        },
+        {
+          "index": "persons_unified",
+          "field": "email",
+          "query_type": "term",
+          "priority": 2,
+          "doc_count_estimate": 6000000,
+          "additional_fields": ["name", "phone", "company"]
+        },
+        {
+          "index": "wdc-person-entities",
+          "field": "email",
+          "query_type": "term",
+          "priority": 3,
+          "doc_count_estimate": 6800000,
+          "additional_fields": ["name", "jobTitle", "worksFor"]
+        },
+        {
+          "index": "wdc-organization-entities",
+          "field": "email",
+          "query_type": "term",
+          "priority": 4,
+          "doc_count_estimate": 9600000,
+          "additional_fields": ["name", "telephone", "address"]
+        },
+        {
+          "index": "emails_unified",
+          "field": "email",
+          "query_type": "term",
+          "priority": 5,
+          "doc_count_estimate": 5000,
+          "additional_fields": ["domain", "owner_name", "verified"]
+        },
+        {
+          "index": "kazaword_emails",
+          "field": "email",
+          "query_type": "term",
+          "priority": 6,
+          "doc_count_estimate": 92000,
+          "additional_fields": ["password", "source"]
+        },
+        {
+          "index": "nexus_breach_records",
+          "field": "email",
+          "query_type": "term",
+          "priority": 7,
+          "doc_count_estimate": 197000,
+          "additional_fields": ["username", "password", "source"]
+        }
+      ],
+      "cross_links": {
+        "domain": "Split email at @ to get domain",
+        "person": "Match owner_name or name fields"
+      }
+    },
+
+    "phone": {
+      "io_field_code": 2,
+      "prefix": "t:",
+      "description": "Phone numbers (landline, mobile)",
+      "indices": [
+        {
+          "index": "phones_unified",
+          "field": "phone",
+          "query_type": "term",
+          "priority": 1,
+          "doc_count_estimate": 49000,
+          "additional_fields": ["phone_normalized", "country_code", "carrier", "owner_name"]
+        },
+        {
+          "index": "persons_unified",
+          "field": "phone",
+          "query_type": "term",
+          "priority": 2,
+          "doc_count_estimate": 6000000,
+          "additional_fields": ["name", "email", "company"]
+        },
+        {
+          "index": "wdc-organization-entities",
+          "field": "telephone",
+          "query_type": "term",
+          "priority": 3,
+          "doc_count_estimate": 9600000,
+          "additional_fields": ["name", "email", "address"]
+        },
+        {
+          "index": "wdc-localbusiness-entities",
+          "field": "telephone",
+          "query_type": "term",
+          "priority": 4,
+          "doc_count_estimate": 478000,
+          "additional_fields": ["name", "address", "geo"]
+        },
+        {
+          "index": "breach_records",
+          "field": "phone",
+          "query_type": "term",
+          "priority": 5,
+          "doc_count_estimate": 119000000,
+          "additional_fields": ["email", "name", "breach_name"]
+        }
+      ],
+      "normalization": "Remove spaces, dashes, parentheses. Prepend country code if missing."
+    },
+
+    "username": {
+      "io_field_code": 3,
+      "prefix": "u:",
+      "description": "Online usernames/handles",
+      "indices": [
+        {
+          "index": "breach_records",
+          "field": "username",
+          "query_type": "term",
+          "priority": 1,
+          "doc_count_estimate": 119000000,
+          "additional_fields": ["email", "password", "breach_name"]
+        },
+        {
+          "index": "nexus_breach_records",
+          "field": "username",
+          "query_type": "term",
+          "priority": 2,
+          "doc_count_estimate": 197000,
+          "additional_fields": ["email", "password", "source"]
+        }
+      ],
+      "cross_links": {
+        "email": "Username often appears as email local part"
+      }
+    },
+
+    "linkedin_url": {
+      "io_field_code": 5,
+      "prefix": "li:",
+      "description": "LinkedIn profile URLs",
+      "indices": [
+        {
+          "index": "linkedin_unified",
+          "field": "linkedin_url",
+          "query_type": "term",
+          "priority": 1,
+          "doc_count_estimate": 2800000,
+          "additional_fields": ["name", "headline", "location", "company"]
+        },
+        {
+          "index": "affiliate_linkedin_companies",
+          "field": "linkedin_url",
+          "query_type": "term",
+          "priority": 2,
+          "doc_count_estimate": 2800000,
+          "additional_fields": ["name", "industry", "employee_count", "headquarters"]
+        },
+        {
+          "index": "wdc-person-entities",
+          "field": "url",
+          "query_type": "wildcard",
+          "query_pattern": "*linkedin.com*",
+          "priority": 3,
+          "doc_count_estimate": 6800000,
+          "additional_fields": ["name", "jobTitle", "worksFor"]
+        }
+      ],
+      "normalization": "Normalize to linkedin.com/in/{handle} or linkedin.com/company/{slug}"
+    },
+
+    "domain": {
+      "io_field_code": 6,
+      "prefix": "d:",
+      "description": "Internet domain names",
+      "indices": [
+        {
+          "index": "domains_unified",
+          "field": "domain",
+          "query_type": "term",
+          "priority": 1,
+          "doc_count_estimate": 178000000,
+          "additional_fields": ["tld", "registrar", "creation_date", "expiry_date"]
+        },
+        {
+          "index": "cymonides_cc_domain_vertices",
+          "field": "domain",
+          "query_type": "term",
+          "priority": 2,
+          "doc_count_estimate": 100000000,
+          "additional_fields": ["page_count", "inlink_domains", "outlink_domains"]
+        },
+        {
+          "index": "unified_domain_profiles",
+          "field": "domain",
+          "query_type": "term",
+          "priority": 3,
+          "doc_count_estimate": 5800000,
+          "additional_fields": ["technologies", "company_name", "industry"]
+        },
+        {
+          "index": "top_domains",
+          "field": "domain",
+          "query_type": "term",
+          "priority": 4,
+          "doc_count_estimate": 8600000,
+          "additional_fields": ["rank", "category"]
+        },
+        {
+          "index": "atlas_unified_domains",
+          "field": "domain",
+          "query_type": "term",
+          "priority": 5,
+          "doc_count_estimate": 8400000,
+          "additional_fields": ["whois", "dns"]
+        },
+        {
+          "index": "wdc-domain-profiles",
+          "field": "domain",
+          "query_type": "term",
+          "priority": 6,
+          "doc_count_estimate": 246000,
+          "additional_fields": ["entity_count"]
+        }
+      ],
+      "cross_links": {
+        "email": "Emails at this domain",
+        "company": "Company operating this domain",
+        "backlinks": "Domains linking to this domain (via cc_domain_edges)"
+      }
+    },
+
+    "person": {
+      "io_field_code": 7,
+      "prefix": "p:",
+      "description": "Person names (individuals)",
+      "indices": [
+        {
+          "index": "persons_unified",
+          "field": "name",
+          "query_type": "match",
+          "priority": 1,
+          "doc_count_estimate": 6000000,
+          "additional_fields": ["name_normalized", "email", "phone", "company", "title"]
+        },
+        {
+          "index": "wdc-person-entities",
+          "field": "name",
+          "query_type": "match",
+          "priority": 2,
+          "doc_count_estimate": 6800000,
+          "additional_fields": ["givenName", "familyName", "jobTitle", "worksFor", "email"]
+        },
+        {
+          "index": "linkedin_unified",
+          "field": "name",
+          "query_type": "match",
+          "priority": 3,
+          "doc_count_estimate": 2800000,
+          "additional_fields": ["headline", "location", "company", "linkedin_url"]
+        },
+        {
+          "index": "openownership",
+          "field": "name",
+          "query_type": "match",
+          "filter": {"statement_type": "personStatement"},
+          "priority": 4,
+          "doc_count_estimate": 10000000,
+          "additional_fields": ["name_normalized", "country", "address"]
+        },
+        {
+          "index": "breach_records",
+          "field": "name",
+          "query_type": "match",
+          "priority": 5,
+          "doc_count_estimate": 119000000,
+          "additional_fields": ["email", "phone", "breach_name"]
+        }
+      ],
+      "name_variants": "Consider first/last name swaps, nicknames, transliterations"
+    },
+
+    "company": {
+      "io_field_code": 13,
+      "prefix": "c:",
+      "description": "Company/organization names",
+      "indices": [
+        {
+          "index": "companies_unified",
+          "field": "name",
+          "query_type": "match",
+          "priority": 1,
+          "doc_count_estimate": 3100000,
+          "additional_fields": ["name_normalized", "company_number", "jurisdiction", "status", "address", "officers"]
+        },
+        {
+          "index": "openownership",
+          "field": "name",
+          "query_type": "match",
+          "filter": {"entity_type": "registeredEntity"},
+          "priority": 2,
+          "doc_count_estimate": 11000000,
+          "additional_fields": ["name_normalized", "company_number", "jurisdiction", "country", "address"]
+        },
+        {
+          "index": "affiliate_linkedin_companies",
+          "field": "name",
+          "query_type": "match",
+          "priority": 3,
+          "doc_count_estimate": 2800000,
+          "additional_fields": ["linkedin_url", "industry", "employee_count", "headquarters"]
+        },
+        {
+          "index": "wdc-organization-entities",
+          "field": "name",
+          "query_type": "match",
+          "priority": 4,
+          "doc_count_estimate": 9600000,
+          "additional_fields": ["url", "address", "telephone", "email"]
+        },
+        {
+          "index": "wdc-localbusiness-entities",
+          "field": "name",
+          "query_type": "match",
+          "priority": 5,
+          "doc_count_estimate": 478000,
+          "additional_fields": ["address", "telephone", "geo"]
+        },
+        {
+          "index": "wdc-governmentorganization-entities",
+          "field": "name",
+          "query_type": "match",
+          "priority": 6,
+          "doc_count_estimate": 25000,
+          "additional_fields": ["jurisdiction", "url"]
+        },
+        {
+          "index": "uk_ccod",
+          "field": "proprietor_name_1",
+          "query_type": "match",
+          "priority": 7,
+          "doc_count_estimate": 4300000,
+          "jurisdiction": "GB",
+          "additional_fields": ["title_number", "property_address", "postcode", "company_reg_no_1", "price_paid", "tenure"]
+        },
+        {
+          "index": "uk_ocod",
+          "field": "proprietor_name",
+          "query_type": "match",
+          "priority": 8,
+          "doc_count_estimate": 91600,
+          "jurisdiction": "non-GB",
+          "additional_fields": ["title_number", "property_address", "country_incorporated", "price_paid", "tenure"],
+          "filterable_fields": {
+            "country_incorporated": {
+              "type": "keyword",
+              "description": "Filter by owner company jurisdiction (e.g., JERSEY, BRITISH VIRGIN ISLANDS, CAYMAN ISLANDS)",
+              "top_values": ["JERSEY", "BRITISH VIRGIN ISLANDS", "GUERNSEY", "ISLE OF MAN", "CAYMAN ISLANDS", "CYPRUS", "PANAMA", "SEYCHELLES"]
+            }
+          }
+        }
+      ],
+      "cross_links": {
+        "company_number": "Registry number for formal lookups",
+        "officers": "Directors/shareholders via nested field or PSC data",
+        "domain": "Company website domain",
+        "uk_property": "UK property holdings via CCOD/OCOD indices",
+        "owner_jurisdiction": "Filter OCOD by country_incorporated field"
+      }
+    },
+
+    "company_reg_id": {
+      "io_field_code": 14,
+      "prefix": "crn:",
+      "description": "Company registration/incorporation numbers",
+      "indices": [
+        {
+          "index": "companies_unified",
+          "field": "company_number",
+          "query_type": "term",
+          "priority": 1,
+          "doc_count_estimate": 3100000,
+          "additional_fields": ["name", "jurisdiction", "status", "officers"]
+        },
+        {
+          "index": "openownership",
+          "field": "company_number",
+          "query_type": "term",
+          "priority": 2,
+          "doc_count_estimate": 21000000,
+          "additional_fields": ["name", "jurisdiction", "country", "statement_type"]
+        }
+      ],
+      "normalization": "Uppercase, remove leading zeros for some jurisdictions"
+    },
+
+    "address": {
+      "io_field_code": 20,
+      "prefix": "a:",
+      "description": "Physical/postal addresses",
+      "indices": [
+        {
+          "index": "uk_addresses",
+          "field": "address_line_1",
+          "query_type": "match",
+          "priority": 1,
+          "doc_count_estimate": 4200000,
+          "additional_fields": ["postcode", "town", "county"]
+        },
+        {
+          "index": "companies_unified",
+          "field": "address",
+          "query_type": "match",
+          "priority": 2,
+          "doc_count_estimate": 3100000,
+          "additional_fields": ["name", "company_number", "jurisdiction"]
+        },
+        {
+          "index": "openownership",
+          "field": "address",
+          "query_type": "match",
+          "priority": 3,
+          "doc_count_estimate": 21000000,
+          "additional_fields": ["name", "entity_type", "country"]
+        },
+        {
+          "index": "wdc-organization-entities",
+          "field": "address",
+          "query_type": "match",
+          "priority": 4,
+          "doc_count_estimate": 9600000,
+          "additional_fields": ["name", "telephone"]
+        },
+        {
+          "index": "wdc-localbusiness-entities",
+          "field": "address",
+          "query_type": "match",
+          "priority": 5,
+          "doc_count_estimate": 478000,
+          "additional_fields": ["name", "telephone", "geo"]
+        },
+        {
+          "index": "uk_ccod",
+          "field": ["property_address", "postcode", "postcode_district"],
+          "query_type": "multi_match",
+          "priority": 6,
+          "doc_count_estimate": 4300000,
+          "additional_fields": ["title_number", "proprietor_name_1", "company_reg_no_1", "postcode", "tenure"]
+        },
+        {
+          "index": "uk_ocod",
+          "field": ["property_address", "postcode", "postcode_district"],
+          "query_type": "multi_match",
+          "priority": 7,
+          "doc_count_estimate": 91600,
+          "additional_fields": ["title_number", "proprietor_name", "country_incorporated", "postcode", "tenure"]
+        },
+        {
+          "index": "uk_leases",
+          "field": ["property_description", "county", "region"],
+          "query_type": "multi_match",
+          "priority": 8,
+          "doc_count_estimate": 7670000,
+          "additional_fields": ["unique_id", "term", "date_of_lease", "lessor_title"]
+        }
+      ],
+      "cross_links": {
+        "postcode": "UK postcode for UK addresses",
+        "geo": "Geocoded lat/lng for some records",
+        "uk_property": "UK property records via CCOD/OCOD/Leases"
+      }
+    },
+
+    "ip_address": {
+      "io_field_code": 21,
+      "prefix": "ip:",
+      "description": "IP addresses (IPv4/IPv6)",
+      "indices": [
+        {
+          "index": "breach_records",
+          "field": "ip",
+          "query_type": "term",
+          "priority": 1,
+          "doc_count_estimate": 119000000,
+          "additional_fields": ["email", "username", "breach_name"]
+        }
+      ]
+    },
+
+    "url": {
+      "io_field_code": 22,
+      "prefix": "url:",
+      "description": "Web page URLs",
+      "indices": [
+        {
+          "index": "cymonides-2",
+          "field": "url",
+          "query_type": "term",
+          "priority": 1,
+          "doc_count_estimate": 13000000,
+          "additional_fields": ["title", "content", "domain", "crawl_date"]
+        },
+        {
+          "index": "cymonides_cc_domain_edges",
+          "field": "from_url",
+          "query_type": "term",
+          "priority": 2,
+          "doc_count_estimate": 435000000,
+          "additional_fields": ["to_url", "anchor_text"]
+        },
+        {
+          "index": "cymonides_cc_domain_edges",
+          "field": "to_url",
+          "query_type": "term",
+          "priority": 3,
+          "doc_count_estimate": 435000000,
+          "additional_fields": ["from_url", "anchor_text"]
+        },
+        {
+          "index": "et3-url-edges",
+          "field": "url",
+          "query_type": "term",
+          "priority": 4,
+          "doc_count_estimate": 261000,
+          "additional_fields": ["entity_id"]
+        },
+        {
+          "index": "wdc-person-entities",
+          "field": "url",
+          "query_type": "term",
+          "priority": 5,
+          "doc_count_estimate": 6800000,
+          "additional_fields": ["name", "jobTitle"]
+        },
+        {
+          "index": "wdc-organization-entities",
+          "field": "url",
+          "query_type": "term",
+          "priority": 6,
+          "doc_count_estimate": 9600000,
+          "additional_fields": ["name", "address"]
+        }
+      ]
+    },
+
+    "hash": {
+      "io_field_code": 30,
+      "prefix": "h:",
+      "description": "Password hashes (MD5, SHA1, bcrypt, etc)",
+      "indices": [
+        {
+          "index": "breach_records",
+          "field": "hash",
+          "query_type": "term",
+          "priority": 1,
+          "doc_count_estimate": 119000000,
+          "additional_fields": ["email", "hash_type", "password", "breach_name"]
+        }
+      ]
+    },
+
+    "document": {
+      "io_field_code": 40,
+      "prefix": "doc:",
+      "description": "Full-text document content",
+      "indices": [
+        {
+          "index": "cymonides-2",
+          "field": "content",
+          "query_type": "match",
+          "priority": 1,
+          "doc_count_estimate": 13000000,
+          "additional_fields": ["url", "title", "domain", "language"]
+        },
+        {
+          "index": "linklater_corpus",
+          "field": "content",
+          "query_type": "match",
+          "priority": 2,
+          "doc_count_estimate": 296,
+          "additional_fields": ["url", "crawl_date"]
+        }
+      ]
+    },
+
+    "uk_property_overseas": {
+      "io_field_code": 60,
+      "prefix": "c[XX]:",
+      "description": "Overseas company UK property holdings filtered by jurisdiction (e.g., cje:, cbvi:, cusde:)",
+      "indices": [
+        {
+          "index": "uk_ocod",
+          "field": "proprietor_name",
+          "query_type": "match",
+          "priority": 1,
+          "doc_count_estimate": 91600,
+          "additional_fields": ["title_number", "property_address", "postcode", "tenure", "price_paid", "country_incorporated", "date_proprietor_added"],
+          "filterable_fields": {
+            "country_incorporated": {
+              "type": "keyword",
+              "description": "Filter by owner company jurisdiction",
+              "top_values": [
+                "JERSEY", "GUERNSEY", "ISLE OF MAN", "BRITISH VIRGIN ISLANDS", "CAYMAN ISLANDS",
+                "CYPRUS", "PANAMA", "SEYCHELLES", "LUXEMBOURG", "NETHERLANDS", "HONG KONG",
+                "SINGAPORE", "UNITED ARAB EMIRATES", "DUBAI", "DELAWARE", "NEW YORK", "FLORIDA",
+                "GERMANY", "FRANCE", "IRELAND", "SWITZERLAND", "MAURITIUS", "LIECHTENSTEIN",
+                "GIBRALTAR", "MALTA", "MONACO", "BAHAMAS", "BERMUDA", "TURKS AND CAICOS ISLANDS"
+              ]
+            }
+          }
+        }
+      ],
+      "prefix_mappings": {
+        "cje:": "JERSEY",
+        "cgg:": "GUERNSEY",
+        "cim:": "ISLE OF MAN",
+        "cbvi:": "BRITISH VIRGIN ISLANDS",
+        "cky:": "CAYMAN ISLANDS",
+        "ccy:": "CYPRUS",
+        "cpa:": "PANAMA",
+        "csc:": "SEYCHELLES",
+        "clu:": "LUXEMBOURG",
+        "cnl:": "NETHERLANDS",
+        "chk:": "HONG KONG",
+        "csg:": "SINGAPORE",
+        "cae:": "UNITED ARAB EMIRATES",
+        "cdxb:": "DUBAI",
+        "cusde:": "DELAWARE",
+        "cusny:": "NEW YORK",
+        "cusfl:": "FLORIDA",
+        "cusca:": "CALIFORNIA",
+        "custx:": "TEXAS",
+        "cde:": "GERMANY",
+        "cfr:": "FRANCE",
+        "cie:": "IRELAND",
+        "cch:": "SWITZERLAND",
+        "cmu:": "MAURITIUS",
+        "cli:": "LIECHTENSTEIN",
+        "cgi:": "GIBRALTAR",
+        "cmt:": "MALTA",
+        "cmc:": "MONACO"
+      },
+      "cross_links": {
+        "company_name": "Search overseas company by name",
+        "jurisdiction": "Filter by country of incorporation",
+        "uk_property_address": "Property locations in UK"
+      }
+    }
+  },
+
+  "query_strategies": {
+    "term": {
+      "description": "Exact match (email, phone, company_number)",
+      "example": {"term": {"email": "user@example.com"}}
+    },
+    "match": {
+      "description": "Full-text match with analysis (names, addresses)",
+      "example": {"match": {"name": {"query": "John Smith", "fuzziness": "AUTO"}}}
+    },
+    "wildcard": {
+      "description": "Pattern matching (URLs with specific patterns)",
+      "example": {"wildcard": {"url": "*linkedin.com*"}}
+    },
+    "nested": {
+      "description": "Query nested objects (officers array)",
+      "example": {"nested": {"path": "officers", "query": {"match": {"officers.name": "John"}}}}
+    }
+  }
+}

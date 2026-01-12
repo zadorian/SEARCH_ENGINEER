@@ -5,27 +5,25 @@ Provides classification and data source access for OSINT searches
 
 from .classifier import classify_eyed_query, classify_query_pattern, get_search_endpoint
 from .claude_utils import should_clean_with_claude, clean_with_claude
-from .legend import (
-    EmailInput,
-    PhoneInput,
-    DomainUrlInput,
-    PersonNameInput,
-    EyeDModule,
-    models as eyed_models,
-    resources as eyed_resources,
-)
+
+# Output handlers (the clean module exports)
+from .output.email import EmailOutputHandler
+from .output.phone import PhoneOutputHandler
+from .output.username import UsernameOutputHandler
+from .output.person_name import PersonNameOutputHandler
+from .output.domain_url import DomainUrlOutputHandler
 
 __all__ = [
+    # Classifiers
     'classify_eyed_query',
     'classify_query_pattern',
     'get_search_endpoint',
     'should_clean_with_claude',
     'clean_with_claude',
-    'EmailInput',
-    'PhoneInput',
-    'DomainUrlInput',
-    'PersonNameInput',
-    'EyeDModule',
-    'eyed_models',
-    'eyed_resources',
+    # Output handlers
+    'EmailOutputHandler',
+    'PhoneOutputHandler',
+    'UsernameOutputHandler',
+    'PersonNameOutputHandler',
+    'DomainUrlOutputHandler',
 ]

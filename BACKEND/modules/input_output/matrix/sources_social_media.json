@@ -1,0 +1,365 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Social Media Sources - Platforms for social network discovery and analysis",
+    "generated_at": "2026-01-08T13:45:00Z",
+    "total_sources": 8,
+    "platforms": ["twitter", "instagram", "facebook", "threads", "reddit", "youtube", "vk", "tumblr"],
+    "handler": "SOCIALITE"
+  },
+  "sources": {
+    "twitter_socialite": {
+      "id": "twitter_socialite",
+      "domain": "x.com",
+      "name": "Twitter/X (SOCIALITE)",
+      "platform": "twitter",
+      "type": "social_media",
+      "friction": "public",
+      "jurisdiction": "GLOBAL",
+      "inputs": [
+        1,
+        7,
+        13
+      ],
+      "input_names": ["email", "person_name", "company_name"],
+      "outputs": [
+        709,
+        710,
+        711,
+        712,
+        715,
+        716,
+        717
+      ],
+      "output_names": ["social_profile_url", "social_username", "social_posts", "social_connections", "social_photo", "social_network_of", "social_activity_log"],
+      "capabilities": [
+        {
+          "function": "search_twitter",
+          "description": "General Twitter/X search",
+          "requires": ["query"],
+          "optional": ["username", "since", "until"],
+          "returns": "search_url",
+          "friction": "Open"
+        },
+        {
+          "function": "twitter_profile",
+          "description": "Direct profile lookup",
+          "requires": ["username"],
+          "returns": "profile_url",
+          "friction": "Open"
+        },
+        {
+          "function": "twitter_from_user",
+          "description": "Tweets from specific user",
+          "requires": ["username"],
+          "optional": ["query"],
+          "returns": "search_url",
+          "friction": "Open"
+        },
+        {
+          "function": "twitter_from_user_date_range",
+          "description": "Date-filtered tweets from user",
+          "requires": ["username", "since", "until"],
+          "optional": ["query"],
+          "returns": "search_url",
+          "friction": "Open"
+        }
+      ],
+      "handled_by": "SOCIALITE",
+      "mcp_server": "/data/SOCIALITE/mcp_server.py",
+      "mcp_tools": ["search_twitter"],
+      "search_template": "https://x.com/search?q={q}&f=live",
+      "profile_template": "https://x.com/{username}",
+      "supports_date_range": true,
+      "supports_historic_search": true,
+      "notes": "Primary social media platform for real-time updates and public discourse"
+    },
+    "instagram_socialite": {
+      "id": "instagram_socialite",
+      "domain": "instagram.com",
+      "name": "Instagram (SOCIALITE)",
+      "platform": "instagram",
+      "type": "social_media",
+      "friction": "public",
+      "jurisdiction": "GLOBAL",
+      "inputs": [
+        7
+      ],
+      "input_names": ["person_name"],
+      "outputs": [
+        709,
+        710,
+        715
+      ],
+      "output_names": ["social_profile_url", "social_username", "social_photo"],
+      "capabilities": [
+        {
+          "function": "instagram_profile",
+          "description": "Direct Instagram profile",
+          "requires": ["username"],
+          "returns": "profile_url",
+          "friction": "Open"
+        },
+        {
+          "function": "instagram_channel",
+          "description": "Instagram reels/channel",
+          "requires": ["username"],
+          "returns": "channel_url",
+          "friction": "Open"
+        },
+        {
+          "function": "instagram_tagged",
+          "description": "Photos where user is tagged",
+          "requires": ["username"],
+          "returns": "tagged_url",
+          "friction": "Open"
+        }
+      ],
+      "handled_by": "SOCIALITE",
+      "mcp_server": "/data/SOCIALITE/mcp_server.py",
+      "mcp_tools": ["search_instagram"],
+      "profile_template": "https://www.instagram.com/{username}/",
+      "notes": "Visual social media platform - profile discovery only (search requires auth)"
+    },
+    "facebook_socialite": {
+      "id": "facebook_socialite",
+      "domain": "facebook.com",
+      "name": "Facebook (SOCIALITE)",
+      "platform": "facebook",
+      "type": "social_media",
+      "friction": "restricted",
+      "jurisdiction": "GLOBAL",
+      "inputs": [
+        7,
+        13
+      ],
+      "input_names": ["person_name", "company_name"],
+      "outputs": [
+        709,
+        710,
+        718,
+        719,
+        715
+      ],
+      "output_names": ["social_profile_url", "social_username", "fb_profile_id", "person_maiden_name", "social_photo"],
+      "capabilities": [
+        {
+          "function": "facebook_profile",
+          "description": "Direct Facebook profile",
+          "requires": ["username"],
+          "returns": "profile_url",
+          "friction": "Open"
+        },
+        {
+          "function": "facebook_search",
+          "description": "Facebook search via Google",
+          "requires": ["query"],
+          "returns": "google_search_url",
+          "friction": "Restricted"
+        },
+        {
+          "function": "facebook_people",
+          "description": "Facebook people search",
+          "requires": ["name"],
+          "returns": "search_url",
+          "friction": "Restricted"
+        }
+      ],
+      "handled_by": "SOCIALITE",
+      "mcp_server": "/data/SOCIALITE/mcp_server.py",
+      "mcp_tools": ["search_facebook"],
+      "profile_template": "https://www.facebook.com/{username}",
+      "notes": "Search restricted without authentication - uses Google for general search"
+    },
+    "threads_socialite": {
+      "id": "threads_socialite",
+      "domain": "threads.net",
+      "name": "Threads (SOCIALITE)",
+      "platform": "threads",
+      "type": "social_media",
+      "friction": "public",
+      "jurisdiction": "GLOBAL",
+      "inputs": [
+        7
+      ],
+      "input_names": ["person_name"],
+      "outputs": [
+        709,
+        710
+      ],
+      "output_names": ["social_profile_url", "social_username"],
+      "capabilities": [
+        {
+          "function": "threads_profile",
+          "description": "Direct Threads profile",
+          "requires": ["username"],
+          "returns": "profile_url",
+          "friction": "Open"
+        }
+      ],
+      "handled_by": "SOCIALITE",
+      "mcp_server": "/data/SOCIALITE/mcp_server.py",
+      "profile_template": "https://www.threads.net/@{username}",
+      "notes": "Meta's Twitter alternative - profile discovery only"
+    },
+    "reddit_socialite": {
+      "id": "reddit_socialite",
+      "domain": "reddit.com",
+      "name": "Reddit (SOCIALITE via SocialSearcher)",
+      "platform": "reddit",
+      "type": "social_media",
+      "friction": "api",
+      "jurisdiction": "GLOBAL",
+      "inputs": [
+        13
+      ],
+      "input_names": ["keyword"],
+      "outputs": [
+        711,
+        713
+      ],
+      "output_names": ["social_posts", "social_discussions"],
+      "capabilities": [
+        {
+          "function": "search_reddit",
+          "description": "Reddit search via SocialSearcher API",
+          "requires": ["query"],
+          "optional": ["subreddit"],
+          "returns": "posts_data",
+          "friction": "API"
+        }
+      ],
+      "handled_by": "SOCIALITE",
+      "mcp_server": "/data/SOCIALITE/mcp_server.py",
+      "mcp_tools": ["search_reddit"],
+      "api_provider": "SocialSearcher",
+      "api_key_required": true,
+      "api_key_env": "SOCIAL_SEARCHER_API_KEY",
+      "notes": "API-powered search - includes full post data with metadata"
+    },
+    "youtube_socialite": {
+      "id": "youtube_socialite",
+      "domain": "youtube.com",
+      "name": "YouTube (SOCIALITE via SocialSearcher)",
+      "platform": "youtube",
+      "type": "social_media",
+      "friction": "api",
+      "jurisdiction": "GLOBAL",
+      "inputs": [
+        13
+      ],
+      "input_names": ["keyword"],
+      "outputs": [
+        711,
+        714
+      ],
+      "output_names": ["social_posts", "video_content"],
+      "capabilities": [
+        {
+          "function": "search_youtube",
+          "description": "YouTube search via SocialSearcher API",
+          "requires": ["query"],
+          "returns": "videos_data",
+          "friction": "API"
+        }
+      ],
+      "handled_by": "SOCIALITE",
+      "mcp_server": "/data/SOCIALITE/mcp_server.py",
+      "mcp_tools": ["search_multi_platform"],
+      "api_provider": "SocialSearcher",
+      "api_key_required": true,
+      "api_key_env": "SOCIAL_SEARCHER_API_KEY",
+      "notes": "API-powered video search"
+    },
+    "vk_socialite": {
+      "id": "vk_socialite",
+      "domain": "vk.com",
+      "name": "VKontakte (SOCIALITE via SocialSearcher)",
+      "platform": "vk",
+      "type": "social_media",
+      "friction": "api",
+      "jurisdiction": "RU",
+      "inputs": [
+        13
+      ],
+      "input_names": ["keyword"],
+      "outputs": [
+        711
+      ],
+      "output_names": ["social_posts"],
+      "capabilities": [
+        {
+          "function": "search_vk",
+          "description": "VK search via SocialSearcher API",
+          "requires": ["query"],
+          "returns": "posts_data",
+          "friction": "API"
+        }
+      ],
+      "handled_by": "SOCIALITE",
+      "mcp_server": "/data/SOCIALITE/mcp_server.py",
+      "mcp_tools": ["search_multi_platform"],
+      "api_provider": "SocialSearcher",
+      "api_key_required": true,
+      "api_key_env": "SOCIAL_SEARCHER_API_KEY",
+      "notes": "Russian social network - API-powered search"
+    },
+    "tumblr_socialite": {
+      "id": "tumblr_socialite",
+      "domain": "tumblr.com",
+      "name": "Tumblr (SOCIALITE via SocialSearcher)",
+      "platform": "tumblr",
+      "type": "social_media",
+      "friction": "api",
+      "jurisdiction": "GLOBAL",
+      "inputs": [
+        13
+      ],
+      "input_names": ["keyword"],
+      "outputs": [
+        711
+      ],
+      "output_names": ["social_posts"],
+      "capabilities": [
+        {
+          "function": "search_tumblr",
+          "description": "Tumblr search via SocialSearcher API",
+          "requires": ["query"],
+          "returns": "posts_data",
+          "friction": "API"
+        }
+      ],
+      "handled_by": "SOCIALITE",
+      "mcp_server": "/data/SOCIALITE/mcp_server.py",
+      "mcp_tools": ["search_multi_platform"],
+      "api_provider": "SocialSearcher",
+      "api_key_required": true,
+      "api_key_env": "SOCIAL_SEARCHER_API_KEY",
+      "notes": "Microblogging platform - API-powered search"
+    }
+  },
+  "input_codes": {
+    "1": "email",
+    "7": "person_name",
+    "13": "company_name / keyword"
+  },
+  "output_codes": {
+    "709": "social_profile_url",
+    "710": "social_username",
+    "711": "social_posts",
+    "712": "social_connections",
+    "713": "social_discussions",
+    "714": "video_content",
+    "715": "social_photo",
+    "716": "social_network_of",
+    "717": "social_activity_log",
+    "718": "fb_profile_id",
+    "719": "person_maiden_name"
+  },
+  "usage": {
+    "xsl_triangulator": "XSL_Triangulator can discover SOCIALITE sources for social media searches",
+    "biographer": "BIOGRAPHER delegates person profile social media enrichment to SOCIALITE",
+    "nexus": "NEXUS can use for entity discovery and relationship mapping",
+    "example": "xsl.triangulate(input_code=7, jurisdiction='GLOBAL') → returns SOCIALITE as available source"
+  }
+}

@@ -1,0 +1,23 @@
+# Matrix TODO
+
+- [ ] Review unmatched news sources for metadata coverage
+  - Priority: Low
+  - Added: 2025-12-31 by GPT-5
+  - Notes: 785 entries in `input_output/matrix/sources/news.json` still lack descriptions after expanded Excel/CSV matching.
+- [x] Relocate Cymonides embedding assets out of matrix
+  - Priority: Medium
+  - Added: 2026-01-02 by Codex
+  - Notes: Moved industry embeddings/matcher + strategic embeddings into `BACKEND/modules/CYMONIDES/`.
+- [x] Fill region mappings for missing jurisdictions in news sources
+  - Priority: Low
+  - Added: 2025-12-31 by GPT-5
+  - Notes: Applied overrides for BO, CU, DO, KR, LK, NP, PG, UY, VE; all entries now have `region`.
+- [x] Rebuild category split sources directory
+  - Priority: High
+  - Added: 2026-01-05 by GPT-5
+  - Notes: Recreated `input_output/matrix/sources/*.json` and refreshed `manifest.json`.
+- [x] Add assets category split for asset registries
+  - Priority: Medium
+  - Added: 2026-01-05 by GPT-5
+  - Completed: 2026-01-05 by GPT-5
+  - Notes: Created `input_output/matrix/sources/assets.json` from section `ass` and category `land`.

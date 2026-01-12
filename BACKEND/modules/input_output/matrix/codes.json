@@ -1,0 +1,2713 @@
+{
+  "meta": {
+    "version": "1.4",
+    "description": "THE LEGEND - What each field code means and what it creates",
+    "total_codes": 447,
+    "updated_at": "2026-01-12",
+    "type_definitions": {
+      "entity": "Standalone entity that creates a node (person, company, email, etc.)",
+      "attribute": "Metadata that attaches to a parent node",
+      "dataset": "Structured data that creates nodes with edges to parent",
+      "graph": "Creates multiple edges between entities (identity graphs)"
+    },
+    "creates_values": {
+      "node": "Creates a standalone node in the graph",
+      "metadata": "Attaches as properties to parent node",
+      "edges": "Creates relationship edges between existing nodes"
+    },
+    "eyed_codes_start": 187,
+    "eyed_codes_description": "Codes 187-195 are EYE-D OSINT outputs (breaches, social profiles, identity graph)",
+    "alldom_codes_start": 191,
+    "alldom_codes_description": "Codes 191-214 are ALLDOM/LINKLATER domain intelligence outputs",
+    "gleif_codes_start": 420,
+    "gleif_codes_description": "Codes 420-433 are GLEIF-specific (LEI, BIC, ownership structure)",
+    "macro_codes_start": 500,
+    "macro_codes_description": "Codes 500+ are reserved for macro-specific outputs",
+    "nexus_codes_start": 600,
+    "nexus_codes_description": "Codes 600+ are for reified NEXUS relationship nodes",
+    "id_decoder_codes_start": 700,
+    "id_decoder_codes_description": "Codes 700-708 are ID_DECODER outputs (DOB, gender, jurisdiction from IDs)",
+    "socialite_codes_start": 709,
+    "socialite_codes_description": "Codes 709-719 are SOCIALITE outputs (profiles, posts, photos, logs, FB IDs, maiden names)"
+  },
+  "codes": {
+    "1": {
+      "name": "email",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "email"
+    },
+    "2": {
+      "name": "phone",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "phone"
+    },
+    "3": {
+      "name": "username",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "username"
+    },
+    "4": {
+      "name": "password",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "5": {
+      "name": "person_linkedin_url",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "linkedin"
+    },
+    "6": {
+      "name": "domain_url",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "domain"
+    },
+    "7": {
+      "name": "person_name",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "person"
+    },
+    "8": {
+      "name": "person_national_id",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "9": {
+      "name": "person_tax_id",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "10": {
+      "name": "person_passport_id",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "11": {
+      "name": "person_driver_license_id",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "12": {
+      "name": "person_dob",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "13": {
+      "name": "company_name",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "company"
+    },
+    "14": {
+      "name": "company_reg_id",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "15": {
+      "name": "company_vat_id",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "16": {
+      "name": "company_previous_name",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "company"
+    },
+    "17": {
+      "name": "litigation_id",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "litigation"
+    },
+    "18": {
+      "name": "litigation_party_name",
+      "type": "attribute",
+      "creates": "metadata"
+    },
+    "19": {
+      "name": "litigation_docket_id",
+      "type": "attribute",
+      "creates": "metadata"
+    },
+    "20": {
+      "name": "property_address",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "address"
+    },
+    "21": {
+      "name": "property_cadastral_id",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "22": {
+      "name": "property_title_id",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "23": {
+      "name": "vehicle_reg_id",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "vehicle"
+    },
+    "24": {
+      "name": "vessel_imo_id",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "vessel"
+    },
+    "25": {
+      "name": "aircraft_reg_id",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "aircraft"
+    },
+    "26": {
+      "name": "license_id",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "license"
+    },
+    "27": {
+      "name": "permit_id",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "permit"
+    },
+    "28": {
+      "name": "regulatory_filing_id",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "regulatory_filing"
+    },
+    "29": {
+      "name": "sanction_list_id",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "sanction_list"
+    },
+    "30": {
+      "name": "sanctions_entity_id",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "sanction_entry"
+    },
+    "32": {
+      "name": "person_email",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "email"
+    },
+    "33": {
+      "name": "person_phone",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "phone"
+    },
+    "34": {
+      "name": "person_website",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "domain"
+    },
+    "35": {
+      "name": "person_address",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "address"
+    },
+    "36": {
+      "name": "person_country",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "38": {
+      "name": "person_profile_url",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "url"
+    },
+    "39": {
+      "name": "person_platform",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "40": {
+      "name": "person_role_job",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "41": {
+      "name": "person_employer_job",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "44": {
+      "name": "company_email",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "email"
+    },
+    "45": {
+      "name": "company_phone",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "phone"
+    },
+    "46": {
+      "name": "company_website",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "domain"
+    },
+    "47": {
+      "name": "company_address",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "address"
+    },
+    "48": {
+      "name": "company_country",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "49": {
+      "name": "company_status",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "50": {
+      "name": "company_incorporation_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "51": {
+      "name": "company_dissolution_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "52": {
+      "name": "company_type",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "53": {
+      "name": "company_sic_code",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "54": {
+      "name": "company_financial_statements",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "55": {
+      "name": "company_financial_year_end",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "56": {
+      "name": "company_share_capital",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "57": {
+      "name": "company_accounts_filing_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "58": {
+      "name": "company_officers",
+      "type": "attribute",
+      "creates": "metadata"
+    },
+    "59": {
+      "name": "company_officer_name",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "person"
+    },
+    "60": {
+      "name": "company_officer_role",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "61": {
+      "name": "company_officer_appointment_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "62": {
+      "name": "company_officer_resignation_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "63": {
+      "name": "company_officer_nationality",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "64": {
+      "name": "company_officer_dob",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "65": {
+      "name": "company_officer_address",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "address"
+    },
+    "66": {
+      "name": "company_beneficial_owners",
+      "type": "attribute",
+      "creates": "metadata"
+    },
+    "67": {
+      "name": "company_beneficial_owner_name",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "person"
+    },
+    "68": {
+      "name": "company_beneficial_owner_ownership_pct",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "69": {
+      "name": "company_beneficial_owner_control_nature",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "70": {
+      "name": "company_beneficial_owner_nationality",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "71": {
+      "name": "company_shareholders",
+      "type": "attribute",
+      "creates": "metadata"
+    },
+    "72": {
+      "name": "company_shareholder_name",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "person"
+    },
+    "73": {
+      "name": "company_shareholder_company",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "company"
+    },
+    "74": {
+      "name": "company_shareholder_person",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "person"
+    },
+    "75": {
+      "name": "company_shareholder_type",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "76": {
+      "name": "company_shareholder_shares",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "77": {
+      "name": "company_shareholder_share_class",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "79": {
+      "name": "litigation_about_company",
+      "type": "attribute",
+      "creates": "metadata"
+    },
+    "80": {
+      "name": "litigation_about_person",
+      "type": "attribute",
+      "creates": "metadata"
+    },
+    "81": {
+      "name": "litigation_title",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "82": {
+      "name": "litigation_parties",
+      "type": "attribute",
+      "creates": "metadata"
+    },
+    "83": {
+      "name": "litigation_court",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "84": {
+      "name": "litigation_filing_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "85": {
+      "name": "litigation_status",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "86": {
+      "name": "litigation_judgment",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "87": {
+      "name": "litigation_judgment_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "88": {
+      "name": "litigation_outcome",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "89": {
+      "name": "litigation_parties_anonymized",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "90": {
+      "name": "regulatory_actions",
+      "type": "attribute",
+      "creates": "metadata"
+    },
+    "91": {
+      "name": "license_status",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "92": {
+      "name": "license_type",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "93": {
+      "name": "license_issued_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "94": {
+      "name": "license_expiry_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "95": {
+      "name": "license_violations",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "96": {
+      "name": "license_violation_date",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "97": {
+      "name": "license_violation_description",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "98": {
+      "name": "license_fine_amount",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "99": {
+      "name": "sanction_status",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "100": {
+      "name": "sanction_list",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "101": {
+      "name": "sanction_program",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "102": {
+      "name": "sanction_date_added",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "103": {
+      "name": "sanction_date_removed",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "104": {
+      "name": "sanction_reason",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "105": {
+      "name": "sanction_entity_type",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "106": {
+      "name": "property_owner",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "person"
+    },
+    "107": {
+      "name": "property_previous_owners",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "110": {
+      "name": "property_size",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "111": {
+      "name": "property_value",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "112": {
+      "name": "property_purchase_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "113": {
+      "name": "property_purchase_price",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "114": {
+      "name": "property_mortgage",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "115": {
+      "name": "property_type",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "116": {
+      "name": "vehicle_owner",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "person"
+    },
+    "118": {
+      "name": "vehicle_vin_id",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "119": {
+      "name": "vehicle_make_model",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "120": {
+      "name": "vehicle_year",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "121": {
+      "name": "vessel_owner",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "person"
+    },
+    "122": {
+      "name": "vessel_name",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "vessel"
+    },
+    "124": {
+      "name": "vessel_flag",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "125": {
+      "name": "aircraft_owner",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "person"
+    },
+    "126": {
+      "name": "aircraft_name",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "128": {
+      "name": "aircraft_type",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "130": {
+      "name": "domain_ip",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "131": {
+      "name": "domain_registrant_person",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "person"
+    },
+    "132": {
+      "name": "domain_registrant_company",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "company"
+    },
+    "133": {
+      "name": "domain_registrant_email",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "email"
+    },
+    "134": {
+      "name": "domain_registrant_phone",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "phone"
+    },
+    "135": {
+      "name": "domain_registrant_address",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "address"
+    },
+    "136": {
+      "name": "domain_creation_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "137": {
+      "name": "domain_update_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "138": {
+      "name": "domain_expiry_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "139": {
+      "name": "domain_nameservers",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "140": {
+      "name": "domain_status_codes",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "141": {
+      "name": "domain_whois_raw",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "142": {
+      "name": "breach_password_hash",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "143": {
+      "name": "breach_password_plain",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "144": {
+      "name": "breach_source",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "145": {
+      "name": "breach_date",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent"
+    },
+    "146": {
+      "name": "document_content",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "147": {
+      "name": "keyword_term",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "148": {
+      "name": "domain_anchor_text_profile",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "149": {
+      "name": "keyword_visibility_metrics",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "150": {
+      "name": "domain_index_item_metrics",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "151": {
+      "name": "domain_hosted_domains",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "152": {
+      "name": "domain_backlink_history",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "153": {
+      "name": "domain_backlink_records",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "154": {
+      "name": "domain_new_lost_backlinks",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "155": {
+      "name": "domain_link_profile",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "156": {
+      "name": "domain_ref_domains",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "157": {
+      "name": "domain_ref_domain_metrics",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "158": {
+      "name": "domain_related_sites",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "159": {
+      "name": "domain_topics_profile",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "160": {
+      "name": "keyword_search_results",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "161": {
+      "name": "domain_crawl_submission",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "162": {
+      "name": "domain_top_pages",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "163": {
+      "name": "domain_prefix_estimate",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "164": {
+      "name": "domain_gov_backlinks_count",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "165": {
+      "name": "domain_gov_ref_domains",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "166": {
+      "name": "domain_mil_backlinks_count",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "167": {
+      "name": "domain_mil_ref_domains",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "168": {
+      "name": "keyword_related_terms",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "169": {
+      "name": "domain_backlink_segment_profiles",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "170": {
+      "name": "username_osint_accounts",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "171": {
+      "name": "username_email_hits",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "172": {
+      "name": "username_breach_exposures",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "173": {
+      "name": "username_related_entities",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "174": {
+      "name": "username_geo_signals",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "175": {
+      "name": "phone_osint_profiles",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "176": {
+      "name": "phone_breach_records",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "177": {
+      "name": "phone_related_entities",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "178": {
+      "name": "phone_geo_signals",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "179": {
+      "name": "phone_osint_summary",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "180": {
+      "name": "registry_search_urls",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "181": {
+      "name": "national_id_decoded_info",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "182": {
+      "name": "domain_geo_summary",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "183": {
+      "name": "breach_raw_dataset_ref",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "184": {
+      "name": "tr_commoncrawl_domain_attrs",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "185": {
+      "name": "uk_land_registry_records",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "186": {
+      "name": "openownership_results",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "187": {
+      "name": "person_email_breaches",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "breach_record",
+      "edge_type": "exposed_in",
+      "attaches_to": "email",
+      "fields": ["source", "breach", "breached_at", "compromised_fields", "password_exposed"],
+      "handler": "eyed"
+    },
+    "188": {
+      "name": "person_social_profiles",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "social_profile",
+      "edge_type": "has_profile",
+      "attaches_to": "email",
+      "fields": ["platform", "username", "url", "followers", "verified"],
+      "handler": "eyed"
+    },
+    "189": {
+      "name": "person_phone_records",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "phone_record",
+      "edge_type": "associated_phone",
+      "attaches_to": "person",
+      "fields": ["phone", "carrier", "line_type", "country"],
+      "handler": "eyed"
+    },
+    "190": {
+      "name": "person_identity_graph",
+      "type": "graph",
+      "creates": "edges",
+      "edge_types": ["related_to", "same_as", "part_of"],
+      "description": "Links between identity fragments (email→phone→username→person)",
+      "handler": "eyed"
+    },
+    "191": {
+      "name": "domain_backlinks",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "backlink",
+      "edge_type": "links_to",
+      "attaches_to": "domain",
+      "fields": ["source_url", "anchor_text", "discovered_at", "trust_flow"],
+      "handler": "alldom"
+    },
+    "192": {
+      "name": "domain_wayback_snapshots",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "archive_snapshot",
+      "edge_type": "archived_as",
+      "attaches_to": "domain",
+      "fields": ["snapshot_url", "timestamp", "status_code", "mime_type"],
+      "handler": "linklater"
+    },
+    "193": {
+      "name": "domain_dns_records",
+      "type": "dataset",
+      "creates": "metadata",
+      "attaches_to": "domain",
+      "fields": ["record_type", "value", "ttl", "observed_at"],
+      "handler": "eyed"
+    },
+    "195": {
+      "name": "domain_whois_history",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "whois_record",
+      "edge_type": "registered_by",
+      "attaches_to": "domain",
+      "fields": ["registrant", "registrar", "created_date", "updated_date", "expiry_date", "nameservers"],
+      "handler": "eyed"
+    },
+    "196": {
+      "name": "domain_ssl_certificates",
+      "type": "dataset",
+      "creates": "metadata",
+      "attaches_to": "domain",
+      "fields": ["issuer", "subject", "valid_from", "valid_to", "fingerprint", "san_domains"],
+      "handler": "alldom"
+    },
+    "197": {
+      "name": "domain_url_timelines",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "url_timeline",
+      "attaches_to": "domain",
+      "fields": ["url", "first_seen", "last_seen", "status_changes"],
+      "handler": "linklater"
+    },
+    "198": {
+      "name": "domain_keyword_hits",
+      "type": "dataset",
+      "creates": "metadata",
+      "attaches_to": "domain",
+      "fields": ["keyword", "url", "context", "discovered_at"],
+      "handler": "alldom"
+    },
+    "200": {
+      "name": "domain_subdomains",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "domain",
+      "edge_type": "subdomain_of",
+      "attaches_to": "domain",
+      "fields": ["subdomain", "ip", "discovered_at", "source"],
+      "handler": "alldom"
+    },
+    "203": {
+      "name": "domain_outlinks",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "domain",
+      "edge_type": "links_to",
+      "attaches_to": "domain",
+      "fields": ["target_domain", "link_count", "anchor_texts"],
+      "handler": "alldom"
+    },
+    "204": {
+      "name": "domain_ga_codes",
+      "type": "dataset",
+      "creates": "metadata",
+      "attaches_to": "domain",
+      "fields": ["ga_code", "gtm_code", "fb_pixel", "discovered_at"],
+      "handler": "alldom"
+    },
+    "205": {
+      "name": "domain_age",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "domain",
+      "fields": ["created_date", "age_days", "source"],
+      "handler": "alldom"
+    },
+    "206": {
+      "name": "page_age",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "url",
+      "fields": ["first_seen", "last_seen", "age_days"],
+      "handler": "linklater"
+    },
+    "207": {
+      "name": "referring_pages",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "url",
+      "edge_type": "refers_to",
+      "attaches_to": "domain",
+      "fields": ["source_url", "anchor_text", "discovered_at"],
+      "handler": "alldom"
+    },
+    "208": {
+      "name": "linked_pages",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "url",
+      "edge_type": "links_to",
+      "attaches_to": "url",
+      "fields": ["target_url", "anchor_text", "rel_attributes"],
+      "handler": "alldom"
+    },
+    "209": {
+      "name": "historic_link_data",
+      "type": "dataset",
+      "creates": "metadata",
+      "attaches_to": "domain",
+      "fields": ["timestamp", "backlink_count", "referring_domains", "trust_flow", "citation_flow"],
+      "handler": "alldom"
+    },
+    "211": {
+      "name": "search_engine_hits",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "search_result",
+      "attaches_to": "query",
+      "fields": ["url", "title", "snippet", "position", "engine"],
+      "handler": "brute"
+    },
+    "212": {
+      "name": "similar_sites",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "domain",
+      "edge_type": "similar_to",
+      "attaches_to": "domain",
+      "fields": ["similar_domain", "similarity_score", "shared_technologies"],
+      "handler": "alldom"
+    },
+    "213": {
+      "name": "sitemap_urls",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "url",
+      "edge_type": "part_of",
+      "attaches_to": "domain",
+      "fields": ["url", "lastmod", "changefreq", "priority"],
+      "handler": "alldom"
+    },
+    "214": {
+      "name": "domain_archives",
+      "type": "dataset",
+      "creates": "node",
+      "node_type": "archive_collection",
+      "edge_type": "archived_in",
+      "attaches_to": "domain",
+      "fields": ["archive_source", "snapshot_count", "date_range", "total_size"],
+      "handler": "linklater"
+    },
+    "215": {
+      "name": "cc_graph_nodes",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "216": {
+      "name": "cc_graph_edges",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "217": {
+      "name": "backlink_domains",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "218": {
+      "name": "backlink_urls",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "219": {
+      "name": "outlink_domains",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "220": {
+      "name": "outlink_urls",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "221": {
+      "name": "link_velocity",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "222": {
+      "name": "link_timeline",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "223": {
+      "name": "shared_link_targets",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "224": {
+      "name": "link_anchor_clusters",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "225": {
+      "name": "archive_snapshots",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "226": {
+      "name": "archive_freshness",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "227": {
+      "name": "archive_changes",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "228": {
+      "name": "archive_diff",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "229": {
+      "name": "entity_timeline",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "230": {
+      "name": "ga_tracking_codes",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "231": {
+      "name": "ga_related_domains",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "232": {
+      "name": "subdomain_list",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "233": {
+      "name": "whois_cluster",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "234": {
+      "name": "reverse_whois_domains",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "235": {
+      "name": "news_mentions",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "236": {
+      "name": "gdelt_articles",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "237": {
+      "name": "bang_search_results",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "238": {
+      "name": "keyword_variations",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "239": {
+      "name": "category_search_results",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "240": {
+      "name": "extracted_persons",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "241": {
+      "name": "extracted_companies",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "242": {
+      "name": "extracted_emails",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "243": {
+      "name": "extracted_phones",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "244": {
+      "name": "extracted_addresses",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "245": {
+      "name": "extracted_all_entities",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "250": {
+      "name": "onion_pages",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "251": {
+      "name": "onion_domains",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "252": {
+      "name": "onion_graph_nodes",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "253": {
+      "name": "onion_graph_edges",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "254": {
+      "name": "onion_screenshots",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "255": {
+      "name": "onion_search_results",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "256": {
+      "name": "onion_crawl_status",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "257": {
+      "name": "onion_content",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "258": {
+      "name": "onion_entities",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "259": {
+      "name": "onion_bridges",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "260": {
+      "name": "event_name",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "261": {
+      "name": "event_date",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "262": {
+      "name": "event_entities",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "263": {
+      "name": "topic_canonical",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "264": {
+      "name": "topic_spatial_context",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "265": {
+      "name": "theme_id",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "266": {
+      "name": "theme_keywords",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "267": {
+      "name": "extracted_events",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "268": {
+      "name": "extracted_topics",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "269": {
+      "name": "extracted_themes",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "270": {
+      "name": "event_timeline",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "271": {
+      "name": "topic_entity_map",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "272": {
+      "name": "causal_chain",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "273": {
+      "name": "event_coordinate",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "274": {
+      "name": "topic_coordinate",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "275": {
+      "name": "narrative_events",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "276": {
+      "name": "narrative_topics",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "277": {
+      "name": "watcher_events",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "278": {
+      "name": "watcher_topics",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "279": {
+      "name": "event_profile",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "280": {
+      "name": "topic_profile",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "281": {
+      "name": "psc_records",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "282": {
+      "name": "psc_person_name",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "283": {
+      "name": "psc_person_dob_month",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "284": {
+      "name": "psc_person_dob_year",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "285": {
+      "name": "psc_person_nationality",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "286": {
+      "name": "psc_person_country_of_residence",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "287": {
+      "name": "psc_corporate_name",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "288": {
+      "name": "psc_corporate_reg_number",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "289": {
+      "name": "psc_corporate_jurisdiction",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "290": {
+      "name": "psc_corporate_legal_form",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "291": {
+      "name": "psc_corporate_legal_authority",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "292": {
+      "name": "psc_corporate_place_registered",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "293": {
+      "name": "psc_natures_of_control",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "294": {
+      "name": "psc_ownership_percentage",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "295": {
+      "name": "psc_ownership_band",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "296": {
+      "name": "psc_voting_percentage",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "297": {
+      "name": "psc_voting_band",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "298": {
+      "name": "psc_notified_on",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "299": {
+      "name": "psc_ceased_on",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "300": {
+      "name": "psc_address_full",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "301": {
+      "name": "psc_address_premises",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "302": {
+      "name": "psc_address_line_1",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "303": {
+      "name": "psc_address_line_2",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "304": {
+      "name": "psc_address_locality",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "305": {
+      "name": "psc_address_region",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "306": {
+      "name": "psc_address_postal_code",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "307": {
+      "name": "psc_address_country",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "308": {
+      "name": "psc_kind",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "309": {
+      "name": "psc_etag",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "310": {
+      "name": "psc_links",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "311": {
+      "name": "foreign_company_jurisdiction",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "312": {
+      "name": "foreign_company_reg_number",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "313": {
+      "name": "foreign_company_name",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "314": {
+      "name": "foreign_company_country_code",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "315": {
+      "name": "property_owner_jurisdiction",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "316": {
+      "name": "property_owner_company_reg",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "317": {
+      "name": "property_owner_country_code",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "318": {
+      "name": "openownership_statement_id",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "319": {
+      "name": "openownership_entity_id",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "320": {
+      "name": "openownership_entity_type",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "321": {
+      "name": "openownership_control_types",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "322": {
+      "name": "openownership_start_date",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "323": {
+      "name": "openownership_end_date",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "324": {
+      "name": "openownership_data_source",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "325": {
+      "name": "psc_by_country_index",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "326": {
+      "name": "psc_target_company_jurisdiction",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "327": {
+      "name": "psc_foreign_companies_list",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "328": {
+      "name": "fca_frn",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "329": {
+      "name": "fca_firm_name",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "330": {
+      "name": "fca_status",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "331": {
+      "name": "fca_business_type",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "332": {
+      "name": "fca_status_effective_date",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "333": {
+      "name": "fca_permissions",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "334": {
+      "name": "fca_requirements",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "335": {
+      "name": "fca_individuals",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "336": {
+      "name": "fca_appointed_representatives",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "337": {
+      "name": "fca_address",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "338": {
+      "name": "fca_passport",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "339": {
+      "name": "fca_regulators",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "340": {
+      "name": "fca_waivers",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "341": {
+      "name": "fca_exclusions",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "342": {
+      "name": "fca_disciplinary_history",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "343": {
+      "name": "fca_fines",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "344": {
+      "name": "fca_exceptional_info",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "345": {
+      "name": "fca_individual_name",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "346": {
+      "name": "fca_individual_irn",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "347": {
+      "name": "fca_individual_status",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "348": {
+      "name": "fca_individual_controlled_functions",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "349": {
+      "name": "fca_individual_firm_history",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "350": {
+      "name": "uk_ccod_records",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "351": {
+      "name": "uk_ccod_title_number",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "352": {
+      "name": "uk_ccod_tenure",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "353": {
+      "name": "uk_ccod_property_address",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "354": {
+      "name": "uk_ccod_district",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "355": {
+      "name": "uk_ccod_county",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "356": {
+      "name": "uk_ccod_region",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "357": {
+      "name": "uk_ccod_postcode",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "358": {
+      "name": "uk_ccod_multiple_address_indicator",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "359": {
+      "name": "uk_ccod_price_paid",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "360": {
+      "name": "uk_ccod_proprietor_name",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "361": {
+      "name": "uk_ccod_company_registration_number",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "362": {
+      "name": "uk_ccod_proprietorship_category",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "363": {
+      "name": "uk_ccod_proprietor_address",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "364": {
+      "name": "uk_ccod_date_proprietor_added",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "365": {
+      "name": "uk_ocod_records",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "366": {
+      "name": "uk_ocod_title_number",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "367": {
+      "name": "uk_ocod_tenure",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "368": {
+      "name": "uk_ocod_property_address",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "369": {
+      "name": "uk_ocod_district",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "370": {
+      "name": "uk_ocod_county",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "371": {
+      "name": "uk_ocod_region",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "372": {
+      "name": "uk_ocod_postcode",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "373": {
+      "name": "uk_ocod_price_paid",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "374": {
+      "name": "uk_ocod_proprietor_name",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "375": {
+      "name": "uk_ocod_country_incorporated",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "376": {
+      "name": "uk_ocod_proprietor_address",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "377": {
+      "name": "uk_ocod_date_proprietor_added",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "378": {
+      "name": "uk_leases_records",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "379": {
+      "name": "uk_leases_unique_id",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "380": {
+      "name": "uk_leases_tenure",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "381": {
+      "name": "uk_leases_property_description",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "382": {
+      "name": "uk_leases_county",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "383": {
+      "name": "uk_leases_region",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "384": {
+      "name": "uk_leases_uprn",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "385": {
+      "name": "uk_leases_price_paid",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "386": {
+      "name": "uk_leases_date_of_lease",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "387": {
+      "name": "uk_leases_term",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "388": {
+      "name": "uk_leases_alienation_clause",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "389": {
+      "name": "uk_leases_lessor_title",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "390": {
+      "name": "uk_companies_house_records",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "391": {
+      "name": "uk_companies_house_number",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "392": {
+      "name": "uk_companies_house_name",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "393": {
+      "name": "uk_companies_house_status",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "394": {
+      "name": "uk_companies_house_type",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "395": {
+      "name": "uk_companies_house_date_of_creation",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "396": {
+      "name": "uk_companies_house_date_of_cessation",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "397": {
+      "name": "uk_companies_house_registered_office",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "398": {
+      "name": "uk_companies_house_sic_codes",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "399": {
+      "name": "uk_companies_house_officers",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "400": {
+      "name": "uk_companies_house_filing_history",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "401": {
+      "name": "uk_companies_house_charges",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "402": {
+      "name": "uk_companies_house_insolvency_history",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "403": {
+      "name": "criminal_records",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "404": {
+      "name": "family_connections",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "405": {
+      "name": "regulatory_violations",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "406": {
+      "name": "contract_awards",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "407": {
+      "name": "allegations",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "408": {
+      "name": "financial_transactions",
+      "type": "unknown",
+      "creates": "unknown"
+    },
+    "420": {
+      "name": "company_lei",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "company",
+      "description": "Legal Entity Identifier (20-char alphanumeric) from GLEIF"
+    },
+    "421": {
+      "name": "company_bic",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "company",
+      "description": "BIC/SWIFT code from GLEIF (financial institution identifier)"
+    },
+    "422": {
+      "name": "company_parent",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "company",
+      "description": "Direct parent company from GLEIF ownership structure"
+    },
+    "423": {
+      "name": "company_ultimate_parent",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "company",
+      "description": "Ultimate parent company from GLEIF (top of hierarchy)"
+    },
+    "424": {
+      "name": "company_subsidiary",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "company",
+      "description": "Subsidiary company from GLEIF ownership structure"
+    },
+    "425": {
+      "name": "company_headquarters_address",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "address",
+      "description": "Headquarters address (distinct from registered address)"
+    },
+    "426": {
+      "name": "company_legal_form",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "company",
+      "description": "Legal form/type from GLEIF (e.g., SVFB, 8888)"
+    },
+    "427": {
+      "name": "company_previous_names",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "company",
+      "description": "List of previous company names from GLEIF"
+    },
+    "428": {
+      "name": "company_registration_authority",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "company",
+      "description": "Registry authority ID from GLEIF (registered_at)"
+    },
+    "429": {
+      "name": "company_managing_lou",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "company",
+      "description": "Managing LOU (Local Operating Unit) that issued the LEI"
+    },
+    "430": {
+      "name": "company_registration_status",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "company",
+      "description": "LEI registration status (ISSUED, LAPSED, etc.)"
+    },
+    "500": {
+      "name": "related_companies",
+      "type": "aggregate",
+      "creates": "node_list",
+      "description": "Related companies via multi-criteria overlap",
+      "macro": "related_company"
+    },
+    "501": {
+      "name": "related_company_evidence",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "related_companies",
+      "description": "Evidence for why companies are related"
+    },
+    "502": {
+      "name": "person_age",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "description": "Person's age calculated from DOB"
+    },
+    "503": {
+      "name": "alldom_full_profile",
+      "type": "aggregate",
+      "creates": "metadata",
+      "description": "Full domain analysis from alldom? macro",
+      "macro": "alldom"
+    },
+    "504": {
+      "name": "alldom_present_state",
+      "type": "attribute",
+      "creates": "metadata",
+      "description": "Current live domain metadata and content"
+    },
+    "505": {
+      "name": "alldom_historic_snapshots",
+      "type": "aggregate",
+      "creates": "metadata",
+      "description": "Historical snapshots from Wayback/CC"
+    },
+    "506": {
+      "name": "alldom_link_graph",
+      "type": "aggregate",
+      "creates": "metadata",
+      "description": "Outlinks, backlinks, GA codes"
+    },
+    "507": {
+      "name": "alldom_entities_extracted",
+      "type": "aggregate",
+      "creates": "node_list",
+      "description": "Entities extracted from domain content"
+    },
+    "508": {
+      "name": "alldom_schemas",
+      "type": "attribute",
+      "creates": "metadata",
+      "description": "Schema.org structured data from domain"
+    },
+    "511": {
+      "name": "social_mentions",
+      "type": "aggregate",
+      "creates": "metadata",
+      "description": "Social media posts mentioning entity"
+    },
+    "512": {
+      "name": "trust_flow",
+      "type": "attribute",
+      "creates": "metadata",
+      "description": "Link quality score - are referring sites real/authoritative"
+    },
+    "513": {
+      "name": "citation_flow",
+      "type": "attribute",
+      "creates": "metadata",
+      "description": "Link quantity score - volume of referring sites"
+    },
+    "514": {
+      "name": "topical_trust_flow",
+      "type": "aggregate",
+      "creates": "metadata",
+      "description": "Topic breakdown of referring sites"
+    },
+    "515": {
+      "name": "reputation_score",
+      "type": "attribute",
+      "creates": "metadata",
+      "description": "Computed reputation score (derived from other signals)"
+    },
+    "516": {
+      "name": "person_associated_persons",
+      "type": "entity",
+      "creates": "node_list",
+      "node_type": "person",
+      "description": "Associated persons linked to this person."
+    },
+    "517": {
+      "name": "person_associated_companies",
+      "type": "entity",
+      "creates": "node_list",
+      "node_type": "company",
+      "description": "Associated companies linked to this person."
+    },
+    "518": {
+      "name": "person_domains",
+      "type": "entity",
+      "creates": "node_list",
+      "node_type": "domain",
+      "description": "Domains or websites linked to this person."
+    },
+    "519": {
+      "name": "person_documents",
+      "type": "entity",
+      "creates": "node_list",
+      "node_type": "file",
+      "description": "Documents or files that reference this person."
+    },
+    "520": {
+      "name": "person_assets",
+      "type": "aggregate",
+      "creates": "metadata",
+      "description": "Assets linked to this person (property, vehicles, holdings)."
+    },
+    "521": {
+      "name": "person_pep_status",
+      "type": "aggregate",
+      "creates": "metadata",
+      "description": "Politically exposed person status and positions."
+    },
+    "600": {
+      "name": "nexus_officer_of",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Officer Of"
+    },
+    "601": {
+      "name": "nexus_beneficial_owner_of",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Beneficial Owner Of"
+    },
+    "602": {
+      "name": "nexus_shareholder_of",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Shareholder Of"
+    },
+    "603": {
+      "name": "nexus_subsidiary_of",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Subsidiary Of"
+    },
+    "604": {
+      "name": "nexus_registered_in",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Registered In"
+    },
+    "605": {
+      "name": "nexus_located_at",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Located At"
+    },
+    "606": {
+      "name": "nexus_has_address",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Has Address"
+    },
+    "607": {
+      "name": "nexus_has_email",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Has Email"
+    },
+    "608": {
+      "name": "nexus_has_phone",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Has Phone"
+    },
+    "609": {
+      "name": "nexus_has_profile",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Has Profile"
+    },
+    "610": {
+      "name": "nexus_has_website",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Has Website"
+    },
+    "611": {
+      "name": "nexus_registrant_of",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Registrant Of"
+    },
+    "612": {
+      "name": "nexus_owner_of",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Owner Of"
+    },
+    "613": {
+      "name": "nexus_party_to",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Party To"
+    },
+    "614": {
+      "name": "nexus_mentioned_in",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Mentioned In"
+    },
+    "615": {
+      "name": "nexus_operates_in",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Operates In"
+    },
+    "616": {
+      "name": "nexus_incorporated_in",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Incorporated In"
+    },
+    "617": {
+      "name": "nexus_headquartered_at",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Headquartered At"
+    },
+    "618": {
+      "name": "nexus_same_as",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Same As"
+    },
+    "619": {
+      "name": "nexus_linked_to",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Linked To"
+    },
+    "620": {
+      "name": "nexus_related_to",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Related To"
+    },
+    "621": {
+      "name": "nexus_documented_by",
+      "type": "nexus",
+      "creates": "node",
+      "node_type": "nexus",
+      "description": "Reified relationship node: Documented By"
+    },
+    "700": {
+      "name": "decoded_id_country",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "chain": "ID_DECODER"
+    },
+    "701": {
+      "name": "decoded_id_type",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "chain": "ID_DECODER"
+    },
+    "702": {
+      "name": "decoded_dob",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "chain": "ID_DECODER"
+    },
+    "703": {
+      "name": "decoded_gender",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "chain": "ID_DECODER"
+    },
+    "704": {
+      "name": "decoded_admin_division",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "chain": "ID_DECODER"
+    },
+    "705": {
+      "name": "decoded_municipality",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "chain": "ID_DECODER"
+    },
+    "706": {
+      "name": "decoded_check_digit",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "chain": "ID_DECODER"
+    },
+    "707": {
+      "name": "decoded_formatted",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "chain": "ID_DECODER"
+    },
+    "708": {
+      "name": "decoded_valid",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "chain": "ID_DECODER"
+    },
+    "709": {
+      "name": "social_profile_url",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "social_profile",
+      "description": "Direct URL to social media profile",
+      "handler": "SOCIALITE"
+    },
+    "710": {
+      "name": "social_username",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "description": "Social media username/handle",
+      "handler": "SOCIALITE"
+    },
+    "711": {
+      "name": "social_posts",
+      "type": "entity",
+      "creates": "node_collection",
+      "node_type": "social_post",
+      "description": "Social media posts/content",
+      "handler": "SOCIALITE"
+    },
+    "712": {
+      "name": "social_connections",
+      "type": "entity",
+      "creates": "edge_collection",
+      "description": "Social media connections (followers, following)",
+      "handler": "SOCIALITE"
+    },
+    "713": {
+      "name": "social_discussions",
+      "type": "entity",
+      "creates": "node_collection",
+      "node_type": "discussion_thread",
+      "description": "Discussion threads (Reddit, forums)",
+      "handler": "SOCIALITE"
+    },
+    "714": {
+      "name": "video_content",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "video",
+      "description": "Video content (YouTube, TikTok)",
+      "handler": "SOCIALITE"
+    },
+    "715": {
+      "name": "social_photo",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "image",
+      "description": "Social media photos/images",
+      "handler": "SOCIALITE"
+    },
+    "716": {
+      "name": "social_network_of",
+      "type": "entity",
+      "creates": "edge_collection",
+      "description": "Network graph - who is connected to whom",
+      "handler": "SOCIALITE"
+    },
+    "717": {
+      "name": "social_activity_log",
+      "type": "entity",
+      "creates": "node_collection",
+      "node_type": "activity_log",
+      "description": "Social media activity history/timeline",
+      "handler": "SOCIALITE"
+    },
+    "718": {
+      "name": "fb_profile_id",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "identifier",
+      "description": "Facebook profile ID (numeric)",
+      "handler": "SOCIALITE"
+    },
+    "719": {
+      "name": "person_maiden_name",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "description": "Person's maiden name (n\u00e9e)",
+      "handler": "SOCIALITE"
+    },
+    "720": {
+      "name": "person_mother_maiden_name",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "description": "Mother's maiden name (common in Hungarian and other registries)"
+    },
+    "721": {
+      "name": "bank_account_number",
+      "type": "attribute",
+      "creates": "metadata",
+      "attaches_to": "parent",
+      "description": "Bank account number (IBAN or local format)"
+    },
+    "722": {
+      "name": "bank_name",
+      "type": "entity",
+      "creates": "node",
+      "node_type": "bank",
+      "description": "Host bank / financial institution name"
+    }
+  }
+}

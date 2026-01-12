@@ -1,0 +1,50 @@
+{
+  "GLOBAL": [
+    {
+      "name": "University of Huddersfield Library",
+      "domain": "hud.summon.serialssolutions.com",
+      "url": "https://hud.summon.serialssolutions.com/search",
+      "search_url": "https://hud.summon.serialssolutions.com/search?ho=t&l=en&fvf=ContentType,Book+Review,t&q={q}&limit=everything",
+      "type": "library_archive",
+      "category": "lib",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "hud.summon.serialssolutions.com_books_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://hud.summon.serialssolutions.com/search?ho=t&l=en&fvf=ContentType,Book+Review,t&q={q}&limit=everything",
+      "section": "lib",
+      "access": "public",
+      "notes": "Imported from books_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "books"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "ho"
+      ]
+    }
+  ],
+  "meta": {
+    "count": 0,
+    "merged_at": "2026-01-11T18:33:49.836119",
+    "merged_from": [
+      "library.json"
+    ]
+  },
+  "sources": []
+}

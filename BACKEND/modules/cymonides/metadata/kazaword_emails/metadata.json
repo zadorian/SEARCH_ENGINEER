@@ -1,0 +1,110 @@
+{
+  "index_name": "kazaword_emails",
+  "description": "Email addresses from Kazakh and Russian sources - investigations, leaks, and datasets",
+  "document_count": 92416,
+  "size": "225.7mb",
+  "status": "green",
+  "shards": {
+    "primary": 1,
+    "replica": 0
+  },
+  "health": "green",
+  "use_case": "country-indexes",
+  "jurisdictions": ["KZ", "RU"],
+  "countries": {
+    "KZ": "Kazakhstan",
+    "RU": "Russia"
+  },
+  "related_indices": [
+    "nexus_breach_records (breach data)",
+    "cymonides-1-project-* (entity graphs)",
+    "cymonides_cc_domain_vertices (domain lookups)"
+  ],
+  "schema": {
+    "email": "keyword - Email address",
+    "domain": "keyword - Email domain (extracted from @)",
+    "source": "keyword - Source dataset or investigation",
+    "jurisdiction": "keyword[] - Associated jurisdictions (KZ, RU)",
+    "metadata": {
+      "discovered_at": "date - When email was discovered/indexed",
+      "verification_status": "keyword - Verification state (unverified, verified, invalid)",
+      "associated_entities": "keyword[] - Linked entity IDs in C-1",
+      "breach_count": "long - Number of breaches this email appears in",
+      "tags": "keyword[] - Investigative tags"
+    }
+  },
+  "sample_document": {
+    "_id": "kz_email_001",
+    "email": "user@example.kz",
+    "domain": "example.kz",
+    "source": "kazaword_dataset",
+    "jurisdiction": ["KZ"],
+    "metadata": {
+      "discovered_at": "2024-01-01T00:00:00Z",
+      "verification_status": "unverified",
+      "associated_entities": [],
+      "breach_count": 0,
+      "tags": ["government", "ministry"]
+    }
+  },
+  "query_patterns": {
+    "search_by_domain": {
+      "query": {
+        "wildcard": {
+          "email": "*@gov.kz"
+        }
+      }
+    },
+    "domain_aggregation": {
+      "size": 0,
+      "aggs": {
+        "domains": {
+          "terms": {
+            "script": "doc['email.keyword'].value.substring(doc['email.keyword'].value.indexOf('@') + 1)",
+            "size": 50
+          }
+        }
+      }
+    },
+    "jurisdiction_filter": {
+      "query": {
+        "term": {
+          "jurisdiction": "KZ"
+        }
+      }
+    }
+  },
+  "top_domains": [
+    "gov.kz - Government agencies",
+    "kz - Kazakh commercial entities",
+    "ru - Russian entities with Kazakh connections",
+    "kazatomprom.kz - State nuclear company",
+    "kazmunaygas.kz - State oil/gas company"
+  ],
+  "integration_workflows": {
+    "company_profiling": "Find company domain → Query kazaword_emails → Identify key personnel",
+    "breach_analysis": "Query kazaword_emails → Cross-check nexus_breach_records → Assess exposure",
+    "network_mapping": "Email domain → cymonides_cc_domain_edges → Map connections"
+  },
+  "data_source": {
+    "origin": "Kazaword investigation dataset",
+    "focus": "Post-Soviet region (Kazakhstan, Russia)",
+    "topics": [
+      "Government entities",
+      "State-owned enterprises",
+      "Energy sector",
+      "Political networks"
+    ]
+  },
+  "security_notes": [
+    "Contains email addresses from investigations",
+    "May include government and political figures",
+    "Handle with appropriate confidentiality",
+    "Cross-reference for verification before use"
+  ],
+  "performance": {
+    "email_lookup": "Fast (keyword match on 92K docs)",
+    "domain_wildcard": "Fast (efficient wildcard queries)",
+    "aggregations": "Moderate (requires scripting for @ parsing)"
+  }
+}

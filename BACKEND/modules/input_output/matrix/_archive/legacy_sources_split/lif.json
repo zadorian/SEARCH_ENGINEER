@@ -1,0 +1,3280 @@
+{
+  "GLOBAL": [
+    {
+      "name": "34travel.me",
+      "domain": "34travel.me",
+      "url": "https://34travel.me/search",
+      "search_url": "https://34travel.me/search?text={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "34travel.me_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://34travel.me/search?text={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "text"
+      ]
+    },
+    {
+      "name": "Bus Times",
+      "domain": "bustimes.org",
+      "url": "https://bustimes.org/search",
+      "search_url": "https://bustimes.org/search?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "bustimes.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://bustimes.org/search?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "Couchsurfing",
+      "domain": "couchsurfing.org",
+      "url": "https://www.couchsurfing.org/",
+      "search_url": "https://www.couchsurfing.org/?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "couchsurfing.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.couchsurfing.org/?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "Wikivoyage (Deutsch)",
+      "domain": "de.wikivoyage.org",
+      "url": "https://de.wikivoyage.org/w/index.php",
+      "search_url": "https://de.wikivoyage.org/w/index.php?search={q}&title=Special:Search&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "de.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://de.wikivoyage.org/w/index.php?search={q}&title=Special:Search&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Wikivoyage (Ελληνικά)",
+      "domain": "el.wikivoyage.org",
+      "url": "https://el.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://el.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "el.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://el.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Wikivoyage (English)",
+      "domain": "en.wikivoyage.org",
+      "url": "https://en.wikivoyage.org/w/index.php",
+      "search_url": "https://en.wikivoyage.org/w/index.php?search={q}&title=Special:Search&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "en.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://en.wikivoyage.org/w/index.php?search={q}&title=Special:Search&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Wikivoyage (Español)",
+      "domain": "es.wikivoyage.org",
+      "url": "https://es.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://es.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "es.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://es.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Wikivoyage (français)",
+      "domain": "fr.wikivoyage.org",
+      "url": "https://fr.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://fr.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "fr.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://fr.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Wikivoyage (עברית)",
+      "domain": "he.wikivoyage.org",
+      "url": "https://he.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://he.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "he.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://he.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Hitchwiki",
+      "domain": "hitchwiki.org",
+      "url": "https://hitchwiki.org/en/index.php",
+      "search_url": "https://hitchwiki.org/en/index.php?search={q}&fulltext=Search&title=Special:Search",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "hitchwiki.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://hitchwiki.org/en/index.php?search={q}&fulltext=Search&title=Special:Search",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Wikivoyage (Italiano)",
+      "domain": "it.wikivoyage.org",
+      "url": "https://it.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://it.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "it.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://it.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Kfz-Kennzeichen",
+      "domain": "kfz-info.net",
+      "url": "https://www.kfz-info.net/{q}-kfz-kennzeichen/",
+      "search_url": "https://www.kfz-info.net/{q}-kfz-kennzeichen/",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "kfz-info.net_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.kfz-info.net/{q}-kfz-kennzeichen/",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}"
+    },
+    {
+      "name": "Wikivoyage (Netherlands)",
+      "domain": "nl.wikivoyage.org",
+      "url": "https://nl.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://nl.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "reliability": {
+        "success_rate": 1.0,
+        "avg_latency": 4.66682505607605,
+        "test_count": 1
+      },
+      "id": "nl.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://nl.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ],
+      "thematic_tags": [
+        "land_registry"
+      ],
+      "scrape_method": "BrightData",
+      "http_latency": 1.6393651962280273,
+      "methodology": {
+        "category": null,
+        "match_type": "global_default",
+        "atoms": [
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 0.7
+      }
+    },
+    {
+      "name": "Wikivoyage (Polski)",
+      "domain": "pl.wikivoyage.org",
+      "url": "https://pl.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://pl.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "pl.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://pl.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "planespotters.net",
+      "domain": "planespotters.net",
+      "url": "https://www.planespotters.net/search.php",
+      "search_url": "https://www.planespotters.net/search.php?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "planespotters.net_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.planespotters.net/search.php?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "Wikivoyage (português)",
+      "domain": "pt.wikivoyage.org",
+      "url": "https://pt.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://pt.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "pt.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://pt.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Wikivoyage (Română)",
+      "domain": "ro.wikivoyage.org",
+      "url": "https://ro.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://ro.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "ro.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://ro.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Wikivoyage (Русский)",
+      "domain": "ru.wikivoyage.org",
+      "url": "https://ru.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://ru.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "ru.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://ru.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "San Diego - The Official Travel Resource for the San Diego Region",
+      "domain": "sandiego.org",
+      "url": "https://www.sandiego.org/search/site.aspx",
+      "search_url": "https://www.sandiego.org/search/site.aspx?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "sandiego.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.sandiego.org/search/site.aspx?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "Wikivoyage (Svenska)",
+      "domain": "sv.wikivoyage.org",
+      "url": "https://sv.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://sv.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "sv.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://sv.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Wikivoyage (Українська)",
+      "domain": "uk.wikivoyage.org",
+      "url": "https://uk.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://uk.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "uk.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://uk.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Wikivoyage (Tiếng Việt)",
+      "domain": "vi.wikivoyage.org",
+      "url": "https://vi.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://vi.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "vi.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://vi.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Wikiloc",
+      "domain": "wikiloc.com",
+      "url": "https://www.wikiloc.com/wikiloc/find.do",
+      "search_url": "https://www.wikiloc.com/wikiloc/find.do?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "wikiloc.com_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://www.wikiloc.com/wikiloc/find.do?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "Wikitravel",
+      "domain": "wikitravel.org",
+      "url": "http://wikitravel.org/en/Special:Search",
+      "search_url": "http://wikitravel.org/en/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "wikitravel.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "http://wikitravel.org/en/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Wikivoyage (中文)",
+      "domain": "zh.wikivoyage.org",
+      "url": "https://zh.wikivoyage.org/wiki/Special:Search",
+      "search_url": "https://zh.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "zh.wikivoyage.org_travel_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "https://zh.wikivoyage.org/wiki/Special:Search?search={q}&go=Go",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    }
+  ],
+  "US": [
+    {
+      "name": "ADS-B Exchange",
+      "domain": "adsbexchange.com",
+      "url": "https://www.adsbexchange.com/",
+      "search_url": "https://www.adsbexchange.com/?icao={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "reliability": {
+        "success_rate": 1.0,
+        "avg_latency": 3.7237660884857178,
+        "test_count": 1
+      },
+      "id": "adsbexchange.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.adsbexchange.com/?icao={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "icao"
+      ],
+      "thematic_tags": [
+        "stock_exchange"
+      ],
+      "scrape_method": "Jester_A",
+      "http_latency": 3.3456099033355713,
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "OSINT_GENERAL",
+          "COMPLIANCE_SANCTIONS"
+        ],
+        "friction": "open",
+        "success_rate": 0.9071274298056156
+      }
+    },
+    {
+      "name": "AV-WX (Aviation Weather)",
+      "domain": "av-wx.com",
+      "url": "https://av-wx.com/",
+      "search_url": "https://av-wx.com/?search={q}&mode=metar",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "av-wx.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://av-wx.com/?search={q}&mode=metar",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "Aviation Weather Center",
+      "domain": "aviationweather.gov",
+      "url": "https://aviationweather.gov/data/metar/",
+      "search_url": "https://aviationweather.gov/data/metar/?id={q}&hours=0&include_taf=ye",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "aviationweather.gov_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://aviationweather.gov/data/metar/?id={q}&hours=0&include_taf=ye",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "id"
+      ]
+    },
+    {
+      "name": "Backpaker Magazine",
+      "domain": "backpacker.com",
+      "url": "https://www.backpacker.com/search",
+      "search_url": "https://www.backpacker.com/search?query={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "backpacker.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.backpacker.com/search?query={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "query"
+      ]
+    },
+    {
+      "name": "bergfex",
+      "domain": "bergfex.com",
+      "url": "https://www.bergfex.com/sommer/suchen/",
+      "search_url": "https://www.bergfex.com/sommer/suchen/?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "bergfex.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.bergfex.com/sommer/suchen/?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "Critiki",
+      "domain": "critiki.com",
+      "url": "https://critiki.com/search/",
+      "search_url": "https://critiki.com/search/?t={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "critiki.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://critiki.com/search/?t={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "t"
+      ]
+    },
+    {
+      "name": "DoctorOfCredit",
+      "domain": "doctorofcredit.com",
+      "url": "https://www.doctorofcredit.com/",
+      "search_url": "https://www.doctorofcredit.com/?s={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "reliability": {
+        "success_rate": 1.0,
+        "avg_latency": 2.5158841609954834,
+        "test_count": 1
+      },
+      "id": "doctorofcredit.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.doctorofcredit.com/?s={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ],
+      "output_schema": {
+        "result_type": "list",
+        "pagination": true,
+        "max_results_per_page": 10,
+        "results_container": ".vce-loop-wrap",
+        "row_selector": "article.vce-post",
+        "fields": [
+          {
+            "name": "company_name",
+            "css_selector": "h1.entry-title a",
+            "json_path": null,
+            "example_value": "Chase Withholding 24% IRS Taxes For Business Bank Account Bonuses",
+            "data_type": "string",
+            "always_present": true
+          },
+          {
+            "name": "link",
+            "css_selector": "h1.entry-title a",
+            "json_path": null,
+            "example_value": "https://www.doctorofcredit.com/chase-withholding-25-irs-taxes-for-business-bank-bonus/",
+            "data_type": "string",
+            "always_present": true
+          },
+          {
+            "name": "description",
+            "css_selector": "div.entry-content p",
+            "json_path": null,
+            "example_value": "Update 12/14/25: Over the past few weeks, many readers report getting the withheld tax returned to their account...",
+            "data_type": "string",
+            "always_present": true
+          }
+        ],
+        "language": "en"
+      },
+      "thematic_tags": [
+        "banking",
+        "doctors"
+      ],
+      "scrape_method": "Jester_A",
+      "http_latency": 2.7728309631347656,
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "OSINT_GENERAL",
+          "COMPLIANCE_SANCTIONS"
+        ],
+        "friction": "open",
+        "success_rate": 0.9071274298056156
+      }
+    },
+    {
+      "name": "en Guayaquil",
+      "domain": "enguayaquil.com",
+      "url": "https://enguayaquil.com/",
+      "search_url": "https://enguayaquil.com/?s={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "enguayaquil.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://enguayaquil.com/?s={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ]
+    },
+    {
+      "name": "Vegas",
+      "domain": "find.vegas.com",
+      "url": "https://find.vegas.com/search",
+      "search_url": "https://find.vegas.com/search?entqr=1&output=xml_no_dtd&sort=date:D:L:d1&entsp=0&client=vegas&ud=1&oe=UTF-8&ie=UTF-8&proxystylesheet=vegas&site=vegas&q={q}&btnG=⌕",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "find.vegas.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://find.vegas.com/search?entqr=1&output=xml_no_dtd&sort=date:D:L:d1&entsp=0&client=vegas&ud=1&oe=UTF-8&ie=UTF-8&proxystylesheet=vegas&site=vegas&q={q}&btnG=⌕",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "entqr"
+      ]
+    },
+    {
+      "name": "Flightradar24",
+      "domain": "flightradar24.com",
+      "url": "https://www.flightradar24.com/data/flights/{q}",
+      "search_url": "https://www.flightradar24.com/data/flights/{q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "flightradar24.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.flightradar24.com/data/flights/{q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}"
+    },
+    {
+      "name": "G Adventures",
+      "domain": "gadventures.com",
+      "url": "https://www.gadventures.com/search/",
+      "search_url": "https://www.gadventures.com/search/?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "gadventures.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.gadventures.com/search/?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "GeoFact of the Day",
+      "domain": "geofactoftheday.blogspot.com",
+      "url": "https://geofactoftheday.blogspot.com/search",
+      "search_url": "https://geofactoftheday.blogspot.com/search?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "reliability": {
+        "success_rate": 1.0,
+        "avg_latency": 2.2339980602264404,
+        "test_count": 1
+      },
+      "id": "geofactoftheday.blogspot.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://geofactoftheday.blogspot.com/search?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ],
+      "output_schema": {
+        "result_type": "list",
+        "pagination": true,
+        "max_results_per_page": 20,
+        "results_container": ".blog-posts.hfeed",
+        "row_selector": ".date-outer",
+        "fields": [
+          {
+            "name": "post_title",
+            "css_selector": ".post-title.entry-title a",
+            "json_path": null,
+            "example_value": "Israel",
+            "data_type": "string",
+            "always_present": true
+          },
+          {
+            "name": "post_url",
+            "css_selector": ".post-title.entry-title a",
+            "json_path": null,
+            "example_value": "https://geofactoftheday.blogspot.com/2010/01/israel.html",
+            "data_type": "string",
+            "always_present": true
+          },
+          {
+            "name": "post_date",
+            "css_selector": ".date-header span",
+            "json_path": null,
+            "example_value": "Friday, January 22, 2010",
+            "data_type": "string",
+            "always_present": true
+          },
+          {
+            "name": "post_content",
+            "css_selector": ".post-body.entry-content",
+            "json_path": null,
+            "example_value": "ISRAEL, the birthplace of global religions like Christianity and Judaism...",
+            "data_type": "string",
+            "always_present": true
+          },
+          {
+            "name": "post_id",
+            "css_selector": ".post.hentry a[name]",
+            "json_path": null,
+            "example_value": "6476866949401385137",
+            "data_type": "string",
+            "always_present": true
+          }
+        ],
+        "language": "en"
+      },
+      "thematic_tags": [
+        "sanctions"
+      ],
+      "scrape_method": "Jester_A",
+      "http_latency": 10.013260841369629,
+      "methodology": {
+        "category": "sanctions_databases",
+        "match_type": "generic",
+        "atoms": [
+          "COMPLIANCE_SANCTIONS",
+          "REGISTRY_COMPANY"
+        ],
+        "friction": "open",
+        "success_rate": 0.6470588235294118,
+        "usage_count": 17,
+        "outputs_observed": [
+          "shareholder"
+        ]
+      }
+    },
+    {
+      "name": "ixigo",
+      "domain": "ixigo.com",
+      "url": "https://ixigo.com/q/{q}",
+      "search_url": "https://ixigo.com/q/{q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "ixigo.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://ixigo.com/q/{q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}"
+    },
+    {
+      "name": "JetPhotos",
+      "domain": "jetphotos.com",
+      "url": "https://www.jetphotos.com/photo/keyword/{q}",
+      "search_url": "https://www.jetphotos.com/photo/keyword/{q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "jetphotos.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.jetphotos.com/photo/keyword/{q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}"
+    },
+    {
+      "name": "Lonely Planet",
+      "domain": "lonelyplanet.com",
+      "url": "https://www.lonelyplanet.com/search",
+      "search_url": "https://www.lonelyplanet.com/search?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "lonelyplanet.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.lonelyplanet.com/search?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "meligrana.com",
+      "domain": "meligrana.com",
+      "url": "https://www.meligrana.com/es/alojamiento-turismo/buscar-alojamiento.asp",
+      "search_url": "https://www.meligrana.com/es/alojamiento-turismo/buscar-alojamiento.asp?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "meligrana.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.meligrana.com/es/alojamiento-turismo/buscar-alojamiento.asp?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "NoCoastBestCoast",
+      "domain": "nocoastbestcoast.com",
+      "url": "https://www.nocoastbestcoast.com/search.php",
+      "search_url": "https://www.nocoastbestcoast.com/search.php?search={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "nocoastbestcoast.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.nocoastbestcoast.com/search.php?search={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    },
+    {
+      "name": "National Park Service (USA)",
+      "domain": "nps.gov",
+      "url": "https://www.nps.gov/search/",
+      "search_url": "https://www.nps.gov/search/?affiliate=nps&query={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "nps.gov_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.nps.gov/search/?affiliate=nps&query={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "affiliate"
+      ],
+      "capabilities": [
+        {
+          "jurisdiction": "US",
+          "kind": "rule"
+        }
+      ]
+    },
+    {
+      "name": "Outside Magazine",
+      "domain": "outsideonline.com",
+      "url": "https://www.outsideonline.com/search/site/{q}",
+      "search_url": "https://www.outsideonline.com/search/site/{q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "outsideonline.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.outsideonline.com/search/site/{q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "capabilities": [
+        {
+          "jurisdiction": "US",
+          "kind": "rule"
+        }
+      ]
+    },
+    {
+      "name": "Open Data Soft",
+      "domain": "public.opendatasoft.com",
+      "url": "https://public.opendatasoft.com/explore/dataset/european-train-stations/",
+      "search_url": "https://public.opendatasoft.com/explore/dataset/european-train-stations/?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "public.opendatasoft.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://public.opendatasoft.com/explore/dataset/european-train-stations/?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "Rome2rio",
+      "domain": "rome2rio.com",
+      "url": "https://www.rome2rio.com/map/{q}",
+      "search_url": "https://www.rome2rio.com/map/{q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "rome2rio.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.rome2rio.com/map/{q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}"
+    },
+    {
+      "name": "Le Guide Du Routard",
+      "domain": "routard.com",
+      "url": "https://www.routard.com/recherche.asp",
+      "search_url": "https://www.routard.com/recherche.asp?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "routard.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.routard.com/recherche.asp?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "Self Cater",
+      "domain": "selfcater.com",
+      "url": "https://selfcater.com/find",
+      "search_url": "https://selfcater.com/find?query={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "selfcater.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://selfcater.com/find?query={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "query"
+      ]
+    },
+    {
+      "name": "The Well Travelled Family",
+      "domain": "thewelltravelledfamily.com",
+      "url": "https://thewelltravelledfamily.com/",
+      "search_url": "https://thewelltravelledfamily.com/?s={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "thewelltravelledfamily.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://thewelltravelledfamily.com/?s={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ]
+    },
+    {
+      "name": "TravelMath",
+      "domain": "travelmath.com",
+      "url": "https://www.travelmath.com/nearest-airport/{q}",
+      "search_url": "https://www.travelmath.com/nearest-airport/{q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "travelmath.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.travelmath.com/nearest-airport/{q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}"
+    },
+    {
+      "name": "tripadvisor",
+      "domain": "tripadvisor.com",
+      "url": "http://www.tripadvisor.com/Search",
+      "search_url": "http://www.tripadvisor.com/Search?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "tripadvisor.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "http://www.tripadvisor.com/Search?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    },
+    {
+      "name": "Tripoto",
+      "domain": "tripoto.com",
+      "url": "https://www.tripoto.com/travel-guide/{q}",
+      "search_url": "https://www.tripoto.com/travel-guide/{q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "tripoto.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.tripoto.com/travel-guide/{q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}"
+    },
+    {
+      "name": "Visit Warrington",
+      "domain": "visitwarrington.com",
+      "url": "https://visitwarrington.com/explore/",
+      "search_url": "https://visitwarrington.com/explore/?type=search-all&search_keywords={q}&sort=latest",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "visitwarrington.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://visitwarrington.com/explore/?type=search-all&search_keywords={q}&sort=latest",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "type"
+      ]
+    },
+    {
+      "name": "Wotif",
+      "domain": "wotif.com",
+      "url": "https://www.wotif.com/search/TextSearch",
+      "search_url": "https://www.wotif.com/search/TextSearch?searchTerms={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "US"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "wotif.com_travel_imported",
+      "jurisdiction": "US",
+      "search_template": "https://www.wotif.com/search/TextSearch?searchTerms={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "searchTerms"
+      ]
+    }
+  ],
+  "DE": [
+    {
+      "name": "Deutsch-Türkisch.net",
+      "domain": "deutsch-tuerkisch.net",
+      "url": "https://deutsch-tuerkisch.net/suche/{q}",
+      "search_url": "https://deutsch-tuerkisch.net/suche/{q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "DE"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "deutsch-tuerkisch.net_travel_imported",
+      "jurisdiction": "DE",
+      "search_template": "https://deutsch-tuerkisch.net/suche/{q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "input_schema": {
+        "search_by_name": {
+          "input_type": "mixed",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [
+            "Suchbegriff eingeben..."
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null,
+          "min_length": 1
+        }
+      },
+      "thematic_tags": [],
+      "language": "de",
+      "requires_translation": false,
+      "enhanced_at": "2025-12-18T08:37:06.605142",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 0.8288590604026845
+      }
+    },
+    {
+      "name": "BVG",
+      "domain": "fahrinfo.bvg.de",
+      "url": "https://fahrinfo.bvg.de/Fahrinfo/bin/query.bin/",
+      "search_url": "https://fahrinfo.bvg.de/Fahrinfo/bin/query.bin/?from={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "DE"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "fahrinfo.bvg.de_travel_imported",
+      "jurisdiction": "DE",
+      "search_template": "https://fahrinfo.bvg.de/Fahrinfo/bin/query.bin/?from={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "from"
+      ],
+      "input_schema": {},
+      "thematic_tags": [],
+      "language": "de",
+      "requires_translation": true,
+      "enhanced_at": "2025-12-18T08:37:08.541040",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 0.8288590604026845
+      }
+    },
+    {
+      "name": "GPSies.de",
+      "domain": "gpsies.de",
+      "url": "https://gpsies.de/",
+      "search_url": "https://gpsies.de/?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "DE"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "gpsies.de_travel_imported",
+      "jurisdiction": "DE",
+      "search_template": "https://gpsies.de/?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ],
+      "input_schema": {},
+      "thematic_tags": [],
+      "language": "en",
+      "requires_translation": false,
+      "enhanced_at": "2025-12-18T08:36:57.296713",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 0.8288590604026845
+      }
+    },
+    {
+      "name": "Ver­kehrs­ver­bund Groß­raum Nürn­berg",
+      "domain": "vgn.de",
+      "url": "https://www.vgn.de/verbindungen/",
+      "search_url": "https://www.vgn.de/verbindungen/?td={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "DE"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "vgn.de_travel_imported",
+      "jurisdiction": "DE",
+      "search_template": "https://www.vgn.de/verbindungen/?td={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "td"
+      ],
+      "input_schema": {
+        "search_by_name": {
+          "input_type": "company_name",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [
+            "Seite durchsuchen ..."
+          ],
+          "accepts_wildcards": true,
+          "case_sensitive": false,
+          "max_length": null
+        },
+        "search_by_route": {
+          "input_type": "mixed",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [
+            "Start",
+            "Ziel",
+            "Zwischenstopp"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null
+        }
+      },
+      "thematic_tags": [
+        "transportation"
+      ],
+      "language": "de",
+      "requires_translation": false,
+      "enhanced_at": "2025-12-18T08:37:00.234055",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 0.8288590604026845
+      }
+    }
+  ],
+  "FI": [
+    {
+      "name": "Helsingin Seudun Liikenne",
+      "domain": "hsl.fi",
+      "url": "https://www.hsl.fi/search/solr",
+      "search_url": "https://www.hsl.fi/search/solr?keywords={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "FI"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "hsl.fi_travel_imported",
+      "jurisdiction": "FI",
+      "search_template": "https://www.hsl.fi/search/solr?keywords={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "keywords"
+      ],
+      "input_schema": {
+        "general_search": {
+          "input_type": "mixed",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [
+            "bussi",
+            "juna",
+            "lippu",
+            "aikataulut",
+            "Espoo"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null
+        }
+      },
+      "thematic_tags": [],
+      "language": "fi",
+      "requires_translation": true,
+      "enhanced_at": "2025-12-18T08:44:17.529885",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 0.8974358974358975
+      }
+    }
+  ],
+  "BE": [
+    {
+      "name": "Joker",
+      "domain": "joker.be",
+      "url": "https://www.joker.be/nl/groepsreizen/{q}",
+      "search_url": "https://www.joker.be/nl/groepsreizen/{q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "BE"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "joker.be_travel_imported",
+      "jurisdiction": "BE",
+      "search_template": "https://www.joker.be/nl/groepsreizen/{q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "input_schema": {},
+      "thematic_tags": [],
+      "language": "nl",
+      "requires_translation": true,
+      "enhanced_at": "2025-12-18T08:18:20.220850",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 0.9090909090909091
+      }
+    },
+    {
+      "name": "Qui connaît un bon : Bruxelles",
+      "domain": "qcunbon.be",
+      "url": "https://www.qcunbon.be/bruxelles",
+      "search_url": "https://www.qcunbon.be/bruxelles?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "BE"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "qcunbon.be_travel_imported",
+      "jurisdiction": "BE",
+      "search_template": "https://www.qcunbon.be/bruxelles?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ],
+      "input_schema": {
+        "search_by_name": {
+          "input_type": "mixed",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [
+            "restaurant",
+            "coiffeur",
+            "veterinaire"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null,
+          "min_length": null,
+          "form_method": "GET",
+          "param_name": "q",
+          "notes": "Single GET parameter q (label: 'Que recherchez-vous ?'). Typical usage: /bruxelles?q=restaurant"
+        },
+        "profile_by_id": {
+          "input_type": "reg_id",
+          "format": "numeric",
+          "format_pattern": "^\\d+$",
+          "examples": [
+            "94523080",
+            "50472732"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null,
+          "min_length": 1,
+          "form_method": "GET",
+          "param_name": "id",
+          "notes": "Thread/post numeric ID appears in URL path like /bruxelles/94523080 or /bruxelles/50472732 (slug component optional)"
+        }
+      },
+      "thematic_tags": [],
+      "language": "fr",
+      "requires_translation": false,
+      "enhanced_at": "2025-12-18T08:18:38.290168",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 0.9090909090909091
+      }
+    }
+  ],
+  "FR": [
+    {
+      "name": "OuiCar",
+      "domain": "ouicar.fr",
+      "url": "http://www.ouicar.fr/car/search",
+      "search_url": "http://www.ouicar.fr/car/search?where={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "FR"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "ouicar.fr_travel_imported",
+      "jurisdiction": "FR",
+      "search_template": "http://www.ouicar.fr/car/search?where={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "where"
+      ],
+      "input_schema": {},
+      "thematic_tags": [],
+      "language": "fr",
+      "requires_translation": true,
+      "enhanced_at": "2025-12-18T08:48:33.636849",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 0.83
+      }
+    },
+    {
+      "name": "RATP",
+      "domain": "ratp.fr",
+      "url": "https://www.ratp.fr/itineraires",
+      "search_url": "https://www.ratp.fr/itineraires?start={q}&lieu_depart=station&",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "FR"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "ratp.fr_travel_imported",
+      "jurisdiction": "FR",
+      "search_template": "https://www.ratp.fr/itineraires?start={q}&lieu_depart=station&",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "start"
+      ],
+      "input_schema": {
+        "route_search": {
+          "input_type": "address",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [
+            "lieu, station, adresse",
+            "start",
+            "end"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null,
+          "min_length": null,
+          "notes": "Primary inputs are start (start) and end (end). Autocomplete suggestion fields are start_suggestion and end_suggestion. There are separate fields for date (new_departure_datetime[date]) and time (new_departure_datetime[time])."
+        },
+        "route_search_date": {
+          "input_type": "date_range",
+          "format": "formatted",
+          "format_pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "examples": [
+            "new_departure_datetime[date]"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null,
+          "min_length": null,
+          "notes": "Date is provided in an HTML date input (ISO format YYYY-MM-DD)."
+        },
+        "route_search_time": {
+          "input_type": "date_range",
+          "format": "formatted",
+          "format_pattern": "^\\d{2}:\\d{2}$",
+          "examples": [
+            "new_departure_datetime[time]"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null,
+          "min_length": null,
+          "notes": "Time is provided in an HTML time input (HH:MM)."
+        },
+        "other_fields": {
+          "start_or_arrival": {
+            "input_type": "mixed",
+            "format": "alphanumeric",
+            "format_pattern": null,
+            "examples": [
+              "start_or_arrival"
+            ],
+            "accepts_wildcards": false,
+            "notes": "Radio selecting departure vs arrival semantics."
+          },
+          "disabled": {
+            "input_type": "mixed",
+            "format": "formatted",
+            "format_pattern": null,
+            "examples": [
+              "disabled"
+            ],
+            "accepts_wildcards": false,
+            "notes": "Checkbox to search with accessibility/disabled-friendly options."
+          }
+        }
+      },
+      "thematic_tags": [],
+      "language": "fr",
+      "requires_translation": false,
+      "enhanced_at": "2025-12-18T08:49:04.398673",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 0.83
+      }
+    }
+  ],
+  "CH": [
+    {
+      "name": "OùQuoiComment",
+      "domain": "ouquoicomment.ch",
+      "url": "https://www.ouquoicomment.ch/",
+      "search_url": "https://www.ouquoicomment.ch/?s={q}&search_by=all",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "CH"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "ouquoicomment.ch_travel_imported",
+      "jurisdiction": "CH",
+      "search_template": "https://www.ouquoicomment.ch/?s={q}&search_by=all",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ],
+      "input_schema": {
+        "search_by_name": {
+          "input_type": "company_name",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [],
+          "accepts_wildcards": true,
+          "case_sensitive": false,
+          "max_length": null
+        }
+      },
+      "thematic_tags": [
+        "corporate_registry"
+      ],
+      "language": "fr",
+      "requires_translation": false,
+      "enhanced_at": "2025-12-18T08:25:17.551551",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 0.6762589928057554
+      }
+    }
+  ],
+  "IT": [
+    {
+      "name": "Taxi.it",
+      "domain": "taxi.it",
+      "url": "https://www.taxi.it/",
+      "search_url": "https://www.taxi.it/?s={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "IT"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "taxi.it_travel_imported",
+      "jurisdiction": "IT",
+      "search_template": "https://www.taxi.it/?s={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "s"
+      ]
+    },
+    {
+      "name": "https://www.tripadvisor.it/",
+      "domain": "tripadvisor.it",
+      "url": "https://www.tripadvisor.it/Search",
+      "search_url": "https://www.tripadvisor.it/Search?q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "IT"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "tripadvisor.it_travel_imported",
+      "jurisdiction": "IT",
+      "search_template": "https://www.tripadvisor.it/Search?q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ]
+    }
+  ],
+  "UK": [
+    {
+      "name": "Transport for London",
+      "domain": "tfl.gov.uk",
+      "url": "https://www.tfl.gov.uk/tfl/search/",
+      "search_url": "https://www.tfl.gov.uk/tfl/search/?keywords={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "UK"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "tfl.gov.uk_travel_imported",
+      "jurisdiction": "UK",
+      "search_template": "https://www.tfl.gov.uk/tfl/search/?keywords={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "keywords"
+      ],
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "OSINT_GENERAL",
+          "MEDIA_MONITORING"
+        ],
+        "friction": "open",
+        "success_rate": 0.8692946058091287
+      },
+      "capabilities": [
+        {
+          "rule_id": "REGISTRY_GB_2302",
+          "label": "UK Disqualified Directors (GB)",
+          "requires_any": [
+            7
+          ],
+          "requires_all": [],
+          "returns": [
+            35,
+            36,
+            7,
+            8,
+            12,
+            63
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "module",
+              "import": "corporella.company_search",
+              "method": "get_officers",
+              "note": "Auto-added by batch_add_execution_methods.py"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "SE": [
+    {
+      "name": "Tåginformation Sverige (Trafikverket)",
+      "domain": "trafikverket.se",
+      "url": "https://www.trafikverket.se/trafikinformation/tag/",
+      "search_url": "https://www.trafikverket.se/trafikinformation/tag/?&TrainOrStation={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "SE"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "trafikverket.se_travel_imported",
+      "jurisdiction": "SE",
+      "search_template": "https://www.trafikverket.se/trafikinformation/tag/?&TrainOrStation={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "&TrainOrStation"
+      ]
+    }
+  ],
+  "CZ": [
+    {
+      "name": "Vagonweb",
+      "domain": "vagonweb.cz",
+      "url": "https://www.vagonweb.cz/razeni/razeni.php",
+      "search_url": "https://www.vagonweb.cz/razeni/razeni.php?jmeno={q}&najit=Suchen",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "CZ"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "vagonweb.cz_travel_imported",
+      "jurisdiction": "CZ",
+      "search_template": "https://www.vagonweb.cz/razeni/razeni.php?jmeno={q}&najit=Suchen",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "jmeno"
+      ],
+      "input_schema": {
+        "search_by_name": {
+          "input_type": "person_name",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [
+            "Řazení vlaků",
+            "2026"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null,
+          "min_length": null
+        }
+      },
+      "thematic_tags": [],
+      "language": "cs",
+      "requires_translation": false,
+      "enhanced_at": "2025-12-18T08:27:59.379573",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "HUMINT_NETWORK"
+        ],
+        "friction": "open",
+        "success_rate": 0.8790322580645161
+      }
+    }
+  ],
+  "NL": [
+    {
+      "name": "Wegenwiki",
+      "domain": "wegenwiki.nl",
+      "url": "https://www.wegenwiki.nl/index.php",
+      "search_url": "https://www.wegenwiki.nl/index.php?search={q}&title=Speciaal:Zoeken",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "NL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "wegenwiki.nl_travel_imported",
+      "jurisdiction": "NL",
+      "search_template": "https://www.wegenwiki.nl/index.php?search={q}&title=Speciaal:Zoeken",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "search"
+      ]
+    }
+  ],
+  "CA": [
+    {
+      "name": "Vancouver Airport",
+      "domain": "yvr.ca",
+      "url": "http://www.yvr.ca/en/search#q={q}",
+      "search_url": "http://www.yvr.ca/en/search#q={q}",
+      "type": "lifestyle",
+      "category": "lif",
+      "friction": "public",
+      "jurisdictions": [
+        "CA"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "yvr.ca_travel_imported",
+      "jurisdiction": "CA",
+      "search_template": "http://www.yvr.ca/en/search#q={q}",
+      "section": "lif",
+      "access": "public",
+      "notes": "Imported from travel_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "travel"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "OSINT_GENERAL",
+          "MEDIA_MONITORING"
+        ],
+        "friction": "open",
+        "success_rate": 0.8166666666666667
+      }
+    }
+  ]
+}

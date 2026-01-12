@@ -10,7 +10,7 @@ FULL STACK:
 - EDITH template report output
 
 Usage:
-    python3 full_osint_report.py --input entities.txt --output reports/
+    python3 full_osint_report.py --input entities.txt --output output/
     python3 full_osint_report.py --emails "a@b.com" --phones "+123" --names "John Doe"
 """
 

@@ -1,0 +1,656 @@
+{
+  "meta": {
+    "version": "1.2",
+    "description": "OUR MODULES - Code that executes lookups (hidden from user)",
+    "total_modules": 15,
+    "note": "Country engines with 'aggregators' field are NOT official registries"
+  },
+  "modules": {
+    "corporella": {
+      "name": "Corporella - Company Intelligence",
+      "path": "BACKEND/modules/corporella/",
+      "main_file": "module.py",
+      "description": "Company registry data, officers, beneficial owners, shareholders, and corporate structure.",
+      "friction": "Open/Paywalled",
+      "inputs": [
+        13,
+        14,
+        15,
+        16
+      ],
+      "outputs": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "aggregators": [
+        "aleph.occrp.org",
+        "companieshouse.gov.uk",
+        "opencorporates.com",
+        "register.openownership.org"
+      ]
+    },
+    "eyed": {
+      "name": "EYE-D - OSINT Intelligence Platform",
+      "path": "BACKEND/modules/eyed/",
+      "main_file": "module.py",
+      "description": "Breach data, social profiles, contact discovery, domain WHOIS, and identity graph building.",
+      "friction": "Paywalled",
+      "inputs": [
+        1,
+        2,
+        6,
+        7,
+        13
+      ],
+      "outputs": [
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        195
+      ],
+      "aggregators": [
+        "archive.org",
+        "dehashed.com",
+        "osint.industries",
+        "rocketreach.co",
+        "whoisxmlapi.com"
+      ]
+    },
+    "alldom": {
+      "name": "ALLDOM - Domain Mapper",
+      "path": "BACKEND/modules/alldom/",
+      "main_file": "module.py",
+      "description": "Comprehensive domain mapping, subdomain discovery, backlinks, GA codes, and infrastructure analysis.",
+      "friction": "Open/Paywalled",
+      "inputs": [
+        6
+      ],
+      "outputs": [
+        191,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        209,
+        211,
+        212,
+        213,
+        214
+      ],
+      "aggregators": [
+        "commoncrawl.org",
+        "firecrawl.dev",
+        "majestic.com"
+      ]
+    },
+    "factassembler": {
+      "name": "FactAssembler - Document Intelligence",
+      "path": "python-backend/modules/fact_assembler/",
+      "main_file": "mukodik_enhanced_final.py",
+      "description": "Multi-phase document assembly pipeline for research compilation and gap filling.",
+      "friction": "Hybrid",
+      "inputs": [],
+      "outputs": [],
+      "aggregators": [
+        "firecrawl.dev"
+      ]
+    },
+    "torpedo": {
+      "name": "Torpedo Profile Scraper",
+      "path": "BACKEND/modules/JESTER/",
+      "main_file": "torpedo.py",
+      "description": "Scrapes company profiles, Haiku extracts fields, improves country templates",
+      "friction": "open",
+      "inputs": [
+        13,
+        14
+      ],
+      "outputs": [
+        42,
+        43,
+        47,
+        48,
+        49,
+        50
+      ],
+      "aggregators": [],
+      "learning": true,
+      "note": "Each scrape improves country JSON templates"
+    },
+    "linklater": {
+      "name": "LINKLATER Domain Intelligence",
+      "path": "BACKEND/modules/LINKLATER/",
+      "main_file": "linklater.py",
+      "description": "Archive research, domain history, link analysis, Wayback snapshots",
+      "friction": "open",
+      "inputs": [
+        6
+      ],
+      "outputs": [
+        131,
+        191,
+        192,
+        193
+      ],
+      "aggregators": [
+        "archive.org",
+        "commoncrawl.org"
+      ]
+    },
+    "brute": {
+      "name": "BRUTE - Max Recall Search",
+      "path": "server/engines",
+      "main_file": "BruteSearch.ts",
+      "description": "Multi-engine discovery search with wave orchestration and deduplication.",
+      "friction": "open",
+      "inputs": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        13,
+        147
+      ],
+      "outputs": [
+        211
+      ],
+      "aggregators": [
+        "google.com",
+        "bing.com",
+        "duckduckgo.com",
+        "brave.com",
+        "yandex.com",
+        "serpapi.com",
+        "exa.ai",
+        "perplexity.ai"
+      ]
+    },
+    "uk": {
+      "name": "UK - United Kingdom Public Records",
+      "path": "BACKEND/modules/country_engines/UK/",
+      "main_file": "uk_cli.py",
+      "description": "UK Companies House API, Land Registry, FCA Register, PSC data - all UK public records. OCCRP Aleph enrichment via CORPORELLA/occrp_aleph.",
+      "friction": "api",
+      "jurisdiction": "GB",
+      "inputs": [
+        13,
+        14,
+        7
+      ],
+      "outputs": [
+        42,
+        43,
+        44,
+        47,
+        48,
+        49,
+        50,
+        59,
+        60,
+        61
+      ],
+      "sources": [
+        "api.company-information.service.gov.uk",
+        "find-and-update.company-information.service.gov.uk",
+        "register.fca.org.uk",
+        "use-land-property-data.service.gov.uk",
+        "thegazette.co.uk",
+        "ros.gov.uk",
+        "bailii.org",
+        "electoralcommission.org.uk"
+      ],
+      "aleph_sources": {
+        "cr": [
+          {
+            "id": 809,
+            "label": "UK Companies House",
+            "category": "company"
+          },
+          {
+            "id": 2053,
+            "label": "UK PSC",
+            "category": "company"
+          }
+        ],
+        "reg": [
+          {
+            "id": 2302,
+            "label": "UK Disqualified Directors",
+            "category": "poi"
+          },
+          {
+            "id": 1303,
+            "label": "HM Treasury Sanctions List",
+            "category": "sanctions"
+          }
+        ],
+        "ass": [
+          {
+            "id": 2248,
+            "label": "Overseas companies owning property in England/Wales",
+            "category": "land"
+          }
+        ],
+        "leak": [
+          {
+            "id": 153,
+            "label": "UK Parliamentary Inquiries",
+            "category": "library"
+          },
+          {
+            "id": 2705,
+            "label": "Trump Scotland",
+            "category": "grey"
+          }
+        ]
+      },
+      "aggregators": [
+        "CORPORELLA/occrp_aleph"
+      ],
+      "files": [
+        "uk_cli.py",
+        "uk_output.py",
+        "uk_corporate.py",
+        "uk_companies_house_mcp.py",
+        "uk_public_records_mcp.py",
+        "uk_land_registry_unified.py",
+        "uk_land_registry_local.py",
+        "uk_land_registry_ingester.py",
+        "uk_reg.py",
+        "fca_firm_cli.py",
+        "fec_api.py"
+      ]
+    },
+    "us": {
+      "name": "US - State Public Records",
+      "path": "BACKEND/modules/country_engines/US/",
+      "main_file": "us_cli.py",
+      "description": "State-aware US public records routing with OpenCorporates fallback.",
+      "friction": "open",
+      "jurisdiction": "US",
+      "inputs": [
+        13,
+        7
+      ],
+      "outputs": [
+        42,
+        47,
+        49
+      ],
+      "sources": [
+        "opencorporates.com"
+      ],
+      "aggregators": [
+        "opencorporates.com"
+      ]
+    },
+    "cymonides": {
+      "name": "Cymonides Search - Local Elasticsearch Indices",
+      "path": "server/services/cymonides-2/",
+      "main_file": "index.ts",
+      "description": "Search our local Elasticsearch indices: breach records, LinkedIn, WDC entities, Common Crawl graph, UK property, PSC data",
+      "friction": "local",
+      "inputs": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        13,
+        14
+      ],
+      "outputs": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        13,
+        42,
+        43,
+        47,
+        59,
+        187
+      ],
+      "indices": {
+        "breach_records": {
+          "jurisdiction": "VIRTUAL",
+          "description": "Breach exposure records"
+        },
+        "emails_unified": {
+          "jurisdiction": "VIRTUAL",
+          "description": "Email addresses from various sources"
+        },
+        "phones_unified": {
+          "jurisdiction": "VIRTUAL",
+          "description": "Phone numbers"
+        },
+        "linkedin_unified": {
+          "jurisdiction": "GLOBAL",
+          "description": "LinkedIn company/person data"
+        },
+        "wdc-localbusiness-entities": {
+          "jurisdiction": "GLOBAL",
+          "description": "Web Data Commons LocalBusiness entities"
+        },
+        "wdc-product-entities": {
+          "jurisdiction": "GLOBAL",
+          "description": "Web Data Commons Product entities"
+        },
+        "wdc-person-entities": {
+          "jurisdiction": "GLOBAL",
+          "description": "Web Data Commons Person entities"
+        },
+        "cymonides-2": {
+          "jurisdiction": "GLOBAL",
+          "description": "Global corpus search"
+        },
+        "cymonides_cc_domain_edges": {
+          "jurisdiction": "GLOBAL",
+          "description": "Common Crawl domain-level link graph"
+        },
+        "cymonides_cc_domain_vertices": {
+          "jurisdiction": "GLOBAL",
+          "description": "Common Crawl domain vertices"
+        },
+        "openownership": {
+          "jurisdiction": "GLOBAL",
+          "description": "OpenOwnership beneficial ownership data"
+        },
+        "psc_gb": {
+          "jurisdiction": "UK",
+          "description": "UK Persons of Significant Control"
+        },
+        "psc_gb_corporate_by_country": {
+          "jurisdiction": "UK",
+          "description": "UK PSC corporate owners by country"
+        },
+        "uk_land_registry_overseas": {
+          "jurisdiction": "UK",
+          "description": "UK properties owned by overseas entities"
+        },
+        "companies_unified": {
+          "jurisdiction": "GLOBAL",
+          "description": "Unified company records"
+        },
+        "persons_unified": {
+          "jurisdiction": "GLOBAL",
+          "description": "Unified person records"
+        }
+      },
+      "aggregators": []
+    },
+    "at": {
+      "name": "AT - Austria Public Records",
+      "path": "BACKEND/modules/country_engines/AT/",
+      "main_file": "at_cli.py",
+      "description": "Austrian company data via FirmenABC (aggregator)",
+      "friction": "open",
+      "jurisdiction": "AT",
+      "inputs": [
+        13,
+        14
+      ],
+      "outputs": [
+        42,
+        43,
+        44,
+        47,
+        48,
+        49,
+        50
+      ],
+      "sources": [
+        "firmenabc.at"
+      ],
+      "aggregators": [
+        "firmenabc.at"
+      ]
+    },
+    "de": {
+      "name": "DE - Germany Public Records",
+      "path": "BACKEND/modules/country_engines/DE/",
+      "main_file": "de_cli.py",
+      "description": "German company registry via Unternehmensregister (official)",
+      "friction": "open",
+      "jurisdiction": "DE",
+      "inputs": [
+        13,
+        14
+      ],
+      "outputs": [
+        42,
+        43,
+        44,
+        47,
+        48,
+        49,
+        50
+      ],
+      "sources": [
+        "unternehmensregister.de",
+        "handelsregister.de",
+        "bundesanzeiger.de"
+      ],
+      "aggregators": []
+    },
+    "fr": {
+      "name": "FR - France Public Records",
+      "path": "BACKEND/modules/country_engines/FR/",
+      "main_file": "fr_cli.py",
+      "description": "French company registry via SIRENE/INSEE (official)",
+      "friction": "api",
+      "jurisdiction": "FR",
+      "inputs": [
+        13,
+        14
+      ],
+      "outputs": [
+        42,
+        43,
+        44,
+        47,
+        48,
+        49,
+        50
+      ],
+      "sources": [
+        "api.insee.fr",
+        "infogreffe.fr",
+        "bodacc.fr"
+      ],
+      "aggregators": []
+    },
+    "nl": {
+      "name": "NL - Netherlands Public Records",
+      "path": "BACKEND/modules/country_engines/NL/",
+      "main_file": "nl_cli.py",
+      "description": "Dutch company registry via KVK (official)",
+      "friction": "api",
+      "jurisdiction": "NL",
+      "inputs": [
+        13,
+        14
+      ],
+      "outputs": [
+        42,
+        43,
+        44,
+        47,
+        48,
+        49,
+        50
+      ],
+      "sources": [
+        "kvk.nl",
+        "officielebekendmakingen.nl"
+      ],
+      "aggregators": []
+    },
+    "aleph": {
+      "name": "OCCRP Aleph - Global Investigative Archive",
+      "path": "BACKEND/modules/corporella/",
+      "main_file": "occrp_aleph.py",
+      "description": "Search 237 OCCRP Aleph collections across 75+ jurisdictions. Includes company registries, sanctions lists, court records, procurement data, leaked documents, and beneficial ownership records.",
+      "friction": "api",
+      "api_endpoint": "https://aleph.occrp.org/api/2",
+      "collections_file": "input_output/matrix/aleph_collections.json",
+      "aggregator": "CORPORELLA/occrp_aleph",
+      "inputs": [
+        13,
+        14,
+        7,
+        3,
+        6
+      ],
+      "outputs": [
+        42,
+        43,
+        44,
+        47,
+        48,
+        49,
+        50,
+        59,
+        60,
+        61,
+        62,
+        63,
+        187,
+        188
+      ],
+      "categories": [
+        "company",
+        "court",
+        "finance",
+        "gazette",
+        "grey",
+        "land",
+        "leak",
+        "library",
+        "license",
+        "news",
+        "poi",
+        "procurement",
+        "regulatory",
+        "sanctions",
+        "transport"
+      ],
+      "section_mapping": {
+        "cr": [
+          "company",
+          "gazette"
+        ],
+        "lit": [
+          "court"
+        ],
+        "reg": [
+          "regulatory",
+          "sanctions",
+          "license",
+          "procurement",
+          "poi"
+        ],
+        "ass": [
+          "land",
+          "finance",
+          "transport"
+        ],
+        "leak": [
+          "leak",
+          "grey",
+          "library"
+        ],
+        "news": [
+          "news"
+        ]
+      },
+      "jurisdiction_routing": true,
+      "note": "Auto-routes to jurisdiction-specific collections. Country CLIs import via corporella/occrp_aleph.py"
+    },
+    "country_api": {
+      "name": "Country API Router",
+      "path": "BACKEND/modules/country_api/",
+      "main_file": "router.py",
+      "description": "Unified router for all jurisdiction-specific registry APIs and CLIs.",
+      "friction": "API",
+      "inputs": [
+        13,
+        14,
+        7
+      ],
+      "outputs": [
+        42,
+        43,
+        44,
+        47,
+        48,
+        49,
+        50
+      ],
+      "aggregators": []
+    },
+    "socialite": {
+      "name": "SOCIALITE - Social Media Intelligence",
+      "path": "BACKEND/modules/socialite/",
+      "main_file": "mcp_server.py",
+      "description": "Social media search across Twitter, Instagram, Facebook, Reddit, YouTube.",
+      "friction": "Open",
+      "inputs": [
+        3,
+        5,
+        7,
+        13
+      ],
+      "outputs": [
+        160,
+        188
+      ],
+      "aggregators": [
+        "socialsearcher.com"
+      ]
+    },
+    "syntax": {
+      "name": "SYNTAX - Unified Operator System",
+      "path": "BACKEND/modules/syntax/",
+      "main_file": "module.py",
+      "description": "Central registry and parser for all investigation operators (p:, c:, bl?, etc.).",
+      "friction": "Local",
+      "inputs": [
+        147
+      ],
+      "outputs": [
+        227
+      ],
+      "aggregators": []
+    }
+  }
+}

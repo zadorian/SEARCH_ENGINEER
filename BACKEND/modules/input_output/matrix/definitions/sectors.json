@@ -1,0 +1,216 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-01-06",
+  "description": "Unified Sector Definitions for Drill Search. Defines the functional type of data sources.",
+  "sectors": [
+    {
+      "id": "corporate_registry",
+      "name": "Corporate Registry",
+      "description": "Official government or commercial databases of incorporated entities, business licenses, and officer information.",
+      "keywords": ["company", "business", "corporation", "llc", "ltd", "gmbh", "incorporation"],
+      "domain_patterns": [
+        {"pattern": "sos\\.|secretary.*state", "score": 10},
+        {"pattern": "companies.*house|companieshouse", "score": 10},
+        {"pattern": "business.*registry|registry.*business", "score": 9},
+        {"pattern": "trade.*register|handels", "score": 9},
+        {"pattern": "corporation|incorporat", "score": 8},
+        {"pattern": "chamber.*commerce|handelskammer", "score": 8},
+        {"pattern": "commercial.*register", "score": 8},
+        {"pattern": "kvk\\.|breg\\.|rcs\\.|krs\\.", "score": 9}
+      ],
+      "curlie_paths": [
+        "/Secretary_of_State",
+        "/Business_and_Corporate_Law",
+        "/Business/",
+        "/Corporate",
+        "/Companies",
+        "/Chamber_of_Commerce",
+        "/Trade_Register",
+        "/Business_Registry",
+        "/Commercial_Registry"
+      ],
+      "wiki_sections": ["cr"]
+    },
+    {
+      "id": "court_records",
+      "name": "Court Records",
+      "description": "Judicial records, litigation history, docket entries, and tribunal decisions.",
+      "keywords": ["court", "tribunal", "judge", "case", "litigation", "verdict", "ruling"],
+      "domain_patterns": [
+        {"pattern": "court|tribunal|judiciary", "score": 10},
+        {"pattern": "justice\\.|justic", "score": 9},
+        {"pattern": "pacer\\.|bailii", "score": 10},
+        {"pattern": "supremecourt|high.*court|appeal.*court", "score": 9},
+        {"pattern": "district.*court|circuit.*court", "score": 8},
+        {"pattern": "legal.*decision|case.*law", "score": 8}
+      ],
+      "curlie_paths": [
+        "/Law/",
+        "/Courts",
+        "/Judiciary",
+        "/Legal",
+        "/Litigation",
+        "/Justice",
+        "/Tribunals"
+      ],
+      "wiki_sections": ["lit"]
+    },
+    {
+      "id": "regulatory",
+      "name": "Regulatory & Oversight",
+      "description": "Agencies responsible for supervision, compliance, licensing, and enforcement in specific industries.",
+      "keywords": ["regulatory", "authority", "commission", "oversight", "supervision", "compliance"],
+      "domain_patterns": [
+        {"pattern": "fsa\\.|fca\\.|sec\\.|cftc\\.|finra", "score": 10},
+        {"pattern": "central.*bank|bank.*central", "score": 10},
+        {"pattern": "financial.*authority|financial.*supervision", "score": 10},
+        {"pattern": "securities.*commission|securities.*exchange", "score": 10},
+        {"pattern": "competition.*authority|antitrust", "score": 9},
+        {"pattern": "consumer.*protection", "score": 9},
+        {"pattern": "data.*protection|privacy.*commission", "score": 9},
+        {"pattern": "telecom.*authority|energy.*regulator", "score": 8},
+        {"pattern": "health.*authority|medical.*board", "score": 8},
+        {"pattern": "bar.*association|law.*society", "score": 8},
+        {"pattern": "oversight|compliance|regulat", "score": 7}
+      ],
+      "curlie_paths": [
+        "/Regulatory",
+        "/Regulation",
+        "/Oversight",
+        "/Compliance",
+        "/Licensing",
+        "/Financial_Services",
+        "/Consumer_Protection",
+        "/Competition",
+        "/Antitrust",
+        "/Data_Protection",
+        "/Privacy"
+      ],
+      "wiki_sections": ["reg"]
+    },
+    {
+      "id": "securities",
+      "name": "Securities & Finance",
+      "description": "Stock exchanges, financial market data, and public company filings.",
+      "keywords": ["securities", "stock", "exchange", "trading", "disclosure", "filing", "prospectus"],
+      "domain_patterns": [
+        {"pattern": "sec\\.gov|edgar", "score": 10},
+        {"pattern": "sedar|sedi", "score": 10},
+        {"pattern": "stock.*exchange|bourse|bolsa|borsa", "score": 9},
+        {"pattern": "nasdaq|nyse|lse\\.|ftse", "score": 10},
+        {"pattern": "financial.*market|capital.*market", "score": 8},
+        {"pattern": "listed.*compan|public.*compan", "score": 8}
+      ],
+      "curlie_paths": [
+        "/Finance/",
+        "/Stock_Exchange",
+        "/Securities",
+        "/Capital_Markets",
+        "/Investment",
+        "/Public_Companies"
+      ],
+      "wiki_sections": []
+    },
+    {
+      "id": "land_registry",
+      "name": "Land & Property Registry",
+      "description": "Real estate ownership records, cadastral maps, deeds, and mortgage registries.",
+      "keywords": ["land", "property", "real estate", "cadastral", "deed", "title", "parcel"],
+      "domain_patterns": [
+        {"pattern": "land.*registry|registry.*land", "score": 10},
+        {"pattern": "cadastr|catast", "score": 10},
+        {"pattern": "property.*register|real.*estate.*register", "score": 9},
+        {"pattern": "deed|title.*office", "score": 9},
+        {"pattern": "mortgage.*registry", "score": 8}
+      ],
+      "curlie_paths": [
+        "/Real_Estate/",
+        "/Property",
+        "/Land_Registry",
+        "/Cadastr",
+        "/Deeds"
+      ],
+      "wiki_sections": ["ass"]
+    },
+    {
+      "id": "intellectual_property",
+      "name": "Intellectual Property",
+      "description": "Patent offices, trademark registries, and copyright databases.",
+      "keywords": ["patent", "trademark", "copyright", "intellectual property", "ip"],
+      "domain_patterns": [
+        {"pattern": "patent|uspto|epo\\.org|wipo", "score": 10},
+        {"pattern": "trademark|copyright", "score": 9},
+        {"pattern": "intellectual.*property|ip.*office", "score": 9},
+        {"pattern": "design.*right|industrial.*property", "score": 8}
+      ],
+      "curlie_paths": [
+        "/Patents",
+        "/Trademarks",
+        "/Copyright",
+        "/Intellectual_Property"
+      ],
+      "wiki_sections": []
+    },
+    {
+      "id": "tax_records",
+      "name": "Tax & Revenue",
+      "description": "Taxation authorities, customs records, and revenue services.",
+      "keywords": ["tax", "revenue", "fiscal", "customs", "vat", "tariff"],
+      "domain_patterns": [
+        {"pattern": "irs\\.gov|hmrc|revenue", "score": 10},
+        {"pattern": "tax.*authority|tax.*office", "score": 9},
+        {"pattern": "customs|tariff", "score": 8},
+        {"pattern": "fiscal|vat\\.|ein\\.|tin\\.", "score": 8}
+      ],
+      "curlie_paths": [
+        "/Taxation",
+        "/Revenue",
+        "/Tax",
+        "/Customs"
+      ],
+      "wiki_sections": []
+    },
+    {
+      "id": "bankruptcy",
+      "name": "Bankruptcy & Insolvency",
+      "description": "Insolvency registers, liquidation records, and bankruptcy proceedings.",
+      "keywords": ["bankruptcy", "insolvency", "liquidation", "creditor", "debtor"],
+      "domain_patterns": [
+        {"pattern": "bankruptcy|insolvency", "score": 10},
+        {"pattern": "liquidation|receivership", "score": 9},
+        {"pattern": "chapter.*(7|11|13)", "score": 9},
+        {"pattern": "creditor|debtor", "score": 7}
+      ],
+      "curlie_paths": [
+        "/Bankruptcy",
+        "/Insolvency",
+        "/Liquidation"
+      ],
+      "wiki_sections": []
+    },
+    {
+      "id": "government",
+      "name": "General Government",
+      "description": "Broad government websites, ministries, and executive branches not covered by specific sectors.",
+      "keywords": ["government", "ministry", "department", "agency", "federal", "administration"],
+      "domain_patterns": [
+        {"pattern": "\\.gov(?:\\.||$)", "score": 8},
+        {"pattern": "\\.gob\\.|\\.gouv\\.|\\.govt\\.", "score": 8},
+        {"pattern": "ministry|department|agency", "score": 7},
+        {"pattern": "federal|national|state.*gov", "score": 7},
+        {"pattern": "parliament|congress|senate|assembly", "score": 7}
+      ],
+      "curlie_paths": [
+        "/Government/",
+        "/Executive",
+        "/Legislative",
+        "/Agencies",
+        "/Ministries",
+        "/Federal",
+        "/State_Government",
+        "/Municipal"
+      ],
+      "wiki_sections": []
+    }
+  ]
+}

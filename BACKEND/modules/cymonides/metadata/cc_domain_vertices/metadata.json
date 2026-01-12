@@ -1,0 +1,77 @@
+{
+  "index_name": "cymonides_cc_domain_vertices",
+  "stats": "green  open   cymonides_cc_domain_vertices aMGK5IpRQCWQSSHR4sjwnQ   3   0  100662487            0      7.5gb 2025-11-30T11:22:55.115Z",
+  "mapping": {
+    "cymonides_cc_domain_vertices": {
+      "mappings": {
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "domain": {
+            "type": "keyword"
+          },
+          "reversed_domain": {
+            "type": "keyword"
+          },
+          "vertex_id": {
+            "type": "long"
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "cymonides_cc_domain_vertices": {
+      "settings": {
+        "index": {
+          "routing": {
+            "allocation": {
+              "include": {
+                "_tier_preference": "data_content"
+              }
+            }
+          },
+          "number_of_shards": "3",
+          "provided_name": "cymonides_cc_domain_vertices",
+          "creation_date": "1764501775115",
+          "number_of_replicas": "0",
+          "uuid": "aMGK5IpRQCWQSSHR4sjwnQ",
+          "version": {
+            "created": "8500003"
+          }
+        }
+      }
+    }
+  },
+  "sample_document": {
+    "took": 17,
+    "timed_out": false,
+    "_shards": {
+      "total": 3,
+      "successful": 3,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 10000,
+        "relation": "gte"
+      },
+      "max_score": 1.0,
+      "hits": [
+        {
+          "_index": "cymonides_cc_domain_vertices",
+          "_id": "1785251",
+          "_score": 1.0,
+          "_source": {
+            "vertex_id": 1785251,
+            "domain": "kinshipatchristmas.com.au",
+            "reversed_domain": "au.com.kinshipatchristmas",
+            "count": 1
+          }
+        }
+      ]
+    }
+  }
+}

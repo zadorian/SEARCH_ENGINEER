@@ -1,0 +1,102 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "title": "C1 Node Classes - The Four Dimensions",
+    "description": "Single source of truth for node_class assignments",
+    "updated_at": "2026-01-12"
+  },
+
+  "dimensions": {
+    "SUBJECT": {
+      "color": "GREEN",
+      "description": "Dynamic/Animate - Entities and their identifiers",
+      "categories": {
+        "ENTITY": {
+          "description": "Real-world identifiable things",
+          "types": ["person", "organization", "object", "asset", "vessel", "aircraft", "vehicle", "account", "document"]
+        },
+        "IDENTIFIER": {
+          "description": "Things that identify/locate entities",
+          "types": ["email", "phone", "national_id", "passport", "tax_id", "reg_number", "username", "crypto_wallet", "lei", "bic", "iban", "domain", "ip_address", "url"]
+        },
+        "CLASSIFIER": {
+          "description": "Categories that describe entities",
+          "types": ["industry", "profession", "title", "legal_form", "size_class", "status"]
+        },
+        "CONCEPT": {
+          "description": "Abstract ideas and themes",
+          "types": ["phenomenon", "topic", "theme"]
+        }
+      }
+    },
+
+    "LOCATION": {
+      "color": "WHITE",
+      "description": "Static/Boundaries - Geographic, temporal, and source references",
+      "categories": {
+        "GEO": {
+          "description": "Spatial locations",
+          "types": ["country", "region", "municipality", "address", "coordinates"]
+        },
+        "TEMPORAL": {
+          "description": "Time references",
+          "types": ["date", "year", "month", "period", "timestamp"]
+        },
+        "SOURCE": {
+          "description": "Data origins and platforms",
+          "types": ["aggregator", "platform", "breach", "registry", "database", "archive"]
+        },
+        "FORMAT": {
+          "description": "Content types",
+          "types": ["filetype", "mime_type", "language"]
+        },
+        "CATEGORY": {
+          "description": "Content categories",
+          "types": ["news", "corporate", "government", "academic", "social"]
+        }
+      }
+    },
+
+    "NARRATIVE": {
+      "color": "BLUE",
+      "description": "Documentation and metadata",
+      "categories": {
+        "PROJECT": {
+          "description": "Investigation containers",
+          "types": ["project", "case", "matter"]
+        },
+        "TAG": {
+          "description": "Labels and flags",
+          "types": ["tag", "flag", "status_tag", "verification_tag"]
+        },
+        "NOTE": {
+          "description": "Human annotations",
+          "types": ["note", "comment", "annotation"]
+        },
+        "EVIDENCE": {
+          "description": "Supporting documentation",
+          "types": ["document", "screenshot", "transcript"]
+        }
+      }
+    },
+
+    "NEXUS": {
+      "color": "PURPLE",
+      "description": "Relationships and queries that bridge dimensions",
+      "categories": {
+        "RELATIONSHIP": {
+          "description": "Connections between entities",
+          "types": ["relationship", "association", "link"]
+        },
+        "QUERY": {
+          "description": "Search patterns",
+          "types": ["query", "search", "filter"]
+        },
+        "AGGREGATOR_RESULT": {
+          "description": "Results from data sources",
+          "types": ["aggregator_result", "search_result", "api_response"]
+        }
+      }
+    }
+  }
+}

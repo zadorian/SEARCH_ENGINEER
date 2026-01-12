@@ -1,0 +1,72 @@
+{
+  "$schema": "./operator_registry_schema.json",
+  "version": "1.0.0",
+  "operators": [
+    {
+      "id": "domain_discover",
+      "syntax": "?",
+      "category": "navigation",
+      "name": "Domain Discovery",
+      "description": "Discover all URLs on domain via sitemaps, robots.txt, archives",
+      "handler_module": "LINKLATER.api",
+      "handler_function": "discover",
+      "input_type": ["domain"],
+      "output_type": ["pages"]
+    },
+    {
+      "id": "subdomains_enrichment",
+      "syntax": "subdomains:",
+      "category": "enrichment",
+      "name": "Subdomain Discovery",
+      "description": "Find subdomains",
+      "handler_module": "LINKLATER.api",
+      "handler_function": "discover_subdomains",
+      "input_type": ["domain"],
+      "output_type": ["domains"]
+    },
+    {
+      "id": "age_macro",
+      "syntax": "age:",
+      "category": "macro",
+      "name": "Person Age",
+      "description": "Find person age/DOB",
+      "handler_module": "modules.syntax.executor",
+      "handler_function": "find_person_age",
+      "input_type": ["person_name"],
+      "output_type": ["entities", "dates"]
+    },
+    {
+      "id": "whois_enrichment",
+      "syntax": "whois:",
+      "category": "enrichment",
+      "name": "WHOIS Lookup",
+      "description": "Domain registration data",
+      "handler_module": "LINKLATER.api",
+      "handler_function": "whois_lookup",
+      "input_type": ["domain"],
+      "output_type": ["whois_records"]
+    },
+    {
+      "id": "tech_enrichment",
+      "syntax": "tech:",
+      "category": "enrichment",
+      "name": "Technology Stack",
+      "description": "Detect technology stack",
+      "handler_module": "LINKLATER.api",
+      "handler_function": "get_tech_stack",
+      "input_type": ["domain"],
+      "output_type": ["metadata"]
+    },
+    {
+      "id": "ga_discovery",
+      "syntax": "ga?",
+      "category": "enrichment",
+      "name": "Google Analytics Detection",
+      "description": "Detect GA/GTM codes",
+      "handler_module": "LINKLATER.api",
+      "handler_function": "ga_tracker",
+      "input_type": ["domain"],
+      "output_type": ["tracking_codes"]
+    }
+  ]
+}

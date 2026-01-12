@@ -1,0 +1,461 @@
+====================================================================================================
+  SEARCHABLE FIELD GROUPS
+  Fields that should be queried together under same label
+====================================================================================================
+
+####################################################################################################
+  EMAIL
+####################################################################################################
+  additional_proprietor_indicator          [uk_ocod]
+    → N
+  all_emails                               [kazaword_emails]
+    → sgoha@yahoo.com
+  all_recipients                           [kazaword_emails]
+    → abay.s@mail.ru
+  email                                    [breach_records, emails_unified]
+    → the_true_lulu@hotmal.com.uk
+  email_domain                             [breach_records, emails_unified]
+    → hotmal.com.uk
+  email_id                                 [emails_unified]
+    → email:{'name': '', 'email': 'abay.s@mail.ru'}
+  emails                                   [onion-pages]
+    → pharmacystore121@gmail.com
+  from                                     [kazaword_emails]
+    → {"name": "Gaukhar Sarsekeyeva", "email": "sgoha@yahoo.com"}
+  multiple_address_indicator               [uk_ccod, uk_ocod]
+    → N
+  proprietor_address                       [uk_ocod]
+    → Oak House, Hirzel Street, St Peter Port, Guernsey, GY1 3RH
+  proprietor_address_1                     [uk_ccod]
+    → Legal Services, 4th Floor South, Civic Centre 1, High Street, Huddersfield HD1 2
+  proprietor_name                          [uk_ocod]
+    → ELDERFLOWER MANAGEMENT LIMITED
+  proprietor_name_1                        [uk_ccod]
+    → THE COUNCIL OF THE BOROUGH OF KIRKLEES
+  proprietorship_category_1                [uk_ccod]
+    → Local Authority
+  to                                       [kazaword_emails]
+    → {"name": "", "email": "abay.s@mail.ru"}
+
+####################################################################################################
+  EMAIL_DOMAIN
+####################################################################################################
+  email_domain                             [breach_records, emails_unified]
+    → hotmal.com.uk
+
+####################################################################################################
+  EMAIL_LOCAL
+####################################################################################################
+  local_part                               [breach_records, emails_unified]
+    → the_true_lulu
+
+####################################################################################################
+  PHONE
+####################################################################################################
+  phone_e164                               [phones_unified]
+    → +81989235871
+  phone_id                                 [phones_unified]
+    → phone:+81989235871
+  phone_raw                                [phones_unified]
+    → +81989235871
+
+####################################################################################################
+  DOMAIN
+####################################################################################################
+  company_domain                           [linkedin_unified]
+    → sierraviewmanor.com
+  domain                                   [companies_unified, domains_unified, drill_pages +4]
+    → sierraviewmanor.com
+  domains                                  [companies_unified]
+    → direporter.com
+  email_domain                             [breach_records, emails_unified]
+    → hotmal.com.uk
+  website_url                              [companies_unified]
+    → https://direporter.com/tag/zeiss-group
+
+####################################################################################################
+  URL
+####################################################################################################
+  internal_links                           [drill_pages]
+    → https://soax.com/
+  linkedin_url                             [companies_unified, linkedin_unified]
+    → https://linkedin.com/company/sierra-view-manor
+  outlinks                                 [drill_pages]
+    → https://www.linkedin.com/company/soax-network
+  same_as                                  [companies_unified, persons_unified]
+    → https://www.facebook.com/DIReporter
+  source_url                               [linklater_corpus, openownership]
+    → https://api.company-information.service.gov.uk/company/10327893/persons-with-sig
+  url                                      [drill_pages, linklater_corpus, onion-pages +1]
+    → http://vungkhopvinhgia.com.vn
+  website_url                              [companies_unified]
+    → https://direporter.com/tag/zeiss-group
+
+####################################################################################################
+  COMPANY_NAME
+####################################################################################################
+  alternate_names                          [companies_unified]
+    → G4Developer
+  breach_name                              [breach_records]
+    → MySpace
+  companies                                [drill_pages, onion-pages]
+    → PayPal
+  company_name                             [linkedin_unified]
+    → Sierra View Manor
+  full_name                                [persons_unified]
+    → Koei Tecmo Releases New Trailer for Attack on Titan Game - COGconnected
+  interested_party_name                    [openownership]
+    → Alan Glassfield
+  name                                     [breach_records, companies_unified, openownership]
+    → 18718190
+  name_normalized                          [openownership]
+    → schooltechhub ltd
+  organization_names                       [phones_unified]
+    → 戦争・・・
+  owner_name                               [uk_addresses]
+    → VALE HOLIDAY PARKS LIMITED
+  person_names                             [phones_unified]
+    → 家族旅行雨が降っても焦らない！【９９％の催行率】 | 沖縄でマングローブカヤックならカヤックイーズ
+  proprietor_name                          [uk_ocod]
+    → ELDERFLOWER MANAGEMENT LIMITED
+  proprietor_name_1                        [uk_ccod]
+    → THE COUNCIL OF THE BOROUGH OF KIRKLEES
+  subject_name                             [openownership]
+    → VANTEGE LIMITED
+
+####################################################################################################
+  COMPANY_ID
+####################################################################################################
+  company_id                               [companies_unified]
+    → domain:direporter.com
+  company_number                           [openownership]
+    → 08641349
+  company_reg_no_1                         [uk_ccod]
+    → 7530
+  linkedin_id                              [linkedin_unified]
+    → linkedin:company:sierra-view-manor
+
+####################################################################################################
+  PERSON_NAME
+####################################################################################################
+  full_name                                [persons_unified]
+    → Koei Tecmo Releases New Trailer for Attack on Titan Game - COGconnected
+  interested_party_name                    [openownership]
+    → Alan Glassfield
+  person_names                             [phones_unified]
+    → 家族旅行雨が降っても焦らない！【９９％の催行率】 | 沖縄でマングローブカヤックならカヤックイーズ
+  persons                                  [onion-pages]
+    → JulyJailbait
+
+####################################################################################################
+  PERSON_ID
+####################################################################################################
+  interested_party_id                      [openownership]
+    → 6366463210304560900
+  person_id                                [persons_unified]
+    → name:cogconnected.com:koei tecmo releases new trailer for attack on titan game c
+  user_id                                  [breach_records]
+    → 18718190
+
+####################################################################################################
+  ADDRESS
+####################################################################################################
+  address                                  [openownership, uk_addresses]
+    → Spaces The Maylands Building Maylands Avenue, Hemel Hempstead Industrial Estate,
+  address_country                          [openownership]
+    → GB
+  address_normalized                       [uk_addresses]
+    → LAND AT GILFACH HOLIDAY VILLAGE, GILFACH YR HALEN, LLWYNCELYN, ABERAERON (SA46 0
+  addresses                                [onion-pages]
+    → United States
+  multiple_address_indicator               [uk_ccod, uk_ocod]
+    → N
+  property_address                         [uk_ccod, uk_ocod]
+    → Land and buildings at School Lane, Berry Brow, Huddersfield
+  proprietor_address                       [uk_ocod]
+    → Oak House, Hirzel Street, St Peter Port, Guernsey, GY1 3RH
+  proprietor_address_1                     [uk_ccod]
+    → Legal Services, 4th Floor South, Civic Centre 1, High Street, Huddersfield HD1 2
+
+####################################################################################################
+  CITY
+####################################################################################################
+  district                                 [uk_addresses, uk_ccod, uk_ocod]
+    → KIRKLEES
+  postcode_district                        [uk_ccod, uk_ocod]
+    → HX3
+
+####################################################################################################
+  REGION
+####################################################################################################
+  county                                   [uk_addresses, uk_ccod, uk_leases +1]
+    → WEST YORKSHIRE
+  region                                   [uk_addresses, uk_ccod, uk_leases +1]
+    → YORKS AND HUMBER
+  statement_date                           [openownership]
+    → 2016-08-12
+  statement_id                             [openownership]
+    → 8526301191794936
+  statement_type                           [openownership]
+    → ownershipOrControlStatement
+
+####################################################################################################
+  COUNTRY
+####################################################################################################
+  address_country                          [openownership]
+    → GB
+  country                                  [openownership, phones_unified]
+    → UK
+  country_code                             [phones_unified]
+    → 81
+  country_incorporated                     [uk_ocod]
+    → BRITISH VIRGIN ISLANDS
+  jurisdiction                             [openownership, uk_addresses]
+    → gb
+
+####################################################################################################
+  POSTCODE
+####################################################################################################
+  postcode                                 [uk_addresses, uk_ccod, uk_ocod]
+    → HX3 7AF
+  postcode_district                        [uk_ccod, uk_ocod]
+    → HX3
+
+####################################################################################################
+  INDUSTRY
+####################################################################################################
+  categories                               [domains_unified]
+    → /en/Regional/Europe/United_Kingdom/Health/Nutrition/Nutritionists
+  industry                                 [companies_unified, linkedin_unified]
+    → Hospitals and Health Care
+
+####################################################################################################
+  TITLE_ID
+####################################################################################################
+  title_number                             [uk_addresses, uk_ccod, uk_ocod]
+    → WYK803313
+
+####################################################################################################
+  PASSWORD
+####################################################################################################
+  hash_type                                [breach_records]
+    → sha1
+  password_hash                            [breach_records]
+    → 9FBD9B80AF7E652065E489F94C456971B7D9BB4D
+
+####################################################################################################
+  BREACH
+####################################################################################################
+  breach_name                              [breach_records]
+    → MySpace
+  breach_year                              [breach_records]
+    → 2016
+
+####################################################################################################
+  USERNAME
+####################################################################################################
+  alternate_names                          [companies_unified]
+    → G4Developer
+  breach_name                              [breach_records]
+    → MySpace
+  company_name                             [linkedin_unified]
+    → Sierra View Manor
+  full_name                                [persons_unified]
+    → Koei Tecmo Releases New Trailer for Attack on Titan Game - COGconnected
+  interested_party_name                    [openownership]
+    → Alan Glassfield
+  name                                     [breach_records, companies_unified, openownership]
+    → 18718190
+  name_normalized                          [openownership]
+    → schooltechhub ltd
+  organization_names                       [phones_unified]
+    → 戦争・・・
+  owner_name                               [uk_addresses]
+    → VALE HOLIDAY PARKS LIMITED
+  person_names                             [phones_unified]
+    → 家族旅行雨が降っても焦らない！【９９％の催行率】 | 沖縄でマングローブカヤックならカヤックイーズ
+  proprietor_name                          [uk_ocod]
+    → ELDERFLOWER MANAGEMENT LIMITED
+  proprietor_name_1                        [uk_ccod]
+    → THE COUNCIL OF THE BOROUGH OF KIRKLEES
+  subject_name                             [openownership]
+    → VANTEGE LIMITED
+
+####################################################################################################
+  IP
+####################################################################################################
+  originating_ip                           [kazaword_emails]
+    → 84.190.207.114
+
+####################################################################################################
+  DATE
+####################################################################################################
+  crawl_timestamp                          [drill_pages]
+    → 2025-12-04T01:12:25.657958
+  date                                     [kazaword_emails]
+    → 2008-12-07T09:48:16-08:00
+  dissolution_date                         [openownership]
+    → 2021-11-30
+  enriched_at                              [onion-pages]
+    → 2025-12-04T15:11:52.838024+00:00
+  fetched_at                               [onion-pages]
+    → 2025-12-03T14:25:46.577428
+  incorporation_date                       [openownership]
+    → 2013-08-07
+  indexed_at                               [domains_unified, kazaword_emails, linklater_corpus +5]
+    → 2025-12-29T18:31:41.531239
+  last_updated                             [domains_unified]
+    → 2025-12-14T13:16:29.342443
+  statement_date                           [openownership]
+    → 2016-08-12
+  updated_on                               [onion-pages]
+    → 2025-12-03T14:25:46.577428
+
+####################################################################################################
+  CONTENT
+####################################################################################################
+  body_html                                [kazaword_emails]
+    → &#1040;&#1073;&#1072;&#1081;,&#1087;&#1088;&#1080;&#1074;&#1077;&#1090;!<br><br>
+  body_text                                [kazaword_emails]
+    → 
+
+
+      
+  content                                  [drill_pages, linklater_corpus, onion-pages]
+    → Paul's ONION LINKS DIRECTORY Paul's ONION LINKS DIRECTORY Add Link Contact Us Wa
+  content_length                           [linklater_corpus, onion-pages]
+    → 17264
+  content_type                             [drill_pages, onion-pages]
+    → text/html
+  meta                                     [onion-pages]
+    → eCash Cards: trusted, automatic Visa credit card, Mastercard, PayPal and Western
+  source_description                       [openownership]
+    → GB Persons Of Significant Control Register
+
+####################################################################################################
+  SUBJECT
+####################################################################################################
+  h1                                       [onion-pages]
+    → Welcome back!
+  subject                                  [kazaword_emails]
+    → photos
+  subject_id                               [openownership]
+    → 6892016234205338988
+  subject_name                             [openownership]
+    → VANTEGE LIMITED
+  title                                    [drill_pages, onion-pages, top_domains]
+    → vungkhopvinhgia.com.vn
+  title_number                             [uk_addresses, uk_ccod, uk_ocod]
+    → WYK803313
+
+####################################################################################################
+  OWNERSHIP
+####################################################################################################
+  control_types                            [openownership]
+    → shareholding
+  ownership_percentage                     [openownership]
+    → 25.0
+
+####################################################################################################
+  ATTACHMENT
+####################################################################################################
+  attachment_count                         [kazaword_emails]
+    → 2
+  attachments                              [kazaword_emails]
+    → {"filename": "Abay with NN0001.jpg", "content_type": "image/pjpeg", "size": 1250
+  has_attachments                          [kazaword_emails]
+    → True
+
+####################################################################################################
+  UNGROUPED (44 fields)
+####################################################################################################
+  area_code                                [phones_unified]
+    → 989
+  backlinks_ips                            [top_domains]
+    → 378
+  backlinks_subnets                        [top_domains]
+    → 278
+  contacts                                 [emails_unified]
+    → {'name': 'gaukhar sarsekeyeva', 'email': 'sgoha@yahoo.com'}
+  crawl_id                                 [onion-pages]
+    → 20251203_141617
+  data_source                              [uk_ccod, uk_leases]
+    → uk_land_registry_ccod
+  embedding                                [onion-pages]
+    → -0.03285752609372139
+  entity_count                             [drill_pages]
+    → 15
+  entity_type                              [openownership]
+    → registeredEntity
+  id                                       [linklater_corpus]
+    → ll_3s5s1n
+  keywords                                 [linklater_corpus]
+    → ”KVIKA”
+  keywords_found                           [drill_pages]
+    → affiliate
+  links_found                              [onion-pages]
+    → 32
+  local_number                             [phones_unified]
+    → 235871
+  message_id                               [kazaword_emails]
+    → <208012.35168.qm@web50606.mail.re2.yahoo.com>
+  outlink_count                            [drill_pages]
+    → 2
+  owner_type                               [uk_addresses]
+    → unknown
+  price_paid                               [uk_ccod, uk_leases]
+    → 131500.0
+  profile_slug                             [linkedin_unified]
+    → sierra-view-manor
+  profile_type                             [linkedin_unified]
+    → company
+  query                                    [linklater_corpus]
+    → ”KVIKA” “libya”
+  rank                                     [top_domains]
+    → 919440
+  received_count                           [emails_unified]
+    → 611
+  record_id                                [openownership]
+    → ownership:8526301191794936
+  schema_types                             [companies_unified, persons_unified]
+    → BreadcrumbList
+  scraped_at                               [linklater_corpus]
+    → 2025-12-01T07:23:03.147Z
+  search_text                              [openownership]
+    → VANTEGE LIMITED Alan Glassfield shareholding voting-rights
+  sent_count                               [emails_unified]
+    → 6
+  snippet                                  [linklater_corpus]
+    → # PERSÓNUVERNDARSTEFNA KVIKU BANKA HF.
+
+Sampykkt í september
+  source                                   [drill_pages, linklater_corpus]
+    → ccod
+  source_archive                           [kazaword_emails]
+    → abay
+  source_count                             [companies_unified, emails_unified]
+    → 1
+  source_file                              [breach_records, uk_addresses]
+    → Myspace.com.txt
+  source_type                              [openownership]
+    → officialRegister
+  sources                                  [companies_unified, domains_unified]
+    → affiliate
+  status_code                              [drill_pages, onion-pages]
+    → 200
+  tenure                                   [uk_addresses, uk_ccod]
+    → Freehold
+  term                                     [uk_leases]
+    → 125 years from 1 November 2004
+  tld                                      [domains_unified, top_domains]
+    → uk
+  tld_rank                                 [top_domains]
+    → 2744
+  unique_id                                [uk_leases]
+    → 8C878AED2F1EC50E9610DFBD3B5F4EB51C16D674
+  uprn                                     [uk_leases]
+    → 1004267562.0
+  wdc_crawl                                [companies_unified, persons_unified]
+    → 2024-10
+  word_count                               [linklater_corpus]
+    → 2693

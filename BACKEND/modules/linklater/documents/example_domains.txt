@@ -1,0 +1,9 @@
+# Example domain list for LINKLATER processing
+# Add one domain per line (no http://, just domain name)
+
+# Example domains:
+example.com
+opencorporates.com
+sec.gov
+
+# Add your target domains below:

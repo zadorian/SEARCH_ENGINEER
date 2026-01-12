@@ -1,0 +1,21 @@
+{
+  "id": "84fb9f7625a3651f",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "ZmlyZWJpcmQ=:||BASE64",
+  "label": "ZmlyZWJpcmQ=:||BASE64",
+  "value": "ZmlyZWJpcmQ=:||BASE64",
+  "comment": "{\n  \"id\": \"2mfaosxwaiygpkveradg6ex1kgj\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"firebird\"\n  ],\n  \"hashed_password\": [\n    \"696fbf17aefa357b0a62a92a87e8652e:||MD5\",\n    \"7891b121ad1c0e5d8657f4a9949a4b060ffa75be:||SHA1\",\n    \"57fac8572eeab5fc599c760c659f587e76af9a5fa35b560723772df5f33004bf:||SHA256\",\n    \"c3711266ee50506d9ac71746835dac7e0da0c5ab12da0b9e2791ee89f57be8a1fdce40959a6e92245bd0b6b4c72a86928dbe7b7c038227405ebabfcbe4f6ff81:||SHA512\",\n    \"ZmlyZWJpcmQ=:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:12.776813",
+  "updatedAt": "2026-01-12T00:04:12.776817",
+  "lastSeen": "2026-01-12T00:04:12.776818"
+}

@@ -1,0 +1,234 @@
+{
+  "DE": [
+    {
+      "name": "https://www.albertmartin.de/latein/?q=",
+      "domain": "albertmartin.de",
+      "url": "https://www.albertmartin.de/latein/",
+      "search_url": "https://www.albertmartin.de/latein/?q={q}",
+      "type": "creative_resource",
+      "category": "cre",
+      "friction": "public",
+      "jurisdictions": [
+        "DE"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "albertmartin.de_design_imported",
+      "jurisdiction": "DE",
+      "search_template": "https://www.albertmartin.de/latein/?q={q}",
+      "section": "cre",
+      "access": "public",
+      "notes": "Imported from design_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "design"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "search_params": [
+        "q"
+      ],
+      "input_schema": {
+        "dictionary_search": {
+          "input_type": "word",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [
+            "virtus",
+            "bellum",
+            "aqua"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null
+        },
+        "forum_search": {
+          "input_type": "keyword",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [
+            "Menschenwürde",
+            "Cicero Textstellen"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null
+        }
+      },
+      "thematic_tags": [],
+      "language": "de",
+      "requires_translation": true,
+      "enhanced_at": "2025-12-18T08:40:15.237626",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "MEDIA_MONITORING",
+          "OSINT_GENERAL"
+        ],
+        "friction": "open",
+        "success_rate": 0.8288590604026845
+      },
+      "capabilities": [
+        {
+          "rule_id": "WIKI_GE_WWW_CREDITREFORM_COM",
+          "label": "Creditreform]. Obtaining credit checks is a legal grey area. Before performing any search, you need to pick one of several 'legitimate interests' - the reasons you can pick only describe some of our investigative scenarios.",
+          "requires_any": [
+            13,
+            7
+          ],
+          "requires_all": [],
+          "returns": [
+            42
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "external",
+              "url": "https://www.creditreform.com/en/contact/creditreform-germany",
+              "name": "Creditreform]. Obtaining credit checks is a legal "
+            }
+          ]
+        },
+        {
+          "rule_id": "PLAYBOOK_DE_SANCTIONS_SCREENING_124",
+          "label": "DE: Sanctions Screening",
+          "requires_any": [
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            42,
+            43,
+            46,
+            47,
+            48,
+            49
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{query}\"",
+              "note": "Auto-added: Playbook execution via comprehensive search"
+            }
+          ]
+        },
+        {
+          "rule_id": "PLAYBOOK_DE_CREDIT_REFERENCE_SEARCH_130",
+          "label": "DE: Credit Reference Search",
+          "requires_any": [
+            13
+          ],
+          "requires_all": [],
+          "returns": [
+            58,
+            59,
+            42,
+            43,
+            46,
+            47,
+            48,
+            49
+          ],
+          "friction": "Restricted",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "BR",
+                "FC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{query}\"",
+              "note": "Auto-added: Playbook execution via comprehensive search"
+            }
+          ]
+        },
+        {
+          "rule_id": "BREACH_EXPOSURE_LOOKUP",
+          "label": "Credential exposure by email/username/domain",
+          "requires_any": [
+            1,
+            3,
+            6
+          ],
+          "requires_all": [],
+          "returns": [
+            142,
+            144,
+            145
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "BR"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{query}\" database OR records OR registry",
+              "note": "Auto-added: Database search via multiple engines"
+            }
+          ]
+        },
+        {
+          "rule_id": "BRUTE_BREACH_DATA_SEARCH",
+          "label": "Find breach data and leaked credentials",
+          "requires_any": [
+            1,
+            32,
+            3,
+            6,
+            129
+          ],
+          "requires_all": [],
+          "returns": [
+            142,
+            143,
+            144,
+            145,
+            187
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "engines": [
+                "GO",
+                "BI",
+                "DD",
+                "EC"
+              ],
+              "wave": "instant_start",
+              "query_template": "\"{email}\" OR \"{username}\" (breach OR leak OR dump OR database)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

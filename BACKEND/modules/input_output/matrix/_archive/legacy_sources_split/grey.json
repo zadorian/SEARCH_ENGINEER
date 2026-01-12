@@ -1,0 +1,364 @@
+{
+  "GB": [
+    {
+      "name": "Trump Scotland",
+      "domain": "aleph.occrp.org/datasets/2705",
+      "url": "https://aleph.occrp.org/datasets/2705",
+      "type": "investigative_archive",
+      "category": "grey",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "GB",
+      "jurisdictions": [
+        "GB"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 2705,
+      "inputs": [
+        "company_name",
+        "person_name"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 2705. Trump Scotland",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=2705",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=2705",
+      "access_method": "api"
+    }
+  ],
+  "US": [
+    {
+      "name": "FBI FOIA Library",
+      "domain": "aleph.occrp.org/datasets/786",
+      "url": "https://aleph.occrp.org/datasets/786",
+      "type": "investigative_archive",
+      "category": "grey",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "US",
+      "jurisdictions": [
+        "US"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 786,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 786. FBI FOIA Library",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=786",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=786",
+      "access_method": "api"
+    },
+    {
+      "name": "Snowden Files Published Documents",
+      "domain": "aleph.occrp.org/datasets/1065",
+      "url": "https://aleph.occrp.org/datasets/1065",
+      "type": "investigative_archive",
+      "category": "grey",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "US",
+      "jurisdictions": [
+        "US"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 1065,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 1065. Snowden Files Published Documents",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=1065",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=1065",
+      "access_method": "api"
+    }
+  ],
+  "RU": [
+    {
+      "name": "APT28 documents",
+      "domain": "aleph.occrp.org/datasets/1066",
+      "url": "https://aleph.occrp.org/datasets/1066",
+      "type": "investigative_archive",
+      "category": "grey",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "RU",
+      "jurisdictions": [
+        "RU"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 1066,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 1066. APT28 documents",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=1066",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=1066",
+      "access_method": "api"
+    }
+  ],
+  "DE": [
+    {
+      "name": "Sparkasse Annual Reports",
+      "domain": "aleph.occrp.org/datasets/718",
+      "url": "https://aleph.occrp.org/datasets/718",
+      "type": "investigative_archive",
+      "category": "grey",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "DE",
+      "jurisdictions": [
+        "DE"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 718,
+      "inputs": [
+        "company_name"
+      ],
+      "outputs": [
+        "financial_reports"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 718. Sparkasse Annual Reports",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=718",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=718",
+      "access_method": "api"
+    }
+  ],
+  "KE": [
+    {
+      "name": "Audit reports from Kenyan Office of Auditor-General",
+      "domain": "aleph.occrp.org/datasets/2226",
+      "url": "https://aleph.occrp.org/datasets/2226",
+      "type": "investigative_archive",
+      "category": "grey",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "KE",
+      "jurisdictions": [
+        "KE"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 2226,
+      "inputs": [
+        "company_name"
+      ],
+      "outputs": [
+        "audit_reports"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 2226. Audit reports from Kenyan Office of Auditor-General",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=2226",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=2226",
+      "access_method": "api"
+    }
+  ],
+  "BA": [
+    {
+      "name": "Sarajevo Prosecutor",
+      "domain": "aleph.occrp.org/datasets/439",
+      "url": "https://aleph.occrp.org/datasets/439",
+      "type": "investigative_archive",
+      "category": "grey",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "BA",
+      "jurisdictions": [
+        "BA"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 439,
+      "inputs": [
+        "person_name"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 439. Sarajevo Prosecutor",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=439",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=439",
+      "access_method": "api"
+    }
+  ],
+  "CM": [
+    {
+      "name": "Cameroon Tribune archive",
+      "domain": "aleph.occrp.org/datasets/2322",
+      "url": "https://aleph.occrp.org/datasets/2322",
+      "type": "investigative_archive",
+      "category": "grey",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "CM",
+      "jurisdictions": [
+        "CM"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 2322,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 2322. Cameroon Tribune archive",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=2322",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=2322",
+      "access_method": "api"
+    }
+  ],
+  "BD": [
+    {
+      "name": "Bangladesh tobacco industry documents",
+      "domain": "aleph.occrp.org/datasets/7950",
+      "url": "https://aleph.occrp.org/datasets/7950",
+      "type": "investigative_archive",
+      "category": "grey",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "BD",
+      "jurisdictions": [
+        "BD"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 7950,
+      "inputs": [
+        "company_name"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 7950. Bangladesh tobacco industry documents",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=7950",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=7950",
+      "access_method": "api"
+    }
+  ],
+  "EU": [
+    {
+      "name": "Frontex Public Register",
+      "domain": "aleph.occrp.org/datasets/1330",
+      "url": "https://aleph.occrp.org/datasets/1330",
+      "type": "investigative_archive",
+      "category": "grey",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "EU",
+      "jurisdictions": [
+        "EU"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 1330,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 1330. Frontex Public Register",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=1330",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=1330",
+      "access_method": "api"
+    }
+  ],
+  "GLOBAL": [
+    {
+      "name": "SourceAfrica.net",
+      "domain": "aleph.occrp.org/datasets/70",
+      "url": "https://aleph.occrp.org/datasets/70",
+      "type": "investigative_archive",
+      "category": "grey",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "GLOBAL",
+      "jurisdictions": [
+        "TG",
+        "TZ",
+        "KE",
+        "GH",
+        "ZA"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 70,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 70. SourceAfrica.net",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=70",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=70",
+      "access_method": "api"
+    },
+    {
+      "name": "UN Security Council Documents",
+      "domain": "aleph.occrp.org/datasets/1343",
+      "url": "https://aleph.occrp.org/datasets/1343",
+      "type": "investigative_archive",
+      "category": "grey",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "GLOBAL",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 1343,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 1343. UN Security Council Documents",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=1343",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=1343",
+      "access_method": "api"
+    }
+  ]
+}

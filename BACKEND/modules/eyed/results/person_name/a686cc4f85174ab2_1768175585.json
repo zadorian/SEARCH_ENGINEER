@@ -1,0 +1,21 @@
+{
+  "id": "a686cc4f85174ab2",
+  "node_class": "ENTITY",
+  "type": "person",
+  "canonicalValue": "tyrion",
+  "label": "Tyrion",
+  "value": "Tyrion",
+  "comment": "{\n  \"module\": \"goodreads\",\n  \"category\": {\n    \"type\": \"Activity\",\n    \"name\": \"Education\",\n    \"description\": \"Educational platforms and learning resources.\"\n  },\n  \"front_schemas\": [\n    {\n      \"module\": \"Goodreads\",\n      \"image\": \"https://s.gr-assets.com/assets/nophoto/user/u_111x148-9394ebedbb3c6c218f64be9549657029.png\",\n      \"body\": {\n        \"Details\": \"Tyrion - Smyrna, GA (2 books)\"\n      },\n      \"tags\": [\n        {\n          \"tag\": \"Review Count: 2\"\n        }\n      ],\n      \"timeline\": {\n        \"last_seen\": true,\n        \"registered\": true,\n        \"last_seen_date\": null,\n        \"registered_date\": null,\n        \"groups\": {\n          \"goodreads\": {\n            \"color\": \"#663399\",\n            \"flavor_text\": \"$count$ activites in $year$\",\n            \"tolerance\": 5\n          }\n        },\n        \"group_items\": {},\n        \"group_years\": {}\n      }\n    }\n  ],\n  \"spec_format\": [\n    {\n      \"registered\": {\n        \"type\": \"bool\",\n        \"proper_key\": \"Registered\",\n        \"value\": true\n      },\n      \"id\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Id\",\n        \"value\": \"81751181\"\n      },\n      \"name\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Name\",\n        \"value\": \"Tyrion\"\n      },\n      \"picture_url\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Picture Url\",\n        \"value\": \"https://s.gr-assets.com/assets/nophoto/user/u_111x148-9394ebedbb3c6c218f64be9549657029.png\"\n      },\n      \"profile_url\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Profile Url\",\n        \"value\": \"https://www.goodreads.com/user/show/81751181-tyrion\"\n      },\n      \"platform_variables\": [\n        {\n          \"key\": \"friends_count\",\n          \"proper_key\": \"Friends Count\",\n          \"value\": 0,\n          \"type\": \"int\"\n        },\n        {\n          \"key\": \"review_count\",\n          \"proper_key\": \"Review Count\",\n          \"value\": 2,\n          \"type\": \"int\"\n        }\n      ]\n    }\n  ],\n  \"data\": {\n    \"data\": true\n  },\n  \"status\": \"found\",\n  \"query\": \"tyrion@gmail.com\",\n  \"from\": \"User supplied email.\",\n  \"reliable_source\": true\n}",
+  "embedded_edges": [
+    {
+      "target_id": "c3f8a498f50c4de6",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-11T23:53:05.617748",
+  "updatedAt": "2026-01-11T23:53:05.617752",
+  "lastSeen": "2026-01-11T23:53:05.617753"
+}

@@ -1,0 +1,4026 @@
+{
+  "GB": {
+    "jurisdiction": "GB",
+    "name": "United Kingdom",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "MEDIA_MONITORING",
+      "REGISTRY_OFFICERS",
+      "HUMINT_NETWORK",
+      "COMPLIANCE_SANCTIONS",
+      "OSINT_DOMAIN",
+      "REGISTRY_LAND_PROPERTY",
+      "OSINT_EMAIL",
+      "OSINT_SOCIAL_MEDIA",
+      "PROCUREMENT_TENDERS",
+      "MEDIA_INVESTIGATIVE",
+      "REGISTRY_COURT",
+      "ANALYSIS_CORPORATE",
+      "MEDIA_ARCHIVE",
+      "REGISTRY_INSOLVENCY"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 249,
+      "OSINT_GENERAL": 94,
+      "MEDIA_MONITORING": 51,
+      "REGISTRY_OFFICERS": 30,
+      "HUMINT_NETWORK": 21,
+      "COMPLIANCE_SANCTIONS": 13,
+      "OSINT_DOMAIN": 11,
+      "REGISTRY_LAND_PROPERTY": 3,
+      "OSINT_EMAIL": 3,
+      "OSINT_SOCIAL_MEDIA": 1,
+      "PROCUREMENT_TENDERS": 1,
+      "MEDIA_INVESTIGATIVE": 1,
+      "REGISTRY_COURT": 1,
+      "ANALYSIS_CORPORATE": 1,
+      "MEDIA_ARCHIVE": 1,
+      "REGISTRY_INSOLVENCY": 1
+    },
+    "sources": [
+      "192.com",
+      "archive.org",
+      "eyuk.com",
+      "kz.media",
+      "locatefamily.com",
+      "moneybookers.com",
+      "planespotters.net",
+      "register.openownership.org",
+      "roiteks.com"
+    ],
+    "source_count": 9,
+    "total_patterns": 482,
+    "success_rate": 0.8692946058091287,
+    "friction_profile": {
+      "open": 0.7842323651452282,
+      "paywalled": 0.06639004149377593,
+      "restricted": 0.14315352697095435,
+      "impossible": 0.006224066390041493
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "MEDIA_MONITORING"
+    ],
+    "gaps": [
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT",
+      "FINANCIAL_FILINGS"
+    ]
+  },
+  "BR": {
+    "jurisdiction": "BR",
+    "name": "Brazil",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "COMPLIANCE_SANCTIONS",
+      "HUMINT_NETWORK",
+      "OSINT_SOCIAL_MEDIA",
+      "MEDIA_ARCHIVE",
+      "OSINT_DOMAIN",
+      "ID_DECODER"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 248,
+      "MEDIA_MONITORING": 116,
+      "OSINT_GENERAL": 80,
+      "REGISTRY_OFFICERS": 20,
+      "COMPLIANCE_SANCTIONS": 11,
+      "HUMINT_NETWORK": 1,
+      "OSINT_SOCIAL_MEDIA": 1,
+      "MEDIA_ARCHIVE": 1,
+      "OSINT_DOMAIN": 1
+    },
+    "sources": [
+      "br.indeed.com",
+      "papelariapaulista.com.br"
+    ],
+    "source_count": 2,
+    "total_patterns": 479,
+    "success_rate": 0.8684759916492694,
+    "friction_profile": {
+      "open": 0.9457202505219207,
+      "paywalled": 0.012526096033402923,
+      "restricted": 0.033402922755741124,
+      "impossible": 0.008350730688935281
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ],
+    "id_decoder": {
+      "id_type": "CPF/CNPJ",
+      "name": "Brazil CPF/CNPJ",
+      "extracts": [
+        "formatted",
+        "check_digits",
+        "branch"
+      ]
+    }
+  },
+  "US": {
+    "jurisdiction": "US",
+    "name": "United States",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "COMPLIANCE_SANCTIONS",
+      "MEDIA_MONITORING",
+      "REGISTRY_OFFICERS",
+      "HUMINT_NETWORK",
+      "REGISTRY_LAND_PROPERTY",
+      "REGISTRY_COURT",
+      "OSINT_SOCIAL_MEDIA",
+      "OSINT_DOMAIN",
+      "MEDIA_ARCHIVE",
+      "REGISTRY_VEHICLE_VESSEL",
+      "PROFESSIONAL_VERIFICATION",
+      "REGISTRY_IP"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 203,
+      "OSINT_GENERAL": 106,
+      "COMPLIANCE_SANCTIONS": 53,
+      "MEDIA_MONITORING": 43,
+      "REGISTRY_OFFICERS": 32,
+      "HUMINT_NETWORK": 8,
+      "REGISTRY_LAND_PROPERTY": 4,
+      "REGISTRY_COURT": 3,
+      "OSINT_SOCIAL_MEDIA": 3,
+      "OSINT_DOMAIN": 2,
+      "MEDIA_ARCHIVE": 2,
+      "REGISTRY_VEHICLE_VESSEL": 2,
+      "PROFESSIONAL_VERIFICATION": 1,
+      "REGISTRY_IP": 1
+    },
+    "sources": [
+      "booking.com",
+      "broadwayworld.com",
+      "gamesindustry.biz",
+      "glassdoor.com",
+      "gravatom.com",
+      "innercitypress.com",
+      "labase.org",
+      "prezi.com",
+      "web.archive.org"
+    ],
+    "source_count": 9,
+    "total_patterns": 463,
+    "success_rate": 0.9071274298056156,
+    "friction_profile": {
+      "open": 0.8423326133909287,
+      "paywalled": 0.07127429805615551,
+      "restricted": 0.07991360691144708,
+      "impossible": 0.0064794816414686825
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "HU": {
+    "jurisdiction": "HU",
+    "name": "Hungary",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "REGISTRY_COURT",
+      "OSINT_DOMAIN",
+      "REGISTRY_LAND_PROPERTY",
+      "REGISTRY_INSOLVENCY",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 173,
+      "MEDIA_MONITORING": 70,
+      "HUMINT_NETWORK": 32,
+      "OSINT_GENERAL": 25,
+      "REGISTRY_OFFICERS": 8,
+      "REGISTRY_COURT": 3,
+      "OSINT_DOMAIN": 3,
+      "REGISTRY_LAND_PROPERTY": 3,
+      "REGISTRY_INSOLVENCY": 2,
+      "ANALYSIS_LEGAL": 1,
+      "COMPLIANCE_SANCTIONS": 1
+    },
+    "sources": [
+      "24.hu",
+      "444.hu",
+      "atlatszo.hu",
+      "blog.hu",
+      "index.hu",
+      "napi.hu",
+      "nol.hu",
+      "turizmus.com",
+      "www.clicktech.hu",
+      "www.greensound.hu"
+    ],
+    "source_count": 10,
+    "total_patterns": 321,
+    "success_rate": 0.822429906542056,
+    "friction_profile": {
+      "open": 0.7725856697819314,
+      "restricted": 0.21806853582554517,
+      "impossible": 0.006230529595015576,
+      "paywalled": 0.003115264797507788
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT",
+      "FINANCIAL_FILINGS"
+    ]
+  },
+  "DE": {
+    "jurisdiction": "DE",
+    "name": "Germany",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "REGISTRY_OFFICERS",
+      "COMPLIANCE_SANCTIONS",
+      "OSINT_SOCIAL_MEDIA",
+      "PROFESSIONAL_VERIFICATION",
+      "REGISTRY_INSOLVENCY",
+      "OSINT_DOMAIN"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 160,
+      "MEDIA_MONITORING": 75,
+      "OSINT_GENERAL": 37,
+      "HUMINT_NETWORK": 8,
+      "REGISTRY_OFFICERS": 7,
+      "COMPLIANCE_SANCTIONS": 5,
+      "OSINT_SOCIAL_MEDIA": 3,
+      "PROFESSIONAL_VERIFICATION": 1,
+      "REGISTRY_INSOLVENCY": 1,
+      "OSINT_DOMAIN": 1
+    },
+    "sources": [
+      "finews.ch",
+      "kununu.de",
+      "merkur.de",
+      "restradegmbh.com",
+      "unternehmen24.info",
+      "urteilfinden.de",
+      "www.geka-lichttechnik.de"
+    ],
+    "source_count": 7,
+    "total_patterns": 298,
+    "success_rate": 0.8288590604026845,
+    "friction_profile": {
+      "open": 0.8221476510067114,
+      "restricted": 0.12080536912751678,
+      "impossible": 0.026845637583892617,
+      "paywalled": 0.030201342281879196
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "RO": {
+    "jurisdiction": "RO",
+    "name": "Romania",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "REGISTRY_OFFICERS",
+      "MEDIA_INVESTIGATIVE",
+      "ID_DECODER"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 87,
+      "MEDIA_MONITORING": 28,
+      "OSINT_GENERAL": 12,
+      "HUMINT_NETWORK": 10,
+      "REGISTRY_OFFICERS": 2,
+      "MEDIA_INVESTIGATIVE": 2
+    },
+    "sources": [
+      "brx.ro",
+      "evz.ro",
+      "onmyway.ro",
+      "profit.ro",
+      "termene.ro"
+    ],
+    "source_count": 5,
+    "total_patterns": 141,
+    "success_rate": 0.8723404255319149,
+    "friction_profile": {
+      "open": 0.8368794326241135,
+      "paywalled": 0.03546099290780142,
+      "restricted": 0.1276595744680851
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "id_decoder": {
+      "id_type": "CNP",
+      "name": "Romania CNP",
+      "extracts": [
+        "dob",
+        "gender",
+        "county",
+        "century"
+      ]
+    }
+  },
+  "KZ": {
+    "jurisdiction": "KZ",
+    "name": "KZ",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "REGISTRY_COURT"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 65,
+      "MEDIA_MONITORING": 29,
+      "HUMINT_NETWORK": 25,
+      "OSINT_GENERAL": 11,
+      "REGISTRY_OFFICERS": 8,
+      "REGISTRY_COURT": 2
+    },
+    "sources": [
+      "dialog.egov.kz",
+      "egov.kz",
+      "knews.kg",
+      "respublika-kz.info"
+    ],
+    "source_count": 4,
+    "total_patterns": 140,
+    "success_rate": 0.9428571428571428,
+    "friction_profile": {
+      "open": 0.6642857142857143,
+      "restricted": 0.29285714285714287,
+      "paywalled": 0.02857142857142857,
+      "impossible": 0.014285714285714285
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "CH": {
+    "jurisdiction": "CH",
+    "name": "Switzerland",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "OSINT_SOCIAL_MEDIA",
+      "COMPLIANCE_SANCTIONS",
+      "REGISTRY_OFFICERS",
+      "REGISTRY_LAND_PROPERTY",
+      "HUMINT_NETWORK",
+      "FINANCIAL_CREDIT",
+      "REGISTRY_INSOLVENCY"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 97,
+      "MEDIA_MONITORING": 19,
+      "OSINT_GENERAL": 11,
+      "OSINT_SOCIAL_MEDIA": 3,
+      "COMPLIANCE_SANCTIONS": 2,
+      "REGISTRY_OFFICERS": 2,
+      "REGISTRY_LAND_PROPERTY": 2,
+      "HUMINT_NETWORK": 1,
+      "FINANCIAL_CREDIT": 1,
+      "REGISTRY_INSOLVENCY": 1
+    },
+    "sources": [
+      "heritage.com",
+      "parlament.ch",
+      "swissinfo.ch",
+      "www.imspilhof.ch"
+    ],
+    "source_count": 4,
+    "total_patterns": 139,
+    "success_rate": 0.6762589928057554,
+    "friction_profile": {
+      "restricted": 0.2014388489208633,
+      "open": 0.7769784172661871,
+      "paywalled": 0.007194244604316547,
+      "impossible": 0.014388489208633094
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_FILINGS"
+    ]
+  },
+  "TR": {
+    "jurisdiction": "TR",
+    "name": "Turkey",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "REGISTRY_LAND_PROPERTY",
+      "REGISTRY_INSOLVENCY",
+      "OSINT_DOMAIN",
+      "HUMINT_NETWORK",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 72,
+      "MEDIA_MONITORING": 32,
+      "OSINT_GENERAL": 14,
+      "REGISTRY_OFFICERS": 4,
+      "REGISTRY_LAND_PROPERTY": 3,
+      "REGISTRY_INSOLVENCY": 3,
+      "OSINT_DOMAIN": 2,
+      "HUMINT_NETWORK": 2,
+      "COMPLIANCE_SANCTIONS": 1
+    },
+    "sources": [
+      "google.com.tr",
+      "ikayetvar.com"
+    ],
+    "source_count": 2,
+    "total_patterns": 133,
+    "success_rate": 0.8421052631578947,
+    "friction_profile": {
+      "open": 0.8270676691729323,
+      "impossible": 0.045112781954887216,
+      "restricted": 0.12030075187969924,
+      "paywalled": 0.007518796992481203
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "CZ": {
+    "jurisdiction": "CZ",
+    "name": "Czech Republic",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "MEDIA_INVESTIGATIVE",
+      "REGISTRY_COURT",
+      "OSINT_DOMAIN",
+      "REGISTRY_VEHICLE_VESSEL",
+      "ID_DECODER"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 77,
+      "MEDIA_MONITORING": 29,
+      "HUMINT_NETWORK": 7,
+      "OSINT_GENERAL": 5,
+      "REGISTRY_OFFICERS": 2,
+      "MEDIA_INVESTIGATIVE": 1,
+      "REGISTRY_COURT": 1,
+      "OSINT_DOMAIN": 1,
+      "REGISTRY_VEHICLE_VESSEL": 1
+    },
+    "sources": [
+      "solarninovinky.cz"
+    ],
+    "source_count": 1,
+    "total_patterns": 124,
+    "success_rate": 0.8790322580645161,
+    "friction_profile": {
+      "open": 0.8870967741935484,
+      "restricted": 0.10483870967741936,
+      "paywalled": 0.008064516129032258
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "id_decoder": {
+      "id_type": "RODNE_CISLO",
+      "name": "Czech Birth Number",
+      "extracts": [
+        "dob",
+        "gender"
+      ]
+    }
+  },
+  "RU": {
+    "jurisdiction": "RU",
+    "name": "Russia",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "HUMINT_NETWORK",
+      "OSINT_DOMAIN"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 58,
+      "MEDIA_MONITORING": 27,
+      "OSINT_GENERAL": 13,
+      "REGISTRY_OFFICERS": 11,
+      "HUMINT_NETWORK": 8,
+      "OSINT_DOMAIN": 2
+    },
+    "sources": [
+      "hh.ru"
+    ],
+    "source_count": 1,
+    "total_patterns": 119,
+    "success_rate": 0.9411764705882353,
+    "friction_profile": {
+      "restricted": 0.11764705882352941,
+      "paywalled": 0.07563025210084033,
+      "open": 0.7899159663865546,
+      "impossible": 0.01680672268907563
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "UA": {
+    "jurisdiction": "UA",
+    "name": "Ukraine",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "REGISTRY_OFFICERS",
+      "REGISTRY_LAND_PROPERTY",
+      "REGISTRY_VEHICLE_VESSEL"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 60,
+      "MEDIA_MONITORING": 22,
+      "OSINT_GENERAL": 13,
+      "HUMINT_NETWORK": 11,
+      "REGISTRY_OFFICERS": 3,
+      "REGISTRY_LAND_PROPERTY": 2,
+      "REGISTRY_VEHICLE_VESSEL": 1
+    },
+    "sources": [
+      "delo.ua",
+      "slidstvo.info",
+      "tripoli.land",
+      "vnutri.org"
+    ],
+    "source_count": 4,
+    "total_patterns": 112,
+    "success_rate": 0.7946428571428571,
+    "friction_profile": {
+      "open": 0.7053571428571429,
+      "restricted": 0.20535714285714285,
+      "paywalled": 0.03571428571428571,
+      "impossible": 0.05357142857142857
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "BG": {
+    "jurisdiction": "BG",
+    "name": "Bulgaria",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "REGISTRY_OFFICERS",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "OSINT_SOCIAL_MEDIA",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 55,
+      "MEDIA_MONITORING": 22,
+      "REGISTRY_OFFICERS": 8,
+      "OSINT_GENERAL": 8,
+      "HUMINT_NETWORK": 6,
+      "OSINT_SOCIAL_MEDIA": 3,
+      "COMPLIANCE_SANCTIONS": 1
+    },
+    "sources": [
+      "24chasa.bg",
+      "crimes.bg",
+      "mediapool.bg",
+      "rabotadatel.com",
+      "yox.bg",
+      "zeus-capital.com"
+    ],
+    "source_count": 6,
+    "total_patterns": 103,
+    "success_rate": 0.8932038834951457,
+    "friction_profile": {
+      "open": 0.8446601941747572,
+      "restricted": 0.11650485436893204,
+      "impossible": 0.02912621359223301,
+      "paywalled": 0.009708737864077669
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "FR": {
+    "jurisdiction": "FR",
+    "name": "France",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "REGISTRY_OFFICERS",
+      "REGISTRY_VEHICLE_VESSEL",
+      "COMPLIANCE_SANCTIONS",
+      "ID_DECODER"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 60,
+      "MEDIA_MONITORING": 19,
+      "OSINT_GENERAL": 10,
+      "HUMINT_NETWORK": 6,
+      "REGISTRY_OFFICERS": 3,
+      "REGISTRY_VEHICLE_VESSEL": 1,
+      "COMPLIANCE_SANCTIONS": 1
+    },
+    "sources": [
+      "helic.com"
+    ],
+    "source_count": 1,
+    "total_patterns": 100,
+    "success_rate": 0.83,
+    "friction_profile": {
+      "open": 0.79,
+      "restricted": 0.19,
+      "paywalled": 0.02
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ],
+    "id_decoder": {
+      "id_type": "NIR",
+      "name": "France NIR",
+      "extracts": [
+        "dob",
+        "gender",
+        "department",
+        "municipality"
+      ]
+    }
+  },
+  "GR": {
+    "jurisdiction": "GR",
+    "name": "Greece",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "HUMINT_NETWORK",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 59,
+      "MEDIA_MONITORING": 20,
+      "OSINT_GENERAL": 7,
+      "REGISTRY_OFFICERS": 2,
+      "HUMINT_NETWORK": 1,
+      "COMPLIANCE_SANCTIONS": 1
+    },
+    "sources": [
+      "electronicanto.net",
+      "kathimerini.gr",
+      "svs.static.otenet.gr"
+    ],
+    "source_count": 3,
+    "total_patterns": 90,
+    "success_rate": 0.7333333333333333,
+    "friction_profile": {
+      "open": 0.7555555555555555,
+      "restricted": 0.2,
+      "impossible": 0.03333333333333333,
+      "paywalled": 0.011111111111111112
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "IT": {
+    "jurisdiction": "IT",
+    "name": "Italy",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "OSINT_DOMAIN"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 62,
+      "MEDIA_MONITORING": 13,
+      "HUMINT_NETWORK": 7,
+      "OSINT_GENERAL": 4,
+      "REGISTRY_OFFICERS": 2,
+      "OSINT_DOMAIN": 1
+    },
+    "sources": [
+      "rinnovabili.it"
+    ],
+    "source_count": 1,
+    "total_patterns": 89,
+    "success_rate": 0.9101123595505618,
+    "friction_profile": {
+      "open": 0.8651685393258427,
+      "restricted": 0.12359550561797752,
+      "impossible": 0.011235955056179775
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "NL": {
+    "jurisdiction": "NL",
+    "name": "Netherlands",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "REGISTRY_OFFICERS",
+      "OSINT_GENERAL",
+      "COMPLIANCE_SANCTIONS",
+      "HUMINT_NETWORK"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 56,
+      "MEDIA_MONITORING": 17,
+      "REGISTRY_OFFICERS": 4,
+      "OSINT_GENERAL": 4,
+      "COMPLIANCE_SANCTIONS": 3,
+      "HUMINT_NETWORK": 3
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 87,
+    "success_rate": 0.9080459770114943,
+    "friction_profile": {
+      "open": 0.896551724137931,
+      "restricted": 0.08045977011494253,
+      "paywalled": 0.011494252873563218,
+      "impossible": 0.011494252873563218
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "PL": {
+    "jurisdiction": "PL",
+    "name": "Poland",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "OSINT_DOMAIN",
+      "MEDIA_ARCHIVE",
+      "REGISTRY_OFFICERS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 52,
+      "MEDIA_MONITORING": 20,
+      "OSINT_GENERAL": 9,
+      "HUMINT_NETWORK": 2,
+      "OSINT_DOMAIN": 1,
+      "MEDIA_ARCHIVE": 1,
+      "REGISTRY_OFFICERS": 1
+    },
+    "sources": [
+      "goldenline.pl",
+      "krpu.pl",
+      "openio.pl",
+      "przetargi.egospodarka.pl",
+      "yasteq.com"
+    ],
+    "source_count": 5,
+    "total_patterns": 86,
+    "success_rate": 0.6976744186046512,
+    "friction_profile": {
+      "open": 0.8837209302325582,
+      "restricted": 0.10465116279069768,
+      "impossible": 0.011627906976744186
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "AZ": {
+    "jurisdiction": "AZ",
+    "name": "AZ",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK",
+      "REGISTRY_OFFICERS",
+      "OSINT_GENERAL",
+      "REGISTRY_LAND_PROPERTY",
+      "REGISTRY_COURT"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 27,
+      "MEDIA_MONITORING": 15,
+      "HUMINT_NETWORK": 13,
+      "REGISTRY_OFFICERS": 7,
+      "OSINT_GENERAL": 5,
+      "REGISTRY_LAND_PROPERTY": 1,
+      "REGISTRY_COURT": 1
+    },
+    "sources": [
+      "azertelecom.az",
+      "haqqin.az",
+      "teref.az",
+      "www.azertelecom.az"
+    ],
+    "source_count": 4,
+    "total_patterns": 69,
+    "success_rate": 0.8840579710144928,
+    "friction_profile": {
+      "restricted": 0.3333333333333333,
+      "paywalled": 0.014492753623188406,
+      "open": 0.6231884057971014,
+      "impossible": 0.028985507246376812
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "CY": {
+    "jurisdiction": "CY",
+    "name": "Cyprus",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "OSINT_DOMAIN",
+      "REGISTRY_OFFICERS",
+      "MEDIA_INVESTIGATIVE"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 49,
+      "MEDIA_MONITORING": 5,
+      "OSINT_GENERAL": 5,
+      "HUMINT_NETWORK": 4,
+      "OSINT_DOMAIN": 3,
+      "REGISTRY_OFFICERS": 1,
+      "MEDIA_INVESTIGATIVE": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 68,
+    "success_rate": 0.9117647058823529,
+    "friction_profile": {
+      "open": 0.5147058823529411,
+      "restricted": 0.4264705882352941,
+      "paywalled": 0.029411764705882353,
+      "impossible": 0.029411764705882353
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "RS": {
+    "jurisdiction": "RS",
+    "name": "Serbia",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "REGISTRY_OFFICERS",
+      "COMPLIANCE_SANCTIONS",
+      "ANALYSIS_CORPORATE"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 35,
+      "MEDIA_MONITORING": 13,
+      "OSINT_GENERAL": 7,
+      "HUMINT_NETWORK": 3,
+      "REGISTRY_OFFICERS": 3,
+      "COMPLIANCE_SANCTIONS": 1,
+      "ANALYSIS_CORPORATE": 1
+    },
+    "sources": [
+      "nabavke.com"
+    ],
+    "source_count": 1,
+    "total_patterns": 63,
+    "success_rate": 0.8253968253968254,
+    "friction_profile": {
+      "open": 0.746031746031746,
+      "restricted": 0.2222222222222222,
+      "paywalled": 0.015873015873015872,
+      "impossible": 0.015873015873015872
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT",
+      "FINANCIAL_FILINGS"
+    ]
+  },
+  "GL": {
+    "jurisdiction": "GL",
+    "name": "GL",
+    "atoms_available": [
+      "OSINT_GENERAL",
+      "COMPLIANCE_SANCTIONS",
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "REGISTRY_OFFICERS",
+      "REGISTRY_VEHICLE_VESSEL"
+    ],
+    "atom_usage": {
+      "OSINT_GENERAL": 30,
+      "COMPLIANCE_SANCTIONS": 13,
+      "REGISTRY_COMPANY": 10,
+      "MEDIA_MONITORING": 4,
+      "REGISTRY_OFFICERS": 4,
+      "REGISTRY_VEHICLE_VESSEL": 1
+    },
+    "sources": [
+      "flightrader24.com",
+      "planespotters.net"
+    ],
+    "source_count": 2,
+    "total_patterns": 62,
+    "success_rate": 0.7741935483870968,
+    "friction_profile": {
+      "open": 0.8709677419354839,
+      "paywalled": 0.06451612903225806,
+      "restricted": 0.06451612903225806
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "OSINT_GENERAL"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "XX": {
+    "jurisdiction": "XX",
+    "name": "XX",
+    "atoms_available": [
+      "OSINT_GENERAL",
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK",
+      "COMPLIANCE_SANCTIONS",
+      "REGISTRY_OFFICERS",
+      "REGISTRY_COURT"
+    ],
+    "atom_usage": {
+      "OSINT_GENERAL": 22,
+      "REGISTRY_COMPANY": 17,
+      "MEDIA_MONITORING": 10,
+      "HUMINT_NETWORK": 6,
+      "COMPLIANCE_SANCTIONS": 3,
+      "REGISTRY_OFFICERS": 2,
+      "REGISTRY_COURT": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 61,
+    "success_rate": 0.9180327868852459,
+    "friction_profile": {
+      "open": 0.6065573770491803,
+      "paywalled": 0.21311475409836064,
+      "impossible": 0.01639344262295082,
+      "restricted": 0.16393442622950818
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "OSINT_GENERAL",
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "LU": {
+    "jurisdiction": "LU",
+    "name": "LU",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "COMPLIANCE_SANCTIONS",
+      "HUMINT_NETWORK"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 45,
+      "MEDIA_MONITORING": 7,
+      "OSINT_GENERAL": 3,
+      "REGISTRY_OFFICERS": 3,
+      "COMPLIANCE_SANCTIONS": 1,
+      "HUMINT_NETWORK": 1
+    },
+    "sources": [
+      "atalian.com",
+      "sgf.lu"
+    ],
+    "source_count": 2,
+    "total_patterns": 60,
+    "success_rate": 0.7833333333333333,
+    "friction_profile": {
+      "open": 0.75,
+      "restricted": 0.2,
+      "impossible": 0.05
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "CA": {
+    "jurisdiction": "CA",
+    "name": "Canada",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "MEDIA_MONITORING",
+      "COMPLIANCE_SANCTIONS",
+      "HUMINT_NETWORK",
+      "REGISTRY_OFFICERS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 31,
+      "OSINT_GENERAL": 12,
+      "MEDIA_MONITORING": 8,
+      "COMPLIANCE_SANCTIONS": 4,
+      "HUMINT_NETWORK": 3,
+      "REGISTRY_OFFICERS": 2
+    },
+    "sources": [
+      "lobbycanada.gc.ca"
+    ],
+    "source_count": 1,
+    "total_patterns": 60,
+    "success_rate": 0.8166666666666667,
+    "friction_profile": {
+      "open": 0.8333333333333334,
+      "restricted": 0.13333333333333333,
+      "paywalled": 0.03333333333333333
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "ME": {
+    "jurisdiction": "ME",
+    "name": "ME",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "HUMINT_NETWORK",
+      "MEDIA_MONITORING",
+      "REGISTRY_OFFICERS",
+      "OSINT_GENERAL"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 24,
+      "HUMINT_NETWORK": 16,
+      "MEDIA_MONITORING": 14,
+      "REGISTRY_OFFICERS": 2,
+      "OSINT_GENERAL": 1
+    },
+    "sources": [
+      "adriatic-capital.com",
+      "bankar.me"
+    ],
+    "source_count": 2,
+    "total_patterns": 57,
+    "success_rate": 0.9298245614035088,
+    "friction_profile": {
+      "restricted": 0.40350877192982454,
+      "open": 0.5964912280701754
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "GE": {
+    "jurisdiction": "GE",
+    "name": "GE",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "HUMINT_NETWORK",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 32,
+      "HUMINT_NETWORK": 10,
+      "MEDIA_MONITORING": 6,
+      "OSINT_GENERAL": 5,
+      "REGISTRY_OFFICERS": 2
+    },
+    "sources": [
+      "geocourts.ge"
+    ],
+    "source_count": 1,
+    "total_patterns": 55,
+    "success_rate": 0.7090909090909091,
+    "friction_profile": {
+      "open": 0.7636363636363637,
+      "restricted": 0.21818181818181817,
+      "impossible": 0.01818181818181818
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "HR": {
+    "jurisdiction": "HR",
+    "name": "Croatia",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK",
+      "REGISTRY_COURT"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 32,
+      "OSINT_GENERAL": 7,
+      "REGISTRY_OFFICERS": 5,
+      "MEDIA_MONITORING": 4,
+      "HUMINT_NETWORK": 3,
+      "REGISTRY_COURT": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 52,
+    "success_rate": 0.9038461538461539,
+    "friction_profile": {
+      "open": 0.8269230769230769,
+      "restricted": 0.17307692307692307
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "IL": {
+    "jurisdiction": "IL",
+    "name": "Israel",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "COMPLIANCE_SANCTIONS",
+      "HUMINT_NETWORK"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 35,
+      "MEDIA_MONITORING": 11,
+      "COMPLIANCE_SANCTIONS": 3,
+      "HUMINT_NETWORK": 2
+    },
+    "sources": [
+      "court.gov"
+    ],
+    "source_count": 1,
+    "total_patterns": 51,
+    "success_rate": 0.9411764705882353,
+    "friction_profile": {
+      "open": 0.9019607843137255,
+      "restricted": 0.0784313725490196,
+      "impossible": 0.0196078431372549
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "AT": {
+    "jurisdiction": "AT",
+    "name": "Austria",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "REGISTRY_OFFICERS",
+      "OSINT_SOCIAL_MEDIA",
+      "REGISTRY_LAND_PROPERTY"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 24,
+      "MEDIA_MONITORING": 8,
+      "OSINT_GENERAL": 6,
+      "HUMINT_NETWORK": 5,
+      "REGISTRY_OFFICERS": 4,
+      "OSINT_SOCIAL_MEDIA": 2,
+      "REGISTRY_LAND_PROPERTY": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 50,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 0.78,
+      "restricted": 0.2,
+      "paywalled": 0.02
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "SE": {
+    "jurisdiction": "SE",
+    "name": "Sweden",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "OSINT_DOMAIN",
+      "COMPLIANCE_SANCTIONS",
+      "HUMINT_NETWORK",
+      "ID_DECODER"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 28,
+      "MEDIA_MONITORING": 6,
+      "OSINT_GENERAL": 5,
+      "OSINT_DOMAIN": 4,
+      "COMPLIANCE_SANCTIONS": 2,
+      "HUMINT_NETWORK": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 46,
+    "success_rate": 0.8478260869565217,
+    "friction_profile": {
+      "open": 0.7608695652173914,
+      "restricted": 0.1956521739130435,
+      "paywalled": 0.043478260869565216
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ],
+    "id_decoder": {
+      "id_type": "PERSONNUMMER",
+      "name": "Sweden Personnummer",
+      "extracts": [
+        "dob",
+        "serial",
+        "check"
+      ]
+    }
+  },
+  "EE": {
+    "jurisdiction": "EE",
+    "name": "Estonia",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "HUMINT_NETWORK",
+      "OSINT_DOMAIN"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 26,
+      "MEDIA_MONITORING": 10,
+      "OSINT_GENERAL": 3,
+      "REGISTRY_OFFICERS": 3,
+      "HUMINT_NETWORK": 2,
+      "OSINT_DOMAIN": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 45,
+    "success_rate": 0.9333333333333333,
+    "friction_profile": {
+      "open": 0.8888888888888888,
+      "restricted": 0.08888888888888889,
+      "paywalled": 0.022222222222222223
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "KG": {
+    "jurisdiction": "KG",
+    "name": "KG",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "REGISTRY_OFFICERS",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 23,
+      "MEDIA_MONITORING": 12,
+      "OSINT_GENERAL": 5,
+      "HUMINT_NETWORK": 3,
+      "REGISTRY_OFFICERS": 1,
+      "COMPLIANCE_SANCTIONS": 1
+    },
+    "sources": [
+      "kaktus.media",
+      "paruskg.info",
+      "web.archive.org"
+    ],
+    "source_count": 3,
+    "total_patterns": 45,
+    "success_rate": 0.9555555555555556,
+    "friction_profile": {
+      "open": 0.8888888888888888,
+      "restricted": 0.1111111111111111
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "CO": {
+    "jurisdiction": "CO",
+    "name": "CO",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "OSINT_EMAIL"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 23,
+      "MEDIA_MONITORING": 12,
+      "OSINT_GENERAL": 4,
+      "REGISTRY_OFFICERS": 4,
+      "OSINT_EMAIL": 2
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 45,
+    "success_rate": 0.8222222222222222,
+    "friction_profile": {
+      "open": 0.8888888888888888,
+      "paywalled": 0.08888888888888889,
+      "impossible": 0.022222222222222223
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "BA": {
+    "jurisdiction": "BA",
+    "name": "BA",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "FINANCIAL_FILINGS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 24,
+      "MEDIA_MONITORING": 14,
+      "OSINT_GENERAL": 4,
+      "REGISTRY_OFFICERS": 1,
+      "FINANCIAL_FILINGS": 1
+    },
+    "sources": [
+      "capital.ba",
+      "frontal.ba",
+      "pincom.info",
+      "seebiz.eu"
+    ],
+    "source_count": 4,
+    "total_patterns": 44,
+    "success_rate": 0.8409090909090909,
+    "friction_profile": {
+      "open": 0.7954545454545454,
+      "paywalled": 0.045454545454545456,
+      "restricted": 0.11363636363636363,
+      "impossible": 0.045454545454545456
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "ES": {
+    "jurisdiction": "ES",
+    "name": "Spain",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 25,
+      "MEDIA_MONITORING": 8,
+      "OSINT_GENERAL": 6,
+      "REGISTRY_OFFICERS": 2
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 41,
+    "success_rate": 0.8536585365853658,
+    "friction_profile": {
+      "open": 0.8048780487804879,
+      "paywalled": 0.024390243902439025,
+      "restricted": 0.12195121951219512,
+      "impossible": 0.04878048780487805
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "MG": {
+    "jurisdiction": "MG",
+    "name": "MG",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "REGISTRY_OFFICERS",
+      "MEDIA_MONITORING",
+      "ANALYSIS_CORPORATE",
+      "MEDIA_INVESTIGATIVE",
+      "REGISTRY_COURT",
+      "ANALYSIS_LEGAL",
+      "OSINT_GENERAL",
+      "REGISTRY_IP"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 12,
+      "REGISTRY_OFFICERS": 11,
+      "MEDIA_MONITORING": 6,
+      "ANALYSIS_CORPORATE": 3,
+      "MEDIA_INVESTIGATIVE": 3,
+      "REGISTRY_COURT": 2,
+      "ANALYSIS_LEGAL": 2,
+      "OSINT_GENERAL": 1,
+      "REGISTRY_IP": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 41,
+    "success_rate": 0.9512195121951219,
+    "friction_profile": {
+      "open": 0.9512195121951219,
+      "restricted": 0.04878048780487805
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "REGISTRY_OFFICERS"
+    ],
+    "gaps": [
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS",
+      "FINANCIAL_CREDIT",
+      "FINANCIAL_FILINGS"
+    ]
+  },
+  "NG": {
+    "jurisdiction": "NG",
+    "name": "Nigeria",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "REGISTRY_OFFICERS",
+      "HUMINT_NETWORK",
+      "REGISTRY_COURT",
+      "MEDIA_ARCHIVE",
+      "OSINT_GENERAL"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 20,
+      "MEDIA_MONITORING": 11,
+      "REGISTRY_OFFICERS": 4,
+      "HUMINT_NETWORK": 1,
+      "REGISTRY_COURT": 1,
+      "MEDIA_ARCHIVE": 1,
+      "OSINT_GENERAL": 1
+    },
+    "sources": [
+      "fling.com"
+    ],
+    "source_count": 1,
+    "total_patterns": 39,
+    "success_rate": 0.7948717948717948,
+    "friction_profile": {
+      "open": 0.7948717948717948,
+      "restricted": 0.10256410256410256,
+      "impossible": 0.10256410256410256
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "FI": {
+    "jurisdiction": "FI",
+    "name": "Finland",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "REGISTRY_LAND_PROPERTY"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 25,
+      "MEDIA_MONITORING": 7,
+      "OSINT_GENERAL": 4,
+      "REGISTRY_OFFICERS": 2,
+      "REGISTRY_LAND_PROPERTY": 1
+    },
+    "sources": [
+      "asiakastieto.fi",
+      "finlex.fi",
+      "jyvaskyla.fi",
+      "korkeinoikeus.fi",
+      "oikeus.fi",
+      "yritystele.fi"
+    ],
+    "source_count": 6,
+    "total_patterns": 39,
+    "success_rate": 0.8974358974358975,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "CN": {
+    "jurisdiction": "CN",
+    "name": "China",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "HUMINT_NETWORK",
+      "REGISTRY_OFFICERS",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "COMPLIANCE_REGULATORY",
+      "REGISTRY_VEHICLE_VESSEL",
+      "ID_DECODER"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 11,
+      "HUMINT_NETWORK": 11,
+      "REGISTRY_OFFICERS": 7,
+      "MEDIA_MONITORING": 5,
+      "OSINT_GENERAL": 1,
+      "COMPLIANCE_REGULATORY": 1,
+      "REGISTRY_VEHICLE_VESSEL": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 37,
+    "success_rate": 0.8918918918918919,
+    "friction_profile": {
+      "open": 0.32432432432432434,
+      "restricted": 0.6216216216216216,
+      "paywalled": 0.05405405405405406
+    },
+    "primary_friction": "restricted",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "HUMINT_NETWORK"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_SANCTIONS",
+      "FINANCIAL_CREDIT"
+    ],
+    "id_decoder": {
+      "id_type": "NATIONAL_ID",
+      "name": "China National ID",
+      "extracts": [
+        "dob",
+        "gender",
+        "admin_division"
+      ]
+    }
+  },
+  "MX": {
+    "jurisdiction": "MX",
+    "name": "Mexico",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 15,
+      "MEDIA_MONITORING": 10,
+      "OSINT_GENERAL": 7,
+      "REGISTRY_OFFICERS": 3
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 35,
+    "success_rate": 0.7142857142857143,
+    "friction_profile": {
+      "open": 0.7714285714285715,
+      "restricted": 0.14285714285714285,
+      "paywalled": 0.05714285714285714,
+      "impossible": 0.02857142857142857
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "LT": {
+    "jurisdiction": "LT",
+    "name": "Lithuania",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "REGISTRY_OFFICERS",
+      "HUMINT_NETWORK"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 20,
+      "MEDIA_MONITORING": 9,
+      "REGISTRY_OFFICERS": 3,
+      "HUMINT_NETWORK": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 33,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 0.9393939393939394,
+      "restricted": 0.06060606060606061
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "CM": {
+    "jurisdiction": "CM",
+    "name": "CM",
+    "atoms_available": [
+      "REGISTRY_OFFICERS",
+      "MEDIA_INVESTIGATIVE",
+      "ANALYSIS_CORPORATE",
+      "REGISTRY_COURT",
+      "REGISTRY_COMPANY",
+      "REGISTRY_VEHICLE_VESSEL",
+      "FINANCIAL_FILINGS"
+    ],
+    "atom_usage": {
+      "REGISTRY_OFFICERS": 12,
+      "MEDIA_INVESTIGATIVE": 8,
+      "ANALYSIS_CORPORATE": 7,
+      "REGISTRY_COURT": 2,
+      "REGISTRY_COMPANY": 1,
+      "REGISTRY_VEHICLE_VESSEL": 1,
+      "FINANCIAL_FILINGS": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 32,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_OFFICERS",
+      "MEDIA_INVESTIGATIVE",
+      "ANALYSIS_CORPORATE"
+    ],
+    "gaps": [
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "EG": {
+    "jurisdiction": "EG",
+    "name": "Egypt",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "MEDIA_INVESTIGATIVE",
+      "REGISTRY_OFFICERS",
+      "OSINT_SOCIAL_MEDIA"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 11,
+      "MEDIA_MONITORING": 10,
+      "OSINT_GENERAL": 6,
+      "MEDIA_INVESTIGATIVE": 1,
+      "REGISTRY_OFFICERS": 1,
+      "OSINT_SOCIAL_MEDIA": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 30,
+    "success_rate": 0.8333333333333334,
+    "friction_profile": {
+      "open": 0.8666666666666667,
+      "restricted": 0.06666666666666667,
+      "paywalled": 0.03333333333333333,
+      "impossible": 0.03333333333333333
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "LV": {
+    "jurisdiction": "LV",
+    "name": "Latvia",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 20,
+      "MEDIA_MONITORING": 5,
+      "OSINT_GENERAL": 4,
+      "REGISTRY_OFFICERS": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 30,
+    "success_rate": 0.8333333333333334,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "DK": {
+    "jurisdiction": "DK",
+    "name": "Denmark",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "OSINT_SOCIAL_MEDIA",
+      "REGISTRY_OFFICERS",
+      "OSINT_DOMAIN"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 15,
+      "MEDIA_MONITORING": 6,
+      "OSINT_GENERAL": 3,
+      "OSINT_SOCIAL_MEDIA": 2,
+      "REGISTRY_OFFICERS": 2,
+      "OSINT_DOMAIN": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 29,
+    "success_rate": 0.8275862068965517,
+    "friction_profile": {
+      "restricted": 0.20689655172413793,
+      "open": 0.7931034482758621
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "AE": {
+    "jurisdiction": "AE",
+    "name": "UAE",
+    "atoms_available": [
+      "MEDIA_MONITORING",
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "HUMINT_NETWORK"
+    ],
+    "atom_usage": {
+      "MEDIA_MONITORING": 10,
+      "REGISTRY_COMPANY": 9,
+      "OSINT_GENERAL": 5,
+      "REGISTRY_OFFICERS": 3,
+      "HUMINT_NETWORK": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 28,
+    "success_rate": 0.75,
+    "friction_profile": {
+      "open": 0.8214285714285714,
+      "restricted": 0.14285714285714285,
+      "paywalled": 0.03571428571428571
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "MEDIA_MONITORING",
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "KM": {
+    "jurisdiction": "KM",
+    "name": "KM",
+    "atoms_available": [
+      "REGISTRY_OFFICERS",
+      "ANALYSIS_CORPORATE",
+      "MEDIA_INVESTIGATIVE",
+      "REGISTRY_COMPANY"
+    ],
+    "atom_usage": {
+      "REGISTRY_OFFICERS": 14,
+      "ANALYSIS_CORPORATE": 9,
+      "MEDIA_INVESTIGATIVE": 3,
+      "REGISTRY_COMPANY": 2
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 28,
+    "success_rate": 0.9642857142857143,
+    "friction_profile": {
+      "open": 0.9285714285714286,
+      "restricted": 0.03571428571428571,
+      "impossible": 0.03571428571428571
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_OFFICERS"
+    ],
+    "gaps": [
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "AM": {
+    "jurisdiction": "AM",
+    "name": "AM",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "HUMINT_NETWORK",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 14,
+      "HUMINT_NETWORK": 5,
+      "MEDIA_MONITORING": 4,
+      "OSINT_GENERAL": 2,
+      "REGISTRY_OFFICERS": 1,
+      "COMPLIANCE_SANCTIONS": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 27,
+    "success_rate": 0.7777777777777778,
+    "friction_profile": {
+      "open": 0.7037037037037037,
+      "restricted": 0.2962962962962963
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "TZ": {
+    "jurisdiction": "TZ",
+    "name": "TZ",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "OSINT_DOMAIN"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 19,
+      "MEDIA_MONITORING": 5,
+      "OSINT_GENERAL": 2,
+      "OSINT_DOMAIN": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 27,
+    "success_rate": 0.8518518518518519,
+    "friction_profile": {
+      "open": 0.7407407407407407,
+      "restricted": 0.18518518518518517,
+      "paywalled": 0.037037037037037035,
+      "impossible": 0.037037037037037035
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "ZA": {
+    "jurisdiction": "ZA",
+    "name": "South Africa",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "HUMINT_NETWORK",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 19,
+      "HUMINT_NETWORK": 2,
+      "MEDIA_MONITORING": 2,
+      "OSINT_GENERAL": 1,
+      "REGISTRY_OFFICERS": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 25,
+    "success_rate": 0.68,
+    "friction_profile": {
+      "open": 0.68,
+      "paywalled": 0.16,
+      "restricted": 0.12,
+      "impossible": 0.04
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "ET": {
+    "jurisdiction": "ET",
+    "name": "ET",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "REGISTRY_OFFICERS",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "MEDIA_MONITORING",
+      "COMPLIANCE_SANCTIONS",
+      "MEDIA_INVESTIGATIVE",
+      "ANALYSIS_CORPORATE"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 6,
+      "REGISTRY_OFFICERS": 6,
+      "OSINT_GENERAL": 4,
+      "HUMINT_NETWORK": 2,
+      "MEDIA_MONITORING": 2,
+      "COMPLIANCE_SANCTIONS": 1,
+      "MEDIA_INVESTIGATIVE": 1,
+      "ANALYSIS_CORPORATE": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 23,
+    "success_rate": 0.8260869565217391,
+    "friction_profile": {
+      "open": 0.782608695652174,
+      "restricted": 0.13043478260869565,
+      "impossible": 0.08695652173913043
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY",
+      "REGISTRY_OFFICERS"
+    ],
+    "gaps": [
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT",
+      "FINANCIAL_FILINGS"
+    ]
+  },
+  "SI": {
+    "jurisdiction": "SI",
+    "name": "Slovenia",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 14,
+      "MEDIA_MONITORING": 5,
+      "HUMINT_NETWORK": 4
+    },
+    "sources": [
+      "necenzurirano.si"
+    ],
+    "source_count": 1,
+    "total_patterns": 23,
+    "success_rate": 0.9130434782608695,
+    "friction_profile": {
+      "open": 0.6956521739130435,
+      "restricted": 0.30434782608695654
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "BE": {
+    "jurisdiction": "BE",
+    "name": "Belgium",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "ID_DECODER"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 10,
+      "MEDIA_MONITORING": 6,
+      "OSINT_GENERAL": 3,
+      "HUMINT_NETWORK": 3
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 22,
+    "success_rate": 0.9090909090909091,
+    "friction_profile": {
+      "open": 0.5454545454545454,
+      "restricted": 0.4090909090909091,
+      "paywalled": 0.045454545454545456
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "id_decoder": {
+      "id_type": "NRN",
+      "name": "Belgium NRN",
+      "extracts": [
+        "dob",
+        "gender",
+        "serial"
+      ]
+    }
+  },
+  "MD": {
+    "jurisdiction": "MD",
+    "name": "MD",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "HUMINT_NETWORK",
+      "MEDIA_MONITORING",
+      "COMPLIANCE_SANCTIONS",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 12,
+      "HUMINT_NETWORK": 4,
+      "MEDIA_MONITORING": 2,
+      "COMPLIANCE_SANCTIONS": 1,
+      "OSINT_GENERAL": 1,
+      "REGISTRY_OFFICERS": 1
+    },
+    "sources": [
+      "journal.md",
+      "profit.ro"
+    ],
+    "source_count": 2,
+    "total_patterns": 21,
+    "success_rate": 0.8571428571428571,
+    "friction_profile": {
+      "open": 0.6666666666666666,
+      "restricted": 0.2857142857142857,
+      "paywalled": 0.047619047619047616
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "BF": {
+    "jurisdiction": "BF",
+    "name": "BF",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "REGISTRY_OFFICERS",
+      "MEDIA_MONITORING",
+      "FINANCIAL_FILINGS",
+      "MEDIA_INVESTIGATIVE"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 13,
+      "REGISTRY_OFFICERS": 3,
+      "MEDIA_MONITORING": 2,
+      "FINANCIAL_FILINGS": 2,
+      "MEDIA_INVESTIGATIVE": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 21,
+    "success_rate": 0.6190476190476191,
+    "friction_profile": {
+      "open": 0.7619047619047619,
+      "impossible": 0.23809523809523808
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "AU": {
+    "jurisdiction": "AU",
+    "name": "Australia",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "MEDIA_MONITORING",
+      "REGISTRY_OFFICERS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 11,
+      "OSINT_GENERAL": 4,
+      "MEDIA_MONITORING": 3,
+      "REGISTRY_OFFICERS": 2
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 20,
+    "success_rate": 0.85,
+    "friction_profile": {
+      "open": 0.8,
+      "restricted": 0.1,
+      "paywalled": 0.1
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "KE": {
+    "jurisdiction": "KE",
+    "name": "Kenya",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "HUMINT_NETWORK",
+      "REGISTRY_OFFICERS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 9,
+      "MEDIA_MONITORING": 4,
+      "OSINT_GENERAL": 3,
+      "HUMINT_NETWORK": 2,
+      "REGISTRY_OFFICERS": 1
+    },
+    "sources": [
+      "equitygroupholdings.com"
+    ],
+    "source_count": 1,
+    "total_patterns": 19,
+    "success_rate": 0.7368421052631579,
+    "friction_profile": {
+      "unknown": 0.15789473684210525,
+      "restricted": 0.15789473684210525,
+      "open": 0.631578947368421,
+      "impossible": 0.05263157894736842
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "EU": {
+    "jurisdiction": "EU",
+    "name": "EU",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "MEDIA_INVESTIGATIVE"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 15,
+      "OSINT_GENERAL": 2,
+      "MEDIA_INVESTIGATIVE": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 18,
+    "success_rate": 0.9444444444444444,
+    "friction_profile": {
+      "open": 0.9444444444444444,
+      "impossible": 0.05555555555555555
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "MA": {
+    "jurisdiction": "MA",
+    "name": "MA",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 12,
+      "MEDIA_MONITORING": 6
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 18,
+    "success_rate": 0.8333333333333334,
+    "friction_profile": {
+      "open": 0.8333333333333334,
+      "restricted": 0.05555555555555555,
+      "impossible": 0.1111111111111111
+    },
+    "primary_friction": "open",
+    "strengths": [],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "CL": {
+    "jurisdiction": "CL",
+    "name": "CL",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "MEDIA_INVESTIGATIVE",
+      "REGISTRY_OFFICERS",
+      "OSINT_GENERAL",
+      "ID_DECODER"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 10,
+      "MEDIA_MONITORING": 4,
+      "MEDIA_INVESTIGATIVE": 2,
+      "REGISTRY_OFFICERS": 1,
+      "OSINT_GENERAL": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 18,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 0.9444444444444444,
+      "restricted": 0.05555555555555555
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "id_decoder": {
+      "id_type": "RUT",
+      "name": "Chile RUT/RUN",
+      "extracts": [
+        "number",
+        "check_digit"
+      ]
+    }
+  },
+  "SA": {
+    "jurisdiction": "SA",
+    "name": "SA",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "MEDIA_MONITORING",
+      "OSINT_SOCIAL_MEDIA"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 7,
+      "OSINT_GENERAL": 4,
+      "REGISTRY_OFFICERS": 3,
+      "MEDIA_MONITORING": 2,
+      "OSINT_SOCIAL_MEDIA": 1
+    },
+    "sources": [
+      "booking.com"
+    ],
+    "source_count": 1,
+    "total_patterns": 17,
+    "success_rate": 0.9411764705882353,
+    "friction_profile": {
+      "impossible": 0.058823529411764705,
+      "open": 0.7647058823529411,
+      "paywalled": 0.11764705882352941,
+      "restricted": 0.058823529411764705
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "SK": {
+    "jurisdiction": "SK",
+    "name": "Slovakia",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "ID_DECODER"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 15,
+      "OSINT_GENERAL": 2
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 17,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 0.9411764705882353,
+      "paywalled": 0.058823529411764705
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "id_decoder": {
+      "id_type": "RODNE_CISLO",
+      "name": "Slovak Birth Number",
+      "extracts": [
+        "dob",
+        "gender"
+      ]
+    }
+  },
+  "BY": {
+    "jurisdiction": "BY",
+    "name": "Belarus",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 9,
+      "OSINT_GENERAL": 4,
+      "MEDIA_MONITORING": 2,
+      "HUMINT_NETWORK": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 16,
+    "success_rate": 0.625,
+    "friction_profile": {
+      "open": 0.5,
+      "restricted": 0.375,
+      "impossible": 0.125
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "SG": {
+    "jurisdiction": "SG",
+    "name": "Singapore",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "HUMINT_NETWORK"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 12,
+      "OSINT_GENERAL": 1,
+      "REGISTRY_OFFICERS": 1,
+      "HUMINT_NETWORK": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 15,
+    "success_rate": 0.7333333333333333,
+    "friction_profile": {
+      "open": 0.8,
+      "restricted": 0.2
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "HK": {
+    "jurisdiction": "HK",
+    "name": "Hong Kong",
+    "atoms_available": [
+      "REGISTRY_COMPANY"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 15
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 15,
+    "success_rate": 0.6,
+    "friction_profile": {
+      "open": 0.9333333333333333,
+      "restricted": 0.06666666666666667
+    },
+    "primary_friction": "open",
+    "strengths": [],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "PE": {
+    "jurisdiction": "PE",
+    "name": "PE",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 10,
+      "MEDIA_MONITORING": 3,
+      "OSINT_GENERAL": 2
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 15,
+    "success_rate": 0.8,
+    "friction_profile": {
+      "open": 0.9333333333333333,
+      "restricted": 0.06666666666666667
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "IN": {
+    "jurisdiction": "IN",
+    "name": "IN",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "MEDIA_INVESTIGATIVE"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 7,
+      "MEDIA_MONITORING": 6,
+      "MEDIA_INVESTIGATIVE": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 14,
+    "success_rate": 0.8571428571428571,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "MU": {
+    "jurisdiction": "MU",
+    "name": "MU",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 10,
+      "MEDIA_MONITORING": 4
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 14,
+    "success_rate": 0.7142857142857143,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "MH": {
+    "jurisdiction": "MH",
+    "name": "MH",
+    "atoms_available": [
+      "REGISTRY_OFFICERS",
+      "REGISTRY_COMPANY",
+      "MEDIA_INVESTIGATIVE",
+      "REGISTRY_COURT",
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL"
+    ],
+    "atom_usage": {
+      "REGISTRY_OFFICERS": 5,
+      "REGISTRY_COMPANY": 4,
+      "MEDIA_INVESTIGATIVE": 1,
+      "REGISTRY_COURT": 1,
+      "ANALYSIS_CORPORATE": 1,
+      "ANALYSIS_LEGAL": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 13,
+    "success_rate": 0.9230769230769231,
+    "friction_profile": {
+      "open": 0.9230769230769231,
+      "impossible": 0.07692307692307693
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_OFFICERS",
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS",
+      "FINANCIAL_CREDIT",
+      "FINANCIAL_FILINGS"
+    ]
+  },
+  "N/A": {
+    "jurisdiction": "N/A",
+    "name": "N/A",
+    "atoms_available": [
+      "REGISTRY_OFFICERS",
+      "OSINT_GENERAL",
+      "MEDIA_MONITORING",
+      "OSINT_DOMAIN",
+      "REGISTRY_COMPANY",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "atom_usage": {
+      "REGISTRY_OFFICERS": 4,
+      "OSINT_GENERAL": 4,
+      "MEDIA_MONITORING": 2,
+      "OSINT_DOMAIN": 1,
+      "REGISTRY_COMPANY": 1,
+      "COMPLIANCE_SANCTIONS": 1
+    },
+    "sources": [
+      "bitcointalk.org",
+      "blockchain.com",
+      "corpolympics.org",
+      "flightradar24.com",
+      "grossus.org",
+      "planespotters.net",
+      "zeus-capital.com"
+    ],
+    "source_count": 7,
+    "total_patterns": 13,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_OFFICERS",
+      "OSINT_GENERAL"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "UZ": {
+    "jurisdiction": "UZ",
+    "name": "UZ",
+    "atoms_available": [
+      "REGISTRY_OFFICERS",
+      "MEDIA_INVESTIGATIVE",
+      "HUMINT_NETWORK",
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "atom_usage": {
+      "REGISTRY_OFFICERS": 6,
+      "MEDIA_INVESTIGATIVE": 3,
+      "HUMINT_NETWORK": 2,
+      "REGISTRY_COMPANY": 1,
+      "MEDIA_MONITORING": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 13,
+    "success_rate": 0.8461538461538461,
+    "friction_profile": {
+      "open": 0.8461538461538461,
+      "restricted": 0.15384615384615385
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_OFFICERS"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "MT": {
+    "jurisdiction": "MT",
+    "name": "MT",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "REGISTRY_LAND_PROPERTY"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 11,
+      "OSINT_GENERAL": 1,
+      "REGISTRY_LAND_PROPERTY": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 13,
+    "success_rate": 0.8461538461538461,
+    "friction_profile": {
+      "open": 0.7692307692307693,
+      "restricted": 0.23076923076923078
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "ID": {
+    "jurisdiction": "ID",
+    "name": "ID",
+    "atoms_available": [
+      "REGISTRY_OFFICERS",
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK",
+      "ID_DECODER"
+    ],
+    "atom_usage": {
+      "REGISTRY_OFFICERS": 5,
+      "REGISTRY_COMPANY": 4,
+      "OSINT_GENERAL": 1,
+      "MEDIA_MONITORING": 1,
+      "HUMINT_NETWORK": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 12,
+    "success_rate": 0.8333333333333334,
+    "friction_profile": {
+      "open": 0.8333333333333334,
+      "impossible": 0.08333333333333333,
+      "restricted": 0.08333333333333333
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_OFFICERS",
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "id_decoder": {
+      "id_type": "NIK",
+      "name": "Indonesia NIK",
+      "extracts": [
+        "dob",
+        "gender",
+        "province",
+        "regency",
+        "district"
+      ]
+    }
+  },
+  "VG": {
+    "jurisdiction": "VG",
+    "name": "VG",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "REGISTRY_OFFICERS",
+      "OSINT_GENERAL"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 7,
+      "REGISTRY_OFFICERS": 2,
+      "OSINT_GENERAL": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 10,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 0.9,
+      "restricted": 0.1
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "GY": {
+    "jurisdiction": "GY",
+    "name": "GY",
+    "atoms_available": [
+      "REGISTRY_OFFICERS",
+      "REGISTRY_COURT",
+      "FINANCIAL_FILINGS",
+      "ANALYSIS_CORPORATE"
+    ],
+    "atom_usage": {
+      "REGISTRY_OFFICERS": 4,
+      "REGISTRY_COURT": 3,
+      "FINANCIAL_FILINGS": 2,
+      "ANALYSIS_CORPORATE": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 10,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_OFFICERS"
+    ],
+    "gaps": [
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "EC": {
+    "jurisdiction": "EC",
+    "name": "EC",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_OFFICERS",
+      "OSINT_DOMAIN"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 4,
+      "MEDIA_MONITORING": 2,
+      "OSINT_GENERAL": 2,
+      "REGISTRY_OFFICERS": 1,
+      "OSINT_DOMAIN": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 10,
+    "success_rate": 0.6,
+    "friction_profile": {
+      "open": 0.8,
+      "restricted": 0.1,
+      "impossible": 0.1
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "TN": {
+    "jurisdiction": "TN",
+    "name": "TN",
+    "atoms_available": [
+      "MEDIA_MONITORING",
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL"
+    ],
+    "atom_usage": {
+      "MEDIA_MONITORING": 4,
+      "REGISTRY_COMPANY": 3,
+      "OSINT_GENERAL": 2
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 9,
+    "success_rate": 0.6666666666666666,
+    "friction_profile": {
+      "open": 0.7777777777777778,
+      "impossible": 0.2222222222222222
+    },
+    "primary_friction": "open",
+    "strengths": [],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "PA": {
+    "jurisdiction": "PA",
+    "name": "PA",
+    "atoms_available": [
+      "REGISTRY_OFFICERS",
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL"
+    ],
+    "atom_usage": {
+      "REGISTRY_OFFICERS": 5,
+      "REGISTRY_COMPANY": 2,
+      "OSINT_GENERAL": 2
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 9,
+    "success_rate": 0.7777777777777778,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_OFFICERS"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "IQ": {
+    "jurisdiction": "IQ",
+    "name": "IQ",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "OSINT_SOCIAL_MEDIA",
+      "MEDIA_MONITORING"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 6,
+      "OSINT_GENERAL": 1,
+      "OSINT_SOCIAL_MEDIA": 1,
+      "MEDIA_MONITORING": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 9,
+    "success_rate": 0.8888888888888888,
+    "friction_profile": {
+      "open": 0.8888888888888888,
+      "impossible": 0.1111111111111111
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "IE": {
+    "jurisdiction": "IE",
+    "name": "Ireland",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_DOMAIN",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 6,
+      "OSINT_DOMAIN": 1,
+      "MEDIA_MONITORING": 1,
+      "OSINT_GENERAL": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 9,
+    "success_rate": 0.8888888888888888,
+    "friction_profile": {
+      "open": 0.8888888888888888,
+      "restricted": 0.1111111111111111
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "PT": {
+    "jurisdiction": "PT",
+    "name": "Portugal",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 6,
+      "MEDIA_MONITORING": 2
+    },
+    "sources": [
+      "sapo.pt"
+    ],
+    "source_count": 1,
+    "total_patterns": 8,
+    "success_rate": 0.875,
+    "friction_profile": {
+      "open": 0.625,
+      "restricted": 0.25,
+      "impossible": 0.125
+    },
+    "primary_friction": "open",
+    "strengths": [],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "PS": {
+    "jurisdiction": "PS",
+    "name": "PS",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "HUMINT_NETWORK",
+      "MEDIA_MONITORING"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 4,
+      "HUMINT_NETWORK": 3,
+      "MEDIA_MONITORING": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 8,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 0.5,
+      "restricted": 0.5
+    },
+    "primary_friction": "open",
+    "strengths": [],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "MULTI": {
+    "jurisdiction": "MULTI",
+    "name": "MULTI",
+    "atoms_available": [
+      "COMPLIANCE_SANCTIONS",
+      "REGISTRY_OFFICERS",
+      "MEDIA_MONITORING",
+      "REGISTRY_COMPANY"
+    ],
+    "atom_usage": {
+      "COMPLIANCE_SANCTIONS": 3,
+      "REGISTRY_OFFICERS": 2,
+      "MEDIA_MONITORING": 1,
+      "REGISTRY_COMPANY": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 7,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "AL": {
+    "jurisdiction": "AL",
+    "name": "AL",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 6,
+      "MEDIA_MONITORING": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 7,
+    "success_rate": 0.8571428571428571,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "UG": {
+    "jurisdiction": "UG",
+    "name": "UG",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 4,
+      "MEDIA_MONITORING": 3
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 7,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "SN": {
+    "jurisdiction": "SN",
+    "name": "SN",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "HUMINT_NETWORK"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 5,
+      "HUMINT_NETWORK": 2
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 7,
+    "success_rate": 0.7142857142857143,
+    "friction_profile": {
+      "open": 0.42857142857142855,
+      "restricted": 0.5714285714285714
+    },
+    "primary_friction": "restricted",
+    "strengths": [],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "NO": {
+    "jurisdiction": "NO",
+    "name": "Norway",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL",
+      "COMPLIANCE_SANCTIONS"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 5,
+      "OSINT_GENERAL": 1,
+      "COMPLIANCE_SANCTIONS": 1
+    },
+    "sources": [
+      "lovdata.no"
+    ],
+    "source_count": 1,
+    "total_patterns": 7,
+    "success_rate": 0.42857142857142855,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "FINANCIAL_CREDIT"
+    ]
+  },
+  "TM": {
+    "jurisdiction": "TM",
+    "name": "TM",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "HUMINT_NETWORK",
+      "OSINT_GENERAL",
+      "MEDIA_MONITORING"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 3,
+      "HUMINT_NETWORK": 1,
+      "OSINT_GENERAL": 1,
+      "MEDIA_MONITORING": 1
+    },
+    "sources": [
+      "gov.tm"
+    ],
+    "source_count": 1,
+    "total_patterns": 6,
+    "success_rate": 0.5,
+    "friction_profile": {
+      "open": 0.6666666666666666,
+      "impossible": 0.3333333333333333
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "MZ": {
+    "jurisdiction": "MZ",
+    "name": "MZ",
+    "atoms_available": [
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL"
+    ],
+    "atom_usage": {
+      "MEDIA_MONITORING": 5,
+      "OSINT_GENERAL": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 6,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 0.8333333333333334,
+      "restricted": 0.16666666666666666
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "MEDIA_MONITORING"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "JO": {
+    "jurisdiction": "JO",
+    "name": "JO",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 3,
+      "MEDIA_MONITORING": 2,
+      "HUMINT_NETWORK": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 6,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 0.8333333333333334,
+      "restricted": 0.16666666666666666
+    },
+    "primary_friction": "open",
+    "strengths": [],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "JE": {
+    "jurisdiction": "JE",
+    "name": "JE",
+    "atoms_available": [
+      "REGISTRY_COMPANY"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 5
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 5,
+    "success_rate": 0.6,
+    "friction_profile": {
+      "open": 0.6,
+      "restricted": 0.4
+    },
+    "primary_friction": "open",
+    "strengths": [],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "UN": {
+    "jurisdiction": "UN",
+    "name": "UN",
+    "atoms_available": [
+      "REGISTRY_VEHICLE_VESSEL",
+      "MEDIA_MONITORING",
+      "OSINT_GENERAL",
+      "REGISTRY_COMPANY"
+    ],
+    "atom_usage": {
+      "REGISTRY_VEHICLE_VESSEL": 2,
+      "MEDIA_MONITORING": 1,
+      "OSINT_GENERAL": 1,
+      "REGISTRY_COMPANY": 1
+    },
+    "sources": [
+      "ohchr.org"
+    ],
+    "source_count": 1,
+    "total_patterns": 5,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_VEHICLE_VESSEL"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "XK": {
+    "jurisdiction": "XK",
+    "name": "XK",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 4,
+      "MEDIA_MONITORING": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 5,
+    "success_rate": 0.8,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "ML": {
+    "jurisdiction": "ML",
+    "name": "ML",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 4,
+      "OSINT_GENERAL": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 5,
+    "success_rate": 0.4,
+    "friction_profile": {
+      "restricted": 0.4,
+      "impossible": 0.2,
+      "open": 0.4
+    },
+    "primary_friction": "restricted",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "IS": {
+    "jurisdiction": "IS",
+    "name": "IS",
+    "atoms_available": [
+      "MEDIA_MONITORING",
+      "REGISTRY_COMPANY"
+    ],
+    "atom_usage": {
+      "MEDIA_MONITORING": 3,
+      "REGISTRY_COMPANY": 2
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 5,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 1.0
+    },
+    "primary_friction": "open",
+    "strengths": [],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "LB": {
+    "jurisdiction": "LB",
+    "name": "LB",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 3,
+      "MEDIA_MONITORING": 1,
+      "HUMINT_NETWORK": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 5,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "restricted": 0.8,
+      "open": 0.2
+    },
+    "primary_friction": "restricted",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "NZ": {
+    "jurisdiction": "NZ",
+    "name": "New Zealand",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "OSINT_GENERAL"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 4,
+      "OSINT_GENERAL": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 5,
+    "success_rate": 1.0,
+    "friction_profile": {
+      "open": 0.8,
+      "restricted": 0.2
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "CD": {
+    "jurisdiction": "CD",
+    "name": "CD",
+    "atoms_available": [
+      "REGISTRY_COMPANY",
+      "MEDIA_MONITORING",
+      "HUMINT_NETWORK"
+    ],
+    "atom_usage": {
+      "REGISTRY_COMPANY": 3,
+      "MEDIA_MONITORING": 1,
+      "HUMINT_NETWORK": 1
+    },
+    "sources": [],
+    "source_count": 0,
+    "total_patterns": 5,
+    "success_rate": 0.8,
+    "friction_profile": {
+      "impossible": 0.2,
+      "open": 0.6,
+      "restricted": 0.2
+    },
+    "primary_friction": "open",
+    "strengths": [
+      "REGISTRY_COMPANY"
+    ],
+    "gaps": [
+      "ANALYSIS_CORPORATE",
+      "ANALYSIS_LEGAL",
+      "COMPLIANCE_PEP",
+      "COMPLIANCE_REGULATORY",
+      "COMPLIANCE_SANCTIONS"
+    ]
+  },
+  "KR": {
+    "jurisdiction": "KR",
+    "name": "KR",
+    "atoms_available": [
+      "ID_DECODER"
+    ],
+    "id_decoder": {
+      "id_type": "RRN",
+      "name": "South Korea RRN",
+      "extracts": [
+        "dob",
+        "gender",
+        "century"
+      ]
+    }
+  }
+}

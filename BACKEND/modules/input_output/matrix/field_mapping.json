@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Maps raw field names from various sources to standardized IO Matrix codes",
+    "updated_at": "2025-01-04",
+    "purpose": "Automatic translation of extracted data to standardized format"
+  },
+  "mappings": {
+    "company_name": { "code": 13, "aliases": ["name", "company", "legal_name", "entity_name", "firm_name", "business_name", "registered_name"] },
+    "company_reg_id": { "code": 14, "aliases": ["company_number", "registration_number", "reg_number", "crn", "ein", "registry_number", "company_id", "number", "reg_id", "incorporation_number", "native_company_number", "local_company_number"] },
+    "company_vat_id": { "code": 15, "aliases": ["vat_number", "vat", "tax_id", "tax_number", "gst_number", "ust_id", "pib", "oib", "nip", "cui", "ico"] },
+    "company_previous_name": { "code": 16, "aliases": ["previous_names", "former_name", "former_names", "old_name", "historical_name", "previous_company_names"] },
+    "company_email": { "code": 44, "aliases": ["email", "e-mail", "contact_email", "business_email"] },
+    "company_phone": { "code": 45, "aliases": ["phone", "telephone", "tel", "phone_number", "contact_phone", "business_phone"] },
+    "company_website": { "code": 46, "aliases": ["website", "web", "url", "homepage", "company_url", "web_address"] },
+    "company_address": { "code": 47, "aliases": ["registered_address", "address", "registered_office", "business_address", "hq_address", "registered_address_in_full", "office_address", "headquarters", "registered_office_address"] },
+    "company_country": { "code": 48, "aliases": ["country", "jurisdiction", "jurisdiction_code", "country_code", "incorporated_in"] },
+    "company_status": { "code": 49, "aliases": ["status", "current_status", "company_status", "active_status", "trading_status", "legal_status"] },
+    "company_incorporation_date": { "code": 50, "aliases": ["incorporation_date", "date_incorporated", "formation_date", "date_of_incorporation", "created_date", "founded", "date_of_creation", "established", "registered_date", "founded_date", "foundation_date", "established_date"] },
+    "company_dissolution_date": { "code": 51, "aliases": ["dissolution_date", "date_dissolved", "date_of_cessation", "closed_date", "terminated_date", "wound_up_date"] },
+    "company_type": { "code": 52, "aliases": ["company_type", "type", "entity_type", "legal_form", "business_type", "organization_type", "corporate_form"] },
+    "company_sic_code": { "code": 53, "aliases": ["sic_code", "sic_codes", "industry_code", "nace_code", "naics_code", "activity_code", "classification_code"] },
+    "company_financial_statements": { "code": 54, "aliases": ["financial_statements", "accounts", "financials", "annual_accounts"] },
+    "company_financial_year_end": { "code": 55, "aliases": ["financial_year_end", "accounting_reference_date", "fiscal_year_end", "year_end"] },
+    "company_share_capital": { "code": 56, "aliases": ["share_capital", "capital", "authorized_capital", "issued_capital", "registered_capital", "equity", "capital_stock", "share capital"] },
+    "company_accounts_filing_date": { "code": 57, "aliases": ["accounts_filing_date", "last_accounts_date", "latest_accounts", "last_filed_accounts"] },
+    "company_officers": { "code": 58, "aliases": ["officers", "directors", "management", "board", "executives", "key_personnel", "directors_/_officers", "directors_officers", "inactive_directors_/_officers"] },
+    "company_officer_name": { "code": 59, "aliases": ["officer_name", "director_name", "executive_name", "manager_name"] },
+    "company_officer_role": { "code": 60, "aliases": ["officer_role", "position", "role", "title", "function", "designation"] },
+    "company_officer_appointment_date": { "code": 61, "aliases": ["appointment_date", "start_date", "appointed", "date_appointed"] },
+    "company_officer_resignation_date": { "code": 62, "aliases": ["resignation_date", "end_date", "resigned", "date_resigned", "ceased_on"] },
+    "company_officer_nationality": { "code": 63, "aliases": ["nationality", "officer_nationality", "citizenship"] },
+    "company_officer_dob": { "code": 64, "aliases": ["officer_dob", "date_of_birth", "birth_date", "dob"] },
+    "company_officer_address": { "code": 65, "aliases": ["officer_address", "service_address", "correspondence_address"] },
+    "company_beneficial_owners": { "code": 66, "aliases": ["beneficial_owners", "ubo", "ultimate_beneficial_owners", "psc", "persons_with_significant_control"] },
+    "company_beneficial_owner_name": { "code": 67, "aliases": ["beneficial_owner_name", "ubo_name", "psc_name"] },
+    "company_beneficial_owner_ownership_pct": { "code": 68, "aliases": ["ownership_percentage", "ownership_pct", "stake", "shareholding_pct"] },
+    "company_beneficial_owner_control_nature": { "code": 69, "aliases": ["control_nature", "nature_of_control", "control_type"] },
+    "company_beneficial_owner_nationality": { "code": 70, "aliases": ["owner_nationality", "ubo_nationality"] },
+    "company_shareholders": { "code": 71, "aliases": ["shareholders", "owners", "shareholders_list", "equity_holders"] },
+    "company_shareholder_name": { "code": 72, "aliases": ["shareholder_name", "owner_name"] },
+    "company_shareholder_company": { "code": 73, "aliases": ["shareholder_company", "corporate_shareholder"] },
+    "company_shareholder_person": { "code": 74, "aliases": ["shareholder_person", "individual_shareholder"] },
+    "company_shareholder_type": { "code": 75, "aliases": ["shareholder_type", "owner_type"] },
+    "company_shareholder_shares": { "code": 76, "aliases": ["shares", "number_of_shares", "shares_held"] },
+    "company_shareholder_share_class": { "code": 77, "aliases": ["share_class", "class_of_shares"] },
+    "company_lei": { "code": 420, "aliases": ["lei", "legal_entity_identifier"] },
+    "company_bic": { "code": 421, "aliases": ["bic", "swift", "swift_code"] },
+    "company_parent": { "code": 422, "aliases": ["parent_company", "parent", "holding_company"] },
+    "company_ultimate_parent": { "code": 423, "aliases": ["ultimate_parent", "ultimate_holding_company", "group_parent"] },
+    "company_subsidiary": { "code": 424, "aliases": ["subsidiary", "subsidiaries", "daughter_company"] },
+    "company_headquarters_address": { "code": 425, "aliases": ["headquarters", "hq", "head_office", "principal_office"] },
+    "company_legal_form": { "code": 426, "aliases": ["legal_form", "entity_form", "corporate_form_code"] },
+    "company_previous_names": { "code": 427, "aliases": ["all_previous_names", "name_history", "historical_names"] },
+    "company_registration_authority": { "code": 428, "aliases": ["registration_authority", "registry", "registrar", "registered_at"] },
+    "company_managing_lou": { "code": 429, "aliases": ["managing_lou", "lou", "local_operating_unit"] },
+    "company_registration_status": { "code": 430, "aliases": ["registration_status", "lei_status"] }
+  },
+  "jurisdiction_specific": {
+    "UK": {
+      "uk_companies_house_number": { "code": 391, "maps_to": "company_reg_id" },
+      "uk_companies_house_name": { "code": 392, "maps_to": "company_name" },
+      "uk_companies_house_status": { "code": 393, "maps_to": "company_status" },
+      "uk_companies_house_type": { "code": 394, "maps_to": "company_type" },
+      "uk_companies_house_date_of_creation": { "code": 395, "maps_to": "company_incorporation_date" },
+      "uk_companies_house_date_of_cessation": { "code": 396, "maps_to": "company_dissolution_date" },
+      "uk_companies_house_registered_office": { "code": 397, "maps_to": "company_address" },
+      "uk_companies_house_sic_codes": { "code": 398, "maps_to": "company_sic_code" },
+      "uk_companies_house_officers": { "code": 399, "maps_to": "company_officers" },
+      "uk_companies_house_filing_history": { "code": 400, "maps_to": null },
+      "uk_companies_house_charges": { "code": 401, "maps_to": null },
+      "uk_companies_house_insolvency_history": { "code": 402, "maps_to": null }
+    },
+    "DE": {
+      "hrb_number": { "maps_to": "company_reg_id", "pattern": "HRB\\s*\\d+" },
+      "hra_number": { "maps_to": "company_reg_id", "pattern": "HRA\\s*\\d+" },
+      "handelsregister": { "maps_to": "company_reg_id" }
+    },
+    "FR": {
+      "siren": { "maps_to": "company_reg_id", "pattern": "\\d{9}" },
+      "siret": { "maps_to": "company_vat_id", "pattern": "\\d{14}" },
+      "rcs": { "maps_to": "company_reg_id" }
+    },
+    "HR": {
+      "oib": { "maps_to": "company_vat_id", "pattern": "\\d{11}" },
+      "mbs": { "maps_to": "company_reg_id", "pattern": "\\d{8}" }
+    },
+    "RS": {
+      "pib": { "maps_to": "company_vat_id", "pattern": "\\d{9}" },
+      "mb": { "maps_to": "company_reg_id", "pattern": "\\d{8}" }
+    },
+    "PL": {
+      "krs": { "maps_to": "company_reg_id", "pattern": "\\d{10}" },
+      "nip": { "maps_to": "company_vat_id", "pattern": "\\d{10}" },
+      "regon": { "maps_to": "company_sic_code", "pattern": "\\d{9,14}" }
+    },
+    "NL": {
+      "kvk": { "maps_to": "company_reg_id", "pattern": "\\d{8}" }
+    },
+    "DK": {
+      "cvr": { "maps_to": "company_reg_id", "pattern": "\\d{8}" }
+    },
+    "CZ": {
+      "ico": { "maps_to": "company_reg_id", "pattern": "\\d{8}" }
+    },
+    "AT": {
+      "fn": { "maps_to": "company_reg_id", "pattern": "FN\\s*\\d+" }
+    },
+    "CH": {
+      "uid": { "maps_to": "company_reg_id", "pattern": "CHE-\\d{3}\\.\\d{3}\\.\\d{3}" }
+    },
+    "HU": {
+      "cegjegyzekszam": { "maps_to": "company_reg_id" },
+      "adoszam": { "maps_to": "company_vat_id" }
+    },
+    "RO": {
+      "cui": { "maps_to": "company_vat_id", "pattern": "\\d+" },
+      "j_number": { "maps_to": "company_reg_id" }
+    },
+    "BG": {
+      "eik": { "maps_to": "company_reg_id", "pattern": "\\d{9,13}" }
+    },
+    "IT": {
+      "fiscal_code": { "maps_to": "company_vat_id" },
+      "rea": { "maps_to": "company_reg_id" }
+    }
+  },
+  "opencorporates_mapping": {
+    "company_number": "company_reg_id",
+    "jurisdiction_code": "company_country",
+    "name": "company_name",
+    "current_status": "company_status",
+    "incorporation_date": "company_incorporation_date",
+    "dissolution_date": "company_dissolution_date",
+    "company_type": "company_type",
+    "registered_address_in_full": "company_address",
+    "registry_url": null,
+    "opencorporates_url": null,
+    "source": null
+  }
+}

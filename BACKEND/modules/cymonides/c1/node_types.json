@@ -1,0 +1,554 @@
+{
+  "_meta": {
+    "version": "2.0.0",
+    "title": "C1 Node Type Templates - Hierarchical",
+    "description": "Single source of truth for Cymonides-1 node types. Structure: CLASS → TYPE → SUBTYPE",
+    "updated_at": "2026-01-12",
+    "canonical_particles": "/data/CLASSES/NEXUS/emergent.json"
+  },
+
+  "base_schema": {
+    "required": ["id", "node_class", "type", "canonicalValue", "label"],
+    "standard": ["value", "embedded_edges", "metadata", "createdAt", "updatedAt", "lastSeen"],
+    "optional": ["projectId"]
+  },
+
+  "SUBJECT": {
+    "_color": "GREEN",
+    "_description": "Dynamic/Animate - Entities and their identifiers",
+
+    "ENTITY": {
+      "_description": "Real-world identifiable things",
+      "person": {
+        "_code": 7,
+        "fields": ["name", "aliases", "dob", "nationality", "gender"],
+        "example_canonical": "john-smith-1985-01-15"
+      },
+      "organization": {
+        "_code": 13,
+        "fields": ["name", "legal_form", "jurisdiction", "reg_number", "status"],
+        "example_canonical": "acme-corp-gb-12345678"
+      },
+      "object": {
+        "_code": 50,
+        "fields": ["name", "category", "serial_number"],
+        "example_canonical": "vessel-imo-1234567"
+      },
+      "asset": {
+        "_code": 51,
+        "fields": ["name", "asset_type", "value", "currency"],
+        "example_canonical": "property-123-main-st"
+      },
+      "vessel": {
+        "_code": 52,
+        "fields": ["name", "imo", "mmsi", "flag", "vessel_type"],
+        "example_canonical": "vessel-imo-9876543"
+      },
+      "aircraft": {
+        "_code": 53,
+        "fields": ["registration", "icao24", "model", "operator"],
+        "example_canonical": "aircraft-n12345"
+      },
+      "vehicle": {
+        "_code": 54,
+        "fields": ["registration", "vin", "make", "model"],
+        "example_canonical": "vehicle-vin-1234"
+      },
+      "account": {
+        "_code": 55,
+        "fields": ["account_number", "bank", "currency", "account_type"],
+        "example_canonical": "account-iban-gb12345"
+      },
+      "document": {
+        "_code": 56,
+        "fields": ["title", "document_type", "issuer", "issue_date"],
+        "example_canonical": "doc-passport-gb-123456789"
+      }
+    },
+
+    "IDENTIFIER": {
+      "_description": "Things that identify/locate entities",
+      "email": {
+        "_code": 1,
+        "fields": ["address", "domain"],
+        "example_canonical": "john.smith@example.com"
+      },
+      "phone": {
+        "_code": 2,
+        "fields": ["number", "country_code", "carrier"],
+        "example_canonical": "+441234567890"
+      },
+      "username": {
+        "_code": 3,
+        "fields": ["username", "platform"],
+        "example_canonical": "johnsmith_twitter"
+      },
+      "national_id": {
+        "_code": 4,
+        "fields": ["id_number", "country", "id_type"],
+        "example_canonical": "nino-gb-ab123456c"
+      },
+      "passport": {
+        "_code": 5,
+        "fields": ["number", "country", "expiry"],
+        "example_canonical": "passport-gb-123456789"
+      },
+      "domain": {
+        "_code": 6,
+        "fields": ["domain", "tld", "registrar"],
+        "example_canonical": "example.com"
+      },
+      "tax_id": {
+        "_code": 9,
+        "fields": ["number", "country", "tax_type"],
+        "example_canonical": "vat-gb-123456789"
+      },
+      "reg_number": {
+        "_code": 10,
+        "fields": ["number", "jurisdiction", "registry"],
+        "example_canonical": "crn-gb-12345678"
+      },
+      "crypto_wallet": {
+        "_code": 11,
+        "fields": ["address", "blockchain", "wallet_type"],
+        "example_canonical": "btc-1a2b3c4d5e6f"
+      },
+      "lei": {
+        "_code": 12,
+        "fields": ["lei", "entity_name", "jurisdiction"],
+        "example_canonical": "lei-529900t8bm49aabsxr89"
+      },
+      "bic": {
+        "_code": 15,
+        "fields": ["bic", "bank_name", "country"],
+        "example_canonical": "bic-deutdeff"
+      },
+      "iban": {
+        "_code": 16,
+        "fields": ["iban", "country", "bank"],
+        "example_canonical": "iban-de89370400440532013000"
+      },
+      "ip_address": {
+        "_code": 14,
+        "fields": ["ip", "version", "asn", "geo"],
+        "example_canonical": "ip-192.168.1.1"
+      },
+      "url": {
+        "_code": 17,
+        "fields": ["url", "domain", "path"],
+        "example_canonical": "url-example.com/page"
+      }
+    },
+
+    "CLASSIFIER": {
+      "_description": "Categories that describe entities",
+      "industry": {
+        "_code": 20,
+        "fields": ["name", "sic_code", "nace_code"],
+        "example_canonical": "industry-financial-services"
+      },
+      "profession": {
+        "_code": 21,
+        "fields": ["name", "category"],
+        "example_canonical": "profession-lawyer"
+      },
+      "title": {
+        "_code": 22,
+        "fields": ["title", "seniority"],
+        "example_canonical": "title-ceo"
+      },
+      "legal_form": {
+        "_code": 23,
+        "fields": ["form", "jurisdiction"],
+        "example_canonical": "legal-form-ltd-gb"
+      },
+      "size_class": {
+        "_code": 24,
+        "fields": ["class", "metric"],
+        "example_canonical": "size-sme"
+      },
+      "status": {
+        "_code": 25,
+        "fields": ["status", "effective_date"],
+        "example_canonical": "status-active"
+      }
+    },
+
+    "CONCEPT": {
+      "_description": "Abstract ideas and themes",
+      "phenomenon": {
+        "_code": 30,
+        "fields": ["name", "category"],
+        "example_canonical": "phenomenon-money-laundering"
+      },
+      "topic": {
+        "_code": 31,
+        "fields": ["name", "parent_topic"],
+        "example_canonical": "topic-sanctions-evasion"
+      },
+      "theme": {
+        "_code": 32,
+        "fields": ["name", "keywords"],
+        "example_canonical": "theme-financial-crime"
+      }
+    }
+  },
+
+  "LOCATION": {
+    "_color": "WHITE",
+    "_description": "Static/Boundaries - Geographic, temporal, and source references",
+
+    "GEO": {
+      "_description": "Spatial locations",
+      "country": {
+        "_code": 60,
+        "fields": ["name", "iso2", "iso3"],
+        "example_canonical": "country-gb"
+      },
+      "region": {
+        "_code": 61,
+        "fields": ["name", "country", "region_type"],
+        "example_canonical": "region-london-gb"
+      },
+      "municipality": {
+        "_code": 62,
+        "fields": ["name", "region", "country"],
+        "example_canonical": "municipality-westminster-gb"
+      },
+      "address": {
+        "_code": 8,
+        "fields": ["street", "city", "postcode", "country"],
+        "example_canonical": "address-123-main-st-london"
+      },
+      "coordinates": {
+        "_code": 63,
+        "fields": ["lat", "lon", "precision"],
+        "example_canonical": "coords-51.5074-0.1278"
+      }
+    },
+
+    "TEMPORAL": {
+      "_description": "Time references",
+      "date": {
+        "_code": 70,
+        "fields": ["date", "precision"],
+        "example_canonical": "date-2026-01-12"
+      },
+      "year": {
+        "_code": 71,
+        "fields": ["year"],
+        "example_canonical": "year-2026"
+      },
+      "month": {
+        "_code": 72,
+        "fields": ["year", "month"],
+        "example_canonical": "month-2026-01"
+      },
+      "period": {
+        "_code": 73,
+        "fields": ["start", "end", "name"],
+        "example_canonical": "period-q1-2026"
+      },
+      "timestamp": {
+        "_code": 74,
+        "fields": ["datetime", "timezone"],
+        "example_canonical": "ts-2026-01-12t10:30:00z"
+      }
+    },
+
+    "SOURCE": {
+      "_description": "Data origins and platforms",
+      "aggregator": {
+        "_code": 100,
+        "fields": ["name", "api_endpoint", "capabilities"],
+        "example_canonical": "aggregator-dehashed",
+        "attributes": ["module"]
+      },
+      "registry": {
+        "_code": 101,
+        "fields": ["name", "jurisdiction", "registry_type"],
+        "example_canonical": "registry-companies-house-gb"
+      },
+      "breach": {
+        "_code": 187,
+        "fields": ["name", "breach_date", "record_count", "data_types"],
+        "example_canonical": "breach-collections",
+        "attributes": ["aggregator", "module"],
+        "example": {
+          "id": "ba8e9c35f7630fde",
+          "node_class": "LOCATION",
+          "type": "breach",
+          "canonicalValue": "collections",
+          "label": "Collections",
+          "attributes": {"aggregator": "dehashed", "module": "eyed"}
+        }
+      },
+      "platform": {
+        "_code": 188,
+        "fields": ["name", "url", "platform_category"],
+        "example_canonical": "platform-twitter",
+        "attributes": ["aggregator", "module"]
+      },
+      "database": {
+        "_code": 189,
+        "fields": ["name", "provider", "coverage"],
+        "example_canonical": "database-opencorporates"
+      },
+      "archive": {
+        "_code": 190,
+        "fields": ["name", "type", "coverage_start"],
+        "example_canonical": "archive-wayback"
+      },
+      "archive_snapshot": {
+        "_code": 192,
+        "fields": ["snapshot_url", "timestamp", "status_code", "mime_type"],
+        "example_canonical": "snapshot-wayback-example.com-2024",
+        "attributes": ["module"]
+      },
+      "dns_record": {
+        "_code": 193,
+        "fields": ["record_type", "value", "ttl", "observed_at"],
+        "example_canonical": "dns-a-example.com"
+      },
+      "whois_record": {
+        "_code": 195,
+        "fields": ["registrant", "registrant_email", "registrar", "created_date", "updated_date", "expiry_date", "nameservers"],
+        "example_canonical": "whois-example.com-2026",
+        "attributes": ["aggregator", "module"]
+      }
+    },
+
+    "FORMAT": {
+      "_description": "Content types",
+      "filetype": {
+        "_code": 80,
+        "fields": ["extension", "mime_type"],
+        "example_canonical": "filetype-pdf"
+      },
+      "mime_type": {
+        "_code": 81,
+        "fields": ["type", "subtype"],
+        "example_canonical": "mime-application-pdf"
+      },
+      "language": {
+        "_code": 82,
+        "fields": ["code", "name"],
+        "example_canonical": "lang-en"
+      }
+    },
+
+    "CATEGORY": {
+      "_description": "Content categories",
+      "news": {
+        "_code": 85,
+        "fields": ["outlet", "reliability"],
+        "example_canonical": "news-bbc"
+      },
+      "corporate": {
+        "_code": 86,
+        "fields": ["document_type"],
+        "example_canonical": "corporate-annual-report"
+      },
+      "government": {
+        "_code": 87,
+        "fields": ["agency", "document_type"],
+        "example_canonical": "gov-sec-filing"
+      },
+      "academic": {
+        "_code": 88,
+        "fields": ["institution", "document_type"],
+        "example_canonical": "academic-journal"
+      },
+      "social": {
+        "_code": 89,
+        "fields": ["platform", "content_type"],
+        "example_canonical": "social-twitter-post"
+      }
+    }
+  },
+
+  "NARRATIVE": {
+    "_color": "BLUE",
+    "_description": "Documentation and metadata - tags, notes, project containers",
+
+    "PROJECT": {
+      "_description": "Investigation containers",
+      "project": {
+        "_code": 250,
+        "fields": ["name", "client", "created_at", "status"],
+        "example_canonical": "project-acme-investigation"
+      },
+      "case": {
+        "_code": 251,
+        "fields": ["name", "project_id", "case_type"],
+        "example_canonical": "case-sanctions-check-001"
+      },
+      "matter": {
+        "_code": 252,
+        "fields": ["name", "reference", "matter_type"],
+        "example_canonical": "matter-m12345"
+      }
+    },
+
+    "TAG": {
+      "_description": "Labels and flags",
+      "tag": {
+        "_code": 300,
+        "fields": ["value", "tag_category"],
+        "valid_values": {
+          "verification": ["VERIFIED", "UNVERIFIED"],
+          "risk": ["HIGH_RISK", "MEDIUM_RISK", "LOW_RISK", "SANCTIONED", "PEP"],
+          "status": ["ACTIVE", "INACTIVE", "PENDING", "RESOLVED"]
+        },
+        "example_canonical": "tag-verified"
+      },
+      "flag": {
+        "_code": 301,
+        "fields": ["flag_type", "reason", "flagged_by"],
+        "example_canonical": "flag-review-required"
+      },
+      "status_tag": {
+        "_code": 302,
+        "fields": ["status", "effective_date"],
+        "example_canonical": "status-under-investigation"
+      },
+      "verification_tag": {
+        "_code": 303,
+        "fields": ["verification_status", "verified_by", "verified_at"],
+        "example_canonical": "verification-confirmed"
+      }
+    },
+
+    "NOTE": {
+      "_description": "Human annotations",
+      "note": {
+        "_code": 310,
+        "fields": ["content", "author", "created_at"],
+        "example_canonical": "note-12345"
+      },
+      "comment": {
+        "_code": 311,
+        "fields": ["content", "author", "target_id"],
+        "example_canonical": "comment-67890"
+      },
+      "annotation": {
+        "_code": 312,
+        "fields": ["content", "annotation_type", "target_id"],
+        "example_canonical": "annotation-abc123"
+      }
+    },
+
+    "EVIDENCE": {
+      "_description": "Supporting documentation",
+      "evidence_document": {
+        "_code": 320,
+        "fields": ["title", "document_type", "source_url", "captured_at"],
+        "example_canonical": "evidence-doc-001"
+      },
+      "screenshot": {
+        "_code": 321,
+        "fields": ["url", "captured_at", "file_path"],
+        "example_canonical": "screenshot-twitter-2026-01-12"
+      },
+      "transcript": {
+        "_code": 322,
+        "fields": ["source", "content", "language"],
+        "example_canonical": "transcript-interview-001"
+      }
+    }
+  },
+
+  "NEXUS": {
+    "_color": "PURPLE",
+    "_description": "Relationships and queries that bridge dimensions",
+
+    "RELATIONSHIP": {
+      "_description": "Connections between entities",
+      "relationship": {
+        "_code": 400,
+        "fields": ["source_id", "target_id", "relation_type", "confidence"],
+        "example_canonical": "rel-person-org-director"
+      },
+      "association": {
+        "_code": 401,
+        "fields": ["source_id", "target_id", "association_type", "strength"],
+        "example_canonical": "assoc-email-phone-same-owner"
+      },
+      "link": {
+        "_code": 402,
+        "fields": ["source_id", "target_id", "link_type"],
+        "example_canonical": "link-domain-ip"
+      }
+    },
+
+    "QUERY": {
+      "_description": "Search patterns",
+      "query": {
+        "_code": 410,
+        "fields": ["query_string", "query_type", "created_at"],
+        "example_canonical": "query-email-search-001"
+      },
+      "search": {
+        "_code": 411,
+        "fields": ["search_term", "filters", "results_count"],
+        "example_canonical": "search-john-smith"
+      },
+      "filter": {
+        "_code": 412,
+        "fields": ["filter_type", "filter_value", "target_field"],
+        "example_canonical": "filter-jurisdiction-gb"
+      }
+    },
+
+    "RESULT": {
+      "_description": "Results from data sources",
+      "aggregator_result": {
+        "_code": 420,
+        "fields": ["source_aggregator", "query_input", "query_type", "timestamp", "result_count"],
+        "attributes": ["verification_status", "query_sequence_tag"],
+        "example_canonical": "result-dehashed-email-001"
+      },
+      "search_result": {
+        "_code": 421,
+        "fields": ["query_id", "result_items", "total_hits"],
+        "example_canonical": "searchresult-brute-001"
+      },
+      "api_response": {
+        "_code": 422,
+        "fields": ["api_name", "request_params", "response_status", "response_data"],
+        "example_canonical": "apiresponse-occrp-001"
+      }
+    }
+  },
+
+  "legend_code_map": {
+    "_description": "Quick lookup from Legend code to class/type/subtype",
+    "1": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "email"},
+    "2": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "phone"},
+    "3": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "username"},
+    "4": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "national_id"},
+    "5": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "passport"},
+    "6": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "domain"},
+    "7": {"class": "SUBJECT", "type": "ENTITY", "subtype": "person"},
+    "8": {"class": "LOCATION", "type": "GEO", "subtype": "address"},
+    "9": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "tax_id"},
+    "10": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "reg_number"},
+    "11": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "crypto_wallet"},
+    "12": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "lei"},
+    "13": {"class": "SUBJECT", "type": "ENTITY", "subtype": "organization"},
+    "14": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "ip_address"},
+    "15": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "bic"},
+    "16": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "iban"},
+    "17": {"class": "SUBJECT", "type": "IDENTIFIER", "subtype": "url"},
+    "100": {"class": "LOCATION", "type": "SOURCE", "subtype": "aggregator"},
+    "101": {"class": "LOCATION", "type": "SOURCE", "subtype": "registry"},
+    "187": {"class": "LOCATION", "type": "SOURCE", "subtype": "breach"},
+    "188": {"class": "LOCATION", "type": "SOURCE", "subtype": "platform"},
+    "192": {"class": "LOCATION", "type": "SOURCE", "subtype": "archive_snapshot"},
+    "193": {"class": "LOCATION", "type": "SOURCE", "subtype": "dns_record"},
+    "195": {"class": "LOCATION", "type": "SOURCE", "subtype": "whois_record"},
+    "300": {"class": "NARRATIVE", "type": "TAG", "subtype": "tag"},
+    "400": {"class": "NEXUS", "type": "RELATIONSHIP", "subtype": "relationship"},
+    "420": {"class": "NEXUS", "type": "RESULT", "subtype": "aggregator_result"}
+  }
+}

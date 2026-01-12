@@ -1,0 +1,21 @@
+{
+  "id": "7e232a8345bb985d",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "90302ece80c11a864de68e3691c7eca0304ccd30b860601d7665ba9a85859b36:||SHA256",
+  "label": "90302ece80c11a864de68e3691c7eca0...",
+  "value": "90302ece80c11a864de68e3691c7eca0304ccd30b860601d7665ba9a85859b36:||SHA256",
+  "comment": "{\n  \"id\": \"2qwrea7qzdcan9gtqva85t0yjqj\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"tyrion77\"\n  ],\n  \"hashed_password\": [\n    \"1eee17ebd89df56b41ecee100b9cd8b1:||MD5\",\n    \"d1e4e75a98503b265ae977164a318af57f1cf4de:||SHA1\",\n    \"90302ece80c11a864de68e3691c7eca0304ccd30b860601d7665ba9a85859b36:||SHA256\",\n    \"273a78d103d9eb07b759d2a8dcc8ce16e90f9b84846b8ad9d84dda611682aeab4da85acc3417ee902449141b4c2a9ecee031212d02d473c98055fd5c158ca3ff:||SHA512\",\n    \"dHlyaW9uNzc=:||BASE64\"\n  ],\n  \"url\": [\n    \"monmoniteur.fr/\"\n  ],\n  \"database_name\": \"ALIEN TXTBASE\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:12.899370",
+  "updatedAt": "2026-01-12T00:04:12.899373",
+  "lastSeen": "2026-01-12T00:04:12.899373"
+}

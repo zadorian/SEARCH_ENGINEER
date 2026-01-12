@@ -1,170 +1,147 @@
 #!/usr/bin/env python3
 """
 EYE-D Username Search Engine
+Refactored to route aggregator outputs to specialized output formatters.
 """
 
 import sys
+import os
 from pathlib import Path
-from typing import List, Dict, Optional, Any
+
+# PREVENT STDLIB SHADOWING
+script_dir = os.path.dirname(os.path.abspath(__file__))
+if script_dir in sys.path:
+    sys.path.remove(script_dir)
+
+# Add parent directory to path to find modules
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import asyncio
+import uuid
+import hashlib
+from typing import Dict, Any, List, Union
 from datetime import datetime
 
-# Add parent directory to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent))
+from dehashed_engine import DeHashedEngine
+from sherlock_integration import SherlockIntegration
 
-# Keep existing logic
-try:
-    from Search_Engines.exact_phrase_recall_runner_baresearch import bare_social
-except ImportError:
-    def bare_social(term, page=1, exact=False):
-        return f"https://www.google.com/search?q=site:instagram.com+OR+site:twitter.com+OR+site:facebook.com+OR+site:linkedin.com+%22{term}%22"
-
-try:
-    from unified_osint import UnifiedSearcher
-    EYE_D_AVAILABLE = True
-except ImportError:
-    EYE_D_AVAILABLE = False
-
-try:
-    from sherlock_integration import search_username_sherlock_sync
-    SHERLOCK_AVAILABLE = True
-except ImportError:
-    SHERLOCK_AVAILABLE = False
-
-# Copy helper functions (extract_username, get_all_profile_urls, check_username_availability)
-def extract_username(q: str) -> str:
-    q = q.strip()
-    if q.lower().startswith('username:'):
-        return q[len('username:'):].strip().strip('"\'')
-    if q.lower().startswith('u:'):
-        return q[len('u:'):].strip().strip('"\'')
-    return q
-
-def get_all_profile_urls(username: str) -> Dict[str, str]:
-    # (Same as before - simplified for brevity, assume implementation exists or import it if I split file)
-    # Since I'm rewriting the file, I must include full implementation
-    return {
-        'twitter_x': f'https://x.com/{username}',
-        'instagram': f'https://www.instagram.com/{username}',
-        'github': f'https://github.com/{username}',
-        'reddit': f'https://www.reddit.com/user/{username}',
-        'youtube': f'https://www.youtube.com/@{username}',
-        'linkedin': f'https://www.linkedin.com/in/{username}',
-        'tiktok': f'https://www.tiktok.com/@{username}',
-        'telegram': f'https://t.me/{username}',
-        'discord': f'https://discord.gg/{username}',
-        'dehashed': f'https://dehashed.com/search?query={username}',
-    }
+# Import Output Handlers
+from output.email import EmailOutputHandler
+from output.phone import PhoneOutputHandler
+from output.username import UsernameOutputHandler
+from output.person_name import PersonNameOutputHandler
+from output.password import PasswordOutputHandler
+from output.url import UrlOutputHandler
 
 class EyeDUsernameEngine:
-    code = 'EDU'
-    name = 'EYE-D Username'
-
     def __init__(self, username: str):
-        self.username = extract_username(username)
-        self.osint_client = UnifiedSearcher() if EYE_D_AVAILABLE else None
-
-    async def search_async(self) -> Dict[str, Any]:
-        print(f"👤 Searching for username: {self.username}")
+        self.username = username
+        self.dehashed = DeHashedEngine(username)
         
-        results = {
-            'query': self.username,
-            'query_type': 'EYE-D',
-            'subtype': 'username',
-            'results': [],
-            'entities': [],
-            'timestamp': datetime.now().isoformat()
+        self.handlers = {
+            'email': EmailOutputHandler(),
+            'phone': PhoneOutputHandler(),
+            'username': UsernameOutputHandler(),
+            'person': PersonNameOutputHandler(),
+            'password': PasswordOutputHandler(),
+            'url': UrlOutputHandler()
         }
 
-        # 1. Platform checks (Sherlock/Manual)
-        platform_results = []
-        if SHERLOCK_AVAILABLE:
-            sherlock_hits = search_username_sherlock_sync(self.username)
-            for hit in sherlock_hits:
-                platform_results.append({
-                    'source': 'sherlock',
-                    'data': hit,
-                    'entity_type': 'username',
-                    'entity_value': self.username
-                })
-        
-        # 2. Breach search (EYE-D)
-        if self.osint_client:
-            try:
-                osint_results = self.osint_client.search(self.username)
-                for source, data in osint_results.items():
-                    if data and not (isinstance(data, dict) and data.get('error')):
-                        if any(x in source.lower() for x in ['dehashed', 'osint', 'breach']):
-                            results['results'].append({
-                                'source': source,
-                                'data': data,
-                                'entity_type': 'username',
-                                'entity_value': self.username
-                            })
-            except Exception as e:
-                print(f"EYE-D search error: {e}")
+    def _generate_id(self, node_type: str, value: str) -> str:
+        raw = f"{node_type}:{str(value).lower().strip()}"
+        return hashlib.sha256(raw.encode('utf-8')).hexdigest()[:16]
 
-        # Add platform results
-        results['results'].extend(platform_results)
-        
-        results['total_results'] = len(results['results'])
-        print(f"✅ Found {results['total_results']} results for username {self.username}")
-        return results
+    def _process_field(self, value: Union[str, List[str]], handler_key: str, context: Dict, raw_data: Dict):
+        if not value: return
+        handler = self.handlers.get(handler_key)
+        if not handler: return
 
-    def search(self) -> List[Dict[str, Any]]:
-        """Sync wrapper for search."""
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
+        if isinstance(value, list):
+            for item in value:
+                if item and isinstance(item, str):
+                    handler.process(item, context, raw_data)
+        elif isinstance(value, str):
+            handler.process(value, context, raw_data)
+
+    async def search_async(self):
+        print(f"👤 [Pipeline] Starting investigation for username: {self.username}")
+        
+        input_id = self._generate_id('username', self.username)
+        
+        agg_ids = {
+            'dehashed': self._generate_aggregator_id("DeHashed"),
+            'sherlock': self._generate_aggregator_id("Sherlock")
+        }
+
+        self.handlers['username'].process(
+            self.username, 
+            {
+                'is_input': True, 
+                'input_id': None, 
+                'aggregator_ids': list(agg_ids.values())
+            }
+        )
+
+        tasks = [
+            self._search_dehashed(input_id, agg_ids['dehashed']),
+            self._search_sherlock(input_id, agg_ids['sherlock'])
+        ]
+
+        await asyncio.gather(*tasks)
+        print(f"✅ Investigation complete for {self.username}")
+
+    def _generate_aggregator_id(self, name: str) -> str:
+        return hashlib.sha256(f"aggregator:{name}:{self.username}:{datetime.now().strftime('%Y%m%d%H')}".encode()).hexdigest()[:16]
+
+    async def _create_aggregator_node(self, name: str, agg_id: str, input_id: str):
+        node = {
+            "id": agg_id,
+            "node_class": "LOCATION",
+            "type": "aggregator_result",
+            "canonicalValue": f"{name.lower()}_result_{agg_id}",
+            "label": f"{name} Search Result",
+            "value": agg_id,
+            "embedded_edges": [],
+            "metadata": {"aggregator": name, "timestamp": datetime.utcnow().isoformat()},
+            "createdAt": datetime.utcnow().isoformat()
+        }
+        h = self.handlers['username']
+        if h.es:
+            try: h.es.index(index=h.es_index, id=agg_id, body=node)
+            except: pass
+
+    async def _search_dehashed(self, input_id: str, agg_id: str):
+        print("  → Querying DeHashed...")
+        await self._create_aggregator_node("DeHashed", agg_id, input_id)
+        context = {'input_id': input_id, 'aggregator_id': agg_id, 'is_input': False}
         try:
-            results = loop.run_until_complete(self.search_async())
-            
-            # Format output for web
-            web_results = []
-            
-            # Add manual profile links first
-            urls = get_all_profile_urls(self.username)
-            for platform, url in list(urls.items())[:10]: # Top 10
-                web_results.append({
-                    'url': url,
-                    'title': f'{platform.title()} Profile: {self.username}',
-                    'snippet': f'Potential profile on {platform}',
-                    'engine': self.name,
-                    'source': platform,
-                    'rank': 0
-                })
+            loop = asyncio.get_event_loop()
+            custom_query = f"username:{self.username}"
+            data = await loop.run_in_executor(None, lambda: self.dehashed.search(custom_query=custom_query))
+            if data:
+                for entry in data:
+                    self._process_field(entry.get('email'), 'email', context, entry)
+                    self._process_field(entry.get('phone'), 'phone', context, entry)
+                    self._process_field(entry.get('username'), 'username', context, entry)
+                    self._process_field(entry.get('password'), 'password', context, entry)
+        except Exception as e:
+            print(f"❌ DeHashed Error: {e}")
 
-            for i, r in enumerate(results.get('results', []), 1):
-                data = r.get('data', {})
-                snippet = str(data)[:300]
-                if isinstance(data, dict):
-                    # For Sherlock results
-                    if r['source'] == 'sherlock':
-                        snippet = f"Found on {data.get('site')} ({data.get('category')})"
-                        web_results.append({
-                            'url': data.get('url'),
-                            'title': f"{data.get('site')} Profile: {self.username}",
-                            'snippet': snippet,
-                            'engine': 'Sherlock',
-                            'source': 'sherlock',
-                            'rank': i
-                        })
-                    else:
-                        web_results.append({
-                            'url': f"https://dehashed.com/search?query={self.username}",
-                            'title': f"Breach Data: {self.username}",
-                            'snippet': snippet,
-                            'engine': self.name,
-                            'source': r.get('source', 'unknown').upper(),
-                            'rank': i
-                        })
-            return web_results
-        finally:
-            loop.close()
+    async def _search_sherlock(self, input_id: str, agg_id: str):
+        print("  → Querying Sherlock...")
+        await self._create_aggregator_node("Sherlock", agg_id, input_id)
+        context = {'input_id': input_id, 'aggregator_id': agg_id, 'is_input': False}
+        try:
+            async with SherlockIntegration() as sherlock:
+                data = await sherlock.check_username(self.username)
+                if data:
+                    for hit in data:
+                        if hit.get('url'): self.handlers['url'].process(hit['url'], context, hit)
+        except Exception as e:
+            print(f"❌ Sherlock Error: {e}")
 
-# Main entry for testing
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        engine = EyeDUsernameEngine(sys.argv[1])
-        print(engine.search())
+        asyncio.run(EyeDUsernameEngine(sys.argv[1]).search_async())
     else:
-        print("Usage: python username.py <username>")
+        print("Usage: python3 username.py <username>")

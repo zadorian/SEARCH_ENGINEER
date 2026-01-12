@@ -1,0 +1,141 @@
+{
+  "index_name": "cymonides_source_entities",
+  "stats": "green  open   cymonides_source_entities dZK0_TKrQX2kW2ZiPfqAYA   3   0          8            0     46.9kb 2025-12-01T01:25:00.787Z",
+  "mapping": {
+    "cymonides_source_entities": {
+      "mappings": {
+        "properties": {
+          "article_title": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
+          },
+          "batch_id": {
+            "type": "keyword"
+          },
+          "cleaned": {
+            "type": "boolean"
+          },
+          "cleaned_at": {
+            "type": "date"
+          },
+          "confidence": {
+            "type": "float"
+          },
+          "domain": {
+            "type": "keyword"
+          },
+          "end_pos": {
+            "type": "integer"
+          },
+          "entity_type": {
+            "type": "keyword"
+          },
+          "extracted_at": {
+            "type": "date"
+          },
+          "name": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
+          },
+          "page_url": {
+            "type": "keyword"
+          },
+          "snippet": {
+            "type": "text"
+          },
+          "source_id": {
+            "type": "keyword"
+          },
+          "source_type": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "start_pos": {
+            "type": "integer"
+          },
+          "valid": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "cymonides_source_entities": {
+      "settings": {
+        "index": {
+          "routing": {
+            "allocation": {
+              "include": {
+                "_tier_preference": "data_content"
+              }
+            }
+          },
+          "refresh_interval": "5s",
+          "number_of_shards": "3",
+          "provided_name": "cymonides_source_entities",
+          "creation_date": "1764552300787",
+          "number_of_replicas": "0",
+          "uuid": "dZK0_TKrQX2kW2ZiPfqAYA",
+          "version": {
+            "created": "8500003"
+          }
+        }
+      }
+    }
+  },
+  "sample_document": {
+    "took": 2,
+    "timed_out": false,
+    "_shards": {
+      "total": 3,
+      "successful": 3,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 8,
+        "relation": "eq"
+      },
+      "max_score": 1.0,
+      "hits": [
+        {
+          "_index": "cymonides_source_entities",
+          "_id": "1e69a5b2e63094b3b26d0d3ae5959c31",
+          "_score": 1.0,
+          "_source": {
+            "name": "Sunday",
+            "entity_type": "date",
+            "snippet": "...in Fake News Fury Over Narco-Terror Boat Strikes Sunday on CNN’s “State of the Union,” Sen. Mark Kelly (D...",
+            "page_url": "https://www.breitbart.com",
+            "domain": "www.breitbart.com",
+            "article_title": "Breitbart News Network",
+            "start_pos": 84,
+            "end_pos": 90,
+            "confidence": 0.7,
+            "extracted_at": "2025-12-01T01:34:05.787732+00:00",
+            "cleaned": false,
+            "valid": true,
+            "source_id": "www_breitbart_com",
+            "batch_id": "7191d6318db3",
+            "source_type": "news_bang"
+          }
+        }
+      ]
+    }
+  }
+}

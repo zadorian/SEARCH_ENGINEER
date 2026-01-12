@@ -1,0 +1,16 @@
+{
+  "total_domains": 10,
+  "processed": 10,
+  "cc_hits": 2,
+  "cc_misses": 8,
+  "jester_a_hits": 5,
+  "jester_b_hits": 0,
+  "jester_c_hits": 0,
+  "jester_d_hits": 0,
+  "failed": 3,
+  "indexed": 10,
+  "start_time": 1767645735.928879,
+  "last_checkpoint": 10,
+  "current_phase": "indexing",
+  "saved_at": "2026-01-05T21:42:20.344468"
+}

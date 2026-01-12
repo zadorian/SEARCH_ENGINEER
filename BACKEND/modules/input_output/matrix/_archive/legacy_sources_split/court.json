@@ -1,0 +1,466 @@
+{
+  "US": [
+    {
+      "name": "US SEC Litigation (2019-2023)",
+      "domain": "aleph.occrp.org/datasets/246",
+      "url": "https://aleph.occrp.org/datasets/246",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "US",
+      "jurisdictions": [
+        "US"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 246,
+      "inputs": [
+        "company_name",
+        "person_name"
+      ],
+      "outputs": [
+        "litigation_records",
+        "sec_filings"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 246. US SEC Litigation (2019-2023)",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=246",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=246",
+      "access_method": "api"
+    },
+    {
+      "name": "US DOJ Press Releases",
+      "domain": "aleph.occrp.org/datasets/1043",
+      "url": "https://aleph.occrp.org/datasets/1043",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "US",
+      "jurisdictions": [
+        "US"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 1043,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "press_releases",
+        "indictments"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 1043. US DOJ Press Releases",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=1043",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=1043",
+      "access_method": "api"
+    },
+    {
+      "name": "Epstein Estate documents",
+      "domain": "aleph.occrp.org/datasets/12423",
+      "url": "https://aleph.occrp.org/datasets/12423",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "US",
+      "jurisdictions": [
+        "US"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 12423,
+      "inputs": [
+        "person_name"
+      ],
+      "outputs": [
+        "court_documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 12423. Epstein Estate documents",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=12423",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=12423",
+      "access_method": "api"
+    },
+    {
+      "name": "Internet Research Agency",
+      "domain": "aleph.occrp.org/datasets/973",
+      "url": "https://aleph.occrp.org/datasets/973",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "US",
+      "jurisdictions": [
+        "US"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 973,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 973. Internet Research Agency",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=973",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=973",
+      "access_method": "api"
+    },
+    {
+      "name": "ENRON Emails",
+      "domain": "aleph.occrp.org/datasets/1021",
+      "url": "https://aleph.occrp.org/datasets/1021",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "US",
+      "jurisdictions": [
+        "US"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 1021,
+      "inputs": [
+        "keyword",
+        "person_name"
+      ],
+      "outputs": [
+        "emails"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 1021. ENRON Emails",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=1021",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=1021",
+      "access_method": "api"
+    }
+  ],
+  "RU": [
+    {
+      "name": "Russian Court Cases (2015)",
+      "domain": "aleph.occrp.org/datasets/972",
+      "url": "https://aleph.occrp.org/datasets/972",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "RU",
+      "jurisdictions": [
+        "RU"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 972,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "court_cases"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 972. Russian Court Cases (2015)",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=972",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=972",
+      "access_method": "api"
+    }
+  ],
+  "KE": [
+    {
+      "name": "Kenyan Law Cases Database",
+      "domain": "aleph.occrp.org/datasets/1887",
+      "url": "https://aleph.occrp.org/datasets/1887",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "KE",
+      "jurisdictions": [
+        "KE"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 1887,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "court_cases"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 1887. Kenyan Law Cases Database",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=1887",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=1887",
+      "access_method": "api"
+    }
+  ],
+  "MD": [
+    {
+      "name": "Moldova Courts",
+      "domain": "aleph.occrp.org/datasets/72",
+      "url": "https://aleph.occrp.org/datasets/72",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "MD",
+      "jurisdictions": [
+        "MD"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 72,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "court_cases"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 72. Moldova Courts",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=72",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=72",
+      "access_method": "api"
+    },
+    {
+      "name": "Moldova Court Cases",
+      "domain": "aleph.occrp.org/datasets/760",
+      "url": "https://aleph.occrp.org/datasets/760",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "MD",
+      "jurisdictions": [
+        "MD"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 760,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "court_cases"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 760. Moldova Court Cases",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=760",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=760",
+      "access_method": "api"
+    }
+  ],
+  "AM": [
+    {
+      "name": "Armenian Court Documents",
+      "domain": "aleph.occrp.org/datasets/79",
+      "url": "https://aleph.occrp.org/datasets/79",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "AM",
+      "jurisdictions": [
+        "AM"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 79,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "court_cases"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 79. Armenian Court Documents",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=79",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=79",
+      "access_method": "api"
+    }
+  ],
+  "AO": [
+    {
+      "name": "Angola legal information",
+      "domain": "aleph.occrp.org/datasets/874",
+      "url": "https://aleph.occrp.org/datasets/874",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "AO",
+      "jurisdictions": [
+        "AO"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 874,
+      "inputs": [
+        "company_name",
+        "person_name"
+      ],
+      "outputs": [
+        "court_cases"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 874. Angola legal information",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=874",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=874",
+      "access_method": "api"
+    }
+  ],
+  "EU": [
+    {
+      "name": "European Court of Human Rights",
+      "domain": "aleph.occrp.org/datasets/505",
+      "url": "https://aleph.occrp.org/datasets/505",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "EU",
+      "jurisdictions": [
+        "EU"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 505,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "court_cases"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 505. European Court of Human Rights",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=505",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=505",
+      "access_method": "api"
+    }
+  ],
+  "GLOBAL": [
+    {
+      "name": "UN ICTY Court Records",
+      "domain": "aleph.occrp.org/datasets/182",
+      "url": "https://aleph.occrp.org/datasets/182",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "GLOBAL",
+      "jurisdictions": [
+        "AL",
+        "BA",
+        "HR",
+        "MK",
+        "RS",
+        "SI",
+        "XK",
+        "ME"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 182,
+      "inputs": [
+        "person_name"
+      ],
+      "outputs": [
+        "court_records"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 182. UN ICTY Court Records",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=182",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=182",
+      "access_method": "api"
+    },
+    {
+      "name": "Eastern Caribbean Supreme Court",
+      "domain": "aleph.occrp.org/datasets/514",
+      "url": "https://aleph.occrp.org/datasets/514",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "GLOBAL",
+      "jurisdictions": [
+        "KN",
+        "AG",
+        "TO",
+        "VG",
+        "VC",
+        "GD",
+        "DM",
+        "LC",
+        "AI"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 514,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "court_cases"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 514. Eastern Caribbean Supreme Court",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=514",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=514",
+      "access_method": "api"
+    },
+    {
+      "name": "World Bank ICSID",
+      "domain": "aleph.occrp.org/datasets/10690",
+      "url": "https://aleph.occrp.org/datasets/10690",
+      "type": "investigative_archive",
+      "category": "court",
+      "section": "lit",
+      "friction": "api",
+      "jurisdiction": "GLOBAL",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 10690,
+      "inputs": [
+        "company_name"
+      ],
+      "outputs": [
+        "arbitration_cases"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 10690. World Bank ICSID",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=10690",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=10690",
+      "access_method": "api"
+    }
+  ]
+}

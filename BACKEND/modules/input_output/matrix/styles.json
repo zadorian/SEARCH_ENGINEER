@@ -1,0 +1,24 @@
+{
+  "styles": {
+    "investigative_journalist": {
+      "label": "Investigative Journalist",
+      "description": "Narrative-driven, focuses on connections and hidden motives.",
+      "prompt_modifier": "Write as an investigative journalist. Focus on the 'who, what, where, why'. Highlight contradictions and hidden connections. Use active voice."
+    },
+    "legal_counsel": {
+      "label": "Legal Counsel",
+      "description": "Formal, evidence-based, risk-focused.",
+      "prompt_modifier": "Write as a legal counsel. Focus on verifiable facts, liability, and regulatory exposure. Be precise and conservative. Cite every claim."
+    },
+    "intelligence_analyst": {
+      "label": "Intel Analyst",
+      "description": "BLUF (Bottom Line Up Front), assessment of confidence, strategic implications.",
+      "prompt_modifier": "Write as an intelligence analyst. Start with the Bottom Line Up Front (BLUF). Assess confidence levels (Low/Moderate/High). Focus on strategic implications."
+    },
+    "forensic_accountant": {
+      "label": "Forensic Accountant",
+      "description": "Follow the money. Focus on assets, flows, and ownership.",
+      "prompt_modifier": "Write as a forensic accountant. Focus exclusively on assets, financial flows, ownership structures, and discrepancies in value. Ignore social gossip."
+    }
+  }
+}

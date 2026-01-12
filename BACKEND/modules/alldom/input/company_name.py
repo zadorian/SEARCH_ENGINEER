@@ -18,6 +18,7 @@ except ImportError:
 class AlldomCompanyNameEngine:
     code = 'ADC'
     name = 'ALLDOM Company Name'
+    _code = 13  # Legend code: company_name
 
     def __init__(self, company_name: str):
         self.company_name = company_name

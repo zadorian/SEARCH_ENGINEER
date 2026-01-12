@@ -1,0 +1,21 @@
+{
+  "id": "df162110e58084ee",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "14e2998ffcf22b7d695a5869a13dece5014d1ec9c03d79e725854be95362d6c616f2731b7f53c33cc610428f9ae6e846cf428ead18a6ff3bf74c00c1c1a7e950:||SHA512",
+  "label": "14e2998ffcf22b7d695a5869a13dece5...",
+  "value": "14e2998ffcf22b7d695a5869a13dece5014d1ec9c03d79e725854be95362d6c616f2731b7f53c33cc610428f9ae6e846cf428ead18a6ff3bf74c00c1c1a7e950:||SHA512",
+  "comment": "{\n  \"id\": \"2mfaopozv2ivxqz99g04kgv5j9w\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"dolphin\"\n  ],\n  \"hashed_password\": [\n    \"36cdf8b887a5cffc78dcd5c08991b993:||MD5\",\n    \"4bbf2ddc38798e41cdc1d415c756faa92ba47ffd:||SHA1\",\n    \"532f011ec89ff0e2e1be76953593b588d47e8a454d18f554e4f2ea6d89615a10:||SHA256\",\n    \"14e2998ffcf22b7d695a5869a13dece5014d1ec9c03d79e725854be95362d6c616f2731b7f53c33cc610428f9ae6e846cf428ead18a6ff3bf74c00c1c1a7e950:||SHA512\",\n    \"ZG9scGhpbg==:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:12.718658",
+  "updatedAt": "2026-01-12T00:04:12.718661",
+  "lastSeen": "2026-01-12T00:04:12.718662"
+}

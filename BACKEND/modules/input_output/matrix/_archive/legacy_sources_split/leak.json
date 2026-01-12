@@ -1,0 +1,243 @@
+{
+  "US": [
+    {
+      "name": "Wikileaks State Department Cables",
+      "domain": "aleph.occrp.org/datasets/102",
+      "url": "https://aleph.occrp.org/datasets/102",
+      "type": "investigative_archive",
+      "category": "leak",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "US",
+      "jurisdictions": [
+        "US"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 102,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "cables"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 102. Wikileaks State Department Cables",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=102",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=102",
+      "access_method": "api"
+    },
+    {
+      "name": "DNC / Hillary Clinton",
+      "domain": "aleph.occrp.org/datasets/201",
+      "url": "https://aleph.occrp.org/datasets/201",
+      "type": "investigative_archive",
+      "category": "leak",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "US",
+      "jurisdictions": [
+        "US"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 201,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "emails"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 201. DNC / Hillary Clinton",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=201",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=201",
+      "access_method": "api"
+    },
+    {
+      "name": "HBGary leaked emails",
+      "domain": "aleph.occrp.org/datasets/1061",
+      "url": "https://aleph.occrp.org/datasets/1061",
+      "type": "investigative_archive",
+      "category": "leak",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "US",
+      "jurisdictions": [
+        "US"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 1061,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "emails"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 1061. HBGary leaked emails",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=1061",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=1061",
+      "access_method": "api"
+    }
+  ],
+  "RU": [
+    {
+      "name": "RIIF",
+      "domain": "aleph.occrp.org/datasets/726",
+      "url": "https://aleph.occrp.org/datasets/726",
+      "type": "investigative_archive",
+      "category": "leak",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "RU",
+      "jurisdictions": [
+        "RU"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 726,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 726. RIIF",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=726",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=726",
+      "access_method": "api"
+    }
+  ],
+  "PA": [
+    {
+      "name": "ICIJ Panama Papers (2016)",
+      "domain": "aleph.occrp.org/datasets/734",
+      "url": "https://aleph.occrp.org/datasets/734",
+      "type": "investigative_archive",
+      "category": "leak",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "PA",
+      "jurisdictions": [
+        "PA"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 734,
+      "inputs": [
+        "company_name",
+        "person_name"
+      ],
+      "outputs": [
+        "offshore_records"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 734. ICIJ Panama Papers (2016)",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=734",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=734",
+      "access_method": "api"
+    }
+  ],
+  "BS": [
+    {
+      "name": "ICIJ BahamasLeaks",
+      "domain": "aleph.occrp.org/datasets/276",
+      "url": "https://aleph.occrp.org/datasets/276",
+      "type": "investigative_archive",
+      "category": "leak",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "BS",
+      "jurisdictions": [
+        "BS"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 276,
+      "inputs": [
+        "company_name",
+        "person_name"
+      ],
+      "outputs": [
+        "offshore_records"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 276. ICIJ BahamasLeaks",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=276",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=276",
+      "access_method": "api"
+    }
+  ],
+  "AT": [
+    {
+      "name": "OSCE Austria",
+      "domain": "aleph.occrp.org/datasets/180",
+      "url": "https://aleph.occrp.org/datasets/180",
+      "type": "investigative_archive",
+      "category": "leak",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "AT",
+      "jurisdictions": [
+        "AT"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 180,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 180. OSCE Austria",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=180",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=180",
+      "access_method": "api"
+    }
+  ],
+  "GLOBAL": [
+    {
+      "name": "Cambridge Analytica",
+      "domain": "aleph.occrp.org/datasets/1519",
+      "url": "https://aleph.occrp.org/datasets/1519",
+      "type": "investigative_archive",
+      "category": "leak",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "GLOBAL",
+      "jurisdictions": [
+        "MY",
+        "KE",
+        "BR",
+        "IR"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 1519,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 1519. Cambridge Analytica",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=1519",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=1519",
+      "access_method": "api"
+    }
+  ]
+}

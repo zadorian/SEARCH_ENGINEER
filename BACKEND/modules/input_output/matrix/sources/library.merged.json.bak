@@ -1,0 +1,215 @@
+{
+  "GB": [
+    {
+      "name": "UK Parliamentary Inquiries",
+      "domain": "aleph.occrp.org/datasets/153",
+      "url": "https://aleph.occrp.org/datasets/153",
+      "type": "investigative_archive",
+      "category": "library",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "GB",
+      "jurisdictions": [
+        "GB"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 153,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "political_exposure",
+        "inquiry_records"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 153. UK Parliamentary Inquiries",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=153",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=153",
+      "access_method": "api"
+    }
+  ],
+  "US": [
+    {
+      "name": "CIA FOIA Reading Room",
+      "domain": "aleph.occrp.org/datasets/74",
+      "url": "https://aleph.occrp.org/datasets/74",
+      "type": "investigative_archive",
+      "category": "library",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "US",
+      "jurisdictions": [
+        "US"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 74,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 74. CIA FOIA Reading Room",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=74",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=74",
+      "access_method": "api"
+    }
+  ],
+  "KZ": [
+    {
+      "name": "Kazakhstan geological reports",
+      "domain": "aleph.occrp.org/datasets/1044",
+      "url": "https://aleph.occrp.org/datasets/1044",
+      "type": "investigative_archive",
+      "category": "library",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "KZ",
+      "jurisdictions": [
+        "KZ"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 1044,
+      "inputs": [
+        "company_name"
+      ],
+      "outputs": [
+        "geological_reports"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 1044. Kazakhstan geological reports",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=1044",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=1044",
+      "access_method": "api"
+    }
+  ],
+  "IT": [
+    {
+      "name": "OPL 245 Investigation Court Documents",
+      "domain": "aleph.occrp.org/datasets/3766",
+      "url": "https://aleph.occrp.org/datasets/3766",
+      "type": "investigative_archive",
+      "category": "library",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "IT",
+      "jurisdictions": [
+        "IT"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 3766,
+      "inputs": [
+        "company_name",
+        "person_name"
+      ],
+      "outputs": [
+        "court_documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 3766. OPL 245 Investigation Court Documents",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=3766",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=3766",
+      "access_method": "api"
+    }
+  ],
+  "PG": [
+    {
+      "name": "PNG public inquiries/audits",
+      "domain": "aleph.occrp.org/datasets/5595",
+      "url": "https://aleph.occrp.org/datasets/5595",
+      "type": "investigative_archive",
+      "category": "library",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "PG",
+      "jurisdictions": [
+        "PG"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 5595,
+      "inputs": [
+        "company_name"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 5595. PNG public inquiries/audits",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=5595",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=5595",
+      "access_method": "api"
+    }
+  ],
+  "LB": [
+    {
+      "name": "Border Externalisation in Lebanon",
+      "domain": "aleph.occrp.org/datasets/8213",
+      "url": "https://aleph.occrp.org/datasets/8213",
+      "type": "investigative_archive",
+      "category": "library",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "LB",
+      "jurisdictions": [
+        "LB"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 8213,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 8213. Border Externalisation in Lebanon",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=8213",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=8213",
+      "access_method": "api"
+    }
+  ],
+  "EU": [
+    {
+      "name": "Western Balkans",
+      "domain": "aleph.occrp.org/datasets/7387",
+      "url": "https://aleph.occrp.org/datasets/7387",
+      "type": "investigative_archive",
+      "category": "library",
+      "section": "leak",
+      "friction": "api",
+      "jurisdiction": "EU",
+      "jurisdictions": [
+        "EU"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 7387,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "documents"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 7387. Western Balkans",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=7387",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=7387",
+      "access_method": "api"
+    }
+  ]
+}

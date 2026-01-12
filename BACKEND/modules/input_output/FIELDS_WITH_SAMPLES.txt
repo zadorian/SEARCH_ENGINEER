@@ -1,0 +1,1323 @@
+
+====================================================================================================
+FIELD: additional_proprietor_indicator
+INDICES: uk_ocod
+SAMPLES:
+  [uk_ocod] N
+
+====================================================================================================
+FIELD: address
+INDICES: openownership, uk_addresses
+SAMPLES:
+  [openownership] Spaces The Maylands Building Maylands Avenue, Hemel Hempstead Industrial Estate, Hemel Hempstead, HP
+  [openownership] 17, Ashchurch Grove, London, W12 9BT
+  [openownership] 8 Audley Court, Hampton Road, Twickenham, TW2 5QW
+  [uk_addresses] land at Gilfach Holiday Village, Gilfach Yr Halen, Llwyncelyn, Aberaeron (SA46 0HN)
+  [uk_addresses] 7 Amanda Road, Rainhill, Prescot (L35 8PN)
+
+====================================================================================================
+FIELD: address_country
+INDICES: openownership
+SAMPLES:
+  [openownership] GB
+
+====================================================================================================
+FIELD: address_normalized
+INDICES: uk_addresses
+SAMPLES:
+  [uk_addresses] LAND AT GILFACH HOLIDAY VILLAGE, GILFACH YR HALEN, LLWYNCELYN, ABERAERON (SA46 0HN)
+  [uk_addresses] 7 AMANDA ROAD, RAINHILL, PRESCOT (L35 8PN)
+  [uk_addresses] 83 PRIORY ROAD, ANFIELD
+  [uk_addresses] 99 FIRS DRIVE, HOUNSLOW (TW5 9TB)
+  [uk_addresses] LAND AND BUILDINGS ON THE NORTH WEST SIDE OF STATION ROAD, SOUTHWELL
+
+====================================================================================================
+FIELD: addresses
+INDICES: onion-pages
+SAMPLES:
+  [onion-pages] United States
+  [onion-pages] USA
+  [onion-pages] pro00@bipzap.com
+  [onion-pages] Link address
+
+====================================================================================================
+FIELD: all_emails
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] sgoha@yahoo.com
+  [kazaword_emails] david.richter@mail.com
+  [kazaword_emails] abay.s@mail.ru
+
+====================================================================================================
+FIELD: all_recipients
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] abay.s@mail.ru
+  [kazaword_emails] assylbek64@mail.ru
+
+====================================================================================================
+FIELD: alternate_names
+INDICES: companies_unified
+SAMPLES:
+  [companies_unified] G4Developer
+  [companies_unified] Liveri Tickets
+  [companies_unified] Rhapidophyllum hystrix -  Needle Palm 3D Model
+  [companies_unified] AJR
+  [companies_unified] admin
+
+====================================================================================================
+FIELD: area_code
+INDICES: phones_unified
+SAMPLES:
+  [phones_unified] 989
+  [phones_unified] 507
+  [phones_unified] 988
+  [phones_unified] 671
+
+====================================================================================================
+FIELD: attachment_count
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] 2
+  [kazaword_emails] 1
+
+====================================================================================================
+FIELD: attachments
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] {"filename": "Abay with NN0001.jpg", "content_type": "image/pjpeg", "size": 1250
+  [kazaword_emails] {"filename": "Contract.pdf", "content_type": "application/octet-stream", "size":
+  [kazaword_emails] {"filename": "\u0417\u0430\u043a\u0440\u044b\u0442\u043e\u0435 \u0410\u043a\u044
+  [kazaword_emails] {"filename": "SDOC0001.pdf", "content_type": "application/octet-stream", "size":
+  [kazaword_emails] {"filename": "ZMB-AS.doc", "content_type": "application/msword", "size": 338944}
+
+====================================================================================================
+FIELD: backlinks_ips
+INDICES: top_domains
+SAMPLES:
+  [top_domains] 378
+  [top_domains] 377
+  [top_domains] 376
+  [top_domains] 375
+
+====================================================================================================
+FIELD: backlinks_subnets
+INDICES: top_domains
+SAMPLES:
+  [top_domains] 278
+
+====================================================================================================
+FIELD: body_html
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] &#1040;&#1073;&#1072;&#1081;,&#1087;&#1088;&#1080;&#1074;&#1077;&#1090;!<br><br>&#1042; &#1087;&#108
+  [kazaword_emails] 
+<div>
+<br>
+<br>
+----- Original Message -----<br>
+From: "Vladlena P" <pirinen@mail.ru><br>
+To:
+  [kazaword_emails] <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:wo
+  [kazaword_emails] 
+<div>
+<br>
+<br>
+----- Original Message -----<br>
+From: "KTG Trading" <ktg.t@bk.ru><br>
+To: "d
+  [kazaword_emails] <BR>
+
+-- 
+<div> Be Yourself @ mail.com!<br>
+Choose From 200+ Email Addresses<br>
+Get a <b>Free<
+
+====================================================================================================
+FIELD: body_text
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] 
+
+
+      
+  [kazaword_emails] &#1040;&#1073;&#1072;&#1081;,&#1087;&#1088;&#1080;&#1074;&#1077;&#1090;!
+
+&#1042;
+&#1087;&#1088;&
+  [kazaword_emails] 
+
+Уважаемый Давид,
+направляю вам письмо и подписанный меморандум, в отношении последнего прошу со
+  [kazaword_emails] Dear Mr. Richter
+
+Please find enclosed the fax of the letter Mr. Donnet sent to Societe General re
+  [kazaword_emails] 
+
+
+Добрый вечер Давид
+прошу извинить за задержку,
+направляю 2 контракта, драфт по газу и контра
+
+====================================================================================================
+FIELD: breach_name
+INDICES: breach_records
+SAMPLES:
+  [breach_records] MySpace
+
+====================================================================================================
+FIELD: breach_year
+INDICES: breach_records
+SAMPLES:
+  [breach_records] 2016
+
+====================================================================================================
+FIELD: categories
+INDICES: domains_unified
+SAMPLES:
+  [domains_unified] /en/Regional/Europe/United_Kingdom/Health/Nutrition/Nutritionists
+  [domains_unified] /en/Regional/Europe/United_Kingdom/Health/Occupational_Health_and_Safety
+  [domains_unified] /en/Regional/Europe/United_Kingdom/Health/Organisations
+  [domains_unified] /en/Regional/Europe/United_Kingdom/Health/Physiotherapy
+  [domains_unified] /en/Regional/Europe/United_Kingdom/Health/Public_Health_and_Safety/Emergency_Services/Coast_and_Sea_
+
+====================================================================================================
+FIELD: cc
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] {"name": "Abay Sarsekeyev", "email": "abay.s@mail.ru"}
+
+====================================================================================================
+FIELD: companies
+INDICES: drill_pages, onion-pages
+SAMPLES:
+  [onion-pages] PayPal
+  [onion-pages] COTW
+  [onion-pages] Smokeables
+  [onion-pages] Safescrow
+  [onion-pages] Escrowlab
+
+====================================================================================================
+FIELD: company_domain
+INDICES: linkedin_unified
+SAMPLES:
+  [linkedin_unified] sierraviewmanor.com
+  [linkedin_unified] grupotrallax.com
+  [linkedin_unified] jamonzar.com
+  [linkedin_unified] swiftsolutions.nl
+  [linkedin_unified] eurocarers.org
+
+====================================================================================================
+FIELD: company_id
+INDICES: companies_unified
+SAMPLES:
+  [companies_unified] domain:direporter.com
+  [companies_unified] domain:liveri.com.ve
+  [companies_unified] domain:balanceconnected.com
+  [companies_unified] domain:balancecredit.com
+  [companies_unified] domain:balanced-breakfast.com
+
+====================================================================================================
+FIELD: company_name
+INDICES: linkedin_unified
+SAMPLES:
+  [linkedin_unified] Sierra View Manor
+  [linkedin_unified] Grupo Trallax- Azafatas y Eventos
+  [linkedin_unified] Jamonzar S.L.
+  [linkedin_unified] Swift Solutions!
+  [linkedin_unified] Eurocarers
+
+====================================================================================================
+FIELD: company_number
+INDICES: openownership
+SAMPLES:
+  [openownership] 08641349
+  [openownership] 09738289
+
+====================================================================================================
+FIELD: company_reg_no_1
+INDICES: uk_ccod
+SAMPLES:
+  [uk_ccod] 7530
+  [uk_ccod] 04829322
+  [uk_ccod] 13721652
+  [uk_ccod] 08253621
+  [uk_ccod] 06275033
+
+====================================================================================================
+FIELD: contacts
+INDICES: emails_unified
+SAMPLES:
+  [emails_unified] {'name': 'gaukhar sarsekeyeva', 'email': 'sgoha@yahoo.com'}
+  [emails_unified] {'name': 'david richter', 'email': 'david.richter@mail.com'}
+  [emails_unified] {'name': 'асылбек килимов', 'email': 'assylbek64@mail.ru'}
+  [emails_unified] {'name': 'gaukhar sarsekeyeva', 'email': 'sarsekeyeva@gmail.com'}
+  [emails_unified] {'name': 'klitschko, wladimir', 'email': 'w.klitschko@k-mg.com'}
+
+====================================================================================================
+FIELD: content
+INDICES: drill_pages, linklater_corpus, onion-pages
+SAMPLES:
+  [onion-pages] Paul's ONION LINKS DIRECTORY Paul's ONION LINKS DIRECTORY Add Link Contact Us Wallet New Search Adul
+  [onion-pages] eCash Cards: trusted, automatic Visa credit card, Mastercard, PayPal and Western Union store &bull;e
+  [onion-pages] COTW | Home --> Home (current) About Travel Plan Immigration Document Get In Touch Citizen Of The Wo
+  [onion-pages] Smokeables - Finest Organic Cannabis - Buy weed in the US for bitcoin from smokeables deep web shop 
+  [onion-pages] Search - Hoodle MOTD: Search process optimized. Enjoy x10 faster process! Add Link Hoodle Ooops! Ple
+
+====================================================================================================
+FIELD: content_length
+INDICES: linklater_corpus, onion-pages
+SAMPLES:
+  [onion-pages] 17264
+  [onion-pages] 4771
+  [onion-pages] 25394
+  [onion-pages] 12240
+  [onion-pages] 14995
+
+====================================================================================================
+FIELD: content_type
+INDICES: drill_pages, onion-pages
+SAMPLES:
+  [onion-pages] text/html
+
+====================================================================================================
+FIELD: control_types
+INDICES: openownership
+SAMPLES:
+  [openownership] shareholding
+  [openownership] appointment-of-board
+
+====================================================================================================
+FIELD: country
+INDICES: openownership, phones_unified
+SAMPLES:
+  [openownership] UK
+  [openownership] GB
+  [phones_unified] JP
+  [phones_unified] US/CA
+  [phones_unified] FR
+
+====================================================================================================
+FIELD: country_code
+INDICES: phones_unified
+SAMPLES:
+  [phones_unified] 81
+  [phones_unified] 1
+  [phones_unified] 33
+
+====================================================================================================
+FIELD: country_incorporated
+INDICES: uk_ocod
+SAMPLES:
+  [uk_ocod] BRITISH VIRGIN ISLANDS
+  [uk_ocod] PANAMA
+  [uk_ocod] GUERNSEY
+  [uk_ocod] CYPRUS
+
+====================================================================================================
+FIELD: county
+INDICES: uk_addresses, uk_ccod, uk_leases, uk_ocod
+SAMPLES:
+  [uk_ccod] WEST YORKSHIRE
+  [uk_ocod] GREATER LONDON
+  [uk_leases] WINDSOR AND MAIDENHEAD
+  [uk_leases] SLOUGH
+  [uk_leases] WEST BERKSHIRE
+
+====================================================================================================
+FIELD: crawl_id
+INDICES: onion-pages
+SAMPLES:
+  [onion-pages] 20251203_141617
+
+====================================================================================================
+FIELD: crawl_timestamp
+INDICES: drill_pages
+SAMPLES:
+  [drill_pages] 2025-12-04T01:12:25.657958
+  [drill_pages] 2025-12-04T01:12:25.856144
+  [drill_pages] 2025-12-04T01:12:25.984191
+  [drill_pages] 2025-12-04T01:12:26.125561
+  [drill_pages] 2025-12-04T01:12:26.192454
+
+====================================================================================================
+FIELD: data_source
+INDICES: uk_ccod, uk_leases, uk_ocod
+SAMPLES:
+  [uk_ccod] uk_land_registry_ccod
+  [uk_ocod] uk_land_registry_ocod
+  [uk_leases] uk_land_registry_leases
+
+====================================================================================================
+FIELD: date
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] 2008-12-07T09:48:16-08:00
+  [kazaword_emails] 2008-12-07T16:46:15-05:00
+  [kazaword_emails] 2008-12-08T07:48:26-05:00
+  [kazaword_emails] 2008-12-08T10:55:17-05:00
+  [kazaword_emails] 2008-12-08T10:51:54-05:00
+
+====================================================================================================
+FIELD: dissolution_date
+INDICES: openownership
+SAMPLES:
+  [openownership] 2021-11-30
+  [openownership] 2018-11-13
+
+====================================================================================================
+FIELD: district
+INDICES: uk_addresses, uk_ccod, uk_ocod
+SAMPLES:
+  [uk_ccod] KIRKLEES
+  [uk_ccod] WAKEFIELD
+  [uk_ccod] LEEDS
+  [uk_ccod] CALDERDALE
+  [uk_ccod] BRADFORD
+
+====================================================================================================
+FIELD: domain
+INDICES: companies_unified, domains_unified, drill_pages, linkedin_unified, linklater_corpus, onion-pages, top_domains
+SAMPLES:
+  [linkedin_unified] sierraviewmanor.com
+  [linkedin_unified] grupotrallax.com
+  [linkedin_unified] jamonzar.com
+  [linkedin_unified] swiftsolutions.nl
+  [linkedin_unified] eurocarers.org
+
+====================================================================================================
+FIELD: domains
+INDICES: companies_unified
+SAMPLES:
+  [companies_unified] direporter.com
+  [companies_unified] liveri.com.ve
+  [companies_unified] balanceconnected.com
+  [companies_unified] balancecredit.com
+  [companies_unified] balanced-breakfast.com
+
+====================================================================================================
+FIELD: email
+INDICES: breach_records, emails_unified
+SAMPLES:
+  [breach_records] the_true_lulu@hotmal.com.uk
+  [breach_records] hello@doyouknowme.net
+  [breach_records] daifduncan@hotmail.com
+  [breach_records] babigurl_812@yahoo.com
+  [breach_records] www.stolen_skittles01@yahoo.com
+
+====================================================================================================
+FIELD: email_domain
+INDICES: breach_records, emails_unified
+SAMPLES:
+  [breach_records] hotmal.com.uk
+  [breach_records] doyouknowme.net
+  [breach_records] hotmail.com
+  [breach_records] yahoo.com
+  [breach_records] aol.com
+
+====================================================================================================
+FIELD: email_id
+INDICES: emails_unified
+SAMPLES:
+  [emails_unified] email:{'name': '', 'email': 'abay.s@mail.ru'}
+  [emails_unified] email:{'name': 'david richter', 'email': 'david.richter@mail.com'}
+  [emails_unified] email:{'name': 'асылбек килимов', 'email': 'assylbek64@mail.ru'}
+  [emails_unified] email:{'name': 'assylbek kilimov', 'email': 'assylbek64@mail.ru'}
+  [emails_unified] email:{'name': '', 'email': 'assylbek64@mail.ru'}
+
+====================================================================================================
+FIELD: emails
+INDICES: onion-pages
+SAMPLES:
+  [onion-pages] pharmacystore121@gmail.com
+  [onion-pages] quickmoney@airmail.cc
+  [onion-pages] safescrowsupport@cumallover.me
+  [onion-pages] pro00@bipzap.com
+
+====================================================================================================
+FIELD: embedding
+INDICES: onion-pages
+SAMPLES:
+  [onion-pages] -0.03285752609372139
+  [onion-pages] -0.015804540365934372
+  [onion-pages] 0.005621279589831829
+  [onion-pages] -0.02295532263815403
+  [onion-pages] -0.04082244634628296
+
+====================================================================================================
+FIELD: enriched_at
+INDICES: onion-pages
+SAMPLES:
+  [onion-pages] 2025-12-04T15:11:52.838024+00:00
+  [onion-pages] 2025-12-04T15:11:53.078500+00:00
+  [onion-pages] 2025-12-04T15:11:53.462958+00:00
+  [onion-pages] 2025-12-04T15:11:53.730951+00:00
+  [onion-pages] 2025-12-04T15:11:54.365995+00:00
+
+====================================================================================================
+FIELD: entity_count
+INDICES: drill_pages
+SAMPLES:
+  [drill_pages] 15
+  [drill_pages] 5
+  [drill_pages] 10
+  [drill_pages] 8
+  [drill_pages] 4
+
+====================================================================================================
+FIELD: entity_type
+INDICES: openownership
+SAMPLES:
+  [openownership] registeredEntity
+  [openownership] knownPerson
+
+====================================================================================================
+FIELD: fetched_at
+INDICES: onion-pages
+SAMPLES:
+  [onion-pages] 2025-12-03T14:25:46.577428
+  [onion-pages] 2025-12-03T14:25:46.590230
+  [onion-pages] 2025-12-03T14:25:47.464242
+  [onion-pages] 2025-12-03T14:25:50.471666
+  [onion-pages] 2025-12-03T14:25:50.869882
+
+====================================================================================================
+FIELD: from
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] {"name": "Gaukhar Sarsekeyeva", "email": "sgoha@yahoo.com"}
+  [kazaword_emails] {"name": "david richter", "email": "david.richter@mail.com"}
+  [kazaword_emails] {"name": "\u0410\u0441\u044b\u043b\u0431\u0435\u043a \u041a\u0438\u043b\u0438\u0
+
+====================================================================================================
+FIELD: full_name
+INDICES: persons_unified
+SAMPLES:
+  [persons_unified] Koei Tecmo Releases New Trailer for Attack on Titan Game - COGconnected
+  [persons_unified] クロスプラスからミッキーの表情がかわいいデイリーコーデにも使いやすいニット!
+  [persons_unified] The Crew Wild Run is Released Today, Includes Four New Vehicle Types - COGconnected
+  [persons_unified] キャラディネート‗バナー画像 | CHARADINATE（キャラディネート）
+  [persons_unified] Día Mundial contra el Trabajo Infantil - Islavision web
+
+====================================================================================================
+FIELD: h1
+INDICES: onion-pages
+SAMPLES:
+  [onion-pages] Welcome back!
+  [onion-pages] We define trust
+  [onion-pages] HACKING SERVICES
+
+====================================================================================================
+FIELD: has_attachments
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] True
+
+====================================================================================================
+FIELD: hash_type
+INDICES: breach_records
+SAMPLES:
+  [breach_records] sha1
+
+====================================================================================================
+FIELD: id
+INDICES: linklater_corpus
+SAMPLES:
+  [linklater_corpus] ll_3s5s1n
+  [linklater_corpus] ll_ui4weq
+  [linklater_corpus] ll_p4inf0
+  [linklater_corpus] ll_qfg58n
+  [linklater_corpus] ll_7hm1sl
+
+====================================================================================================
+FIELD: incorporation_date
+INDICES: openownership
+SAMPLES:
+  [openownership] 2013-08-07
+  [openownership] 2015-08-18
+
+====================================================================================================
+FIELD: indexed_at
+INDICES: domains_unified, kazaword_emails, linklater_corpus, openownership, uk_addresses, uk_ccod, uk_leases, uk_ocod
+SAMPLES:
+  [openownership] 2025-12-29T18:31:41.531239
+  [openownership] 2025-12-29T18:31:41.531252
+  [openownership] 2025-12-29T18:31:41.531261
+  [openownership] 2025-12-29T18:31:41.531286
+  [openownership] 2025-12-29T18:31:41.531299
+
+====================================================================================================
+FIELD: industry
+INDICES: companies_unified, linkedin_unified
+SAMPLES:
+  [linkedin_unified] Hospitals and Health Care
+  [linkedin_unified] Events Services
+  [linkedin_unified] Food and Beverage Services
+  [linkedin_unified] Software Development
+  [linkedin_unified] Public Policy Offices
+
+====================================================================================================
+FIELD: interested_party_id
+INDICES: openownership
+SAMPLES:
+  [openownership] 6366463210304560900
+  [openownership] 15434923022561264930
+  [openownership] 2292249882851288192
+  [openownership] 14290167542057021256
+  [openownership] 11044738727396138984
+
+====================================================================================================
+FIELD: interested_party_name
+INDICES: openownership
+SAMPLES:
+  [openownership] Alan Glassfield
+  [openownership] Graham Alexander Powell
+  [openownership] Ian Rich
+  [openownership] Harvinder Singh Hunjan
+  [openownership] Umesh Gopal Farmah
+
+====================================================================================================
+FIELD: internal_links
+INDICES: drill_pages
+SAMPLES:
+  [drill_pages] https://soax.com/
+
+====================================================================================================
+FIELD: jurisdiction
+INDICES: openownership, uk_addresses
+SAMPLES:
+  [openownership] gb
+  [uk_addresses] GB
+
+====================================================================================================
+FIELD: keywords
+INDICES: linklater_corpus
+SAMPLES:
+  [linklater_corpus] ”KVIKA”
+
+====================================================================================================
+FIELD: keywords_found
+INDICES: drill_pages
+SAMPLES:
+  [drill_pages] affiliate
+
+====================================================================================================
+FIELD: last_updated
+INDICES: domains_unified
+SAMPLES:
+  [domains_unified] 2025-12-14T13:16:29.342443
+  [domains_unified] 2025-12-14T13:16:29.342472
+  [domains_unified] 2025-12-14T13:16:29.342483
+  [domains_unified] 2025-12-14T13:16:29.343443
+  [domains_unified] 2025-12-14T13:16:29.343448
+
+====================================================================================================
+FIELD: linkedin_id
+INDICES: linkedin_unified
+SAMPLES:
+  [linkedin_unified] linkedin:company:sierra-view-manor
+  [linkedin_unified] linkedin:company:grupo-trallax-azafatas-y-eventos
+  [linkedin_unified] linkedin:company:jamonzar-s-l-
+  [linkedin_unified] linkedin:company:swiftsolutions
+  [linkedin_unified] linkedin:showcase:counseling-exam
+
+====================================================================================================
+FIELD: linkedin_url
+INDICES: companies_unified, linkedin_unified
+SAMPLES:
+  [linkedin_unified] https://linkedin.com/company/sierra-view-manor
+  [linkedin_unified] https://linkedin.com/company/grupo-trallax-azafatas-y-eventos
+  [linkedin_unified] https://linkedin.com/company/jamonzar-s-l-
+  [linkedin_unified] https://linkedin.com/company/swiftsolutions
+  [linkedin_unified] https://linkedin.com/showcase/counseling-exam
+
+====================================================================================================
+FIELD: links_found
+INDICES: onion-pages
+SAMPLES:
+  [onion-pages] 32
+  [onion-pages] 9
+  [onion-pages] 8
+  [onion-pages] 4
+  [onion-pages] 5
+
+====================================================================================================
+FIELD: local_number
+INDICES: phones_unified
+SAMPLES:
+  [phones_unified] 235871
+  [phones_unified] 4505626
+  [phones_unified] 825777
+  [phones_unified] 619884
+
+====================================================================================================
+FIELD: local_part
+INDICES: breach_records, emails_unified
+SAMPLES:
+  [breach_records] the_true_lulu
+  [breach_records] hello
+  [breach_records] daifduncan
+  [breach_records] babigurl_812
+  [breach_records] www.stolen_skittles01
+
+====================================================================================================
+FIELD: message_id
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] <208012.35168.qm@web50606.mail.re2.yahoo.com>
+  [kazaword_emails] <20081207214616.145E91CE8FB@ws1-6.us4.outblaze.com>
+  [kazaword_emails] <20081208124826.96867BE4078@ws1-9.us4.outblaze.com>
+  [kazaword_emails] <20081208155517.ABE7D1BF28D@ws1-10.us4.outblaze.com>
+  [kazaword_emails] <20081208155154.804DC32675A@ws1-8.us4.outblaze.com>
+
+====================================================================================================
+FIELD: meta
+INDICES: onion-pages
+SAMPLES:
+  [onion-pages] eCash Cards: trusted, automatic Visa credit card, Mastercard, PayPal and Western Union store
+  [onion-pages] Discover your next adventure - Relocate or immigrate now !
+  [onion-pages] Smokeables - Best deep web weed store, buy marijuana, cannabis, hash and more with Bitcoins
+  [onion-pages] Hoodle is the most powerful search engine systems in TOR
+  [onion-pages] Safe Escrow is a Best Escrow, Secure site, Escrow Links, secure payments, Escrow Tor, Trusted sites,
+
+====================================================================================================
+FIELD: metadata
+INDICES: top_domains
+SAMPLES:
+  [top_domains] {}
+
+====================================================================================================
+FIELD: multiple_address_indicator
+INDICES: uk_ccod, uk_ocod
+SAMPLES:
+  [uk_ccod] N
+
+====================================================================================================
+FIELD: name
+INDICES: breach_records, companies_unified, openownership
+SAMPLES:
+  [breach_records] 18718190
+  [breach_records] poopfrommandyandkim
+  [breach_records] 18718201
+  [breach_records] babigurl_812
+  [breach_records] 18718213
+
+====================================================================================================
+FIELD: name_normalized
+INDICES: openownership
+SAMPLES:
+  [openownership] schooltechhub ltd
+  [openownership] rosanna worboys
+  [openownership] accounts network ltd
+  [openownership] morag elizabeth anne levy
+
+====================================================================================================
+FIELD: organization_names
+INDICES: phones_unified
+SAMPLES:
+  [phones_unified] 戦争・・・
+  [phones_unified] 九ブロ 参加申込書 H28 | 沖縄県老人クラブ連合会
+  [phones_unified] Ghế Massage Soraka
+
+====================================================================================================
+FIELD: originating_ip
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] 84.190.207.114
+  [kazaword_emails] 84.190.251.168
+  [kazaword_emails] 92.47.211.159
+  [kazaword_emails] 89.218.25.173
+
+====================================================================================================
+FIELD: outlink_count
+INDICES: drill_pages
+SAMPLES:
+  [drill_pages] 2
+  [drill_pages] 5
+  [drill_pages] 11
+  [drill_pages] 6
+
+====================================================================================================
+FIELD: outlinks
+INDICES: drill_pages
+SAMPLES:
+  [drill_pages] https://www.linkedin.com/company/soax-network
+  [drill_pages] https://www.g2.com/products/soax/reviews/soax-review-9707482
+  [drill_pages] https://iphey.com/
+  [drill_pages] http://www.statista.com/topics/1538/social-media-marketing/
+
+====================================================================================================
+FIELD: owner_name
+INDICES: uk_addresses
+SAMPLES:
+  [uk_addresses] VALE HOLIDAY PARKS LIMITED
+  [uk_addresses] LOCANTIS PROPERTY LTD
+  [uk_addresses] TORUS62 LIMITED
+  [uk_addresses] BASEGOLD PROPERTIES LTD
+  [uk_addresses] HAPPY PET PRODUCTS LIMITED
+
+====================================================================================================
+FIELD: owner_type
+INDICES: uk_addresses
+SAMPLES:
+  [uk_addresses] unknown
+
+====================================================================================================
+FIELD: ownership_percentage
+INDICES: openownership
+SAMPLES:
+  [openownership] 25.0
+  [openownership] 75.0
+  [openownership] 50.0
+
+====================================================================================================
+FIELD: password_hash
+INDICES: breach_records
+SAMPLES:
+  [breach_records] 9FBD9B80AF7E652065E489F94C456971B7D9BB4D
+  [breach_records] 81B06FACD90FE7A6E9BBD9CEE59736A79105B7BE
+  [breach_records] 0B2835E75DEDC8CFB4B48F50023F87B2FC3201AE
+  [breach_records] 2F7AB7C00A822049E68EECED0B2D22FE6C2D26E6
+  [breach_records] ED9B575059F99B2BA51E4846A64235752A8AF6FB
+
+====================================================================================================
+FIELD: person_id
+INDICES: persons_unified
+SAMPLES:
+  [persons_unified] name:cogconnected.com:koei tecmo releases new trailer for attack on titan game cogconnected
+  [persons_unified] name:charadinate.jp:クロスプラスからミッキーの表情がかわいいデイリーコーデにも使いやすいニット
+  [persons_unified] name:cogconnected.com:the crew wild run is released today includes four new vehicle types cogconnect
+  [persons_unified] name:charadinate.jp:キャラディネートバナー画像 charadinateキャラディネート
+  [persons_unified] name:islavision.icrt.cu:día mundial contra el trabajo infantil islavision web
+
+====================================================================================================
+FIELD: person_names
+INDICES: phones_unified
+SAMPLES:
+  [phones_unified] 家族旅行雨が降っても焦らない！【９９％の催行率】 | 沖縄でマングローブカヤックならカヤックイーズ
+  [phones_unified] 413 East 8th Apt 4 - Prime Time
+  [phones_unified] Okinawa Sushi Grodzisk Mazowiecki
+  [phones_unified] Okinawa Sushi Skierniewice
+  [phones_unified] Creating Stunning Indo Western Dresses For Every Occasion
+
+====================================================================================================
+FIELD: persons
+INDICES: drill_pages, onion-pages
+SAMPLES:
+  [onion-pages] JulyJailbait
+  [onion-pages] Anthony Example City
+  [onion-pages] pharmacystore121
+  [onion-pages] Carter
+  [onion-pages] Hacker
+
+====================================================================================================
+FIELD: phone_e164
+INDICES: phones_unified
+SAMPLES:
+  [phones_unified] +81989235871
+  [phones_unified] +15074505626
+  [phones_unified] 881730630
+  [phones_unified] 790222055
+  [phones_unified] 9374271847
+
+====================================================================================================
+FIELD: phone_id
+INDICES: phones_unified
+SAMPLES:
+  [phones_unified] phone:+81989235871
+  [phones_unified] phone:+15074505626
+  [phones_unified] phone:881730630
+  [phones_unified] phone:790222055
+  [phones_unified] phone:9374271847
+
+====================================================================================================
+FIELD: phone_raw
+INDICES: phones_unified
+SAMPLES:
+  [phones_unified] +81989235871
+  [phones_unified] +15074505626
+  [phones_unified] 881 730 630
+  [phones_unified] 790222055
+  [phones_unified] 9374271847
+
+====================================================================================================
+FIELD: postcode
+INDICES: uk_addresses, uk_ccod, uk_ocod
+SAMPLES:
+  [uk_ccod] HX3 7AF
+  [uk_ccod] LS12 3NP
+  [uk_ccod] LS9 8RU
+  [uk_ccod] BD4 0RG
+  [uk_ocod] W3 0BD
+
+====================================================================================================
+FIELD: postcode_district
+INDICES: uk_ccod, uk_ocod
+SAMPLES:
+  [uk_ccod] HX3
+  [uk_ccod] LS12
+  [uk_ccod] LS9
+  [uk_ccod] BD4
+  [uk_ocod] W3
+
+====================================================================================================
+FIELD: price_paid
+INDICES: uk_ccod, uk_leases, uk_ocod
+SAMPLES:
+  [uk_ccod] 131500.0
+  [uk_ccod] 25500.0
+  [uk_ocod] 397814.0
+  [uk_leases] 240000.0
+  [uk_leases] 255000.0
+
+====================================================================================================
+FIELD: profile_slug
+INDICES: linkedin_unified
+SAMPLES:
+  [linkedin_unified] sierra-view-manor
+  [linkedin_unified] grupo-trallax-azafatas-y-eventos
+  [linkedin_unified] jamonzar-s-l-
+  [linkedin_unified] swiftsolutions
+  [linkedin_unified] counseling-exam
+
+====================================================================================================
+FIELD: profile_type
+INDICES: linkedin_unified
+SAMPLES:
+  [linkedin_unified] company
+  [linkedin_unified] showcase
+
+====================================================================================================
+FIELD: property_address
+INDICES: uk_ccod, uk_ocod
+SAMPLES:
+  [uk_ccod] Land and buildings at School Lane, Berry Brow, Huddersfield
+  [uk_ccod] Properties at Park Estate, South Kirkby, Pontefract
+  [uk_ccod] Land on the south side of Whitehall Road, Leeds
+  [uk_ccod] 7 Hawthorn Terrace, 8, 10, 14, 22 and 24 South Terrace and 24 Sowood Avenue, Ossett
+  [uk_ccod] 59 Park Terrace, Stump Cross, Halifax (HX3 7AF)
+
+====================================================================================================
+FIELD: proprietor_address
+INDICES: uk_ocod
+SAMPLES:
+  [uk_ocod] Oak House, Hirzel Street, St Peter Port, Guernsey, GY1 3RH
+  [uk_ocod] P O Box 393, St Peter Port, Guernsey, Channel Islands, GY1 3FN
+  [uk_ocod] Fairbairn House, St Peter Port, Guernsey
+  [uk_ocod] Ayioi Omologites 15, Ayion Omologiton Avenue, 1080 Nicosia, Cyprus
+  [uk_ocod] 1 Royal Plaza, Royal Avenue, St Peter Port, Guernsey, GY1 2HL
+
+====================================================================================================
+FIELD: proprietor_address_1
+INDICES: uk_ccod
+SAMPLES:
+  [uk_ccod] Legal Services, 4th Floor South, Civic Centre 1, High Street, Huddersfield HD1 2NF
+  [uk_ccod] Merefield House, Whistler Drive, Castleford WF10 5HX
+  [uk_ccod] Suites 7-10, Prudential Buildings, 61 St. Petersgate, Stockport SK1 1DH
+  [uk_ccod] Ground Floor, 30 Victoria Avenue, Harrogate HG1 5PR
+  [uk_ccod] 30 Gipton Wood Place, Leeds LS8 2SE
+
+====================================================================================================
+FIELD: proprietor_name
+INDICES: uk_ocod
+SAMPLES:
+  [uk_ocod] ELDERFLOWER MANAGEMENT LIMITED
+  [uk_ocod] PEPINO BUSINESS SA
+  [uk_ocod] LLEWELLYN PENMAN HOLDINGS LIMITED
+  [uk_ocod] VENDERESO CORPORATION LIMITED
+  [uk_ocod] ADRIATIC LAND 3 LIMITED
+
+====================================================================================================
+FIELD: proprietor_name_1
+INDICES: uk_ccod
+SAMPLES:
+  [uk_ccod] THE COUNCIL OF THE BOROUGH OF KIRKLEES
+  [uk_ccod] VICO HOMES LIMITED
+  [uk_ccod] KINGSCROWN LAND & COMMERCIAL LIMITED
+  [uk_ccod] TDT PROPERTY LIMITED
+  [uk_ccod] TONIRE PROPERTIES LIMITED
+
+====================================================================================================
+FIELD: proprietorship_category_1
+INDICES: uk_ccod
+SAMPLES:
+  [uk_ccod] Local Authority
+  [uk_ccod] Community Benefit Society (Company)
+  [uk_ccod] Limited Company or Public Limited Company
+
+====================================================================================================
+FIELD: query
+INDICES: linklater_corpus
+SAMPLES:
+  [linklater_corpus] ”KVIKA” “libya”
+
+====================================================================================================
+FIELD: rank
+INDICES: top_domains
+SAMPLES:
+  [top_domains] 919440
+  [top_domains] 919445
+  [top_domains] 919450
+  [top_domains] 919457
+  [top_domains] 919460
+
+====================================================================================================
+FIELD: received_count
+INDICES: emails_unified
+SAMPLES:
+  [emails_unified] 611
+  [emails_unified] 5
+  [emails_unified] 4
+  [emails_unified] 1
+
+====================================================================================================
+FIELD: record_id
+INDICES: openownership
+SAMPLES:
+  [openownership] ownership:8526301191794936
+  [openownership] entity:8526402263053510955
+  [openownership] ownership:8526747535301484823
+  [openownership] person:8527207588944279597
+  [openownership] entity:8528116341883174687
+
+====================================================================================================
+FIELD: region
+INDICES: uk_addresses, uk_ccod, uk_leases, uk_ocod
+SAMPLES:
+  [uk_ccod] YORKS AND HUMBER
+  [uk_ocod] GREATER LONDON
+  [uk_leases] SOUTH EAST
+  [uk_addresses] WALES
+  [uk_addresses] NORTH WEST
+
+====================================================================================================
+FIELD: same_as
+INDICES: companies_unified, persons_unified
+SAMPLES:
+  [companies_unified] https://www.facebook.com/DIReporter
+  [companies_unified] https://www.facebook.com/BalanceCreditLending
+  [companies_unified] https://soundcloud.com/blncdbrkfst
+  [companies_unified] https://www.instagram.com/diretiva_contabilidade/
+  [companies_unified] https://www.facebook.com/LivermoreRotary/
+
+====================================================================================================
+FIELD: schema_types
+INDICES: companies_unified, persons_unified
+SAMPLES:
+  [companies_unified] BreadcrumbList
+  [companies_unified] Product
+  [companies_unified] ImageObject
+  [companies_unified] WebPage
+  [persons_unified] Article
+
+====================================================================================================
+FIELD: scraped_at
+INDICES: linklater_corpus
+SAMPLES:
+  [linklater_corpus] 2025-12-01T07:23:03.147Z
+  [linklater_corpus] 2025-12-01T07:23:03.155Z
+  [linklater_corpus] 2025-12-01T07:23:03.158Z
+  [linklater_corpus] 2025-12-01T07:23:03.159Z
+
+====================================================================================================
+FIELD: search_text
+INDICES: openownership
+SAMPLES:
+  [openownership] VANTEGE LIMITED Alan Glassfield shareholding voting-rights
+  [openownership] SCHOOLTECHHUB LIMITED schooltechhub ltd 08641349 GB UK Spaces The Maylands Building Maylands Avenue,
+  [openownership] MINISTRY OF CARAVANS LIMITED Graham Alexander Powell shareholding
+  [openownership] Rosanna Worboys rosanna worboys GB 17, Ashchurch Grove, London, W12 9BT
+  [openownership] ACCOUNTS NETWORK LIMITED accounts network ltd 09738289 GB UK 8 Audley Court, Hampton Road, Twickenha
+
+====================================================================================================
+FIELD: sent_count
+INDICES: emails_unified
+SAMPLES:
+  [emails_unified] 6
+  [emails_unified] 5
+  [emails_unified] 12
+  [emails_unified] 1
+
+====================================================================================================
+FIELD: snippet
+INDICES: linklater_corpus
+SAMPLES:
+  [linklater_corpus] # PERSÓNUVERNDARSTEFNA KVIKU BANKA HF.
+
+Sampykkt í september 2020 / Ábyrgaraili: Forstjóri
+
+# 1.INNG
+  [linklater_corpus] **Call for Proposals** **for** **NGOs**
+
+# **Supporting the Creation of Small Businesses and Strengt
+  [linklater_corpus] PK!KR:��1�\[Content\_Types\].xml ��(���MO1��H�+\_QցJU���@˱Ej\*�j����\_�L����n�Am\`K��
+  [linklater_corpus] Delegations will find attached a draft migration action plan for Libya prepared by the Commission Se
+  [linklater_corpus] ## PSIFIs data\_B\_Libya
+
+|     |     |     |     |     |     |     |     |     |     |     |     | 
+
+====================================================================================================
+FIELD: source
+INDICES: drill_pages, linklater_corpus, onion-pages, uk_addresses
+SAMPLES:
+  [uk_addresses] ccod
+  [onion-pages] local_crawler
+  [drill_pages] drill
+  [linklater_corpus] firecrawl
+
+====================================================================================================
+FIELD: source_archive
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] abay
+
+====================================================================================================
+FIELD: source_count
+INDICES: companies_unified, emails_unified, linkedin_unified, persons_unified, phones_unified
+SAMPLES:
+  [linkedin_unified] 1
+  [companies_unified] 2
+
+====================================================================================================
+FIELD: source_description
+INDICES: openownership
+SAMPLES:
+  [openownership] GB Persons Of Significant Control Register
+
+====================================================================================================
+FIELD: source_file
+INDICES: breach_records, uk_addresses
+SAMPLES:
+  [breach_records] Myspace.com.txt
+  [uk_addresses] CCOD_FULL_2025_08.csv
+
+====================================================================================================
+FIELD: source_type
+INDICES: openownership
+SAMPLES:
+  [openownership] officialRegister
+
+====================================================================================================
+FIELD: source_url
+INDICES: linklater_corpus, openownership
+SAMPLES:
+  [openownership] https://api.company-information.service.gov.uk/company/10327893/persons-with-significant-control/ind
+  [openownership] https://api.company-information.service.gov.uk/company/07336217/persons-with-significant-control/ind
+  [openownership] https://api.company-information.service.gov.uk/company/05217255/persons-with-significant-control/ind
+  [openownership] https://api.company-information.service.gov.uk/company/04835704/persons-with-significant-control/ind
+  [openownership] https://api.company-information.service.gov.uk/company/07327342/persons-with-significant-control/ind
+
+====================================================================================================
+FIELD: sources
+INDICES: companies_unified, domains_unified, emails_unified, linkedin_unified, persons_unified, phones_unified, top_domains
+SAMPLES:
+  [linkedin_unified] affiliate
+  [domains_unified] top_domains
+  [companies_unified] wdc-organization
+  [persons_unified] wdc-person
+  [emails_unified] kazaword
+
+====================================================================================================
+FIELD: statement_date
+INDICES: openownership
+SAMPLES:
+  [openownership] 2016-08-12
+  [openownership] 2023-06-18
+  [openownership] 2016-08-04
+  [openownership] 2016-04-06
+  [openownership] 2016-05-30
+
+====================================================================================================
+FIELD: statement_id
+INDICES: openownership
+SAMPLES:
+  [openownership] 8526301191794936
+  [openownership] 8526402263053510955
+  [openownership] 8526747535301484823
+  [openownership] 8527207588944279597
+  [openownership] 8528116341883174687
+
+====================================================================================================
+FIELD: statement_type
+INDICES: openownership
+SAMPLES:
+  [openownership] ownershipOrControlStatement
+  [openownership] entityStatement
+  [openownership] personStatement
+
+====================================================================================================
+FIELD: status_code
+INDICES: drill_pages, onion-pages
+SAMPLES:
+  [onion-pages] 200
+
+====================================================================================================
+FIELD: subject
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] photos
+  [kazaword_emails] Contract
+  [kazaword_emails] Fw: Azomures memorandum
+  [kazaword_emails] Fw: Willings Ltd., Letter Mr. Donnet to Sabine Vogel, Societe
+ General Paris, Geneva
+  [kazaword_emails] Fw:
+
+====================================================================================================
+FIELD: subject_id
+INDICES: openownership
+SAMPLES:
+  [openownership] 6892016234205338988
+  [openownership] 387564572742459643
+  [openownership] 15996923515838833228
+  [openownership] 6377318792468196509
+  [openownership] 17077381340812674341
+
+====================================================================================================
+FIELD: subject_name
+INDICES: openownership
+SAMPLES:
+  [openownership] VANTEGE LIMITED
+  [openownership] MINISTRY OF CARAVANS LIMITED
+  [openownership] STORAGE BOX SELF STORAGE LTD
+  [openownership] DIRECT ACCOMMODATION LTD
+  [openownership] AKF COLLECTIVE LTD
+
+====================================================================================================
+FIELD: tenure
+INDICES: uk_addresses, uk_ccod, uk_leases, uk_ocod
+SAMPLES:
+  [uk_ccod] Freehold
+  [uk_ccod] Leasehold
+
+====================================================================================================
+FIELD: term
+INDICES: uk_leases
+SAMPLES:
+  [uk_leases] 125 years from 1 November 2004
+  [uk_leases] 125 years from 1 April 2005
+  [uk_leases] 155 years from 1 June 2004
+  [uk_leases] 60 years from 27 October 1987
+  [uk_leases] 999 years from 1 June 2005
+
+====================================================================================================
+FIELD: title
+INDICES: drill_pages, onion-pages, top_domains
+SAMPLES:
+  [top_domains] vungkhopvinhgia.com.vn
+  [top_domains] adovenice.com
+  [top_domains] kiv.kz
+  [top_domains] phoqgood.com
+  [top_domains] mairie-cestas.fr
+
+====================================================================================================
+FIELD: title_number
+INDICES: uk_addresses, uk_ccod, uk_ocod
+SAMPLES:
+  [uk_ccod] WYK803313
+  [uk_ccod] WYK803448
+  [uk_ccod] WYK803523
+  [uk_ccod] WYK803659
+  [uk_ccod] WYK803710
+
+====================================================================================================
+FIELD: tld
+INDICES: domains_unified, top_domains
+SAMPLES:
+  [domains_unified] uk
+  [top_domains] vn
+  [top_domains] com
+  [top_domains] kz
+  [top_domains] fr
+
+====================================================================================================
+FIELD: tld_rank
+INDICES: top_domains
+SAMPLES:
+  [top_domains] 2744
+  [top_domains] 444740
+  [top_domains] 1548
+  [top_domains] 444747
+  [top_domains] 11915
+
+====================================================================================================
+FIELD: to
+INDICES: kazaword_emails
+SAMPLES:
+  [kazaword_emails] {"name": "", "email": "abay.s@mail.ru"}
+  [kazaword_emails] {"name": "Assylbek Kilimov", "email": "assylbek64@mail.ru"}
+
+====================================================================================================
+FIELD: unique_id
+INDICES: uk_leases
+SAMPLES:
+  [uk_leases] 8C878AED2F1EC50E9610DFBD3B5F4EB51C16D674
+  [uk_leases] F7AF968DBAE617A2DDFC6CC2E507A5963B5DEC97
+  [uk_leases] A710622055EA59FBB28446483CFD6E03EE91C9C8
+  [uk_leases] 4A0946F3D2146F1128DD4D9514E242A33ADEDCA8
+  [uk_leases] 5D306A1035191D14F3A60E02894C44FB0A731503
+
+====================================================================================================
+FIELD: updated_on
+INDICES: onion-pages
+SAMPLES:
+  [onion-pages] 2025-12-03T14:25:46.577428
+  [onion-pages] 2025-12-03T14:25:46.590230
+  [onion-pages] 2025-12-03T14:25:47.464242
+  [onion-pages] 2025-12-03T14:25:50.471666
+  [onion-pages] 2025-12-03T14:25:50.869882
+
+====================================================================================================
+FIELD: uprn
+INDICES: uk_leases
+SAMPLES:
+  [uk_leases] 1004267562.0
+  [uk_leases] 501859341.0
+  [uk_leases] 1004533566.0
+  [uk_leases] 28626699.0
+  [uk_leases] 18310529.0
+
+====================================================================================================
+FIELD: url
+INDICES: drill_pages, linklater_corpus, onion-pages, top_domains
+SAMPLES:
+  [top_domains] http://vungkhopvinhgia.com.vn
+  [top_domains] http://adovenice.com
+  [top_domains] http://kiv.kz
+  [top_domains] http://phoqgood.com
+  [top_domains] http://mairie-cestas.fr
+
+====================================================================================================
+FIELD: user_id
+INDICES: breach_records
+SAMPLES:
+  [breach_records] 18718190
+  [breach_records] 18718193
+  [breach_records] 18718201
+  [breach_records] 18718206
+  [breach_records] 18718213
+
+====================================================================================================
+FIELD: wdc_crawl
+INDICES: companies_unified, persons_unified
+SAMPLES:
+  [companies_unified] 2024-10
+
+====================================================================================================
+FIELD: website_url
+INDICES: companies_unified
+SAMPLES:
+  [companies_unified] https://direporter.com/tag/zeiss-group
+  [companies_unified] https://liveri.com.ve/ccch/
+  [companies_unified] http://balanceconnected.com/product/plant-package-11-japanese-plants/
+  [companies_unified] https://www.balancecredit.com/wp-content/uploads/2024/04/Balance-Credit-Application-Online.png
+  [companies_unified] https://balanced-breakfast.com
+
+====================================================================================================
+FIELD: word_count
+INDICES: linklater_corpus
+SAMPLES:
+  [linklater_corpus] 2693
+  [linklater_corpus] 2440
+  [linklater_corpus] 343
+  [linklater_corpus] 2884
+  [linklater_corpus] 4535

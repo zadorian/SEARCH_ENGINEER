@@ -1,0 +1,95 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "AGGREGATORS - Secondary sources that belong to modules. Each aggregator is subordinate to a module.",
+    "note": "Sources in sources.json reference these via 'aggregator' field"
+  },
+  "aggregators": {
+    "OCCRP_ALEPH": {
+      "name": "OCCRP Aleph",
+      "module": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2",
+      "file": "corporella/occrp_aleph.py",
+      "description": "237 collections across 75+ jurisdictions - company registries, sanctions, courts, procurement, leaks",
+      "collections_file": "aleph_collections.json"
+    },
+    "OPENCORPORATES": {
+      "name": "OpenCorporates",
+      "module": "CORPORELLA",
+      "api_endpoint": "https://api.opencorporates.com/v0.4",
+      "file": "corporella/opencorporates.py",
+      "description": "Global company registry aggregator - 200M+ companies across 140+ jurisdictions"
+    },
+    "OPENOWNERSHIP": {
+      "name": "Open Ownership",
+      "module": "CORPORELLA",
+      "api_endpoint": "https://register.openownership.org/api/v1",
+      "file": "corporella/open_ownership.py",
+      "description": "Beneficial ownership data from multiple jurisdictions"
+    },
+    "DEHASHED": {
+      "name": "DeHashed",
+      "module": "EYE-D",
+      "api_endpoint": "https://api.dehashed.com",
+      "file": "eyed/resources/dehashed.py",
+      "description": "Breach database - emails, passwords, usernames, IPs"
+    },
+    "OSINT_INDUSTRIES": {
+      "name": "OSINT Industries",
+      "module": "EYE-D",
+      "api_endpoint": "https://osint.industries/api",
+      "file": "eyed/resources/osint_industries.py",
+      "description": "Multi-source OSINT - social profiles, contact info, breaches"
+    },
+    "ROCKETREACH": {
+      "name": "RocketReach",
+      "module": "EYE-D",
+      "api_endpoint": "https://api.rocketreach.co/v2",
+      "file": "eyed/resources/rocketreach.py",
+      "description": "Professional contact discovery - emails, phones, LinkedIn"
+    },
+    "WHOISXML": {
+      "name": "WhoisXML API",
+      "module": "EYE-D",
+      "api_endpoint": "https://www.whoisxmlapi.com/whoisserver",
+      "file": "eyed/resources/whoisxml.py",
+      "description": "Domain WHOIS, reverse WHOIS, DNS history"
+    },
+    "ARCHIVE_ORG": {
+      "name": "Internet Archive / Wayback Machine",
+      "module": "LINKLATER",
+      "api_endpoint": "https://archive.org/wayback",
+      "file": "linklater/archives/optimal_archive.py",
+      "description": "Historical web snapshots and CDX index"
+    },
+    "COMMONCRAWL": {
+      "name": "Common Crawl",
+      "module": "LINKLATER",
+      "api_endpoint": "https://index.commoncrawl.org",
+      "file": "linklater/archives/cc_index_client.py",
+      "description": "Web archive - link graphs, historical content, WARC records"
+    },
+    "MAJESTIC": {
+      "name": "Majestic",
+      "module": "LINKLATER",
+      "api_endpoint": "https://api.majestic.com/api",
+      "file": "linklater/discovery/majestic_discovery.py",
+      "description": "Backlink database - referring domains, trust flow, citation flow"
+    },
+    "FIRECRAWL": {
+      "name": "Firecrawl",
+      "module": "BRUTE",
+      "api_endpoint": "https://api.firecrawl.dev/v1",
+      "file": "alldom/providers/firecrawl.py",
+      "description": "Modern web scraping - JS rendering, markdown extraction"
+    },
+    "FIRMENABC": {
+      "name": "FirmenABC (Austria)",
+      "module": "COUNTRY_API",
+      "api_endpoint": "https://www.firmenabc.at",
+      "file": "country_engines/AT/at_cli.py",
+      "description": "Austrian company directory aggregator",
+      "jurisdiction": "AT"
+    }
+  }
+}

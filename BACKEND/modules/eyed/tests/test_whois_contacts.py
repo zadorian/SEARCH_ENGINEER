@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 """Test WHOIS contact data extraction"""
 
+from __future__ import annotations
+
+if __name__ != "__main__":
+    import pytest
+
+    pytest.skip("EYE-D test scripts are manual; run directly", allow_module_level=True)
+
 import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

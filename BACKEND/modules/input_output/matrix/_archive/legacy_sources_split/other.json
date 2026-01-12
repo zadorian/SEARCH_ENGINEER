@@ -1,0 +1,32 @@
+{
+  "EU": [
+    {
+      "name": "EU Tobacco lobbying emails",
+      "domain": "aleph.occrp.org/datasets/12415",
+      "url": "https://aleph.occrp.org/datasets/12415",
+      "type": "investigative_archive",
+      "category": "other",
+      "section": "cr",
+      "friction": "api",
+      "jurisdiction": "EU",
+      "jurisdictions": [
+        "EU"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 12415,
+      "inputs": [
+        "keyword"
+      ],
+      "outputs": [
+        "emails"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 12415. EU Tobacco lobbying emails",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=12415",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=12415",
+      "access_method": "api"
+    }
+  ]
+}

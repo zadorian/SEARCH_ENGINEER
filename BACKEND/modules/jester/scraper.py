@@ -4,25 +4,55 @@ JESTER - The Unified Scraping System
 JESTER is the ONLY scraping system. Everything uses JESTER.
 
 Scraping Hierarchy (tries in order, stops on success):
-- JESTER_A: httpx direct (fastest, ~60% of sites)
-- JESTER_B: Colly Go crawler (static HTML, 500+ concurrent)
-- JESTER_C: Rod Go crawler (JS rendering, ~100 concurrent)
-- JESTER_D: Headless browser (custom Firecrawl + Playwright hybrid)
+- JESTER_A: httpx direct (fastest, ~60% of sites)       -> jester_a.py
+- JESTER_B: Colly Go crawler (static HTML, 500+ concurrent) -> jester_b.py
+- JESTER_C: Rod Go crawler (JS rendering, ~100 concurrent)  -> jester_c.py
+- JESTER_D: Custom headless browser (Playwright hybrid)     -> jester_d.py
 - FIRECRAWL: External Firecrawl API (paid)
 - BRIGHTDATA: BrightData proxy API (paid, last resort)
 
 Usage:
-    from JESTER import Jester
+    from modules.jester import Jester
 
     jester = Jester()
     html, method_used, latency = await jester.scrape("https://example.com")
 
-    # Or force a specific method:
-    html = await jester.scrape_a("https://example.com")  # httpx only
-    html = await jester.scrape_b("https://example.com")  # Colly only
-    html = await jester.scrape_c("https://example.com")  # Rod only
-    html = await jester.scrape_d("https://example.com")  # Headless only
+    # Or use individual tiers directly:
+    from modules.jester.jester_a import JesterA, scrape_a
+    from modules.jester.jester_b import JesterB, scrape_b
+    from modules.jester.jester_c import JesterC, scrape_c
+    from modules.jester.jester_d import JesterD, scrape_d
+
+    result = await scrape_a("https://example.com")  # httpx only
+    result = await scrape_b("https://example.com")  # Colly only
+    result = await scrape_c("https://example.com")  # Rod only
+    result = await scrape_d("https://example.com")  # Headless only
 """
+
+# ─────────────────────────────────────────────────────────────────
+# Re-export tier classes for convenience
+# ─────────────────────────────────────────────────────────────────
+from modules.jester.jester_a import JesterA, JesterAResult, scrape_a, scrape_a_batch
+from modules.jester.jester_b import JesterB, JesterBResult, scrape_b, scrape_b_batch, colly_available
+from modules.jester.jester_c import JesterC, JesterCResult, scrape_c, scrape_c_batch, rod_available, ScreenshotRule, ScreenshotResult
+from modules.jester.jester_d import JesterD, JesterDResult, scrape_d, scrape_d_batch, jester_d_available
+
+__all__ = [
+    # Unified
+    "Jester", "JesterMethod", "JesterResult", "JesterConfig",
+    # Tier A
+    "JesterA", "JesterAResult", "scrape_a", "scrape_a_batch",
+    # Tier B
+    "JesterB", "JesterBResult", "scrape_b", "scrape_b_batch", "colly_available",
+    # Tier C
+    "JesterC", "JesterCResult", "scrape_c", "scrape_c_batch", "rod_available", "ScreenshotRule", "ScreenshotResult",
+    # Tier D
+    "JesterD", "JesterDResult", "scrape_d", "scrape_d_batch", "jester_d_available",
+    # Convenience
+    "scrape", "scrape_batch", "scrape_batch_optimized", "get_jester",
+    # Crawl mode
+    "crawl_domain", "crawl_domain_full", "crawl_batch", "CrawlPage", "CrawlConfig", "DomainCrawlResult",
+]
 
 import asyncio
 import logging

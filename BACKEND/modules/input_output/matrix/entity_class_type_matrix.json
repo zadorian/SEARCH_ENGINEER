@@ -1,0 +1,289 @@
+{
+  "_meta": {
+    "version": "2.0.0",
+    "title": "I/O Entity Class/Type Matrix",
+    "description": "THE CENTRAL REGISTRY for all node classes and types. Hierarchy: CLASS > TYPE > SUBTYPE.",
+    "canonical_path": "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/entity_class_type_matrix.json",
+    "last_updated": "2026-01-11",
+    "related_files": {
+      "types": "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/types.json",
+      "relationships": "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/relationships.json",
+      "codes": "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/codes.json",
+      "industries": "/data/CLASSES/SUBJECT/industries.json",
+      "professions": "/data/CLASSES/SUBJECT/professions.json"
+    }
+  },
+
+  "hierarchy": {
+    "structure": "CLASS > TYPE > SUBTYPE",
+    "classes": ["SUBJECT", "NEXUS", "LOCATION", "NARRATIVE"],
+    "types": {
+      "SUBJECT": ["ENTITY", "CONCEPT"],
+      "NEXUS": ["RELATIONSHIP"],
+      "LOCATION": ["GEOGRAPHIC", "JURISDICTIONAL"],
+      "NARRATIVE": ["DOCUMENTATION"]
+    },
+    "subtypes": {
+      "CONCEPT": ["PHENOMENON", "INDUSTRY", "PROFESSION"]
+    }
+  },
+
+  "classes": {
+    "SUBJECT": {
+      "description": "Entities and concepts being investigated. Core subjects of OSINT/DD work.",
+      "purposes": ["discovery", "enrichment"],
+      "types": {
+        "ENTITY": {
+          "description": "Concrete entities that become graph nodes",
+          "members": [
+            {
+              "name": "person",
+              "code": "p",
+              "description": "Human individual",
+              "identifiers": ["name", "national_id", "tax_id", "passport_id"],
+              "attributes": ["dob", "gender", "nationality", "country"]
+            },
+            {
+              "name": "company",
+              "code": "c",
+              "description": "Legal entity / organization",
+              "identifiers": ["name", "reg_id", "vat_id", "lei", "ocid"],
+              "attributes": ["status", "type", "incorporation_date", "country"]
+            },
+            {
+              "name": "email",
+              "code": "e",
+              "description": "Email address",
+              "flags": ["hybrid_subject"]
+            },
+            {
+              "name": "phone",
+              "code": "t",
+              "description": "Phone number",
+              "flags": ["hybrid_subject"]
+            },
+            {
+              "name": "address",
+              "code": "a",
+              "description": "Physical/postal address"
+            },
+            {
+              "name": "username",
+              "code": "u",
+              "description": "Social media handle / username",
+              "flags": ["hybrid_subject"]
+            },
+            {
+              "name": "password",
+              "code": "pw",
+              "description": "Password (from breach data)",
+              "flags": ["sensitive"]
+            },
+            {
+              "name": "domain",
+              "code": "d",
+              "description": "Web domain"
+            },
+            {
+              "name": "url",
+              "code": "url",
+              "description": "Web URL / page"
+            },
+            {
+              "name": "ip_address",
+              "code": "ip",
+              "description": "IP address (v4 or v6)",
+              "flags": ["hybrid_subject"]
+            },
+            {
+              "name": "document",
+              "code": "doc",
+              "description": "Document / file"
+            },
+            {
+              "name": "vehicle",
+              "code": "veh",
+              "description": "Motor vehicle",
+              "subtypes": ["car", "motorcycle", "truck"]
+            },
+            {
+              "name": "vessel",
+              "code": "ves",
+              "description": "Ship / boat"
+            },
+            {
+              "name": "aircraft",
+              "code": "air",
+              "description": "Aircraft"
+            },
+            {
+              "name": "property",
+              "code": "prop",
+              "description": "Real estate / land"
+            },
+            {
+              "name": "crypto_wallet",
+              "code": "crypto",
+              "description": "Cryptocurrency wallet address"
+            },
+            {
+              "name": "bank_account",
+              "code": "bank",
+              "description": "Bank account"
+            }
+          ]
+        },
+        "CONCEPT": {
+          "description": "Abstract concepts that can be graph nodes (phenomena, industries, professions)",
+          "subtypes": {
+            "PHENOMENON": {
+              "description": "Events or occurrences that are investigative subjects",
+              "members": [
+                {
+                  "name": "litigation",
+                  "code": "lit",
+                  "description": "Legal case / court proceeding",
+                  "identifiers": ["case_id", "docket_id"],
+                  "attributes": ["title", "court", "filing_date", "status", "outcome"]
+                }
+              ]
+            },
+            "INDUSTRY": {
+              "description": "Business sectors (NAICS/NACE-based)",
+              "reference": "/data/CLASSES/SUBJECT/industries.json",
+              "top_level": [
+                "finance", "energy", "healthcare", "technology", "manufacturing",
+                "real_estate", "consumer", "media", "transportation", "mining",
+                "construction", "professional_services", "defense", "gambling", "crypto"
+              ]
+            },
+            "PROFESSION": {
+              "description": "Occupational identities (SOC/ISCO-based)",
+              "reference": "/data/CLASSES/SUBJECT/professions.json",
+              "top_level": [
+                "legal", "finance", "medical", "engineering", "consulting",
+                "real_estate", "academia", "media", "government", "military", "investigative"
+              ]
+            }
+          }
+        }
+      }
+    },
+
+    "NEXUS": {
+      "description": "Relationships/edges between entities. Reified relationships can become nodes.",
+      "purposes": ["connection", "enrichment"],
+      "reference": "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/relationships.json",
+      "types": {
+        "RELATIONSHIP": {
+          "description": "Edges connecting SUBJECT nodes",
+          "root_types": [
+            {"code": 1, "name": "same_as", "description": "Identity/deduplication"},
+            {"code": 2, "name": "related_to", "description": "Generic association"},
+            {"code": 3, "name": "owns", "description": "Ownership"},
+            {"code": 4, "name": "controls", "description": "Control relationship"},
+            {"code": 5, "name": "member_of", "description": "Membership/role"},
+            {"code": 6, "name": "located_at", "description": "Spatial/geographic"},
+            {"code": 7, "name": "has", "description": "Attribute/contact"},
+            {"code": 8, "name": "links_to", "description": "Digital/web"},
+            {"code": 9, "name": "party_to", "description": "Legal proceedings"},
+            {"code": 10, "name": "sanctioned_by", "description": "Sanctions"},
+            {"code": 11, "name": "appears_in", "description": "Media/document mentions"},
+            {"code": 12, "name": "regulated_by", "description": "Regulatory"},
+            {"code": 13, "name": "transacts_with", "description": "Financial"},
+            {"code": 14, "name": "searched_with", "description": "Provenance tracking"},
+            {"code": 15, "name": "not_same_as", "description": "Negative entity resolution"}
+          ]
+        }
+      }
+    },
+
+    "LOCATION": {
+      "description": "Geographic and jurisdictional context",
+      "purposes": ["contextualization", "filtering"],
+      "types": {
+        "GEOGRAPHIC": {
+          "description": "Physical locations",
+          "members": [
+            {"name": "coordinates", "description": "Lat/long coordinates"},
+            {"name": "region", "description": "Geographic region"},
+            {"name": "city", "description": "City/municipality"},
+            {"name": "country", "description": "Country"}
+          ]
+        },
+        "JURISDICTIONAL": {
+          "description": "Legal/regulatory jurisdictions",
+          "members": [
+            {"name": "jurisdiction", "code": "jur", "description": "Legal jurisdiction (2-letter ISO)"},
+            {"name": "regulatory_zone", "description": "Regulatory area (e.g., EU, EEA)"}
+          ],
+          "reference": "/data/JURISDICTIONAL/"
+        }
+      }
+    },
+
+    "NARRATIVE": {
+      "description": "Documentation and coordination. Project node is the hub.",
+      "purposes": ["documentation", "coordination"],
+      "types": {
+        "DOCUMENTATION": {
+          "description": "Investigation artifacts and outputs",
+          "members": [
+            {"name": "project", "code": "proj", "description": "Investigation project (hub node)"},
+            {"name": "report", "code": "rpt", "description": "Generated report"},
+            {"name": "note", "code": "note", "description": "Research note"},
+            {"name": "chat", "code": "chat", "description": "Conversation/transcript"},
+            {"name": "tag", "code": "tag", "description": "Classification tag"},
+            {"name": "finding", "code": "find", "description": "Investigation finding"},
+            {"name": "workstream", "code": "ws", "description": "Investigation workstream"}
+          ]
+        }
+      }
+    }
+  },
+
+  "routing": {
+    "discovery": {
+      "description": "Classes that create new nodes",
+      "classes": ["SUBJECT", "LOCATION"]
+    },
+    "enrichment": {
+      "description": "Classes that add edges/context to existing nodes",
+      "classes": ["SUBJECT", "NEXUS", "NARRATIVE"]
+    },
+    "rules": [
+      "SUBJECT ENTITY types become graph nodes directly",
+      "SUBJECT CONCEPT types (industry, profession) attach to ENTITY nodes as attributes OR become nodes when investigation subject",
+      "NEXUS relationships create edges; reified relationships can become nodes",
+      "LOCATION provides context/filtering for queries",
+      "NARRATIVE nodes coordinate and document investigations"
+    ]
+  },
+
+  "code_index": {
+    "_description": "Quick lookup: code → entity type",
+    "p": "person",
+    "c": "company",
+    "e": "email",
+    "t": "phone",
+    "a": "address",
+    "u": "username",
+    "pw": "password",
+    "d": "domain",
+    "url": "url",
+    "ip": "ip_address",
+    "doc": "document",
+    "veh": "vehicle",
+    "ves": "vessel",
+    "air": "aircraft",
+    "prop": "property",
+    "crypto": "crypto_wallet",
+    "bank": "bank_account",
+    "lit": "litigation",
+    "jur": "jurisdiction",
+    "proj": "project",
+    "rpt": "report",
+    "note": "note",
+    "tag": "tag"
+  }
+}

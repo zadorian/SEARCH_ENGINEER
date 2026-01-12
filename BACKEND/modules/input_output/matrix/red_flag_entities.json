@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "description": "Red Flag Entity Lists - Sanctions, PEPs, Watchlists",
+    "last_updated": "2024-12-31",
+    "sources": ["OFAC SDN", "EU Sanctions", "UN Security Council", "PEP Lists"]
+  },
+  "lists": {
+    "ofac_sdn": {
+      "description": "OFAC Specially Designated Nationals",
+      "severity": "critical",
+      "entities": [
+        {"name": "Vladimir Putin", "type": "person", "aliases": ["V.V. Putin", "Putin V.V."]},
+        {"name": "Sergey Lavrov", "type": "person", "aliases": ["Lavrov"]},
+        {"name": "Alrosa", "type": "company", "aliases": ["АЛРОСА", "ALROSA PJSC"]},
+        {"name": "Sberbank", "type": "company", "aliases": ["СБЕРБАНК", "Sberbank of Russia"]},
+        {"name": "Gazprom", "type": "company", "aliases": ["ГАЗПРОМ", "Gazprom PJSC"]},
+        {"name": "Rosneft", "type": "company", "aliases": ["РОСНЕФТЬ", "Rosneft Oil Company"]},
+        {"name": "Wagner Group", "type": "organization", "aliases": ["PMC Wagner", "Вагнер"]},
+        {"name": "Russian Direct Investment Fund", "type": "organization", "aliases": ["RDIF", "РФПИ"]},
+        {"name": "Huawei", "type": "company", "aliases": ["华为", "Huawei Technologies"]},
+        {"name": "ZTE Corporation", "type": "company", "aliases": ["中兴", "ZTE"]},
+        {"name": "Hikvision", "type": "company", "aliases": ["海康威视", "Hangzhou Hikvision"]},
+        {"name": "SMIC", "type": "company", "aliases": ["中芯国际", "Semiconductor Manufacturing International"]}
+      ]
+    },
+    "eu_sanctions": {
+      "description": "EU Consolidated Financial Sanctions",
+      "severity": "critical",
+      "entities": [
+        {"name": "Roman Abramovich", "type": "person", "aliases": ["Abramovich R.A."]},
+        {"name": "Oleg Deripaska", "type": "person", "aliases": ["Deripaska O.V."]},
+        {"name": "Mikhail Fridman", "type": "person", "aliases": ["Fridman M.M."]},
+        {"name": "Petr Aven", "type": "person", "aliases": ["Aven P.O."]},
+        {"name": "Viktor Vekselberg", "type": "person", "aliases": ["Vekselberg V.F."]},
+        {"name": "Alfa Bank", "type": "company", "aliases": ["Альфа-Банк", "Alfa-Bank"]},
+        {"name": "VTB Bank", "type": "company", "aliases": ["ВТБ", "VTB Group"]}
+      ]
+    },
+    "pep_high_risk": {
+      "description": "High-Risk Politically Exposed Persons",
+      "severity": "high",
+      "entities": [
+        {"name": "Xi Jinping", "type": "person", "aliases": ["习近平"]},
+        {"name": "Kim Jong Un", "type": "person", "aliases": ["김정은", "Kim Jong-un"]},
+        {"name": "Bashar al-Assad", "type": "person", "aliases": ["Assad", "بشار الأسد"]},
+        {"name": "Nicolas Maduro", "type": "person", "aliases": ["Maduro Moros"]},
+        {"name": "Alexander Lukashenko", "type": "person", "aliases": ["Лукашенко", "Lukashenka"]}
+      ]
+    },
+    "money_laundering_jurisdictions": {
+      "description": "High-Risk Jurisdictions for Money Laundering",
+      "severity": "high",
+      "entities": [
+        {"name": "British Virgin Islands", "type": "jurisdiction", "aliases": ["BVI"]},
+        {"name": "Cayman Islands", "type": "jurisdiction", "aliases": ["Caymans"]},
+        {"name": "Panama", "type": "jurisdiction", "aliases": []},
+        {"name": "Seychelles", "type": "jurisdiction", "aliases": []},
+        {"name": "Cyprus", "type": "jurisdiction", "aliases": ["CY"]},
+        {"name": "Malta", "type": "jurisdiction", "aliases": ["MT"]},
+        {"name": "Dubai", "type": "jurisdiction", "aliases": ["UAE", "DIFC"]}
+      ]
+    }
+  }
+}

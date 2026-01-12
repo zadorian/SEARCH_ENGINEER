@@ -1,0 +1,21 @@
+{
+  "id": "099c29b337fd1b26",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "fuckme",
+  "label": "fuckme",
+  "value": "fuckme",
+  "comment": "{\n  \"id\": \"2mfaospmxalug0djdgpr0j9yzqt\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"fuckme\"\n  ],\n  \"hashed_password\": [\n    \"79cfdd0e92b120faadd7eb253eb800d0:||MD5\",\n    \"4d27eae655e7272b21c5b0a539656a8ae869d75f:||SHA1\",\n    \"a30c89b446e0e8ab6b8c00c986f586c1ce378aaf0c5348c660e3ad1779be9886:||SHA256\",\n    \"1b38cef3422b122733f01fb7f247b1efe9999356c977754a4f0546aef79a6046fa4222b08318b74dc8f55ae189487c6dfa13ad693acc0343bee3290b94d94652:||SHA512\",\n    \"ZnVja21l:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:12.966994",
+  "updatedAt": "2026-01-12T00:04:12.966998",
+  "lastSeen": "2026-01-12T00:04:12.966999"
+}

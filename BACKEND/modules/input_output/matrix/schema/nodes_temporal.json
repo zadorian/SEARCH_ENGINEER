@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "version": "4.3",
+    "description": "Temporal and Narrative Node Definitions (Chrono-Narrative Engine)",
+    "extends": "nodes.json"
+  },
+  "nodes": {
+    "time_span": {
+      "class": "location",
+      "type": "time_span",
+      "description": "A container for a period of time (Year, Month, Quarter).",
+      "properties": {
+        "resolution": { "type": "string", "enum": ["year", "month", "quarter", "decade"] },
+        "start_date": { "type": "date" },
+        "end_date": { "type": "date" },
+        "context_tags": { "type": "list" }
+      }
+    },
+    "time_point": {
+      "class": "location",
+      "type": "time_point",
+      "description": "A specific point in time (Day, Timestamp).",
+      "properties": {
+        "resolution": { "type": "string", "enum": ["day", "timestamp"] },
+        "value": { "type": "datetime" },
+        "context_tags": { "type": "list" }
+      }
+    },
+    "event": {
+      "class": "narrative",
+      "type": "event",
+      "description": "An emergent interaction between entities, time, and space.",
+      "properties": {
+        "template_id": { "type": "string" },
+        "concept": { "type": "string" },
+        "summary": { "type": "string" },
+        "status": { "type": "string", "enum": ["potential", "confirmed", "disputed"] }
+      }
+    },
+    "timeline": {
+      "class": "narrative",
+      "type": "timeline",
+      "description": "A sequence of events telling a specific causal story.",
+      "properties": {
+        "focus_entities": { "type": "list" },
+        "theme": { "type": "string" },
+        "start_date": { "type": "date" },
+        "end_date": { "type": "date" }
+      }
+    }
+  }
+}

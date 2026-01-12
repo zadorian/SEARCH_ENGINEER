@@ -1,0 +1,90 @@
+{
+  "type": "events",
+  "entries": [
+    {
+      "id": "evt_ipo",
+      "canonical": "IPO",
+      "aliases": [
+        "initial public offering",
+        "going public"
+      ],
+      "spatialHints": {
+        "commonJurisdictions": [
+          "US",
+          "GB",
+          "HK"
+        ]
+      }
+    },
+    {
+      "id": "evt_acquisition",
+      "canonical": "Acquisition",
+      "aliases": [
+        "M&A",
+        "buyout",
+        "takeover"
+      ]
+    },
+    {
+      "id": "evt_lawsuit",
+      "canonical": "Lawsuit",
+      "aliases": [
+        "litigation",
+        "sued",
+        "legal action"
+      ],
+      "spatialHints": {
+        "venueTypes": [
+          "court"
+        ]
+      }
+    },
+    {
+      "id": "evt_bankruptcy",
+      "canonical": "Bankruptcy",
+      "aliases": [
+        "insolvency",
+        "chapter 11",
+        "liquidation"
+      ]
+    },
+    {
+      "id": "evt_regulatory_action",
+      "canonical": "Regulatory Action",
+      "aliases": [
+        "fine",
+        "sanction",
+        "enforcement"
+      ],
+      "spatialHints": {
+        "commonDomains": [
+          "sec.gov",
+          "fca.org.uk"
+        ]
+      }
+    },
+    {
+      "id": "evt_leadership_change",
+      "canonical": "Leadership Change",
+      "aliases": [
+        "CEO appointed",
+        "resignation",
+        "executive departure"
+      ]
+    },
+    {
+      "id": "evt_data_breach",
+      "canonical": "Data Breach",
+      "aliases": [
+        "hack",
+        "security incident"
+      ],
+      "causalLinks": {
+        "resultsIn": [
+          "top_privacy_concerns",
+          "top_legal_exposure"
+        ]
+      }
+    }
+  ]
+}

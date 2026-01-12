@@ -1,0 +1,215 @@
+{
+  "meta": {
+    "version": "2.0",
+    "format": "code-based",
+    "generated_at": "2026-01-11T18:34:38.832500",
+    "total_sources": 11834
+  },
+  "files": [
+    {
+      "file": "assets.v2.json",
+      "category": "at",
+      "count": 163,
+      "version": "2.0"
+    },
+    {
+      "file": "corporate_registries.v2.json",
+      "category": "cr",
+      "count": 682,
+      "version": "2.0"
+    },
+    {
+      "file": "creative.v2.json",
+      "category": "crea",
+      "count": 0,
+      "version": "2.0"
+    },
+    {
+      "file": "ecommerce.v2.json",
+      "category": "ecom",
+      "count": 1499,
+      "version": "2.0"
+    },
+    {
+      "file": "education.v2.json",
+      "category": "edu",
+      "count": 206,
+      "version": "2.0"
+    },
+    {
+      "file": "finance.v2.json",
+      "category": "finance",
+      "count": 9,
+      "version": "2.0"
+    },
+    {
+      "file": "geospatial.v2.json",
+      "category": "geo",
+      "count": 103,
+      "version": "2.0"
+    },
+    {
+      "file": "government.v2.json",
+      "category": "gov",
+      "count": 814,
+      "version": "2.0"
+    },
+    {
+      "file": "grey_literature.v2.json",
+      "category": "grey",
+      "count": 0,
+      "version": "2.0"
+    },
+    {
+      "file": "health.v2.json",
+      "category": "hea",
+      "count": 0,
+      "version": "2.0"
+    },
+    {
+      "file": "leaks.v2.json",
+      "category": "leak",
+      "count": 0,
+      "version": "2.0"
+    },
+    {
+      "file": "legal.v2.json",
+      "category": "legal",
+      "count": 0,
+      "version": "2.0"
+    },
+    {
+      "file": "libraries.v2.json",
+      "category": "lib",
+      "count": 0,
+      "version": "2.0"
+    },
+    {
+      "file": "lifestyle.v2.json",
+      "category": "life",
+      "count": 142,
+      "version": "2.0"
+    },
+    {
+      "file": "litigation.v2.json",
+      "category": "lit",
+      "count": 406,
+      "version": "2.0"
+    },
+    {
+      "file": "mapping_tools.v2.json",
+      "category": "map",
+      "count": 0,
+      "version": "2.0"
+    },
+    {
+      "file": "media.v2.json",
+      "category": "media",
+      "count": 2614,
+      "version": "2.0"
+    },
+    {
+      "file": "misc.v2.json",
+      "category": "misc",
+      "count": 2026,
+      "version": "2.0"
+    },
+    {
+      "file": "news.v2.json",
+      "category": "news",
+      "count": 15,
+      "version": "2.0"
+    },
+    {
+      "file": "osint.v2.json",
+      "category": "osint",
+      "count": 8,
+      "version": "2.0"
+    },
+    {
+      "file": "recruitment.v2.json",
+      "category": "rec",
+      "count": 0,
+      "version": "2.0"
+    },
+    {
+      "file": "reference.v2.json",
+      "category": "ref",
+      "count": 795,
+      "version": "2.0"
+    },
+    {
+      "file": "regulators.v2.json",
+      "category": "reg",
+      "count": 518,
+      "version": "2.0"
+    },
+    {
+      "file": "sanctions.v2.json",
+      "category": "sanc",
+      "count": 6,
+      "version": "2.0"
+    },
+    {
+      "file": "science.v2.json",
+      "category": "sci",
+      "count": 0,
+      "version": "2.0"
+    },
+    {
+      "file": "search_engine.v2.json",
+      "category": "search",
+      "count": 0,
+      "version": "2.0"
+    },
+    {
+      "file": "social_media.v2.json",
+      "category": "social",
+      "count": 26,
+      "version": "2.0"
+    },
+    {
+      "file": "tech.v2.json",
+      "category": "tech",
+      "count": 1802,
+      "version": "2.0"
+    },
+    {
+      "file": "weather.v2.json",
+      "category": "wea",
+      "count": 0,
+      "version": "2.0"
+    }
+  ],
+  "legacy_files": [
+    "assets.json",
+    "corporate_registries.json",
+    "creative.json",
+    "ecommerce.json",
+    "education.json",
+    "finance.json",
+    "geospatial.json",
+    "government.json",
+    "grey_literature.json",
+    "health.json",
+    "leaks.json",
+    "legal.json",
+    "libraries.json",
+    "lifestyle.json",
+    "litigation.json",
+    "mapping_tools.json",
+    "media.json",
+    "misc.json",
+    "news.json",
+    "osint.json",
+    "recruitment.json",
+    "reference.json",
+    "regulators.json",
+    "sanctions.json",
+    "science.json",
+    "search_engine.json",
+    "social_media.json",
+    "tech.json",
+    "weather.json"
+  ]
+}

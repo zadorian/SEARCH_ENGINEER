@@ -1,0 +1,182 @@
+{
+  "UK": [
+    {
+      "name": "thegazette.co.uk",
+      "domain": "thegazette.co.uk",
+      "url": "https://thegazette.co.uk",
+      "search_url": "https://www.thegazette.co.uk/all-notices/notice?text={q}",
+      "type": "government_portal",
+      "category": "gaz",
+      "friction": "api",
+      "jurisdictions": [
+        "UK"
+      ],
+      "inputs": [],
+      "outputs": [],
+      "handled_by": "UK",
+      "api_implementation": "country_engines/UK/lit/gazette_api.py",
+      "classification": "",
+      "id": "thegazette_co_uk_library",
+      "jurisdiction": "UK",
+      "section": "gov",
+      "access": "public",
+      "metadata": {
+        "source": "library_extraction",
+        "url_count_in_reports": 2,
+        "added_at": "2025-12-14T06:54:01.551891",
+        "manual_template": true,
+        "search_notes": "UK official gazette notices"
+      },
+      "flows": [],
+      "search_template": "https://www.thegazette.co.uk/all-notices/notice?text={q}",
+      "input_schema": {
+        "text_search": {
+          "input_type": "mixed",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [
+            "SINOMAN FLOFIX LTD",
+            "Dennis Adams",
+            "Josephine Dowell",
+            "JIXAW BUILDING AND MAINTENANCE LTD",
+            "DEPUTY LIEUTENANT COMMISSION"
+          ],
+          "accepts_wildcards": true,
+          "case_sensitive": false,
+          "max_length": null,
+          "min_length": null,
+          "description": "General text field for searching company names, person names, notice types"
+        },
+        "notice_types": {
+          "input_type": "case_number",
+          "format": "alphanumeric",
+          "format_pattern": null,
+          "examples": [
+            "G101000000",
+            "G201010000",
+            "G111000000",
+            "G102000000",
+            "G205010000",
+            "G206030000",
+            "G208010000",
+            "G210000000",
+            "G211010000"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": true,
+          "max_length": 10,
+          "min_length": 10,
+          "description": "Notice category codes for filtering by notice type"
+        },
+        "location_postcode": {
+          "input_type": "address",
+          "format": "alphanumeric",
+          "format_pattern": null,
+          "examples": [],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null,
+          "min_length": null,
+          "description": "UK postcode for geographic filtering (e.g., 'SW1A 1AA')"
+        },
+        "location_distance": {
+          "input_type": "numeric",
+          "format": "numeric",
+          "format_pattern": "^\\d+$",
+          "examples": [],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": null,
+          "min_length": null,
+          "description": "Search radius distance in miles from postcode"
+        },
+        "date_range": {
+          "input_type": "date_range",
+          "format": "formatted",
+          "format_pattern": "^\\d{2}/\\d{2}/\\d{4}$",
+          "examples": [
+            "dd/mm/yyyy"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": 10,
+          "min_length": 10,
+          "description": "Publication date range: start-publish-date and end-publish-date"
+        },
+        "notice_id": {
+          "input_type": "reg_id",
+          "format": "numeric",
+          "format_pattern": "^\\d+$",
+          "examples": [
+            "5020605",
+            "5017573",
+            "5021096",
+            "5021095",
+            "5021007",
+            "5021002",
+            "5021182",
+            "5021181",
+            "5020124",
+            "5017452"
+          ],
+          "accepts_wildcards": false,
+          "case_sensitive": false,
+          "max_length": 7,
+          "min_length": 7,
+          "description": "Unique notice identifier for direct access"
+        }
+      },
+      "thematic_tags": [
+        "corporate_registry",
+        "bankruptcy",
+        "filings",
+        "officers",
+        "enforcement"
+      ],
+      "language": "en",
+      "requires_translation": false,
+      "enhanced_at": "2025-12-18T07:35:10.172199",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "OSINT_GENERAL",
+          "MEDIA_MONITORING"
+        ],
+        "friction": "open",
+        "success_rate": 0.8692946058091287
+      },
+      "capabilities": [
+        {
+          "rule_id": "MAJESTIC_GOV_MIL_COUNTS",
+          "label": "Government/military backlink census",
+          "requires_any": [
+            6
+          ],
+          "requires_all": [],
+          "returns": [
+            164,
+            165,
+            166,
+            167,
+            169
+          ],
+          "friction": "Paywalled",
+          "resources": [
+            {
+              "type": "api",
+              "name": "Majestic",
+              "url": "https://api.majestic.com/api/json",
+              "params": {
+                "cmd": "GetBackLinkData",
+                "datasource": "fresh"
+              }
+            }
+          ]
+        }
+      ],
+      "scrape_method": "BrightData"
+    }
+  ]
+}

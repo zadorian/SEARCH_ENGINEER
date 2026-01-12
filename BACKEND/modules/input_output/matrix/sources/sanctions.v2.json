@@ -1,0 +1,291 @@
+{
+  "meta": {
+    "category": "sanc",
+    "count": 6,
+    "migrated_at": "2026-01-11T18:34:04.225732",
+    "version": "2.0",
+    "format": "code-based"
+  },
+  "sources": [
+    {
+      "id": "aleph_collection_1303",
+      "name": "HM Treasury Sanctions List",
+      "jurisdiction": "GB",
+      "category": "sanc",
+      "url": "https://aleph.occrp.org/datasets/1303",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        11,
+        13,
+        14,
+        20
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          2,
+          20,
+          59,
+          67,
+          72,
+          73,
+          106,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          11,
+          14,
+          50,
+          51,
+          53,
+          54,
+          80,
+          81,
+          82,
+          85,
+          90,
+          91,
+          102,
+          115,
+          403,
+          404,
+          405,
+          408
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_723",
+      "name": "Kyrgyz FIU Sanctions List",
+      "jurisdiction": "KG",
+      "category": "sanc",
+      "url": "https://aleph.occrp.org/datasets/723",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14,
+        15,
+        20
+      ],
+      "outputs": {
+        "entities": [
+          2,
+          59,
+          72
+        ],
+        "relationships": [
+          600,
+          602,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          81
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_1302",
+      "name": "Sanctions imposed by Canada",
+      "jurisdiction": "CA",
+      "category": "sanc",
+      "url": "https://aleph.occrp.org/datasets/1302",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14,
+        20
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          59,
+          72
+        ],
+        "relationships": [
+          600,
+          602,
+          603,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          50,
+          80,
+          81,
+          82
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_1301",
+      "name": "Australian Foreign Sanctions",
+      "jurisdiction": "AU",
+      "category": "sanc",
+      "url": "https://aleph.occrp.org/datasets/1301",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13
+      ],
+      "outputs": {
+        "entities": [
+          67,
+          72
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          613
+        ],
+        "attributes": [
+          81
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_1",
+      "name": "EU External Action Service Sanctions",
+      "jurisdiction": "EU",
+      "category": "sanc",
+      "url": "https://aleph.occrp.org/datasets/1",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13
+      ],
+      "outputs": {
+        "entities": [
+          67
+        ],
+        "relationships": [
+          601,
+          602,
+          613
+        ],
+        "attributes": [
+          81,
+          90,
+          405
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_3894",
+      "name": "Global Sanctions Database",
+      "jurisdiction": "GLOBAL",
+      "category": "sanc",
+      "url": "https://aleph.occrp.org/datasets/3894",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    }
+  ]
+}

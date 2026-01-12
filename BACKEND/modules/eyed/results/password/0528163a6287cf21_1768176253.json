@@ -1,0 +1,21 @@
+{
+  "id": "0528163a6287cf21",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "raiders",
+  "label": "raiders",
+  "value": "raiders",
+  "comment": "{\n  \"id\": \"2mfaom3j1ev2wi2hgy1fzmztrsf\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"raiders\"\n  ],\n  \"hashed_password\": [\n    \"7698cf26bd6b7ee9081db738d960ce46:||MD5\",\n    \"104e03314a82f3fbc0ce1c681cfdfa2d0542e492:||SHA1\",\n    \"0b04bad57d3b2c6f3736b7cb584f403ecf625cc31c0ad21e19e05a537304e969:||SHA256\",\n    \"a0878c6f3d49591282d186d825876e92b6785b363c69f1ac6b8e7fb3666985f22cf2d42cc5eb27190fd5d1521bb10eb8cef0b67aa31bda22002b6d5df93504f0:||SHA512\",\n    \"cmFpZGVycw==:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:13.127562",
+  "updatedAt": "2026-01-12T00:04:13.127566",
+  "lastSeen": "2026-01-12T00:04:13.127567"
+}

@@ -1,0 +1,15 @@
+{
+  "source_id": "cc-pdf-2025",
+  "total_docs": 67222,
+  "processed": 11145,
+  "tier_1_count": 8466,
+  "tier_2_count": 1908,
+  "tier_3_count": 771,
+  "red_flag_hits": 0,
+  "errors": 647,
+  "last_offset": 11145,
+  "start_time": 1767361070.661888,
+  "last_checkpoint_time": 1767382317.787403,
+  "last_url": "https://www.hdmaster.com/testing/cnatesting/tennessee/tnformpages/tnforms/TNCandidateHandbook%20V21%2010.1.2022.pdf",
+  "checkpoint_created": "2026-01-02T20:31:57.787405"
+}

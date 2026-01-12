@@ -1,0 +1,21 @@
+{
+  "id": "5243085ccadb420a",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "ed45d626b07112a8a501d9672f3b92796a6754b8d8d9cb4c617fec9774889220:||SHA256",
+  "label": "ed45d626b07112a8a501d9672f3b9279...",
+  "value": "ed45d626b07112a8a501d9672f3b92796a6754b8d8d9cb4c617fec9774889220:||SHA256",
+  "comment": "{\n  \"id\": \"2mfaosjeknwgnwlk3wjthqdflx3\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"killer\"\n  ],\n  \"hashed_password\": [\n    \"b36d331451a61eb2d76860e00c347396:||MD5\",\n    \"59033478180d07080d5e4f3baa0099996c364162:||SHA1\",\n    \"ed45d626b07112a8a501d9672f3b92796a6754b8d8d9cb4c617fec9774889220:||SHA256\",\n    \"78e362adad5123d933012fb62c82ddead77d00c420c524eb3f9b415f56989d450af70d03ed22baae10ec558c88fa7b916dab83a67500a905b9b53ec7fdfc05e4:||SHA512\",\n    \"a2lsbGVy:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:12.890798",
+  "updatedAt": "2026-01-12T00:04:12.890801",
+  "lastSeen": "2026-01-12T00:04:12.890801"
+}

@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "version": "4.3",
+    "description": "Spatial Node Definitions (Chrono-Narrative Engine)",
+    "philosophy": "Geography is a Fractal Container. Addresses nest in Cities, Cities in Regions, Regions in Countries."
+  },
+  "nodes": {
+    "country": {
+      "class": "location",
+      "type": "country",
+      "description": "Top-level sovereign jurisdiction.",
+      "properties": {
+        "iso_code": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "name": { "type": "string" },
+        "continent": { "type": "string" }
+      }
+    },
+    "region": {
+      "class": "location",
+      "type": "region",
+      "description": "First-level administrative division (State, Province, Oblast).",
+      "properties": {
+        "name": { "type": "string" },
+        "country_code": { "type": "string" },
+        "type_label": { "type": "string" }
+      }
+    },
+    "municipality": {
+      "class": "location",
+      "type": "municipality",
+      "description": "Settlement level (City, Town, Village).",
+      "properties": {
+        "name": { "type": "string" },
+        "region_name": { "type": "string" },
+        "coordinates": { "type": "geo_point" }
+      }
+    },
+    "address": {
+      "class": "location",
+      "type": "address",
+      "description": "Atomic physical location.",
+      "properties": {
+        "full_address": { "type": "string" },
+        "street": { "type": "string" },
+        "postal_code": { "type": "string" },
+        "coordinates": { "type": "geo_point" }
+      }
+    }
+  }
+}

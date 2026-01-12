@@ -1,0 +1,741 @@
+{
+  "meta": {
+    "version": "4.0",
+    "description": "Unified Edge Schema v4 - Integrates metadata schemas, validation, and FtM mapping.",
+    "breaking_changes": [
+      "Added 'metadata_schema' for each edge defining required/optional relationship properties",
+      "Added 'confidence_default' for relationship quality scoring",
+      "Added 'category' for edge classification (ownership, family, technical, etc.)",
+      "Embedded FtM relationship mapping directly"
+    ]
+  },
+  "edges": [
+    {
+      "source": "person",
+      "relation": "officer_of",
+      "target": "company",
+      "inverse": "has_officer",
+      "category": "ownership",
+      "ftm_relation": "Directorship",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": ["role"],
+        "optional": [
+          "start_date",
+          "end_date",
+          "appointment_date",
+          "resignation_date",
+          "when"
+        ]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "shareholder_of",
+      "target": "company",
+      "inverse": "has_shareholder",
+      "category": "ownership",
+      "ftm_relation": "Ownership",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": ["ownership_percentage"],
+        "optional": ["share_count", "share_type", "acquisition_date", "when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "beneficial_owner_of",
+      "target": "company",
+      "inverse": "beneficially_owned_by",
+      "category": "ownership",
+      "ftm_relation": "Ownership",
+      "confidence_default": 0.85,
+      "metadata_schema": {
+        "required": ["ownership_type"],
+        "optional": ["ownership_percentage", "through_entity", "when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "employee_of",
+      "target": "company",
+      "inverse": "employs",
+      "category": "employment",
+      "ftm_relation": "Employment",
+      "confidence_default": 0.8,
+      "metadata_schema": {
+        "required": [],
+        "optional": [
+          "job_title",
+          "start_date",
+          "end_date",
+          "department",
+          "when"
+        ]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "owner_of",
+      "target": "company",
+      "inverse": "owned_by",
+      "category": "ownership",
+      "ftm_relation": "Ownership",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": ["ownership_type"],
+        "optional": ["ownership_percentage", "acquisition_date", "when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "director_of",
+      "target": "company",
+      "inverse": "has_director",
+      "category": "ownership",
+      "ftm_relation": "Directorship",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": ["role"],
+        "optional": ["start_date", "end_date", "when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "family_of",
+      "target": "person",
+      "inverse": "family_of",
+      "category": "family",
+      "ftm_relation": "Family",
+      "confidence_default": 0.8,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["relationship_type", "when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "child_of",
+      "target": "person",
+      "inverse": "parent_of",
+      "category": "family",
+      "ftm_relation": "Family",
+      "confidence_default": 0.95,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["birth_date", "when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "parent_of",
+      "target": "person",
+      "inverse": "child_of",
+      "category": "family",
+      "ftm_relation": "Family",
+      "confidence_default": 0.95,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "sibling_of",
+      "target": "person",
+      "inverse": "sibling_of",
+      "category": "family",
+      "ftm_relation": "Family",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "married_to",
+      "target": "person",
+      "inverse": "married_to",
+      "category": "family",
+      "ftm_relation": "Family",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["marriage_date", "divorce_date", "when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "associate_of",
+      "target": "person",
+      "inverse": "associate_of",
+      "category": "social",
+      "ftm_relation": "Associate",
+      "confidence_default": 0.6,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["association_type", "context", "when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "has_email",
+      "target": "email",
+      "inverse": "email_of",
+      "category": "contact",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.85,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["verified", "primary", "when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "has_phone",
+      "target": "phone",
+      "inverse": "phone_of",
+      "category": "contact",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.85,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["verified", "primary", "when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "has_address",
+      "target": "address",
+      "inverse": "address_of",
+      "category": "location",
+      "ftm_relation": "Address",
+      "confidence_default": 0.8,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["address_type", "from_date", "to_date", "when"]
+      }
+    },
+    {
+      "source": "person",
+      "relation": "resides_at",
+      "target": "address",
+      "inverse": "resident_of",
+      "category": "location",
+      "ftm_relation": "Address",
+      "confidence_default": 0.8,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["from_date", "to_date", "residency_type", "when"]
+      }
+    },
+    {
+      "source": "company",
+      "relation": "subsidiary_of",
+      "target": "company",
+      "inverse": "parent_of",
+      "category": "corporate",
+      "ftm_relation": "Ownership",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["ownership_percentage", "acquisition_date", "when"]
+      }
+    },
+    {
+      "source": "company",
+      "relation": "legal_parent_of",
+      "target": "company",
+      "inverse": "subsidiary_of",
+      "category": "corporate",
+      "ftm_relation": "Ownership",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["ownership_percentage", "when"]
+      }
+    },
+    {
+      "source": "company",
+      "relation": "partner_of",
+      "target": "company",
+      "inverse": "partner_of",
+      "category": "corporate",
+      "ftm_relation": "Associate",
+      "confidence_default": 0.7,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["partnership_type", "start_date", "end_date", "when"]
+      }
+    },
+    {
+      "source": "company",
+      "relation": "competitor_of",
+      "target": "company",
+      "inverse": "competitor_of",
+      "category": "corporate",
+      "ftm_relation": "Associate",
+      "confidence_default": 0.6,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["industry", "when"]
+      }
+    },
+    {
+      "source": "company",
+      "relation": "has_address",
+      "target": "address",
+      "inverse": "address_of",
+      "category": "location",
+      "ftm_relation": "Address",
+      "confidence_default": 0.85,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["address_type", "when"]
+      }
+    },
+    {
+      "source": "company",
+      "relation": "headquartered_at",
+      "target": "address",
+      "inverse": "headquarters_of",
+      "category": "location",
+      "ftm_relation": "Address",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["from_date", "to_date", "when"]
+      }
+    },
+    {
+      "source": "company",
+      "relation": "registered_in",
+      "target": "address",
+      "inverse": "registration_of",
+      "category": "location",
+      "ftm_relation": "Address",
+      "confidence_default": 0.95,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["registration_date", "when"]
+      }
+    },
+    {
+      "source": "company",
+      "relation": "has_website",
+      "target": "webdomain",
+      "inverse": "website_of",
+      "category": "online",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.8,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["verified", "primary", "when"]
+      }
+    },
+    {
+      "source": "company",
+      "relation": "has_email",
+      "target": "email",
+      "inverse": "email_of",
+      "category": "contact",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.8,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["verified", "primary", "department", "when"]
+      }
+    },
+    {
+      "source": "company",
+      "relation": "has_phone",
+      "target": "phone",
+      "inverse": "phone_of",
+      "category": "contact",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.8,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["verified", "primary", "department", "when"]
+      }
+    },
+    {
+      "source": "webdomain",
+      "relation": "hosted_on",
+      "target": "ip_address",
+      "inverse": "hosts",
+      "category": "technical",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.95,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["first_seen", "last_seen", "when"]
+      }
+    },
+    {
+      "source": "webdomain",
+      "relation": "resolves_to",
+      "target": "ip_address",
+      "inverse": "resolved_from",
+      "category": "technical",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.95,
+      "metadata_schema": {
+        "required": [],
+        "optional": [
+          "dns_record_type",
+          "ttl",
+          "first_seen",
+          "last_seen",
+          "when"
+        ]
+      }
+    },
+    {
+      "source": "webdomain",
+      "relation": "redirects_to",
+      "target": "webdomain",
+      "inverse": "redirected_from",
+      "category": "technical",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["redirect_type", "status_code", "when"]
+      }
+    },
+    {
+      "source": "webdomain",
+      "relation": "links_to",
+      "target": "webdomain",
+      "inverse": "linked_from",
+      "category": "technical",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.7,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["link_type", "anchor_text", "crawl_date", "when"]
+      }
+    },
+    {
+      "source": "webdomain",
+      "relation": "shares_ga_with",
+      "target": "webdomain",
+      "inverse": "shares_ga_with",
+      "category": "technical",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.85,
+      "metadata_schema": {
+        "required": ["ga_code"],
+        "optional": ["first_seen", "last_seen", "when"]
+      }
+    },
+    {
+      "source": "webdomain",
+      "relation": "shares_adsense_with",
+      "target": "webdomain",
+      "inverse": "shares_adsense_with",
+      "category": "technical",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.85,
+      "metadata_schema": {
+        "required": ["adsense_id"],
+        "optional": ["first_seen", "last_seen", "when"]
+      }
+    },
+    {
+      "source": "email",
+      "relation": "linked_to",
+      "target": "username",
+      "inverse": "linked_to",
+      "category": "online",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.75,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["platform", "verified", "when"]
+      }
+    },
+    {
+      "source": "email",
+      "relation": "registered_on",
+      "target": "webdomain",
+      "inverse": "has_registrant",
+      "category": "online",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.8,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["registration_date", "verified", "when"]
+      }
+    },
+    {
+      "source": "organization",
+      "relation": "has_member",
+      "target": "person",
+      "inverse": "member_of",
+      "category": "membership",
+      "ftm_relation": "Membership",
+      "confidence_default": 0.8,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["role", "start_date", "end_date", "when"]
+      }
+    },
+    {
+      "source": "organization",
+      "relation": "affiliated_with",
+      "target": "company",
+      "inverse": "affiliated_with",
+      "category": "corporate",
+      "ftm_relation": "Associate",
+      "confidence_default": 0.7,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["affiliation_type", "when"]
+      }
+    },
+    {
+      "source": "organization",
+      "relation": "located_at",
+      "target": "address",
+      "inverse": "location_of",
+      "category": "location",
+      "ftm_relation": "Address",
+      "confidence_default": 0.85,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["location_type", "when"]
+      }
+    },
+    {
+      "source": "vessel",
+      "relation": "owned_by",
+      "target": ["person", "company", "organization"],
+      "inverse": "owns",
+      "category": "ownership",
+      "ftm_relation": "Ownership",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": ["ownership_type"],
+        "optional": ["ownership_percentage", "registration_date", "when"]
+      }
+    },
+    {
+      "source": "plane",
+      "relation": "owned_by",
+      "target": ["person", "company", "organization"],
+      "inverse": "owns",
+      "category": "ownership",
+      "ftm_relation": "Ownership",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": ["ownership_type"],
+        "optional": ["registration_date", "when"]
+      }
+    },
+    {
+      "source": "vehicle",
+      "relation": "owned_by",
+      "target": ["person", "company"],
+      "inverse": "owns",
+      "category": "ownership",
+      "ftm_relation": "Ownership",
+      "confidence_default": 0.85,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["registration_date", "purchase_date", "when"]
+      }
+    },
+    {
+      "source": "crypto_wallet",
+      "relation": "controlled_by",
+      "target": ["person", "company"],
+      "inverse": "controls",
+      "category": "ownership",
+      "ftm_relation": "Ownership",
+      "confidence_default": 0.7,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["evidence_type", "confidence_source", "when"]
+      }
+    },
+    {
+      "source": "*",
+      "relation": "documented_by",
+      "target": "url",
+      "inverse": "documents",
+      "category": "provenance",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 1.0,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["date_accessed", "excerpt", "page_number", "when"]
+      },
+      "description": "Links an entity to the source URL that documented it"
+    },
+    {
+      "source": "*",
+      "relation": "related_query",
+      "target": "*",
+      "inverse": "query_result",
+      "category": "provenance",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 1.0,
+      "metadata_schema": {
+        "required": ["query_text"],
+        "optional": ["search_engine", "result_position", "timestamp", "when"]
+      },
+      "description": "Links a node to the query that discovered it"
+    },
+    {
+      "source": "query",
+      "relation": "has_result",
+      "target": ["webdomain", "url", "document"],
+      "inverse": "result_of",
+      "category": "search",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 1.0,
+      "metadata_schema": {
+        "required": ["queryText"],
+        "optional": ["position", "engine", "timestamp", "snippet", "when"]
+      },
+      "description": "Links a search query to its result URLs"
+    },
+    {
+      "source": "query",
+      "relation": "mentions_entity",
+      "target": [
+        "person",
+        "company",
+        "email",
+        "phone",
+        "username",
+        "address",
+        "organization"
+      ],
+      "inverse": "mentioned_in_query",
+      "category": "search",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.8,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["query", "queryType", "sourceUrl", "when"]
+      },
+      "description": "Links a query to entities extracted from its search results"
+    },
+    {
+      "source": "*",
+      "relation": "extracted_from",
+      "target": ["webdomain", "url", "document"],
+      "inverse": "contains_entity",
+      "category": "provenance",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.9,
+      "metadata_schema": {
+        "required": ["sourceUrl"],
+        "optional": ["extractor", "suite", "mode", "when"]
+      },
+      "description": "Links an entity to the source it was extracted from"
+    },
+    {
+      "source": ["webdomain", "url", "document"],
+      "relation": "has_company",
+      "target": "company",
+      "inverse": "company_of",
+      "category": "extraction",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.7,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["confidence", "extractor", "when"]
+      },
+      "description": "Links a source to an extracted company entity"
+    },
+    {
+      "source": ["webdomain", "url", "document"],
+      "relation": "has_person",
+      "target": "person",
+      "inverse": "person_of",
+      "category": "extraction",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.7,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["confidence", "extractor", "when"]
+      },
+      "description": "Links a source to an extracted person entity"
+    },
+    {
+      "source": ["webdomain", "url", "document"],
+      "relation": "has_registration",
+      "target": "company",
+      "inverse": "registration_source",
+      "category": "extraction",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.85,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["registration_number", "when"]
+      },
+      "description": "Links a source to an extracted registration/company number"
+    },
+    {
+      "source": ["webdomain", "url", "document"],
+      "relation": "has_money",
+      "target": "*",
+      "inverse": "money_source",
+      "category": "extraction",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.6,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["amount", "currency", "context", "when"]
+      },
+      "description": "Links a source to an extracted monetary value"
+    },
+    {
+      "source": ["webdomain", "url", "document"],
+      "relation": "has_username",
+      "target": "username",
+      "inverse": "username_source",
+      "category": "extraction",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 0.75,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["platform", "when"]
+      },
+      "description": "Links a source to an extracted username entity"
+    },
+    {
+      "source": "*",
+      "relation": "has_tag",
+      "target": "tag",
+      "inverse": "tags",
+      "category": "organization",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 1.0,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["applied_by", "applied_at", "when"]
+      },
+      "description": "Links any node to a user-created tag for filtering and organization"
+    },
+    {
+      "source": "tag",
+      "relation": "child_of_tag",
+      "target": "tag",
+      "inverse": "parent_of_tag",
+      "category": "organization",
+      "ftm_relation": "UnknownLink",
+      "confidence_default": 1.0,
+      "metadata_schema": {
+        "required": [],
+        "optional": ["when"]
+      },
+      "description": "Hierarchical tag relationship for nested tag structures"
+    }
+  ]
+}

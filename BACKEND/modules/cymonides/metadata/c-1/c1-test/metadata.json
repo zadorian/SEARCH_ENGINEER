@@ -1,0 +1,45 @@
+{
+  "project_name": "Test",
+  "project_id": "test",
+  "index_name": "cymonides-1-project-test",
+  "description": "Test project for entity graph development",
+  "entity_count": 7,
+  "size": "26kb",
+  "status": "green",
+  "use_case": "cymonides-1",
+  "schema_source": "input_output/ontology/",
+  "node_types": [
+    "See input_output/ontology/graph_schema.json for complete list of 40+ node types"
+  ],
+  "edge_types": [
+    "See input_output/ontology/relationships.json for complete list of 100+ edge types"
+  ],
+  "extraction_tiers": {
+    "tier_1": "Regex (emails, phones, URLs)",
+    "tier_2": "GPT-5-nano (simple entities)",
+    "tier_3": "Claude Haiku 4.5 (PRIMARY - complex entities + relationships)",
+    "tier_4": "Claude Sonnet 4.5 (disambiguation)"
+  },
+  "auto_generation_sources": [
+    "Corporella API (company data)",
+    "AllDom (domain intelligence)",
+    "LinkLater (web scraping)",
+    "Document uploads (PDF/Word extraction)"
+  ],
+  "related_indices": {
+    "text_corpus": "cymonides-2",
+    "breach_data": "nexus_breach_records",
+    "domains": "cc_domain_vertices"
+  },
+  "key_files": {
+    "entity_centre": "server/services/CymonidesEntityCentre.ts",
+    "extraction": "server/services/extraction/LLMExtractor.ts",
+    "auto_population": "server/utils/templateAutoPopulation.ts",
+    "schema_registry": "server/utils/schemaRegistry.ts"
+  },
+  "performance": {
+    "entity_lookup": "Fast (keyword match, 7 entities)",
+    "graph_traversal": "Instant (small graph)",
+    "real_time_updates": "WebSocket broadcasts"
+  }
+}

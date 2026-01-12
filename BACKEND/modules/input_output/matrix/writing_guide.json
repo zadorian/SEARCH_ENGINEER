@@ -1,0 +1,878 @@
+{
+  "generated_at": "2025-11-25T08:23:22.302646+00:00",
+  "source": "Report Library Batch Ingestion (1,245 reports)",
+  "description": "Writing style guide derived from 1,245 professional research reports",
+  "stats": {
+    "reports_analyzed": 1245,
+    "exemplar_passages": 2723,
+    "voice_patterns": 18
+  },
+  "voice_options": {
+    "third_person_neutral_observer": {
+      "count": 809,
+      "sample_rules": [
+        "Use third person passive voice throughout. Maintain analytical distance while presenting findings.",
+        "Use third person throughout. Maintain professional, analytical tone. Present facts objectively without editorial commentary.",
+        "Use third person throughout. Maintain professional objectivity while presenting findings clearly."
+      ]
+    },
+    "first_plural_neutral_observer": {
+      "count": 349,
+      "sample_rules": [
+        "Use 'we' for investigative actions ('we have identified', 'our sources'), third person for factual statements",
+        "Use first person plural ('we') for investigative actions. Maintain professional, objective tone throughout.",
+        "Use 'we' for investigation team activities. Maintain neutral, factual tone throughout."
+      ]
+    },
+    "first_plural_investigator": {
+      "count": 33,
+      "sample_rules": [
+        "Use first person plural for methodology and investigation process. Maintain professional analytical tone throughout.",
+        "Use 'we' for investigation team actions, third person for subjects. Maintain analytical distance while presenting findings.",
+        "Use 'we' for investigation team actions. Maintain professional analytical tone throughout."
+      ]
+    },
+    "third_person_investigator": {
+      "count": 26,
+      "sample_rules": [
+        "Use third person analytical voice with investigative stance. Maintain professional objectivity while presenting findings.",
+        "Use professional investigative tone with clear factual reporting. Maintain objectivity while presenting evidence systematically.",
+        "Use third person throughout. Maintain professional investigative tone. Present facts objectively."
+      ]
+    },
+    "first_person_neutral_observer": {
+      "count": 5,
+      "sample_rules": [
+        "Use professional, courteous business correspondence tone",
+        "Direct transcript format preserving conversational flow and first-person perspective of interviewee",
+        "Use first person for source quotes ('My understanding is', 'I believe'). Third person for factual reporting."
+      ]
+    },
+    "first_plural_advocate": {
+      "count": 4,
+      "sample_rules": [
+        "Use first person plural (we, our) when describing company capabilities and approach. Maintain professional, confident tone throughout.",
+        "Use first person plural when describing company capabilities. Professional tone throughout with advocacy for company selection.",
+        "Use first person plural when discussing company capabilities and achievements"
+      ]
+    },
+    "first_plural_service_provider": {
+      "count": 3,
+      "sample_rules": [
+        "Use first person plural ('we would', 'we suggest') when describing proposed services. Professional but accessible tone.",
+        "Use first person plural (we, our) when describing capabilities and approach. Maintain professional consulting tone throughout.",
+        "Use first person plural 'we' when describing capabilities. Maintain professional but approachable tone."
+      ]
+    },
+    "first_person_investigator": {
+      "count": 3,
+      "sample_rules": [
+        "Use first person when describing research activities. Maintain professional but approachable tone in expert outreach.",
+        "Use first person for direct witness testimony. Maintain analytical distance while providing insider perspective.",
+        "Use first person accounts from sources with direct professional experience. Maintain analytical distance while preserving source voice."
+      ]
+    },
+    "third_person_neutral_assessor": {
+      "count": 3,
+      "sample_rules": [
+        "Use formal third person voice appropriate for international organization reporting. Maintain analytical neutrality.",
+        "Use formal policy analysis language with objective, evaluative tone. Avoid first person references.",
+        "Use third person analytical voice. Maintain objectivity while identifying strengths and weaknesses."
+      ]
+    },
+    "third_person_judicial_authority": {
+      "count": 2,
+      "sample_rules": [
+        "Use formal legal Croatian language with passive constructions typical of court judgments",
+        "Use formal judicial language with third person references to the Constitutional Court as decision-making body"
+      ]
+    },
+    "passive_neutral_observer": {
+      "count": 1,
+      "sample_rules": [
+        "Use passive voice for technical findings. Maintain analytical distance."
+      ]
+    },
+    "first_person_researcher": {
+      "count": 1,
+      "sample_rules": [
+        "Use first person for direct outreach. Maintain professional tone in expert correspondence."
+      ]
+    },
+    "first_person_enthusiastic_customer": {
+      "count": 1,
+      "sample_rules": [
+        "Use direct quotes and conversational language to capture authentic voice of source"
+      ]
+    },
+    "first_plural_professional_service_provider": {
+      "count": 1,
+      "sample_rules": [
+        "Use first person plural (NLC/we) when describing capabilities and approach. Maintain formal professional tone throughout."
+      ]
+    },
+    "first_plural_expert_advisor": {
+      "count": 1,
+      "sample_rules": [
+        "Use first person plural 'we' and 'our' to establish authority and direct relationship with client. Maintain professional but accessible tone."
+      ]
+    },
+    "first_person_witness_testimony": {
+      "count": 1,
+      "sample_rules": [
+        "Direct quotes from interviewed sources maintained in first person to preserve authenticity and credibility"
+      ]
+    },
+    "third_person_analytical": {
+      "count": 1,
+      "sample_rules": [
+        "Use analytical third person voice with detailed technical specifications and objective assessments"
+      ]
+    },
+    "_": {
+      "count": 1,
+      "sample_rules": []
+    }
+  },
+  "attribution_styles": {
+    "footnoted": {
+      "count": 881,
+      "frequencies": [
+        "every_claim",
+        "key_claims_only",
+        "section_summary"
+      ],
+      "sample_rules": [
+        "Use superscript footnotes for all factual claims. Include specific dates and source names.",
+        "Footnote every factual claim with superscript numbers. Include comprehensive source attribution.",
+        "Footnote factual claims with superscript numbers. Reference corporate filings, media sources, and human intelligence appropriately"
+      ]
+    },
+    "embedded": {
+      "count": 199,
+      "frequencies": [
+        "every_claim",
+        "key_claims_only",
+        "context_specific",
+        "section_summary",
+        "every_source"
+      ],
+      "sample_rules": [
+        "Include supervisor name, position and date for verification purposes",
+        "Embed source attribution within text flow. Use specific dates and reference numbers for official communications. Quote directly from official sources when available.",
+        "Embed source attribution within text. Cite specific agencies and dates for official communications."
+      ]
+    },
+    "inline_parenthetical": {
+      "count": 158,
+      "frequencies": [
+        "every_claim",
+        "key_claims_only",
+        "section_summary",
+        "every_legal_reference"
+      ],
+      "sample_rules": [
+        "Attribute key factual claims and quotes to specific sources. Use bracketed footnote numbers for references.",
+        "Attribute specific claims to sources in parentheses, e.g., '(according to its annual reports)'",
+        "Attribute specific quotes and claims to source roles/organizations rather than individual names for discretion."
+      ]
+    },
+    "source_labeling": {
+      "count": 1,
+      "frequencies": [
+        "every_claim"
+      ],
+      "sample_rules": [
+        "Clearly identify each source with role and organization. Use 'Source 1:', 'Source 2:' format for anonymized attribution."
+      ]
+    },
+    "direct_quotation": {
+      "count": 1,
+      "frequencies": [
+        "continuous_first_person"
+      ],
+      "sample_rules": [
+        "Present as direct transcription of interview maintaining speaker's voice and terminology"
+      ]
+    },
+    "inline_identification": {
+      "count": 1,
+      "frequencies": [
+        "key_roles_only"
+      ],
+      "sample_rules": [
+        "Identify speakers by name and organizational role"
+      ]
+    },
+    "inline_legal_citation": {
+      "count": 1,
+      "frequencies": [
+        "every_legal_claim"
+      ],
+      "sample_rules": [
+        "Cite specific laws, articles, and decree numbers for every legal claim. Include full citation with date and amendment status."
+      ]
+    },
+    "embedded_legal_citations": {
+      "count": 1,
+      "frequencies": [
+        "every_legal_claim"
+      ],
+      "sample_rules": [
+        "Cite specific legislation, acts, and constitutional provisions for every legal claim. Include section numbers and years. Use format: Act Name (Year), Section X."
+      ]
+    },
+    "not_specified": {
+      "count": 1,
+      "frequencies": [
+        "not_specified"
+      ],
+      "sample_rules": [
+        "Not specified in this guidance document"
+      ]
+    },
+    "": {
+      "count": 1,
+      "frequencies": [],
+      "sample_rules": []
+    }
+  },
+  "certainty_calibration": {
+    "verified_facts_phrases": [
+      "matter of public record that, approved by MEKH, corporate registry revealed",
+      "According to the German corporate registry..., Registry records show...",
+      "According to our investigation... / Registry records show...",
+      "Corporate records show that..., According to registry filings..., The company's website states...",
+      "We confirm that..., According to [registry] records..., [Database] shows...",
+      "We confirm that...",
+      "according to Polish corporate filings, registry records confirm",
+      "SEC filings indicate that..., Registry records show...",
+      "According to [source], corporate records show that...",
+      "Direct employment confirmation with specific dates and positions",
+      "Trading standards confirmed that..., Companies House records show...",
+      "Trading Standards confirmed that..., Registry records show...",
+      "Corporate records show",
+      "Corporate records show that..., According to [specific registry]..., Records filed with...",
+      "Records filed with [registry] show that...",
+      "Registry records confirm that..., The shareholding structure shows...",
+      "shall confirm that..., identify/confirm the...",
+      "shall confirm that",
+      "Registry records confirm that...",
+      "Registry records show that..., The Hungarian land agency map shows...",
+      "Research found several companies... Sources confirm that...",
+      "According to the sources interviewed for this project",
+      "Registry records confirm that..., According to official filings..., NBG records show...",
+      "Registry records confirm that..., According to official filings...",
+      "Registry records confirm that..., Commercial Registry shows...",
+      "Direct statements for confirmed information",
+      "The information that EIB currently has and that should be verified",
+      "The EIB requires..., The Service Provider shall...",
+      "Based on information made available...",
+      "Registry records confirm that..., Corporate filings show..."
+    ],
+    "unverified_claims_phrases": [
+      "generally believed, it is highly likely, according to media accounts, suspected",
+      "According to media reports..., It is reported that...",
+      "widely believed to be... / sources indicate... / according to media reports...",
+      "According to media reports..., Our sources indicated..., It has been reported that...",
+      "According to media reports..., It was reported..., [Source] suggested...",
+      "According to media reports...",
+      "according to his online profile, appears to be, reportedly",
+      "appears to be..., it is possible that..., media reports indicate...",
+      "it appears that..., we believe that it is unlikely...",
+      "Not applicable - direct reference",
+      "According to social media..., appears to..., suspected of...",
+      "According to the website..., appears to have...",
+      "searches did not find",
+      "According to media reports..., It appears that..., We believe that...",
+      "According to [source]..., We note some tenuous indications...",
+      "According to available information..., It is reported that...",
+      "associated with negative publicity, any concerns or suspicions",
+      "any concerns or suspicions relating to",
+      "According to media reports... / It is alleged that...",
+      "Possible residential addresses:, (if applicable), (if available)",
+      "it appears highly likely that... there is no visible suggestion that...",
+      "According to my information",
+      "According to media reports..., Sources allege that..., It is reported that...",
+      "Media reports suggest..., It is alleged that..., According to sources...",
+      "It is alleged that..., According to sources...",
+      "Use hedging language like 'understood to include', 'appears to be'",
+      "are understood to include",
+      "not applicable in this procurement document",
+      "According to available information...",
+      "allegations suggest..., reports indicate..."
+    ],
+    "inference_phrases": [
+      "this suggests, based on available evidence, we note that",
+      "This suggests..., Based on available information...",
+      "This has led to widespread speculation... / circumstantial evidence indicates...",
+      "This suggests..., It should be considered that..., Based on available information...",
+      "This suggests..., We note the existence of..., Preliminary research suggests...",
+      "This suggests that...",
+      "it seems clear that, this is likely a reference to, we note that",
+      "This indicates that..., it is our understanding that...",
+      "This suggests that..., it would be extremely incongruent...",
+      "Performance ratings based on direct supervision",
+      "This suggests..., The evidence indicates...",
+      "This suggests..., Initial research has discovered...",
+      "This suggests that..., It is likely that..., We note that..., A connection here is speculative at best",
+      "We believe that..., It is clear from archived versions that...",
+      "This may indicate..., Based on the findings...",
+      "risk assessment of..., might give rise to...",
+      "perform a risk assessment of",
+      "which might give rise to",
+      "This may indicate... / Based on available information...",
+      "the property to be actually located",
+      "It is plausible that... We note that...",
+      "gives the impression of",
+      "This suggests that..., Based on available evidence..., Our analysis indicates...",
+      "This indicates..., Our assessment suggests..., Based on available evidence...",
+      "This suggests that..., Based on available evidence...",
+      "which might give rise to a reputation risk",
+      "Present requirements and objectives as definitive tasks",
+      "potential causes for concern",
+      "not applicable in this procurement document",
+      "This may pose a reputation risk..."
+    ]
+  },
+  "professional_conventions": {
+    "entity_introduction": [
+      "Full legal name in quotes, jurisdiction in parentheses, abbreviated name in quotes for subsequent references",
+      "Provide full name with nickname in parentheses on first mention, use surname thereafter. Include birth details and jurisdiction.",
+      "Provide full name, role, and key identifying information on first mention",
+      "Provide full legal name in quotes, jurisdiction, and key identifiers on first mention",
+      "Provide full legal name, jurisdiction, and key identifiers on first mention.",
+      "Provide full legal name and jurisdiction on first mention",
+      "Provide full legal name with commonly used version in quotes on first mention, include age and nationality for individuals",
+      "On first mention, provide full legal name with abbreviation in quotes, jurisdiction, and key identifiers",
+      "Provide full legal name in parentheses on first mention, use abbreviated form thereafter",
+      "Full candidate name with employer organization"
+    ],
+    "date_formatting": [
+      "DD Month YYYY format with regulatory context provided",
+      "Use DD Month YYYY format consistently throughout.",
+      "Use full date format with contextual significance explained",
+      "Use DD Month YYYY format with context for significance",
+      "Use DD Month YYYY format with contextual significance noted.",
+      "Use DD Month YYYY format",
+      "Use Month YYYY format for career periods, provide specific dates where available",
+      "Use DD Month YYYY format consistently",
+      "DD Month YYYY format for employment dates",
+      "Use DD/MM/YY or DD Month YYYY format consistently"
+    ],
+    "currency_formatting": [
+      "€53.02 million format with transaction context",
+      "State in original currency (EUR, USD) with full formatting.",
+      "State original currency with conversion in parentheses",
+      "State original currency with EUR equivalent in parentheses where relevant",
+      "State amounts with currency code, provide context for valuations.",
+      "State in original currency (EUR, USD, GBP)",
+      "Not extensively used in this report",
+      "State amounts in USD with full precision where available",
+      "Not applicable in this report",
+      "Not applicable"
+    ]
+  },
+  "exemplar_passages": [
+    {
+      "passage": "On 17 December 2009, the Hungarian Energy and Public Utility Regulatory Authority (MEKH) approved MOL's sale of 50% of MET Hungary to Normeston Trading Limited (\"Normeston\") of Belize.",
+      "demonstrates": "Verified fact presentation with specific date, authority, and transaction details",
+      "why_effective": "Provides precise attribution to regulatory source with exact date and percentage"
+    },
+    {
+      "passage": "It is generally believed – and is indeed highly likely, based on both historical ownership information and media accounts – that Benjámin Lakatos, MET Group's CEO, holds the largest stake",
+      "demonstrates": "Uncertainty calibration for unverified claims",
+      "why_effective": "Clearly signals unverified status while indicating confidence level and evidence basis"
+    },
+    {
+      "passage": "According to German corporate records and aggregators of global corporate registry data, Sebastian Betz has also had corporate affiliations with About You Open Commerce GmbH, EDITED GmbH, Sebastian Betz Beteiligungsgesellschaft mbH, Creative-Task GmbH, Collins Verwaltugs GmbH and About You Holding GmbH.",
+      "demonstrates": "Comprehensive source attribution and systematic listing of corporate affiliations",
+      "why_effective": "Clearly attributes information to specific sources and provides complete picture of business network"
+    },
+    {
+      "passage": "No adverse information pertaining to Sebastian Betz was identified.",
+      "demonstrates": "Standard disclaimer format for negative information searches",
+      "why_effective": "Provides clear statement of investigation scope and findings in professional language"
+    },
+    {
+      "passage": "Sebastian Betz ('Betz') was born on 28 August 1990 in Darmstadt, Germany.",
+      "demonstrates": "Professional entity introduction with nickname convention and key identifiers",
+      "why_effective": "Establishes clear naming convention and provides essential biographical anchors"
+    },
+    {
+      "passage": "Lakatos received his first multi-million dollar stake in MET Group effectively as a gift, and has since become the majority shareholder of the group without any known outside capital contribution of his own. This has led to widespread speculation that he is in fact a proxy acting on behalf of his ex-boss Hernádi",
+      "demonstrates": "Certainty calibration and inference presentation",
+      "why_effective": "Clearly presents facts (the gift, lack of known capital) then transitions to speculation with appropriate hedging language"
+    },
+    {
+      "passage": "According to a source who worked with Lakatos at MOL, Lakatos and Hernádi became close around 2006. Recalling the time when Lakatos worked at MOL's upstream team, the source said he 'impressed' his CEO",
+      "demonstrates": "Source attribution and quote presentation",
+      "why_effective": "Properly attributes information to specific source type and provides direct quotes with context"
+    },
+    {
+      "passage": "Addiko Bank AD Podgorica ('Addiko ME') is Montenegro's eighth largest bank (out of 11) with 11 branches across the country.",
+      "demonstrates": "Entity introduction with key context and market positioning",
+      "why_effective": "Immediately establishes entity identity, scale, and market context"
+    },
+    {
+      "passage": "However, we note that the background and business interests of one of Addiko ME's owners with a 5% stake, one Dieter Forster (through MW Funds PTE Limited) is not clear – several individuals called 'Dieter Forster' exist, but none who have been named in public sources could be linked to Addiko.",
+      "demonstrates": "Transparent acknowledgment of investigative limitations with appropriate hedging",
+      "why_effective": "Shows investigative rigor while being honest about constraints and uncertainties"
+    },
+    {
+      "passage": "According to the filings of LW's Luxembourg-registered company Hitbox SA, his German passport was issued with no. C3FF27MH8.",
+      "demonstrates": "Source attribution with specific document identification and factual precision",
+      "why_effective": "Combines source credibility (official filings) with specific evidence (passport number) in neutral tone"
+    },
+    {
+      "passage": "We have not been able to confirm the identity of the owners of these companies at this stage in our research.",
+      "demonstrates": "Professional acknowledgment of limitations with temporal qualifier",
+      "why_effective": "Maintains credibility by acknowledging data gaps while indicating ongoing investigation"
+    },
+    {
+      "passage": "We have not been able to confirm the identity of the owners of these companies at this stage in our research.",
+      "demonstrates": "Transparency about investigation limitations",
+      "why_effective": "Clearly states what could not be verified, maintaining credibility"
+    },
+    {
+      "passage": "According to media reports from early October 2020, LW's Tennor invested USD 300 million... LW has not confirmed this to the media but we note the existence of two newly registered subsidiaries",
+      "demonstrates": "Proper hedging and corroborating evidence",
+      "why_effective": "Attributes unconfirmed claims while providing supporting circumstantial evidence"
+    },
+    {
+      "passage": "Due to privacy restrictions on obtaining attendance and graduation data for students without their explicit consent, we have not been able to independently confirm these qualifications with the institutions in question.",
+      "demonstrates": "Transparency about verification limitations",
+      "why_effective": "Clearly explains why certain information could not be verified, managing client expectations about data completeness"
+    },
+    {
+      "passage": "It does not appear that Sozanski bears any responsibility for the collapse of the parent company and he is indirectly described as among the group's key assets.",
+      "demonstrates": "Exculpatory language and risk mitigation",
+      "why_effective": "Proactively addresses potential concerns about association with bankruptcy, supported by media characterization"
+    },
+    {
+      "passage": "SEC filings for the Liberian-registered UCIC indicate that as of 31 December 2018 it was the beneficial owner of 144,210 shares (4.5%) issued by Marshall Islands-registered company Globus Maritime Limited ('Globus').",
+      "demonstrates": "Precise attribution with specific dates, percentages, and jurisdictional details",
+      "why_effective": "Combines verified data source, exact figures, and clear entity identification with jurisdictional context"
+    },
+    {
+      "passage": "It is our understanding that under Greek law, Greek real estate records can only be obtained by a registered legal representative in the country.",
+      "demonstrates": "Appropriate hedging for legal interpretation combined with methodological limitation",
+      "why_effective": "Acknowledges uncertainty while providing specific procedural barrier information"
+    },
+    {
+      "passage": "We have identified only a few, indirect connections between the principal subject, Núñez-Lagos, and the other subjects. The closest relationship we have found is between her and Professor Emmanuel Gaillard: both are senior members of the Parisian commercial arbitration community, and we even found that both spoke at the same conference in 2018, albeit on different days.",
+      "demonstrates": "Certainty calibration and evidence hierarchy",
+      "why_effective": "Clearly states the strength of connection found, provides specific evidence, but notes the limitation (different days)"
+    },
+    {
+      "passage": "According to data recorded in French corporate filings for Nunez-Lagos Arbitration, Carmen Núñez-Lagos ('Núñez-Lagos') was born on 25 May 1966 in Madrid, Spain.",
+      "demonstrates": "Source attribution and entity introduction conventions",
+      "why_effective": "Clearly attributes to specific reliable source, establishes naming convention for remainder of report"
+    },
+    {
+      "passage": "Randolphs pride themselves in referencing all members of their temporary and permanent candidates to ensure the very best staff will be supplied to our clients at all times",
+      "demonstrates": "Professional closing statement establishing company standards",
+      "why_effective": "Reinforces thoroughness and quality assurance in recruitment process"
+    },
+    {
+      "passage": "On 16 JULY 2019, we received the following email from North Tyneside Trading Standards",
+      "demonstrates": "Precise date attribution with official source identification",
+      "why_effective": "Establishes credibility and timeline while providing clear source"
+    },
+    {
+      "passage": "Safraz HUSSAIN (aka Sarfraz) (d.o.b. 5/1/1986)",
+      "demonstrates": "Standard format for person identification with aliases and key identifiers",
+      "why_effective": "Provides complete identification package for subject tracking"
+    },
+    {
+      "passage": "Trading standards in at least two cases (North Tyneside and North Yorkshire) have engaged directly with the owner of the stores and subsequent site visits have concluded that no JUUL product has been visible on sale since 30 July.",
+      "demonstrates": "Evidence presentation with specific attribution and temporal context",
+      "why_effective": "Provides precise source attribution, specific jurisdictions, and clear timeline for enforcement actions"
+    },
+    {
+      "passage": "Initial research has discovered the following addresses, domains, companies and individuals linked to VAPEWITHUS:",
+      "demonstrates": "Clear transition from methodology to findings with structured presentation",
+      "why_effective": "Sets expectation for comprehensive data presentation and organizes complex corporate network information"
+    },
+    {
+      "passage": "The client engaged Rayon Intelligence Ltd (\"Rayon\" or \"we\") to conduct an investigative due diligence piece",
+      "demonstrates": "Professional client engagement description with entity name handling",
+      "why_effective": "Establishes professional relationship and provides name conventions upfront"
+    },
+    {
+      "passage": "This report was compiled from a review of publicly available sources, including media archives, online resources, proprietary databases and records",
+      "demonstrates": "Methodology transparency and source categorization",
+      "why_effective": "Provides clear methodology without revealing specific databases or sources"
+    },
+    {
+      "passage": "Corporate records show the following information:",
+      "demonstrates": "Authoritative statement for verified registry data",
+      "why_effective": "Creates clear distinction between verified registry facts and other information types"
+    },
+    {
+      "passage": "We have identified one company to which Bedding was connected, according to UK corporate records:",
+      "demonstrates": "Proper attribution and hedging - specifies source and uses precise language about connection",
+      "why_effective": "Clearly distinguishes between what records show versus broader claims about relationships"
+    },
+    {
+      "passage": "A connection here is speculative at best but it would also be a bit of a strange coincidence, I am sure a lot more could likely be done on it, if relevant",
+      "demonstrates": "Explicit uncertainty calibration and scope limitation",
+      "why_effective": "Acknowledges limitations while flagging potential areas for further investigation"
+    },
+    {
+      "passage": "According to the BBC, 'LU Dove' was the name of mephedrone tablets. Mephedrone has been a class C controlled substance in Jersey since December 2009 and Class B in the UK since March 2010.",
+      "demonstrates": "Source attribution followed by factual regulatory context",
+      "why_effective": "Combines media reporting with verifiable legal facts to provide complete context"
+    },
+    {
+      "passage": "We have identified one company to which Bedding was connected in the past, according to UK corporate records:",
+      "demonstrates": "Attribution and hedging language",
+      "why_effective": "Clear source attribution while maintaining investigative tone"
+    },
+    {
+      "passage": "A connection here is speculative at best but it would also be a bit of a strange coincidence",
+      "demonstrates": "Uncertainty calibration",
+      "why_effective": "Acknowledges limitations while noting potential significance"
+    },
+    {
+      "passage": "The objective of the proposed Assignment is to investigate Terabank, its management and shareholding structure with particular focus on its controlling shareholders and beneficial owner in order to identify any potential causes for concern and/or embarrassment for the EIB.",
+      "demonstrates": "Clear objective statement with risk-focused language",
+      "why_effective": "Establishes clear scope while emphasizing reputational risk concerns specific to institutional client"
+    },
+    {
+      "passage": "Terabank is registered in Georgia and its major shareholders include H. H. Sheikh Nahayan Mabarak Al Nahayan – 45%, H. H. Sheikh Hamdan Bin Zayed Al Nahayan – 20%",
+      "demonstrates": "Factual presentation with specific percentages and full formal names",
+      "why_effective": "Provides precise ownership structure using formal titles appropriate for high-profile individuals"
+    },
+    {
+      "passage": "The Service Provider shall: Identify/confirm the current direct and indirect shareholders and the jurisdiction in which they are located",
+      "demonstrates": "formal task specification with clear deliverable requirements",
+      "why_effective": "Uses imperative mood with specific, measurable outcomes that can be verified"
+    },
+    {
+      "passage": "any other allegation or suspicion of illegal or disreputable practice which may pose a reputation risk for the Bank",
+      "demonstrates": "careful hedging language for sensitive matters",
+      "why_effective": "Uses conditional language (may pose) and qualifies scope (allegation or suspicion) to manage legal risk"
+    },
+    {
+      "passage": "identify any potential causes for concern and/or embarrassment for the EIB",
+      "demonstrates": "Risk-focused framing of investigation objectives",
+      "why_effective": "Clearly establishes client's reputational protection as primary concern"
+    },
+    {
+      "passage": "Confirm that the Company, none of the current shareholders, members of the management or governing bodies is subject to sanctions",
+      "demonstrates": "Comprehensive scope definition covering all relevant parties",
+      "why_effective": "Ensures complete coverage of potential risk sources"
+    },
+    {
+      "passage": "The objective of the proposed Assignment is to investigate the financial institution ID Bank CJSC, its management and shareholding structure with particular focus on its controlling shareholders and beneficial owner in order to identify any potential causes for concern and/or embarrassment for the EIB.",
+      "demonstrates": "Clear objective statement with specific scope and purpose",
+      "why_effective": "Defines subject, scope, focus areas, and risk criteria in single sentence"
+    },
+    {
+      "passage": "Confirm that the Company, none of the current shareholders, members of the management or governing bodies is subject to sanctions imposed by the United Nations Security Council, the European Union or US Office for Foreign Assets Control (hereinafter Sanctions Authorities)",
+      "demonstrates": "Comprehensive sanctions screening requirement with specific authorities",
+      "why_effective": "Lists all relevant sanctioning bodies and defines scope comprehensively"
+    },
+    {
+      "passage": "The subject company has been involved in regulatory investigations in recent years by Nigerian authorities (according to its annual reports)",
+      "demonstrates": "Source attribution with hedging for unverified claims",
+      "why_effective": "Clearly indicates source of information while noting it comes from company's own reporting"
+    },
+    {
+      "passage": "identify any potential causes for concern and/or embarrassment for the EIB",
+      "demonstrates": "Professional risk assessment language",
+      "why_effective": "Uses formal terminology while clearly stating reputational risk concerns"
+    },
+    {
+      "passage": "Subject: Mrs Hui Zhang (HZ) – name in Chinese: 张卉 ('Zhang Hui' – in pinyin)",
+      "demonstrates": "Multi-lingual name handling with abbreviations and transliteration",
+      "why_effective": "Provides multiple identifiers for cross-reference and cultural context"
+    },
+    {
+      "passage": "The Hungarian land agency map shows below, the property to be actually located on the street parallel to Cirbolya:",
+      "demonstrates": "Source attribution with interpretive analysis",
+      "why_effective": "Cites specific authority while providing analytical insight about address discrepancy"
+    },
+    {
+      "passage": "Sources consulted for this project reject the idea that KR has any significant connection to Russia and instead point at him as man promoting the interests of US companies.",
+      "demonstrates": "How to present HUMINT findings with appropriate attribution and certainty calibration",
+      "why_effective": "Clearly attributes source opinion while distinguishing from verified facts"
+    },
+    {
+      "passage": "Testing of the pictures via a face verification engine was undertaken, but the quality of the pictures is too poor in the Facebook images and thus it was inconclusive.",
+      "demonstrates": "How to document methodology limitations and inconclusive results",
+      "why_effective": "Transparent about technical limitations while explaining investigative approach"
+    },
+    {
+      "passage": "Industry speakers unanimously claimed that Terabank, as a rather small and niche bank, is not currently involved in politics in any capacity in Georgia.",
+      "demonstrates": "Opening with clear consensus conclusion and key entity characteristics",
+      "why_effective": "Immediately establishes unanimous expert opinion and frames the entity context"
+    },
+    {
+      "passage": "Former member of the Supervisory Board of the National Bank of Georgia: \"The bank has an excellent national reputation...\"",
+      "demonstrates": "Source attribution by institutional role with direct quotation",
+      "why_effective": "Provides credibility through specific regulatory expertise while protecting source identity"
+    },
+    {
+      "passage": "In summary, we have concluded that SUBJECT should be classified as a 'High Risk', partly as a result of its jurisdiction but primarily because all of the major shareholders are sensitive Politically Exposed Persons (\"PEPs\").",
+      "demonstrates": "Professional conclusion with clear risk classification and reasoning",
+      "why_effective": "Establishes analytical authority, provides clear risk rating with specific justification"
+    },
+    {
+      "passage": "An Emirati parliamentarian told us of the bank's importance as an arm's-length, discreet facilitator of payments in line with UAE foreign policy. This included payments to mercenary organisations operating in Libya, Yemen, and Syria.",
+      "demonstrates": "Attribution of sensitive intelligence with appropriate hedging",
+      "why_effective": "Clearly attributes sensitive claims to specific source type while maintaining source protection"
+    },
+    {
+      "passage": "New Link Consulting ('NLC') understands that the EIB ('the EIB' or 'the Bank' in this Proposal) requires a Service Provider to investigate JSC Eurasian Bank (Kazakhstan) and its management, shareholding structures, shareholders and beneficial owners, in order to identify any potential causes for concern and/or embarrassment for the EIB.",
+      "demonstrates": "Professional proposal language with clear entity definitions and scope statement",
+      "why_effective": "Establishes parties, defines abbreviations, and clearly states objective in formal but accessible language"
+    },
+    {
+      "passage": "Founded in 1994 and receiving its general banking licence a year later, JSC Eurasian Bank ('Eurasian') is one of independent Kazakhstan's oldest banks, and one of the founding members of the Kazakhstan Stock Exchange (KASE; established in 1996).",
+      "demonstrates": "Factual presentation with timeline and context, plus abbreviation definitions",
+      "why_effective": "Provides key dates, establishes historical context, and introduces entity with clear identifier"
+    },
+    {
+      "passage": "The objective of the proposed Assignment is to investigate the 3 financial institutions, its management and shareholding structure with particular focus on its controlling shareholders and beneficial owner in order to identify any potential causes for concern and/or embarrassment for the EIB.",
+      "demonstrates": "Clear objective statement with specific scope definition",
+      "why_effective": "Establishes clear parameters and client-focused risk assessment framework"
+    },
+    {
+      "passage": "The Service Provider shall: Identify/confirm the current direct and indirect shareholders and the jurisdiction in which they are located",
+      "demonstrates": "Imperative task description with specific deliverables",
+      "why_effective": "Uses shall construction to create binding obligations with measurable outcomes"
+    },
+    {
+      "passage": "The objective of the proposed Assignment is to investigate PJSC Bank Clearing House, its management and shareholding structure with particular focus on its controlling shareholders and beneficial owner in order to identify any potential causes for concern and/or embarrassment for the EIB.",
+      "demonstrates": "Clear objective statement with specific focus areas",
+      "why_effective": "Establishes scope and risk appetite in formal language"
+    },
+    {
+      "passage": "Identify/confirm the current direct and indirect shareholders and the jurisdiction in which they are located",
+      "demonstrates": "Task specification with verification requirement",
+      "why_effective": "Uses verify/confirm pattern to emphasize accuracy requirements"
+    },
+    {
+      "passage": "The objective of the proposed Assignment is to investigate NCBA Bank Kenya PLC, its management and shareholding structure with particular focus on its controlling shareholders and beneficial owner in order to identify any potential causes for concern and/or embarrassment for the EIB.",
+      "demonstrates": "Clear objective statement with specific scope and purpose",
+      "why_effective": "Directly states investigation target, scope, and client concern without ambiguity"
+    },
+    {
+      "passage": "The shareholders of NCBA Bank Kenya PLC are understood to include:",
+      "demonstrates": "Appropriate hedging for unverified information",
+      "why_effective": "Uses 'understood to include' to indicate preliminary/unverified intelligence"
+    },
+    {
+      "passage": "The Service Provider shall: Identify/confirm the current direct and indirect shareholders and the jurisdiction in which they are located",
+      "demonstrates": "Formal imperative language with specific deliverable requirements",
+      "why_effective": "Clear, actionable language that leaves no ambiguity about expectations"
+    },
+    {
+      "passage": "The information that EIB currently has and that should be verified",
+      "demonstrates": "Hedging language for unverified information",
+      "why_effective": "Acknowledges uncertainty while establishing investigation parameters"
+    },
+    {
+      "passage": "The European Investment Bank ('EIB', the 'Bank') hereby invites you to submit a proposal concerning the Services specified in detail in these Assignment Terms of Reference (AToR)",
+      "demonstrates": "Formal institutional voice with proper entity introduction and abbreviation establishment",
+      "why_effective": "Establishes authority, provides clear identification, and sets formal tone appropriate for procurement"
+    },
+    {
+      "passage": "The Service Provider shall: Assess the implementation of 4 and 5 AMLD and FATF standards into the national legal ML-TF frameworks",
+      "demonstrates": "Use of mandatory language and structured task specification",
+      "why_effective": "Creates clear, unambiguous obligations using standard procurement language"
+    },
+    {
+      "passage": "Financial proposals exceeding the Maximum budget and/or exceeding the daily rate(s) of the expert(s) of the category set out in the Framework Agreement, will be rejected",
+      "demonstrates": "Clear consequence statement with specific conditions",
+      "why_effective": "Provides definitive parameters and consequences in formal legal language"
+    },
+    {
+      "passage": "The objective of the proposed Assignment is to investigate AzerTelecom, its management and shareholding structure with particular focus on its controlling shareholders and beneficial owner in order to identify any potential causes for concern and/or embarrassment for the EIB.",
+      "demonstrates": "Clear objective statement with specific focus areas",
+      "why_effective": "Defines scope precisely while indicating client's reputational concerns"
+    },
+    {
+      "passage": "Conduct inquiries including in situ with confidential sources in business, government, regulatory, and other, which are knowledgeable about AzerTelecom, its management, shareholders and their commercial interests.",
+      "demonstrates": "HUMINT methodology description with source categories",
+      "why_effective": "Specifies human intelligence approach while maintaining source confidentiality"
+    },
+    {
+      "passage": "The objective of the proposed Assignment is to investigate the counterpart JSC Eurasian Bank, its management and shareholding structure with particular focus on its controlling shareholders and beneficial owner in order to identify any potential causes for concern and/or embarrassment for the EIB.",
+      "demonstrates": "Clear objective statement with specific scope and risk framing",
+      "why_effective": "Directly states purpose, scope boundaries, and success criteria in one sentence"
+    },
+    {
+      "passage": "Confirm that the Company, none of the current shareholders, members of the management or governing bodies is subject to sanctions imposed by the United Nations Security Council, the European Union or US Office for Foreign Assets Control (hereinafter Sanctions Authorities)",
+      "demonstrates": "Precise specification of verification requirements with defined terms",
+      "why_effective": "Comprehensive scope with authoritative source definition and clear terminology"
+    },
+    {
+      "passage": "One of the main concerns that EIB currently has is the ultimate beneficial owner, Sergey Tigipko, being a highly visible PEP with strong political connections, facing several allegations for his activities.",
+      "demonstrates": "Risk indicator presentation with appropriate hedging",
+      "why_effective": "Clearly states the concern while using qualifying language about allegations rather than stating as fact"
+    },
+    {
+      "passage": "The objective of the proposed Assignment is to investigate the Tascombank JSC, its management and shareholding structure with particular focus on its controlling shareholders and beneficial owner in order to identify any potential causes for concern and/or embarrassment for the EIB.",
+      "demonstrates": "Scope definition with clear purpose statement",
+      "why_effective": "Precisely defines investigation scope and client's specific interests"
+    },
+    {
+      "passage": "The fact that members of the Mas family only directly hold around 20% of the shares in MasTec may provide an impediment to attaching the subsidiary companies in the MasTec group.",
+      "demonstrates": "Analytical inference with practical implications for client",
+      "why_effective": "Connects factual findings to actionable intelligence for asset recovery purposes"
+    },
+    {
+      "passage": "This is a Florida-registered public company, listed on the NYSE under the ticker symbol MTZ.",
+      "demonstrates": "Complete entity identification with jurisdiction and key identifiers",
+      "why_effective": "Provides all necessary information for entity verification and further investigation"
+    },
+    {
+      "passage": "Although these sources go further than previous enquiries regarding specific topics that they are aware of, the context of the interviews echoed previous ones: the provincial branches have limited expectations regarding transparency of deliberative decision-making from the centre.",
+      "demonstrates": "Professional hedging and context-setting while acknowledging source limitations",
+      "why_effective": "Establishes credibility boundaries and manages reader expectations about information quality"
+    },
+    {
+      "passage": "The sources concur on the likelihood that the forthcoming e-cigarette standards will establish requirements for nicotine content in e-liquid, though they vary in their certainty of whether ENDS products will be re-classified as tobacco products or remain electronic products.",
+      "demonstrates": "Synthesis of multiple source views with clear distinction between consensus and disagreement",
+      "why_effective": "Shows where sources align and where they differ on key regulatory questions"
+    },
+    {
+      "passage": "While the CNTC sources are not privy to the details of the forthcoming e-cigarette standards, the SMOORE source is convinced that they will mimic existing EU standards.",
+      "demonstrates": "Clear attribution showing which sources have which types of information",
+      "why_effective": "Explains why different sources have different levels of insight into the topic"
+    },
+    {
+      "passage": "Our source, a senior product manager of SMOORE, shared a range of expectations regarding developments on the ENDS sector.",
+      "demonstrates": "Source attribution and credibility establishment",
+      "why_effective": "Immediately establishes source credentials and report scope"
+    },
+    {
+      "passage": "The source is convinced that the future Chinese ENDS market will be open to private companies, rather than a CNTC monopoly.",
+      "demonstrates": "Certainty calibration for source predictions",
+      "why_effective": "Clearly indicates this is source's opinion/conviction, not verified fact"
+    },
+    {
+      "passage": "The MIIT on 22 March 2021 issued the Detailed Rules for the Implementation of the Tobacco Monopoly Law of China - Draft for Solicitation of Comments which, when implemented, will extend the CNTC/STMA's jurisdiction over cigarettes to ENDS products.",
+      "demonstrates": "Clear attribution with specific dates and regulatory document titles",
+      "why_effective": "Provides precise regulatory timeline and authority while explaining implications"
+    },
+    {
+      "passage": "According to Chinese corporate and business intelligence databases, RELX Technology is ultimately 81.4% owned by Wang Ying (汪莹), the company's CEO, and 18.6% owned by Du Bin (杜冰), a co-founder of the company.",
+      "demonstrates": "Source attribution with specific ownership percentages and Chinese names",
+      "why_effective": "Clearly identifies source type while providing precise ownership data with Chinese characters"
+    },
+    {
+      "passage": "You would like to conduct a Due Diligence into Alexander Schütz, an Austrian investor and politically-exposed person. In particular, you wish to understand his political connections at present (for example, his donations to political parties), his fund management activities, as well as his reputational profile more generally.",
+      "demonstrates": "Clear subject introduction with specific investigation parameters",
+      "why_effective": "Establishes subject identity, risk category (PEP), and precise scope of inquiry in structured format"
+    },
+    {
+      "passage": "We will draw upon OSINT as well as HUMINT in order to provide a comprehensive overview of the subject. The sources that we have identified who will be able to provide insights include, but will not necessarily be limited to:",
+      "demonstrates": "Methodology transparency with source type identification",
+      "why_effective": "Clearly states research approach while maintaining source protection through role description rather than names"
+    },
+    {
+      "passage": "We will draw upon OSINT as well as HUMINT in order to provide a comprehensive overview of the subject.",
+      "demonstrates": "Professional methodology statement with technical terminology",
+      "why_effective": "Concise, authoritative, uses industry-standard terms while remaining accessible to client"
+    },
+    {
+      "passage": "The sources that we have identified who will be able to provide insights include, but will not necessarily be limited to: a former parliamentary staffer involved in special committees investigating the nexus between politics and business",
+      "demonstrates": "Source description maintaining confidentiality while establishing credibility",
+      "why_effective": "Provides sufficient detail to establish source reliability without compromising anonymity"
+    },
+    {
+      "passage": "You would like to conduct a Due Diligence into Alexander Schütz, an Austrian investor and politically-exposed person. In particular, you wish to understand his political connections at present (for example, his donations to political parties), his fund management activities, as well as his reputational profile more generally.",
+      "demonstrates": "Clear objective setting with specific risk indicators",
+      "why_effective": "Establishes scope while identifying key risk areas for PEP investigation"
+    },
+    {
+      "passage": "The sources that we have identified who will be able to provide insights include, but will not necessarily be limited to: a former parliamentary staffer involved in special committees investigating the nexus between politics and business",
+      "demonstrates": "HUMINT source protection while establishing credibility",
+      "why_effective": "Describes source value without compromising identity"
+    },
+    {
+      "passage": "You would like to conduct a Due Diligence into Alexander Schütz, an Austrian investor and politically-exposed person. In particular, you wish to understand his political connections at present (for example, his donations to political parties), his fund management activities, as well as his reputational profile more generally.",
+      "demonstrates": "Clear problem statement with specific focus areas and examples",
+      "why_effective": "Establishes subject, context, and specific investigation parameters with concrete examples"
+    },
+    {
+      "passage": "The sources that we have identified who will be able to provide insights include, but will not necessarily be limited to: a former parliamentary staffer involved in special committees investigating the nexus between politics and business",
+      "demonstrates": "Source qualification and hedging language",
+      "why_effective": "Establishes source credibility while maintaining flexibility with 'include, but will not necessarily be limited to'"
+    },
+    {
+      "passage": "JSC Eurasian Bank ('Eurasian') was founded in 1994 by three high-profile controversial Kazakh businessmen, Aleksandr Mashkevich, Patokh Chodiev (who are both still major shareholders), and the late Alijan Ibragimov, whose wife Mukadaskhan Ibragimova inherited his stake. The founders are collectively known as 'the Trio'.",
+      "demonstrates": "Entity introduction with aliases, ownership context, and narrative grouping",
+      "why_effective": "Immediately establishes key relationships and controversy while providing clear identification"
+    },
+    {
+      "passage": "However, it is our clear impression that the Bank's compliance track record has improved over the last three-four years.",
+      "demonstrates": "Analytical assessment with appropriate hedging language",
+      "why_effective": "Presents investigator judgment while acknowledging it's an assessment not verified fact"
+    },
+    {
+      "passage": "As at 17 January 2022, records of the Kazakh financial regulatory authority show that Eurasian has been subject to 195 regulatory actions",
+      "demonstrates": "Temporal specificity with authoritative source attribution",
+      "why_effective": "Provides precise date context and official source for significant finding"
+    },
+    {
+      "passage": "JSC Eurasian Bank (\"Eurasian\") was founded in 2013 by three high-profile controversial Kazakh businessmen, Aleksandr Mashkevich, Patokh Chodiev (who are both still major shareholders), and the late Alijan Ibragimov, whose wife Mukadaskhan Ibragimova Inherited his stake. The founders are collectively known as \"the Trio\".",
+      "demonstrates": "Proper entity introduction with parenthetical short name, key contextual information, and relationship mapping",
+      "why_effective": "Immediately establishes subject, ownership context, and introduces key terminology that will be used throughout"
+    },
+    {
+      "passage": "However, it is our clear impression that the Bank's compliance track record has improved over the last three-four years.",
+      "demonstrates": "Appropriate hedging language for analytical conclusions",
+      "why_effective": "Signals this is investigator assessment rather than verified fact, while maintaining professional confidence"
+    },
+    {
+      "passage": "As at 17 January 2022, records of the Kazakh financial regulatory authority show that Eurasian has been subject to 195 regulatory actions in total",
+      "demonstrates": "Proper attribution to official sources with specific date and quantified findings",
+      "why_effective": "Provides precise sourcing, timing, and quantified risk indicator that can be verified"
+    },
+    {
+      "passage": "NLC understands that the EIB requires a Service Provider to investigate SKYTEL (Georgia) and its management, shareholding structures, shareholders and beneficial owners, in order to identify any potential causes for concern and/or embarrassment for the EIB",
+      "demonstrates": "Clear scope definition with client-focused language",
+      "why_effective": "Immediately establishes purpose, subject, and client concerns in professional terminology"
+    },
+    {
+      "passage": "The target is typically at least 12 human intelligence sources over a 3-4 week timeline. The sources will be approached with enquiries on additional companies and will not be aware of which company is the focus of our enquiries",
+      "demonstrates": "Specific methodology with operational security considerations",
+      "why_effective": "Provides concrete metrics while addressing confidentiality and source protection"
+    },
+    {
+      "passage": "Based on information made available, SKYTEL Georgia is owned by a Georgian citizen, Besik Mosashvili. Its co-founder is Arthur (or Artur) Torosyan",
+      "demonstrates": "Proper attribution and name handling with alternative spellings",
+      "why_effective": "Clearly attributes source of information while noting name variations"
+    },
+    {
+      "passage": "The objective of the proposed Assignment is to investigate SKYTEL Georgia, its management and shareholding structure with particular focus on its controlling shareholders and beneficial owner in order to identify any potential causes for concern and/or embarrassment for the EIB",
+      "demonstrates": "Clear scope definition with specific focus areas and risk-based language",
+      "why_effective": "Defines investigation parameters and links to client risk concerns"
+    },
+    {
+      "passage": "Based on information made available, Telecom Armenia CJSC (formerly VEON Armenia) operates under the brand name \"Beeline\".",
+      "demonstrates": "Entity introduction with historical context and operational details",
+      "why_effective": "Provides complete identification while acknowledging information source limitations"
+    },
+    {
+      "passage": "The objective of the proposed Assignment is to investigate Telecom Armenia CJSC, its management and shareholding structure with particular focus on its controlling shareholders and beneficial owner in order to identify any potential causes for concern and/or embarrassment for the EIB.",
+      "demonstrates": "Clear objective statement with specific scope and client risk focus",
+      "why_effective": "Establishes investigation purpose while maintaining professional tone about sensitive reputational concerns"
+    },
+    {
+      "passage": "The objective of the proposed Assignment is to investigate the MVM Group (with a focus on the MVM Group entities listed in section 2), its management and shareholding structure with particular focus on its controlling shareholders and beneficial owners in order to identify any potential causes for concern and/or embarrassment for the EIB.",
+      "demonstrates": "Clear objective statement with specific scope and risk-focused purpose",
+      "why_effective": "Establishes precise boundaries and risk-based rationale for investigation"
+    },
+    {
+      "passage": "MVM ENERGETIKA ZRT, registration number: 01-10-041828 (trade register), 529900ELI5AQ9F74PF85 (LEI), country: Hungary",
+      "demonstrates": "Comprehensive entity identification with multiple identifiers",
+      "why_effective": "Provides complete identification enabling verification across multiple databases"
+    }
+  ]
+}

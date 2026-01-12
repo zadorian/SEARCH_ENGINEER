@@ -1,0 +1,2388 @@
+{
+  "summary": {
+    "total_failed": 157,
+    "high_priority": 81,
+    "medium_priority": 4,
+    "low_priority": 72
+  },
+  "failed_sources": [
+    {
+      "id": "cadastrocnpj_com_library",
+      "name": "cadastrocnpj.com",
+      "domain": "cadastrocnpj.com",
+      "jurisdiction": "BR",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "https://cadastrocnpj.com/cnpj/{q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://cadastrocnpj.com",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "capitalmarketstribunal_ca_library",
+      "name": "capitalmarketstribunal.ca",
+      "domain": "capitalmarketstribunal.ca",
+      "jurisdiction": "CA",
+      "type": "regulatory_authority",
+      "section": "gov",
+      "search_template": "https://www.capitalmarketstribunal.ca/en/search/site?keys={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://capitalmarketstribunal.ca",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "drclicences_cami_cd_library",
+      "name": "drclicences.cami.cd",
+      "domain": "drclicences.cami.cd",
+      "jurisdiction": "CD",
+      "type": "government_portal",
+      "section": "gov",
+      "search_template": "http://drclicences.cami.cd/en/search/?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://drclicences.cami.cd",
+      "thematic_tags": [
+        "licenses"
+      ]
+    },
+    {
+      "id": "rechtsprechung_gerichte_bs_ch_library",
+      "name": "rechtsprechung.gerichte.bs.ch",
+      "domain": "rechtsprechung.gerichte.bs.ch",
+      "jurisdiction": "CH",
+      "type": "court_database",
+      "section": "gov",
+      "search_template": "https://rechtsprechung.gerichte.bs.ch/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://rechtsprechung.gerichte.bs.ch",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "stockwatch_com_cy_library",
+      "name": "stockwatch.com.cy",
+      "domain": "stockwatch.com.cy",
+      "jurisdiction": "CY",
+      "type": "regulatory_authority",
+      "section": "gov",
+      "search_template": "https://www.stockwatch.com.cy/en/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://stockwatch.com.cy",
+      "thematic_tags": [
+        "stock_exchange"
+      ]
+    },
+    {
+      "id": "www.firmy.cz_corporate_registry",
+      "name": "Catalog of verified companies in] the Czech Republic",
+      "domain": "www.firmy.cz",
+      "jurisdiction": "CZ",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "https://www.firmy.cz/?thru=&q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.firmy.cz/",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "www.nsoud.cz_court_records",
+      "name": "Regional and high courts decisions] database",
+      "domain": "www.nsoud.cz",
+      "jurisdiction": "CZ",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "http://www.nsoud.cz/JudikaturaNS_new/judikatura_vks.nsf/$$WebSearch1?Query={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://www.nsoud.cz/judikaturavks/judikatura_vks.nsf/webSpreadSearch",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "nsoud.cz_court_records",
+      "name": "Supreme Administrative Court of the] Czech Republic",
+      "domain": "nsoud.cz",
+      "jurisdiction": "CZ",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "http://www.nsoud.cz/JudikaturaNS_new/judikatura_vks.nsf/$$WebSearch1?Query={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://nsoud.cz/",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "online-handelsregister_de_library",
+      "name": "online-handelsregister.de",
+      "domain": "online-handelsregister.de",
+      "jurisdiction": "DE",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "/search?company={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://online-handelsregister.de",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "staatsanwaltschaft-osnabrueck_niedersachsen_de_library",
+      "name": "staatsanwaltschaft-osnabrueck.niedersachsen.de",
+      "domain": "staatsanwaltschaft-osnabrueck.niedersachsen.de",
+      "jurisdiction": "DE",
+      "type": "government_portal",
+      "section": "gov",
+      "search_template": "https://www.staatsanwaltschaft-osnabrueck.niedersachsen.de/startseite/suche/suche.html?query={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://staatsanwaltschaft-osnabrueck.niedersachsen.de",
+      "thematic_tags": [
+        "lawyers"
+      ]
+    },
+    {
+      "id": "bundesverfassungsgericht_de_library",
+      "name": "bundesverfassungsgericht.de",
+      "domain": "bundesverfassungsgericht.de",
+      "jurisdiction": "DE",
+      "type": "court_database",
+      "section": "gov",
+      "search_template": "https://www.bundesverfassungsgericht.de/SiteGlobals/Forms/Suche/Suche_Formular.html?searchQuery={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://bundesverfassungsgericht.de",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "juris_bundesarbeitsgericht_de_library",
+      "name": "juris.bundesarbeitsgericht.de",
+      "domain": "juris.bundesarbeitsgericht.de",
+      "jurisdiction": "DE",
+      "type": "court_database",
+      "section": "gov",
+      "search_template": "https://juris.bundesarbeitsgericht.de/cgi-bin/rechtsprechung/list.py?Gericht=bag&Art=en&q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://juris.bundesarbeitsgericht.de",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "rechtsprechung-hamburg_de_library",
+      "name": "rechtsprechung-hamburg.de",
+      "domain": "rechtsprechung-hamburg.de",
+      "jurisdiction": "DE",
+      "type": "court_database",
+      "section": "gov",
+      "search_template": "http://www.rechtsprechung-hamburg.de/jportal/portal/page/bshaprod.psml?doc.head=Suche&showdoccase=1&paramfromHL=true&doc.id={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://rechtsprechung-hamburg.de",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "verfassungsgericht_brandenburg_de_library",
+      "name": "verfassungsgericht.brandenburg.de",
+      "domain": "verfassungsgericht.brandenburg.de",
+      "jurisdiction": "DE",
+      "type": "court_database",
+      "section": "gov",
+      "search_template": "https://verfassungsgericht.brandenburg.de/verfgbbg/de/suche/?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://verfassungsgericht.brandenburg.de",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "avocatparis_org_library",
+      "name": "avocatparis.org",
+      "domain": "avocatparis.org",
+      "jurisdiction": "FR",
+      "type": "regulatory_authority",
+      "section": "gov",
+      "search_template": "https://www.avocatparis.org/recherche?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://avocatparis.org",
+      "thematic_tags": [
+        "lawyers"
+      ]
+    },
+    {
+      "id": "cpa_co_uk_library",
+      "name": "cpa.co.uk",
+      "domain": "cpa.co.uk",
+      "jurisdiction": "GB",
+      "type": "regulatory_authority",
+      "section": "gov",
+      "search_template": "https://www.cpa.co.uk/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://cpa.co.uk",
+      "thematic_tags": [
+        "accountants"
+      ]
+    },
+    {
+      "id": "enterprisegeorgia_gov_ge_library",
+      "name": "enterprisegeorgia.gov.ge",
+      "domain": "enterprisegeorgia.gov.ge",
+      "jurisdiction": "GE",
+      "type": "government_portal",
+      "section": "gov",
+      "search_template": "https://enterprisegeorgia.gov.ge/en/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://enterprisegeorgia.gov.ge",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "www.hipo.gov.hu_land_registry",
+      "name": "Hungarian Intellectual Property Office",
+      "domain": "www.hipo.gov.hu",
+      "jurisdiction": "HU",
+      "type": "land_registry",
+      "section": "at",
+      "search_template": "https://hipo.gov.hu/hu/kereses?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.hipo.gov.hu/English/",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "www.foldhivatal.hu_land_registry",
+      "name": "Land Registry",
+      "domain": "www.foldhivatal.hu",
+      "jurisdiction": "HU",
+      "type": "land_registry",
+      "section": "at",
+      "search_template": "index.php?searchword={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.foldhivatal.hu",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "cegcontrol_hu_library",
+      "name": "cegcontrol.hu",
+      "domain": "cegcontrol.hu",
+      "jurisdiction": "HU",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "/kereses?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://cegcontrol.hu",
+      "thematic_tags": [
+        "beneficial_ownership"
+      ]
+    },
+    {
+      "id": "ahu.go.id_corporate_registry",
+      "name": "Ministry of Justice and Human] Rights company search",
+      "domain": "ahu.go.id",
+      "jurisdiction": "ID",
+      "type": "corporate_registry",
+      "section": "misc",
+      "search_template": "https://ahu.go.id/pencarian/profil-pt/?tipe=perseroan&nama={q}",
+      "scrape_method": "timeout",
+      "priority": "HIGH",
+      "url": "http://ahu.go.id/pencarian/bakum",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "highcourtsearch.courts.ie_court_records",
+      "name": "High Court of Ireland records] dating back to 1993",
+      "domain": "highcourtsearch.courts.ie",
+      "jurisdiction": "IE",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "https://highcourtsearch.courts.ie/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://highcourtsearch.courts.ie/hcslive/cslogin",
+      "thematic_tags": [
+        "court_records",
+        "land_registry"
+      ]
+    },
+    {
+      "id": "www.courts.ie_court_records",
+      "name": "The Court Service of Ireland",
+      "domain": "www.courts.ie",
+      "jurisdiction": "IE",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "https://www.courts.ie/search/node (POST: keys={q})",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://www.courts.ie/judgments",
+      "thematic_tags": [
+        "court_records",
+        "land_registry"
+      ]
+    },
+    {
+      "id": "cea.gov.ie_corporate_registry",
+      "name": "Corporate Enforcement Authority] monitors and investigates companies' compliance with corporate regulations. Also check the CEA's predecessor",
+      "domain": "cea.gov.ie",
+      "jurisdiction": "IE",
+      "type": "corporate_registry",
+      "section": "reg",
+      "search_template": "https://cea.gov.ie/en-ie/search/?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://cea.gov.ie/en-ie/",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "www.odce.ie_corporate_registry",
+      "name": "Office of the Director of Corporate Enforcement].",
+      "domain": "www.odce.ie",
+      "jurisdiction": "IE",
+      "type": "corporate_registry",
+      "section": "reg",
+      "search_template": "https://cea.gov.ie/en-ie/search/?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://www.odce.ie/",
+      "thematic_tags": [
+        "officers",
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "index.justice.gov.il_court_records",
+      "name": "Israeli Ministry of Justice court] judgment search",
+      "domain": "index.justice.gov.il",
+      "jurisdiction": "IL",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "https://index.justice.gov.il/Pubilcations/Pages/Search.aspx?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://index.justice.gov.il",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "www.psakdin.co.il_court_records",
+      "name": "Third-party legal information website with] selected judgements",
+      "domain": "www.psakdin.co.il",
+      "jurisdiction": "IL",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "POST https://www.psakdin.co.il/Court with form field ctl00$ctl00$BodyContent$txtLawyerName={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://www.psakdin.co.il/Court",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "www.mca.gov.in_corporate_registry",
+      "name": "Ministry of Corporate Affairs -] Search by company name or number to get address, type, capital, members, directors, and contact information. Can search for directors and see companies they manage.",
+      "domain": "www.mca.gov.in",
+      "jurisdiction": "IN",
+      "type": "corporate_registry",
+      "section": "misc",
+      "search_template": "http://www.mca.gov.in/mcafoportal/viewCompanyMasterData.do?companyID={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.mca.gov.in/mcafoportal/viewCompanyMasterData.do",
+      "thematic_tags": [
+        "officers",
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "delhihighcourt.nic.in_legal_imported",
+      "name": "High Court of Delhi",
+      "domain": "delhihighcourt.nic.in",
+      "jurisdiction": "IN",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "http://delhihighcourt.nic.in/SiteSearch.asp?zoom_query={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://delhihighcourt.nic.in",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "directorio-empresas_einforma_co_library",
+      "name": "directorio-empresas.einforma.co",
+      "domain": "directorio-empresas.einforma.co",
+      "jurisdiction": "INT",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "https://directorio-empresas.einforma.co/buscar/{q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://directorio-empresas.einforma.co",
+      "thematic_tags": [
+        "officers"
+      ]
+    },
+    {
+      "id": "sanctionsmap_eu_library",
+      "name": "sanctionsmap.eu",
+      "domain": "sanctionsmap.eu",
+      "jurisdiction": "INT",
+      "type": "government_portal",
+      "section": "gov",
+      "search_template": "https://sanctionsmap.eu/search/name/{q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://sanctionsmap.eu",
+      "thematic_tags": [
+        "sanctions"
+      ]
+    },
+    {
+      "id": "www.enterpriseireland.com_corporate_registry",
+      "name": "Enterprise Ireland] - Government agency supporting Irish businesses",
+      "domain": "www.enterpriseireland.com",
+      "jurisdiction": "IR",
+      "type": "corporate_registry",
+      "section": "misc",
+      "search_template": "https://www.enterprise-ireland.com/en/search/?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://www.enterpriseireland.com/",
+      "thematic_tags": [
+        "land_registry",
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "twitter.com_land_registry",
+      "name": "Twitter - #Ireland] - Twitter hashtag for Ireland-related posts",
+      "domain": "twitter.com",
+      "jurisdiction": "IR",
+      "type": "land_registry",
+      "section": "misc",
+      "search_template": "https://twitter.com/search?q=\\#{q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://twitter.com/search?q=%23Ireland",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "www.jipo.gov.jm_land_registry",
+      "name": "Jamaica Intellectual Property Office",
+      "domain": "www.jipo.gov.jm",
+      "jurisdiction": "JM",
+      "type": "land_registry",
+      "section": "at",
+      "search_template": "POST https://www.jipo.gov.jm/ form field: search_block_form={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.jipo.gov.jm/",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "www.moj.go.jp_land_registry",
+      "name": "The Ministry of Justice maintains a detailed registry of real estate properties in Japan. This includes information on property ownership, transfers, and liens.",
+      "domain": "www.moj.go.jp",
+      "jurisdiction": "JP",
+      "type": "land_registry",
+      "section": "at",
+      "search_template": "https://www.moj.go.jp/search/search.html?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.moj.go.jp/MINJI/minji07.html",
+      "thematic_tags": [
+        "liens",
+        "land_registry",
+        "shareholders"
+      ]
+    },
+    {
+      "id": "www.courts.go.jp_court_records",
+      "name": "(pub)",
+      "domain": "www.courts.go.jp",
+      "jurisdiction": "JP",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "https://www.courts.go.jp/app/search/index.html?query={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://www.courts.go.jp/app/hanrei_en/search?",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "brs.go.ke_corporate_registry",
+      "name": "Business Registration Service - Companies] Registry",
+      "domain": "brs.go.ke",
+      "jurisdiction": "KE",
+      "type": "corporate_registry",
+      "section": "misc",
+      "search_template": "https://brs.go.ke/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://brs.go.ke/companies-registry.php",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "akchabar_kg_library",
+      "name": "akchabar.kg",
+      "domain": "akchabar.kg",
+      "jurisdiction": "KG",
+      "type": "regulatory_authority",
+      "section": "gov",
+      "search_template": "https://akchabar.kg/ru/search/?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://akchabar.kg",
+      "thematic_tags": [
+        "lawyers"
+      ]
+    },
+    {
+      "id": "gosreestr.kazpatent.kz_land_registry",
+      "name": "Committee of Intellectual Property Rights] - searchable database of inventions, utility models, industrial designs and trademarks.",
+      "domain": "gosreestr.kazpatent.kz",
+      "jurisdiction": "KZ",
+      "type": "land_registry",
+      "section": "at",
+      "search_template": "https://gosreestr.kazpatent.kz/AppellationOfOrigin/Filter?Name={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://gosreestr.kazpatent.kz/",
+      "thematic_tags": [
+        "court_records",
+        "land_registry"
+      ]
+    },
+    {
+      "id": "rekvizitai.vz.lt_corporate_registry",
+      "name": "Directory of Lithuanian companies",
+      "domain": "rekvizitai.vz.lt",
+      "jurisdiction": "LT",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "POST https://rekvizitai.vz.lt/imones/1/?scrollTo=searchForm with form field name={q} (other optional fields: search_word, industry, location)",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://rekvizitai.vz.lt/",
+      "thematic_tags": [
+        "officers"
+      ]
+    },
+    {
+      "id": "www.ebr.lv_corporate_registry",
+      "name": "European Business Register - Company registration records",
+      "domain": "www.ebr.lv",
+      "jurisdiction": "LV",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "POST https://www.ebr.lv/ru/advanced-search with form field AdvancedSearch[name]={q} (other form fields: AdvancedSearch[type], AdvancedSearch[gateways][], AdvancedSearch[logic])",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://www.ebr.lv/ru/company-search",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "dati.ur.gov.lv_corporate_registry",
+      "name": "Register of Enterprises - Official company registry raw data",
+      "domain": "dati.ur.gov.lv",
+      "jurisdiction": "LV",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "https://www.ur.gov.lv/en/register/company-registration/register-of-enterprises?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://dati.ur.gov.lv/register/",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "firmas_lv_library",
+      "name": "firmas.lv",
+      "domain": "firmas.lv",
+      "jurisdiction": "LV",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "https://www.firmas.lv/lv/meklet?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://firmas.lv",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "www.ammc.ma_corporate_registry",
+      "name": "Moroccan Authority of Capital Markets] with issuer information, management details, incorporation data, shareholder and financial information",
+      "domain": "www.ammc.ma",
+      "jurisdiction": "MA",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "http://www.ammc.ma/en/issuers/issuers-list?issuer_name={q}",
+      "scrape_method": "timeout",
+      "priority": "HIGH",
+      "url": "http://www.ammc.ma/en",
+      "thematic_tags": [
+        "officers",
+        "litigation",
+        "shareholders",
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "www.antikorupcija.me_land_registry",
+      "name": "Agency for Prevention of Corruption] - Information on property and income of state officials and political party funding",
+      "domain": "www.antikorupcija.me",
+      "jurisdiction": "ME",
+      "type": "land_registry",
+      "section": "misc",
+      "search_template": "https://portal.antikorupcija.me:9343/acamPublic/generateReportNarucilac.htm?naziv={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.antikorupcija.me/me/registri/",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "www.cda.me_corporate_registry",
+      "name": "Central Securities Depository and Clearing] Company - Provides company ID, name, address, and shareholder information",
+      "domain": "www.cda.me",
+      "jurisdiction": "ME",
+      "type": "corporate_registry",
+      "section": "misc",
+      "search_template": "https://www.cda.me/EN/Pages/Naslovna.aspx?InputKeywords={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.cda.me/EN/Pages/Naslovna.aspx",
+      "thematic_tags": [
+        "stock_exchange",
+        "shareholders",
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "www.hasil.gov.my_land_registry",
+      "name": "Inland Revenue Board] has broad powers to investigate offenses under anti-money laundering legislation as well as its more general tax administration and collection duties.",
+      "domain": "www.hasil.gov.my",
+      "jurisdiction": "MY",
+      "type": "land_registry",
+      "section": "reg",
+      "search_template": "/search/?search_field={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://www.hasil.gov.my/",
+      "thematic_tags": [
+        "officers",
+        "land_registry"
+      ]
+    },
+    {
+      "id": "www.nzlii.org_court_records",
+      "name": "New Zealand Legal Information Institute] - aggregate data from NZ courts",
+      "domain": "www.nzlii.org",
+      "jurisdiction": "NE",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "https://www.nzlii.org/form/search/?query={q}",
+      "scrape_method": "timeout",
+      "priority": "HIGH",
+      "url": "http://www.nzlii.org/databases.html",
+      "thematic_tags": [
+        "court_records",
+        "land_registry"
+      ]
+    },
+    {
+      "id": "commonlii.org_court_records",
+      "name": "Commonwealth Legal Information Institute -] database of decisions by the Special Court of Nigeria from 1921-2002",
+      "domain": "commonlii.org",
+      "jurisdiction": "NI",
+      "type": "court_records",
+      "section": "misc",
+      "search_template": "https://commonlii.org/form/search/?query={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://commonlii.org/ng/cases/",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "lovdata.no_court_records",
+      "name": "Limited court decisions database with] judgements from Supreme Court, Court of Human Rights, Courts of Appeal and District Courts",
+      "domain": "lovdata.no",
+      "jurisdiction": "NO",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "https://lovdata.no/sok?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://lovdata.no/register/",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "gazette.govt.nz_land_registry",
+      "name": "New Zealand Gazette",
+      "domain": "gazette.govt.nz",
+      "jurisdiction": "NZ",
+      "type": "land_registry",
+      "section": "misc",
+      "search_template": "/home/search?keyword={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://gazette.govt.nz/",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "www.companiesoffice.govt.nz_land_registry",
+      "name": "New Zealand Companies Office -] Published prosecution results",
+      "domain": "www.companiesoffice.govt.nz",
+      "jurisdiction": "NZ",
+      "type": "land_registry",
+      "section": "reg",
+      "search_template": "POST https://app.businessregisters.govt.nz/sber-master/viewInstance/update.html?id=36563aba031f0d65a1d55dd267929818c8fbd315205e5315 (form fields: QueryString={q}, SourceAppCode, nodeW373-ItemNameSearchOperator, Status, RegistrationDate, nodeW395-searchOp, nodeW402-AddressKeyword)",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://www.companiesoffice.govt.nz/news-and-notices/?convictions=1&publication=news",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "www.sunat.gob.pe_corporate_registry",
+      "name": "National Superintendent of Customs and] Tax Administration - company and individual search",
+      "domain": "www.sunat.gob.pe",
+      "jurisdiction": "PE",
+      "type": "corporate_registry",
+      "section": "misc",
+      "search_template": "POST http://www.sunat.gob.pe/cl-ti-itmrconsruc/jcrS00Alias with form fields: rbtnTipo=(select Name option)&search3={q}&codigo=(captcha)",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.sunat.gob.pe/cl-ti-itmrconsruc/jcrS00Alias",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "ca.judiciary.gov.ph_court_records",
+      "name": "'''website of the Court of Appeals'''] has a searchable database of its decisions and resolutions. It is unclear how comprehensive it is and how far it goes back, however.",
+      "domain": "ca.judiciary.gov.ph",
+      "jurisdiction": "PH",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "POST https://ca.judiciary.gov.ph/ (form field j_idt115:j_idt117={q})",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://ca.judiciary.gov.ph/",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "cta.judiciary.gov.ph_court_records",
+      "name": "'''website of the Court of Tax Appeals'''] has a searchable, comprehensive and up-to-date database of its decisions. It is unclear how far it goes back, however.",
+      "domain": "cta.judiciary.gov.ph",
+      "jurisdiction": "PH",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "https://cta.judiciary.gov.ph/history (POST body: case_no={q}&field={q})",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://cta.judiciary.gov.ph/",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "orzeczenia.ms.gov.pl_court_records",
+      "name": "* Decision database for administrative courts",
+      "domain": "orzeczenia.ms.gov.pl",
+      "jurisdiction": "PL",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "https://orzeczenia.ms.gov.pl/search.phrase:autocomplete?t:ac=advanced/{q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://orzeczenia.ms.gov.pl/search/advanced",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "www.risco.ro_corporate_registry",
+      "name": "(individual)] (''pub'')",
+      "domain": "www.risco.ro",
+      "jurisdiction": "RO",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "https://www.risco.ro/cautare?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://www.risco.ro/business-dictionary/registrul-comertului",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "rupto.ru_land_registry",
+      "name": "'''Federal Service for Intellectual Property",
+      "domain": "rupto.ru",
+      "jurisdiction": "RU",
+      "type": "land_registry",
+      "section": "reg",
+      "search_template": "https://rupto.ru/en/search?query={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://rupto.ru/en",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "egrul.nalog.ru_corporate_registry",
+      "name": "'''website''']. Search by name, corporate ID",
+      "domain": "egrul.nalog.ru",
+      "jurisdiction": "RU",
+      "type": "corporate_registry",
+      "section": "reg",
+      "search_template": "https://egrul.nalog.ru/?query={q}&nameEq=true",
+      "scrape_method": "timeout",
+      "priority": "HIGH",
+      "url": "https://egrul.nalog.ru/index.html",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "aamal.sa_corporate_registry",
+      "name": "Aamal - Online portal for] company announcements and constitutional documents",
+      "domain": "aamal.sa",
+      "jurisdiction": "SA",
+      "type": "corporate_registry",
+      "section": "misc",
+      "search_template": "https://aamal.sa/?s={q}",
+      "scrape_method": "timeout",
+      "priority": "HIGH",
+      "url": "http://aamal.sa/Companies/Pages/def",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "www.sudskapraksa.com_court_records",
+      "name": "Court practice database",
+      "domain": "www.sudskapraksa.com",
+      "jurisdiction": "SE",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "http://www.sudskapraksa.com/sudske-odluke-presude-pravna-shvatanja.-najveca-baza-sudske-prakse-u-srbiji.html?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.sudskapraksa.com/",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "www.icty.org_court_records",
+      "name": "International Criminal Tribunal for the] Former Yugoslavia",
+      "domain": "www.icty.org",
+      "jurisdiction": "SE",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "/en/search-results?as_q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.icty.org",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "www.kontakti.biz_corporate_registry",
+      "name": "Kontakti.biz - Commercial business directory] providing contact details for businesses in Serbia",
+      "domain": "www.kontakti.biz",
+      "jurisdiction": "SE",
+      "type": "corporate_registry",
+      "section": "misc",
+      "search_template": "POST https://www.oglasi.rs/oglasi  (form field: q={q})",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://www.kontakti.biz",
+      "thematic_tags": [
+        "officers",
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "www.uil-sipo.si_land_registry",
+      "name": "Slovenian Intellectual Property Office",
+      "domain": "www.uil-sipo.si",
+      "jurisdiction": "SI",
+      "type": "land_registry",
+      "section": "at",
+      "search_template": "https://www.uil-sipo.si/iskanje/?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.uil-sipo.si/uil/dejavnosti/baze-podatkov/",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "www.oam.si_corporate_registry",
+      "name": "Info Storage",
+      "domain": "www.oam.si",
+      "jurisdiction": "SI",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "POST https://www.oam.si/default_en.aspx with form field fast_search_words={q} (other fields: FSs_date_range, fast_search_issuer)",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.oam.si/default_en.aspx?doc=ISSUERS",
+      "thematic_tags": [
+        "litigation"
+      ]
+    },
+    {
+      "id": "www.commonlii.org_court_records",
+      "name": "Supreme Court of Singapore] Database contains selected decisions published since 2000.",
+      "domain": "www.commonlii.org",
+      "jurisdiction": "SI",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "/form/search8/?query={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.commonlii.org/sg/cases/SGHC/",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "www.lawnb.com_court_records",
+      "name": "Search cases from a large] number of South Korean courts through the commercial LAWnB database. The database is run by Thomson Reuters.",
+      "domain": "www.lawnb.com",
+      "jurisdiction": "SO",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "POST https://www.lawnb.com/Info/ContentTotal (form field: qu={q})",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://www.lawnb.com",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "www.saflii.org_court_records",
+      "name": "Southern African Legal Information Institute] with National and Provincial Gazettes, Municipal By-laws, National Legislation, and court documents",
+      "domain": "www.saflii.org",
+      "jurisdiction": "SO",
+      "type": "court_records",
+      "section": "misc",
+      "search_template": "http://www.saflii.org/cgi-bin/sinosrch-adw.cgi?query={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://www.saflii.org/content/south-africa-index",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "library.industrialcourt.org.tt_court_records",
+      "name": "The Industrial Court of Trinidad] and Tobago - contains Judgments handed down since 1965, includes Court of Appeal and High Court Judgments related to Industrial Court matters.",
+      "domain": "library.industrialcourt.org.tt",
+      "jurisdiction": "TT",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "party={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://library.industrialcourt.org.tt/scripts/minisa.dll/144/$DEFAULT?LOGONFORM",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "data.gcis.nat.gov.tw_corporate_registry",
+      "name": "Department of Commerce- Taiwan Company] Search",
+      "domain": "data.gcis.nat.gov.tw",
+      "jurisdiction": "TW",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "https://data.gcis.nat.gov.tw/od/search?path={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://data.gcis.nat.gov.tw/main/index;jsessionid=186F194A282EE6D18865ED283B910E14",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "findbiz.nat.gov.tw_corporate_registry",
+      "name": "Department of Commerce, MOEA",
+      "domain": "findbiz.nat.gov.tw",
+      "jurisdiction": "TW",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "POST https://findbiz.nat.gov.tw/fts/query/QueryList/queryList.do with form field qryCond={q} (plus optional fields: infoType, qryType, isAlive, city, busiItemMain, busiItemSub, etc.)",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://findbiz.nat.gov.tw/fts/query/QueryBar/queryInit.do?request_locale=en",
+      "thematic_tags": [
+        "lawyers"
+      ]
+    },
+    {
+      "id": "comcourt_go_tz_library",
+      "name": "comcourt.go.tz",
+      "domain": "comcourt.go.tz",
+      "jurisdiction": "TZ",
+      "type": "court_database",
+      "section": "gov",
+      "search_template": "https://comcourt.go.tz/index.php/search/{q}",
+      "scrape_method": "timeout",
+      "priority": "HIGH",
+      "url": "https://comcourt.go.tz",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "youcontrol.com.ua_corporate_registry",
+      "name": "Commercial database with historical company] information",
+      "domain": "youcontrol.com.ua",
+      "jurisdiction": "UA",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "https://youcontrol.com.ua/search/?country=&q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://youcontrol.com.ua/",
+      "thematic_tags": [
+        "beneficial_ownership",
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "reyestr.court.gov.ua_court_records",
+      "name": "Ukraine state court rulings available] for search by keyword",
+      "domain": "reyestr.court.gov.ua",
+      "jurisdiction": "UA",
+      "type": "court_records",
+      "section": "lit",
+      "search_template": "POST http://reyestr.court.gov.ua/ with form field SearchExpression={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://reyestr.court.gov.ua",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "uacourt_openregister_info_library",
+      "name": "uacourt.openregister.info",
+      "domain": "uacourt.openregister.info",
+      "jurisdiction": "UA",
+      "type": "court_database",
+      "section": "gov",
+      "search_template": "https://uacourt.openregister.info/search?q={q}",
+      "scrape_method": "timeout",
+      "priority": "HIGH",
+      "url": "https://uacourt.openregister.info",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "stockworld_com_ua_library",
+      "name": "stockworld.com.ua",
+      "domain": "stockworld.com.ua",
+      "jurisdiction": "UA",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "https://stockworld.com.ua/ru/search/site/{q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://stockworld.com.ua",
+      "thematic_tags": [
+        "stock_exchange"
+      ]
+    },
+    {
+      "id": "map_land_gov_ua_library",
+      "name": "map.land.gov.ua",
+      "domain": "map.land.gov.ua",
+      "jurisdiction": "UA",
+      "type": "government_portal",
+      "section": "gov",
+      "search_template": "https://map.land.gov.ua/?q={q}",
+      "scrape_method": "timeout",
+      "priority": "HIGH",
+      "url": "https://map.land.gov.ua",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "ecorp.azcc.gov_corporate_registry",
+      "name": "Arizona Corporation Commission - Company] search with access to company information and filings",
+      "domain": "ecorp.azcc.gov",
+      "jurisdiction": "US",
+      "type": "corporate_registry",
+      "section": "cr",
+      "search_template": "https://ecorp.azcc.gov/EntitySearch/PublicSearch?SearchCriteria.quickSearch.BusinessName={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "http://ecorp.azcc.gov/",
+      "thematic_tags": [
+        "filings",
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "cadc_uscourts_gov_library",
+      "name": "cadc.uscourts.gov",
+      "domain": "cadc.uscourts.gov",
+      "jurisdiction": "US",
+      "type": "court_database",
+      "section": "gov",
+      "search_template": "https://www.cadc.uscourts.gov/search/search.asp?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://cadc.uscourts.gov",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "sanctionssearch_ofac_treas_gov_library",
+      "name": "sanctionssearch.ofac.treas.gov",
+      "domain": "sanctionssearch.ofac.treas.gov",
+      "jurisdiction": "US",
+      "type": "regulatory_authority",
+      "section": "gov",
+      "search_template": "{q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://sanctionssearch.ofac.treas.gov",
+      "thematic_tags": [
+        "sanctions"
+      ]
+    },
+    {
+      "id": "businessbankruptcies_com_library",
+      "name": "businessbankruptcies.com",
+      "domain": "businessbankruptcies.com",
+      "jurisdiction": "US",
+      "type": "court_database",
+      "section": "gov",
+      "search_template": "https://businessbankruptcies.com/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "HIGH",
+      "url": "https://businessbankruptcies.com",
+      "thematic_tags": [
+        "banking",
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "www.aex.nl_securities",
+      "name": "Dutch Stock Exchange",
+      "domain": "www.aex.nl",
+      "jurisdiction": "NL",
+      "type": "securities",
+      "section": "cr",
+      "search_template": "POST https://www.aex.nl/nl/markets/amsterdam with form field search_input_quote={q} (also alternative field: search_input_quote_home={q} on homepage). Optionally include search_input_site (e.g. 'Zoek Site').",
+      "scrape_method": "failed",
+      "priority": "MEDIUM",
+      "url": "https://www.aex.nl",
+      "thematic_tags": [
+        "stock_exchange"
+      ]
+    },
+    {
+      "id": "wetten.overheid.nl_legal_imported",
+      "name": "Nederlandse wet- en regelgeving",
+      "domain": "wetten.overheid.nl",
+      "jurisdiction": "NL",
+      "type": "legal_resource",
+      "section": "lit",
+      "search_template": "https://wetten.overheid.nl/zoeken/rs/2,3,4/titel/{q}/",
+      "scrape_method": "failed",
+      "priority": "MEDIUM",
+      "url": "https://wetten.overheid.nl",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "casetext.com_legal_imported",
+      "name": "casetext",
+      "domain": "casetext.com",
+      "jurisdiction": "US",
+      "type": "legal_resource",
+      "section": "lit",
+      "search_template": "https://casetext.com/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "MEDIUM",
+      "url": "https://casetext.com",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "aceattorney.wikia.com_legal_imported",
+      "name": "Ace Attorney Wiki",
+      "domain": "aceattorney.wikia.com",
+      "jurisdiction": "US",
+      "type": "bar_association",
+      "section": "lit",
+      "search_template": "https://aceattorney.wikia.com/wiki/{q}",
+      "scrape_method": "failed",
+      "priority": "MEDIUM",
+      "url": "https://aceattorney.wikia.com",
+      "thematic_tags": [
+        "lawyers"
+      ]
+    },
+    {
+      "id": "portal.stf.jus.br_gov_academic_imported",
+      "name": "Supremo Tribunal Federal",
+      "domain": "portal.stf.jus.br",
+      "jurisdiction": "BR",
+      "type": "government_public_record",
+      "section": "reg",
+      "search_template": "http://portal.stf.jus.br/processos/listarProcessos.asp?classe=&numeroProcesso={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "http://portal.stf.jus.br/processos/listarProcessos.asp",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "pelando.com.br_shopping_imported",
+      "name": "Pelando",
+      "domain": "pelando.com.br",
+      "jurisdiction": "BR",
+      "type": "marketplace",
+      "section": "mar",
+      "search_template": "https://www.pelando.com.br/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.pelando.com.br/search",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "nbcstructuredsolutions.ca_news_imported",
+      "name": "National Bank Structured Notes",
+      "domain": "nbcstructuredsolutions.ca",
+      "jurisdiction": "CA",
+      "type": "media",
+      "section": "med",
+      "search_template": "https://nbcstructuredsolutions.ca/listeProduits.aspx?search={q}",
+      "scrape_method": "timeout",
+      "priority": "LOW",
+      "url": "https://nbcstructuredsolutions.ca/listeProduits.aspx",
+      "thematic_tags": [
+        "banking"
+      ]
+    },
+    {
+      "id": "bdl.oqlf.gouv.qc.ca_reference_imported",
+      "name": "Banque de d\u00e9pannage linguistique",
+      "domain": "bdl.oqlf.gouv.qc.ca",
+      "jurisdiction": "CA",
+      "type": "reference",
+      "section": "ref",
+      "search_template": "https://bdl.oqlf.gouv.qc.ca/bdl/gabarit_bdl.asp?T1={q}&T3.x=0&T3.y=0",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://bdl.oqlf.gouv.qc.ca/bdl/gabarit_bdl.asp",
+      "thematic_tags": [
+        "lawyers"
+      ]
+    },
+    {
+      "id": "okeanos-hbz-nrw.de_science_imported",
+      "name": "Hochschulbibliothekszentrum des Landes Nordrhein-Westfalen",
+      "domain": "okeanos-hbz-nrw.de",
+      "jurisdiction": "DE",
+      "type": "scientific_resource",
+      "section": "misc",
+      "search_template": "http://okeanos-www.hbz-nrw.de/F/?func=find-c&ccl_term=WRD=\"{q}\"",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "http://okeanos-www.hbz-nrw.de/F/",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "fischertechnik.de_company_imported",
+      "name": "fischertechnik.de",
+      "domain": "fischertechnik.de",
+      "jurisdiction": "DE",
+      "type": "misc",
+      "section": "mis",
+      "search_template": "https://www.fischertechnik.de/desktopdefault.aspx/tabid-1//tabid-35/searchcall-4/4_keepvisible-true/redirected-1/?/sid-3230669/mid-4/tid-1/ct-0/q-{q}//k-/et-0/rpp-10/sar-False/t-/p-0/ap-True/cat-/cr-0/pr-0/icp-False/icc-False/ifc-False/sl-1/sp-0/cs-/",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.fischertechnik.de/desktopdefault.aspx/tabid-1//tabid-35/searchcall-4/4_keepvisible-true/redirected-1/",
+      "thematic_tags": [
+        "procurement"
+      ]
+    },
+    {
+      "id": "deutschlandfunk.de_news_imported",
+      "name": "dlf",
+      "domain": "deutschlandfunk.de",
+      "jurisdiction": "DE",
+      "type": "media",
+      "section": "med",
+      "search_template": "https://www.deutschlandfunk.de/suchergebnisse.448.de.html?search[submit]=1&search[withNews][]=WithNews&search[word]={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.deutschlandfunk.de/suchergebnisse.448.de.html",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "deutschlandradio.de_news_imported",
+      "name": "dradio.de",
+      "domain": "deutschlandradio.de",
+      "jurisdiction": "DE",
+      "type": "media",
+      "section": "med",
+      "search_template": "https://www.deutschlandradio.de/text-und-audio-suche.287.de.html?search[submit]=1&search[word]={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.deutschlandradio.de/text-und-audio-suche.287.de.html",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "dasoertliche.de_search_imported",
+      "name": "Das \u00d6rtliche",
+      "domain": "dasoertliche.de",
+      "jurisdiction": "DE",
+      "type": "misc",
+      "section": "mis",
+      "search_template": "https://www.dasoertliche.de/Controller?form_name=search_inv&page=5&context=4&action=43&ph={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.dasoertliche.de/Controller",
+      "thematic_tags": [
+        "beneficial_ownership"
+      ]
+    },
+    {
+      "id": "opacplus.bsb-muenchen.de_academic_imported",
+      "name": "Bayerische Staatsbibliothek",
+      "domain": "opacplus.bsb-muenchen.de",
+      "jurisdiction": "DE",
+      "type": "misc",
+      "section": "mis",
+      "search_template": "https://opacplus.bsb-muenchen.de/InfoGuideClient/start.do?Login=opacext&BaseURL=https://opacplus.bsb-muenchen.de/InfoGuideClient/start.do?Login=opacext&Query=-1=\"{q}\"",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://opacplus.bsb-muenchen.de/InfoGuideClient/start.do",
+      "thematic_tags": [
+        "liens"
+      ]
+    },
+    {
+      "id": "cdon.fi_shopping_imported",
+      "name": "CDON.com (Finland/Suomi)",
+      "domain": "cdon.fi",
+      "jurisdiction": "FI",
+      "type": "marketplace",
+      "section": "mar",
+      "search_template": "http://cdon.fi/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "http://cdon.fi/search",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "gigantti.fi_shopping_imported",
+      "name": "Gigantti Finland",
+      "domain": "gigantti.fi",
+      "jurisdiction": "FI",
+      "type": "marketplace",
+      "section": "mar",
+      "search_template": "http://www.gigantti.fi/search?SearchTerm={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "http://www.gigantti.fi/search",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "klnavarro.free.fr_tech_imported",
+      "name": "MicKey's Land",
+      "domain": "klnavarro.free.fr",
+      "jurisdiction": "FR",
+      "type": "tech_resource",
+      "section": "tec",
+      "search_template": "http://klnavarro.free.fr/spip/spip.php?page=recherche&recherche={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "http://klnavarro.free.fr/spip/spip.php",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "bbfc.co.uk_video_imported",
+      "name": "British Board of Film Classification",
+      "domain": "bbfc.co.uk",
+      "jurisdiction": "GB",
+      "type": "multimedia",
+      "section": "mul",
+      "search_template": "https://www.bbfc.co.uk/search/releases/{q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.bbfc.co.uk/search/releases/{q}",
+      "thematic_tags": [
+        "officers"
+      ]
+    },
+    {
+      "id": "rcsb.org_science_imported",
+      "name": "Protein Data Bank",
+      "domain": "rcsb.org",
+      "jurisdiction": "GLOBAL",
+      "type": "scientific_resource",
+      "section": "misc",
+      "search_template": "https://www.rcsb.org/pdb/search/navbarsearch.do?f=&q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.rcsb.org/pdb/search/navbarsearch.do",
+      "thematic_tags": [
+        "lawyers",
+        "banking"
+      ]
+    },
+    {
+      "id": "4chan.org_video_imported",
+      "name": "4chan Board",
+      "domain": "4chan.org",
+      "jurisdiction": "GLOBAL",
+      "type": "multimedia",
+      "section": "mul",
+      "search_template": "https://4chan.org/{q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://4chan.org/{q}",
+      "thematic_tags": [
+        "officers"
+      ]
+    },
+    {
+      "id": "albumartexchange.com_video_imported",
+      "name": "Album Art Exchange",
+      "domain": "albumartexchange.com",
+      "jurisdiction": "GLOBAL",
+      "type": "multimedia",
+      "section": "mul",
+      "search_template": "https://www.albumartexchange.com/covers.php?q={q}",
+      "scrape_method": "timeout",
+      "priority": "LOW",
+      "url": "https://www.albumartexchange.com/covers.php",
+      "thematic_tags": [
+        "stock_exchange"
+      ]
+    },
+    {
+      "id": "boardgameprices.com_video_imported",
+      "name": "BoardGamePrices",
+      "domain": "boardgameprices.com",
+      "jurisdiction": "GLOBAL",
+      "type": "multimedia",
+      "section": "mul",
+      "search_template": "https://www.boardgameprices.com/compare-prices-for?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.boardgameprices.com/compare-prices-for",
+      "thematic_tags": [
+        "officers"
+      ]
+    },
+    {
+      "id": "electric-skateboard.builders_video_imported",
+      "name": "Electric Skateboard Builders Forum",
+      "domain": "electric-skateboard.builders",
+      "jurisdiction": "GLOBAL",
+      "type": "multimedia",
+      "section": "mul",
+      "search_template": "https://www.electric-skateboard.builders/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.electric-skateboard.builders/search",
+      "thematic_tags": [
+        "officers"
+      ]
+    },
+    {
+      "id": "fowsystem.com_video_imported",
+      "name": "Force of Will German Database",
+      "domain": "fowsystem.com",
+      "jurisdiction": "GLOBAL",
+      "type": "multimedia",
+      "section": "mul",
+      "search_template": "https://www.fowsystem.com/de/Kartendatenbank?page=&CERCA=cerca&cardname={q}&block=ALL&edition=ALL&REGATT=or&cardnumber=&ABILITYTEXT=&ATKMIN=0&ATKMAX=2500&DEFMIN=0&DEFMAX=2500",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.fowsystem.com/de/Kartendatenbank",
+      "thematic_tags": [
+        "banking"
+      ]
+    },
+    {
+      "id": "live365.com_video_imported",
+      "name": "Live365",
+      "domain": "live365.com",
+      "jurisdiction": "GLOBAL",
+      "type": "multimedia",
+      "section": "mul",
+      "search_template": "https://www.live365.com/cgi-bin/directory.cgi?searchdesc={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.live365.com/cgi-bin/directory.cgi",
+      "thematic_tags": [
+        "officers"
+      ]
+    },
+    {
+      "id": "polandball.wikia.com_video_imported",
+      "name": "Polandball Wiki",
+      "domain": "polandball.wikia.com",
+      "jurisdiction": "GLOBAL",
+      "type": "multimedia",
+      "section": "mul",
+      "search_template": "https://polandball.wikia.com/wiki/Special:Search?search={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://polandball.wikia.com/wiki/Special:Search",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "stock.tookapic.com_video_imported",
+      "name": "tookapic",
+      "domain": "stock.tookapic.com",
+      "jurisdiction": "GLOBAL",
+      "type": "multimedia",
+      "section": "mul",
+      "search_template": "https://stock.tookapic.com/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://stock.tookapic.com/search",
+      "thematic_tags": [
+        "stock_exchange"
+      ]
+    },
+    {
+      "id": "twitchbots.info_video_imported",
+      "name": "Twitch Bit Directory",
+      "domain": "twitchbots.info",
+      "jurisdiction": "GLOBAL",
+      "type": "multimedia",
+      "section": "mul",
+      "search_template": "https://twitchbots.info/check?username={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://twitchbots.info/check",
+      "thematic_tags": [
+        "officers"
+      ]
+    },
+    {
+      "id": "bugs.python.org_programming_imported",
+      "name": "Python Bug Tracker",
+      "domain": "bugs.python.org",
+      "jurisdiction": "GLOBAL",
+      "type": "tech_resource",
+      "section": "tec",
+      "search_template": "https://bugs.python.org/issue{q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://bugs.python.org/issue{q}",
+      "thematic_tags": [
+        "litigation"
+      ]
+    },
+    {
+      "id": "osdn.net_programming_imported",
+      "name": "OSDN",
+      "domain": "osdn.net",
+      "jurisdiction": "GLOBAL",
+      "type": "tech_resource",
+      "section": "tec",
+      "search_template": "https://osdn.net/search/?iq={q}",
+      "scrape_method": "timeout",
+      "priority": "LOW",
+      "url": "https://osdn.net/search/",
+      "thematic_tags": [
+        "sanctions"
+      ]
+    },
+    {
+      "id": "python.org_programming_imported",
+      "name": "Python PEP",
+      "domain": "python.org",
+      "jurisdiction": "GLOBAL",
+      "type": "tech_resource",
+      "section": "tec",
+      "search_template": "https://www.python.org/dev/peps/pep-{q}/",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.python.org/dev/peps/pep-{q}/",
+      "thematic_tags": [
+        "pep"
+      ]
+    },
+    {
+      "id": "rubocop.readthedocs.io_programming_imported",
+      "name": "RuboCop",
+      "domain": "rubocop.readthedocs.io",
+      "jurisdiction": "GLOBAL",
+      "type": "tech_resource",
+      "section": "tec",
+      "search_template": "https://rubocop.readthedocs.io/en/latest/search.html?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://rubocop.readthedocs.io/en/latest/search.html",
+      "thematic_tags": [
+        "beneficial_ownership"
+      ]
+    },
+    {
+      "id": "courrierinternational.com_news_imported",
+      "name": "Courrier International",
+      "domain": "courrierinternational.com",
+      "jurisdiction": "GLOBAL",
+      "type": "media",
+      "section": "med",
+      "search_template": "https://www.courrierinternational.com/search/result/{q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.courrierinternational.com/search/result/{q}",
+      "thematic_tags": [
+        "court_records"
+      ]
+    },
+    {
+      "id": "indolio.com_news_imported",
+      "name": "Indolio | Informasi Terbaru | Informasi Hari ini | Kabar Online",
+      "domain": "indolio.com",
+      "jurisdiction": "GLOBAL",
+      "type": "media",
+      "section": "med",
+      "search_template": "https://www.indolio.com/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.indolio.com/search",
+      "thematic_tags": [
+        "lawyers"
+      ]
+    },
+    {
+      "id": "kabarlinux.id_news_imported",
+      "name": "KabarLinux",
+      "domain": "kabarlinux.id",
+      "jurisdiction": "GLOBAL",
+      "type": "media",
+      "section": "med",
+      "search_template": "https://kabarlinux.id/?s={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://kabarlinux.id/",
+      "thematic_tags": [
+        "lawyers"
+      ]
+    },
+    {
+      "id": "marketwatch.com_news_imported",
+      "name": "MarketWatch",
+      "domain": "marketwatch.com",
+      "jurisdiction": "GLOBAL",
+      "type": "media",
+      "section": "med",
+      "search_template": "https://www.marketwatch.com/investing/stock/{q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.marketwatch.com/investing/stock/{q}",
+      "thematic_tags": [
+        "stock_exchange"
+      ]
+    },
+    {
+      "id": "moneybadger.stocktwits.com_news_imported",
+      "name": "Money Badger by StockTwits",
+      "domain": "moneybadger.stocktwits.com",
+      "jurisdiction": "GLOBAL",
+      "type": "media",
+      "section": "med",
+      "search_template": "http://moneybadger.stocktwits.com/?s={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "http://moneybadger.stocktwits.com/",
+      "thematic_tags": [
+        "stock_exchange"
+      ]
+    },
+    {
+      "id": "nfib.com_news_imported",
+      "name": "National Federation of Independent Business",
+      "domain": "nfib.com",
+      "jurisdiction": "GLOBAL",
+      "type": "media",
+      "section": "med",
+      "search_template": "https://www.nfib.com/search/?query={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.nfib.com/search/",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "robinhood.com_news_imported",
+      "name": "Robin Hood",
+      "domain": "robinhood.com",
+      "jurisdiction": "GLOBAL",
+      "type": "media",
+      "section": "med",
+      "search_template": "https://robinhood.com/stocks/{q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://robinhood.com/stocks/{q}",
+      "thematic_tags": [
+        "stock_exchange"
+      ]
+    },
+    {
+      "id": "audubonmagazine.org_news_imported",
+      "name": "Audubon Magazine",
+      "domain": "audubonmagazine.org",
+      "jurisdiction": "GLOBAL",
+      "type": "media",
+      "section": "med",
+      "search_template": "http://www.audubonmagazine.org/search/node?keys={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "http://www.audubonmagazine.org/search/node",
+      "thematic_tags": [
+        "beneficial_ownership"
+      ]
+    },
+    {
+      "id": "bbb.org_news_imported",
+      "name": "Better Business Bureau",
+      "domain": "bbb.org",
+      "jurisdiction": "GLOBAL",
+      "type": "media",
+      "section": "med",
+      "search_template": "https://www.bbb.org/us/Find-Business-Reviews/name/{q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.bbb.org/us/Find-Business-Reviews/name/{q}",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "broncowine.com_shopping_imported",
+      "name": "Bronco Wine Company",
+      "domain": "broncowine.com",
+      "jurisdiction": "GLOBAL",
+      "type": "marketplace",
+      "section": "mar",
+      "search_template": "https://broncowine.com/woocommerce-search/?cat_in=&rs={q}&search_in=product&search_other=product",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://broncowine.com/woocommerce-search/",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "deichmann.com_shopping_imported",
+      "name": "Deichmann (Deutschland)",
+      "domain": "deichmann.com",
+      "jurisdiction": "GLOBAL",
+      "type": "marketplace",
+      "section": "mar",
+      "search_template": "https://www.deichmann.com/DE/de/shop/search.html?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.deichmann.com/DE/de/shop/search.html",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "garbarino.com_shopping_imported",
+      "name": "Garbarino",
+      "domain": "garbarino.com",
+      "jurisdiction": "GLOBAL",
+      "type": "marketplace",
+      "section": "mar",
+      "search_template": "https://www.garbarino.com/productos?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.garbarino.com/productos",
+      "thematic_tags": [
+        "lawyers"
+      ]
+    },
+    {
+      "id": "ineedabargain.com_shopping_imported",
+      "name": "INeedaBargain.com",
+      "domain": "ineedabargain.com",
+      "jurisdiction": "GLOBAL",
+      "type": "marketplace",
+      "section": "mar",
+      "search_template": "http://www.ineedabargain.com/deals/search?q={q}",
+      "scrape_method": "timeout",
+      "priority": "LOW",
+      "url": "http://www.ineedabargain.com/deals/search",
+      "thematic_tags": [
+        "lawyers"
+      ]
+    },
+    {
+      "id": "overstock.com_shopping_imported",
+      "name": "Overstock",
+      "domain": "overstock.com",
+      "jurisdiction": "GLOBAL",
+      "type": "marketplace",
+      "section": "mar",
+      "search_template": "https://www.overstock.com/search?keywords={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.overstock.com/search",
+      "thematic_tags": [
+        "stock_exchange"
+      ]
+    },
+    {
+      "id": "packages.speedeedelivery.com_shopping_imported",
+      "name": "SpeeDee Delivery",
+      "domain": "packages.speedeedelivery.com",
+      "jurisdiction": "GLOBAL",
+      "type": "marketplace",
+      "section": "mar",
+      "search_template": "https://packages.speedeedelivery.com/packageDetail.php?barcode={q}",
+      "scrape_method": "timeout",
+      "priority": "LOW",
+      "url": "https://packages.speedeedelivery.com/packageDetail.php",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "trollandtoad.com_shopping_imported",
+      "name": "Troll And Toad",
+      "domain": "trollandtoad.com",
+      "jurisdiction": "GLOBAL",
+      "type": "marketplace",
+      "section": "mar",
+      "search_template": "https://www.trollandtoad.com/products/search.php?searchmode=basic&search_words={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.trollandtoad.com/products/search.php",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "whitetailproperties.com_shopping_imported",
+      "name": "Whitetail Properties",
+      "domain": "whitetailproperties.com",
+      "jurisdiction": "GLOBAL",
+      "type": "marketplace",
+      "section": "mar",
+      "search_template": "https://www.whitetailproperties.com/hunting-land/filtered-search?search_mode=all&keywords={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.whitetailproperties.com/hunting-land/filtered-search",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "bro.org_tech_imported",
+      "name": "The Bro Network Security Monitor",
+      "domain": "bro.org",
+      "jurisdiction": "GLOBAL",
+      "type": "tech_resource",
+      "section": "tec",
+      "search_template": "https://www.bro.org/sphinx/search.html?check_keywords=yes&q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.bro.org/sphinx/search.html",
+      "thematic_tags": [
+        "liens"
+      ]
+    },
+    {
+      "id": "security-tracker.debian.org_tech_imported",
+      "name": "Debian Security Tracker",
+      "domain": "security-tracker.debian.org",
+      "jurisdiction": "GLOBAL",
+      "type": "tech_resource",
+      "section": "tec",
+      "search_template": "https://security-tracker.debian.org/tracker/{q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://security-tracker.debian.org/tracker/{q}",
+      "thematic_tags": [
+        "liens"
+      ]
+    },
+    {
+      "id": "directory.fsf.org_tech_imported",
+      "name": "Free Software Directory",
+      "domain": "directory.fsf.org",
+      "jurisdiction": "GLOBAL",
+      "type": "tech_resource",
+      "section": "tec",
+      "search_template": "https://directory.fsf.org/wiki/{q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://directory.fsf.org/wiki/{q}",
+      "thematic_tags": [
+        "officers"
+      ]
+    },
+    {
+      "id": "nbn-resolving.org_tech_imported",
+      "name": "URN:NBN Resolver for Germany & Switzerland",
+      "domain": "nbn-resolving.org",
+      "jurisdiction": "GLOBAL",
+      "type": "tech_resource",
+      "section": "tec",
+      "search_template": "https://nbn-resolving.org/{q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://nbn-resolving.org/{q}",
+      "thematic_tags": [
+        "land_registry"
+      ]
+    },
+    {
+      "id": "toolbar.netcraft.com_tech_imported",
+      "name": "Netcraft",
+      "domain": "toolbar.netcraft.com",
+      "jurisdiction": "GLOBAL",
+      "type": "tech_resource",
+      "section": "tec",
+      "search_template": "https://toolbar.netcraft.com/site_report?url={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://toolbar.netcraft.com/site_report",
+      "thematic_tags": [
+        "lawyers"
+      ]
+    },
+    {
+      "id": "svb.com_tech_imported",
+      "name": "Silicon Valley Bank",
+      "domain": "svb.com",
+      "jurisdiction": "GLOBAL",
+      "type": "tech_resource",
+      "section": "tec",
+      "search_template": "https://www.svb.com/searchresults.aspx?term={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.svb.com/searchresults.aspx",
+      "thematic_tags": [
+        "banking"
+      ]
+    },
+    {
+      "id": "bigfuture.collegeboard.org_academic_imported",
+      "name": "BigFuture",
+      "domain": "bigfuture.collegeboard.org",
+      "jurisdiction": "GLOBAL",
+      "type": "misc",
+      "section": "mis",
+      "search_template": "https://bigfuture.collegeboard.org/sitesearch?searchType=bf_site&tp=bf&q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://bigfuture.collegeboard.org/sitesearch",
+      "thematic_tags": [
+        "officers"
+      ]
+    },
+    {
+      "id": "eattender.com_academic_imported",
+      "name": "Eat Tender",
+      "domain": "eattender.com",
+      "jurisdiction": "GLOBAL",
+      "type": "misc",
+      "section": "mis",
+      "search_template": "http://eattender.com/recipes/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "http://eattender.com/recipes/search",
+      "thematic_tags": [
+        "procurement"
+      ]
+    },
+    {
+      "id": "tippie.uiowa.edu_academic_imported",
+      "name": "Tippie College of Business",
+      "domain": "tippie.uiowa.edu",
+      "jurisdiction": "GLOBAL",
+      "type": "misc",
+      "section": "mis",
+      "search_template": "https://tippie.uiowa.edu/google-search?search={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://tippie.uiowa.edu/google-search",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "djpen.kemendag.go.id_public_records",
+      "name": "Directorate General for National Export] Development - Exporter list",
+      "domain": "djpen.kemendag.go.id",
+      "jurisdiction": "ID",
+      "type": "public_records",
+      "section": "misc",
+      "search_template": "https://djpen.kemendag.go.id/app_frontend/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "http://djpen.kemendag.go.id/app_fro",
+      "thematic_tags": [
+        "officers"
+      ]
+    },
+    {
+      "id": "eregister.patentsoffice.ie_ip_registry",
+      "name": "Patents Office Department of Jobs,] Enterprise & Innovation",
+      "domain": "eregister.patentsoffice.ie",
+      "jurisdiction": "IE",
+      "type": "ip_registry",
+      "section": "at",
+      "search_template": "POST https://eregister.patentsoffice.ie/query/PTQuery.aspx with form field txtApplicantProprietor={q} (other form fields may be left empty)",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://eregister.patentsoffice.ie/query/PTQuery.aspx",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "osint_eu_consolidated_corporate_registers",
+      "name": "EU consolidated corporate registers",
+      "domain": "bellingcat.gitbook.io",
+      "jurisdiction": "IO",
+      "type": "tool",
+      "section": "misc",
+      "search_template": "https://bellingcat.gitbook.io/toolkit/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://bellingcat.gitbook.io/toolkit/more/all-tools/eu-consolidated-corporate-registers",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "osint_eu_sanctions_map",
+      "name": "EU Sanctions Map",
+      "domain": "bellingcat.gitbook.io",
+      "jurisdiction": "IO",
+      "type": "tool",
+      "section": "misc",
+      "search_template": "https://bellingcat.gitbook.io/toolkit/search?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://bellingcat.gitbook.io/toolkit/more/all-tools/eu-sanctions-map",
+      "thematic_tags": [
+        "sanctions"
+      ]
+    },
+    {
+      "id": "www.borsaitaliana.it_securities",
+      "name": "Italian Stock Exchange",
+      "domain": "www.borsaitaliana.it",
+      "jurisdiction": "IT",
+      "type": "securities",
+      "section": "misc",
+      "search_template": "https://www.borsaitaliana.it/borsa/quotazioni/azioni/listino-a-z.html?initial={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "http://www.borsaitaliana.it/borsa/azioni/documenti/societa-quotate/documenti.html?lang=en",
+      "thematic_tags": [
+        "stock_exchange"
+      ]
+    },
+    {
+      "id": "www.registroimprese.it_public_records",
+      "name": "Registro Imprese",
+      "domain": "www.registroimprese.it",
+      "jurisdiction": "IT",
+      "type": "public_records",
+      "section": "misc",
+      "search_template": "POST request with body_params={q}'}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.registroimprese.it/",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "www.moj.go.jp_public_records",
+      "name": "lists of sanctioned organizations and persons",
+      "domain": "www.moj.go.jp",
+      "jurisdiction": "JP",
+      "type": "public_records",
+      "section": "misc",
+      "search_template": "https://www.moj.go.jp/search/search.html?q={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "http://www.moj.go.jp/psia/ITH/organ",
+      "thematic_tags": [
+        "sanctions"
+      ]
+    },
+    {
+      "id": "kotobank.jp_search_imported",
+      "name": "\u30b3\u30c8\u30d0\u30f3\u30af",
+      "domain": "kotobank.jp",
+      "jurisdiction": "JP",
+      "type": "misc",
+      "section": "mis",
+      "search_template": "https://kotobank.jp/word/{q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://kotobank.jp/word/{q}",
+      "thematic_tags": [
+        "banking"
+      ]
+    },
+    {
+      "id": "webinfo.cis.gov.md_public_records",
+      "name": "National Enterprise Register]'''",
+      "domain": "webinfo.cis.gov.md",
+      "jurisdiction": "MD",
+      "type": "public_records",
+      "section": "misc",
+      "search_template": "https://webinfo.cis.gov.md/en/company-search?name={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://webinfo.cis.gov.md/en/company-search",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "sanctionssearch.ofac.treas.gov_public_records",
+      "name": "OFAC]'''",
+      "domain": "sanctionssearch.ofac.treas.gov",
+      "jurisdiction": "ME",
+      "type": "public_records",
+      "section": "misc",
+      "search_template": "{q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://sanctionssearch.ofac.treas.gov/",
+      "thematic_tags": [
+        "sanctions"
+      ]
+    },
+    {
+      "id": "pes.cnbv.gob.mx_securities",
+      "name": "National Banking and Securities Commission]'''",
+      "domain": "pes.cnbv.gob.mx",
+      "jurisdiction": "MX",
+      "type": "securities",
+      "section": "reg",
+      "search_template": "https://pes.cnbv.gob.mx/Consulta/ConsultaEntidad?entidad={q}&nombreCorto={q}&subsectorName={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://pes.cnbv.gob.mx/",
+      "thematic_tags": [
+        "stock_exchange",
+        "banking"
+      ]
+    },
+    {
+      "id": "www.psx.com.pk_securities",
+      "name": "Pakistan Stock Exchange website with] basic information on registered companies",
+      "domain": "www.psx.com.pk",
+      "jurisdiction": "PK",
+      "type": "securities",
+      "section": "misc",
+      "search_template": "POST https://www.psx.com.pk/psx/index.php (form field: keywords={q})",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.psx.com.pk/",
+      "thematic_tags": [
+        "stock_exchange"
+      ]
+    },
+    {
+      "id": "pai.pt_search_imported",
+      "name": "PaginasAmarelas.pt",
+      "domain": "pai.pt",
+      "jurisdiction": "PT",
+      "type": "misc",
+      "section": "mis",
+      "search_template": "https://www.pai.pt/q/business/advanced/what/{q}/?contentErrorLinkEnabled=true",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.pai.pt/q/business/advanced/what/{q}/",
+      "thematic_tags": [
+        "corporate_registry"
+      ]
+    },
+    {
+      "id": "www.onrc.ro_public_records",
+      "name": "UBO Register] - Information on who meets the criteria of a beneficial owner.",
+      "domain": "www.onrc.ro",
+      "jurisdiction": "RO",
+      "type": "public_records",
+      "section": "misc",
+      "search_template": "https://www.onrc.ro/index.php/ro/registrul-national-al-beneficiarilor-reali?nume={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.onrc.ro/index.php/en/central-register-of-beneficial-owners",
+      "thematic_tags": [
+        "beneficial_ownership",
+        "shareholders"
+      ]
+    },
+    {
+      "id": "www.sak.sk_government",
+      "name": "This professional organisation publishes lists and contact details of advocates, constitutional, ex-officio and asylum lawyers, lawyers with temporary suspension of practice. Their monthly Bulletin is available in pdf.",
+      "domain": "www.sak.sk",
+      "jurisdiction": "SK",
+      "type": "government",
+      "section": "reg",
+      "search_template": "POST https://www.sak.sk with form field web/sk/cms/search/section/form/attr/search={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://www.sak.sk",
+      "thematic_tags": [
+        "lawyers"
+      ]
+    },
+    {
+      "id": "tender.me.gov.ua_public_records",
+      "name": "Ukrainian Public Procurement - Registry] of all public procurements",
+      "domain": "tender.me.gov.ua",
+      "jurisdiction": "UA",
+      "type": "public_records",
+      "section": "misc",
+      "search_template": "https://ips.vdz.ua/ua/purchase_search.htm?subject={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://tender.me.gov.ua/EDZFrontOffice/menu/en/",
+      "thematic_tags": [
+        "procurement"
+      ]
+    },
+    {
+      "id": "iapps.courts.state.ny.us_public_records",
+      "name": "Attorney Search",
+      "domain": "iapps.courts.state.ny.us",
+      "jurisdiction": "US",
+      "type": "public_records",
+      "section": "misc",
+      "search_template": "POST to https://iapps.courts.state.ny.us/attorneyservices/search?0-1.-formHome with form fields wmcSearchTabs:pnlAttorneySearch:nameSearchPanel:strFirstName={q}, wmcSearchTabs:pnlAttorneySearch:nameSearchPanel:strLastName={q}, wmcSearchTabs:pnlAttorneySearch:nameSearchPanel:strMiddleName={q} (also requires h-captcha-response / g-recaptcha-response)",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://iapps.courts.state.ny.us/attorneyservices/search?1",
+      "thematic_tags": [
+        "court_records",
+        "lawyers"
+      ]
+    },
+    {
+      "id": "secure.sarsefiling.co.za_government",
+      "name": "SARS E-filing - Search by] Exact VAT Trading Name",
+      "domain": "secure.sarsefiling.co.za",
+      "jurisdiction": "ZA",
+      "type": "government",
+      "section": "reg",
+      "search_template": "POST https://secure.sarsefiling.co.za/VATVendorSearch/application/VendorExactSearch.aspx with form field txtDescription={q}",
+      "scrape_method": "failed",
+      "priority": "LOW",
+      "url": "https://secure.sarsefiling.co.za/VATVendorSearch/application/VendorExactSearch.aspx",
+      "thematic_tags": [
+        "filings"
+      ]
+    }
+  ]
+}

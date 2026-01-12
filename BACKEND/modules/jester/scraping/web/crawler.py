@@ -42,7 +42,7 @@ from .extractors import EntityExtractor, ExtractedEntities
 from .embedder import DrillEmbedder, FASTEMBED_AVAILABLE
 from .indexer import DrillIndexer, PageDocument
 from .discovery import DrillDiscovery, DiscoveryResult
-from ..universal_scraper import UniversalScraper
+from ..scrape_orchestrator import UniversalScraper
 from ...core.storage import MemoryStorage, SQLiteStorage, RedisStorage, StorageBackend, QueueItem
 from ...extraction.universal_extractor import UniversalExtractor
 from .cc_offline_sniper import CCIndexOfflineLookup

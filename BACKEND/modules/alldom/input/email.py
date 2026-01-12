@@ -20,6 +20,7 @@ except ImportError:
 class AlldomEmailEngine:
     code = 'ADE'
     name = 'ALLDOM Email'
+    _code = 1  # Legend code: email
 
     def __init__(self, email: str):
         self.email = email

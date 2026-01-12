@@ -1,0 +1,38 @@
+{
+  "class": "QUERY",
+  "version": "0.1",
+  "templates": {
+    "open-web": {
+      "required": ["query_string"],
+      "optional": ["engine", "region", "time_range", "language"],
+      "description": "Generic open-web search query."
+    },
+    "eye-d": {
+      "required": ["target"],
+      "optional": ["mode", "filters", "expected_outputs"],
+      "description": "EYE-D OSINT workflow trigger."
+    },
+    "backdrill": {
+      "required": ["seed"],
+      "optional": ["seed_type", "depth", "expected_outputs"],
+      "description": "BackDrill-style reverse discovery on a seed (email, domain, phone, etc.)."
+    },
+    "alldom": {
+      "required": ["root_domain"],
+      "optional": ["scope", "time_range", "expected_outputs"],
+      "description": "AllDom domain-focused query."
+    },
+    "engine_specific": {
+      "required": ["engine_name", "query_string"],
+      "optional": ["region", "language", "expected_outputs"],
+      "description": "Query for a specific engine/provider."
+    },
+    "corpus": {
+      "required": ["corpus_id", "query_string"],
+      "optional": ["filters", "expected_outputs"],
+      "description": "Internal corpus or datastore query."
+    }
+  }
+}
+
+

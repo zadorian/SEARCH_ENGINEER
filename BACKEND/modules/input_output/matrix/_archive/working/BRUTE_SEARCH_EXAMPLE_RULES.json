@@ -1,0 +1,214 @@
+[
+  {
+    "id": "web_search_company_news",
+    "name": "Web Search: Company News",
+    "description": "Search news sources for company-related news articles",
+    "type": "brute_search",
+    "inputs": [13],
+    "outputs": [999],
+    "config": {
+      "engines": ["GN", "GD", "NW"],
+      "mode": "speed",
+      "timeoutSeconds": 60,
+      "newsCategories": ["business", "tech"],
+      "maxResults": 1000
+    },
+    "query_template": "\"{company_name}\" (news OR announcement OR press)",
+    "source_id": "web_search",
+    "category": "news",
+    "priority": 5,
+    "cost_estimate": "low",
+    "reliability": "high"
+  },
+  {
+    "id": "web_search_company_sanctions",
+    "name": "Web Search: Company Sanctions",
+    "description": "Search for sanctions, penalties, and compliance issues",
+    "type": "brute_search",
+    "inputs": [13],
+    "outputs": [999],
+    "config": {
+      "engines": ["GO", "GN", "WL"],
+      "mode": "balanced",
+      "timeoutSeconds": 90,
+      "newsCategories": ["business", "politics"],
+      "maxResults": 2000
+    },
+    "query_template": "\"{company_name}\" (sanctions OR OFAC OR blacklist OR \"EU sanctions\" OR penalties OR fines OR compliance)",
+    "source_id": "web_search",
+    "category": "compliance",
+    "priority": 8,
+    "cost_estimate": "medium",
+    "reliability": "high"
+  },
+  {
+    "id": "web_search_person_background",
+    "name": "Web Search: Person Background",
+    "description": "Comprehensive web search for person background information",
+    "type": "brute_search",
+    "inputs": [5],
+    "outputs": [999],
+    "config": {
+      "engines": ["GO", "BR", "PX", "SI"],
+      "mode": "balanced",
+      "timeoutSeconds": 90,
+      "maxResults": 1000
+    },
+    "query_template": "\"{person_name}\" (background OR biography OR profile OR career OR education)",
+    "source_id": "web_search",
+    "category": "person",
+    "priority": 6,
+    "cost_estimate": "medium",
+    "reliability": "medium"
+  },
+  {
+    "id": "web_search_person_social",
+    "name": "Web Search: Person Social Media",
+    "description": "Search social media platforms for person mentions",
+    "type": "brute_search",
+    "inputs": [5],
+    "outputs": [999],
+    "config": {
+      "engines": ["TW", "FB", "RD", "SI"],
+      "mode": "speed",
+      "timeoutSeconds": 60,
+      "maxResults": 500
+    },
+    "query_template": "\"{person_name}\"",
+    "source_id": "web_search",
+    "category": "social",
+    "priority": 4,
+    "cost_estimate": "low",
+    "reliability": "low"
+  },
+  {
+    "id": "web_search_academic_topic",
+    "name": "Web Search: Academic Research",
+    "description": "Search academic databases for research papers and publications",
+    "type": "brute_search",
+    "inputs": [999],
+    "outputs": [999],
+    "config": {
+      "engines": ["AR", "CR", "PM", "OA", "SS"],
+      "mode": "exhaustive",
+      "timeoutSeconds": 120,
+      "maxResults": 2000
+    },
+    "query_template": "{research_topic}",
+    "source_id": "web_search",
+    "category": "academic",
+    "priority": 7,
+    "cost_estimate": "high",
+    "reliability": "high"
+  },
+  {
+    "id": "web_search_company_litigation",
+    "name": "Web Search: Company Litigation",
+    "description": "Search for legal cases, lawsuits, and court filings",
+    "type": "brute_search",
+    "inputs": [13],
+    "outputs": [999],
+    "config": {
+      "engines": ["GO", "BR", "WL"],
+      "mode": "balanced",
+      "timeoutSeconds": 90,
+      "maxResults": 1000
+    },
+    "query_template": "\"{company_name}\" (lawsuit OR litigation OR \"court case\" OR \"legal action\" OR judgment OR settlement)",
+    "source_id": "web_search",
+    "category": "legal",
+    "priority": 7,
+    "cost_estimate": "medium",
+    "reliability": "medium"
+  },
+  {
+    "id": "web_search_company_officers_deep",
+    "name": "Web Search: Company Officers (Deep)",
+    "description": "Exhaustive search for company officers and directors across all sources",
+    "type": "brute_search",
+    "inputs": [13],
+    "outputs": [999],
+    "config": {
+      "engines": ["GO", "BR", "PX", "FC"],
+      "mode": "exhaustive",
+      "timeoutSeconds": 180,
+      "maxResults": 5000,
+      "includeTemplateEngines": true,
+      "templateEngineLimit": 50,
+      "includeLinklaterEnrichment": true
+    },
+    "query_template": "\"{company_name}\" (officers OR directors OR \"board members\" OR executives OR management)",
+    "source_id": "web_search",
+    "category": "corporate",
+    "priority": 8,
+    "cost_estimate": "high",
+    "reliability": "high",
+    "notes": "Uses Firecrawl for deep scraping and Linklater for entity extraction"
+  },
+  {
+    "id": "web_search_jurisdiction_specific",
+    "name": "Web Search: Jurisdiction-Specific Corporate Info",
+    "description": "Search using jurisdiction-aware template engines for local corporate data",
+    "type": "brute_search",
+    "inputs": [13, 1],
+    "outputs": [999],
+    "config": {
+      "engines": ["GO", "BR"],
+      "mode": "balanced",
+      "timeoutSeconds": 90,
+      "maxResults": 1000,
+      "includeTemplateEngines": true,
+      "templateEngineLimit": 30
+    },
+    "query_template": "\"{company_name}\" {jurisdiction}",
+    "source_id": "web_search",
+    "category": "corporate",
+    "priority": 7,
+    "cost_estimate": "medium",
+    "reliability": "high",
+    "notes": "Leverages 20K+ template engines with jurisdiction detection"
+  },
+  {
+    "id": "web_search_historical_archive",
+    "name": "Web Search: Historical Archive Search",
+    "description": "Search historical archives (Wayback, Archive.org) for past information",
+    "type": "brute_search",
+    "inputs": [999],
+    "outputs": [999],
+    "config": {
+      "engines": ["AR", "WB", "AO"],
+      "mode": "exhaustive",
+      "timeoutSeconds": 120,
+      "maxResults": 2000,
+      "includeKeywordVariations": true
+    },
+    "query_template": "{search_term}",
+    "source_id": "web_search",
+    "category": "archives",
+    "priority": 6,
+    "cost_estimate": "medium",
+    "reliability": "medium",
+    "notes": "Includes keyword variations from Wayback Machine + Common Crawl"
+  },
+  {
+    "id": "web_search_ai_aggregated",
+    "name": "Web Search: AI-Aggregated Results",
+    "description": "Use AI search engines for curated, high-quality results",
+    "type": "brute_search",
+    "inputs": [999],
+    "outputs": [999],
+    "config": {
+      "engines": ["PX", "GK", "YO", "EX"],
+      "mode": "speed",
+      "timeoutSeconds": 45,
+      "maxResults": 500
+    },
+    "query_template": "{query}",
+    "source_id": "web_search",
+    "category": "ai",
+    "priority": 5,
+    "cost_estimate": "low",
+    "reliability": "high",
+    "notes": "Fast AI-curated results from Perplexity, Grok, You.com, Exa"
+  }
+]

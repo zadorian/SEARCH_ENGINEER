@@ -1,0 +1,45 @@
+{
+  "event_templates": [
+    {
+      "id": "EVT_001",
+      "name": "TRANSACTION_VALUE_TRANSFER",
+      "description": "Transfer of value between entities",
+      "trigger_concepts": ["payment", "wire", "transfer", "loan", "investment"],
+      "roles": {
+        "originator": {
+          "edge_type": "originated",
+          "class": "subject",
+          "mandatory": true
+        },
+        "beneficiary": {
+          "edge_type": "benefited_from",
+          "class": "subject",
+          "mandatory": true
+        },
+        "intermediary": {
+          "edge_type": "facilitated",
+          "class": "subject",
+          "mandatory": false
+        }
+      },
+      "anchors": {
+        "time": { "class": "location", "mandatory": true },
+        "location": { "class": "location", "mandatory": false }
+      },
+      "physics": [
+        {
+          "condition": "beneficiary IS EMPTY",
+          "intent": "DISCOVER_SUBJECT",
+          "strategy": "TRACE",
+          "hunger_query": "who received money from {originator}?"
+        },
+        {
+          "condition": "originator IS EMPTY",
+          "intent": "TRACE_SOURCE",
+          "strategy": "TRACE",
+          "hunger_query": "who sent money to {beneficiary}?"
+        }
+      ]
+    }
+  ]
+}

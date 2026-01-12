@@ -18,6 +18,7 @@ except ImportError:
 class AlldomPersonNameEngine:
     code = 'ADN'
     name = 'ALLDOM Person Name'
+    _code = 7  # Legend code: person_name
 
     def __init__(self, person_name: str):
         self.person_name = person_name

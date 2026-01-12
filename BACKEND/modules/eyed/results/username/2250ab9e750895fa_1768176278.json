@@ -1,0 +1,33 @@
+{
+  "id": "2250ab9e750895fa",
+  "node_class": "ENTITY",
+  "type": "username",
+  "canonicalValue": "chilltime26380",
+  "label": "ChillTime26380",
+  "value": "ChillTime26380",
+  "comment": "{\n  \"module\": \"napster\",\n  \"category\": {\n    \"type\": \"Activity\",\n    \"name\": \"Entertainment\",\n    \"description\": \"Platforms offering entertainment content.\"\n  },\n  \"front_schemas\": [\n    {\n      \"module\": \"Napster\",\n      \"image\": \"http://direct.prod.napster.com/imageserver/v2/external/aHR0cCUzQSUyRiUyRmRpcmVjdC5wcm9kLm5hcHN0ZXIuY29tJTIwJTJGZXh0ZXJuYWwlMkZzdG9yYWdlJTIwJTJGJTIwdXNlci11cGxvYWRzJTI1MkZtZW1iZXIlMjUyRjAwMDAwMF9kZWZhdWx0JTI1MjAlMjUyRiUyNTIwYXZhdGFyJTI1MkZvcmlnaW5hbF8yJTIwJTJGaW1hZ2VzJTJGMTA4eDEwOC5qcGc=/images/1000x1000.jpg\",\n      \"body\": {\n        \"Role\": \"member\"\n      },\n      \"tags\": [\n        {\n          \"tag\": \"Followers: 0\"\n        },\n        {\n          \"tag\": \"Following: 0\"\n        }\n      ],\n      \"timeline\": {\n        \"last_seen\": true,\n        \"registered\": true,\n        \"last_seen_date\": null,\n        \"registered_date\": null,\n        \"groups\": {\n          \"napster\": {\n            \"color\": \"#663399\",\n            \"flavor_text\": \"$count$ activites in $year$\",\n            \"tolerance\": 5\n          }\n        },\n        \"group_items\": {},\n        \"group_years\": {}\n      }\n    }\n  ],\n  \"spec_format\": [\n    {\n      \"registered\": {\n        \"type\": \"bool\",\n        \"proper_key\": \"Registered\",\n        \"value\": true\n      },\n      \"id\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Id\",\n        \"value\": \"8C542781E7AE8F6FE050960A5503437A\"\n      },\n      \"picture_url\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Picture Url\",\n        \"value\": \"http://direct.prod.napster.com/imageserver/v2/external/aHR0cCUzQSUyRiUyRmRpcmVjdC5wcm9kLm5hcHN0ZXIuY29tJTIwJTJGZXh0ZXJuYWwlMkZzdG9yYWdlJTIwJTJGJTIwdXNlci11cGxvYWRzJTI1MkZtZW1iZXIlMjUyRjAwMDAwMF9kZWZhdWx0JTI1MjAlMjUyRiUyNTIwYXZhdGFyJTI1MkZvcmlnaW5hbF8yJTIwJTJGaW1hZ2VzJTJGMTA4eDEwOC5qcGc=/images/1000x1000.jpg\"\n      },\n      \"username\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Username\",\n        \"value\": \"ChillTime26380\"\n      },\n      \"followers\": {\n        \"type\": \"int\",\n        \"proper_key\": \"Followers\",\n        \"value\": 0\n      },\n      \"following\": {\n        \"type\": \"int\",\n        \"proper_key\": \"Following\",\n        \"value\": 0\n      },\n      \"private\": {\n        \"type\": \"bool\",\n        \"proper_key\": \"Private\",\n        \"value\": false\n      },\n      \"platform_variables\": [\n        {\n          \"key\": \"role\",\n          \"proper_key\": \"Role\",\n          \"value\": \"member\",\n          \"type\": \"str\"\n        }\n      ]\n    }\n  ],\n  \"data\": {\n    \"data\": true\n  },\n  \"status\": \"found\",\n  \"query\": \"tyrion@gmail.com\",\n  \"from\": \"User supplied email.\",\n  \"reliable_source\": true\n}",
+  "embedded_edges": [
+    {
+      "target_id": "175de7c7d55a2bf4",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    },
+    {
+      "target_id": "50ba40754cd34c49",
+      "relation": "related_to",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "input_context"
+    },
+    {
+      "target_id": "9523747a7a80f2f2",
+      "relation": "account_on",
+      "verification_status": "VERIFIED",
+      "connection_reason": "platform_association"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:38.924516",
+  "updatedAt": "2026-01-12T00:04:38.924519",
+  "lastSeen": "2026-01-12T00:04:38.924520"
+}

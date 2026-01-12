@@ -1,0 +1,13 @@
+{
+  "source_name": "Uploaded Reports & Documents",
+  "source_type": "report",
+  "document_count": 45030,
+  "status": "active",
+  "description": "PDFs, Word docs, and other uploaded investigative materials",
+  "query": {
+    "term": {
+      "source_type": "report"
+    }
+  },
+  "sample_query": "GET /cymonides-2/_search?q=source_type:report&size=10"
+}

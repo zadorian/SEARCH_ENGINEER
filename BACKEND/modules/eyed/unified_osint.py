@@ -148,7 +148,7 @@ except ImportError:
 
 # Import deterministic OSINT data extractor (handles DeHashed, RocketReach, OSINT Industries structured output)
 try:
-    from output import extract_data_from_json, generate_graph_export
+    from output_handler import extract_data_from_json, generate_graph_export
     STRUCTURED_EXTRACTOR_AVAILABLE = True
 except ImportError:
     print("Warning: Could not import structured output extractor")

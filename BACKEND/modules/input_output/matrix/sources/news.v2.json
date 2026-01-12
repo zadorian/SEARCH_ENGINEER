@@ -1,0 +1,646 @@
+{
+  "meta": {
+    "category": "news",
+    "count": 15,
+    "migrated_at": "2026-01-11T18:34:03.985606",
+    "version": "2.0",
+    "format": "code-based"
+  },
+  "sources": [
+    {
+      "id": "aleph_collection_120",
+      "name": "Monitori.ge Documents",
+      "jurisdiction": "GE",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/120",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          51,
+          81,
+          90,
+          406
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_154",
+      "name": "CINS Documents",
+      "jurisdiction": "RS",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/154",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          52,
+          81,
+          85,
+          407
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_790",
+      "name": "KRIK Documents",
+      "jurisdiction": "RS",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/790",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          52,
+          81,
+          85,
+          407
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_1105",
+      "name": "Erkintoo magazine",
+      "jurisdiction": "KG",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/1105",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14,
+        15,
+        20
+      ],
+      "outputs": {
+        "entities": [
+          2,
+          59,
+          72
+        ],
+        "relationships": [
+          600,
+          602,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          81
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_10587",
+      "name": "Venezuela Prosecutors Office",
+      "jurisdiction": "VE",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/10587",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [],
+      "outputs": {
+        "entities": [],
+        "relationships": []
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_68",
+      "name": "CIN Bosnia",
+      "jurisdiction": "BA",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/68",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13
+      ],
+      "outputs": {
+        "entities": [
+          47,
+          59,
+          72
+        ],
+        "relationships": [
+          600,
+          602,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          50,
+          52,
+          81,
+          406,
+          407,
+          408
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_152",
+      "name": "RISE Moldova",
+      "jurisdiction": "MD",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/152",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          50,
+          81
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_151",
+      "name": "RISE Project",
+      "jurisdiction": "RO",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/151",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14,
+        20
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          51,
+          53,
+          80,
+          81,
+          82,
+          403
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_794",
+      "name": "MANS Documents",
+      "jurisdiction": "ME",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/794",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14,
+        722
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          50,
+          53,
+          81,
+          85
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_118",
+      "name": "atlatszo.hu Documents",
+      "jurisdiction": "HU",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/118",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14,
+        20
+      ],
+      "outputs": {
+        "entities": [
+          13,
+          59,
+          67,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          612,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          51,
+          53,
+          80,
+          81,
+          83,
+          85,
+          90,
+          110,
+          403,
+          405,
+          406,
+          408
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_170",
+      "name": "One World",
+      "jurisdiction": "NL",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/170",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          602,
+          603,
+          606,
+          612,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          50,
+          53,
+          80,
+          81,
+          90
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_711",
+      "name": "Daphne's Notebook",
+      "jurisdiction": "MT",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/711",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          620
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_4937",
+      "name": "Dominican Republic ONAPI",
+      "jurisdiction": "DO",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/4937",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        13
+      ],
+      "outputs": {
+        "entities": [],
+        "relationships": []
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_919",
+      "name": "Kyiv Post",
+      "jurisdiction": "UA",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/919",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        11,
+        13,
+        14,
+        722
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          612,
+          613
+        ],
+        "attributes": [
+          11,
+          50,
+          53,
+          81,
+          90,
+          91,
+          407
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_174",
+      "name": "Gorodskoi Kurier",
+      "jurisdiction": "UA",
+      "category": "news",
+      "url": "https://aleph.occrp.org/datasets/174",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        11,
+        13,
+        14,
+        722
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          612,
+          613
+        ],
+        "attributes": [
+          11,
+          50,
+          53,
+          81,
+          90,
+          91,
+          407
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    }
+  ]
+}

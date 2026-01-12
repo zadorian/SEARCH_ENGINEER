@@ -1,0 +1,384 @@
+{
+  "_meta": {
+    "schema_version": "2.0",
+    "generated": "2026-01-02",
+    "purpose": "Atlas Master Schema - ONE consolidated domain index",
+    "key_decision": "DOMAIN is a first-class graph node. Entity data stored as REFERENCES + DENORMALIZED DIMENSIONS, not full records."
+  },
+
+  "ARCHITECTURE_DECISIONS": {
+    "consolidation": "ONE_INDEX",
+    "rationale": [
+      "1. Graph schema defines DOMAIN as node type with unique fqdn",
+      "2. One domain = one record enables true deduplication",
+      "3. Entity relationships via ID references + denormalized dimensions",
+      "4. Full entity data lives in separate indices (COMPANY, PERSON nodes)",
+      "5. dimension_keys enable all intersection queries without joins"
+    ],
+    "tradeoffs": {
+      "pro": [
+        "Single query for domain-centric investigations",
+        "Clean deduplication (178M → estimated 150M unique domains)",
+        "All intersection queries work without cross-index joins",
+        "Cell-level provenance tracking"
+      ],
+      "con": [
+        "Denormalized dimensions require sync when entity data changes",
+        "Larger documents per domain (~2-5KB average)",
+        "ETL must resolve entity IDs during ingestion"
+      ]
+    }
+  },
+
+  "FIELD_SOURCES": {
+    "_comment": "Maps each Atlas field to its source index(es)",
+
+    "DOMAIN_CORE": {
+      "fqdn": {
+        "sources": ["domains_unified.domain", "linkedin_unified.domain", "companies_unified.domain", "drill_pages.domain", "top_domains.domain"],
+        "type": "keyword",
+        "unique": true,
+        "required": true
+      },
+      "tld": {
+        "sources": ["domains_unified.tld", "top_domains.tld"],
+        "type": "keyword",
+        "derivable": "extract from fqdn if missing"
+      },
+      "subdomain": {
+        "type": "keyword",
+        "derivable": "extract from fqdn"
+      }
+    },
+
+    "WHOIS_DATA": {
+      "creation_date": {
+        "sources": ["whois (future)"],
+        "type": "date"
+      },
+      "expiry_date": {
+        "sources": ["whois (future)"],
+        "type": "date"
+      },
+      "update_date": {
+        "sources": ["whois (future)"],
+        "type": "date"
+      },
+      "registrar": {
+        "sources": ["whois (future)"],
+        "type": "keyword"
+      },
+      "nameservers": {
+        "sources": ["whois (future)"],
+        "type": "keyword[]"
+      },
+      "status_codes": {
+        "sources": ["whois (future)"],
+        "type": "keyword[]"
+      },
+      "registrant_name": {
+        "sources": ["whois (future)"],
+        "type": "text"
+      },
+      "registrant_org": {
+        "sources": ["whois (future)"],
+        "type": "text"
+      },
+      "registrant_country": {
+        "sources": ["whois (future)"],
+        "type": "keyword"
+      }
+    },
+
+    "DOMAIN_INTELLIGENCE": {
+      "rank": {
+        "sources": ["top_domains.rank"],
+        "type": "integer",
+        "doc_count": "10M from Majestic Million"
+      },
+      "tld_rank": {
+        "sources": ["top_domains.tld_rank"],
+        "type": "integer"
+      },
+      "backlinks_ips": {
+        "sources": ["top_domains.backlinks_ips"],
+        "type": "integer"
+      },
+      "backlinks_subnets": {
+        "sources": ["top_domains.backlinks_subnets"],
+        "type": "integer"
+      },
+      "categories": {
+        "sources": ["domains_unified.categories"],
+        "type": "keyword[]",
+        "note": "DMOZ/ODP categories"
+      },
+      "title": {
+        "sources": ["top_domains.title", "drill_pages.title"],
+        "type": "text",
+        "note": "Homepage title"
+      }
+    },
+
+    "ASSOCIATED_ENTITY_REFS": {
+      "_comment": "Store ONLY IDs - full entity data in separate indices",
+
+      "company_ids": {
+        "sources": ["linkedin_unified.linkedin_id", "companies_unified.company_id", "wdc-organization-entities"],
+        "type": "keyword[]",
+        "format": "prefix:id (e.g., linkedin:company:12345)"
+      },
+      "person_ids": {
+        "sources": ["linkedin_unified (employees)", "wdc-person-entities"],
+        "type": "keyword[]"
+      },
+      "webpage_ids": {
+        "sources": ["drill_pages.page_id", "onion-pages"],
+        "type": "keyword[]"
+      },
+      "product_ids": {
+        "sources": ["wdc-product-entities"],
+        "type": "keyword[]"
+      }
+    },
+
+    "DENORMALIZED_DIMENSIONS": {
+      "_comment": "Copied from entities for intersection queries - NOT authoritative",
+
+      "company_names": {
+        "sources": ["linkedin_unified.company_name", "companies_unified.name", "wdc-organization-entities.name"],
+        "type": "text[]",
+        "purpose": "Enable company name search at domain level"
+      },
+      "industries": {
+        "sources": ["linkedin_unified.industry", "companies_unified.industry"],
+        "type": "keyword[]",
+        "purpose": "Enable sector filtering"
+      },
+      "jurisdictions": {
+        "sources": ["linkedin_unified (inferred)", "companies_unified.jurisdiction"],
+        "type": "keyword[]",
+        "format": "ISO-3166-1 alpha-2"
+      },
+      "entity_types": {
+        "type": "keyword[]",
+        "values": ["company", "person", "localbusiness", "product"],
+        "purpose": "Fast filtering by what types of entities are on this domain"
+      },
+      "social_profiles": {
+        "sources": ["linkedin_unified.linkedin_url", "companies_unified.same_as"],
+        "type": "keyword[]",
+        "purpose": "Quick check for social presence"
+      },
+      "employee_count_range": {
+        "sources": ["linkedin_unified.employee_count"],
+        "type": "keyword",
+        "values": ["1-10", "11-50", "51-200", "201-500", "501-1000", "1001-5000", "5001+"]
+      }
+    },
+
+    "DIMENSION_KEYS": {
+      "_comment": "Pre-computed normalized strings for faceting/intersection",
+      "type": "keyword[]",
+      "values": [
+        "tld:com", "tld:ru", "tld:co.uk",
+        "sector:healthcare", "sector:financial", "sector:technology",
+        "jurisdiction:US", "jurisdiction:GB", "jurisdiction:DE",
+        "rank_tier:top1k", "rank_tier:top10k", "rank_tier:top100k", "rank_tier:top1m",
+        "entity:company", "entity:person", "entity:localbusiness",
+        "social:linkedin", "social:facebook", "social:twitter",
+        "size:small", "size:medium", "size:large", "size:enterprise"
+      ],
+      "generation_rules": {
+        "tld": "tld:{tld_value}",
+        "sector": "sector:{industry_normalized}",
+        "jurisdiction": "jurisdiction:{iso_code}",
+        "rank_tier": "rank_tier:top{bucket} based on rank value",
+        "entity": "entity:{type} for each type in entity_types",
+        "social": "social:{platform} for each platform detected",
+        "size": "size:{bucket} based on employee_count_range"
+      }
+    },
+
+    "PROVENANCE": {
+      "_comment": "Cell-level tracking of data sources",
+      "type": "object",
+      "schema": {
+        "<field_name>": {
+          "source": "index_name",
+          "source_id": "original_doc_id (optional)",
+          "indexed_at": "ISO8601 timestamp",
+          "priority": "integer (higher = more authoritative)"
+        }
+      },
+      "priority_order": [
+        "1. Official registrar data (WHOIS)",
+        "2. Companies House / official registries",
+        "3. LinkedIn (verified company profiles)",
+        "4. WDC Schema.org (structured data)",
+        "5. Majestic Million (rankings)",
+        "6. DMOZ categories",
+        "7. CommonCrawl extractions"
+      ]
+    },
+
+    "SYSTEM_FIELDS": {
+      "indexed_at": {"type": "date"},
+      "updated_at": {"type": "date"},
+      "source_count": {
+        "type": "integer",
+        "purpose": "Number of distinct sources contributing to this record"
+      },
+      "confidence_score": {
+        "type": "float",
+        "range": "0.0-1.0",
+        "calculation": "Based on source authority and data consistency"
+      }
+    }
+  },
+
+  "SOURCE_TO_ATLAS_MAPPING": {
+    "_comment": "How each source index maps to Atlas fields",
+
+    "domains_unified": {
+      "fields": ["domain", "tld", "categories"],
+      "doc_count": "100.5M",
+      "unique_domains": "100.5M"
+    },
+    "top_domains": {
+      "fields": ["domain", "tld", "rank", "tld_rank", "backlinks_ips", "backlinks_subnets", "title"],
+      "doc_count": "10M",
+      "unique_domains": "10M"
+    },
+    "linkedin_unified": {
+      "fields": ["domain", "company_name", "industry", "linkedin_url", "employee_count"],
+      "doc_count": "2.84M",
+      "unique_domains": "2.84M",
+      "entity_creation": "Creates COMPANY entity refs"
+    },
+    "companies_unified": {
+      "fields": ["domain", "name", "industry", "jurisdiction", "same_as"],
+      "doc_count": "3.2M",
+      "unique_domains": "3.2M (estimated)",
+      "entity_creation": "Creates COMPANY entity refs"
+    },
+    "affiliate_linkedin_companies": {
+      "fields": ["domain", "company_name"],
+      "doc_count": "2.86M",
+      "unique_domains": "2.86M",
+      "entity_creation": "Creates COMPANY entity refs"
+    },
+    "wdc-organization-entities": {
+      "fields": ["domain (extracted from URL)", "name", "type"],
+      "doc_count": "9.6M",
+      "unique_domains": "476K",
+      "entity_creation": "Creates COMPANY entity refs"
+    },
+    "wdc-localbusiness-entities": {
+      "fields": ["domain (extracted from URL)", "name", "type", "address"],
+      "doc_count": "478K",
+      "unique_domains": "40K",
+      "entity_creation": "Creates LOCALBUSINESS entity refs"
+    },
+    "wdc-person-entities": {
+      "fields": ["domain (extracted from URL)", "name"],
+      "doc_count": "6.8M",
+      "unique_domains": "544K",
+      "entity_creation": "Creates PERSON entity refs"
+    },
+    "wdc-product-entities": {
+      "fields": ["domain (extracted from URL)", "name", "category"],
+      "doc_count": "20.4M",
+      "unique_domains": "222K",
+      "entity_creation": "Creates PRODUCT entity refs"
+    },
+    "drill_pages": {
+      "fields": ["domain", "url", "title", "content", "outlinks"],
+      "doc_count": "varies",
+      "entity_creation": "Creates WEBPAGE entity refs"
+    },
+    "cc_web_graph_edges": {
+      "fields": ["source_domain", "target_domain", "anchor_text"],
+      "doc_count": "14M+",
+      "storage": "SEPARATE INDEX (edges, not merged into Atlas)"
+    }
+  },
+
+  "ETL_PIPELINE": {
+    "phase_1_domain_core": {
+      "description": "Create base domain records from domains_unified + top_domains",
+      "sources": ["domains_unified", "top_domains"],
+      "output": "~100M domain records with core metadata"
+    },
+    "phase_2_entity_enrichment": {
+      "description": "Add entity references and denormalized dimensions",
+      "sources": ["linkedin_unified", "companies_unified", "affiliate_linkedin_companies", "wdc-*"],
+      "process": [
+        "1. Match domain to existing Atlas record",
+        "2. Extract entity ID, add to company_ids/person_ids array",
+        "3. Copy dimension values (industry, jurisdiction) if higher priority",
+        "4. Update dimension_keys array",
+        "5. Record provenance"
+      ]
+    },
+    "phase_3_entity_nodes": {
+      "description": "Create separate COMPANY/PERSON nodes (not in Atlas)",
+      "output_indices": ["graph_companies", "graph_persons"],
+      "note": "Atlas stores only IDs, full entity data in these indices"
+    },
+    "phase_4_edges": {
+      "description": "Web graph edges remain separate",
+      "index": "cc_web_graph_edges",
+      "note": "Do NOT merge into Atlas - too many edges per domain"
+    }
+  },
+
+  "QUERY_PATTERNS": {
+    "domain_lookup": {
+      "description": "Get everything about a domain",
+      "query": {"term": {"fqdn": "example.com"}}
+    },
+    "sector_filter": {
+      "description": "All domains in Healthcare sector",
+      "query": {"term": {"dimension_keys": "sector:healthcare"}}
+    },
+    "intersection": {
+      "description": "Healthcare + UK + Large companies",
+      "query": {
+        "bool": {
+          "must": [
+            {"term": {"dimension_keys": "sector:healthcare"}},
+            {"term": {"dimension_keys": "jurisdiction:GB"}},
+            {"term": {"dimension_keys": "size:large"}}
+          ]
+        }
+      }
+    },
+    "company_search": {
+      "description": "Find domain by company name",
+      "query": {"match": {"company_names": "Example Corp"}}
+    },
+    "entity_expansion": {
+      "description": "Get full entity details after Atlas query",
+      "steps": [
+        "1. Query Atlas for domains matching criteria",
+        "2. Extract company_ids from results",
+        "3. Query graph_companies for full entity data"
+      ]
+    }
+  },
+
+  "ESTIMATED_STATS": {
+    "total_unique_domains": "~150M (after deduplication)",
+    "average_doc_size": "2-5 KB",
+    "total_index_size": "~400-750 GB",
+    "dimension_keys_cardinality": {
+      "tld": "~1,500",
+      "sector": "~150",
+      "jurisdiction": "~250",
+      "rank_tier": "5",
+      "entity_type": "4",
+      "size": "4"
+    }
+  }
+}

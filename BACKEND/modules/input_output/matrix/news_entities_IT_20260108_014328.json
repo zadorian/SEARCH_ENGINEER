@@ -1,0 +1,1635 @@
+{
+  "harvested_at": "2026-01-08T01:43:28.406067",
+  "jurisdictions_processed": [],
+  "stats": {
+    "total_searches": 8,
+    "total_articles": 319,
+    "total_snippets_processed": 295,
+    "companies_extracted": 71,
+    "persons_extracted": 36,
+    "unique_companies": 52,
+    "unique_persons": 27,
+    "errors": 0,
+    "jurisdictions_processed": []
+  },
+  "total_entities": 79,
+  "companies": [
+    {
+      "entity_type": "company",
+      "name": "Gli scienziati",
+      "normalized_name": "gli scienziati",
+      "confidence": 0.8084113597869873,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.p.A.",
+      "sources": [
+        {
+          "url": "https://www.lescienze.it/spazio-e-astronomia/2026/01/05/news/gli_scienziati_hanno_individuato_un_pianeta_vagabondo_delle_dimensioni_di_saturno-20887295/",
+          "domain": "lescienze.it",
+          "title": "Gli scienziati hanno individuato un pianeta \"vagabondo\" delle dimensioni di Saturno",
+          "snippet": ""
+        }
+      ],
+      "source_urls": [
+        "https://www.lescienze.it/spazio-e-astronomia/2026/01/05/news/gli_scienziati_hanno_individuato_un_pianeta_vagabondo_delle_dimensioni_di_saturno-20887295/"
+      ],
+      "occurrence_count": 8
+    },
+    {
+      "entity_type": "company",
+      "name": "La scienza",
+      "normalized_name": "la scienza",
+      "confidence": 0.69160395860672,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.p.A.",
+      "sources": [
+        {
+          "url": "https://www.lescienze.it/tecnologia-e-intelligenza-artificiale/2025/12/31/news/la_scienza_nel_2026_gli_eventi_da_tenere_d_occhio_nel_prossimo_anno-20857600/",
+          "domain": "lescienze.it",
+          "title": "La scienza nel 2026: gli eventi da tenere d'occhio nel nuovo anno",
+          "snippet": ""
+        }
+      ],
+      "source_urls": [
+        "https://www.lescienze.it/tecnologia-e-intelligenza-artificiale/2025/12/31/news/la_scienza_nel_2026_gli_eventi_da_tenere_d_occhio_nel_prossimo_anno-20857600/"
+      ],
+      "occurrence_count": 8
+    },
+    {
+      "entity_type": "company",
+      "name": "CDP SRL",
+      "normalized_name": "cdp srl",
+      "confidence": 0.876694917678833,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Srl",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/24/cdp-srl--staifrescoBologna09.html&hl=&query=Srl&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "CDP SRL – STAIFRESCO",
+          "snippet": "...Riccardo Di Pisa rappresenta la quarta generazione di  una famiglia di imprenditori presente al CAAB dal 1939. Oggi guida CDP Srl con il marchio Staifresco, realtà giovane che rifornisce oltre..."
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/24/cdp-srl--staifrescoBologna09.html&hl=&query=Srl&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 3
+    },
+    {
+      "entity_type": "company",
+      "name": "STAR SpA",
+      "normalized_name": "star spa",
+      "confidence": 0.8916659951210022,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/05/la-rotta-e-segnata-avanti-col-viaggioMilano12.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "La rotta è segnata: avanti col viaggio",
+          "snippet": "... crescono  per visione. La storia di STAR SpA appartiene senza dubbio alla seconda categoria: un percorso iniziato novant’anni fa nel porto di Genova,  quando il Cavaliere del Lavoro Mario Remondin"
+        },
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/05/la-rotta-e-segnata-avanti-col-viaggioRoma10.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "La rotta è segnata: avanti col viaggio",
+          "snippet": "... crescono  per visione. La storia di STAR SpA appartiene senza dubbio alla seconda categoria: un percorso iniziato novant’anni fa nel porto di Genova,  quando il Cavaliere del Lavoro Mario Remondin"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/05/la-rotta-e-segnata-avanti-col-viaggioMilano12.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/05/la-rotta-e-segnata-avanti-col-viaggioRoma10.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "entity_type": "company",
+      "name": "La storia di STAR SpA",
+      "normalized_name": "la storia di star spa",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/05/la-rotta-e-segnata-avanti-col-viaggioMilano12.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "La rotta è segnata: avanti col viaggio",
+          "snippet": "... crescono  per visione. La storia di STAR SpA appartiene senza dubbio alla seconda categoria: un percorso iniziato novant’anni fa nel porto di Genova,  quando il Cavaliere del Lavoro Mario Remondin"
+        },
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/05/la-rotta-e-segnata-avanti-col-viaggioRoma10.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "La rotta è segnata: avanti col viaggio",
+          "snippet": "... crescono  per visione. La storia di STAR SpA appartiene senza dubbio alla seconda categoria: un percorso iniziato novant’anni fa nel porto di Genova,  quando il Cavaliere del Lavoro Mario Remondin"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/05/la-rotta-e-segnata-avanti-col-viaggioMilano12.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/05/la-rotta-e-segnata-avanti-col-viaggioRoma10.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "entity_type": "company",
+      "name": "e7,50) Cinema Borsalino Piazzetta Paolina Maggi s.n.c.",
+      "normalized_name": "e7,50) cinema borsalino piazzetta paolina maggi s.n.c.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.n.c.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/05/28/luccaFirenze15.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Lucca",
+          "snippet": "...Moderno Via Vittorio Emanuele II, 17 - 0583/53484 Furiosa - A Mad Max Saga v.o. HHHHH 21.00 ( e7,50) Cinema Borsalino Piazzetta Paolina Maggi s.n.c. - 0584/1660893 CAMAIORE Furiosa - A Mad Max Saga"
+        },
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/04/09/luccaFirenze15.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Lucca",
+          "snippet": "... 17.30-19.50 ( e7,50) Cinema Borsalino Piazzetta Paolina Maggi s.n.c. - 0584/1660893 CAMAIORE Scarface (ver. res. in 4K) HHHHH 17.00-20.00 ( e6,00)..."
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/05/28/luccaFirenze15.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/04/09/luccaFirenze15.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "entity_type": "company",
+      "name": "della Strega Alber ti B enevento SpA",
+      "normalized_name": "della strega alber ti b enevento spa",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/21/virginia-pioli24.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Virginia Pioli",
+          "snippet": "... 2025 Nella ricorrenza del trigesimo della sua scompars a,  i S oci, gli A mministratori ed i Collaboratori  tutti della Strega Alber ti B enevento SpA ricordano con affetto la  SIGNORA B enevento,"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/21/virginia-pioli24.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Psa Intermodal Italy NV",
+      "normalized_name": "psa intermodal italy nv",
+      "confidence": 0.9012619256973267,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/dossier/economia/top-story/2025/12/18/news/psa_intermodal_italy_nv_e_logtainer_spa_si_aggiudicano_la_gara_per_il_terminal_intermodale-425047840/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Psa Intermodal Italy NV e Logtainer SpA si aggiudicano la gara per il terminal intermodale",
+          "snippet": "... sviluppare il Terminal Intermodale. Alla scadenza dei termini di partecipazione erano pervenute due offerte: in ordine alfabetico, la prima presentata da Psa Intermodal Italy NV e Logtainer SpA , "
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/dossier/economia/top-story/2025/12/18/news/psa_intermodal_italy_nv_e_logtainer_spa_si_aggiudicano_la_gara_per_il_terminal_intermodale-425047840/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Logtainer SpA",
+      "normalized_name": "logtainer spa",
+      "confidence": 0.921868622303009,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/dossier/economia/top-story/2025/12/18/news/psa_intermodal_italy_nv_e_logtainer_spa_si_aggiudicano_la_gara_per_il_terminal_intermodale-425047840/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Psa Intermodal Italy NV e Logtainer SpA si aggiudicano la gara per il terminal intermodale",
+          "snippet": "... sviluppare il Terminal Intermodale. Alla scadenza dei termini di partecipazione erano pervenute due offerte: in ordine alfabetico, la prima presentata da Psa Intermodal Italy NV e Logtainer SpA , "
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/dossier/economia/top-story/2025/12/18/news/psa_intermodal_italy_nv_e_logtainer_spa_si_aggiudicano_la_gara_per_il_terminal_intermodale-425047840/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Psa Intermodal Italy NV e Logtainer SpA",
+      "normalized_name": "psa intermodal italy nv e logtainer spa",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/dossier/economia/top-story/2025/12/18/news/psa_intermodal_italy_nv_e_logtainer_spa_si_aggiudicano_la_gara_per_il_terminal_intermodale-425047840/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Psa Intermodal Italy NV e Logtainer SpA si aggiudicano la gara per il terminal intermodale",
+          "snippet": "... sviluppare il Terminal Intermodale. Alla scadenza dei termini di partecipazione erano pervenute due offerte: in ordine alfabetico, la prima presentata da Psa Intermodal Italy NV e Logtainer SpA , "
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/dossier/economia/top-story/2025/12/18/news/psa_intermodal_italy_nv_e_logtainer_spa_si_aggiudicano_la_gara_per_il_terminal_intermodale-425047840/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Wind Tre SpA",
+      "normalized_name": "wind tre spa",
+      "confidence": 0.8861759305000305,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/17/gl-events-per-il-lingotto-cambia-l-organizzatrice-novita-maseratiTorino09.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Gl Events, per il Lingotto cambia l’ organizzatrice  Novità in Lancia e Maserati",
+          "snippet": "... il prossimo biennio. Sarà affiancata  dall’attualec Consiglio direttivo:  il vicepresidente, Domenico  Bernardo ( Wind Tre SpA ), Alessio Calvio (Studydata  Solution Srl), Valerio Dagna  (Net Surf"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/17/gl-events-per-il-lingotto-cambia-l-organizzatrice-novita-maseratiTorino09.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Studydata Solution Srl",
+      "normalized_name": "studydata solution srl",
+      "confidence": 0.8787955641746521,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/17/gl-events-per-il-lingotto-cambia-l-organizzatrice-novita-maseratiTorino09.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Gl Events, per il Lingotto cambia l’ organizzatrice  Novità in Lancia e Maserati",
+          "snippet": "... il prossimo biennio. Sarà affiancata  dall’attualec Consiglio direttivo:  il vicepresidente, Domenico  Bernardo ( Wind Tre SpA ), Alessio Calvio (Studydata  Solution Srl), Valerio Dagna  (Net Surf"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/17/gl-events-per-il-lingotto-cambia-l-organizzatrice-novita-maseratiTorino09.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "vicepresidente, Domenico Bernardo ( Wind Tre SpA",
+      "normalized_name": "vicepresidente, domenico bernardo ( wind tre spa",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/17/gl-events-per-il-lingotto-cambia-l-organizzatrice-novita-maseratiTorino09.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Gl Events, per il Lingotto cambia l’ organizzatrice  Novità in Lancia e Maserati",
+          "snippet": "... il prossimo biennio. Sarà affiancata  dall’attualec Consiglio direttivo:  il vicepresidente, Domenico  Bernardo ( Wind Tre SpA ), Alessio Calvio (Studydata  Solution Srl), Valerio Dagna  (Net Surf"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/17/gl-events-per-il-lingotto-cambia-l-organizzatrice-novita-maseratiTorino09.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "di SpA",
+      "normalized_name": "di spa",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/21/porti-serve-una-legge-che-possa-ampliare-e-non-ridurre-authorityGenova04.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Porti, serve una legge che possa ampliare e non ridurre le competenze delle authority",
+          "snippet": "...  di SpA , dai compiti così esclusivi e strutturata in modo consistente. Per converso vengono depauperate,  a favore della PdI, le Autorità di sistema portuale, sottraendo loro  competenze, finanzi"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/21/porti-serve-una-legge-che-possa-ampliare-e-non-ridurre-authorityGenova04.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Porti d’Italia SpA",
+      "normalized_name": "porti d’italia spa",
+      "confidence": 0.9113385677337646,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/08/legge-di-riforma-portuale-i-limiti-e-le-incertezzeGenova03.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Legge di riforma portuale, i limiti e le incertezze",
+          "snippet": "...segue dalla prima di cronaca La prevista Porti d’Italia SpA , organizzata  come un Ministero, è deputata  a gestire le risorse e i progetti di costruzione delle nuove infrastrutture,  sottraendo al"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/08/legge-di-riforma-portuale-i-limiti-e-le-incertezzeGenova03.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "di cronaca La prevista Porti d’Italia SpA",
+      "normalized_name": "di cronaca la prevista porti d’italia spa",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/08/legge-di-riforma-portuale-i-limiti-e-le-incertezzeGenova03.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Legge di riforma portuale, i limiti e le incertezze",
+          "snippet": "...segue dalla prima di cronaca La prevista Porti d’Italia SpA , organizzata  come un Ministero, è deputata  a gestire le risorse e i progetti di costruzione delle nuove infrastrutture,  sottraendo al"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/08/legge-di-riforma-portuale-i-limiti-e-le-incertezzeGenova03.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "con la società impianti Obereggen Latemar SpA",
+      "normalized_name": "con la società impianti obereggen latemar spa",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/sport/vari/2025/10/16/news/obereggen_2025_slalom_coppa_europa-424917182/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Obereggen, lo slalom di Coppa Europa il 19 dicembre",
+          "snippet": "... comitato organizzatore presieduto da Eduard Pichler e vicepresidente Simon Neulichedl, in collaborazione con la società impianti Obereggen Latemar SpA presieduta da Siegfried Pichler e guidata..."
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/sport/vari/2025/10/16/news/obereggen_2025_slalom_coppa_europa-424917182/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Big Srl",
+      "normalized_name": "big srl",
+      "confidence": 0.6610354781150818,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/25/le-costruzioni-diventano-digitali-con-big-srlPalermo12.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Le costruzioni diventano digitali con Big Srl",
+          "snippet": "... credere nel progetto  insieme al partner industriale ACCA software SpA ., azienda leader del mercato dei software per l’edilizia,  e nel 2018 nasce lo spin- off. « Noi essenzialmente ci riconoscia"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/25/le-costruzioni-diventano-digitali-con-big-srlPalermo12.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "ACCA software SpA",
+      "normalized_name": "acca software spa",
+      "confidence": 0.8814366459846497,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/25/le-costruzioni-diventano-digitali-con-big-srlPalermo12.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Le costruzioni diventano digitali con Big Srl",
+          "snippet": "... credere nel progetto  insieme al partner industriale ACCA software SpA ., azienda leader del mercato dei software per l’edilizia,  e nel 2018 nasce lo spin- off. « Noi essenzialmente ci riconoscia"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/25/le-costruzioni-diventano-digitali-con-big-srlPalermo12.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "insieme al partner industriale ACCA software SpA",
+      "normalized_name": "insieme al partner industriale acca software spa",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/25/le-costruzioni-diventano-digitali-con-big-srlPalermo12.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Le costruzioni diventano digitali con Big Srl",
+          "snippet": "... credere nel progetto  insieme al partner industriale ACCA software SpA ., azienda leader del mercato dei software per l’edilizia,  e nel 2018 nasce lo spin- off. « Noi essenzialmente ci riconoscia"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/25/le-costruzioni-diventano-digitali-con-big-srlPalermo12.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Elisabetta Ragonesi © 2025 Lit Edizioni s.a.s.",
+      "normalized_name": "elisabetta ragonesi © 2025 lit edizioni s.a.s.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/30/il-poterenascostoRobinson15.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "no titolo",
+          "snippet": "... che annulla  l’amore”! Ma è chiaro che ancora pretendo da loro che mi facciano sognare. Traduzione di Elisabetta Ragonesi © 2025 Lit Edizioni s.a.s. © RIPRODUZIONE RISERVATA DI UNA PICCOLA BACCA.."
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/30/il-poterenascostoRobinson15.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "ACEC- S.A.S . Liguria",
+      "normalized_name": "acec- s.a.s . liguria",
+      "confidence": 0.8295092582702637,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/09/08/vittime-di-amianto-la-battaglia-in-un-filmGenova08.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Vittime di amianto la battaglia in un film",
+          "snippet": "... Damiani e organizzata da ACEC- S.A.S . Liguria insieme ad ARCI-UCCA. Alla proiezione del 12 settembre alle ore 21 parteciperanno alcuni dei protagonisti del docufilm e i registi Ugo Roffi e Ludovi"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/09/08/vittime-di-amianto-la-battaglia-in-un-filmGenova08.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Lit Edizioni s.a.s",
+      "normalized_name": "lit edizioni s.a.s",
+      "confidence": 0.5497817993164062,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/cronaca/2025/08/28/news/prevost_papa_leone_dottrina_sociale_ambiente_diritti-424811218/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Ambiente e diritti, una dottrina sociale per la Chiesa di oggi",
+          "snippet": "... Trujillo, 2024\n© 2025 Lit Edizioni s.a.s ZZ...."
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/cronaca/2025/08/28/news/prevost_papa_leone_dottrina_sociale_ambiente_diritti-424811218/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Assago trasporti S.A.S.",
+      "normalized_name": "assago trasporti s.a.s.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/10/31/tutte-le-poltrone-di-enrico-pazzaliMilano02.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Tutte le poltrone di Enrico Pazzali",
+          "snippet": "... Fiera Milano S.p.a. Postecom  S.p.a. Eur S.p.a. PAZZALI ENRICO Compaq Computer S.p.a. Nolostand  S.p.a. Polifin S.p.a. Assago trasporti S.A.S. di Cominotti Chorus Life S.p.a. Consorzio per la rice"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/10/31/tutte-le-poltrone-di-enrico-pazzaliMilano02.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Brunori S.A.S",
+      "normalized_name": "brunori s.a.s",
+      "confidence": 0.6523069739341736,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/spettacoli/dossier/festival-di-sanremo/2025/02/07/news/brunori_sas_sanremo_2025_albero_delle_noci-423981663/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Brunori Sas per la prima volta in gara a Sanremo con un brano dedicato alla figlia",
+          "snippet": "... In tedesco vuol dire fiore. Nel giugno 2009 Dario Brunori, con lo pseudonimo di Brunori S.A.S , pubblica il suo album d'esordio Vol.1 e il disco si aggiudica il Premio Ciampi. Ma bisogna aspettare"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/spettacoli/dossier/festival-di-sanremo/2025/02/07/news/brunori_sas_sanremo_2025_albero_delle_noci-423981663/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Lit edizioni s.a.s.",
+      "normalized_name": "lit edizioni s.a.s.",
+      "confidence": 0.6422939896583557,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/05/04/zagrebelsky-colmegnala-giustizia-e-degli-ultimi26.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "no titolo",
+          "snippet": "... ritorno delle pulsioni più egoistiche, feroci, e al fondo potenzialmente criminali». © 2025 Lit edizioni s.a.s. per gentile concessione ©RIPRODUZIONE RISERVATA “ Se falliscono le politiche  social"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/05/04/zagrebelsky-colmegnala-giustizia-e-degli-ultimi26.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "© 2025 Lit edizioni s.a.s.",
+      "normalized_name": "© 2025 lit edizioni s.a.s.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/05/04/zagrebelsky-colmegnala-giustizia-e-degli-ultimi26.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "no titolo",
+          "snippet": "... ritorno delle pulsioni più egoistiche, feroci, e al fondo potenzialmente criminali». © 2025 Lit edizioni s.a.s. per gentile concessione ©RIPRODUZIONE RISERVATA “ Se falliscono le politiche  social"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/05/04/zagrebelsky-colmegnala-giustizia-e-degli-ultimi26.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Castelvecchi editore © 2025 Lit edizioni s.a.s.",
+      "normalized_name": "castelvecchi editore © 2025 lit edizioni s.a.s.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/08/03/il-figliodel-magoscrivevafiabeRobinson08.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "no titolo",
+          "snippet": "... di Klaus Mann  Traduzione e cura di Massimo Ferraris, Castelvecchi editore © 2025 Lit edizioni s.a.s. per gentile concessione © RIPRODUZIONE RISERVATA LA CONTESSA DAI CAPELLI GRIGI  MI ACCOMPAGNÒ "
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/08/03/il-figliodel-magoscrivevafiabeRobinson08.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "REALIZZATI A MANO E PERSONALIZZABILI OFFICINACIANI S.A.S.",
+      "normalized_name": "realizzati a mano e personalizzabili officinaciani s.a.s.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2023/02/25/nasce-la-sedia-marina-benvenuta-in-famigliaFirenze16.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Nasce la sedia Marina! Benvenuta in famiglia",
+          "snippet": "...ARREDO E ILLUMINAZIONE IN FERRO BATTUTO REALIZZATI A MANO E PERSONALIZZABILI OFFICINACIANI S.A.S. Via di Vacciano 17 - 50012 Loc. Ponte a Ema, Bagno a Ripoli (FI) - T . +39 055 49 32 795 -..."
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2023/02/25/nasce-la-sedia-marina-benvenuta-in-famigliaFirenze16.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "via del Crocifisso s.n.c.",
+      "normalized_name": "via del crocifisso s.n.c.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.n.c.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/05/07/tutti-gli-annunci-li-trovate-su-wwwentietribunaliitBari06.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Tutti gli annunci li trovate su www.entietribunali.it",
+          "snippet": "... via del Crocifisso s.n.c. Lotto 1 - ex via del Crocifisso s.n.c. Appartamento sito a primo piano. Prezzo base: Euro 59.622,00 (Offerta Minima Euro 44.716,00) Prezzo base: Euro 9.435,00 (Offerta Mi"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/05/07/tutti-gli-annunci-li-trovate-su-wwwentietribunaliitBari06.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "1 - ex via del Crocifisso s.n.c.",
+      "normalized_name": "1 - ex via del crocifisso s.n.c.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.n.c.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/05/07/tutti-gli-annunci-li-trovate-su-wwwentietribunaliitBari06.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Tutti gli annunci li trovate su www.entietribunali.it",
+          "snippet": "... via del Crocifisso s.n.c. Lotto 1 - ex via del Crocifisso s.n.c. Appartamento sito a primo piano. Prezzo base: Euro 59.622,00 (Offerta Minima Euro 44.716,00) Prezzo base: Euro 9.435,00 (Offerta Mi"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/05/07/tutti-gli-annunci-li-trovate-su-wwwentietribunaliitBari06.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "e3,50) Cinema Borsalino Piazzetta Paolina Maggi s.n.c.",
+      "normalized_name": "e3,50) cinema borsalino piazzetta paolina maggi s.n.c.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.n.c.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/06/11/luccaFirenze15.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Lucca",
+          "snippet": "... HHHHH 19.45 ( e3,50) Me Contro te il Film... 16.30 ( e3,50) The Tunnel to Summer... HHHH 18.00 ( e3,50) The Watchers - Loro... VM 14 HHHH 21.45 ( e3,50) Cinema Borsalino Piazzetta Paolina Maggi s."
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/06/11/luccaFirenze15.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "15 Cinema Borsalino Piazzetta Paolina Maggi s.n.c.",
+      "normalized_name": "15 cinema borsalino piazzetta paolina maggi s.n.c.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.n.c.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/04/24/luccaFirenze23.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Lucca",
+          "snippet": "... Roma - 0583/711312 BARGA Confidenza HHHHH 21.15 Cinema Borsalino Piazzetta Paolina Maggi s.n.c. - 0584/1660893 CAMAIORE Challengers 21.15 ( e6,00) Civil War HHHH 18.00 ( e6,00) Multisala Nuovo Lid"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/04/24/luccaFirenze23.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "società agricola",
+      "normalized_name": "società agricola",
+      "confidence": 0.5863910913467407,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.n.c.",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/economia/diritti-e-consumi/fisco/domande-e-risposte/2023/10/27/news/liquidazione_della_quota_della_societa_agricola_versata_agli_eredi_sulla_somma_ci_sono_imposte_da_pagare-418913400/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Liquidazione della quota della società agricola versata agli eredi, sulla somma ci sono imposte da pagare?",
+          "snippet": "...Le società agricole possono essere costituite nella forma di società di persone (società semplici, s.n.c. o s.a.s.), società di capitali (s.r.l. o s.p.a.) e cooperative. Condizione indispensabile è"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/economia/diritti-e-consumi/fisco/domande-e-risposte/2023/10/27/news/liquidazione_della_quota_della_societa_agricola_versata_agli_eredi_sulla_somma_ci_sono_imposte_da_pagare-418913400/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "società agricole",
+      "normalized_name": "società agricole",
+      "confidence": 0.7893282175064087,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.n.c.",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/economia/diritti-e-consumi/fisco/domande-e-risposte/2023/10/27/news/liquidazione_della_quota_della_societa_agricola_versata_agli_eredi_sulla_somma_ci_sono_imposte_da_pagare-418913400/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Liquidazione della quota della società agricola versata agli eredi, sulla somma ci sono imposte da pagare?",
+          "snippet": "...Le società agricole possono essere costituite nella forma di società di persone (società semplici, s.n.c. o s.a.s.), società di capitali (s.r.l. o s.p.a.) e cooperative. Condizione indispensabile è"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/economia/diritti-e-consumi/fisco/domande-e-risposte/2023/10/27/news/liquidazione_della_quota_della_societa_agricola_versata_agli_eredi_sulla_somma_ci_sono_imposte_da_pagare-418913400/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "società semplici",
+      "normalized_name": "società semplici",
+      "confidence": 0.7849608659744263,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.n.c.",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/economia/diritti-e-consumi/fisco/domande-e-risposte/2023/10/27/news/liquidazione_della_quota_della_societa_agricola_versata_agli_eredi_sulla_somma_ci_sono_imposte_da_pagare-418913400/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Liquidazione della quota della società agricola versata agli eredi, sulla somma ci sono imposte da pagare?",
+          "snippet": "...Le società agricole possono essere costituite nella forma di società di persone (società semplici, s.n.c. o s.a.s.), società di capitali (s.r.l. o s.p.a.) e cooperative. Condizione indispensabile è"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/economia/diritti-e-consumi/fisco/domande-e-risposte/2023/10/27/news/liquidazione_della_quota_della_societa_agricola_versata_agli_eredi_sulla_somma_ci_sono_imposte_da_pagare-418913400/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "di società di persone (società semplici, s.n.c.",
+      "normalized_name": "di società di persone (società semplici, s.n.c.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.n.c.",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/economia/diritti-e-consumi/fisco/domande-e-risposte/2023/10/27/news/liquidazione_della_quota_della_societa_agricola_versata_agli_eredi_sulla_somma_ci_sono_imposte_da_pagare-418913400/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Liquidazione della quota della società agricola versata agli eredi, sulla somma ci sono imposte da pagare?",
+          "snippet": "...Le società agricole possono essere costituite nella forma di società di persone (società semplici, s.n.c. o s.a.s.), società di capitali (s.r.l. o s.p.a.) e cooperative. Condizione indispensabile è"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/economia/diritti-e-consumi/fisco/domande-e-risposte/2023/10/27/news/liquidazione_della_quota_della_societa_agricola_versata_agli_eredi_sulla_somma_ci_sono_imposte_da_pagare-418913400/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Fas Hospital Srl",
+      "normalized_name": "fas hospital srl",
+      "confidence": 0.8017941117286682,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Srl",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/27/vincenzo-cuomo18.html&hl=&query=Srl&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Vincenzo Cuomo",
+          "snippet": "...I collaboratori della Fas Hospital Srl con profonda  tristezza comunicano che il fondatore è venuto a mancare il 2 3 dicembre 2025. Uomo con grandi doti imprenditoriali e con un gran senso di respo"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/27/vincenzo-cuomo18.html&hl=&query=Srl&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "I collaboratori della Fas Hospital Srl",
+      "normalized_name": "i collaboratori della fas hospital srl",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Srl",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/27/vincenzo-cuomo18.html&hl=&query=Srl&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Vincenzo Cuomo",
+          "snippet": "...I collaboratori della Fas Hospital Srl con profonda  tristezza comunicano che il fondatore è venuto a mancare il 2 3 dicembre 2025. Uomo con grandi doti imprenditoriali e con un gran senso di respo"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/27/vincenzo-cuomo18.html&hl=&query=Srl&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "General srl",
+      "normalized_name": "general srl",
+      "confidence": 0.9578749537467957,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Srl",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/economia/rapporti/osserva-italia/le-storie/2025/12/23/news/conad_nord_ovest_entra_nel_mercato_del_drugstore_accordo_per_l_acquisizione_di_general_srl-425057778/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Conad Nord Ovest entra nel mercato del Drugstore: accordo per l’acquisizione di General srl",
+          "snippet": "...Conad Nord Ovest comunica di aver siglato un accordo per l’acquisizione della società General srl e di società alla stessa collegate, titolari di una catena di negozi a insegna PiùMè che costituisc"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/economia/rapporti/osserva-italia/le-storie/2025/12/23/news/conad_nord_ovest_entra_nel_mercato_del_drugstore_accordo_per_l_acquisizione_di_general_srl-425057778/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "accordo per l’acquisizione di General srl.",
+      "normalized_name": "accordo per l’acquisizione di general srl.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Srl",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/economia/rapporti/osserva-italia/le-storie/2025/12/23/news/conad_nord_ovest_entra_nel_mercato_del_drugstore_accordo_per_l_acquisizione_di_general_srl-425057778/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Conad Nord Ovest entra nel mercato del Drugstore: accordo per l’acquisizione di General srl",
+          "snippet": "...Conad Nord Ovest comunica di aver siglato un accordo per l’acquisizione della società General srl e di società alla stessa collegate, titolari di una catena di negozi a insegna PiùMè che costituisc"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/economia/rapporti/osserva-italia/le-storie/2025/12/23/news/conad_nord_ovest_entra_nel_mercato_del_drugstore_accordo_per_l_acquisizione_di_general_srl-425057778/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "accordo per l’acquisizione della società General srl",
+      "normalized_name": "accordo per l’acquisizione della società general srl",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Srl",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/economia/rapporti/osserva-italia/le-storie/2025/12/23/news/conad_nord_ovest_entra_nel_mercato_del_drugstore_accordo_per_l_acquisizione_di_general_srl-425057778/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Conad Nord Ovest entra nel mercato del Drugstore: accordo per l’acquisizione di General srl",
+          "snippet": "...Conad Nord Ovest comunica di aver siglato un accordo per l’acquisizione della società General srl e di società alla stessa collegate, titolari di una catena di negozi a insegna PiùMè che costituisc"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/economia/rapporti/osserva-italia/le-storie/2025/12/23/news/conad_nord_ovest_entra_nel_mercato_del_drugstore_accordo_per_l_acquisizione_di_general_srl-425057778/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Oggi guida CDP Srl",
+      "normalized_name": "oggi guida cdp srl",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Srl",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/24/cdp-srl--staifrescoBologna09.html&hl=&query=Srl&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "CDP SRL – STAIFRESCO",
+          "snippet": "...Riccardo Di Pisa rappresenta la quarta generazione di  una famiglia di imprenditori presente al CAAB dal 1939. Oggi guida CDP Srl con il marchio Staifresco, realtà giovane che rifornisce oltre..."
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/24/cdp-srl--staifrescoBologna09.html&hl=&query=Srl&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Amgas srl",
+      "normalized_name": "amgas srl",
+      "confidence": 0.921012818813324,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Srl",
+      "sources": [
+        {
+          "url": "https://video.repubblica.it/video/in-10mila-in-piazza-per-l-accensione-dell-albero-a-bari-scatta-il-conto-alla-rovescia-per-il-natale/498729/499682?ref=search",
+          "domain": "repubblica.it",
+          "title": "In 10mila in piazza per l'accensione dell'albero: a Bari scatta il conto alla rovescia per il Natale",
+          "snippet": "video ...Nel giorno dei festeggiamenti in onore di San Nicola, a Bari si illumina il grande albero di Natale allestito in piazza del Ferrarese, a cura di Amgas srl , per dare il via il cartellone di e"
+        }
+      ],
+      "source_urls": [
+        "https://video.repubblica.it/video/in-10mila-in-piazza-per-l-accensione-dell-albero-a-bari-scatta-il-conto-alla-rovescia-per-il-natale/498729/499682?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "del Ferrarese, a cura di Amgas srl",
+      "normalized_name": "del ferrarese, a cura di amgas srl",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Srl",
+      "sources": [
+        {
+          "url": "https://video.repubblica.it/video/in-10mila-in-piazza-per-l-accensione-dell-albero-a-bari-scatta-il-conto-alla-rovescia-per-il-natale/498729/499682?ref=search",
+          "domain": "repubblica.it",
+          "title": "In 10mila in piazza per l'accensione dell'albero: a Bari scatta il conto alla rovescia per il Natale",
+          "snippet": "video ...Nel giorno dei festeggiamenti in onore di San Nicola, a Bari si illumina il grande albero di Natale allestito in piazza del Ferrarese, a cura di Amgas srl , per dare il via il cartellone di e"
+        }
+      ],
+      "source_urls": [
+        "https://video.repubblica.it/video/in-10mila-in-piazza-per-l-accensione-dell-albero-a-bari-scatta-il-conto-alla-rovescia-per-il-natale/498729/499682?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "South Nevis Ltd",
+      "normalized_name": "south nevis ltd",
+      "confidence": 0.9107629060745239,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Ltd",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/esteri/2025/12/17/news/destiny_isola_ai_caraibi_dei_padroni_di_bich_tech_che_avra_leggi_proprie-425045322/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Destiny, l’isola ai Caraibi dei padroni di Big Tech che avrà leggi proprie",
+          "snippet": "... dal governo caraibico di Saint Kitts e Nevis, l’azienda guidata da Janssens, la South Nevis Ltd , sta acquisendo una serie di terreni per realizzare ville di lusso, strutture mediche e infrastrutt"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/esteri/2025/12/17/news/destiny_isola_ai_caraibi_dei_padroni_di_bich_tech_che_avra_leggi_proprie-425045322/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "guidata da Janssens, la South Nevis Ltd",
+      "normalized_name": "guidata da janssens, la south nevis ltd",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Ltd",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/esteri/2025/12/17/news/destiny_isola_ai_caraibi_dei_padroni_di_bich_tech_che_avra_leggi_proprie-425045322/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Destiny, l’isola ai Caraibi dei padroni di Big Tech che avrà leggi proprie",
+          "snippet": "... dal governo caraibico di Saint Kitts e Nevis, l’azienda guidata da Janssens, la South Nevis Ltd , sta acquisendo una serie di terreni per realizzare ville di lusso, strutture mediche e infrastrutt"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/esteri/2025/12/17/news/destiny_isola_ai_caraibi_dei_padroni_di_bich_tech_che_avra_leggi_proprie-425045322/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Engineering and Projects Pvt. Ltd",
+      "normalized_name": "engineering and projects pvt. ltd",
+      "confidence": 0.6709516644477844,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Ltd",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/economia/2025/12/26/news/maire_fertilizzanti_sostenibili_controllata_nextchem_acquisisce_ballestra-425061272/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Maire cresce nei fertilizzanti sostenibili. La controllata Nextchem acquisisce Ballestra",
+          "snippet": "... Engineering and Projects Pvt. Ltd (India). Opera in oltre 120 Paesi con circa 450 dipendenti e uffici in Europa e Asia, con oltre 6.400 impianti installati in tutto il mondo. Ballestra vanta una l"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/economia/2025/12/26/news/maire_fertilizzanti_sostenibili_controllata_nextchem_acquisisce_ballestra-425061272/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Invesco Ltd",
+      "normalized_name": "invesco ltd",
+      "confidence": 0.6299000978469849,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.p.a.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2014/08/01/i-principali-soci-rcs16.html&hl=&query=S.a.p.a.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "I principali soci Rcs",
+          "snippet": "QUOTE % Mediobanca spa Della Valle Diego Invesco Ltd Intesa Sanpaolo spa Finsoe spa Pirelli & C. spa Pesenti Cairo Urbano Roberto Rotelli Paolo Azioni proprie"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2014/08/01/i-principali-soci-rcs16.html&hl=&query=S.a.p.a.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "detenuto dalla Massimo Moratti S.A.p.A.",
+      "normalized_name": "detenuto dalla massimo moratti s.a.p.a.",
+      "confidence": 0.55,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.p.a.",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/economia/2020/05/26/news/carlo_de_benedetti_e_massimo_moratti_entrano_nel_capitale_dell_editrice_d_arte_skira-257672088/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Carlo De Benedetti e Massimo Moratti entrano nel capitale dell'editrice d'arte Skira",
+          "snippet": "... detenuto dalla Massimo Moratti S.A.p.A. Il 77, 50% resta in capo alla Libra di Massimo Vitta Zelman.\n\nIl gruppo Skira, specializzato in editoria artistica e produzione di grandi mostre, con sedi a"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/economia/2020/05/26/news/carlo_de_benedetti_e_massimo_moratti_entrano_nel_capitale_dell_editrice_d_arte_skira-257672088/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "Angelo Moratti S.a.p.a .",
+      "normalized_name": "angelo moratti s.a.p.a .",
+      "confidence": 0.6937134861946106,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.p.a.",
+      "sources": [
+        {
+          "url": "http://www.repubblica.it/economia/2018/02/26/news/morto_gian_marco_moratti_presidente_saras_e_fratello_di_massimo-189774453/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Morto Gian Marco Moratti, presidente Saras e fratello di Massimo",
+          "snippet": "... e vice presidente di Angelo Moratti S.a.p.a ., vice presidente di Confindustria, componente del consiglio direttivo e della giunta dell'Unione Petrolifera e presidente vicario di IEFE (Istituto di"
+        }
+      ],
+      "source_urls": [
+        "http://www.repubblica.it/economia/2018/02/26/news/morto_gian_marco_moratti_presidente_saras_e_fratello_di_massimo-189774453/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "company",
+      "name": "PASFIN S.A.P.A .",
+      "normalized_name": "pasfin s.a.p.a .",
+      "confidence": 0.560209333896637,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.p.a.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2021/04/18/tribunale-di-milanoMilano15.html&hl=&query=S.a.p.a.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Tribunale di MILANO",
+          "snippet": "... iscrizione 28.05.2021). ). Info (Lun.-Ven. 9-18): 02.58011847 / E-mail fallimenti-immobili@sivag.com / WEB https://  www.sivag.com/ - https://pvp.giustizia.it/pvp FALLIMENTO N. 692/2012 PASFIN S.A"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2021/04/18/tribunale-di-milanoMilano15.html&hl=&query=S.a.p.a.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    }
+  ],
+  "persons": [
+    {
+      "entity_type": "person",
+      "name": "Neandertal e Denisoviani",
+      "normalized_name": "neandertal e denisoviani",
+      "confidence": 0.5574433207511902,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.p.A.",
+      "sources": [
+        {
+          "url": "https://www.lescienze.it/comunicati-stampa/2026/01/07/news/l_ultimo_antenato_comune_di_sapiens_neandertal_e_denisoviani-20901792/",
+          "domain": "lescienze.it",
+          "title": "L’ultimo antenato comune di Sapiens, Neandertal e Denisoviani",
+          "snippet": ""
+        }
+      ],
+      "source_urls": [
+        "https://www.lescienze.it/comunicati-stampa/2026/01/07/news/l_ultimo_antenato_comune_di_sapiens_neandertal_e_denisoviani-20901792/"
+      ],
+      "occurrence_count": 8
+    },
+    {
+      "entity_type": "person",
+      "name": "Cavaliere del Lavoro Mario Remondini",
+      "normalized_name": "cavaliere del lavoro mario remondini",
+      "confidence": 0.8452032804489136,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/05/la-rotta-e-segnata-avanti-col-viaggioMilano12.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "La rotta è segnata: avanti col viaggio",
+          "snippet": "... crescono  per visione. La storia di STAR SpA appartiene senza dubbio alla seconda categoria: un percorso iniziato novant’anni fa nel porto di Genova,  quando il Cavaliere del Lavoro Mario Remondin"
+        },
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/05/la-rotta-e-segnata-avanti-col-viaggioRoma10.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "La rotta è segnata: avanti col viaggio",
+          "snippet": "... crescono  per visione. La storia di STAR SpA appartiene senza dubbio alla seconda categoria: un percorso iniziato novant’anni fa nel porto di Genova,  quando il Cavaliere del Lavoro Mario Remondin"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/05/la-rotta-e-segnata-avanti-col-viaggioMilano12.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/05/la-rotta-e-segnata-avanti-col-viaggioRoma10.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "entity_type": "person",
+      "name": "Paolina Maggi",
+      "normalized_name": "paolina maggi",
+      "confidence": 0.7721204161643982,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.n.c.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/04/09/luccaFirenze15.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Lucca",
+          "snippet": "... 17.30-19.50 ( e7,50) Cinema Borsalino Piazzetta Paolina Maggi s.n.c. - 0584/1660893 CAMAIORE Scarface (ver. res. in 4K) HHHHH 17.00-20.00 ( e6,00)..."
+        },
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/06/11/luccaFirenze15.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Lucca",
+          "snippet": "... HHHHH 19.45 ( e3,50) Me Contro te il Film... 16.30 ( e3,50) The Tunnel to Summer... HHHH 18.00 ( e3,50) The Watchers - Loro... VM 14 HHHH 21.45 ( e3,50) Cinema Borsalino Piazzetta Paolina Maggi s."
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/04/09/luccaFirenze15.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/06/11/luccaFirenze15.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "entity_type": "person",
+      "name": "Virginia Pioli",
+      "normalized_name": "virginia pioli",
+      "confidence": 0.9372503161430359,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/21/virginia-pioli24.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Virginia Pioli",
+          "snippet": "... 2025 Nella ricorrenza del trigesimo della sua scompars a,  i S oci, gli A mministratori ed i Collaboratori  tutti della Strega Alber ti B enevento SpA ricordano con affetto la  SIGNORA B enevento,"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/21/virginia-pioli24.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Domenico Bernardo",
+      "normalized_name": "domenico bernardo",
+      "confidence": 0.9508544206619263,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/17/gl-events-per-il-lingotto-cambia-l-organizzatrice-novita-maseratiTorino09.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Gl Events, per il Lingotto cambia l’ organizzatrice  Novità in Lancia e Maserati",
+          "snippet": "... il prossimo biennio. Sarà affiancata  dall’attualec Consiglio direttivo:  il vicepresidente, Domenico  Bernardo ( Wind Tre SpA ), Alessio Calvio (Studydata  Solution Srl), Valerio Dagna  (Net Surf"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/17/gl-events-per-il-lingotto-cambia-l-organizzatrice-novita-maseratiTorino09.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Alessio Calvio",
+      "normalized_name": "alessio calvio",
+      "confidence": 0.9219896793365479,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/17/gl-events-per-il-lingotto-cambia-l-organizzatrice-novita-maseratiTorino09.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Gl Events, per il Lingotto cambia l’ organizzatrice  Novità in Lancia e Maserati",
+          "snippet": "... il prossimo biennio. Sarà affiancata  dall’attualec Consiglio direttivo:  il vicepresidente, Domenico  Bernardo ( Wind Tre SpA ), Alessio Calvio (Studydata  Solution Srl), Valerio Dagna  (Net Surf"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/17/gl-events-per-il-lingotto-cambia-l-organizzatrice-novita-maseratiTorino09.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Valerio Dagna",
+      "normalized_name": "valerio dagna",
+      "confidence": 0.9280073046684265,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/17/gl-events-per-il-lingotto-cambia-l-organizzatrice-novita-maseratiTorino09.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Gl Events, per il Lingotto cambia l’ organizzatrice  Novità in Lancia e Maserati",
+          "snippet": "... il prossimo biennio. Sarà affiancata  dall’attualec Consiglio direttivo:  il vicepresidente, Domenico  Bernardo ( Wind Tre SpA ), Alessio Calvio (Studydata  Solution Srl), Valerio Dagna  (Net Surf"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/17/gl-events-per-il-lingotto-cambia-l-organizzatrice-novita-maseratiTorino09.html&hl=&query=SpA&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Eduard Pichler",
+      "normalized_name": "eduard pichler",
+      "confidence": 0.914564311504364,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/sport/vari/2025/10/16/news/obereggen_2025_slalom_coppa_europa-424917182/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Obereggen, lo slalom di Coppa Europa il 19 dicembre",
+          "snippet": "... comitato organizzatore presieduto da Eduard Pichler e vicepresidente Simon Neulichedl, in collaborazione con la società impianti Obereggen Latemar SpA presieduta da Siegfried Pichler e guidata..."
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/sport/vari/2025/10/16/news/obereggen_2025_slalom_coppa_europa-424917182/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Simon Neulichedl",
+      "normalized_name": "simon neulichedl",
+      "confidence": 0.8067634105682373,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/sport/vari/2025/10/16/news/obereggen_2025_slalom_coppa_europa-424917182/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Obereggen, lo slalom di Coppa Europa il 19 dicembre",
+          "snippet": "... comitato organizzatore presieduto da Eduard Pichler e vicepresidente Simon Neulichedl, in collaborazione con la società impianti Obereggen Latemar SpA presieduta da Siegfried Pichler e guidata..."
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/sport/vari/2025/10/16/news/obereggen_2025_slalom_coppa_europa-424917182/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Siegfried Pichler",
+      "normalized_name": "siegfried pichler",
+      "confidence": 0.9149402976036072,
+      "jurisdiction": "IT",
+      "harvest_keyword": "SpA",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/sport/vari/2025/10/16/news/obereggen_2025_slalom_coppa_europa-424917182/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Obereggen, lo slalom di Coppa Europa il 19 dicembre",
+          "snippet": "... comitato organizzatore presieduto da Eduard Pichler e vicepresidente Simon Neulichedl, in collaborazione con la società impianti Obereggen Latemar SpA presieduta da Siegfried Pichler e guidata..."
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/sport/vari/2025/10/16/news/obereggen_2025_slalom_coppa_europa-424917182/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Elisabetta Ragonesi",
+      "normalized_name": "elisabetta ragonesi",
+      "confidence": 0.9426829218864441,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/30/il-poterenascostoRobinson15.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "no titolo",
+          "snippet": "... che annulla  l’amore”! Ma è chiaro che ancora pretendo da loro che mi facciano sognare. Traduzione di Elisabetta Ragonesi © 2025 Lit Edizioni s.a.s. © RIPRODUZIONE RISERVATA DI UNA PICCOLA BACCA.."
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/30/il-poterenascostoRobinson15.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Ugo Roffi",
+      "normalized_name": "ugo roffi",
+      "confidence": 0.8382405042648315,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/09/08/vittime-di-amianto-la-battaglia-in-un-filmGenova08.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Vittime di amianto la battaglia in un film",
+          "snippet": "... Damiani e organizzata da ACEC- S.A.S . Liguria insieme ad ARCI-UCCA. Alla proiezione del 12 settembre alle ore 21 parteciperanno alcuni dei protagonisti del docufilm e i registi Ugo Roffi e Ludovi"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/09/08/vittime-di-amianto-la-battaglia-in-un-filmGenova08.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Papa Leone XIV",
+      "normalized_name": "papa leone xiv",
+      "confidence": 0.9509894847869873,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/08/28/ambiente-e-diritti-una-dottrina-sociale-per-la-chiesa-di-oggi18.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Ambiente e diritti una dottrina sociale per la Chiesa di oggi",
+          "snippet": "... Fondo Editorial de la Pontificia Universidad Católica del Perú y Fondo Editorial de la Universidad Católica de Trujillo, 2024 © 2025 Lit Edizioni s . a . s .  Papa Leone XIV durante un’udienza gen"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/08/28/ambiente-e-diritti-una-dottrina-sociale-per-la-chiesa-di-oggi18.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Enrico Pazzali",
+      "normalized_name": "enrico pazzali",
+      "confidence": 0.941261887550354,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/10/31/tutte-le-poltrone-di-enrico-pazzaliMilano02.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Tutte le poltrone di Enrico Pazzali",
+          "snippet": "... Fiera Milano S.p.a. Postecom  S.p.a. Eur S.p.a. PAZZALI ENRICO Compaq Computer S.p.a. Nolostand  S.p.a. Polifin S.p.a. Assago trasporti S.A.S. di Cominotti Chorus Life S.p.a. Consorzio per la rice"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2024/10/31/tutte-le-poltrone-di-enrico-pazzaliMilano02.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Dario Brunori",
+      "normalized_name": "dario brunori",
+      "confidence": 0.9055474996566772,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/spettacoli/dossier/festival-di-sanremo/2025/02/07/news/brunori_sas_sanremo_2025_albero_delle_noci-423981663/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Brunori Sas per la prima volta in gara a Sanremo con un brano dedicato alla figlia",
+          "snippet": "... In tedesco vuol dire fiore. Nel giugno 2009 Dario Brunori, con lo pseudonimo di Brunori S.A.S , pubblica il suo album d'esordio Vol.1 e il disco si aggiudica il Premio Ciampi. Ma bisogna aspettare"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/spettacoli/dossier/festival-di-sanremo/2025/02/07/news/brunori_sas_sanremo_2025_albero_delle_noci-423981663/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Klaus Mann",
+      "normalized_name": "klaus mann",
+      "confidence": 0.8333688378334045,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/08/03/il-figliodel-magoscrivevafiabeRobinson08.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "no titolo",
+          "snippet": "... di Klaus Mann  Traduzione e cura di Massimo Ferraris, Castelvecchi editore © 2025 Lit edizioni s.a.s. per gentile concessione © RIPRODUZIONE RISERVATA LA CONTESSA DAI CAPELLI GRIGI  MI ACCOMPAGNÒ "
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/08/03/il-figliodel-magoscrivevafiabeRobinson08.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Massimo Ferraris",
+      "normalized_name": "massimo ferraris",
+      "confidence": 0.85672926902771,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.s.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/08/03/il-figliodel-magoscrivevafiabeRobinson08.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "no titolo",
+          "snippet": "... di Klaus Mann  Traduzione e cura di Massimo Ferraris, Castelvecchi editore © 2025 Lit edizioni s.a.s. per gentile concessione © RIPRODUZIONE RISERVATA LA CONTESSA DAI CAPELLI GRIGI  MI ACCOMPAGNÒ "
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/08/03/il-figliodel-magoscrivevafiabeRobinson08.html&hl=&query=S.a.s.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Barone Gomme",
+      "normalized_name": "barone gomme",
+      "confidence": 0.8516954183578491,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.n.c.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/09/21/dietro-le-quinte-della-campagna-di-informazioniPalermo08.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "DIETRO LE QUINTE DELLA CAMPAGNA  DI COMUNICAZIONE PROGRESSO  ALTRE INFORMAZIONI",
+          "snippet": "... Group S. r. l., VRent S. p. A., S. E. A. P. Società Europea Appalti Pubblici S. r. l., C. A. D. A. Chimica Applicata Depurazione Acque S . n . c ., Urbania S. r. l., Junker by Giunko S. r. l., Bar"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/09/21/dietro-le-quinte-della-campagna-di-informazioniPalermo08.html&hl=&query=S.n.c.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Vincenzo Cuomo",
+      "normalized_name": "vincenzo cuomo",
+      "confidence": 0.9557585716247559,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Srl",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/27/vincenzo-cuomo18.html&hl=&query=Srl&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Vincenzo Cuomo",
+          "snippet": "...I collaboratori della Fas Hospital Srl con profonda  tristezza comunicano che il fondatore è venuto a mancare il 2 3 dicembre 2025. Uomo con grandi doti imprenditoriali e con un gran senso di respo"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/12/27/vincenzo-cuomo18.html&hl=&query=Srl&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Riccardo Di Pisa",
+      "normalized_name": "riccardo di pisa",
+      "confidence": 0.9799817800521851,
+      "jurisdiction": "IT",
+      "harvest_keyword": "Srl",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/24/cdp-srl--staifrescoBologna09.html&hl=&query=Srl&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "CDP SRL – STAIFRESCO",
+          "snippet": "...Riccardo Di Pisa rappresenta la quarta generazione di  una famiglia di imprenditori presente al CAAB dal 1939. Oggi guida CDP Srl con il marchio Staifresco, realtà giovane che rifornisce oltre..."
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2025/11/24/cdp-srl--staifrescoBologna09.html&hl=&query=Srl&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Roberto Rotelli",
+      "normalized_name": "roberto rotelli",
+      "confidence": 0.8682615160942078,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.p.a.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2014/08/01/i-principali-soci-rcs16.html&hl=&query=S.a.p.a.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "I principali soci Rcs",
+          "snippet": "QUOTE % Mediobanca spa Della Valle Diego Invesco Ltd Intesa Sanpaolo spa Finsoe spa Pirelli & C. spa Pesenti Cairo Urbano Roberto Rotelli Paolo Azioni proprie"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2014/08/01/i-principali-soci-rcs16.html&hl=&query=S.a.p.a.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Carlo De Benedetti",
+      "normalized_name": "carlo de benedetti",
+      "confidence": 0.9453039169311523,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.p.a.",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/economia/2020/05/26/news/carlo_de_benedetti_e_massimo_moratti_entrano_nel_capitale_dell_editrice_d_arte_skira-257672088/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Carlo De Benedetti e Massimo Moratti entrano nel capitale dell'editrice d'arte Skira",
+          "snippet": "... detenuto dalla Massimo Moratti S.A.p.A. Il 77, 50% resta in capo alla Libra di Massimo Vitta Zelman.\n\nIl gruppo Skira, specializzato in editoria artistica e produzione di grandi mostre, con sedi a"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/economia/2020/05/26/news/carlo_de_benedetti_e_massimo_moratti_entrano_nel_capitale_dell_editrice_d_arte_skira-257672088/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Massimo Moratti",
+      "normalized_name": "massimo moratti",
+      "confidence": 0.9606754183769226,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.p.a.",
+      "sources": [
+        {
+          "url": "https://www.repubblica.it/economia/2020/05/26/news/carlo_de_benedetti_e_massimo_moratti_entrano_nel_capitale_dell_editrice_d_arte_skira-257672088/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Carlo De Benedetti e Massimo Moratti entrano nel capitale dell'editrice d'arte Skira",
+          "snippet": "... detenuto dalla Massimo Moratti S.A.p.A. Il 77, 50% resta in capo alla Libra di Massimo Vitta Zelman.\n\nIl gruppo Skira, specializzato in editoria artistica e produzione di grandi mostre, con sedi a"
+        }
+      ],
+      "source_urls": [
+        "https://www.repubblica.it/economia/2020/05/26/news/carlo_de_benedetti_e_massimo_moratti_entrano_nel_capitale_dell_editrice_d_arte_skira-257672088/?ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Karla Quintana",
+      "normalized_name": "karla quintana",
+      "confidence": 0.9209471344947815,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.p.a.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2018/09/15/-d-e-s-a-p-a-r-e-c-i-d-o-s--d-i-s-t-a-t-o58.html&hl=&query=S.a.p.a.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "\" d e s a p a r e c i d o s \" d i s t a t o",
+          "snippet": "N on è comune che in  Messico la magistratura  indaghi sulle  forze armate e lo è  ancor meno che a guidare la richiesta di giustizia contro i militari sia un gruppo di donne. Un’avvocatessa, Karla Qu"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2018/09/15/-d-e-s-a-p-a-r-e-c-i-d-o-s--d-i-s-t-a-t-o58.html&hl=&query=S.a.p.a.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Karla Macías",
+      "normalized_name": "karla macías",
+      "confidence": 0.9376704692840576,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.p.a.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2018/09/15/-d-e-s-a-p-a-r-e-c-i-d-o-s--d-i-s-t-a-t-o58.html&hl=&query=S.a.p.a.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "\" d e s a p a r e c i d o s \" d i s t a t o",
+          "snippet": "N on è comune che in  Messico la magistratura  indaghi sulle  forze armate e lo è  ancor meno che a guidare la richiesta di giustizia contro i militari sia un gruppo di donne. Un’avvocatessa, Karla Qu"
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2018/09/15/-d-e-s-a-p-a-r-e-c-i-d-o-s--d-i-s-t-a-t-o58.html&hl=&query=S.a.p.a.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "DI FRANCESCO QUIRICO",
+      "normalized_name": "di francesco quirico",
+      "confidence": 0.9032687544822693,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.p.a.",
+      "sources": [
+        {
+          "url": "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2023/05/23/le-500-aziende-liguri-del-2021Genova08.html&hl=&query=S.a.p.a.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search",
+          "domain": "repubblica.it",
+          "title": "Le 500 aziende liguri del 2021",
+          "snippet": "... DI FRANCESCO QUIRICO, UMBERTO RISSO & C. - S . A . P . A . 607.029 453.659 6.398 8.605 140.569 153.344 56 60 PSA GENOVA PRÀ S. P. A. 174.767 160.814 2.225 1.688 31.247 19.735 56 60 PSA GENOVA PRÀ "
+        }
+      ],
+      "source_urls": [
+        "https://quotidiano.repubblica.it/edicola/searchdetail?id=http://archivio.repubblica.extra.kataweb.it/archivio/repubblica/2023/05/23/le-500-aziende-liguri-del-2021Genova08.html&hl=&query=S.a.p.a.&field=nel+testo&testata=repubblica&newspaper=REP&edition=nazionale&zona=sfoglio&ref=search"
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "entity_type": "person",
+      "name": "Morto Gian Marco Moratti",
+      "normalized_name": "morto gian marco moratti",
+      "confidence": 0.6035548448562622,
+      "jurisdiction": "IT",
+      "harvest_keyword": "S.a.p.a.",
+      "sources": [
+        {
+          "url": "http://www.repubblica.it/economia/2018/02/26/news/morto_gian_marco_moratti_presidente_saras_e_fratello_di_massimo-189774453/?ref=search",
+          "domain": "repubblica.it",
+          "title": "Morto Gian Marco Moratti, presidente Saras e fratello di Massimo",
+          "snippet": "... e vice presidente di Angelo Moratti S.a.p.a ., vice presidente di Confindustria, componente del consiglio direttivo e della giunta dell'Unione Petrolifera e presidente vicario di IEFE (Istituto di"
+        }
+      ],
+      "source_urls": [
+        "http://www.repubblica.it/economia/2018/02/26/news/morto_gian_marco_moratti_presidente_saras_e_fratello_di_massimo-189774453/?ref=search"
+      ],
+      "occurrence_count": 1
+    }
+  ]
+}

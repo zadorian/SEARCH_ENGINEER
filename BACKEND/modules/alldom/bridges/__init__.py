@@ -11,7 +11,7 @@ from . import eyed
 from . import macros
 from . import entities
 from . import exif
-from . import whois  # Native WHOIS (moved from EYE-D Jan 2026)
+# from . import whois  # Native WHOIS (moved from EYE-D Jan 2026)
 
 # New operator bridges (Jan 2026)
 from . import ga
@@ -26,7 +26,7 @@ __all__ = [
     "macros",
     "entities",
     "exif",
-    "whois",       # Native WHOIS - current, historic, reverse, clustering
+    # "whois",       # Native WHOIS - current, historic, reverse, clustering
     "ga",
     "keyword",
     "ai_qa",

@@ -1,0 +1,20 @@
+{
+  "operator_family": "id",
+  "pattern": "id{cc}:{value}",
+  "description": "Decode national/tax ID for jurisdiction",
+  "operators": {
+    "idid:": {"jurisdiction": "ID", "id_type": "NIK", "example": "idid:3527091604810001"},
+    "idbr:": {"jurisdiction": "BR", "id_type": "CPF/CNPJ", "example": "idbr:12345678901"},
+    "idse:": {"jurisdiction": "SE", "id_type": "PERSONNUMMER", "example": "idse:851125-5477"},
+    "idcl:": {"jurisdiction": "CL", "id_type": "RUT", "example": "idcl:12345678-9"},
+    "idcn:": {"jurisdiction": "CN", "id_type": "NATIONAL_ID", "example": "idcn:110101199003077654"},
+    "idfr:": {"jurisdiction": "FR", "id_type": "NIR", "example": "idfr:185031234567890"},
+    "idbe:": {"jurisdiction": "BE", "id_type": "NRN", "example": "idbe:85031212345"},
+    "idcz:": {"jurisdiction": "CZ", "id_type": "RODNE_CISLO", "example": "idcz:8503121234"},
+    "idsk:": {"jurisdiction": "SK", "id_type": "RODNE_CISLO", "example": "idsk:8503121234"},
+    "idro:": {"jurisdiction": "RO", "id_type": "CNP", "example": "idro:1850312123456"},
+    "idkr:": {"jurisdiction": "KR", "id_type": "RRN", "example": "idkr:850312-1234567"}
+  },
+  "routing": "jurisdiction_capabilities.json → id_decoder",
+  "module": "wikiman_id_decoder.py"
+}

@@ -18,6 +18,7 @@ except ImportError:
 class AlldomPhoneEngine:
     code = 'ADP'
     name = 'ALLDOM Phone'
+    _code = 2  # Legend code: phone
 
     def __init__(self, phone: str):
         self.phone = phone

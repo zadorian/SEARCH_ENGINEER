@@ -1,0 +1,430 @@
+{
+  "meta": {
+    "category": "osint",
+    "count": 8,
+    "migrated_at": "2026-01-11T18:34:03.991216",
+    "version": "2.0",
+    "format": "code-based"
+  },
+  "sources": [
+    {
+      "id": "aleph_collection_102",
+      "name": "Wikileaks State Department Cables",
+      "jurisdiction": "US",
+      "category": "leak",
+      "url": "https://aleph.occrp.org/datasets/102",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        6,
+        7,
+        8,
+        11,
+        13,
+        14,
+        20,
+        46,
+        47
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          7,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          11,
+          14,
+          50,
+          51,
+          52,
+          80,
+          81,
+          82,
+          85,
+          90,
+          102,
+          111,
+          403,
+          404,
+          405,
+          407,
+          408
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_201",
+      "name": "DNC / Hillary Clinton",
+      "jurisdiction": "US",
+      "category": "leak",
+      "url": "https://aleph.occrp.org/datasets/201",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        6,
+        7,
+        8,
+        11,
+        13,
+        14,
+        20,
+        46,
+        47
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          7,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          11,
+          14,
+          50,
+          51,
+          52,
+          80,
+          81,
+          82,
+          85,
+          90,
+          102,
+          111,
+          403,
+          404,
+          405,
+          407,
+          408
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_1061",
+      "name": "HBGary leaked emails",
+      "jurisdiction": "US",
+      "category": "leak",
+      "url": "https://aleph.occrp.org/datasets/1061",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        6,
+        7,
+        8,
+        11,
+        13,
+        14,
+        20,
+        46,
+        47
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          7,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          11,
+          14,
+          50,
+          51,
+          52,
+          80,
+          81,
+          82,
+          85,
+          90,
+          102,
+          111,
+          403,
+          404,
+          405,
+          407,
+          408
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_726",
+      "name": "RIIF",
+      "jurisdiction": "RU",
+      "category": "leak",
+      "url": "https://aleph.occrp.org/datasets/726",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        11,
+        13,
+        14
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          11,
+          15,
+          50,
+          51,
+          80,
+          81,
+          82,
+          90,
+          404,
+          407
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_734",
+      "name": "ICIJ Panama Papers (2016)",
+      "jurisdiction": "PA",
+      "category": "leak",
+      "url": "https://aleph.occrp.org/datasets/734",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13
+      ],
+      "outputs": {
+        "entities": [
+          67
+        ],
+        "relationships": [
+          601
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_276",
+      "name": "ICIJ BahamasLeaks",
+      "jurisdiction": "BS",
+      "category": "leak",
+      "url": "https://aleph.occrp.org/datasets/276",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13
+      ],
+      "outputs": {
+        "entities": [],
+        "relationships": []
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_180",
+      "name": "OSCE Austria",
+      "jurisdiction": "AT",
+      "category": "leak",
+      "url": "https://aleph.occrp.org/datasets/180",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        7,
+        13,
+        14,
+        20
+      ],
+      "outputs": {
+        "entities": [
+          59,
+          67,
+          72,
+          73
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          606,
+          613
+        ],
+        "attributes": [
+          11,
+          14,
+          15,
+          50,
+          53,
+          80,
+          81
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    },
+    {
+      "id": "aleph_collection_1519",
+      "name": "Cambridge Analytica",
+      "jurisdiction": "GLOBAL",
+      "category": "leak",
+      "url": "https://aleph.occrp.org/datasets/1519",
+      "module": {
+        "primary": "direct",
+        "secondary": {
+          "handler": "corporella",
+          "aggregators": []
+        }
+      },
+      "inputs": [
+        1,
+        2,
+        7,
+        8,
+        13,
+        14,
+        122
+      ],
+      "outputs": {
+        "entities": [
+          1,
+          13,
+          59,
+          67,
+          72,
+          73,
+          712
+        ],
+        "relationships": [
+          600,
+          601,
+          602,
+          603,
+          612,
+          613,
+          620
+        ],
+        "attributes": [
+          81,
+          85,
+          90,
+          101,
+          102,
+          404,
+          408,
+          500
+        ]
+      },
+      "friction": "api",
+      "has_api": false
+    }
+  ]
+}

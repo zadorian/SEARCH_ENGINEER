@@ -1,0 +1,124 @@
+{
+  "index_name": "cymonides-2",
+  "stats": "green  open   cymonides-2 Ks-UlQRRTg2FP9Zk488RaQ   2   0     532630            0      5.1gb 2025-11-29T22:41:22.929Z",
+  "mapping": {
+    "cymonides-2": {
+      "mappings": {
+        "properties": {
+          "content": {
+            "type": "text",
+            "analyzer": "content_analyzer"
+          },
+          "content_hash": {
+            "type": "keyword"
+          },
+          "extracted_entity_ids": {
+            "type": "keyword"
+          },
+          "fetched_at": {
+            "type": "date"
+          },
+          "id": {
+            "type": "keyword"
+          },
+          "language": {
+            "type": "keyword"
+          },
+          "project_ids": {
+            "type": "keyword"
+          },
+          "source_domain": {
+            "type": "keyword"
+          },
+          "source_type": {
+            "type": "keyword"
+          },
+          "source_url": {
+            "type": "keyword"
+          },
+          "title": {
+            "type": "text",
+            "analyzer": "content_analyzer"
+          },
+          "word_count": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "cymonides-2": {
+      "settings": {
+        "index": {
+          "routing": {
+            "allocation": {
+              "include": {
+                "_tier_preference": "data_content"
+              }
+            }
+          },
+          "number_of_shards": "2",
+          "provided_name": "cymonides-2",
+          "creation_date": "1764456082929",
+          "analysis": {
+            "analyzer": {
+              "content_analyzer": {
+                "filter": [
+                  "lowercase",
+                  "asciifolding",
+                  "porter_stem"
+                ],
+                "type": "custom",
+                "tokenizer": "standard"
+              }
+            }
+          },
+          "number_of_replicas": "0",
+          "uuid": "Ks-UlQRRTg2FP9Zk488RaQ",
+          "version": {
+            "created": "8500003"
+          }
+        }
+      }
+    }
+  },
+  "sample_document": {
+    "took": 7,
+    "timed_out": false,
+    "_shards": {
+      "total": 2,
+      "successful": 2,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 10000,
+        "relation": "gte"
+      },
+      "max_score": 1.0,
+      "hits": [
+        {
+          "_index": "cymonides-2",
+          "_id": "a25787c3429f312eced6f2cbb975a8ea",
+          "_score": 1.0,
+          "_source": {
+            "id": "a25787c3429f312eced6f2cbb975a8ea",
+            "title": "LOLOSIDIS OE.report",
+            "content": "Footnote [1]: Greek corporate register (G.E.M.I.) -  https://www.businessregistry.gr/publicity/show/38406705000",
+            "source_url": "https://www.businessregistry.gr/publicity/show/38406705000",
+            "source_domain": "www.businessregistry.gr",
+            "source_type": "report",
+            "content_hash": "b8605026343c1662d236a1cdfa3b6972",
+            "word_count": 8,
+            "fetched_at": "2025-12-01T01:41:16.679349",
+            "language": "en",
+            "project_ids": [],
+            "extracted_entity_ids": []
+          }
+        }
+      ]
+    }
+  }
+}

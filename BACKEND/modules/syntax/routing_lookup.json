@@ -1,0 +1,263 @@
+{
+  "$comment": "Fast lookup table for routing decisions. Key format: {unknown_class}:{unknown_type}:{known_class}:{known_type} (KU matrix: unknown=subject-side, known=location-side)",
+  "version": "1.0.0",
+
+  "lookup": {
+    "SUBJECT:person:LOCATION:jurisdiction:UK": {
+      "intent": "EXTRACT",
+      "engine": "companies_house_api",
+      "syntax": "puk: :#anchor",
+      "extractor": "ner_person"
+    },
+    "SUBJECT:person:LOCATION:jurisdiction:DE": {
+      "intent": "EXTRACT",
+      "engine": "handelsregister",
+      "syntax": "pde: :#anchor",
+      "extractor": "ner_person"
+    },
+    "SUBJECT:person:LOCATION:jurisdiction:CY": {
+      "intent": "EXTRACT",
+      "engine": "drcor_api",
+      "syntax": "pcy: :#anchor",
+      "extractor": "ner_person"
+    },
+    "SUBJECT:person:LOCATION:jurisdiction:HR": {
+      "intent": "EXTRACT",
+      "engine": "sudski_registar",
+      "syntax": "phr: :#anchor",
+      "extractor": "ner_person"
+    },
+    "SUBJECT:person:LOCATION:jurisdiction:HU": {
+      "intent": "EXTRACT",
+      "engine": "e_cegjegyzek",
+      "syntax": "phu: :#anchor",
+      "extractor": "ner_person"
+    },
+    "SUBJECT:person:LOCATION:jurisdiction:*": {
+      "intent": "EXTRACT",
+      "engine": "country_engine_generic",
+      "syntax": "p{cc}: :#anchor",
+      "extractor": "ner_person"
+    },
+    "SUBJECT:person:LOCATION:domain:*": {
+      "intent": "EXTRACT",
+      "engine": "firecrawl",
+      "syntax": "p!:?:#domain",
+      "extractor": "ner_person"
+    },
+    "SUBJECT:person:LOCATION:url:*": {
+      "intent": "EXTRACT",
+      "engine": "firecrawl",
+      "syntax": "p!::#url",
+      "extractor": "ner_person"
+    },
+    "SUBJECT:person:NARRATIVE:document:*": {
+      "intent": "EXTRACT",
+      "engine": "local_ner",
+      "syntax": "@p? :#document",
+      "extractor": "ner_person"
+    },
+    "SUBJECT:person:LOCATION:daterange:*": {
+      "intent": "EXTRACT",
+      "engine": "archive_search",
+      "syntax": "@p? :#corpus ::#daterange",
+      "extractor": "ner_person"
+    },
+    "SUBJECT:person:null:null:null": {
+      "intent": "NET",
+      "engine": "brute_search",
+      "syntax": "/brute :#person_name",
+      "extractor": "ner_person"
+    },
+
+    "SUBJECT:company:LOCATION:jurisdiction:UK": {
+      "intent": "EXTRACT",
+      "engine": "companies_house_api",
+      "syntax": "cuk: :#anchor",
+      "extractor": "registry_company"
+    },
+    "SUBJECT:company:LOCATION:jurisdiction:DE": {
+      "intent": "EXTRACT",
+      "engine": "handelsregister",
+      "syntax": "cde: :#anchor",
+      "extractor": "registry_company"
+    },
+    "SUBJECT:company:LOCATION:jurisdiction:CY": {
+      "intent": "EXTRACT",
+      "engine": "drcor_api",
+      "syntax": "ccy: :#anchor",
+      "extractor": "registry_company"
+    },
+    "SUBJECT:company:LOCATION:jurisdiction:*": {
+      "intent": "EXTRACT",
+      "engine": "country_engine_generic",
+      "syntax": "c{cc}: :#anchor",
+      "extractor": "registry_company"
+    },
+    "SUBJECT:company:LOCATION:domain:*": {
+      "intent": "EXTRACT",
+      "engine": "firecrawl",
+      "syntax": "c!:?:#domain",
+      "extractor": "ner_org"
+    },
+    "SUBJECT:company:null:null:null": {
+      "intent": "NET",
+      "engine": "brute_search",
+      "syntax": "/brute :#company_name",
+      "extractor": "ner_org"
+    },
+
+    "SUBJECT:email:LOCATION:domain:*": {
+      "intent": "EXTRACT",
+      "engine": "firecrawl",
+      "syntax": "e!:?:#domain",
+      "extractor": "regex_email"
+    },
+    "SUBJECT:email:null:null:null": {
+      "intent": "NET",
+      "engine": "breach_search",
+      "syntax": ":#email?",
+      "extractor": "breach_data"
+    },
+
+    "SUBJECT:phone:null:null:null": {
+      "intent": "NET",
+      "engine": "osint_phone",
+      "syntax": "+:#phone?",
+      "extractor": "osint_data"
+    },
+
+    "SUBJECT:username:LOCATION:domain:*": {
+      "intent": "EXTRACT",
+      "engine": "platform_search",
+      "syntax": ":#username? ::#platform",
+      "extractor": "profile_data"
+    },
+    "SUBJECT:username:null:null:null": {
+      "intent": "NET",
+      "engine": "breach_search",
+      "syntax": ":#username?",
+      "extractor": "breach_data"
+    },
+
+    "LOCATION:jurisdiction:SUBJECT:company:*": {
+      "intent": "TRACE",
+      "engine": "registry_scan",
+      "syntax": "reg?: :#company",
+      "extractor": "jurisdiction_from_registry"
+    },
+
+    "LOCATION:domain:SUBJECT:company:*": {
+      "intent": "TRACE",
+      "engine": "brute_search",
+      "syntax": "/brute :#company site:*.com",
+      "extractor": "domain_from_results"
+    },
+
+    "LOCATION:domain:SUBJECT:person:*": {
+      "intent": "TRACE",
+      "engine": "brute_search",
+      "syntax": "/brute \":#person\"",
+      "extractor": "domain_from_results"
+    },
+
+    "LOCATION:address:SUBJECT:person:*": {
+      "intent": "TRACE",
+      "engine": "registry_lookup",
+      "syntax": "reg{cc}: :#subject => @a?",
+      "extractor": "ner_address"
+    },
+    "LOCATION:address:SUBJECT:company:*": {
+      "intent": "TRACE",
+      "engine": "registry_lookup",
+      "syntax": "reg{cc}: :#subject => @a?",
+      "extractor": "ner_address"
+    },
+
+    "NEXUS:*:SUBJECT:*:SUBJECT:*": {
+      "intent": "DISCOVER",
+      "engine": "graph_traverse",
+      "syntax": ":#A x :#B",
+      "extractor": "relationship"
+    },
+
+    "NEXUS:officer_of:SUBJECT:company:*": {
+      "intent": "EXTRACT",
+      "engine": "registry_lookup",
+      "syntax": "reg{cc}: :#company => @p? #officer",
+      "extractor": "officer_data",
+      "creates_unknowns": ["SUBJECT:person"]
+    },
+
+    "NEXUS:shareholder_of:SUBJECT:company:*": {
+      "intent": "EXTRACT",
+      "engine": "registry_lookup",
+      "syntax": "reg{cc}: :#company /shareholders",
+      "extractor": "shareholder_data",
+      "creates_unknowns": ["SUBJECT:person", "SUBJECT:company"]
+    },
+
+    "NEXUS:beneficial_owner_of:SUBJECT:company:*": {
+      "intent": "EXTRACT",
+      "engine": "ubo_trace",
+      "syntax": "/ubo_trace :#company",
+      "extractor": "ubo_data",
+      "creates_unknowns": ["SUBJECT:person"]
+    }
+  },
+
+  "enrichment_slots": {
+    "SUBJECT:person": {
+      "slots": ["dob", "nationality", "address", "occupation", "sanctions_status", "pep_status"],
+      "routes": {
+        "dob": {"engine": "registry_lookup", "syntax": "reg{cc}: :#person => dob"},
+        "nationality": {"engine": "registry_lookup", "syntax": "reg{cc}: :#person => nationality"},
+        "address": {"engine": "registry_lookup", "syntax": "reg{cc}: :#person => @a?"},
+        "sanctions_status": {"engine": "sanctions_check", "syntax": "sanctions? :#person", "void_is_finding": true},
+        "pep_status": {"engine": "pep_check", "syntax": "pep? :#person", "void_is_finding": true}
+      }
+    },
+    "SUBJECT:company": {
+      "slots": ["registration_number", "status", "incorporation_date", "address", "officers", "shareholders", "ubo"],
+      "routes": {
+        "registration_number": {"engine": "registry_lookup", "syntax": "reg{cc}: :#company => reg_number"},
+        "status": {"engine": "registry_lookup", "syntax": "reg{cc}: :#company => status"},
+        "incorporation_date": {"engine": "registry_lookup", "syntax": "reg{cc}: :#company => inc_date"},
+        "address": {"engine": "registry_lookup", "syntax": "reg{cc}: :#company => @a?"},
+        "officers": {"engine": "registry_lookup", "syntax": "reg{cc}: :#company => @p? #officer", "creates_unknowns": true},
+        "shareholders": {"engine": "registry_lookup", "syntax": "reg{cc}: :#company /shareholders", "creates_unknowns": true},
+        "ubo": {"engine": "ubo_trace", "syntax": "/ubo_trace :#company", "creates_unknowns": true}
+      }
+    },
+    "LOCATION:domain": {
+      "slots": ["registrant", "creation_date", "expiry_date", "nameservers", "hosting"],
+      "routes": {
+        "*": {"engine": "whois_lookup", "syntax": "whois!::#domain"}
+      }
+    },
+    "SUBJECT:email": {
+      "slots": ["breach_history", "associated_names", "social_profiles"],
+      "routes": {
+        "breach_history": {"engine": "breach_search", "syntax": ":#email?"},
+        "associated_names": {"engine": "osint_industries", "syntax": "osint: :#email"}
+      }
+    }
+  },
+
+  "triad_to_intent": {
+    "[K]-[U]-[U]": {"intent": "DISCOVER", "subtype": "TRACE", "action": "Find where known subject appears"},
+    "[U]-[U]-[K]": {"intent": "DISCOVER", "subtype": "EXTRACT", "action": "Extract from known venue"},
+    "[K]-[U]-[K]": {"intent": "DISCOVER", "subtype": "TRACE", "action": "Find link between known endpoints"},
+    "[K]-[K]-[U]": {"intent": "DISCOVER", "subtype": "EXTRACT", "action": "Follow known edge to unknown"},
+    "[U]-[K]-[K]": {"intent": "DISCOVER", "subtype": "EXTRACT", "action": "Reverse known edge"},
+    "[U]-[K]-[U]": {"intent": "DISCOVER", "subtype": "NET", "action": "Find endpoints of known relationship type"},
+    "[K]-[K]-[K]": {"intent": "ENRICH", "subtype": "VERIFY", "action": "Verify relationship"},
+    "[U]-[U]-[U]": {"intent": "DISCOVER", "subtype": "NET", "action": "Broad discovery"}
+  },
+
+  "void_is_finding": {
+    "sanctions?": {"result": "NOT_SANCTIONED", "confidence": 0.95},
+    "pep?": {"result": "NOT_PEP", "confidence": 0.90},
+    "reg{cc}:": {"result": "NOT_REGISTERED", "confidence": 0.99}
+  }
+}

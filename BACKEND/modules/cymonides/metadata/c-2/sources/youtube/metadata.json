@@ -1,0 +1,14 @@
+{
+  "source_name": "YouTube Commons",
+  "source_type": "youtube",
+  "origin_index": "youtube_commons",
+  "migration_date": "2025-12-03",
+  "document_count": 487600,
+  "status": "merged",
+  "query": {
+    "term": {
+      "source_type": "youtube"
+    }
+  },
+  "sample_query": "GET /cymonides-2/_search?q=source_type:youtube&size=10"
+}

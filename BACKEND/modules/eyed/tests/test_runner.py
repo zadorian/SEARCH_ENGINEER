@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 """Test script to debug ExactPhraseRecallRunner"""
 
+from __future__ import annotations
+
+if __name__ != "__main__":
+    import pytest
+
+    pytest.skip("EYE-D test scripts are manual; run directly", allow_module_level=True)
+
 import os
 import sys
 from pathlib import Path
 
-# Set up environment
-os.environ['GOOGLE_API_KEY'] = 'AIzaSyBEqsmskKDyXqIOPl26Gf0QdA4pVwM-M2s'
-os.environ['GOOGLE_SEARCH_ENGINE_ID'] = '3224c9c84183240de'
+# Set `GOOGLE_API_KEY` and `GOOGLE_SEARCH_ENGINE_ID` in the environment.
 
 # Import the modules
 sys.path.insert(0, str(Path(__file__).parent))

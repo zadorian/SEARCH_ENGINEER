@@ -31,11 +31,11 @@ from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
-# Path to IO Matrix (repo layout can vary; prefer /data/INPUT_OUTPUT/matrix)
+# Path to IO Matrix - canonical location
 _DATA_ROOT = Path(__file__).resolve().parents[2]
 _MATRIX_CANDIDATES = [
-    _DATA_ROOT / "INPUT_OUTPUT" / "matrix",
-    _DATA_ROOT / "SEARCH_ENGINEER" / "input_output" / "matrix",
+    Path("/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix"),
+    _DATA_ROOT / "input_output" / "matrix",
 ]
 IO_MATRIX_DIR = next((p for p in _MATRIX_CANDIDATES if p.exists()), _MATRIX_CANDIDATES[0])
 

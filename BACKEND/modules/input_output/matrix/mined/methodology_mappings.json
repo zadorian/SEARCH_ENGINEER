@@ -1,0 +1,277 @@
+{
+  "$schema": "methodology_mappings.schema.json",
+  "version": "1.0.0",
+  "description": "Maps mined methodology patterns to IO Matrix codes, modules, and relationships",
+  "generated_at": "2025-01-04",
+
+  "investigation_goals_to_codes": {
+    "trace_ubo": {
+      "description": "Trace beneficial ownership",
+      "output_codes": [67, 72, 73, 74],
+      "output_names": ["company_beneficial_owner_name", "company_shareholder_name", "company_shareholder_company", "company_shareholder_person"],
+      "relationships": ["beneficial_owner_of", "shareholder_of", "owner_of"],
+      "keywords": ["beneficial", "owner", "shareholder", "ownership", "ubo", "control"]
+    },
+    "corporate_structure": {
+      "description": "Map corporate structure and subsidiaries",
+      "output_codes": [42, 59, 73],
+      "output_names": ["company_name", "company_officer_name", "company_shareholder_company"],
+      "relationships": ["subsidiary_of", "parent_of", "legal_parent_of", "officer_of"],
+      "keywords": ["corporate", "structure", "subsidiary", "holding", "parent", "group"]
+    },
+    "verify_identity": {
+      "description": "Verify person identity and background",
+      "output_codes": [7, 31, 32, 33, 35, 38],
+      "output_names": ["person_name", "person_email", "person_phone", "person_address", "person_profile_url"],
+      "relationships": ["has_email", "has_phone", "has_address", "has_profile"],
+      "keywords": ["identity", "background", "verification", "biographical", "person", "individual"]
+    },
+    "find_assets": {
+      "description": "Locate assets (property, vehicles, vessels, aircraft)",
+      "output_codes": [20, 23, 24, 25, 106, 116, 121, 122],
+      "output_names": ["property_address", "vehicle_reg_id", "vessel_imo_id", "aircraft_reg_id", "property_owner", "vehicle_owner", "vessel_owner"],
+      "relationships": ["owner_of", "owned_by", "registered_in"],
+      "keywords": ["property", "asset", "land", "real estate", "yacht", "aircraft", "vessel", "vehicle"]
+    },
+    "litigation_history": {
+      "description": "Find litigation and court records",
+      "output_codes": [17],
+      "output_names": ["litigation_id"],
+      "relationships": ["involved_in_litigation"],
+      "keywords": ["court", "litigation", "lawsuit", "legal", "case", "judgment", "defendant", "plaintiff"]
+    },
+    "sanctions_check": {
+      "description": "Check sanctions and watchlists",
+      "output_codes": [],
+      "output_names": [],
+      "relationships": [],
+      "keywords": ["sanction", "watchlist", "OFAC", "screening", "pep", "adverse"]
+    },
+    "contact_discovery": {
+      "description": "Find contact information",
+      "output_codes": [1, 2, 32, 33, 44, 45],
+      "output_names": ["email", "phone", "person_email", "person_phone", "company_email", "company_phone"],
+      "relationships": ["has_email", "has_phone"],
+      "keywords": ["email", "phone", "contact", "reach"]
+    },
+    "domain_intelligence": {
+      "description": "Domain and web infrastructure analysis",
+      "output_codes": [6, 46],
+      "output_names": ["domain", "company_website"],
+      "relationships": ["has_website", "owns_domain", "links_to", "hosted_at"],
+      "keywords": ["domain", "website", "backlink", "infrastructure", "hosting"]
+    }
+  },
+
+  "methods_to_modules": {
+    "corporate_registry_search": {
+      "module": "corporella",
+      "description": "Company registry lookups",
+      "friction_typical": "open"
+    },
+    "humint": {
+      "module": null,
+      "description": "Human intelligence - interviews, sources",
+      "friction_typical": "restricted",
+      "automatable": false,
+      "note": "Not automatable - requires field work"
+    },
+    "media_monitoring": {
+      "module": "brute_search",
+      "description": "News and media search",
+      "friction_typical": "open"
+    },
+    "osint": {
+      "module": "eyed",
+      "description": "Open source intelligence gathering",
+      "friction_typical": "open"
+    },
+    "court_search": {
+      "module": "litigation_search",
+      "description": "Court records and litigation databases",
+      "friction_typical": "paywalled"
+    },
+    "court_records_search": {
+      "module": "litigation_search",
+      "description": "Court records lookups",
+      "friction_typical": "restricted"
+    },
+    "litigation_search": {
+      "module": "litigation_search",
+      "description": "Litigation and legal case databases",
+      "friction_typical": "paywalled"
+    },
+    "sanctions_screening": {
+      "module": "red_flag",
+      "description": "Sanctions and watchlist checks",
+      "friction_typical": "paywalled"
+    },
+    "regulatory_search": {
+      "module": "corporella",
+      "description": "Regulatory filings and databases",
+      "friction_typical": "open"
+    },
+    "regulatory_database_search": {
+      "module": "corporella",
+      "description": "Regulatory authority databases",
+      "friction_typical": "open"
+    },
+    "land_registry_search": {
+      "module": "property_search",
+      "description": "Land and property registry lookups",
+      "friction_typical": "paywalled"
+    },
+    "property_registry_search": {
+      "module": "property_search",
+      "description": "Property ownership lookups",
+      "friction_typical": "paywalled"
+    },
+    "social_media_monitoring": {
+      "module": "social_media",
+      "description": "Social media profile discovery",
+      "friction_typical": "open"
+    },
+    "financial_disclosure_analysis": {
+      "module": "corporella",
+      "description": "Financial disclosure and filing analysis",
+      "friction_typical": "open"
+    },
+    "grants_database_search": {
+      "module": "brute_search",
+      "description": "Government and EU grants databases",
+      "friction_typical": "open"
+    },
+    "freedom_of_information_lawsuit": {
+      "module": null,
+      "description": "FOI requests and lawsuits",
+      "friction_typical": "restricted",
+      "automatable": false
+    },
+    "test_purchases": {
+      "module": null,
+      "description": "Undercover test purchases",
+      "friction_typical": "restricted",
+      "automatable": false
+    },
+    "surveillance": {
+      "module": null,
+      "description": "Physical surveillance",
+      "friction_typical": "restricted",
+      "automatable": false
+    },
+    "trading_standards_coordination": {
+      "module": null,
+      "description": "Coordination with authorities",
+      "friction_typical": "restricted",
+      "automatable": false
+    },
+    "credit_check": {
+      "module": "corporella",
+      "description": "Credit and business info checks",
+      "friction_typical": "paywalled"
+    },
+    "credit_rating": {
+      "module": "corporella",
+      "description": "Credit rating lookups",
+      "friction_typical": "paywalled"
+    },
+    "trademark_search": {
+      "module": "brute_search",
+      "description": "Trademark registry searches",
+      "friction_typical": "open"
+    },
+    "cross_border_investigations": {
+      "module": null,
+      "description": "Multi-jurisdiction investigations",
+      "friction_typical": "restricted"
+    },
+    "website_analysis": {
+      "module": "alldom",
+      "description": "Website and domain analysis",
+      "friction_typical": "open"
+    },
+    "bankruptcy_search": {
+      "module": "litigation_search",
+      "description": "Insolvency and bankruptcy records",
+      "friction_typical": "open"
+    },
+    "vessel_tracking": {
+      "module": "asset_search",
+      "description": "Vessel and maritime registry lookups",
+      "friction_typical": "paywalled"
+    },
+    "domain_registration_search": {
+      "module": "alldom",
+      "description": "WHOIS and domain registration",
+      "friction_typical": "open"
+    },
+    "commercial_database_search": {
+      "module": "corporella",
+      "description": "Commercial data aggregators (D&B, etc.)",
+      "friction_typical": "paywalled"
+    },
+    "public_procurement_search": {
+      "module": "brute_search",
+      "description": "Government procurement databases",
+      "friction_typical": "open"
+    },
+    "financial_filings_analysis": {
+      "module": "corporella",
+      "description": "Financial statements and filings",
+      "friction_typical": "open"
+    },
+    "corporate_filings_analysis": {
+      "module": "corporella",
+      "description": "Corporate filing documents",
+      "friction_typical": "open"
+    }
+  },
+
+  "sources_to_aggregators": {
+    "Companies House": "companieshouse.gov.uk",
+    "UK land registry": "landregistry.data.gov.uk",
+    "UK Land Registry": "landregistry.data.gov.uk",
+    "OpenCorporates": "opencorporates.com",
+    "OCCRP Aleph": "aleph.occrp.org",
+    "Cypriot corporate registry": "efiling.drcor.mcit.gov.cy",
+    "Swiss corporate registry": "zefix.ch",
+    "Luxembourg registry": "lbr.lu",
+    "German corporate registry": "handelsregister.de",
+    "Hungarian company registry": "e-cegjegyzek.hu",
+    "MEKH": "mekh.hu",
+    "Dun & Bradstreet": "dnb.com",
+    "LinkedIn": "linkedin.com",
+    "Facebook": "facebook.com",
+    "Twitter": "twitter.com",
+    "Archive.org": "archive.org",
+    "Common Crawl": "commoncrawl.org",
+    "Majestic": "majestic.com"
+  },
+
+  "friction_levels": {
+    "open": {
+      "code": 1,
+      "description": "Free, no registration required",
+      "automatable": true,
+      "cost": 0
+    },
+    "restricted": {
+      "code": 2,
+      "description": "Requires registration or local access",
+      "automatable": "partial",
+      "cost": 0
+    },
+    "paywalled": {
+      "code": 3,
+      "description": "Requires subscription/payment",
+      "automatable": true,
+      "cost": "variable"
+    },
+    "impossible": {
+      "code": 4,
+      "description": "Not publicly accessible",
+      "automatable": false,
+      "cost": null
+    }
+  }
+}

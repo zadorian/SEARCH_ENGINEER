@@ -1,0 +1,73 @@
+{
+  "GLOBAL": [
+    {
+      "name": "BRUTE Search (Multi-Engine)",
+      "domain": "brute_search",
+      "url": "http://localhost:3000/api/search/stream/brute",
+      "search_url": "http://localhost:3000/api/search/stream/brute?query={q}",
+      "type": "search_aggregator",
+      "category": "search_engine",
+      "friction": "open",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        13,
+        147
+      ],
+      "outputs": [
+        211
+      ],
+      "handled_by": "brute",
+      "classification": "aggregator",
+      "id": "brute_search",
+      "jurisdiction": "GLOBAL",
+      "search_template": "{q}",
+      "notes": "Multi-engine brute search via Node BruteSearch.",
+      "capabilities": [
+        {
+          "rule_id": "BRUTE_GLOBAL_SEARCH",
+          "label": "BRUTE global search (multi-engine)",
+          "requires_any": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            13,
+            147
+          ],
+          "requires_all": [],
+          "returns": [
+            211
+          ],
+          "friction": "Open",
+          "resources": [
+            {
+              "type": "brute_search",
+              "config": {
+                "engines": [
+                  "GO",
+                  "BI",
+                  "DD",
+                  "BR",
+                  "YO",
+                  "PX",
+                  "EX"
+                ],
+                "wave": "instant_start",
+                "mode": "balanced"
+              },
+              "query_template": "{query}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

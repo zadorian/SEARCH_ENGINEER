@@ -1,0 +1,456 @@
+{
+  "$schema": "cluster_queries_v1",
+  "$description": "Pre-built Elasticsearch query templates for common cluster searches",
+
+  "queries": {
+
+    "corporate_company_search": {
+      "description": "Search for company by name across all corporate indices",
+      "cluster": "corporate",
+      "input_params": {
+        "query": {"type": "string", "required": true, "description": "Company name to search"},
+        "jurisdiction": {"type": "string", "required": false, "description": "Filter by jurisdiction code"},
+        "limit": {"type": "integer", "default": 50}
+      },
+      "indices": ["companies_unified", "openownership", "affiliate_linkedin_companies", "wdc-organization-entities"],
+      "query_template": {
+        "companies_unified": {
+          "bool": {
+            "must": [
+              {"match": {"name": {"query": "{{query}}", "fuzziness": "AUTO"}}}
+            ],
+            "filter": "{{#jurisdiction}}[{\"term\": {\"jurisdiction\": \"{{jurisdiction}}\"}}]{{/jurisdiction}}{{^jurisdiction}}[]{{/jurisdiction}}"
+          }
+        },
+        "openownership": {
+          "bool": {
+            "must": [
+              {"match": {"name": {"query": "{{query}}", "fuzziness": "AUTO"}}}
+            ],
+            "filter": [
+              {"term": {"entity_type": "registeredEntity"}}
+            ]
+          }
+        },
+        "affiliate_linkedin_companies": {
+          "match": {"name": {"query": "{{query}}", "fuzziness": "AUTO"}}
+        },
+        "wdc-organization-entities": {
+          "match": {"name": {"query": "{{query}}", "fuzziness": "AUTO"}}
+        }
+      },
+      "merge_strategy": {
+        "key": ["company_number", "name_normalized"],
+        "priority": ["companies_unified", "openownership", "affiliate_linkedin_companies", "wdc-organization-entities"],
+        "fields_to_merge": ["address", "officers", "industry", "employee_count"]
+      }
+    },
+
+    "corporate_by_reg_number": {
+      "description": "Lookup company by registration number",
+      "cluster": "corporate",
+      "input_params": {
+        "company_number": {"type": "string", "required": true},
+        "jurisdiction": {"type": "string", "required": false}
+      },
+      "indices": ["companies_unified", "openownership"],
+      "query_template": {
+        "companies_unified": {
+          "bool": {
+            "must": [
+              {"term": {"company_number": "{{company_number}}"}}
+            ]
+          }
+        },
+        "openownership": {
+          "bool": {
+            "must": [
+              {"term": {"company_number": "{{company_number}}"}}
+            ]
+          }
+        }
+      }
+    },
+
+    "breach_email_lookup": {
+      "description": "Find all breach records for an email address",
+      "cluster": "breach",
+      "input_params": {
+        "email": {"type": "string", "required": true},
+        "limit": {"type": "integer", "default": 100}
+      },
+      "indices": ["breach_records", "nexus_breach_records", "kazaword_emails"],
+      "query_template": {
+        "breach_records": {
+          "term": {"email": "{{email}}"}
+        },
+        "nexus_breach_records": {
+          "term": {"email": "{{email}}"}
+        },
+        "kazaword_emails": {
+          "term": {"email": "{{email}}"}
+        }
+      },
+      "result_fields": ["email", "username", "password", "hash", "hash_type", "breach_name", "breach_date", "ip", "phone", "name"],
+      "sensitivity": "high"
+    },
+
+    "breach_domain_exposure": {
+      "description": "Find all breached emails for a domain",
+      "cluster": "breach",
+      "input_params": {
+        "domain": {"type": "string", "required": true},
+        "limit": {"type": "integer", "default": 1000}
+      },
+      "indices": ["breach_records"],
+      "query_template": {
+        "breach_records": {
+          "term": {"email_domain": "{{domain}}"}
+        }
+      },
+      "aggregations": {
+        "breaches": {"terms": {"field": "breach_name", "size": 50}},
+        "years": {"date_histogram": {"field": "breach_date", "calendar_interval": "year"}}
+      }
+    },
+
+    "person_comprehensive": {
+      "description": "Comprehensive person search across all relevant indices",
+      "cluster": "person",
+      "input_params": {
+        "name": {"type": "string", "required": true},
+        "email": {"type": "string", "required": false},
+        "limit": {"type": "integer", "default": 50}
+      },
+      "indices": ["persons_unified", "wdc-person-entities", "linkedin_unified", "openownership", "breach_records"],
+      "query_template": {
+        "persons_unified": {
+          "bool": {
+            "should": [
+              {"match": {"name": {"query": "{{name}}", "fuzziness": "AUTO", "boost": 2}}},
+              {"term": {"email": "{{email}}"}}
+            ],
+            "minimum_should_match": 1
+          }
+        },
+        "wdc-person-entities": {
+          "bool": {
+            "should": [
+              {"match": {"name": {"query": "{{name}}", "fuzziness": "AUTO"}}},
+              {"match": {"givenName": "{{name}}"}},
+              {"match": {"familyName": "{{name}}"}}
+            ]
+          }
+        },
+        "linkedin_unified": {
+          "match": {"name": {"query": "{{name}}", "fuzziness": "AUTO"}}
+        },
+        "openownership": {
+          "bool": {
+            "must": [
+              {"match": {"name": {"query": "{{name}}", "fuzziness": "AUTO"}}}
+            ],
+            "filter": [
+              {"term": {"statement_type": "personStatement"}}
+            ]
+          }
+        },
+        "breach_records": {
+          "match": {"name": {"query": "{{name}}", "fuzziness": "AUTO"}}
+        }
+      },
+      "merge_strategy": {
+        "key": ["email", "name_normalized"],
+        "fields_to_merge": ["phone", "company", "title", "address", "linkedin_url"]
+      }
+    },
+
+    "domain_full_profile": {
+      "description": "Get complete domain profile from all sources",
+      "cluster": "domain",
+      "input_params": {
+        "domain": {"type": "string", "required": true}
+      },
+      "indices": ["unified_domain_profiles", "domains_unified", "cymonides_cc_domain_vertices", "top_domains", "atlas_unified_domains"],
+      "query_template": {
+        "unified_domain_profiles": {"term": {"domain": "{{domain}}"}},
+        "domains_unified": {"term": {"domain": "{{domain}}"}},
+        "cymonides_cc_domain_vertices": {"term": {"domain": "{{domain}}"}},
+        "top_domains": {"term": {"domain": "{{domain}}"}},
+        "atlas_unified_domains": {"term": {"domain": "{{domain}}"}}
+      },
+      "strategy": "cascade",
+      "merge_all_results": true
+    },
+
+    "domain_backlinks": {
+      "description": "Find domains linking to a target domain",
+      "cluster": "web_graph",
+      "input_params": {
+        "domain": {"type": "string", "required": true},
+        "limit": {"type": "integer", "default": 100}
+      },
+      "indices": ["cymonides_cc_domain_edges"],
+      "query_template": {
+        "cymonides_cc_domain_edges": {
+          "term": {"to_domain": "{{domain}}"}
+        }
+      },
+      "result_fields": ["from_domain", "from_url", "anchor_text", "crawl_date"],
+      "aggregations": {
+        "top_referring_domains": {"terms": {"field": "from_domain", "size": 100}}
+      }
+    },
+
+    "domain_outlinks": {
+      "description": "Find domains linked from a source domain",
+      "cluster": "web_graph",
+      "input_params": {
+        "domain": {"type": "string", "required": true},
+        "limit": {"type": "integer", "default": 100}
+      },
+      "indices": ["cymonides_cc_domain_edges"],
+      "query_template": {
+        "cymonides_cc_domain_edges": {
+          "term": {"from_domain": "{{domain}}"}
+        }
+      },
+      "result_fields": ["to_domain", "to_url", "anchor_text", "crawl_date"],
+      "aggregations": {
+        "top_linked_domains": {"terms": {"field": "to_domain", "size": 100}}
+      }
+    },
+
+    "corpus_search": {
+      "description": "Full-text search across document corpus",
+      "cluster": "corpus",
+      "input_params": {
+        "query": {"type": "string", "required": true},
+        "domain": {"type": "string", "required": false},
+        "language": {"type": "string", "required": false},
+        "limit": {"type": "integer", "default": 50}
+      },
+      "indices": ["cymonides-2", "linklater_corpus"],
+      "query_template": {
+        "cymonides-2": {
+          "bool": {
+            "must": [
+              {"multi_match": {
+                "query": "{{query}}",
+                "fields": ["title^3", "content"],
+                "type": "best_fields"
+              }}
+            ],
+            "filter": "{{#domain}}[{\"term\": {\"domain\": \"{{domain}}\"}}]{{/domain}}{{^domain}}[]{{/domain}}"
+          }
+        },
+        "linklater_corpus": {
+          "match": {"content": "{{query}}"}
+        }
+      },
+      "highlight": {
+        "fields": {"content": {"fragment_size": 200, "number_of_fragments": 3}}
+      }
+    },
+
+    "address_entities": {
+      "description": "Find all entities at a given address",
+      "cluster": "corporate",
+      "input_params": {
+        "address": {"type": "string", "required": true},
+        "postcode": {"type": "string", "required": false},
+        "limit": {"type": "integer", "default": 100}
+      },
+      "indices": ["companies_unified", "openownership", "persons_unified"],
+      "query_template": {
+        "companies_unified": {
+          "match": {"address": {"query": "{{address}}", "fuzziness": "AUTO"}}
+        },
+        "openownership": {
+          "match": {"address": {"query": "{{address}}", "fuzziness": "AUTO"}}
+        },
+        "persons_unified": {
+          "match": {"address": {"query": "{{address}}", "fuzziness": "AUTO"}}
+        }
+      }
+    },
+
+    "beneficial_ownership_chain": {
+      "description": "Trace beneficial ownership from a company",
+      "cluster": "corporate",
+      "input_params": {
+        "company_name": {"type": "string", "required": false},
+        "company_number": {"type": "string", "required": false}
+      },
+      "indices": ["openownership"],
+      "query_template": {
+        "openownership": {
+          "bool": {
+            "should": [
+              {"term": {"company_number": "{{company_number}}"}},
+              {"match": {"name": "{{company_name}}"}}
+            ],
+            "minimum_should_match": 1
+          }
+        }
+      },
+      "post_processing": "Follow ownershipOrControlStatement chains to ultimate beneficial owners"
+    },
+
+    "uk_property_by_company": {
+      "description": "Find UK properties owned by a company",
+      "cluster": "uk_property",
+      "input_params": {
+        "company_name": {"type": "string", "required": true},
+        "limit": {"type": "integer", "default": 100}
+      },
+      "indices": ["uk_ccod", "uk_ocod"],
+      "query_template": {
+        "uk_ccod": {
+          "multi_match": {
+            "query": "{{company_name}}",
+            "fields": ["proprietor_name_1", "proprietor_name_2"],
+            "type": "best_fields",
+            "fuzziness": "AUTO"
+          }
+        },
+        "uk_ocod": {
+          "match": {
+            "proprietor_name": {
+              "query": "{{company_name}}",
+              "fuzziness": "AUTO"
+            }
+          }
+        }
+      },
+      "result_fields": ["title_number", "property_address", "postcode", "tenure", "price_paid", "proprietor_name", "proprietor_name_1", "company_reg_no_1", "country_incorporated", "date_proprietor_added"],
+      "merge_strategy": {
+        "key": ["title_number"],
+        "priority": ["uk_ccod", "uk_ocod"]
+      }
+    },
+
+    "uk_property_overseas_by_jurisdiction": {
+      "description": "Find UK properties owned by overseas companies from a specific jurisdiction",
+      "cluster": "uk_property",
+      "input_params": {
+        "company_name": {"type": "string", "required": true},
+        "country_incorporated": {"type": "string", "required": true, "description": "e.g., JERSEY, BRITISH VIRGIN ISLANDS, CAYMAN ISLANDS"},
+        "limit": {"type": "integer", "default": 100}
+      },
+      "indices": ["uk_ocod"],
+      "query_template": {
+        "uk_ocod": {
+          "bool": {
+            "must": [
+              {"match": {"proprietor_name": {"query": "{{company_name}}", "fuzziness": "AUTO"}}}
+            ],
+            "filter": [
+              {"term": {"country_incorporated": "{{country_incorporated}}"}}
+            ]
+          }
+        }
+      },
+      "result_fields": ["title_number", "property_address", "postcode", "tenure", "price_paid", "proprietor_name", "country_incorporated", "date_proprietor_added"]
+    },
+
+    "uk_property_by_postcode": {
+      "description": "Find all property ownership records for a UK postcode",
+      "cluster": "uk_property",
+      "input_params": {
+        "postcode": {"type": "string", "required": true},
+        "limit": {"type": "integer", "default": 200}
+      },
+      "indices": ["uk_ccod", "uk_ocod"],
+      "query_template": {
+        "uk_ccod": {
+          "bool": {
+            "should": [
+              {"term": {"postcode": "{{postcode}}"}},
+              {"prefix": {"postcode_district": "{{postcode}}"}}
+            ]
+          }
+        },
+        "uk_ocod": {
+          "bool": {
+            "should": [
+              {"term": {"postcode": "{{postcode}}"}},
+              {"prefix": {"postcode_district": "{{postcode}}"}}
+            ]
+          }
+        }
+      },
+      "result_fields": ["title_number", "property_address", "postcode", "tenure", "price_paid", "proprietor_name_1", "proprietor_name", "company_reg_no_1", "country_incorporated"]
+    },
+
+    "uk_property_by_address": {
+      "description": "Find property records by address text search",
+      "cluster": "uk_property",
+      "input_params": {
+        "address": {"type": "string", "required": true},
+        "limit": {"type": "integer", "default": 100}
+      },
+      "indices": ["uk_ccod", "uk_ocod", "uk_leases"],
+      "query_template": {
+        "uk_ccod": {
+          "match": {"property_address": {"query": "{{address}}", "fuzziness": "AUTO"}}
+        },
+        "uk_ocod": {
+          "match": {"property_address": {"query": "{{address}}", "fuzziness": "AUTO"}}
+        },
+        "uk_leases": {
+          "match": {"property_description": {"query": "{{address}}", "fuzziness": "AUTO"}}
+        }
+      }
+    },
+
+    "uk_property_offshore_all": {
+      "description": "Find UK properties owned by offshore jurisdiction companies",
+      "cluster": "uk_property",
+      "input_params": {
+        "company_name": {"type": "string", "required": false},
+        "limit": {"type": "integer", "default": 100}
+      },
+      "indices": ["uk_ocod"],
+      "query_template": {
+        "uk_ocod": {
+          "bool": {
+            "must": "{{#company_name}}[{\"match\": {\"proprietor_name\": {\"query\": \"{{company_name}}\", \"fuzziness\": \"AUTO\"}}}]{{/company_name}}{{^company_name}}[{\"match_all\": {}}]{{/company_name}}",
+            "filter": [
+              {"terms": {"country_incorporated": ["JERSEY", "GUERNSEY", "ISLE OF MAN", "BRITISH VIRGIN ISLANDS", "CAYMAN ISLANDS", "PANAMA", "SEYCHELLES", "MAURITIUS", "LIECHTENSTEIN", "GIBRALTAR", "BAHAMAS"]}}
+            ]
+          }
+        }
+      },
+      "aggregations": {
+        "by_jurisdiction": {"terms": {"field": "country_incorporated", "size": 50}},
+        "by_region": {"terms": {"field": "region", "size": 20}},
+        "total_value": {"sum": {"field": "price_paid"}}
+      }
+    }
+  },
+
+  "aggregation_templates": {
+    "breach_stats": {
+      "description": "Aggregate breach statistics",
+      "aggs": {
+        "by_breach": {"terms": {"field": "breach_name", "size": 50}},
+        "by_year": {"date_histogram": {"field": "breach_date", "calendar_interval": "year"}},
+        "hash_types": {"terms": {"field": "hash_type", "size": 10}}
+      }
+    },
+    "company_by_jurisdiction": {
+      "description": "Aggregate companies by jurisdiction",
+      "aggs": {
+        "jurisdictions": {"terms": {"field": "jurisdiction", "size": 100}},
+        "status": {"terms": {"field": "status", "size": 10}}
+      }
+    },
+    "domain_by_tld": {
+      "description": "Aggregate domains by TLD",
+      "aggs": {
+        "tlds": {"terms": {"field": "tld", "size": 50}}
+      }
+    }
+  }
+}

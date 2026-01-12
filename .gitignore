@@ -3,3 +3,24 @@ golden_lists_with_embeddings.json
 __pycache__/
 matrix_backup_*/
 batch_jobs/
+
+# Large data directories
+**/linkdata/
+**/venv/
+**/.venv/
+**/node_modules/
+**/_deprecated_backup/
+**/cache/
+**/*.db
+**/*.db-shm
+**/*.db-wal
+*.log
+.env
+**/*.ndjson
+**/*.jsonl
+
+# Large files that exceed GitHub limit
+**/cluster_*.idx
+**/linkedin_urls*.txt
+**/*_OLD.json
+**/_archive/

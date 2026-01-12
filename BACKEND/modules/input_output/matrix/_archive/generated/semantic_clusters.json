@@ -1,0 +1,731 @@
+{
+  "version": "1.0.0",
+  "description": "Semantic clusters map natural language concepts to field codes for intuitive routing",
+  "clusters": [
+    {
+      "id": "control",
+      "label": "Who Controls This Entity",
+      "description": "Ownership, management, and influence structures",
+      "keywords": [
+        "control",
+        "owns",
+        "owner",
+        "ownership",
+        "controls",
+        "behind",
+        "ultimate",
+        "beneficial",
+        "UBO",
+        "shareholder",
+        "director",
+        "officer",
+        "management"
+      ],
+      "member_codes": [
+        58,
+        59,
+        60,
+        66,
+        67,
+        68,
+        69,
+        71,
+        72,
+        73,
+        74,
+        49
+      ],
+      "code_labels": {
+        "49": "company_status",
+        "58": "company_officers",
+        "59": "company_officer_name",
+        "60": "company_officer_role",
+        "66": "company_beneficial_owners",
+        "67": "company_beneficial_owner_name",
+        "68": "company_beneficial_owner_ownership_pct",
+        "69": "company_beneficial_owner_control_nature",
+        "71": "company_shareholders",
+        "72": "company_shareholder_name",
+        "73": "company_shareholder_company",
+        "74": "company_shareholder_person"
+      },
+      "priority_order": [
+        66,
+        71,
+        58,
+        67,
+        72,
+        59
+      ],
+      "context_hints": [
+        {
+          "if_jurisdiction": [
+            "US",
+            "US-DE",
+            "US-NV",
+            "US-WY"
+          ],
+          "deprioritize": [
+            66,
+            67,
+            68,
+            69
+          ],
+          "reason": "UBO rarely available in US state registries; try SEC filings for public companies"
+        },
+        {
+          "if_jurisdiction": [
+            "CH",
+            "LI"
+          ],
+          "deprioritize": [
+            66,
+            71
+          ],
+          "reason": "Swiss/Liechtenstein private company ownership is opaque by law"
+        }
+      ],
+      "related_rules": [
+        "COMPANY_BENEFICIAL_OWNERS",
+        "COMPANY_SHAREHOLDERS",
+        "COMPANY_OFFICERS"
+      ]
+    },
+    {
+      "id": "identity",
+      "label": "Who Is This Person",
+      "description": "Personal identification, contact details, and professional background",
+      "keywords": [
+        "who",
+        "identity",
+        "person",
+        "individual",
+        "contact",
+        "email",
+        "phone",
+        "address",
+        "profile",
+        "background"
+      ],
+      "member_codes": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        188,
+        189,
+        190
+      ],
+      "code_labels": {
+        "31": "person_name",
+        "32": "person_email",
+        "33": "person_phone",
+        "34": "person_website",
+        "35": "person_address",
+        "36": "person_country",
+        "37": "person_dob",
+        "38": "person_profile_url",
+        "39": "person_platform",
+        "40": "person_role_job",
+        "41": "person_employer_job",
+        "188": "person_social_profiles",
+        "189": "person_phone_records",
+        "190": "person_identity_graph"
+      },
+      "priority_order": [
+        31,
+        38,
+        188,
+        32,
+        33,
+        35,
+        40,
+        41
+      ],
+      "context_hints": [],
+      "related_rules": [
+        "PERSON_CONTACT_DISCOVERY",
+        "SOCIAL_FROM_LINKEDIN_URL",
+        "ENRICH_FROM_EMAIL"
+      ]
+    },
+    {
+      "id": "financial",
+      "label": "Financial Information",
+      "description": "Financial statements, accounts, share capital, property values",
+      "keywords": [
+        "financial",
+        "finance",
+        "money",
+        "accounts",
+        "statements",
+        "revenue",
+        "profit",
+        "capital",
+        "value",
+        "worth",
+        "assets",
+        "liabilities"
+      ],
+      "member_codes": [
+        54,
+        55,
+        56,
+        57,
+        111,
+        112,
+        113,
+        114
+      ],
+      "code_labels": {
+        "54": "company_financial_statements",
+        "55": "company_financial_year_end",
+        "56": "company_share_capital",
+        "57": "company_accounts_filing_date",
+        "111": "property_value",
+        "112": "property_purchase_date",
+        "113": "property_purchase_price",
+        "114": "property_mortgage"
+      },
+      "priority_order": [
+        54,
+        56,
+        111,
+        113
+      ],
+      "context_hints": [
+        {
+          "if_jurisdiction": [
+            "GB",
+            "IE"
+          ],
+          "prioritize": [
+            54,
+            57
+          ],
+          "reason": "UK/Ireland companies must file annual accounts"
+        },
+        {
+          "if_jurisdiction": [
+            "US"
+          ],
+          "deprioritize": [
+            54
+          ],
+          "reason": "US private company financials not publicly available; try SEC for public cos"
+        }
+      ],
+      "related_rules": [
+        "COMPANY_FILINGS",
+        "PROPERTY_FROM_ADDRESS_OR_IDS"
+      ]
+    },
+    {
+      "id": "legal",
+      "label": "Legal & Regulatory Issues",
+      "description": "Litigation, sanctions, regulatory actions, licenses, permits",
+      "keywords": [
+        "legal",
+        "lawsuit",
+        "litigation",
+        "court",
+        "case",
+        "sanctions",
+        "sanctioned",
+        "OFAC",
+        "SDN",
+        "regulatory",
+        "fine",
+        "penalty",
+        "license",
+        "permit",
+        "violation"
+      ],
+      "member_codes": [
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        90,
+        91,
+        92,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104
+      ],
+      "code_labels": {
+        "78": "litigation_id",
+        "79": "litigation_about_company",
+        "80": "litigation_about_person",
+        "81": "litigation_title",
+        "82": "litigation_parties",
+        "83": "litigation_court",
+        "84": "litigation_filing_date",
+        "85": "litigation_status",
+        "86": "litigation_judgment",
+        "87": "litigation_judgment_date",
+        "88": "litigation_outcome",
+        "90": "regulatory_actions",
+        "91": "license_status",
+        "92": "license_type",
+        "99": "sanction_status",
+        "100": "sanction_list",
+        "101": "sanction_program",
+        "102": "sanction_date_added",
+        "103": "sanction_date_removed",
+        "104": "sanction_reason"
+      },
+      "priority_order": [
+        99,
+        100,
+        78,
+        90,
+        85,
+        86
+      ],
+      "context_hints": [
+        {
+          "if_jurisdiction": [
+            "RU",
+            "BY",
+            "IR",
+            "KP",
+            "SY",
+            "VE",
+            "CU"
+          ],
+          "prioritize": [
+            99,
+            100,
+            101
+          ],
+          "reason": "High-sanctions jurisdictions; always check OFAC/EU/UN lists first"
+        }
+      ],
+      "related_rules": [
+        "SANCTIONS_FROM_NAME",
+        "LITIGATION_FROM_PARTY",
+        "REGULATORY_FROM_FILING_OR_ENTITY"
+      ]
+    },
+    {
+      "id": "digital_footprint",
+      "label": "Online Presence & History",
+      "description": "Domains, websites, archives, WHOIS, DNS, historical snapshots",
+      "keywords": [
+        "website",
+        "domain",
+        "online",
+        "digital",
+        "web",
+        "archive",
+        "wayback",
+        "history",
+        "WHOIS",
+        "DNS",
+        "SSL",
+        "certificate"
+      ],
+      "member_codes": [
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        191,
+        192,
+        193,
+        195,
+        196,
+        197,
+        200,
+        214,
+        225
+      ],
+      "code_labels": {
+        "129": "domain_url",
+        "130": "domain_ip",
+        "131": "domain_registrant_person",
+        "132": "domain_registrant_company",
+        "133": "domain_registrant_email",
+        "134": "domain_registrant_phone",
+        "135": "domain_registrant_address",
+        "136": "domain_creation_date",
+        "137": "domain_update_date",
+        "138": "domain_expiry_date",
+        "139": "domain_nameservers",
+        "140": "domain_status_codes",
+        "141": "domain_whois_raw",
+        "191": "domain_backlinks",
+        "192": "domain_wayback_snapshots",
+        "193": "domain_dns_records",
+        "195": "domain_whois_history",
+        "196": "domain_ssl_certificates",
+        "197": "domain_url_timelines",
+        "200": "domain_subdomains",
+        "214": "domain_archives",
+        "225": "archive_snapshots"
+      },
+      "priority_order": [
+        129,
+        131,
+        132,
+        192,
+        191,
+        214,
+        200
+      ],
+      "context_hints": [],
+      "related_rules": [
+        "WHOIS_FROM_DOMAIN",
+        "MAJESTIC_BACKLINK_DATA"
+      ]
+    },
+    {
+      "id": "network",
+      "label": "Connected Entities & Relationships",
+      "description": "Link analysis, entity extraction, network mapping, related domains",
+      "keywords": [
+        "connected",
+        "related",
+        "network",
+        "link",
+        "relationship",
+        "associated",
+        "backlink",
+        "outlink",
+        "GA code",
+        "tracking",
+        "cluster"
+      ],
+      "member_codes": [
+        217,
+        218,
+        219,
+        220,
+        221,
+        223,
+        230,
+        231,
+        232,
+        233,
+        234,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245
+      ],
+      "code_labels": {
+        "217": "backlink_domains",
+        "218": "backlink_urls",
+        "219": "outlink_domains",
+        "220": "outlink_urls",
+        "221": "link_velocity",
+        "223": "shared_link_targets",
+        "230": "ga_tracking_codes",
+        "231": "ga_related_domains",
+        "232": "subdomain_list",
+        "233": "whois_cluster",
+        "234": "reverse_whois_domains",
+        "240": "extracted_persons",
+        "241": "extracted_companies",
+        "242": "extracted_emails",
+        "243": "extracted_phones",
+        "244": "extracted_addresses",
+        "245": "extracted_all_entities"
+      },
+      "priority_order": [
+        240,
+        241,
+        217,
+        231,
+        234,
+        230
+      ],
+      "context_hints": [],
+      "related_rules": [
+        "MAJESTIC_BACKLINK_DATA",
+        "LINKLATER_ENTITY_EXTRACTION"
+      ]
+    },
+    {
+      "id": "assets",
+      "label": "Physical Assets",
+      "description": "Property, vehicles, vessels, aircraft ownership and registration",
+      "keywords": [
+        "property",
+        "real estate",
+        "land",
+        "vehicle",
+        "car",
+        "vessel",
+        "ship",
+        "boat",
+        "aircraft",
+        "plane",
+        "jet",
+        "yacht",
+        "asset"
+      ],
+      "member_codes": [
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128
+      ],
+      "code_labels": {
+        "106": "property_owner",
+        "107": "property_previous_owners",
+        "108": "property_cadastral_id",
+        "109": "property_title_id",
+        "110": "property_size",
+        "111": "property_value",
+        "112": "property_purchase_date",
+        "113": "property_purchase_price",
+        "114": "property_mortgage",
+        "115": "property_type",
+        "116": "vehicle_owner",
+        "117": "vehicle_reg_id",
+        "118": "vehicle_vin_id",
+        "119": "vehicle_make_model",
+        "120": "vehicle_year",
+        "121": "vessel_owner",
+        "122": "vessel_name",
+        "123": "vessel_imo_id",
+        "124": "vessel_flag",
+        "125": "aircraft_owner",
+        "126": "aircraft_name",
+        "127": "aircraft_reg_id",
+        "128": "aircraft_type"
+      },
+      "priority_order": [
+        106,
+        116,
+        121,
+        125,
+        111
+      ],
+      "context_hints": [
+        {
+          "if_jurisdiction": [
+            "GB"
+          ],
+          "prioritize": [
+            106,
+            107
+          ],
+          "reason": "UK Land Registry is comprehensive and searchable"
+        }
+      ],
+      "related_rules": [
+        "PROPERTY_FROM_ADDRESS_OR_IDS",
+        "PROPERTY_FROM_OWNER",
+        "VEHICLE_FROM_REG",
+        "VESSEL_FROM_IMO",
+        "AIRCRAFT_FROM_REG"
+      ]
+    },
+    {
+      "id": "breach_exposure",
+      "label": "Data Breaches & OSINT",
+      "description": "Breach databases, leaked credentials, social profiles, OSINT sweeps",
+      "keywords": [
+        "breach",
+        "leak",
+        "password",
+        "credential",
+        "hack",
+        "exposed",
+        "OSINT",
+        "dehashed",
+        "haveibeenpwned"
+      ],
+      "member_codes": [
+        142,
+        143,
+        144,
+        145,
+        170,
+        171,
+        172,
+        173,
+        175,
+        176,
+        177,
+        187
+      ],
+      "code_labels": {
+        "142": "breach_password_hash",
+        "143": "breach_password_plain",
+        "144": "breach_source",
+        "145": "breach_date",
+        "170": "username_osint_accounts",
+        "171": "username_email_hits",
+        "172": "username_breach_exposures",
+        "173": "username_related_entities",
+        "175": "phone_osint_profiles",
+        "176": "phone_breach_records",
+        "177": "phone_related_entities",
+        "187": "person_email_breaches"
+      },
+      "priority_order": [
+        187,
+        172,
+        176,
+        143,
+        144
+      ],
+      "context_hints": [],
+      "related_rules": [
+        "EMAIL_OSINT_SWEEP",
+        "USERNAME_OSINT_SWEEP",
+        "PHONE_OSINT_SWEEP",
+        "BREACH_EXPOSURE_LOOKUP"
+      ]
+    },
+    {
+      "id": "events_topics",
+      "label": "Events, Topics & Themes",
+      "description": "ET3 extracted events, topics, themes, timelines, and causal relationships",
+      "keywords": [
+        "event",
+        "topic",
+        "theme",
+        "timeline",
+        "happened",
+        "incident",
+        "IPO",
+        "merger",
+        "acquisition",
+        "lawsuit",
+        "investigation"
+      ],
+      "member_codes": [
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        279,
+        280
+      ],
+      "code_labels": {
+        "260": "event_name",
+        "261": "event_date",
+        "262": "event_entities",
+        "263": "topic_canonical",
+        "264": "topic_spatial_context",
+        "265": "theme_id",
+        "266": "theme_keywords",
+        "267": "extracted_events",
+        "268": "extracted_topics",
+        "269": "extracted_themes",
+        "270": "event_timeline",
+        "271": "topic_entity_map",
+        "272": "causal_chain",
+        "273": "event_coordinate",
+        "274": "topic_coordinate",
+        "275": "narrative_events",
+        "276": "narrative_topics",
+        "279": "event_profile",
+        "280": "topic_profile"
+      },
+      "priority_order": [
+        267,
+        270,
+        268,
+        260,
+        263
+      ],
+      "context_hints": [],
+      "related_rules": [
+        "ET3_EXTRACT_EVENTS",
+        "ET3_EXTRACT_TOPICS"
+      ]
+    }
+  ],
+  "cluster_relationships": [
+    {
+      "from": "control",
+      "to": "identity",
+      "relationship": "officers/UBOs are persons",
+      "chain_pattern": "Get officers → Enrich person identity"
+    },
+    {
+      "from": "digital_footprint",
+      "to": "network",
+      "relationship": "domains reveal connections",
+      "chain_pattern": "WHOIS → Extract entities → Map network"
+    },
+    {
+      "from": "legal",
+      "to": "events_topics",
+      "relationship": "legal issues are events",
+      "chain_pattern": "Litigation → Extract as event → Build timeline"
+    },
+    {
+      "from": "network",
+      "to": "control",
+      "relationship": "extracted companies need ownership",
+      "chain_pattern": "Extract companies → Get officers/UBO"
+    }
+  ]
+}

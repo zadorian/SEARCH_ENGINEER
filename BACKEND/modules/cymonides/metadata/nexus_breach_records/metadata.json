@@ -1,0 +1,107 @@
+{
+  "index_name": "nexus_breach_records",
+  "description": "Parsed breach records from data leaks with structured fields for emails, passwords, usernames",
+  "document_count": 197668,
+  "size": "90.3mb",
+  "status": "yellow",
+  "shards": {
+    "primary": 1,
+    "replica": 1
+  },
+  "health": "yellow (replica not allocated)",
+  "use_case": "data-breaches",
+  "related_indices": [
+    "nexus_breaches (breach metadata)",
+    "cymonides-2 (source documents)",
+    "cymonides-1-project-* (entity graphs)"
+  ],
+  "schema": {
+    "breach_name": "keyword - Name of the breach (e.g., LinkedInBreach2012)",
+    "raw_content": "text - Original line from breach file (email:password format)",
+    "parsed_fields": {
+      "email": "keyword - Extracted email address",
+      "password": "keyword - Plain text password (if available)",
+      "username": "keyword - Username (if available)",
+      "phone": "keyword - Phone number (if available)",
+      "additional": "object - Any extra fields parsed from record"
+    },
+    "file_path": "keyword - Source file location in Raidforums archive",
+    "line_number": "long - Line number in source file",
+    "record_id": "keyword - Unique identifier (breach_name + line_number)",
+    "timestamp": "date - Breach date or record creation date",
+    "node_ids": "keyword[] - Associated entity node IDs in C-1"
+  },
+  "sample_document": {
+    "_id": "linkedin_00042",
+    "breach_name": "LinkedInBreach2012",
+    "raw_content": "user@example.com:password123",
+    "parsed_fields": {
+      "email": "user@example.com",
+      "password": "password123",
+      "username": "user123",
+      "phone": null,
+      "additional": {}
+    },
+    "file_path": "/DATABASES/linkedin/combo.txt",
+    "line_number": 42,
+    "record_id": "linkedin_00000042",
+    "timestamp": "2012-06-05T00:00:00Z",
+    "node_ids": ["email_node_id", "person_node_id"]
+  },
+  "query_patterns": {
+    "search_by_email": {
+      "query": {
+        "term": {
+          "parsed_fields.email.keyword": "user@example.com"
+        }
+      }
+    },
+    "domain_exposure": {
+      "query": {
+        "wildcard": {
+          "parsed_fields.email": "*@example.com"
+        }
+      },
+      "aggs": {
+        "breaches": {
+          "terms": {
+            "field": "breach_name.keyword"
+          }
+        }
+      }
+    },
+    "password_reuse": {
+      "query": {
+        "term": {
+          "parsed_fields.password.keyword": "password123"
+        }
+      },
+      "aggs": {
+        "emails": {
+          "terms": {
+            "field": "parsed_fields.email.keyword"
+          }
+        }
+      }
+    }
+  },
+  "data_source": {
+    "origin": "Raidforums Archive",
+    "location": "/Volumes/My Book/Raidforums/",
+    "total_dataset_size": "497GB",
+    "indexed_subset": "197,668 records (0.04% of full dataset)",
+    "unindexed_records": "Estimated 100M-500M records pending indexing"
+  },
+  "security_notes": [
+    "Contains PII (emails, passwords, phone numbers)",
+    "Access restricted to authorized investigators only",
+    "Do not share raw breach data publicly",
+    "Redact credentials in reports",
+    "Follow data protection regulations"
+  ],
+  "performance": {
+    "email_lookup": "Fast (keyword match)",
+    "domain_wildcard": "Moderate (wildcard on 197K docs)",
+    "password_analysis": "Fast (keyword aggregation)"
+  }
+}

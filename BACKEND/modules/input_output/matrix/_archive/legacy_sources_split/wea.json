@@ -1,0 +1,107 @@
+{
+  "UK": [
+    {
+      "name": "J D Weatherpoon",
+      "domain": "jdwetherspoon.co.uk",
+      "url": "http://www.jdwetherspoon.co.uk/home/pubs/find/{q}",
+      "search_url": "http://www.jdwetherspoon.co.uk/home/pubs/find/{q}",
+      "type": "weather_service",
+      "category": "wea",
+      "friction": "public",
+      "jurisdictions": [
+        "UK"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "jdwetherspoon.co.uk_weather_imported",
+      "jurisdiction": "UK",
+      "search_template": "http://www.jdwetherspoon.co.uk/home/pubs/find/{q}",
+      "section": "wea",
+      "access": "public",
+      "notes": "Imported from weather_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "weather"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}",
+      "input_schema": {
+        "search_by_name": {
+          "input_type": "company_name",
+          "format": "free_text",
+          "format_pattern": null,
+          "examples": [
+            "Wetherspoon Pub"
+          ],
+          "accepts_wildcards": true,
+          "case_sensitive": false,
+          "max_length": null
+        }
+      },
+      "thematic_tags": [
+        "corporate_registry",
+        "branches"
+      ],
+      "language": "en",
+      "requires_translation": false,
+      "enhanced_at": "2025-12-18T08:51:04.834276",
+      "methodology": {
+        "category": null,
+        "match_type": "jurisdiction_default",
+        "atoms": [
+          "REGISTRY_COMPANY",
+          "OSINT_GENERAL",
+          "MEDIA_MONITORING"
+        ],
+        "friction": "open",
+        "success_rate": 0.8692946058091287
+      }
+    }
+  ],
+  "GLOBAL": [
+    {
+      "name": "Mobile Weather Underground",
+      "domain": "mobile.wunderground.com",
+      "url": "http://mobile.wunderground.com/q/{q}",
+      "search_url": "http://mobile.wunderground.com/q/{q}",
+      "type": "weather_service",
+      "category": "wea",
+      "friction": "public",
+      "jurisdictions": [
+        "GLOBAL"
+      ],
+      "inputs": [
+        13
+      ],
+      "outputs": [],
+      "handled_by": "TORPEDO",
+      "classification": "",
+      "id": "mobile.wunderground.com_weather_imported",
+      "jurisdiction": "GLOBAL",
+      "search_template": "http://mobile.wunderground.com/q/{q}",
+      "section": "wea",
+      "access": "public",
+      "notes": "Imported from weather_bangs.json",
+      "flows": [],
+      "metadata": {
+        "source": "bang_import_all",
+        "original_category": "weather"
+      },
+      "searchable": true,
+      "search_input_codes": [
+        13
+      ],
+      "search_input_type": "keyword",
+      "search_placeholder": "{q}"
+    }
+  ]
+}

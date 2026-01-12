@@ -1,0 +1,732 @@
+#!/usr/bin/env python3
+"""
+UniversalExtractor - Vector-First Intelligence Extraction
+==========================================================
+
+Philosophy: "Everything is an Extraction"
+
+This module implements the Three Pillars of Extraction:
+1. Conceptual Extraction (Subject) - Themes + Phenomena via embedding comparison
+2. Temporal Extraction (Time) - Publishing Date + Content Timeline
+3. Spatial Extraction (Space) - Location + Political Hierarchy
+
+The Event is the automatic intersection:
+    Event = Entity + Phenomenon + Time + Space
+
+Uses multilingual-e5-base (768 dims, 100+ languages) for semantic comparison,
+ensuring "AI" matches "Artificial Intelligence" and "Merger" matches "Fusion" (German).
+"""
+
+import json
+import logging
+import re
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple, Any
+from dataclasses import dataclass, field
+from datetime import datetime
+import numpy as np
+
+# Import temporal hierarchy derivation (handle various import contexts)
+try:
+    from .temporal_hierarchy import derive_temporal_hierarchy, extract_periods_from_text
+except ImportError:
+    try:
+        from temporal_hierarchy import derive_temporal_hierarchy, extract_periods_from_text
+    except ImportError:
+        # Fallback: load from same directory as this file
+        import importlib.util
+        _th_path = Path(__file__).parent / "temporal_hierarchy.py"
+        _th_spec = importlib.util.spec_from_file_location("temporal_hierarchy", _th_path)
+        _th_module = importlib.util.module_from_spec(_th_spec)
+        _th_spec.loader.exec_module(_th_module)
+        derive_temporal_hierarchy = _th_module.derive_temporal_hierarchy
+        extract_periods_from_text = _th_module.extract_periods_from_text
+
+logger = logging.getLogger(__name__)
+
+# Lazy load to avoid import issues
+_model = None
+_golden_embeddings = None
+_red_flag_entities = None
+
+
+def get_red_flag_entities():
+    """Load and cache red flag entity lists."""
+    global _red_flag_entities
+    if _red_flag_entities is not None:
+        return _red_flag_entities
+
+    # Look in CYMONIDES/golden_lists/ first, then fall back to input_output/matrix/
+    # Fix: Use absolute path for reliability in /data environment
+    red_flag_path = Path("/data/golden_lists/red_flag_entities.json")
+    if not red_flag_path.exists():
+        red_flag_path = Path("/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/red_flag_entities.json")
+    if not red_flag_path.exists():
+        logger.warning(f"Red flag entities not found at {red_flag_path}")
+        return {"lists": {}}
+
+    with open(red_flag_path) as f:
+        _red_flag_entities = json.load(f)
+
+    # Build lookup index for fast matching
+    _red_flag_entities["_lookup"] = {}
+    for list_name, list_data in _red_flag_entities.get("lists", {}).items():
+        for entity in list_data.get("entities", []):
+            # Index by name and all aliases (lowercased)
+            names = [entity["name"].lower()] + [a.lower() for a in entity.get("aliases", [])]
+            for name in names:
+                _red_flag_entities["_lookup"][name] = {
+                    "name": entity["name"],
+                    "type": entity.get("type"),
+                    "list": list_name,
+                    "severity": list_data.get("severity", "high")
+                }
+
+    logger.info(f"Loaded {len(_red_flag_entities['_lookup'])} red flag entity names/aliases")
+    return _red_flag_entities
+
+def get_model():
+    """Lazy load the sentence transformer model."""
+    global _model
+    if _model is None:
+        from sentence_transformers import SentenceTransformer
+        logger.info("Loading multilingual-e5-base model (CPU)...")
+        _model = SentenceTransformer("intfloat/multilingual-e5-base", device='cpu')
+        logger.info(f"Model loaded. Dims: {_model.get_sentence_embedding_dimension()}")
+    return _model
+
+
+def get_golden_embeddings():
+    """
+    Load and cache golden list embeddings.
+
+    Uses pre-computed embeddings from golden_lists_with_embeddings.json (265 categories).
+    Falls back to golden_lists.json and runtime embedding if needed.
+    """
+    global _golden_embeddings
+    if _golden_embeddings is not None:
+        return _golden_embeddings
+
+    # Try CYMONIDES/golden_lists/ first, then fall back to input_output/matrix/
+    cymonides_golden = Path("/data/golden_lists")
+    matrix_golden = Path("/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix")
+
+    comprehensive_path = cymonides_golden / "golden_lists_with_embeddings.json"
+    if not comprehensive_path.exists():
+        comprehensive_path = matrix_golden / "golden_lists_with_embeddings.json"
+
+    sparse_path = cymonides_golden / "golden_lists.json"
+    if not sparse_path.exists():
+        sparse_path = matrix_golden / "golden_lists.json"
+
+    golden_lists = None
+    has_precomputed_embeddings = False
+
+    if comprehensive_path.exists():
+        logger.info(f"Loading comprehensive golden lists with pre-computed embeddings...")
+        with open(comprehensive_path) as f:
+            golden_lists = json.load(f)
+        has_precomputed_embeddings = golden_lists.get("meta", {}).get("has_embeddings", False)
+        if has_precomputed_embeddings:
+            logger.info("Using pre-computed 768-dim embeddings (intfloat/multilingual-e5-base)")
+
+    if golden_lists is None:
+        if sparse_path.exists():
+            logger.warning(f"Comprehensive embeddings not found. Falling back to sparse golden_lists.json")
+            with open(sparse_path) as f:
+                golden_lists = json.load(f)
+        else:
+            logger.warning("No golden lists found!")
+            return {"themes": {}, "phenomena": {}, "red_flags": {}, "methodologies": {}}
+
+    _golden_embeddings = {"themes": {}, "phenomena": {}, "red_flags": {}, "methodologies": {}}
+
+    # Categories to load: themes, phenomena, red_flags, methodologies
+    category_types = ["themes", "phenomena", "red_flags", "methodologies"]
+
+    for cat_type in category_types:
+        categories = golden_lists.get(cat_type, {}).get("categories", [])
+
+        if has_precomputed_embeddings:
+            # Use pre-computed embeddings
+            for cat in categories:
+                if "embedding" in cat:
+                    _golden_embeddings[cat_type][cat["id"]] = {
+                        "canonical": cat["canonical"],
+                        "variations": cat.get("variations", []),
+                        "embedding": np.array(cat["embedding"], dtype=np.float32),
+                        "source": cat.get("source", "unknown")
+                    }
+        else:
+            # Fall back to runtime embedding
+            model = get_model()
+            logger.info(f"Runtime embedding {len(categories)} {cat_type}...")
+            for cat in categories:
+                texts = [cat["canonical"]] + cat.get("variations", [])
+                combined_text = " | ".join(texts[:30])  # Cap variations
+                embedding = model.encode(f"passage: {combined_text}", convert_to_numpy=True)
+                _golden_embeddings[cat_type][cat["id"]] = {
+                    "canonical": cat["canonical"],
+                    "variations": cat.get("variations", []),
+                    "embedding": embedding
+                }
+
+    total = sum(len(_golden_embeddings[t]) for t in category_types)
+    logger.info(f"Loaded {total} category embeddings: "
+                f"{len(_golden_embeddings['themes'])} themes, "
+                f"{len(_golden_embeddings['phenomena'])} phenomena, "
+                f"{len(_golden_embeddings['red_flags'])} red_flags, "
+                f"{len(_golden_embeddings['methodologies'])} methodologies")
+    return _golden_embeddings
+
+
+@dataclass
+class ExtractionResult:
+    """Result of universal extraction from a document."""
+    # Conceptual Extraction - Industry/Investigation themes
+    themes: List[Dict[str, float]] = field(default_factory=list)  # [{id, canonical, score}]
+    # Phenomena - Events/Report genres
+    phenomena: List[Dict[str, float]] = field(default_factory=list)
+    # Red flag themes from reports (money_laundering, pep, offshore, etc.)
+    red_flag_themes: List[Dict[str, float]] = field(default_factory=list)
+    # Research methodologies (corporate_registry_search, humint, etc.)
+    methodologies: List[Dict[str, float]] = field(default_factory=list)
+
+    # === PUBLISHING TIME (when doc was created) ===
+    published_date: Optional[str] = None  # ISO date when published
+    temporal_year: Optional[int] = None
+    temporal_month: Optional[int] = None
+    temporal_day: Optional[int] = None
+    temporal_yearmonth: Optional[str] = None  # "2024-06" for grouping
+    temporal_decade: Optional[str] = None  # "2020s"
+    temporal_era: Optional[str] = None  # "post_covid", "cold_war", etc.
+    temporal_precision: str = "unknown"  # "day" | "month" | "year" | "decade" | "unknown"
+
+    # === CONTENT TIME (what period doc discusses) ===
+    content_years: List[int] = field(default_factory=list)  # Years discussed in content
+    temporal_focus: Optional[str] = None  # "historical", "current", "future"
+    content_decade: Optional[str] = None  # Primary decade discussed
+    content_era: Optional[str] = None  # Primary era discussed
+    content_year_min: Optional[int] = None
+    content_year_max: Optional[int] = None
+    content_year_primary: Optional[int] = None  # Median/central year
+
+    # Period/range fields (explicit from text)
+    period_start: Optional[str] = None
+    period_end: Optional[str] = None
+    period_start_year: Optional[int] = None
+    period_end_year: Optional[int] = None
+
+    # Spatial Extraction
+    locations: List[Dict[str, Any]] = field(default_factory=list)  # [{name, country, region, city, geo_point}]
+    primary_jurisdiction: Optional[str] = None
+
+    # Entities (from other extractors)
+    entities: List[Dict[str, str]] = field(default_factory=list)  # [{type, value, confidence}]
+
+    # Red Flag Entity Detection (OFAC SDN, sanctions lists)
+    red_flag_entities: List[Dict[str, Any]] = field(default_factory=list)  # [{name, list, severity, type}]
+    has_red_flag_entity: bool = False
+
+    # The Event Synthesis
+    events: List[Dict[str, Any]] = field(default_factory=list)  # Auto-generated from intersection
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "extracted": {
+                "themes": self.themes,
+                "phenomena": self.phenomena,
+                "red_flag_themes": self.red_flag_themes,
+                "methodologies": self.methodologies,
+                "entities": self.entities,
+                "locations": self.locations,
+                "red_flag_entities": self.red_flag_entities
+            },
+            "temporal": {
+                # Publishing time
+                "published_date": self.published_date,
+                "year": self.temporal_year,
+                "month": self.temporal_month,
+                "day": self.temporal_day,
+                "yearmonth": self.temporal_yearmonth,
+                "decade": self.temporal_decade,
+                "era": self.temporal_era,
+                "precision": self.temporal_precision,
+                # Content time
+                "content_years": self.content_years,
+                "temporal_focus": self.temporal_focus,
+                "content_decade": self.content_decade,
+                "content_era": self.content_era,
+                "content_year_min": self.content_year_min,
+                "content_year_max": self.content_year_max,
+                "content_year_primary": self.content_year_primary,
+                # Period fields
+                "period_start": self.period_start,
+                "period_end": self.period_end,
+                "period_start_year": self.period_start_year,
+                "period_end_year": self.period_end_year,
+            },
+            "spatial": {
+                "locations": self.locations,
+                "primary_jurisdiction": self.primary_jurisdiction
+            },
+            "red_flag_entity_alert": self.has_red_flag_entity,
+            "events": self.events
+        }
+
+
+class UniversalExtractor:
+    """
+    Vector-First Universal Extraction Engine.
+
+    Extracts structured intelligence by comparing document semantics
+    against verified Golden Lists using embedding similarity.
+
+    Categories (265 total from 1,230+ classified reports):
+    - themes: 51 industry + investigation themes (ownership_analysis, asset_trace, etc.)
+    - phenomena: 60 events + report genres (due_diligence, fraud_investigation, etc.)
+    - red_flags: 11 risk categories (money_laundering, pep, offshore, sanctions, etc.)
+    - methodologies: 143 research approaches (corporate_registry_search, humint, etc.)
+    """
+
+    def __init__(self, theme_threshold: float = 0.35, phenomenon_threshold: float = 0.40,
+                 red_flag_threshold: float = 0.38, methodology_threshold: float = 0.42):
+        """
+        Initialize the extractor.
+
+        Args:
+            theme_threshold: Minimum cosine similarity for theme extraction (lower = more matches)
+            phenomenon_threshold: Minimum cosine similarity for phenomenon extraction
+            red_flag_threshold: Minimum cosine similarity for red flag theme detection
+            methodology_threshold: Minimum cosine similarity for methodology detection
+        """
+        self.theme_threshold = theme_threshold
+        self.phenomenon_threshold = phenomenon_threshold
+        self.red_flag_threshold = red_flag_threshold
+        self.methodology_threshold = methodology_threshold
+        self._model = None
+        self._golden = None
+
+    @property
+    def model(self):
+        if self._model is None:
+            self._model = get_model()
+        return self._model
+
+    @property
+    def golden(self):
+        if self._golden is None:
+            self._golden = get_golden_embeddings()
+        return self._golden
+
+    def _cosine_similarity(self, a: np.ndarray, b: np.ndarray) -> float:
+        """Calculate cosine similarity between two vectors."""
+        return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
+
+    def extract_concepts(self, text: str, top_k: int = 5) -> Tuple[List[Dict], List[Dict], List[Dict], List[Dict]]:
+        """
+        Extract all concept types from text using embedding comparison.
+
+        Args:
+            text: Document text to analyze
+            top_k: Maximum number of matches per category
+
+        Returns:
+            (themes, phenomena, red_flag_themes, methodologies) - Lists of matched concepts with scores
+        """
+        if not text or len(text.strip()) < 20:
+            return [], [], [], []
+
+        # Embed the document (truncate to reasonable length)
+        doc_text = text[:8000]  # ~2000 tokens for E5
+        doc_embedding = self.model.encode(f"query: {doc_text}", convert_to_numpy=True)
+
+        # Category config: (dict_key, threshold, top_k_override)
+        category_config = [
+            ("themes", self.theme_threshold, top_k),
+            ("phenomena", self.phenomenon_threshold, top_k),
+            ("red_flags", self.red_flag_threshold, top_k),
+            ("methodologies", self.methodology_threshold, top_k * 2),  # Allow more methodologies
+        ]
+
+        results = []
+
+        for cat_key, threshold, max_results in category_config:
+            scores = []
+            for item_id, item_data in self.golden.get(cat_key, {}).items():
+                embedding = item_data.get("embedding")
+                if embedding is None:
+                    continue
+                score = self._cosine_similarity(doc_embedding, embedding)
+                if score >= threshold:
+                    scores.append({
+                        "id": item_id,
+                        "canonical": item_data["canonical"],
+                        "score": round(score, 3),
+                        "source": item_data.get("source", "unknown")
+                    })
+
+            # Sort by score and take top results
+            sorted_scores = sorted(scores, key=lambda x: -x["score"])[:max_results]
+            results.append(sorted_scores)
+
+        return tuple(results)  # (themes, phenomena, red_flags, methodologies)
+
+    def extract_temporal(self, text: str, meta_date: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Extract temporal signals from text.
+
+        Distinguishes between:
+        - Publishing Date (meta-time): When was this written?
+        - Content Timeline (narrative-time): What period does this discuss?
+
+        Args:
+            text: Document text
+            meta_date: Optional publishing date from metadata
+
+        Returns:
+            Dict with published, content_years, focus
+        """
+        result = {
+            "published": meta_date,
+            "content_years": [],
+            "focus": None
+        }
+
+        # Extract years mentioned in content
+        year_pattern = r'\b(19[5-9]\d|20[0-4]\d)\b'
+        years_found = [int(y) for y in re.findall(year_pattern, text)]
+
+        if years_found:
+            # Deduplicate and sort
+            unique_years = sorted(set(years_found))
+            result["content_years"] = unique_years
+
+            # Determine temporal focus
+            current_year = datetime.now().year
+            avg_year = sum(unique_years) / len(unique_years)
+
+            if avg_year < current_year - 5:
+                result["focus"] = "historical"
+            elif avg_year > current_year:
+                result["focus"] = "future"
+            else:
+                result["focus"] = "current"
+
+        # Look for date patterns in text for published date if not provided
+        if not result["published"]:
+            # Common date patterns
+            date_patterns = [
+                r'\b(\d{1,2})[/\-](\d{1,2})[/\-](20\d{2})\b',  # MM/DD/YYYY or DD/MM/YYYY
+                r'\b(20\d{2})[/\-](\d{1,2})[/\-](\d{1,2})\b',  # YYYY-MM-DD
+                r'\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2}),?\s+(20\d{2})\b',
+            ]
+            for pattern in date_patterns:
+                match = re.search(pattern, text, re.IGNORECASE)
+                if match:
+                    # Just extract the year for now
+                    groups = match.groups()
+                    for g in groups:
+                        if g and g.isdigit() and len(g) == 4:
+                            result["published"] = f"{g}-01-01"  # Approximate
+                            break
+                    break
+
+        return result
+
+    def extract_red_flags(self, text: str, entities: List[Dict] = None) -> List[Dict[str, Any]]:
+        """
+        Detect red-flag entities in text.
+
+        Checks against OFAC SDN, EU Sanctions, PEP lists, etc.
+
+        Args:
+            text: Document text
+            entities: Optional pre-extracted entities (higher priority)
+
+        Returns:
+            List of red flag matches with severity
+        """
+        red_flags = []
+        seen = set()
+
+        red_flag_data = get_red_flag_entities()
+        lookup = red_flag_data.get("_lookup", {})
+
+        if not lookup:
+            return []
+
+        # Check pre-extracted entities first (higher confidence)
+        if entities:
+            for ent in entities:
+                name = (ent.get("value") or ent.get("text", "")).lower()
+                if name in lookup and name not in seen:
+                    match = lookup[name]
+                    red_flags.append({
+                        "name": match["name"],
+                        "matched_as": name,
+                        "type": match["type"],
+                        "list": match["list"],
+                        "severity": match["severity"],
+                        "confidence": 0.95  # High confidence from NER
+                    })
+                    seen.add(name)
+
+        # Also scan raw text for red flag names
+        text_lower = text.lower()
+        for name, match_info in lookup.items():
+            if len(name) > 4 and name in text_lower and name not in seen:
+                # Verify it's a word boundary match (not substring)
+                import re
+                pattern = r'\b' + re.escape(name) + r'\b'
+                if re.search(pattern, text_lower):
+                    red_flags.append({
+                        "name": match_info["name"],
+                        "matched_as": name,
+                        "type": match_info["type"],
+                        "list": match_info["list"],
+                        "severity": match_info["severity"],
+                        "confidence": 0.75  # Lower confidence from text scan
+                    })
+                    seen.add(name)
+
+        # Sort by severity (critical first)
+        severity_order = {"critical": 0, "high": 1, "medium": 2, "low": 3}
+        red_flags.sort(key=lambda x: severity_order.get(x["severity"], 99))
+
+        return red_flags
+
+    def extract_spatial(self, text: str, entities: List[Dict] = None) -> Dict[str, Any]:
+        """
+        Extract spatial/location signals from text.
+
+        Uses location entities if available, otherwise attempts basic extraction.
+
+        Args:
+            text: Document text
+            entities: Optional pre-extracted entities (from NER)
+
+        Returns:
+            Dict with locations and primary_jurisdiction
+        """
+        result = {
+            "locations": [],
+            "primary_jurisdiction": None
+        }
+
+        # If we have entities, filter for locations
+        if entities:
+            for ent in entities:
+                if ent.get("type") in ["LOCATION", "GPE", "LOC", "location", "country", "city"]:
+                    result["locations"].append({
+                        "name": ent.get("value", ent.get("text", "")),
+                        "type": ent.get("type"),
+                        "confidence": ent.get("confidence", 0.5)
+                    })
+
+        # Simple country detection as fallback
+        country_patterns = {
+            "US": r'\b(United States|USA|U\.S\.|America)\b',
+            "UK": r'\b(United Kingdom|UK|U\.K\.|Britain|England)\b',
+            "DE": r'\b(Germany|Deutschland|German)\b',
+            "FR": r'\b(France|French|Paris)\b',
+            "CN": r'\b(China|Chinese|Beijing|Shanghai)\b',
+            "JP": r'\b(Japan|Japanese|Tokyo)\b',
+            "RU": r'\b(Russia|Russian|Moscow)\b',
+            "IN": r'\b(India|Indian|Mumbai|Delhi)\b',
+            "AU": r'\b(Australia|Australian|Sydney)\b',
+            "CH": r'\b(Switzerland|Swiss|Zurich|Geneva)\b',
+        }
+
+        country_counts = {}
+        for code, pattern in country_patterns.items():
+            matches = len(re.findall(pattern, text, re.IGNORECASE))
+            if matches > 0:
+                country_counts[code] = matches
+
+        if country_counts:
+            # Primary jurisdiction = most mentioned country
+            result["primary_jurisdiction"] = max(country_counts.items(), key=lambda x: x[1])[0]
+
+            # Add to locations if not already there
+            for code in country_counts:
+                if not any(loc.get("name") == code for loc in result["locations"]):
+                    result["locations"].append({
+                        "name": code,
+                        "type": "country",
+                        "confidence": 0.7
+                    })
+
+        return result
+
+    def synthesize_events(self, result: ExtractionResult) -> List[Dict[str, Any]]:
+        """
+        Synthesize Events from the intersection of extracted signals.
+
+        Event = Entity + Phenomenon + Time + Space
+
+        Args:
+            result: The extraction result with themes, phenomena, etc.
+
+        Returns:
+            List of synthesized events
+        """
+        events = []
+
+        # Only create events if we have at least a phenomenon and some temporal/spatial context
+        if not result.phenomena:
+            return events
+
+        for phenom in result.phenomena:
+            event = {
+                "phenomenon": phenom["canonical"],
+                "phenomenon_id": phenom["id"],
+                "confidence": phenom["score"],
+                "themes": [t["canonical"] for t in result.themes],
+                "time_period": result.content_years if result.content_years else None,
+                "jurisdiction": result.primary_jurisdiction,
+                "entities": [e.get("value", e.get("text")) for e in result.entities[:5]] if result.entities else []
+            }
+            events.append(event)
+
+        return events
+
+    def extract(self, text: str, meta_date: Optional[str] = None,
+                entities: List[Dict] = None) -> ExtractionResult:
+        """
+        Full universal extraction from a document.
+
+        Args:
+            text: Document text to analyze
+            meta_date: Optional publishing date from metadata
+            entities: Optional pre-extracted entities
+
+        Returns:
+            ExtractionResult with all extracted intelligence (265 category vectors)
+        """
+        result = ExtractionResult()
+
+        # 1. Conceptual Extraction (Themes + Phenomena + Red Flag Themes + Methodologies)
+        try:
+            result.themes, result.phenomena, result.red_flag_themes, result.methodologies = self.extract_concepts(text)
+        except Exception as e:
+            logger.warning(f"Conceptual extraction failed (likely dependency issue): {e}")
+            result.themes, result.phenomena, result.red_flag_themes, result.methodologies = [], [], [], []
+
+        # 2. Temporal Extraction (with hierarchical derivation)
+        temporal = self.extract_temporal(text, meta_date)
+        result.published_date = temporal.get("published")
+        result.content_years = temporal.get("content_years", [])
+        result.temporal_focus = temporal.get("focus")
+
+        # Derive hierarchical temporal fields
+        periods = extract_periods_from_text(text)
+        period_str = f"{periods[0][0]}-{periods[0][1]}" if periods else None
+        temporal_hierarchy = derive_temporal_hierarchy(
+            date_str=result.published_date,
+            period_str=period_str,
+            content_years=result.content_years,
+            text=text
+        )
+        # Populate hierarchical fields
+        result.temporal_year = temporal_hierarchy.year
+        result.temporal_month = temporal_hierarchy.month
+        result.temporal_day = temporal_hierarchy.day
+        result.temporal_yearmonth = temporal_hierarchy.yearmonth
+        result.temporal_decade = temporal_hierarchy.decade
+        result.temporal_era = temporal_hierarchy.era
+        result.temporal_precision = temporal_hierarchy.precision
+        result.period_start = temporal_hierarchy.period_start
+        result.period_end = temporal_hierarchy.period_end
+        result.period_start_year = temporal_hierarchy.period_start_year
+        result.period_end_year = temporal_hierarchy.period_end_year
+        # Update content_years with any derived from periods
+        if temporal_hierarchy.content_years:
+            result.content_years = temporal_hierarchy.content_years
+        if temporal_hierarchy.temporal_focus:
+            result.temporal_focus = temporal_hierarchy.temporal_focus
+        # Content time hierarchy (what period doc discusses)
+        result.content_decade = temporal_hierarchy.content_decade
+        result.content_era = temporal_hierarchy.content_era
+        result.content_year_min = temporal_hierarchy.content_year_min
+        result.content_year_max = temporal_hierarchy.content_year_max
+        result.content_year_primary = temporal_hierarchy.content_year_primary
+
+        # 3. Spatial Extraction
+        spatial = self.extract_spatial(text, entities)
+        result.locations = spatial.get("locations", [])
+        result.primary_jurisdiction = spatial.get("primary_jurisdiction")
+
+        # 4. Pass through entities
+        result.entities = entities or []
+
+        # 5. Red Flag Entity Detection (OFAC SDN, sanctions lists - CRITICAL)
+        result.red_flag_entities = self.extract_red_flags(text, entities)
+        result.has_red_flag_entity = len(result.red_flag_entities) > 0
+
+        # 6. Event Synthesis
+        result.events = self.synthesize_events(result)
+
+        # If red flag entities found, add synthetic phenomenon
+        if result.has_red_flag_entity:
+            result.phenomena.append({
+                "id": "red_flag_entity",
+                "canonical": "Red Flag Entity Detected",
+                "score": 1.0
+            })
+
+        # If red flag themes detected via semantic matching, add indicator
+        if result.red_flag_themes:
+            top_rf = result.red_flag_themes[0]
+            result.phenomena.append({
+                "id": f"rf_theme_{top_rf['id']}",
+                "canonical": f"Red Flag Theme: {top_rf['canonical']}",
+                "score": top_rf["score"]
+            })
+
+        return result
+
+
+# Singleton instance
+_extractor = None
+
+def get_extractor() -> UniversalExtractor:
+    """Get or create the singleton extractor instance."""
+    global _extractor
+    if _extractor is None:
+        _extractor = UniversalExtractor()
+    return _extractor
+
+
+def extract_all(text: str, meta_date: str = None, entities: List[Dict] = None) -> Dict[str, Any]:
+    """
+    Convenience function for universal extraction.
+
+    Args:
+        text: Document text
+        meta_date: Optional publishing date
+        entities: Optional pre-extracted entities
+
+    Returns:
+        Dict with all extracted intelligence
+    """
+    extractor = get_extractor()
+    result = extractor.extract(text, meta_date, entities)
+    return result.to_dict()
+
+
+if __name__ == "__main__":
+    # Test the extractor
+    import sys
+
+    test_text = """
+    OpenAI announced a major funding round of $6.6 billion in October 2024,
+    valuing the AI company at $157 billion. The San Francisco-based startup,
+    led by CEO Sam Altman, is developing advanced artificial intelligence systems
+    including ChatGPT. Microsoft remains a key investor. The funding comes amid
+    concerns about AI safety and regulatory scrutiny in both the US and EU.
+    """
+
+    print("Testing UniversalExtractor...")
+    result = extract_all(test_text)
+    print(json.dumps(result, indent=2, default=str))

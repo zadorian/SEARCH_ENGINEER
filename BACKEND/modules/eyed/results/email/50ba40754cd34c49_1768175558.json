@@ -1,0 +1,33 @@
+{
+  "id": "50ba40754cd34c49",
+  "node_class": "ENTITY",
+  "type": "email",
+  "canonicalValue": "tyrion@gmail.com",
+  "label": "tyrion@gmail.com",
+  "value": "tyrion@gmail.com",
+  "comment": null,
+  "embedded_edges": [
+    {
+      "target_id": "e2e2d96d15a2174d",
+      "relation": "input_of",
+      "verification_status": "VERIFIED",
+      "connection_reason": "aggregator_link"
+    },
+    {
+      "target_id": "c3f8a498f50c4de6",
+      "relation": "input_of",
+      "verification_status": "VERIFIED",
+      "connection_reason": "aggregator_link"
+    },
+    {
+      "target_id": "a361eee7d4ba54ac",
+      "relation": "input_of",
+      "verification_status": "VERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-11T23:52:38.215980",
+  "updatedAt": "2026-01-11T23:52:38.215983",
+  "lastSeen": "2026-01-11T23:52:38.215983"
+}

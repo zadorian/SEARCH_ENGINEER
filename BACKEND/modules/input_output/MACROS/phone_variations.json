@@ -1,0 +1,9 @@
+{
+    "name": "generate_phone_variations",
+    "description": "Generates AI-powered variations for a phone number including country code permutations and OCR errors.",
+    "input_type": "phone",
+    "output_type": "list<phone>",
+    "executable": "SEARCH_ENGINEER/nexus/MODULES/SASTRE/phone_macro.py",
+    "version": "1.0",
+    "tags": ["ai", "enrichment", "phone"]
+}

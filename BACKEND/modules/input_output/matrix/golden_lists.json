@@ -1,0 +1,303 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "description": "Golden Lists for Vector-First Extraction - Theme and Phenomenon vectors",
+    "model": "intfloat/multilingual-e5-base",
+    "dims": 768
+  },
+  "themes": {
+    "description": "Industry/Context vectors - WHAT field/sector is this about?",
+    "categories": [
+      {
+        "id": "tech_ai",
+        "canonical": "Artificial Intelligence",
+        "variations": ["AI", "Machine Learning", "Deep Learning", "Neural Networks", "LLM", "Generative AI"]
+      },
+      {
+        "id": "tech_software",
+        "canonical": "Software Development",
+        "variations": ["Software", "SaaS", "Cloud Computing", "DevOps", "Programming"]
+      },
+      {
+        "id": "tech_hardware",
+        "canonical": "Hardware & Electronics",
+        "variations": ["Semiconductors", "Chips", "Electronics Manufacturing", "IoT", "Robotics"]
+      },
+      {
+        "id": "fin_banking",
+        "canonical": "Banking & Finance",
+        "variations": ["Banking", "Financial Services", "Investment Banking", "Retail Banking", "Fintech"]
+      },
+      {
+        "id": "fin_investment",
+        "canonical": "Investment & Asset Management",
+        "variations": ["Private Equity", "Venture Capital", "Hedge Funds", "Asset Management", "Wealth Management"]
+      },
+      {
+        "id": "fin_insurance",
+        "canonical": "Insurance",
+        "variations": ["Insurance", "Reinsurance", "Insurtech", "Life Insurance", "Property Insurance"]
+      },
+      {
+        "id": "fin_crypto",
+        "canonical": "Cryptocurrency & Blockchain",
+        "variations": ["Crypto", "Bitcoin", "Ethereum", "DeFi", "NFT", "Web3", "Blockchain"]
+      },
+      {
+        "id": "energy_oil",
+        "canonical": "Oil & Gas",
+        "variations": ["Petroleum", "Fossil Fuels", "Natural Gas", "Drilling", "Refining", "Pipelines"]
+      },
+      {
+        "id": "energy_renewable",
+        "canonical": "Renewable Energy",
+        "variations": ["Solar", "Wind", "Hydro", "Green Energy", "Clean Tech", "Sustainability"]
+      },
+      {
+        "id": "energy_nuclear",
+        "canonical": "Nuclear Energy",
+        "variations": ["Nuclear Power", "Uranium", "Nuclear Reactors", "Atomic Energy"]
+      },
+      {
+        "id": "mining_metals",
+        "canonical": "Mining & Metals",
+        "variations": ["Mining", "Gold", "Copper", "Iron Ore", "Rare Earths", "Lithium", "Cobalt"]
+      },
+      {
+        "id": "pharma",
+        "canonical": "Pharmaceuticals",
+        "variations": ["Pharma", "Drug Development", "Clinical Trials", "Big Pharma", "Generic Drugs"]
+      },
+      {
+        "id": "biotech",
+        "canonical": "Biotechnology",
+        "variations": ["Biotech", "Gene Therapy", "CRISPR", "Biologics", "Genomics"]
+      },
+      {
+        "id": "healthcare",
+        "canonical": "Healthcare Services",
+        "variations": ["Hospitals", "Medical Services", "Health Insurance", "Telehealth", "Medical Devices"]
+      },
+      {
+        "id": "defense",
+        "canonical": "Defense & Aerospace",
+        "variations": ["Military", "Defense Contractor", "Weapons", "Aerospace", "Space", "Satellites"]
+      },
+      {
+        "id": "automotive",
+        "canonical": "Automotive",
+        "variations": ["Cars", "Electric Vehicles", "EV", "Auto Manufacturing", "Autonomous Vehicles"]
+      },
+      {
+        "id": "retail",
+        "canonical": "Retail & Consumer",
+        "variations": ["Retail", "E-commerce", "Consumer Goods", "FMCG", "Luxury Goods"]
+      },
+      {
+        "id": "media",
+        "canonical": "Media & Entertainment",
+        "variations": ["Media", "Streaming", "Broadcasting", "Publishing", "Gaming", "Film", "Music"]
+      },
+      {
+        "id": "telecom",
+        "canonical": "Telecommunications",
+        "variations": ["Telecom", "5G", "Mobile Networks", "Internet Providers", "Fiber Optic"]
+      },
+      {
+        "id": "real_estate",
+        "canonical": "Real Estate",
+        "variations": ["Property", "Commercial Real Estate", "Residential", "REITs", "Construction"]
+      },
+      {
+        "id": "agriculture",
+        "canonical": "Agriculture & Food",
+        "variations": ["Farming", "Agribusiness", "Food Production", "Commodities", "AgTech"]
+      },
+      {
+        "id": "transport",
+        "canonical": "Transportation & Logistics",
+        "variations": ["Shipping", "Freight", "Airlines", "Railways", "Supply Chain", "Ports"]
+      },
+      {
+        "id": "govt_public",
+        "canonical": "Government & Public Sector",
+        "variations": ["Government", "Public Administration", "Regulatory", "Civil Service"]
+      },
+      {
+        "id": "legal",
+        "canonical": "Legal Services",
+        "variations": ["Law Firm", "Legal Tech", "Litigation", "Corporate Law", "IP Law"]
+      },
+      {
+        "id": "inv_ownership",
+        "canonical": "Corporate Ownership & Control",
+        "variations": ["Ownership", "Corporate Ownership", "Control Structure", "Control Rights", "Shareholding", "Shareholder Structure", "Ownership Chain", "Ownership Network", "Controlling Interest", "Ownership Interest"]
+      },
+      {
+        "id": "inv_beneficial_ownership",
+        "canonical": "Beneficial Ownership",
+        "variations": ["Beneficial Ownership", "UBO", "Ultimate Beneficial Owner", "Ultimate Beneficial Ownership", "Beneficial Owner", "UBO Registry"]
+      },
+      {
+        "id": "inv_shell_company",
+        "canonical": "Shell Companies & Offshore Structures",
+        "variations": ["Shell Company", "Shell Entity", "Offshore Company", "Offshore Entity", "Letterbox Company", "Nominee Directors", "Nominee Shareholder", "BVI", "Panama", "Tax Haven", "Holding Company"]
+      },
+      {
+        "id": "inv_pep",
+        "canonical": "Politically Exposed Persons",
+        "variations": ["PEP", "Politically Exposed Person", "Government Official", "Political Connection", "State Capture", "Oligarch", "Kleptocracy"]
+      },
+      {
+        "id": "inv_asset_tracing",
+        "canonical": "Asset Tracing & Recovery",
+        "variations": ["Asset Tracing", "Hidden Assets", "Wealth Source", "Unexplained Wealth", "Asset Recovery", "Asset Seizure", "Forfeiture", "Seizure", "Recovery"]
+      },
+      {
+        "id": "inv_corporate_structure",
+        "canonical": "Corporate Structures & Subsidiaries",
+        "variations": ["Corporate Structure", "Group Structure", "Holding Structure", "Subsidiary", "Subsidiaries", "Corporate Group", "Pyramid Structure", "Entity Structure"]
+      },
+      {
+        "id": "inv_sanctions_exposure",
+        "canonical": "Sanctions Exposure",
+        "variations": ["Sanctions Exposure", "Sanctions Risk", "Sanctions Screening", "SDN", "OFAC", "EU Sanctions", "UN Sanctions", "Designated Entity"]
+      },
+      {
+        "id": "education",
+        "canonical": "Education",
+        "variations": ["EdTech", "Universities", "Schools", "Training", "E-learning"]
+      }
+    ]
+  },
+  "phenomena": {
+    "description": "Event/Action vectors - WHAT happened/is happening?",
+    "categories": [
+      {
+        "id": "corp_ma",
+        "canonical": "Merger & Acquisition",
+        "variations": ["M&A", "Merger", "Acquisition", "Takeover", "Buyout", "Fusion", "Consolidation"]
+      },
+      {
+        "id": "corp_ipo",
+        "canonical": "Initial Public Offering",
+        "variations": ["IPO", "Going Public", "Stock Listing", "SPAC", "Direct Listing"]
+      },
+      {
+        "id": "corp_bankruptcy",
+        "canonical": "Bankruptcy & Insolvency",
+        "variations": ["Bankruptcy", "Insolvency", "Chapter 11", "Liquidation", "Administration", "Receivership"]
+      },
+      {
+        "id": "corp_restructuring",
+        "canonical": "Corporate Restructuring",
+        "variations": ["Restructuring", "Reorganization", "Spinoff", "Divestiture", "Carve-out"]
+      },
+      {
+        "id": "corp_funding",
+        "canonical": "Funding & Investment",
+        "variations": ["Funding Round", "Series A", "Series B", "Venture Investment", "Capital Raise", "Private Placement"]
+      },
+      {
+        "id": "legal_lawsuit",
+        "canonical": "Litigation & Lawsuit",
+        "variations": ["Lawsuit", "Legal Action", "Court Case", "Class Action", "Legal Dispute", "Arbitration"]
+      },
+      {
+        "id": "legal_settlement",
+        "canonical": "Legal Settlement",
+        "variations": ["Settlement", "Out of Court", "Plea Deal", "Consent Decree"]
+      },
+      {
+        "id": "legal_investigation",
+        "canonical": "Investigation",
+        "variations": ["Investigation", "Probe", "Inquiry", "Audit", "Due Diligence"]
+      },
+      {
+        "id": "crime_fraud",
+        "canonical": "Fraud & Financial Crime",
+        "variations": ["Fraud", "Embezzlement", "Money Laundering", "Bribery", "Corruption", "Tax Evasion"]
+      },
+      {
+        "id": "crime_raid",
+        "canonical": "Raid & Search",
+        "variations": ["Raid", "Search Warrant", "Police Search", "Seizure", "Asset Freeze"]
+      },
+      {
+        "id": "crime_arrest",
+        "canonical": "Arrest & Indictment",
+        "variations": ["Arrest", "Indictment", "Charges Filed", "Criminal Charges", "Prosecution"]
+      },
+      {
+        "id": "reg_sanction",
+        "canonical": "Sanctions & Penalties",
+        "variations": ["Sanction", "Fine", "Penalty", "Ban", "Blacklist", "OFAC", "SDN List"]
+      },
+      {
+        "id": "reg_compliance",
+        "canonical": "Regulatory Compliance",
+        "variations": ["Compliance", "Regulatory Filing", "License", "Permit", "Regulatory Approval"]
+      },
+      {
+        "id": "reg_violation",
+        "canonical": "Regulatory Violation",
+        "variations": ["Violation", "Breach", "Non-compliance", "Regulatory Action", "Warning"]
+      },
+      {
+        "id": "hr_hire",
+        "canonical": "Executive Hire",
+        "variations": ["Hire", "Appointment", "New CEO", "Executive Appointment", "Board Member"]
+      },
+      {
+        "id": "hr_departure",
+        "canonical": "Executive Departure",
+        "variations": ["Resignation", "Departure", "Fired", "Stepped Down", "Left Company"]
+      },
+      {
+        "id": "hr_layoff",
+        "canonical": "Layoffs & Downsizing",
+        "variations": ["Layoff", "Redundancy", "Job Cuts", "Downsizing", "Workforce Reduction"]
+      },
+      {
+        "id": "product_launch",
+        "canonical": "Product Launch",
+        "variations": ["Product Launch", "New Product", "Release", "Announcement", "Rollout"]
+      },
+      {
+        "id": "product_recall",
+        "canonical": "Product Recall",
+        "variations": ["Recall", "Product Defect", "Safety Issue", "Withdrawal"]
+      },
+      {
+        "id": "disaster_natural",
+        "canonical": "Natural Disaster",
+        "variations": ["Earthquake", "Flood", "Hurricane", "Wildfire", "Tsunami", "Drought"]
+      },
+      {
+        "id": "disaster_industrial",
+        "canonical": "Industrial Accident",
+        "variations": ["Explosion", "Fire", "Chemical Spill", "Plant Accident", "Workplace Accident"]
+      },
+      {
+        "id": "cyber_breach",
+        "canonical": "Data Breach",
+        "variations": ["Data Breach", "Hack", "Cyberattack", "Ransomware", "Data Leak", "Security Incident"]
+      },
+      {
+        "id": "political_election",
+        "canonical": "Election",
+        "variations": ["Election", "Vote", "Referendum", "Political Campaign", "Primary"]
+      },
+      {
+        "id": "political_policy",
+        "canonical": "Policy Change",
+        "variations": ["Policy", "Legislation", "Law", "Regulation", "Executive Order", "Tariff"]
+      },
+      {
+        "id": "geopolitical_conflict",
+        "canonical": "Conflict & War",
+        "variations": ["War", "Conflict", "Military Action", "Invasion", "Armed Conflict", "Coup"]
+      }
+    ]
+  }
+}

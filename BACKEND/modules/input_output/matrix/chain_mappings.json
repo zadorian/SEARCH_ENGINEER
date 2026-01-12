@@ -1,0 +1,623 @@
+{
+  "generated_at": "2025-12-04T00:00:00.000Z",
+  "description": "Universal Chain mappings - defines how outputs from one operation can become inputs to another",
+  "version": "1.0.0",
+  "philosophy": "Every output is a potential input. The system forms a directed graph where: domain → LINKLATER → domains/urls → EXTRACT → persons/companies → BRUTE → urls → LINKLATER → ...",
+  "entity_to_search_mappings": {
+    "description": "Entity extraction outputs that can feed into Brute Search inputs",
+    "mappings": [
+      {
+        "output_code": 240,
+        "output_name": "extracted_persons",
+        "can_input_to": [
+          7,
+          31
+        ],
+        "input_names": [
+          "person_name"
+        ],
+        "via_module": "brute_search",
+        "chain_syntax": "p? => BRUTE",
+        "friction": "Open",
+        "notes": "Person names extracted from URLs can be searched across 40+ engines"
+      },
+      {
+        "output_code": 241,
+        "output_name": "extracted_companies",
+        "can_input_to": [
+          13,
+          42
+        ],
+        "input_names": [
+          "company_name"
+        ],
+        "via_module": "brute_search",
+        "chain_syntax": "c? => BRUTE",
+        "friction": "Open",
+        "notes": "Company names extracted from URLs can be searched and enriched"
+      },
+      {
+        "output_code": 242,
+        "output_name": "extracted_emails",
+        "can_input_to": [
+          1,
+          32,
+          44
+        ],
+        "input_names": [
+          "email",
+          "person_email",
+          "company_email"
+        ],
+        "via_module": "brute_search",
+        "chain_syntax": "e? => BRUTE",
+        "friction": "Open",
+        "notes": "Extracted emails can be searched for breach data, social profiles"
+      },
+      {
+        "output_code": 243,
+        "output_name": "extracted_phones",
+        "can_input_to": [
+          2,
+          33,
+          45
+        ],
+        "input_names": [
+          "phone",
+          "person_phone",
+          "company_phone"
+        ],
+        "via_module": "brute_search",
+        "chain_syntax": "ph? => BRUTE",
+        "friction": "Open",
+        "notes": "Extracted phones can be searched for owner attribution"
+      },
+      {
+        "output_code": 244,
+        "output_name": "extracted_addresses",
+        "can_input_to": [
+          20,
+          35,
+          47
+        ],
+        "input_names": [
+          "property_address",
+          "person_address",
+          "company_address"
+        ],
+        "via_module": "brute_search",
+        "chain_syntax": "addr? => BRUTE",
+        "friction": "Open",
+        "notes": "Extracted addresses can be searched for property/ownership records"
+      }
+    ]
+  },
+  "link_to_linklater_mappings": {
+    "description": "Link outputs that can feed back into Linklater for further analysis",
+    "mappings": [
+      {
+        "output_code": 217,
+        "output_name": "backlink_domains",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "bl! => !ol",
+        "friction": "Open",
+        "notes": "Backlink domains can be further analyzed for their own outlinks"
+      },
+      {
+        "output_code": 218,
+        "output_name": "backlink_urls",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "bl! => ent?",
+        "friction": "Open",
+        "notes": "Backlink URLs can be crawled for entity extraction"
+      },
+      {
+        "output_code": 219,
+        "output_name": "outlink_domains",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "!ol => !bl",
+        "friction": "Open",
+        "notes": "Outlink domains can be analyzed for their backlinks (reverse network)"
+      },
+      {
+        "output_code": 220,
+        "output_name": "outlink_urls",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "!ol => ent?",
+        "friction": "Open",
+        "notes": "Outlink URLs can be crawled for entity extraction"
+      },
+      {
+        "output_code": 225,
+        "output_name": "archive_snapshots",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "arch! => ent?",
+        "friction": "Open",
+        "notes": "Archive URLs can be crawled for historical entity extraction"
+      },
+      {
+        "output_code": 231,
+        "output_name": "ga_related_domains",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "@GA_REVERSE => !ol",
+        "friction": "Open",
+        "notes": "GA-related domains can be analyzed for network expansion"
+      },
+      {
+        "output_code": 232,
+        "output_name": "subdomain_list",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "sub! => ent?",
+        "friction": "Open",
+        "notes": "Discovered subdomains can be crawled for entity extraction"
+      },
+      {
+        "output_code": 233,
+        "output_name": "whois_cluster",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "whois! => !ol",
+        "friction": "Open/Paywalled",
+        "notes": "WHOIS-clustered domains can be further analyzed"
+      },
+      {
+        "output_code": 234,
+        "output_name": "reverse_whois_domains",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "rwhois! => ent?",
+        "friction": "Open/Paywalled",
+        "notes": "Reverse WHOIS results can be crawled for entity extraction"
+      }
+    ]
+  },
+  "entity_to_enrichment_mappings": {
+    "description": "Entity outputs that can feed into specialized enrichment modules",
+    "mappings": [
+      {
+        "output_code": 241,
+        "output_name": "extracted_companies",
+        "can_input_to": [
+          13,
+          42,
+          43
+        ],
+        "input_names": [
+          "company_name",
+          "company_reg_id"
+        ],
+        "via_module": "corporella",
+        "chain_syntax": "c? => @OPENCORP",
+        "friction": "Open",
+        "notes": "Company names can be enriched via OpenCorporates for officers, filings"
+      },
+      {
+        "output_code": 240,
+        "output_name": "extracted_persons",
+        "can_input_to": [
+          7,
+          31
+        ],
+        "input_names": [
+          "person_name"
+        ],
+        "via_module": "sanctions",
+        "chain_syntax": "p? => @PEP_CHECK",
+        "friction": "Open",
+        "notes": "Person names can be checked against PEP/Sanctions lists"
+      },
+      {
+        "output_code": 242,
+        "output_name": "extracted_emails",
+        "can_input_to": [
+          1
+        ],
+        "input_names": [
+          "email"
+        ],
+        "via_module": "breach_check",
+        "chain_syntax": "e? => @BREACH",
+        "friction": "Paywalled",
+        "notes": "Emails can be checked for breach exposure"
+      },
+      {
+        "output_code": 240,
+        "output_name": "extracted_persons",
+        "can_input_to": [
+          7
+        ],
+        "input_names": [
+          "person_name"
+        ],
+        "via_module": "reverse_whois",
+        "chain_syntax": "p? => @RWHOIS",
+        "friction": "Open/Paywalled",
+        "notes": "Person names can be used for reverse WHOIS to find their domains"
+      },
+      {
+        "output_code": 241,
+        "output_name": "extracted_companies",
+        "can_input_to": [
+          13
+        ],
+        "input_names": [
+          "company_name"
+        ],
+        "via_module": "reverse_whois",
+        "chain_syntax": "c? => @RWHOIS",
+        "friction": "Open/Paywalled",
+        "notes": "Company names can be used for reverse WHOIS to find their domains"
+      }
+    ]
+  },
+  "search_to_linklater_mappings": {
+    "description": "Search result URLs that can feed into Linklater",
+    "mappings": [
+      {
+        "output_code": 211,
+        "output_name": "search_engine_hits",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "BRUTE => !bl",
+        "friction": "Open",
+        "notes": "Search result URLs can be analyzed for backlinks"
+      },
+      {
+        "output_code": 237,
+        "output_name": "bang_search_results",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "bang! => ent?",
+        "friction": "Open",
+        "notes": "Bang search results can be crawled for entity extraction"
+      },
+      {
+        "output_code": 235,
+        "output_name": "news_mentions",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "news! => ent?",
+        "friction": "Open",
+        "notes": "News article URLs can be crawled for entity extraction"
+      },
+      {
+        "output_code": 236,
+        "output_name": "gdelt_articles",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "gdelt! => ent?",
+        "friction": "Open",
+        "notes": "GDELT article URLs can be crawled for entity extraction"
+      }
+    ]
+  },
+  "discovery_to_discovery_mappings": {
+    "description": "Discovery outputs that enable further discovery",
+    "mappings": [
+      {
+        "output_code": 230,
+        "output_name": "ga_tracking_codes",
+        "can_input_to": [
+          230
+        ],
+        "input_names": [
+          "ga_tracking_codes"
+        ],
+        "via_module": "linklater",
+        "via_rule": "LINKLATER_GA_REVERSE",
+        "chain_syntax": "@GA_DISCOVERY => @GA_REVERSE",
+        "friction": "Open",
+        "notes": "GA codes discovered on one domain can find other domains sharing them"
+      },
+      {
+        "output_code": 223,
+        "output_name": "shared_link_targets",
+        "can_input_to": [
+          6,
+          129
+        ],
+        "input_names": [
+          "domain_url"
+        ],
+        "via_module": "linklater",
+        "chain_syntax": "shared! => !bl",
+        "friction": "Open",
+        "notes": "Shared link targets can be analyzed for their own network"
+      }
+    ]
+  },
+  "temporal_mappings": {
+    "description": "Temporal/archive outputs that enable historical analysis",
+    "mappings": [
+      {
+        "output_code": 229,
+        "output_name": "entity_timeline",
+        "can_input_to": [
+          7,
+          13
+        ],
+        "input_names": [
+          "person_name",
+          "company_name"
+        ],
+        "via_module": "brute_search",
+        "chain_syntax": "timeline! => BRUTE(date_range)",
+        "friction": "Open",
+        "notes": "Entity timelines can inform date-bounded searches"
+      },
+      {
+        "output_code": 227,
+        "output_name": "archive_changes",
+        "can_input_to": [
+          225
+        ],
+        "input_names": [
+          "archive_snapshots"
+        ],
+        "via_module": "linklater",
+        "via_rule": "LINKLATER_ARCHIVE_SNAPSHOTS",
+        "chain_syntax": "changes! => arch!",
+        "friction": "Open",
+        "notes": "Change detection can guide which snapshots to fetch"
+      }
+    ]
+  },
+  "chain_templates": {
+    "description": "Pre-defined chain patterns for common investigation workflows",
+    "templates": [
+      {
+        "name": "domain_to_persons_to_domains",
+        "description": "Find persons on a domain, then find their other domains",
+        "syntax": "!domain.com => ent? => p? => @RWHOIS",
+        "steps": [
+          {
+            "input": 6,
+            "rule": "LINKLATER_EXTRACT_PERSONS",
+            "output": 240
+          },
+          {
+            "input": 240,
+            "rule": "LINKLATER_REVERSE_WHOIS",
+            "output": 234
+          }
+        ]
+      },
+      {
+        "name": "backlink_network_expansion",
+        "description": "Get backlinks, then get outlinks of backlinkers",
+        "syntax": "!domain.com => bl! => !olx2",
+        "steps": [
+          {
+            "input": 6,
+            "rule": "LINKLATER_BACKLINKS_DOMAINS",
+            "output": 217
+          },
+          {
+            "input": 217,
+            "rule": "LINKLATER_OUTLINKS_DOMAINS",
+            "output": 219
+          }
+        ]
+      },
+      {
+        "name": "ga_network_discovery",
+        "description": "Find GA codes, then find all domains sharing them",
+        "syntax": "!domain.com => @GA_DISCOVERY => @GA_REVERSE",
+        "steps": [
+          {
+            "input": 6,
+            "rule": "LINKLATER_GA_DISCOVERY",
+            "output": 230
+          },
+          {
+            "input": 230,
+            "rule": "LINKLATER_GA_REVERSE",
+            "output": 231
+          }
+        ]
+      },
+      {
+        "name": "historical_entity_extraction",
+        "description": "Get historical snapshots, extract entities from them",
+        "syntax": "!domain.com => 2015-2020! => ent?",
+        "steps": [
+          {
+            "input": 6,
+            "rule": "LINKLATER_ARCHIVE_SNAPSHOTS",
+            "output": 225
+          },
+          {
+            "input": 225,
+            "rule": "LINKLATER_EXTRACT_ALL",
+            "output": 245
+          }
+        ]
+      },
+      {
+        "name": "company_officer_network",
+        "description": "Extract companies, enrich with officers, find their other companies",
+        "syntax": "!domain.com => c? => @OPENCORP => officers => @OPENCORP",
+        "steps": [
+          {
+            "input": 6,
+            "rule": "LINKLATER_EXTRACT_COMPANIES",
+            "output": 241
+          },
+          {
+            "input": 241,
+            "module": "corporella",
+            "output": 58
+          },
+          {
+            "input": 59,
+            "module": "corporella",
+            "output": 13
+          }
+        ]
+      },
+      {
+        "name": "full_domain_investigation",
+        "description": "Comprehensive domain analysis with backlinks, outlinks, archives, entities",
+        "syntax": "!domain.com => {bl!, !ol, arch!, ent?, @GA_DISCOVERY}",
+        "parallel": true,
+        "steps": [
+          {
+            "input": 6,
+            "rule": "LINKLATER_BACKLINKS_DOMAINS",
+            "output": 217
+          },
+          {
+            "input": 6,
+            "rule": "LINKLATER_OUTLINKS_DOMAINS",
+            "output": 219
+          },
+          {
+            "input": 6,
+            "rule": "LINKLATER_ARCHIVE_SNAPSHOTS",
+            "output": 225
+          },
+          {
+            "input": 6,
+            "rule": "LINKLATER_EXTRACT_ALL",
+            "output": 245
+          },
+          {
+            "input": 6,
+            "rule": "LINKLATER_GA_DISCOVERY",
+            "output": 230
+          }
+        ]
+      }
+    ]
+  },
+  "friction_summary": {
+    "description": "Summary of friction levels for chain planning",
+    "levels": {
+      "Open": {
+        "description": "Fully automated, no API keys or user action required",
+        "examples": [
+          "CC Graph",
+          "GlobalLinks",
+          "Wayback CDX",
+          "crt.sh",
+          "GDELT",
+          "Entity extraction"
+        ]
+      },
+      "Open/Paywalled": {
+        "description": "Free tier available, paid for comprehensive results",
+        "examples": [
+          "WhoisXML subdomains",
+          "Reverse WHOIS",
+          "NewsAPI"
+        ]
+      },
+      "Paywalled": {
+        "description": "Requires paid API subscription",
+        "examples": [
+          "Breach databases",
+          "Some WHOIS providers"
+        ]
+      },
+      "Rate Limited": {
+        "description": "Automated but with enforced delays",
+        "examples": [
+          "Direct WHOIS (2s delay)",
+          "Some registry lookups"
+        ]
+      },
+      "User Action Required": {
+        "description": "Cannot be fully automated",
+        "examples": [
+          "CAPTCHA-protected registries",
+          "Login-required sources"
+        ]
+      }
+    }
+  }
+}

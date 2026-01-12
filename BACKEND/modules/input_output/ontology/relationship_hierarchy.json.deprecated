@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "description": "Relationship type hierarchy and aliases for SASTRE syntax",
+    "version": "1.0",
+    "last_updated": "2026-01-02",
+    "note": "This file defines parent/child relationships and aliases. The full relationship definitions remain in relationships.json"
+  },
+  
+  "hierarchy": {
+    "owner_of": {
+      "description": "Ownership relationships",
+      "children": ["beneficial_owner_of", "shareholder_of"],
+      "aliases": []
+    },
+    "beneficial_owner_of": {
+      "description": "Ultimate beneficial ownership",
+      "parent": "owner_of",
+      "children": [],
+      "aliases": ["ubo_of"]
+    },
+    "shareholder_of": {
+      "description": "Direct shareholding",
+      "parent": "owner_of", 
+      "children": [],
+      "aliases": []
+    },
+    
+    "officer_of": {
+      "description": "Corporate officer roles",
+      "children": ["director_of", "secretary_of"],
+      "aliases": []
+    },
+    "director_of": {
+      "description": "Director role",
+      "parent": "officer_of",
+      "children": [],
+      "aliases": []
+    },
+    "secretary_of": {
+      "description": "Company secretary role",
+      "parent": "officer_of",
+      "children": [],
+      "aliases": []
+    },
+    
+    "url_of": {
+      "description": "URL/web relationships",
+      "children": ["subdomain_of", "path_of"],
+      "aliases": []
+    },
+    "subdomain_of": {
+      "description": "Subdomain relationship",
+      "parent": "url_of",
+      "children": [],
+      "aliases": []
+    },
+    "path_of": {
+      "description": "URL path relationship", 
+      "parent": "url_of",
+      "children": [],
+      "aliases": []
+    }
+  },
+  
+  "deprecations": {
+    "owns": {
+      "replacement": "owner_of",
+      "reason": "Standardize on _of suffix"
+    },
+    "owner_of": {
+      "note": "Use as parent type only. For specific ownership, use beneficial_owner_of or shareholder_of"
+    }
+  },
+  
+  "extraction_syntax": {
+    "@owner_of?": "Extract all ownership relationships (beneficial_owner_of + shareholder_of)",
+    "@beneficial_owner_of?": "Extract UBO relationships only",
+    "@ubo_of?": "Alias for @beneficial_owner_of?",
+    "@shareholder_of?": "Extract shareholder relationships only",
+    "@officer_of?": "Extract all officer relationships (director_of + secretary_of)",
+    "@director_of?": "Extract director relationships only",
+    "@secretary_of?": "Extract secretary relationships only",
+    "@url_of?": "Extract all URL relationships (subdomain_of + path_of)",
+    "@subdomain_of?": "Extract subdomain relationships only",
+    "@path_of?": "Extract path relationships only"
+  }
+}

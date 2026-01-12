@@ -1,0 +1,21 @@
+{
+  "id": "832e82b521d82a97",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "rosebud",
+  "label": "rosebud",
+  "value": "rosebud",
+  "comment": "{\n  \"id\": \"2mfaopffqgok271i0o0dcvlwxtg\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"rosebud\"\n  ],\n  \"hashed_password\": [\n    \"09bb63bf7635f9cfd50f022e7a3b0dba:||MD5\",\n    \"e7ea4f94cb4af75c6643566ca6d95d9433b8a6f2:||SHA1\",\n    \"556f07d09850995fb0e725730dfc84c6e5a6d2a819669197955c4493a9f1eb03:||SHA256\",\n    \"ecf1536b1e65151f47070a01e6ac997aece0a3190c703ebf852cc7efb8fface7b49a1058377dd4f913be4b5a40a85f8f1cb3159937eca00902cdf22a500baaf8:||SHA512\",\n    \"cm9zZWJ1ZA==:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:12.684512",
+  "updatedAt": "2026-01-12T00:04:12.684514",
+  "lastSeen": "2026-01-12T00:04:12.684515"
+}

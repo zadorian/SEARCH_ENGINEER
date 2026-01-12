@@ -1,0 +1,257 @@
+{
+  "project_id": "default",
+  "created_at": "2026-01-12T10:38:49.192750",
+  "updated_at": "2026-01-12T10:38:49.363490",
+  "c1_bridge_tasks": [],
+  "indexing_tasks": [
+    {
+      "task_id": "idx-c-3-20260112103849",
+      "tier": "c-3",
+      "source": "/data/DATASETS/FTM/fec/2024/ElectioneeringComm_2024.csv",
+      "target_index": "geo_unified",
+      "status": "testing",
+      "total_docs": 0,
+      "indexed_docs": 0,
+      "failed_docs": 0,
+      "field_mappings": [],
+      "test_batch_size": 1000,
+      "test_results": {
+        "batch_size": 50,
+        "success_count": 50,
+        "error_count": 0,
+        "success_rate": 1.0,
+        "tested_at": "2026-01-12T10:38:49.363477",
+        "sample_docs": [
+          {
+            "id": "0b5e21d59451453711583c39",
+            "doc_type": "location",
+            "indexed_at": "2026-01-12T10:38:49.196029",
+            "lat": "61463",
+            "state": "VA",
+            "city": "ALEXANDRIA",
+            "address": "500 MONTGOMERY ST, STE 260",
+            "source_records": [
+              {
+                "source": "fec_electioneering_2024",
+                "source_type": "file",
+                "original_id": null,
+                "fields": {
+                  "CANDIDATE_ID": "",
+                  "CANDIDATE_NAME": "",
+                  "CANDIDATE_OFFICE": "",
+                  "CANDIDATE_STATE": "",
+                  "CANDIDATE_DISTRICT": "",
+                  "COMMITTEE_ID": "C30002851",
+                  "COMMITTEE_NAME": "AMERICAN BANKERS ASSOCIATION",
+                  "SB_IMAGE_NUM": "202402229622244888",
+                  "PAYEE_NAME": "REVOLUTION AGENCY",
+                  "PAYEE_STREET": "500 MONTGOMERY ST, STE 260",
+                  "PAYEE_CITY": "ALEXANDRIA",
+                  "PAYEE_STATE": "VA",
+                  "DISBURSEMENT_DESCRIPTION": "FREEDOM ELECTIONEERING COMMUNICATION - RADIO",
+                  "DISBURSEMENT_DATE": "21-FEB-24",
+                  "COMMUNICATION_DATE": "21-FEB-24",
+                  "PUBLIC_DISBURSEMENT_DATE": "21-FEB-24",
+                  "REPORTED_DISBURSEMENT_AMOUNT": "61463",
+                  "NUMBER_OF_CANDIDATES": "1",
+                  "CALCULATED_CANDIDATE_SHARE": "61463"
+                },
+                "ingested_at": "2026-01-12T10:38:49.196037"
+              }
+            ],
+            "dimension_keys": [
+              "source:fec-electioneering-2024",
+              "type:location"
+            ],
+            "embedded_edges": []
+          },
+          {
+            "id": "77aecced0a0e7dc981666507",
+            "doc_type": "location",
+            "indexed_at": "2026-01-12T10:38:49.196106",
+            "lat": "99929.4",
+            "state": "VA",
+            "city": "ALEXANDRIA",
+            "address": "2111 EISENHOWER AVUENE",
+            "source_records": [
+              {
+                "source": "fec_electioneering_2024",
+                "source_type": "file",
+                "original_id": null,
+                "fields": {
+                  "CANDIDATE_ID": "",
+                  "CANDIDATE_NAME": "",
+                  "CANDIDATE_OFFICE": "",
+                  "CANDIDATE_STATE": "",
+                  "CANDIDATE_DISTRICT": "",
+                  "COMMITTEE_ID": "C30002851",
+                  "COMMITTEE_NAME": "AMERICAN BANKERS ASSOCIATION",
+                  "SB_IMAGE_NUM": "202410099684834716",
+                  "PAYEE_NAME": "THE ORANGE AGENCY",
+                  "PAYEE_STREET": "2111 EISENHOWER AVUENE",
+                  "PAYEE_CITY": "ALEXANDRIA",
+                  "PAYEE_STATE": "VA",
+                  "DISBURSEMENT_DESCRIPTION": "COMMUNITY INVESTMENTS ELECTIONEERING COMMUNICATION - TV",
+                  "DISBURSEMENT_DATE": "09-OCT-24",
+                  "COMMUNICATION_DATE": "09-OCT-24",
+                  "PUBLIC_DISBURSEMENT_DATE": "09-OCT-24",
+                  "REPORTED_DISBURSEMENT_AMOUNT": "99929.4",
+                  "NUMBER_OF_CANDIDATES": "1",
+                  "CALCULATED_CANDIDATE_SHARE": "99929.4"
+                },
+                "ingested_at": "2026-01-12T10:38:49.196110"
+              }
+            ],
+            "dimension_keys": [
+              "source:fec-electioneering-2024",
+              "type:location"
+            ],
+            "embedded_edges": []
+          },
+          {
+            "id": "afd10360e87d252684fa3cfa",
+            "doc_type": "location",
+            "indexed_at": "2026-01-12T10:38:49.196124",
+            "lat": "162776",
+            "state": "VA",
+            "city": "ALEXANDRIA",
+            "address": "2111 EISENHOWER AVENUE SUITE 400",
+            "source_records": [
+              {
+                "source": "fec_electioneering_2024",
+                "source_type": "file",
+                "original_id": null,
+                "fields": {
+                  "CANDIDATE_ID": "",
+                  "CANDIDATE_NAME": "",
+                  "CANDIDATE_OFFICE": "",
+                  "CANDIDATE_STATE": "",
+                  "CANDIDATE_DISTRICT": "",
+                  "COMMITTEE_ID": "C30002430",
+                  "COMMITTEE_NAME": "AMERICAN CHEMISTRY COUNCIL INC",
+                  "SB_IMAGE_NUM": "202412249739988055",
+                  "PAYEE_NAME": "THE ORANGE AGENCY",
+                  "PAYEE_STREET": "2111 EISENHOWER AVENUE SUITE 400",
+                  "PAYEE_CITY": "ALEXANDRIA",
+                  "PAYEE_STATE": "VA",
+                  "DISBURSEMENT_DESCRIPTION": "INTERNET BROADCAST AND CABLE TV ADS BARRASSO",
+                  "DISBURSEMENT_DATE": "06-AUG-24",
+                  "COMMUNICATION_DATE": "09-AUG-24",
+                  "PUBLIC_DISBURSEMENT_DATE": "09-AUG-24",
+                  "REPORTED_DISBURSEMENT_AMOUNT": "162776",
+                  "NUMBER_OF_CANDIDATES": "1",
+                  "CALCULATED_CANDIDATE_SHARE": "162776"
+                },
+                "ingested_at": "2026-01-12T10:38:49.196127"
+              }
+            ],
+            "dimension_keys": [
+              "source:fec-electioneering-2024",
+              "type:location"
+            ],
+            "embedded_edges": []
+          },
+          {
+            "id": "b729c37ef8b41a713bea74e5",
+            "doc_type": "location",
+            "indexed_at": "2026-01-12T10:38:49.196138",
+            "lat": "230000",
+            "state": "VA",
+            "city": "ALEXANDRIA",
+            "address": "2111 EISENHOWER AVENUE",
+            "source_records": [
+              {
+                "source": "fec_electioneering_2024",
+                "source_type": "file",
+                "original_id": null,
+                "fields": {
+                  "CANDIDATE_ID": "",
+                  "CANDIDATE_NAME": "",
+                  "CANDIDATE_OFFICE": "",
+                  "CANDIDATE_STATE": "",
+                  "CANDIDATE_DISTRICT": "",
+                  "COMMITTEE_ID": "C30002430",
+                  "COMMITTEE_NAME": "AMERICAN CHEMISTRY COUNCIL INC",
+                  "SB_IMAGE_NUM": "202403049622308434",
+                  "PAYEE_NAME": "THE ORANGE AGENCY",
+                  "PAYEE_STREET": "2111 EISENHOWER AVENUE",
+                  "PAYEE_CITY": "ALEXANDRIA",
+                  "PAYEE_STATE": "VA",
+                  "DISBURSEMENT_DESCRIPTION": "INTERNET BROADCAST AND CABLE TV ADS: CHAMPION",
+                  "DISBURSEMENT_DATE": "28-FEB-24",
+                  "COMMUNICATION_DATE": "05-MAR-24",
+                  "PUBLIC_DISBURSEMENT_DATE": "05-MAR-24",
+                  "REPORTED_DISBURSEMENT_AMOUNT": "230000",
+                  "NUMBER_OF_CANDIDATES": "1",
+                  "CALCULATED_CANDIDATE_SHARE": "230000"
+                },
+                "ingested_at": "2026-01-12T10:38:49.196140"
+              }
+            ],
+            "dimension_keys": [
+              "source:fec-electioneering-2024",
+              "type:location"
+            ],
+            "embedded_edges": []
+          },
+          {
+            "id": "afd10360e87d252684fa3cfa",
+            "doc_type": "location",
+            "indexed_at": "2026-01-12T10:38:49.196152",
+            "lat": "177953",
+            "state": "VA",
+            "city": "ALEXANDRIA",
+            "address": "2111 EISENHOWER AVENUE SUITE 400",
+            "source_records": [
+              {
+                "source": "fec_electioneering_2024",
+                "source_type": "file",
+                "original_id": null,
+                "fields": {
+                  "CANDIDATE_ID": "",
+                  "CANDIDATE_NAME": "",
+                  "CANDIDATE_OFFICE": "",
+                  "CANDIDATE_STATE": "",
+                  "CANDIDATE_DISTRICT": "",
+                  "COMMITTEE_ID": "C30002430",
+                  "COMMITTEE_NAME": "AMERICAN CHEMISTRY COUNCIL INC",
+                  "SB_IMAGE_NUM": "202503269754508262",
+                  "PAYEE_NAME": "THE ORANGE AGENCY",
+                  "PAYEE_STREET": "2111 EISENHOWER AVENUE SUITE 400",
+                  "PAYEE_CITY": "ALEXANDRIA",
+                  "PAYEE_STATE": "VA",
+                  "DISBURSEMENT_DESCRIPTION": "INTERNET BROADCAST AND CABLE TV PUBLICATION OF REP. LEE ADVERTISEMENT.",
+                  "DISBURSEMENT_DATE": "06-AUG-24",
+                  "COMMUNICATION_DATE": "08-AUG-24",
+                  "PUBLIC_DISBURSEMENT_DATE": "08-AUG-24",
+                  "REPORTED_DISBURSEMENT_AMOUNT": "177953",
+                  "NUMBER_OF_CANDIDATES": "1",
+                  "CALCULATED_CANDIDATE_SHARE": "177953"
+                },
+                "ingested_at": "2026-01-12T10:38:49.196154"
+              }
+            ],
+            "dimension_keys": [
+              "source:fec-electioneering-2024",
+              "type:location"
+            ],
+            "embedded_edges": []
+          }
+        ],
+        "issues": []
+      },
+      "created_at": "2026-01-12T10:38:49.195355",
+      "started_at": null,
+      "completed_at": null,
+      "last_error": null,
+      "error_count": 0,
+      "metadata": {
+        "entity_type": "location",
+        "confidence": 0.4,
+        "field_count": 19
+      }
+    }
+  ],
+  "index_status": {},
+  "settings": {}
+}

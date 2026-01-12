@@ -1,0 +1,5060 @@
+{
+  "AD": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Used as holding company domicile despite German operations"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "AE": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "UAE prohibits criticism of ruling families and government officials in media"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Confirmation of mercenary payment allegations",
+        "reason": "Classified intelligence information not accessible through open sources",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Details of 1MDB involvement",
+        "reason": "Ongoing investigation with limited public disclosure",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Adverse media references for Antoine Chatzistamatiou",
+        "reason": "No references found in Arabic language media since December 2015",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Litigation records for Antoine Chatzistamatiou",
+        "reason": "No relevant results returned",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "APFIA connection in Henani's social media",
+        "reason": "No mention of APFIA on social media profiles",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "AE,CZ": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "Tleubayev assets in UAE and Czech Republic",
+        "reason": "No information identified relating Tleubayev to assets in these jurisdictions",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "AF": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Excluded from regional cooperation due to ongoing conflict, limited to bilateral engagement"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Afghanistan participation in regional water coordination",
+        "reason": "ongoing conflict and civil war exclusion from regional frameworks",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Afghanistan water governance expert interviews",
+        "reason": "No responses to multiple contact attempts",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Interview responses from Afghan water experts",
+        "reason": "No responses received to multiple outreach attempts",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "AL": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Albanian registry accessible for basic company lookups"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "District Court litigation records",
+        "reason": "Website currently unavailable",
+        "category": "technical_failure"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "AM": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Armenian banking sector subject to specific regulatory oversight"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Current beneficial ownership of Amio Bank",
+        "reason": "Hidden behind Swiss holding company structure",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Early career information for Hayk Yesayan",
+        "reason": "LinkedIn profile only covers recent positions, leaving first 27 years unaccounted for",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Current senior management structure of TA",
+        "reason": "All executive team left after acquisition, limited public information about replacements",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Detailed litigation information",
+        "reason": "Section marked as PENDING",
+        "category": "pending_action"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "AO": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "litigation",
+        "text": "to access the system. (''reg'')\n\n* [http://www."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Corruption is rife in customs administration and local authorities, particularly in Viana Municipality. Companies regularly deal with costly and non-transparent border processes."
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "AR": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Subsidiary information obtained through Chilean parent company disclosures"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "AT": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Listed companies on Vienna Stock Exchange must disclose shareholdings above 4%"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Current status of gambling liberalization plans",
+        "reason": "Plans suspended due to political scandal",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Complete Austrian investigation files",
+        "reason": "Regulatory confidentiality",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Financial position of Nafond Privatstiftung",
+        "reason": "Austrian foundations do not publish financial returns",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Current subsidiary relationships for Austrian entities",
+        "reason": "Regulatory changes in 2016 removed disclosure requirements for small companies",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "exact ownership information of parent company",
+        "reason": "privately held company, exact ownership not found in public domain",
+        "category": "disclosure_not_required"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "AU": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Subject to assessment for equivalence to EU AML-CFT framework"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Identity verification for international numbers",
+        "reason": "Limited access to Australian phone directories",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Property ownership verification",
+        "reason": "Property records cannot be searched by individual owners' names",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "AZ": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Azerbaijan telecommunications sector requires government licensing and regulatory oversight"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "InvestA LLC ownership and current status",
+        "reason": "Company not found in current corporate registry",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Detailed court records and litigation history",
+        "reason": "Limited public availability of court records",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Complete ownership structure of Guliyev family businesses",
+        "reason": "Private companies with limited disclosure requirements",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Delta Telecom beneficial ownership",
+        "reason": "Undisclosed and unidentified owners, only rumors available",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Neqsol Holding MMC incorporation date",
+        "reason": "Could not be identified through Ministry of Taxes corporate registry",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "BA": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Bosnia and Herzegovina has federal structure with entity-level registrations. Political party HDZ appears to have significant influence over public procurement processes."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Financial records of Comtrade System Integration Sarajevo",
+        "reason": "Not published in corporate registry or company website",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Detailed litigation information",
+        "reason": "Limited litigation databases with non-public case details",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Personal background information on Marko Tadić",
+        "reason": "Name is extremely common in BiH region and no biography exists online, subject does not use social media",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Comprehensive litigation records",
+        "reason": "Limited availability of cases in public databases",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Regulatory sanctions or violations",
+        "reason": "No relevant mentions found in available databases",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "BD": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Grameen Bank is state-owned institution; government has 25% ownership and regulatory control"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "BE": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Belgian jurisdiction relevant due to historical prosecution of beneficial owners"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Brussels Bar Association membership verification 1993-1997",
+        "reason": "Could not be corroborated online",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "SD Petošević company records from 1992",
+        "reason": "No such company could be identified existing from 1992, despite LinkedIn claims",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Bankruptcy and insolvency proceedings",
+        "reason": "Comprehensive data on bankruptcy and insolvency proceedings in Belgium is not available",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Ownership information for Belgian companies",
+        "reason": "Belgian corporate records do not display ownership information",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Insolvency records",
+        "reason": "No insolvency register is available in Belgium",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "BF": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Part of Economic and Monetary Union of West Africa (UEMOA) with shared currency and regulatory framework under BCEAO"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "2019 census migration analysis report",
+        "reason": "Report promised but not yet published as of research date",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Government programs specifically for migrant financial inclusion",
+        "reason": "No evidence found of specific measures targeting migrants",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Information on displaced persons in national development plans",
+        "reason": "No reference found in development planning documents",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Full text of Ordinance No. 84-49 of 4 August 1984",
+        "reason": "Not available in online legal databases",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Updated immigration legislation status",
+        "reason": "Ministry website lacks recent information on legislative review",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "BG": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "EU member state with direct AMLD obligations"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Party name search in Bulgarian court records",
+        "reason": "Court records cannot be searched by party name and defendant names are usually abbreviated",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "litigation searches",
+        "reason": "lack of subjects' ID numbers required for access",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Criminal records for subjects",
+        "reason": "Criminal records are not a matter of public record in Bulgaria",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Comprehensive litigation records",
+        "reason": "Not all litigation records are made publicly available or accessible online",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Criminal and civil litigation records",
+        "reason": "Bulgarian litigation records are not searchable by party",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "BH": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Detailed corporate ownership structures available"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "BM": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Bermuda Digital Asset Business license required for cryptocurrency trading"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Details about cryptocurrency NDF product introduction by 24 Exchange",
+        "reason": "No information released after winning Bitcoin 2021 conference pitch",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "BR": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Brazilian corporate registry provides substantial transparency for public companies"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "company principals and ownership information",
+        "reason": "no information available in accessible sources",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "detailed business operations information",
+        "reason": "company has very limited public profile and no website",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "company leadership information",
+        "reason": "No information available about the company's leadership",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "media coverage",
+        "reason": "No references to the company in the media",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "detailed financial statements",
+        "reason": "no publicly available financial reports for the companies",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "BV": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "BVI provides significant privacy protection for beneficial owners"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "BW": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Botswana government paid 500m pula for 24% stake"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "BY": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Belarus State Registry provides sole trader information but does not list company directors"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Company directors for Belarus entities",
+        "reason": "Belarus State Register of Legal Entities does not list company directors",
+        "category": "other"
+      },
+      {
+        "sought": "Ander Solutions company registration",
+        "reason": "Company not listed in State Register",
+        "category": "other"
+      },
+      {
+        "sought": "Information about IP NIIPE organization",
+        "reason": "No such organization could be identified, despite being listed on employment profile",
+        "category": "other"
+      },
+      {
+        "sought": "Detailed activity information for UP NIIPE",
+        "reason": "Listed in Belarus corporate registry but no information on its activity online",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Social media activity or business websites for identified email addresses",
+        "reason": "Despite extensive research on leaked email addresses, they led to nothing of note in the time allowed",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "BZ": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Belize jurisdiction used for offshore holding structures"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "True beneficial ownership of Normeston Trading Limited",
+        "reason": "Corporate secrecy laws in Belize",
+        "category": "offshore_opacity"
+      },
+      {
+        "sought": "Ultimate beneficial ownership of Normeston Trading Ltd during 2009-2012 period",
+        "reason": "Multiple conflicting media reports, no verified ownership records",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "CA": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access information such as:\n- Company name\n- Registered office address\n- Names and addresses of directors\n- Incorporation date\n- Corporate status\n\nNote: The data here might be periodically scraped by third-party aggregators like OpenCorporates, but it's essential to verify information against the"
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "FATF member with comprehensive AML-CFT regime"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Direct public evidence of Abi connection to F&M",
+        "reason": "No immediately obvious evidence in public domain despite source claims",
+        "category": "other"
+      },
+      {
+        "sought": "Current F&M involvement in Toubani Resources",
+        "reason": "Consulting agreement terminated March 2021, though executives remain",
+        "category": "other"
+      },
+      {
+        "sought": "Direct connection between Abi and F&M",
+        "reason": "No immediately obvious evidence in public domain",
+        "category": "other"
+      },
+      {
+        "sought": "Current F&M involvement in Toubani",
+        "reason": "Consultancy agreement terminated but executives remain",
+        "category": "other"
+      },
+      {
+        "sought": "regulatory_status",
+        "reason": "Listed on BP site but not found in Alberta Child Care Lookup",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "litigation",
+        "text": " Case number is not required for a search."
+      }
+    ]
+  },
+  "CD": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "  The site’s navigation lists categories such as constitutional law, civil law, penal law, administrative law and provincial law:contentReference[oaicite:3]{index=3}."
+      },
+      {
+        "section": "general",
+        "text": "DRC legal framework includes laws (loi), ordinances (ordonnance), and ministerial decrees (arrêté) with hierarchical authority. Migration law dates to 1983 with various implementing regulations."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Details about DRC company activities",
+        "reason": "Limited information available, would require local partners for further investigation",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Corporate registration details and beneficial ownership",
+        "reason": "Commercial Register website was unavailable at the time of research",
+        "category": "other"
+      },
+      {
+        "sought": "Current status of EGC takeover of CDM operations",
+        "reason": "Ongoing negotiations with unclear resolution",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Current operational status of COMIKU",
+        "reason": "Political changes affecting access and influence",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "political",
+        "text": "  They are subscription‑based and not publicly available."
+      }
+    ]
+  },
+  "CG": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Strong tribal and family connections influence political appointments"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "CH": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Company ownership details for private companies are not required to be disclosed in Switzerland"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "exact ownership percentage of Benjámin Lakatos",
+        "reason": "company ownership details for private companies are not required to be disclosed in Switzerland",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "litigation records for Sascha Prüter",
+        "reason": "Swiss litigation records are not generally made available to the general public",
+        "category": "other"
+      },
+      {
+        "sought": "current addresses for Sascha Prüter",
+        "reason": "Searches of Swiss address databases did not return results",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "bankruptcy records for Sascha Prüter",
+        "reason": "No publicly available bankruptcy or insolvency register in Switzerland",
+        "category": "other"
+      },
+      {
+        "sought": "Employment verification at Sandoz",
+        "reason": "No records found in media or corporate databases",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "CI": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Subject to WAEMU monetary union regulations and Basel II/III framework implementation"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Details of Ivory Jet Center operations",
+        "reason": "Limited information available within two-day research timeframe",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "CK": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Cook Islands maintains strict corporate secrecy but information available through leaked documents"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "CL": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "litigation",
+        "text": "to access the court searches with the Oficina Judicial link provided in the Chile Judiciary Database section, please try this link www.pjud."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "\n\nLegal System Overview\n\nThe legal system of Chile is complex and comprises more than 450 individual courts."
+      },
+      {
+        "section": "general",
+        "text": "Chilean corporate disclosure requirements provide substantial transparency for public companies and their subsidiaries"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "CM": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "\n\nAdditional Information on the Cameroonian Court System\n\nCameroon has a \"bijural\" legal system wherein English Common Law is practiced in Anglophone regions of the Northwest and Southwest while French Civil Law is practiced in the eight francophone regions of Adamaoua, Centre, East, Far North, Littoral, North, West and South."
+      },
+      {
+        "section": "general",
+        "text": "Cameroon has ratified key international migration conventions but lacks comprehensive national migration legislation framework"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Comprehensive migration statistics",
+        "reason": "Government does not regularly collect and publish formal migration databases",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Hate crime policies against migrants",
+        "reason": "No evidence found of specific government policies addressing xenophobia",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "comprehensive migration statistics",
+        "reason": "systematic data collection systems not in place",
+        "category": "other"
+      },
+      {
+        "sought": "policy impact measurements",
+        "reason": "IGM framework explicitly does not measure policy impacts or institutional effectiveness",
+        "category": "other"
+      },
+      {
+        "sought": "comprehensive migration flow statistics",
+        "reason": "systematic data collection not established until 2020 convention with IOM",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "CN": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Wholly foreign owned enterprise structure indicates foreign investment vehicle"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Official ENDS national standards content",
+        "reason": "Documents still under central review, not distributed to provincial levels",
+        "category": "other"
+      },
+      {
+        "sought": "Specific implementation timelines",
+        "reason": "Central CNTC has not provided official notifications to provincial branches",
+        "category": "other"
+      },
+      {
+        "sought": "Detailed tax rate specifications for ENDS components",
+        "reason": "Depends on pending product classification decisions at central level",
+        "category": "pending_action"
+      },
+      {
+        "sought": "specific publication dates for national standards",
+        "reason": "information not shared with provincial units",
+        "category": "other"
+      },
+      {
+        "sought": "detailed technical specifications of standards",
+        "reason": "standards still under review at central level",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "CO": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access registration records or to file new registrations.\n\n* '''Procuraduría General de la Nación – delinquent debtor bulletin (BDME)''' – The State’s Delinquent Debtor Bulletin lists natural and legal persons who owe money to public entities."
+      },
+      {
+        "section": "regulatory",
+        "text": "to access reports and notices.\n\n* '''Superintendencia Financiera de Colombia – supervised entities and sanctions''' – The Financial Superintendency maintains lists of all financial entities under supervision, including banks, credit institutions, insurance companies, pension funds and stock market a"
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "S.A.S. companies have simplified disclosure requirements with no requirement for board of directors and unpublished incorporation documents"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "detailed financial records",
+        "reason": "Corporate records with financial information are publicly unavailable",
+        "category": "other"
+      },
+      {
+        "sought": "incorporation documents",
+        "reason": "S.A.S. incorporation documents are not published",
+        "category": "other"
+      },
+      {
+        "sought": "Ownership and management information from corporate records",
+        "reason": "Corporate records with information on ownership and management are publicly unavailable for S.A.S. companies",
+        "category": "other"
+      },
+      {
+        "sought": "Financial records from official sources",
+        "reason": "Corporate records with financial information are publicly unavailable",
+        "category": "other"
+      },
+      {
+        "sought": "financial information",
+        "reason": "No financial information was available for the Company",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "regulatory",
+        "text": "  Its site provides access to electoral rolls and civil status services; however, personal data is not publicly searchable."
+      }
+    ]
+  },
+  "CR": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "Details of Costa Rica hotel investment",
+        "reason": "Could not verify through available research methods in given timeframe",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Costa Rica hotel investment details",
+        "reason": "Could not verify bankruptcy claims in available time",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "CY": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "To access the official registry, follow these steps:\n\n* Go to [https://www.companies."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Cyprus registry provides director information for companies"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Ultimate beneficial ownership of Cyprus nominee companies",
+        "reason": "Nominee structures with Cypriot lawyers obscure true ownership",
+        "category": "offshore_opacity"
+      },
+      {
+        "sought": "Direct documentary evidence linking Subbotin to Valna Holding",
+        "reason": "Cyprus privacy laws and nominee structures obscure beneficial ownership",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Definitive connection to Cyprus and Malta entities",
+        "reason": "Could not determine if George/Georgios Nikas in OCCRP database was same individual",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Complete phone number +357 445519",
+        "reason": "Incomplete number provided by client",
+        "category": "other"
+      },
+      {
+        "sought": "Complete beneficial ownership structures for Cyprus entities",
+        "reason": "Limited transparency in Cyprus corporate structures",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "CZ": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Investigation focused on potential EU subsidy fraud and conflict of interest issues"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "litigation records involving Draslovka entities",
+        "reason": "Czech court records anonymize parties in most cases",
+        "category": "other"
+      },
+      {
+        "sought": "Early life and educational records",
+        "reason": "No information available in open sources",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Czech litigation records",
+        "reason": "No relevant results found in comprehensive search",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "family member business relationships",
+        "reason": "complete business separation following 2010 split",
+        "category": "other"
+      },
+      {
+        "sought": "Complete donor identities for CEVRO entities",
+        "reason": "Entities do not exhaustively disclose donor identities",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "DE": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access specific filings. In the \"DK\" page, you'll see a \"tree\" of options with drop‑down lists:\n  * **\"Dokumente zur Registernummer\"** contains all documents filed while the company has been registered in its current location."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "German corporate registry appears to provide comprehensive director information publicly"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Purchase price of shipyard acquisition",
+        "reason": "Transaction price not disclosed in public filings",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "German litigation records for individuals",
+        "reason": "Litigation records not public and anonymised, cannot search by name",
+        "category": "other"
+      },
+      {
+        "sought": "litigation records searchable by individual names",
+        "reason": "German litigation records available online are heavily redacted and are not searchable by the names of individuals",
+        "category": "other"
+      },
+      {
+        "sought": "Litigation records for key principals",
+        "reason": "German litigation databases have limited scope and anonymize natural person names",
+        "category": "pending_action"
+      },
+      {
+        "sought": "litigation records",
+        "reason": "German litigation records are heavily redacted and not searchable by individual names",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "litigation",
+        "text": "Germany has very stringent privacy laws; court records are typically anonymised, meaning the names of all parties (individuals and companies) are redacted."
+      }
+    ]
+  },
+  "DK": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access more information. \n\t\t\nGreenland Business Register\tGreenland\tSearch the official register of business registered in Greenland."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "dk/ Courts Agency database of civil and selected criminal judgements]\n\nDenmark has a civil law system with a judicial review of legislative acts."
+      },
+      {
+        "section": "general",
+        "text": "Danske Bank Estonia branch involved in major money laundering scandal"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "judicial proceedings involving Aage and its principals",
+        "reason": "no findings in available court databases",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "LinkedIn profile for Pia Gleerup",
+        "reason": "no profile found",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Criminal records",
+        "reason": "Not publicly accessible in Denmark",
+        "category": "other"
+      },
+      {
+        "sought": "Educational credentials verification",
+        "reason": "Universities did not respond to verification requests",
+        "category": "other"
+      },
+      {
+        "sought": "Comprehensive litigation records",
+        "reason": "Non-anonymized litigation records not publicly accessible",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "litigation",
+        "text": "\n\nIn Denmark, only the Supreme Court publishes judgements online; while a database of case law exists, it is not publicly available."
+      },
+      {
+        "section": "regulatory",
+        "text": " During ministry belongs also fund legislation and privacy laws."
+      },
+      {
+        "section": "political",
+        "text": "dk/en/travel-and-residence/procedure-for-obtaining-a-danish-criminal-record-certificate/ Procedure to obtain Danish criminal history certificate]\n\nNot Required - Only if Signed Release and Ask Client\n\nThe Danish National Police will need a copy of the applicant's passport, information about his/her last residence in Denmark, information on whether the certificate is to be issued in English, and information on which address the certificate is to be forwarded to."
+      }
+    ]
+  },
+  "EC": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Ecuador operates concession contracts for infrastructure through public-private partnerships. Companies can appeal court decisions through Constitutional Court extraordinary actions."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Executive career history prior to Conorte",
+        "reason": "Limited online presence and social media profiles",
+        "category": "other"
+      },
+      {
+        "sought": "Audit results for investigations launched in 2016 and 2019",
+        "reason": "Results were never published",
+        "category": "other"
+      },
+      {
+        "sought": "Current company website information",
+        "reason": "Website was offline at time of research",
+        "category": "technical_failure"
+      },
+      {
+        "sought": "ownership and management data",
+        "reason": "not available through open sources",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "company website or social media profiles",
+        "reason": "no digital presence found",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "EE": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Strong beneficial ownership transparency requirements enable cross-border corporate intelligence"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "criminal records",
+        "reason": "Criminal records are not a matter of public domain in Estonia",
+        "category": "other"
+      },
+      {
+        "sought": "Confirmation of tax fine imposed on Linnamäe for brewery sale",
+        "reason": "Not yet found in public domain",
+        "category": "other"
+      },
+      {
+        "sought": "Details of alleged fraudulent behavior regarding Tallinn pharmaceutical plant",
+        "reason": "Source could not provide details and researcher had not yet sought public confirmation",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Identity of second political party allegedly supported by Linnamäe",
+        "reason": "Source could not name the party",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Specific details of 1990s tax fraud allegations",
+        "reason": "Historical records not publicly accessible, sources could only provide general recollections",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "EG": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Limited public information availability for corporate officers"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "media coverage or press mentions",
+        "reason": "No profile found in English or Arabic language press",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Detailed reasons for Mekky's departure from GBI",
+        "reason": "No explicit statements found beyond business performance issues",
+        "category": "other"
+      },
+      {
+        "sought": "Further information linking Mekky with MENA cable provider",
+        "reason": "No additional connections identified despite business plan dependency",
+        "category": "other"
+      },
+      {
+        "sought": "Independent corroboration of Oratech employment claims",
+        "reason": "Limited available information beyond biographical mentions",
+        "category": "other"
+      },
+      {
+        "sought": "Details of personal relationship between Khalil and Sabry",
+        "reason": "No specific information identified beyond professional interactions",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": " The only exception is for Law 8 companies, for which ownership is not required to be disclosed to third-parties."
+      },
+      {
+        "section": "political",
+        "text": " \n\nCredit searches are not publicly available in Egypt, as is the case for most countries in MENA."
+      }
+    ]
+  },
+  "ES": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "\n\nSpain follows a civil law legal system, derived from Roman law, which relies on comprehensive legal codes rather than case law."
+      },
+      {
+        "section": "general",
+        "text": "Spanish corporate data shows both current and historic directors (232 historic directors for OHL)"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Complete senior management information for Indra",
+        "reason": "Information not readily available through standard sources",
+        "category": "other"
+      },
+      {
+        "sought": "Detailed shareholder structure of Indra Sistemas",
+        "reason": "Information identified but not detailed in this report",
+        "category": "other"
+      },
+      {
+        "sought": "MBA degree verification from IESE University of Navarra",
+        "reason": "Requires access to Spanish Ministry system with copy of degree certificate",
+        "category": "other"
+      },
+      {
+        "sought": "ownership data",
+        "reason": "not available in Spanish corporate registry nor publicly available in other open sources",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Legal entity information for Neolith Group operations between 2009-2016",
+        "reason": "Unable to identify the legal entity through which the group was operating during this period",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "ET": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Ethiopian corporate law requires commercial registry registration for share companies"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "comprehensive biographical information on ACGFB management",
+        "reason": "limited online availability",
+        "category": "other"
+      },
+      {
+        "sought": "public company filings and court case summaries",
+        "reason": "difficult to obtain public records",
+        "category": "other"
+      },
+      {
+        "sought": "specific political exposure details",
+        "reason": "insufficient information available online",
+        "category": "other"
+      },
+      {
+        "sought": "Major shareholders of Dashen Bank SC",
+        "reason": "Information not disclosed on website, annual reports, and no relevant corporate filings available online",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Major shareholders of Enat Bank SC",
+        "reason": "Ownership not addressed in annual reports, only general claim of 17,000+ shareholders",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "EU": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Same patent received negative reviews at European Patent Office, revised and resubmitted with continued negative reception"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "litigation_records",
+        "reason": "names_often_redacted_for_public",
+        "category": "other"
+      },
+      {
+        "sought": "Source verification for Philips award recognition",
+        "reason": "No URL or verifiable source provided",
+        "category": "other"
+      },
+      {
+        "sought": "Resolution of European Commission state aid investigation",
+        "reason": "Investigation outcome not specified in available sources",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "FI": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access full information (see folders for username and password). This allows access to the historical information, register extracts (including English translation), financial statements and company announcements."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Domestic addresses used for business registration. Common for spouses to act as directors in personal services companies."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "company website",
+        "reason": "No website could be located",
+        "category": "other"
+      },
+      {
+        "sought": "beneficial ownership confirmation",
+        "reason": "No access to company's shareholder register and director's register",
+        "category": "other"
+      },
+      {
+        "sought": "active LinkedIn profile for Katri Johanna Lehmusjoki-Sihvonen",
+        "reason": "Could not find active profile",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "judicial proceedings",
+        "reason": "No results found for any subjects",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Details of trademark settlement with Deutsche Telekom",
+        "reason": "Settlement details are not a matter of public record",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "FR": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access a list of all their directorships (not possible on National Register).\n\nVarious company details are available for free, including those listed below."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "\n\nThe courts in France are divided into two parts - the judicial courts (those dealing with criminal and civil laws), and the administrative courts."
+      },
+      {
+        "section": "general",
+        "text": "French corporate records provide comprehensive personal details including birth dates and marriage information"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Information on Antonin Roland Daniel Saint-Martin",
+        "reason": "No references found in any searched databases or registries",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Connection between Saint-Martin and Došas",
+        "reason": "Unable to corroborate client suggestion of connection",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Comprehensive litigation records",
+        "reason": "Privacy regulations require anonymisation and not all records are publicly available",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Confirmation of Freemasonry connections",
+        "reason": "Difficult to verify according to media source",
+        "category": "other"
+      },
+      {
+        "sought": "French corporate connections",
+        "reason": "No traces found despite French email addresses identified",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": "\n\nNote that while a register of disqualified directors (''Fichier National des Interdits de Gérer'') exists in France, maintained by the National Council of Commercial Court Clerks, it is not publicly accessible [https://www."
+      }
+    ]
+  },
+  "UK": {
+    "disclaimers": [
+      {
+        "section": "litigation",
+        "text": "We searched litigation records in the UK, including reported and unreported cases heard by the High Court, the Court of Appeal—covering civil and criminal litigation—and the Supreme Court. We note that not all litigation records are made publicly available or are accessible online and therefore these searches should not be considered comprehensive. Further, criminal records are not a matter of public record in the UK. We found no records for cases of which *** has been party to."
+      }
+    ],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access filings (Filing History), info on officers and PSCs (People), and current and former charges (Charges). In the Filing History tab, you can refind the filings by category by clicking on the relevant box at the top – for example, you can view Accounts, filings relating to officers, etc."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "\n\n===Legal System===\n\nThe UK, with the exception of Scotland, has a common law legal system."
+      },
+      {
+        "section": "general",
+        "text": "UK has strong corporate transparency requirements. Trading Standards operate at local authority level. Copyright and trademark enforcement through civil and criminal routes."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Connection of entities to LW at 21 Chesham Place property",
+        "reason": "Unable to connect entities to LW at current investigation stage",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Invoices for JUUL products",
+        "reason": "Subject claimed no invoices exist, products were free samples from unknown rep",
+        "category": "other"
+      },
+      {
+        "sought": "Current ownership details for virility-max.co.uk",
+        "reason": "Domain ownership transferred, current owner connection unclear",
+        "category": "other"
+      },
+      {
+        "sought": "Financial records for dissolved company",
+        "reason": "Company dissolved before filing annual returns",
+        "category": "data_not_collected"
+      },
+      {
+        "sought": "Face verification of Yury Komarov identity",
+        "reason": "Picture quality too poor for conclusive facial recognition",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": " They are not required by law to submit annual accounts to Companies House."
+      },
+      {
+        "section": "litigation",
+        "text": " Court records for cases that are neither precedent-setting nor of public importance are not publicly available."
+      }
+    ]
+  },
+  "GE": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access specific filings. In the \"DK\" page, you'll see a \"tree\" of options with drop-down lists."
+      },
+      {
+        "section": "asset_registries",
+        "text": "to access the database.\n\n[https://www."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Georgian banking sector subject to regulatory oversight"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Real-time sanctions screening capabilities",
+        "reason": "Limited local sanctions databases",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Batumi City Hall lawsuit outcome",
+        "reason": "Court case results not accessible through public databases or media reporting",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Detailed beneficial ownership verification for Investment Trading Group Ltd",
+        "reason": "Only 5% shareholder, limited public disclosure requirements",
+        "category": "other"
+      },
+      {
+        "sought": "Direct evidence of sanctions violations",
+        "reason": "Allegations not substantiated with documentary evidence",
+        "category": "other"
+      },
+      {
+        "sought": "Confirmation of Centrepoint Management investment in Georgian real estate",
+        "reason": "Only name similarity and Singapore connection found, insufficient evidence to confirm same entity",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "litigation",
+        "text": "Germany has very stringent privacy laws, as a result of which, when court records are published, they are (almost?) always anonymised, meaning that the names of all parties are redacted (whether individuals or companies)."
+      }
+    ]
+  },
+  "GG": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Guernsey had zero capital gains tax and corporation tax for most companies during relevant period, making it attractive for tax planning structures."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Identity of beneficial owners of property holding companies",
+        "reason": "Guernsey company ownership structure not publicly disclosed",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Detailed shareholder structure of PGHL",
+        "reason": "Guernsey company law does not require public disclosure of detailed ownership",
+        "category": "other"
+      },
+      {
+        "sought": "Confirmation of Gaddafi investment in Picsel",
+        "reason": "Information not publicly available, company records confidential",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Financial details of payments from PGHL subsidiaries",
+        "reason": "Offshore subsidiary financial records not publicly accessible",
+        "category": "offshore_opacity"
+      },
+      {
+        "sought": "True beneficial ownership of PGHL",
+        "reason": "Nominee directors (Marlborough Nominees Limited and Marlborough Trust Company limited) obscure real controllers",
+        "category": "offshore_opacity"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "GH": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access filings (Filing History), info on officers and shareholders (People), and current and former charges (Charges).\n\nCompany records are retained by the RGD for 10 years after a company is dissolved."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "<div class=\"toccolours mw-collapsible mw-collapsed\">\n''Context''\n<div class=\"mw-collapsible-content\">\nGhana has a common law legal system."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Connection verification for Ghanaian company director",
+        "reason": "Insufficient identifying information to confirm if same person",
+        "category": "other"
+      },
+      {
+        "sought": "Verification of Ghana JMTP Company connection to subject",
+        "reason": "Insufficient identifying information (no birth date or citizenship) to confirm if same person",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": " They are not required by law to submit annual accounts to the RGD."
+      },
+      {
+        "section": "litigation",
+        "text": " Court records for cases that are neither precedent-setting nor of public importance are not publicly available."
+      }
+    ]
+  },
+  "GI": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Gibraltar serves as EU-compliant offshore jurisdiction with corporate secrecy protections"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "GLOBAL": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Research limited to publicly available information only. No interviews permitted to maintain external assessment integrity."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Sanctions or watchlist mentions",
+        "reason": "No matches found in searched databases",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Direct connections between Núñez-Lagos and OCI/Contrack subjects",
+        "reason": "No evidence found despite comprehensive searches",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Adverse information about Núñez-Lagos",
+        "reason": "Very limited media coverage, mostly professional announcements",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "All subsidiary directors and shareholders review",
+        "reason": "Time limitations prevented comprehensive subsidiary analysis",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Direct connections between RazerMarkets and PandaTS",
+        "reason": "No explicit ownership or contractual links found despite extensive investigation",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "GN": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Complex political environment with limited transparency on organizational connections"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Knowledge of Jean-Claude Perrin in Guinea",
+        "reason": "No recognition of name among media contacts",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "GR": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Greek real estate records can only be obtained by registered legal representative in the country"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Current ownership structure of Enterprises Shipping and Trading SA",
+        "reason": "Unable to determine within scope of investigation",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Greek real estate records",
+        "reason": "Requires registered legal representative in the country",
+        "category": "other"
+      },
+      {
+        "sought": "Current stake in Folli Follie",
+        "reason": "Only stakes above 5% are publicly disclosed; potential dilution below reporting threshold",
+        "category": "other"
+      },
+      {
+        "sought": "comprehensive Greek asset ownership",
+        "reason": "reverse ownership searches not possible in Greek corporate registry, shareholders not always disclosed without court order",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Detailed litigation information",
+        "reason": "Individuals are anonymized in published litigation in Greece",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "GY": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Immigration governed by 1947 Immigration Act; No overarching migration strategy; Limited inter-ministerial coordination"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Inter-ministerial coordination mechanism",
+        "reason": "No structured coordination exists between ministries on migration",
+        "category": "other"
+      },
+      {
+        "sought": "Migration data disaggregated by nationality and sex",
+        "reason": "Bureau of Statistics does not collect or publish disaggregated migration data",
+        "category": "other"
+      },
+      {
+        "sought": "Comprehensive migration policy strategy for Guyana",
+        "reason": "No overarching gender-responsive migration policy exists",
+        "category": "other"
+      },
+      {
+        "sought": "Disaggregated migration statistics",
+        "reason": "Bureau of Statistics does not collect data by nationality, migration status or sex",
+        "category": "other"
+      },
+      {
+        "sought": "Migration questions in national census",
+        "reason": "2012 census did not include migration questions, future inclusion uncertain",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "HK": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Common law jurisdiction with detailed court records"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Company information for Papas Limited",
+        "reason": "No company found with this name in registry",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Papas Limited company details",
+        "reason": "No Hong Kong-registered company found by this name",
+        "category": "other"
+      },
+      {
+        "sought": "Company details for Papas Limited",
+        "reason": "No Hong Kong-registered company found by this name",
+        "category": "other"
+      },
+      {
+        "sought": "Litigation records",
+        "reason": "Not all judgments relating to civil and criminal proceedings are placed in public record",
+        "category": "other"
+      },
+      {
+        "sought": "Financial reports for Lotus ICT International",
+        "reason": "No financial reports identified",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "HR": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Croatian gambling law requires strict adherence to published rules and regulations. Court emphasizes that betting operators must follow their own published terms and conditions."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Croatian bank acquisition details",
+        "reason": "National Bank of Ukraine blocked the request",
+        "category": "other"
+      },
+      {
+        "sought": "real-time betting system logs from 2003",
+        "reason": "technical limitations and poor record keeping in 2003",
+        "category": "technical_failure"
+      },
+      {
+        "sought": "criminal prosecution outcome",
+        "reason": "criminal case still pending at time of civil judgment",
+        "category": "pending_action"
+      },
+      {
+        "sought": "University graduation confirmation for Fatic",
+        "reason": "Unclear whether Fatic graduated despite studying computer science",
+        "category": "other"
+      },
+      {
+        "sought": "Corporate affiliations in Croatia and Slovenia",
+        "reason": "No corporate affiliations identified",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "HU": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "Hungary follows a civil law legal system grounded in comprehensive legal codes rather than case law."
+      },
+      {
+        "section": "general",
+        "text": "Energy sector ownership changes require MEKH approval"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Full list of MET Group shareholders",
+        "reason": "Information deliberately withheld and not publicly available",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Source of Lakatos' capital for buyout",
+        "reason": "Financial arrangements kept private",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Beneficial ownership of IG Com Magántőkealap",
+        "reason": "Publicly available corporate records do not identify the fund's owners or management",
+        "category": "other"
+      },
+      {
+        "sought": "Beneficial ownership of Manhattan Magántőkealap",
+        "reason": "Publicly available corporate records do not identify the fund's owners or management",
+        "category": "other"
+      },
+      {
+        "sought": "Adventum fund investor identities",
+        "reason": "Hungarian law restricts disclosure to beneficiaries only",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "litigation",
+        "text": " Due to privacy laws, names of individuals, institutions, and companies are generally redacted, and the dataset contains only a selection of judgments."
+      }
+    ]
+  },
+  "ID": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access filings (Filing History), info on officers and PSCs (People), and current and former charges (Charges).\n\n===Indonesia===\n\n* [https://www."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "CV companies in Indonesia always have at least two partners: a limited partner liable only to the extent of their contribution to share capital, and a general partner with unlimited liability, both domiciled in Indonesia. CVs are not listed in the standard corporate registry (Pengayoman)."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Five Boeing 737-300 aircraft owned by Citilink",
+        "reason": "Unable to identify these specific aircraft despite financial statement reference",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Company registration information for CV Asia Pacific Lubritama",
+        "reason": "Indonesian company registry (Pengayoman) does not list limited partnerships (CV entities)",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Financial information including revenue and profit data",
+        "reason": "No public financial disclosure requirements for Indonesian CV entities",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "IE": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Criminal records are not part of the public record. Comprehensive and non-anonymized civil litigation records are not publicly accessible"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "detailed information on Collington II Limited",
+        "reason": "very few mentions online, limited corporate information available",
+        "category": "other"
+      },
+      {
+        "sought": "Beneficial ownership data for EGT Leisure Limited",
+        "reason": "Irish Registry of Beneficial Owners lists no data for this entity",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Counter-report promised by Desmond's legal team regarding Glackin Report",
+        "reason": "Report was promised in 1993 but never published by 1996 and no evidence found online since",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Details on Collington II Limited activities",
+        "reason": "Very few mentions online, no detailed business information available",
+        "category": "other"
+      },
+      {
+        "sought": "Detailed information about Collington II Limited operations",
+        "reason": "Very few public mentions, limited corporate registry information available",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": "  Since 2022 the register is not publicly searchable; access is limited to competent authorities and designated persons, so researchers must rely on filings filed before the restriction or request information under applicable regulations."
+      }
+    ]
+  },
+  "IL": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Comprehensive corporate disclosure requirements"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Direct connection between PandaTS executives and RazerMarkets",
+        "reason": "No explicit connection identified in corporate records",
+        "category": "other"
+      },
+      {
+        "sought": "Identity of 'Shai' shareholder in Clal Insurance",
+        "reason": "Lack of publicly available information",
+        "category": "other"
+      },
+      {
+        "sought": "Current shareholder structure of HVC",
+        "reason": "Israeli corporate registry was down during research period",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Specific tender competitor details",
+        "reason": "Information classified as confidential",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Regulatory issues or business concerns",
+        "reason": "No knowledge of such issues reported by sources",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "IM": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Aviation registry provides comprehensive ownership tracking"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Status of Isle of Man litigation",
+        "reason": "No later information identified about case outcome",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "IN": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Lower court undertrial cases, orders, decrees, and judgments are not available in the public domain"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Outcome of CBI investigations into DIAL Scam",
+        "reason": "Ongoing investigation under Supreme Court watch, no recent updates",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Verification of Indian court case",
+        "reason": "Unreliable source, no corroborating media coverage, different jurisdiction",
+        "category": "other"
+      },
+      {
+        "sought": "Recent counterfeit L'Oréal product seizures in India",
+        "reason": "Unable to identify very recent reports",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Payment aggregator licence approval status",
+        "reason": "Application denied, review requested but no further updates available",
+        "category": "other"
+      },
+      {
+        "sought": "Details of SBM fine amount and specific regulatory action",
+        "reason": "Information reported but not officially confirmed or detailed",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "IQ": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Limited formal corporate registry access, relying on open source intelligence"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "120 Gwer Road address",
+        "reason": "Address does not exist",
+        "category": "other"
+      },
+      {
+        "sought": "Current Ster Tech website information",
+        "reason": "Website offline with 'We Will Be Back Soon' message",
+        "category": "technical_failure"
+      },
+      {
+        "sought": "North Light Holding website information",
+        "reason": "Website taken down",
+        "category": "technical_failure"
+      },
+      {
+        "sought": "Formal Iraqi company registration details",
+        "reason": "Limited access to Iraqi Kurdistan corporate registries",
+        "category": "other"
+      },
+      {
+        "sought": "Official corporate registry records for Ster Group entities",
+        "reason": "Records must be obtained locally, not available online",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "IR": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Iranian subject identified through social media presence"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Specific details of Iranian family connections",
+        "reason": "Historical family name not recalled by source",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": " Not publicly accessible since 2022."
+      }
+    ]
+  },
+  "IS": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "No directorships found for subject in Icelandic registries"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "directorships for Guðni Bergsson",
+        "reason": "No directorships found in Iceland",
+        "category": "other"
+      },
+      {
+        "sought": "Stake sizes for beneficial owners",
+        "reason": "Registry lists beneficial owners without specifying stake sizes",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "IT": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Italian companies must file annual returns with financial data. Transportation licenses are regulated separately by Ministry of Infrastructure and Transportation."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Further details on Siemens bribery case",
+        "reason": "Court judgment contains no additional information beyond al-Nowais admission",
+        "category": "other"
+      },
+      {
+        "sought": "Identity of Italian buyer",
+        "reason": "Sale announced but buyer not publicly identified",
+        "category": "other"
+      },
+      {
+        "sought": "civil litigation records",
+        "reason": "no litigation found involving De Pino companies or LEA",
+        "category": "other"
+      },
+      {
+        "sought": "media coverage",
+        "reason": "no media references found for the companies",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Second delivery information for train contract",
+        "reason": "No public information identified on second delivery status",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "JE": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Jersey jurisdiction commonly used for aviation companies and high-value assets"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Investigation records related to Simon Domaille case connection",
+        "reason": "No indication of formal investigation against subject found in available sources",
+        "category": "other"
+      },
+      {
+        "sought": "Criminal investigation records regarding mephedrone trafficking",
+        "reason": "No indication of formal investigation against subject found",
+        "category": "other"
+      },
+      {
+        "sought": "exact ownership details of Pala Investments",
+        "reason": "Jersey registered companies not obliged to disclose ownership details",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Beneficial ownership details of Pala Investments",
+        "reason": "Jersey corporate registry does not disclose ownership details",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "JO": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Part of Southern and Eastern Mediterranean region"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Evidence of terrorist financing investigations against JCB",
+        "reason": "No evidence found despite high-risk operations",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Details of JSC fine amount and specific bond ownership offense",
+        "reason": "Information not disclosed in available records",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "property records",
+        "reason": "not available",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "JP": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "FATF founding member with established framework"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "KE": {
+    "disclaimers": [
+      {
+        "section": "litigation",
+        "text": "Searches of Kenyan litigation records, including those held by civil, administrative, commercial, labour, criminal and succession litigation filings for all Courts of Appeal, High Courts, Employment and Labour Relations Courts, all Environmental and Land Court and the Supreme Court did not find any reference to ***."
+      }
+    ],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Kenya has specific banking regulations and corporate disclosure requirements"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Court case outcomes for Jade Petroleum",
+        "reason": "Journalists unable to recall final outcomes",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Current status of Jade Petroleum",
+        "reason": "Company believed inactive, no specific records accessed",
+        "category": "other"
+      },
+      {
+        "sought": "Conviction records for involved parties",
+        "reason": "Sources believe no convictions occurred due to political protection",
+        "category": "other"
+      },
+      {
+        "sought": "Company registration number",
+        "reason": "Kenya does not have a publicly accessible corporate registry",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Exact incorporation date",
+        "reason": "Not available through accessible sources",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "KG": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Banking sector underwent significant regulatory changes in 2011 and 2015 affecting microfinance institutions"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Kyrgyzstan current cooperation",
+        "reason": "frozen IFAS membership since 2016",
+        "category": "other"
+      },
+      {
+        "sought": "Kyrgyzstan participation in ICWC water allocation meetings",
+        "reason": "Frozen membership since 2016",
+        "category": "other"
+      },
+      {
+        "sought": "Accurate customer information monitoring",
+        "reason": "No adequate state-level system in place for monitoring accuracy of information submitted by customers",
+        "category": "other"
+      },
+      {
+        "sought": "official ownership confirmation",
+        "reason": "Ministry of Justice corporate register does not include publicly available ownership information",
+        "category": "other"
+      },
+      {
+        "sought": "detailed securities disclosure",
+        "reason": "FINCA has not issued securities which would trigger higher disclosure obligations",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "KH": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Dominated by Cambodian People's Party since 1979, press operates in restrictive environment with judicial harassment"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "property ownership details",
+        "reason": "cannot search speculatively, requires certificate of land title and in-person visit",
+        "category": "other"
+      },
+      {
+        "sought": "court judgments and case records",
+        "reason": "not publicly accessible, limited judgments only from 1994-2006",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "litigation",
+        "text": "kh/\t\t\nFor the most part, judgements and case records in Cambodia are not publicly accessible."
+      }
+    ]
+  },
+  "KM": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "2018 Constitution provides framework for migrant rights. Labor Code from 1984 governs foreign worker rights. Immigration law from 1988 sets entry/residence conditions."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Regular migration statistics publication",
+        "reason": "No regular publication system exists",
+        "category": "other"
+      },
+      {
+        "sought": "National migration strategy document",
+        "reason": "Strategy not yet developed despite commission creation",
+        "category": "other"
+      },
+      {
+        "sought": "National migration policy document",
+        "reason": "Commission created in 2018 to develop policy but none completed as of report date",
+        "category": "other"
+      },
+      {
+        "sought": "Bilateral labor agreements",
+        "reason": "No evidence of formal bilateral labor agreements despite visa exemption agreements",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Regular migration statistics and data publications",
+        "reason": "No systematic data collection or publication system in place",
+        "category": "data_not_collected"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "KN": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Offshore jurisdiction with limited transparency"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "KW": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Kuwait Investment Authority participation indicates sovereign investment involvement"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "corroboration of CEO position at Al Madar Kuwait Telecom Company",
+        "reason": "only single source reference found",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "KY": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Disclosure of shareholders is not mandated by law in the Cayman Islands"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "beneficial owners of RP Capital Partners Cayman Islands Limited",
+        "reason": "disclosure of shareholders is not mandated by law",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Connection between dissolved Falcon Capital entities and FCM",
+        "reason": "Insufficient information identified to confirm possible link",
+        "category": "other"
+      },
+      {
+        "sought": "Offshore company connections",
+        "reason": "Subject was not found on leaked databases of offshore company data",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "KZ": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Media is dominated by state-owned and pro-government outlets with close government control and mass surveillance"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Beneficial ownership transparency beyond ERG founders",
+        "reason": "Limited beneficial ownership disclosure requirements",
+        "category": "other"
+      },
+      {
+        "sought": "Hidden beneficial ownership details",
+        "reason": "Authoritarian system enables informal control beyond legal ownership",
+        "category": "other"
+      },
+      {
+        "sought": "Real beneficial control vs legal ownership",
+        "reason": "Authoritarian state capture makes legal ownership different from effective control",
+        "category": "other"
+      },
+      {
+        "sought": "Current status of Nazarbayev family assets",
+        "reason": "Ongoing political transition creates uncertainty",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Transaction values for internal restructuring deals",
+        "reason": "Values were not reported in media or company annual reports",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "LAC": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Assessment focuses on national/federal level structures. When structures vary, most encompassing ones (>50% population coverage) are used for scoring"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "confidential interview details",
+        "reason": "all interviews conducted off-the-record for confidentiality",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "LB": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "All standard search types available with property records accessible"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Current ownership details for Mario Saradar in Al Majmoua",
+        "reason": "Lack of up-to-date corporate records",
+        "category": "other"
+      },
+      {
+        "sought": "Precise portfolio client figures since 2019",
+        "reason": "Al Majmoua has not disclosed figures since 2019 financial crisis",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Roland Tok Law Firm verification",
+        "reason": "No online presence identified for company or individual",
+        "category": "other"
+      },
+      {
+        "sought": "Confirmation of identity for Lebanese Jean Boustani",
+        "reason": "Could not confirm with absolute certainty due to time constraints",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Confirmation of birth date",
+        "reason": "Could not confirm with absolute certainty within time constraints",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "LI": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Liechtenstein foundations provide high privacy protection for beneficial owners"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "detailed beneficial ownership of Valea Foundation",
+        "reason": "foundation privacy structures limit disclosure",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "detailed beneficial ownership of Liechtenstein Anstalt entities",
+        "reason": "Limited transparency in Liechtenstein corporate structures",
+        "category": "other"
+      },
+      {
+        "sought": "Current direct involvement in Helsington Foundation",
+        "reason": "Unclear level of ongoing involvement despite foundation being active",
+        "category": "pending_action"
+      },
+      {
+        "sought": "beneficial ownership details of Liechtenstein foundations",
+        "reason": "Liechtenstein privacy laws prevent disclosure",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "current litigation status",
+        "reason": "No further public information available on ongoing proceedings",
+        "category": "pending_action"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "LR": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Liberia is commonly used for offshore holding structures"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Formal diaspora return programs",
+        "reason": "No current formal governmental programme identified",
+        "category": "other"
+      },
+      {
+        "sought": "Legal framework for Diaspora Affairs Unit",
+        "reason": "Unclear if formal law exists creating the unit",
+        "category": "other"
+      },
+      {
+        "sought": "Published migration statistics",
+        "reason": "Operational status of surveys unclear",
+        "category": "other"
+      },
+      {
+        "sought": "Operational status of Immigration Service Academy",
+        "reason": "Information not available in source documents",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "LT": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Official insolvency records for individuals are not publicly available"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "full financial statements including profits, assets and debts",
+        "reason": "not publicly available or not filed in accessible format",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Comprehensive list of Stumbras company directorships",
+        "reason": "Cannot search Lithuanian corporate records by director name",
+        "category": "other"
+      },
+      {
+        "sought": "Details of parents and family background",
+        "reason": "Media coverage fails to name or describe parents despite mentioning father's motorsports career",
+        "category": "other"
+      },
+      {
+        "sought": "Identity of minority shareholder (0.03% owner)",
+        "reason": "Individual not identified in available sources",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "LU": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access it, and it will open in a new browser page. The site only permits a user to access one filing at once."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Luxembourg entity used as foreign finance vehicle"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "litigation records",
+        "reason": "no judicial proceedings found",
+        "category": "other"
+      },
+      {
+        "sought": "Beneficial owners of Marmor Lux Holdco",
+        "reason": "Beneficial owners declined to identify themselves in corporate submissions",
+        "category": "other"
+      },
+      {
+        "sought": "Luxembourg property ownership",
+        "reason": "Registry requires specification of plot number",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Criminal records",
+        "reason": "Criminal records are not a matter of public record in Luxembourg",
+        "category": "other"
+      },
+      {
+        "sought": "Bankruptcy records",
+        "reason": "Data only available as monthly list of decisions",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "litigation",
+        "text": "org Database of case law in] French providing the decisions of supreme courts across the French speaking world (''pub'')\n\n===Criminal Records===\n\nCriminal litigation is not publicly accessible."
+      }
+    ]
+  },
+  "LV": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Example given of Ukrainian national residing in Latvia as source"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Source of Shayanova's investment funds",
+        "reason": "Not clear how she had funds for property investment",
+        "category": "other"
+      },
+      {
+        "sought": "public profile and media mentions",
+        "reason": "negligible public presence, only unrelated community comments found",
+        "category": "other"
+      },
+      {
+        "sought": "company website content",
+        "reason": "domain registered but only used for email server, no live website",
+        "category": "other"
+      },
+      {
+        "sought": "government contracts or public tender participation",
+        "reason": "no contracts awarded or tender participation found",
+        "category": "other"
+      },
+      {
+        "sought": "media coverage",
+        "reason": "no mentions found in media",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "LY": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "Confirmation of Libyan government investment",
+        "reason": "PGHL shareholder structure never made public, only speculation based on management seeking Gaddafi investment",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "MA": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Morocco implemented comprehensive COVID-19 financial response measures including monetary policy adjustments, banking sector support, and emergency funding mechanisms"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Criminal records search functionality",
+        "reason": "No search function available on Ministry of Justice database website",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Comprehensive insolvency and bankruptcy records",
+        "reason": "Not publicly available",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Information on Igaser and Charcomem involvement in EIB project",
+        "reason": "No information identified in public domain",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Criminal and civil court records",
+        "reason": "No search function available on Ministry of Justice database website",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Comprehensive bankruptcy records",
+        "reason": "Not publicly available",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": "\n\nNote that while a register of disqualified directors exists in Morocco, it is not publicly accessible."
+      }
+    ]
+  },
+  "MC": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Monaco maintains corporate registry with basic information accessible online"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "PAG director and shareholder information",
+        "reason": "Information not available in online Monaco registry records",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Monaco property ownership details",
+        "reason": "No publicly accessible real estate registry",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": "\n\nNote that while a register of disqualified directors exists in Monaco, it is not publicly accessible."
+      }
+    ]
+  },
+  "MD": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Moldova has specific regulations for financial institutions requiring enhanced due diligence"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "ultimate beneficial ownership of proxy shareholdings",
+        "reason": "shareholdings below 5% not subject to disclosure requirements",
+        "category": "other"
+      },
+      {
+        "sought": "financial reports for Expresivitate SNC",
+        "reason": "no financial reports found",
+        "category": "other"
+      },
+      {
+        "sought": "current operations of Skynet SRL",
+        "reason": "website offline, unclear operations",
+        "category": "technical_failure"
+      },
+      {
+        "sought": "Detailed court proceedings information",
+        "reason": "Planned consultation not yet completed",
+        "category": "other"
+      },
+      {
+        "sought": "Real-time financial performance data",
+        "reason": "Private company financial statements not publicly disclosed",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": "\nNote that while a register of disqualified directors exists in Moldova, it is not publicly accessible."
+      }
+    ]
+  },
+  "ME": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "asset_registries",
+        "text": "to access property information.  Users can select a regional office (e."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Banking sector subject to Central Bank of Montenegro oversight"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Motive for 2014 assault on executive director",
+        "reason": "Insufficient information available in public records or media reports",
+        "category": "other"
+      },
+      {
+        "sought": "Definitive connection between Adriatic Capital LLC and Adriatic Capital Advisory D.o.o.",
+        "reason": "Insufficient evidence despite persistent media efforts",
+        "category": "other"
+      },
+      {
+        "sought": "Public beneficial ownership disclosure from Adriatic Bank",
+        "reason": "Bank has not reported beneficial ownership in annual reports or public materials",
+        "category": "other"
+      },
+      {
+        "sought": "Connection between Adriatic Capital LLC and Adriatic Capital Advisory D.o.o.",
+        "reason": "No definitive proof found despite similar names and business descriptions",
+        "category": "other"
+      },
+      {
+        "sought": "Confirmation of Shnaider as Portonovi customer",
+        "reason": "Could not confirm this during assignment scope",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "MG": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Banks defined by law have different regulatory treatment than MFIs. Mandatory deposit limits are key regulatory tools."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Comprehensive bankruptcy and insolvency records",
+        "reason": "Records not publicly available in Madagascar",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Contractor selected for RN13 section",
+        "reason": "MAHTP and EIB websites do not name the selected contractor",
+        "category": "other"
+      },
+      {
+        "sought": "Comprehensive bankruptcy records",
+        "reason": "Not publicly available in Madagascar",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Selected contractor for RN13 section",
+        "reason": "Information not published on government websites despite tender closure",
+        "category": "other"
+      },
+      {
+        "sought": "Bankruptcy and insolvency records",
+        "reason": "Comprehensive insolvency and bankruptcy records are not publicly available in Madagascar",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "MH": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Popular jurisdiction for shipping company registration"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Beneficial ownership details for Marshall Islands entities",
+        "reason": "TCMI registry does not provide beneficial ownership information",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Current ownership details of offshore shell companies",
+        "reason": "Minimal disclosure requirements for Marshall Islands NRDCs",
+        "category": "other"
+      },
+      {
+        "sought": "blue_wall_shipping_ownership",
+        "reason": "ownership_information_not_public",
+        "category": "other"
+      },
+      {
+        "sought": "Information on people smuggling prevention arrangements",
+        "reason": "Neither the Ministry of Justice, Immigration Labour nor the Ministry of Foreign Affairs have a website where information could be sourced",
+        "category": "other"
+      },
+      {
+        "sought": "National migration strategy document",
+        "reason": "No comprehensive national migration strategy exists",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "MK": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "North Macedonian corporate data less comprehensive than Bulgarian sources"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Balkan property records",
+        "reason": "Cadastral portal requires formal request or login credentials",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "ML": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Full criminal and civil records not publicly accessible in Mali"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "full criminal records for Mali entities",
+        "reason": "Full criminal records not publicly accessible in Mali",
+        "category": "other"
+      },
+      {
+        "sought": "insolvency records for Mali",
+        "reason": "Insolvency and bankruptcy records not available in Mali",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Full criminal records",
+        "reason": "Not publicly accessible",
+        "category": "other"
+      },
+      {
+        "sought": "Insolvency and bankruptcy records",
+        "reason": "Not available",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Centralized corporate registry records",
+        "reason": "No centralized corporate registry available in Mali",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "MT": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Malta used as EU-compliant holding jurisdiction"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Director and shareholder information for struck-off Malta company Poldi Steel Limited",
+        "reason": "Information not readily available online for inactive companies",
+        "category": "other"
+      },
+      {
+        "sought": "Current business interests in Malta",
+        "reason": "Requires further open-source and human intelligence",
+        "category": "other"
+      },
+      {
+        "sought": "Comprehensive list of all Desmond investment vehicles",
+        "reason": "Did not examine complex network of investment vehicles, relied only on media reports",
+        "category": "other"
+      },
+      {
+        "sought": "Comprehensive publication of litigation proceedings",
+        "reason": "No comprehensive publication available",
+        "category": "other"
+      },
+      {
+        "sought": "Comprehensive litigation records",
+        "reason": "No comprehensive publication of litigation proceedings available",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "MU": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Comprehensive court system with Industrial Court, Intermediate Court, Court of Rodrigues, Regional Court, Appeal Court, and 13 district courts all accessible through Supreme Court database"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Comprehensive insolvency and bankruptcy records",
+        "reason": "Not publicly available in Mauritius",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Comprehensive insolvency and bankruptcy records for Mauritian entities",
+        "reason": "Comprehensive insolvency and bankruptcy records are not publicly available in Mauritius",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Criminal litigation records",
+        "reason": "No references found in comprehensive court database search",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Civil litigation records",
+        "reason": "No references found in comprehensive court database search",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Comprehensive insolvency records",
+        "reason": "Not publicly available in Mauritius",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "MULTI": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "basin-level environmental monitoring",
+        "reason": "non-existent coordination mechanism",
+        "category": "other"
+      },
+      {
+        "sought": "Shalgimbayeva asset ownership in foreign jurisdictions",
+        "reason": "No information identified to suggest ownership in UAE, Russia, Latvia, Czech Republic",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Response to ICWC Scientific Information Centre proposals",
+        "reason": "No answers received from member states in 2020",
+        "category": "other"
+      },
+      {
+        "sought": "Companies unrelated to Vesuvius/Foseco with Jan Roel as officer",
+        "reason": "No results found in targeted searches",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "MULTIPLE": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "Detailed offshore structure information",
+        "reason": "Privacy and confidentiality protections in offshore jurisdictions",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Bank records showing value and exact disposition of profits",
+        "reason": "Not accessible through available sources",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Offshore corporate records",
+        "reason": "Still ongoing - not yet completed",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Litigation records",
+        "reason": "Many European records are anonymised, only Supreme Court records available in many jurisdictions",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "MX": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "political",
+        "text": "to access lists of affiliated members by local region. (''pub'')\n\n'''[http://ww1."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Sole proprietorship structure allows individual to conduct business activities under personal tax identification"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Management structure information for Gardent Deposito Dental",
+        "reason": "No information available through targeted research",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Media coverage of Eustolia Rodriguez Garcia",
+        "reason": "Very limited media profile with no notable coverage found",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Corporate registry information for MASP and related entities",
+        "reason": "No results returned from searches",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Media coverage of MASP or dental businesses",
+        "reason": "No coverage identified",
+        "category": "other"
+      },
+      {
+        "sought": "Confirmation of Facebook page ownership",
+        "reason": "Unable to corroborate identity",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": "\n\nNote that while a register of disqualified directors (''Fichero Nacional de Directores Descalificados'') exists in Mexico, maintained by the National Council of Commercial Court Clerks, it is not publicly accessible."
+      }
+    ]
+  },
+  "MZ": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Former government officials may face extradition vulnerability"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Current location of Maria Isaltina Lucas",
+        "reason": "No home address found in available documents",
+        "category": "other"
+      },
+      {
+        "sought": "Home address in Mozambique",
+        "reason": "No documents show residential address",
+        "category": "other"
+      },
+      {
+        "sought": "Home address for Maria Isaltina Lucas in Mozambique",
+        "reason": "No documents show residential address",
+        "category": "other"
+      },
+      {
+        "sought": "Current arrest status of Maria Isaltina Lucas",
+        "reason": "Conflicting reports, no definitive confirmation",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": "\n\nNote that while a register of disqualified directors exists in Mozambique, it is not publicly accessible."
+      }
+    ]
+  },
+  "N/A": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "Five Boeing 737-300 aircraft owned by Citilink",
+        "reason": "Mentioned in financial statements but could not be identified",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Current cash deposit locations",
+        "reason": "Financial statements do not show where deposits are held",
+        "category": "other"
+      },
+      {
+        "sought": "Comprehensive customer complaint analysis",
+        "reason": "Limited to TrustPilot and targeted review of Twitter and Reddit due to volume",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "NE": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Document relates to migration governance implementation framework in Niger with structured government coordination mechanisms"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Current implementation status of National Migration Policy 2020-2035",
+        "reason": "Information requires direct government access",
+        "category": "other"
+      },
+      {
+        "sought": "Regular migration statistics by gender and profession",
+        "reason": "Data collection and publication status unknown",
+        "category": "other"
+      },
+      {
+        "sought": "Current migration statistics by gender and profession",
+        "reason": "Data collection systems not fully operational",
+        "category": "other"
+      },
+      {
+        "sought": "Evaluation of 2014 anti-trafficking action plan",
+        "reason": "No recent evaluation conducted",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "NG": {
+    "disclaimers": [
+      {
+        "section": "litigation",
+        "text": "We have carried out searches of litigation in Nigeria comprising publicised judgements from the Supreme Court since 1978. We note that not all litigation records are made publicly available and therefore these searches should not be considered comprehensive. We have not identified any mention of ***.\n\n* [http://commonlii.org/ng/cases/ Commonwealth Legal Information Institute -] database of decisions by the Special Court of Nigeria from 1921-2002 (''pub'')\n\n* [http://supremecourt.gov.ng/ Supreme "
+      }
+    ],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Subject to Nigerian regulatory investigations in recent years"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Evidence of digital financial services support measures",
+        "reason": "No evidence found on CBN website despite increased mobile money usage",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Complete beneficial ownership information",
+        "reason": "NEITI beneficial ownership portal non-functional",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Current litigation status",
+        "reason": "Court records access limitations",
+        "category": "other"
+      },
+      {
+        "sought": "Audited Financial Statements",
+        "reason": "Company failed to submit despite regulatory requests",
+        "category": "other"
+      },
+      {
+        "sought": "detailed tax assessment information",
+        "reason": "undisclosed amount of statutory dues - specific figures not publicly available",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "NL": {
+    "disclaimers": [
+      {
+        "section": "litigation",
+        "text": "We note that litigation records in the Netherlands are typically anonymised and not accessible to third parties."
+      }
+    ],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Netherlands used extensively for holding company structures"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Complete beneficial ownership of CCC Mining Construction B.V.",
+        "reason": "Beneficial ownership was not revealed at time of acquisition",
+        "category": "other"
+      },
+      {
+        "sought": "Litigation records for Maurice Smits and Fast Forward Freight BV",
+        "reason": "No cases found mentioning either entity",
+        "category": "other"
+      },
+      {
+        "sought": "Current beneficial ownership of Tennor Holding B.V.",
+        "reason": "Dutch registry does not disclose shareholder identity",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Activity details for newly registered entities",
+        "reason": "No public information available for recent incorporations",
+        "category": "other"
+      },
+      {
+        "sought": "Current activity status of Genta Jago Technologies B.V.",
+        "reason": "Annual accounts for 2016 deposited but never formally adopted, indicating possible inactivity",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "NO": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Norwegian parent company ownership creates cross-jurisdictional reporting requirements"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Litigation records for PetroNor E&P AS",
+        "reason": "Limited judgements available on database",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": "com/companies/no?q= OpenCorporates – Norway]\n\nNot Required – Recommended for Companies & Directors\n\nThis is a corporate aggregator website, which should be run if you were unable to identify your company via official records."
+      },
+      {
+        "section": "further_public_records",
+        "text": "no/ Gule Sider – YellowPages Search]\n\nNot Required – Recommended\n\nThis is a YellowPages directory for Norway."
+      }
+    ]
+  },
+  "NZ": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Reserve Bank Act 1989 prohibits non-banks using 'bank' designation, penalties up to NZD 1 million for corporations"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "IAG employment verification",
+        "reason": "No evidence found of programme lead position",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "PA": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Panama entities used as intermediate holding companies for privacy"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Offshore company connections",
+        "reason": "No traces found in ICIJ Offshore Leaks Database",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Specific tax evasion amounts in Trump Organization case",
+        "reason": "Court documents did not provide specific numbers",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "PE": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Peruvian corporate registry provides transparent access to basic company information including officers and registration details"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "official financial information",
+        "reason": "not publicly available",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Financial data and annual accounts",
+        "reason": "Not available through SUNAT database or other online sources",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Ownership structure and beneficial owners",
+        "reason": "Not reported in SUNAT database or other accessible sources",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Detailed court records",
+        "reason": "Only Supreme Court database available, no lower court records",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Company website",
+        "reason": "Domain registered but no active website found",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "PH": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Property purchases in Philippines with loan applications through China Banking Corporation"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Independent verification of Philippine property ownership",
+        "reason": "Only developer and banking communications available",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "PK": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Limited investigation conducted in Pakistan jurisdiction"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Recent operational activity for multiple aircraft",
+        "reason": "COVID-19 impact on flight operations resulted in numerous aircraft being inactive",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "PL": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Privacy restrictions prevent obtaining student attendance and graduation data without explicit consent"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Educational qualification verification",
+        "reason": "Privacy restrictions on obtaining student data without explicit consent",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Criminal or civil litigation records",
+        "reason": "No instances found in available databases",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "litigation records for Sebastian Baberowski",
+        "reason": "Polish litigation records are highly anonymised for privacy law compliance",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Polish litigation records for FEG entities",
+        "reason": "Searches returned no hits, should not be considered comprehensive",
+        "category": "other"
+      },
+      {
+        "sought": "Detailed Polish litigation records",
+        "reason": "Records not included online or anonymised",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "PR": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Chapter 13 bankruptcy designed to enable individuals to use regular income to return their debts"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Corporate ownership and directorship information for subjects",
+        "reason": "Registry search tool only enables searches by corporation registration number or name, not by person name",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Businessperson Certificate database searches",
+        "reason": "No evidence that the government has a database for public consultations of persons who hold Businessperson Certificates",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "PS": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Palestinian Territories operates under Palestinian Authority jurisdiction with regulatory framework including Palestine Monetary Authority oversight of banking sector"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Internal bank records on alleged terrorist financing",
+        "reason": "Banking confidentiality and security restrictions",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "PT": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Court databases only provide results for previous few months and are only searchable per region. Full access to court proceeding information is restricted to parties and their representatives."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Criminal records for Portuguese individuals",
+        "reason": "Full and comprehensive criminal records are not available in the public domain. Authorization from the subject is required",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Comprehensive civil litigation details",
+        "reason": "Full access to information about proceedings is restricted to the parties and their representatives. Names are often anonymized",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Comprehensive criminal records for Portuguese individuals",
+        "reason": "Full criminal records not available in public domain, require subject authorization",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Complete court proceeding details",
+        "reason": "Full access restricted to parties and representatives, names often anonymized",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Detailed information about Nuno Filipe Nogueira Alves Coelho",
+        "reason": "Very limited information available online",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "QA": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Qatar Investment Authority and Qatar Foundation involvement suggests state-level strategic interest"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Details of ongoing corruption investigation",
+        "reason": "Limited information released by Attorney General's Office",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Complete asset freeze details",
+        "reason": "Investigation confidentiality",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "detailed reasons for departure from GBI CEO position",
+        "reason": "limited reporting on internal corporate decisions",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "RO": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "litigation",
+        "text": "to access full names of parties.\n\n* [http://www."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "EU member state subject to AMLD requirements"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "detailed litigation information",
+        "reason": "comprehensive database requires paid subscription",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "1992 corporate records for TVS entities",
+        "reason": "Records not available from Romanian Corporate Registry for that time period",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Identity of specific creditors",
+        "reason": "Romanian registry provides debt amounts but not creditor details",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Dates for public tender awards",
+        "reason": "Public tender database incomplete - missing dates for all 14 tenders won",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Current Ministry of Environment policy on mining",
+        "reason": "No long-term strategy exists at departmental level",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "RS": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Foreign bank acquisitions require National Bank of Serbia approval"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Complete takeover details of Komercijalna Banka Beograd",
+        "reason": "Transaction not yet completed at time of report",
+        "category": "other"
+      },
+      {
+        "sought": "Contact with Slavko Vujović regarding property sale",
+        "reason": "Repeated media attempts unsuccessful",
+        "category": "other"
+      },
+      {
+        "sought": "Verification of sanctions evasion allegations",
+        "reason": "Requires further enquiries with sources in legal and financial services sectors",
+        "category": "other"
+      },
+      {
+        "sought": "Details of Kostić's current health status",
+        "reason": "Requires further enquiries to verify rumours",
+        "category": "other"
+      },
+      {
+        "sought": "confirmation of individual litigation identity",
+        "reason": "cannot confirm that Constitutional Court appellant is the same Aleksandar Djordjevic",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "RU": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Russian banking sector subject to multiple regulatory frameworks and sanctions regimes"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Evidence of commercial real estate operations",
+        "reason": "No public profiles found despite companies being registered for real estate activities",
+        "category": "other"
+      },
+      {
+        "sought": "Beneficial ownership beyond disclosed directors",
+        "reason": "Russian corporate registry does not require disclosure of beneficial owners beyond directors",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Confirmation of Trubnikov's true identity and independence",
+        "reason": "Close to non-existent public profile, ongoing enquiries",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Verification of Putin-Gazprom joint venture plan",
+        "reason": "Article was deleted, enquiries ongoing",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Transaction values for Antipinsky Oil Refinery acquisition",
+        "reason": "Private commercial transaction not publicly disclosed",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "SA": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Saudi Corporate Registry is not available to the public online but official filings can be retrieved manually upon request"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Company directors information",
+        "reason": "No additional information could be identified in the English- and Arabic-language public domains",
+        "category": "language_barrier"
+      },
+      {
+        "sought": "Share capital information",
+        "reason": "No information available through research of public domains",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Financial information",
+        "reason": "No information available through publicly available online sources",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Information linking Mekky to Silkinet",
+        "reason": "No information identified despite Saudi company connection to ZakSat",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Information about Mohammed Ali Hammad",
+        "reason": "Close to no information found in English public domain",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "SC": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Seychelles provides corporate secrecy suitable for offshore structures"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Beneficial ownership of Spartans Global Holdings Inc",
+        "reason": "Seychelles registration provides ownership anonymity",
+        "category": "other"
+      },
+      {
+        "sought": "comprehensive diaspora statistics",
+        "reason": "voluntary registration system with low compliance",
+        "category": "other"
+      },
+      {
+        "sought": "people-smuggling agreements",
+        "reason": "no such agreements exist",
+        "category": "other"
+      },
+      {
+        "sought": "dedicated diaspora agency",
+        "reason": "no such agency currently exists",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "SD": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Sudan banking sector was 'no go' until recently, changing after President Omar al-Bashir's ouster"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "SE": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access more information.\n\n[https://poit."
+      },
+      {
+        "section": "regulatory",
+        "text": "to access information on many of the sources provided below. You can also find it through desktop research (see below), but may not be as efficient."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Swedish corporate records accessible for cross-border verification"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Bachelor of Social Science degree verification",
+        "reason": "Requires signed consent of the subject",
+        "category": "other"
+      },
+      {
+        "sought": "Board of Directors Certification verification",
+        "reason": "Unable to contact university to identify correct verification method",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Criminal records",
+        "reason": "Criminal records are not part of the public record in Sweden",
+        "category": "other"
+      },
+      {
+        "sought": "Litigation records for Swedish entities",
+        "reason": "Litigation documents are not searchable to the public in Sweden",
+        "category": "other"
+      },
+      {
+        "sought": "Exact shareholding percentages",
+        "reason": "Swedish Companies Registration Office only provides ownership ranges",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "SG": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Singapore privacy laws limit disclosure of ultimate beneficial ownership"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Identity and background of Dieter Forster (MW Funds representative)",
+        "reason": "Multiple individuals with same name exist but none could be definitively linked to MW Funds or Addiko within engagement limitations",
+        "category": "pending_action"
+      },
+      {
+        "sought": "Centre Point Management investments",
+        "reason": "Could not confirm any investments in time allowed",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Information on several lessors' relationships with Garuda",
+        "reason": "No information found online relating entities to Garuda",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Company information for Everest Investment Holding",
+        "reason": "No company found with exact name in registry searches",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Everest Investment Holding company verification",
+        "reason": "No company with exact name found in government database",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "SI": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access but registration is required. Search is available by the name or ID number of the company for all company types and it gives detailed and historical information."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "State ownership requires parliamentary approval for major transactions"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Property ownership by name",
+        "reason": "Registry only permits searches by property details, not owner name",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Comprehensive company ownership",
+        "reason": "Portal does not offer searches by personal details of owner",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "Litigation records involving Bitstamp entities",
+        "reason": "Slovenian courts anonymize party names in published judgments",
+        "category": "other"
+      },
+      {
+        "sought": "Specific insolvency proceedings details",
+        "reason": "No public records found indicating either entity as debtor in insolvency proceedings",
+        "category": "other"
+      },
+      {
+        "sought": "comprehensive directorship searches for Bajc and Bizjak",
+        "reason": "Slovenian Company Register does not allow reverse directorship or ownership searches",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "SK": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Part of broader Central European business network"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Jana Panáková birth year",
+        "reason": "Could not confirm the year from available sources",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Jana Panáková professional history",
+        "reason": "No information found about professional background",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "SN": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Full criminal records not publicly accessible in Senegal, but commercial court hearing summaries are published"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Identity of Touly's political protectors",
+        "reason": "Sources claimed knowledge but refused to specify due to sensitivity",
+        "category": "other"
+      },
+      {
+        "sought": "Current media coverage of the dispute",
+        "reason": "Complete media blackout since March 2021",
+        "category": "other"
+      },
+      {
+        "sought": "specific details about political protection",
+        "reason": "sources reluctant to discuss political dimensions",
+        "category": "other"
+      },
+      {
+        "sought": "current legal case status",
+        "reason": "no recent media coverage since March 2021",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "SO": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Legal documents are filed but not publicly accessible, requiring indirect access through specialized sources"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Independent confirmation of ownership structure",
+        "reason": "Could not be confirmed by further independent sources",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Corporate ownership structure for Dalkom Somalia Limited",
+        "reason": "Companies not obliged by law to disclose shareholder structure",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "TC": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "Specific financial transaction details in Turks and Caicos bribery case",
+        "reason": "Investigation confidentiality and plea agreement settlement",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "TH": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "Exact position at SHM Bangkok office",
+        "reason": "Could not corroborate specific role despite appearing in company materials",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "TJ": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Upstream state with significant hydroelectric interests, particularly Rogun megaproject"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "TM": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Downstream state heavily dependent on Amu Darya irrigation"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Interview with Turkmenistan water expert",
+        "reason": "Expert responded but no interview conducted",
+        "category": "other"
+      },
+      {
+        "sought": "registration number",
+        "reason": "Corporate records are not available online in Turkmenistan",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "registered address",
+        "reason": "Corporate records are not available online in Turkmenistan",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "financials",
+        "reason": "Corporate records are not available online in Turkmenistan",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "ownership details",
+        "reason": "Corporate records are not available online in Turkmenistan",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "TN": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Only limited number of criminal judgements published in Tunisia"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Tunisia tender allegations",
+        "reason": "No allegations found despite multi-language searches",
+        "category": "language_barrier"
+      },
+      {
+        "sought": "comprehensive insolvency and bankruptcy records",
+        "reason": "not publicly available",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Regulatory issues in Tunisia operations",
+        "reason": "Limited local and international media coverage",
+        "category": "other"
+      },
+      {
+        "sought": "litigation records and court proceedings",
+        "reason": "Court records are not a matter of public disclosure in Tunisia",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "TO": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Multiple court jurisdictions available including Supreme Court divisions, Land Court, Magistrates Court, and Privy Council"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Corporate directorships and shareholder roles for Lord Ve'ehala",
+        "reason": "No records found in business registry",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "TR": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Article 20 of Constitution and Article 23 of Right to Information Law severely restrict third-party access to litigation records"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Exact ownership structure of Çalık Holding AŞ",
+        "reason": "Ownership structure is not immediately obvious from public sources",
+        "category": "other"
+      },
+      {
+        "sought": "litigation history",
+        "reason": "Constitutional and legal restrictions limit third-party access to court records",
+        "category": "other"
+      },
+      {
+        "sought": "Office name change documentation",
+        "reason": "No evidence found of written declaration in Trade Registry Gazette regarding name change of offices after acquisition",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Financial statements and statistics",
+        "reason": "Companies not traded on stock exchange not obliged to publicly publish financial statements since 2012 law amendment",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Acquisition agreement details",
+        "reason": "Acquisition agreement not publicly available",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "TT": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Two-tier system with preferential treatment for CARICOM nationals. Immigration Division under Ministry of National Security has primary authority."
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "National migration strategy document",
+        "reason": "No comprehensive national migration strategy exists despite previous discussions",
+        "category": "other"
+      },
+      {
+        "sought": "Dedicated diaspora engagement institution",
+        "reason": "Diaspora policy discussed but never implemented due to change in administration",
+        "category": "other"
+      },
+      {
+        "sought": "Inter-agency migration data sharing",
+        "reason": "IOM attempts since 2009 unsuccessful, databases not standardized",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "TZ": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Bank of Tanzania serves as banking supervisor and issues public statements on licensing actions"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Complete court records for civil and criminal cases",
+        "reason": "Not all case summaries are available online",
+        "category": "other"
+      },
+      {
+        "sought": "comprehensive criminal records",
+        "reason": "not publicly available",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "comprehensive insolvency and bankruptcy records",
+        "reason": "not publicly available",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Comprehensive criminal records",
+        "reason": "Not publicly available in Tanzania",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Complete civil litigation records",
+        "reason": "Not all case summaries available online",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "UA": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Ukrainian corporate transparency improving but still requires local source networks"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Media coverage of Klaus Reinisch's activities at Gazprom",
+        "reason": "Very limited media mentions found despite extensive search",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Background information on Valentyna Grechko",
+        "reason": "No information available through standard sources",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Complete beneficial ownership during 2011-2013 period",
+        "reason": "Deliberate obscuring through nominee shareholders",
+        "category": "offshore_opacity"
+      },
+      {
+        "sought": "Complete beneficial ownership for 2011-2013 period",
+        "reason": "Intentional use of nominee shareholders and undisclosed ownership structures",
+        "category": "offshore_opacity"
+      },
+      {
+        "sought": "Criminal records for all subjects",
+        "reason": "Official Ukrainian legal database not accessible due to military situation",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "UG": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Bank regulation by Bank of Uganda, incorporation process through Registration Services Bureau"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Comprehensive insolvency and bankruptcy records",
+        "reason": "Not publicly available in Uganda",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Comprehensive insolvency and bankruptcy records for individuals",
+        "reason": "Not publicly available in Uganda",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "US": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "FATF member with comprehensive federal AML-CFT regime"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Ownership details of ONE UNIQUE LLC and 1HP (GUERNSEY) LLC",
+        "reason": "Unable to confirm identity of owners at current stage",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Exact ownership percentages for AT Power, T&D Power, Energy Environmental Group",
+        "reason": "Described as subsidiaries on website but ownership structure unconfirmed",
+        "category": "other"
+      },
+      {
+        "sought": "Complete subsidiary verification for entities described on websites",
+        "reason": "Work paused prior to completion as requested by client",
+        "category": "other"
+      },
+      {
+        "sought": "Awareness of legitimate Regal Assets about domain imitation",
+        "reason": "No indication found",
+        "category": "other"
+      },
+      {
+        "sought": "Real identity of CIA agent 'Yuri'",
+        "reason": "Covert identity, only physical description available",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "UZ": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Part of multilateral water management frameworks inherited from Soviet system"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Inter-agency coordination mechanisms for migration policy",
+        "reason": "Information not publicly available or unclear",
+        "category": "access_restricted"
+      },
+      {
+        "sought": "Civil society involvement in migration policy development",
+        "reason": "Unclear if formal mechanisms exist",
+        "category": "other"
+      },
+      {
+        "sought": "Comprehensive national migration strategy",
+        "reason": "No comprehensive strategy document exists, only fragmented decrees",
+        "category": "other"
+      },
+      {
+        "sought": "Conditions for permanent residency acquisition",
+        "reason": "Regulation describes procedure but not eligibility conditions",
+        "category": "other"
+      },
+      {
+        "sought": "Sex-disaggregated migration data",
+        "reason": "Agency publishes statistics but not disaggregated by sex",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "VA": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "Specific evidence of Vatican corruption",
+        "reason": "Sources not aware of specific evidence to date",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "VC": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Popular jurisdiction for offshore trading platforms"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "VG": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Offshore jurisdiction with limited transparency requirements"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "Beneficial ownership details of Rusneft Absheron",
+        "reason": "Company registered in Virgin Islands with no transparency",
+        "category": "other"
+      },
+      {
+        "sought": "Registration number for Cukurova Telecom Holdings Ltd",
+        "reason": "Registration number was not identified",
+        "category": "other"
+      },
+      {
+        "sought": "true beneficial ownership behind nominee structures",
+        "reason": "BVI company structures provide opacity",
+        "category": "other"
+      },
+      {
+        "sought": "Complete beneficial ownership of PG Paper Company via SAPP Holdings",
+        "reason": "British Virgin Islands incorporation limits transparency",
+        "category": "other"
+      },
+      {
+        "sought": "Current corporate records for BVI companies",
+        "reason": "Only available through leaked databases, not current official records",
+        "category": "registry_limitation"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "XK": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Kosovo corporate registry provides current ownership but limited historical data on ownership changes"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "biographical information and background details for Xhevat Jusufi",
+        "reason": "limited information in public record despite business prominence",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "biographical information and background details for Fatmir Krasniqi",
+        "reason": "limited information in public record despite business prominence",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "historical ownership information for companies",
+        "reason": "Kosovo corporate registry does not provide historical ownership information",
+        "category": "registry_limitation"
+      },
+      {
+        "sought": "relationship details for Naim Jusufi",
+        "reason": "unable to identify whether he is a relative of Xhevat Jusufi despite similar surnames",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Capital amount for Mts D.O.O.",
+        "reason": "Information not disclosed in available registry data",
+        "category": "access_restricted"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "XX": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Corporate registry access varies by jurisdiction"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "additional confirmed findings from email addresses and usernames",
+        "reason": "time constraints on assignment",
+        "category": "other"
+      },
+      {
+        "sought": "UP Terminal company details",
+        "reason": "employer listed on LinkedIn profile could not be identified",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "direct government access",
+        "reason": "requires IOM facilitation and approval",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "XY": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Example uses fictional country 'Transylvania' to demonstrate research methodology"
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "ZA": {
+    "disclaimers": [
+      {
+        "section": "litigation",
+        "text": "We have conducted searches of litigation records in South Africa, including the High Courts and the Supreme Court of Appeal.[1] We note that litigation records are not always publicly available and therefore these searches should not be considered comprehensive. We identified no litigation involving ***.\n\n1. Including the following courts: Competition Appeal Court; Competition Tribunal; Companies Tribunal; Consumer Goods and Services Ombudsman; Constitutional Court; Court of the Commissioner of "
+      }
+    ],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "general",
+        "text": "Foreign residents receive South African national ID numbers following specific format conventions"
+      }
+    ],
+    "research_limitations": [
+      {
+        "sought": "business link to Dennel",
+        "reason": "No clear connection found despite investigation",
+        "category": "other"
+      },
+      {
+        "sought": "Litigation records for Farooqui in South Africa",
+        "reason": "No records found in comprehensive legal database",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Direct commentary from multiple contacted sources",
+        "reason": "Non-response to emails and calls despite clear indication of investigation",
+        "category": "other"
+      },
+      {
+        "sought": "South African property ownership and corporate holdings",
+        "reason": "No records found using predicted ID number format or name searches",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Maria Isaltina Lucas property or corporate interests in South Africa",
+        "reason": "No records found using national ID number format or name searches",
+        "category": "no_records_found"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "DZ": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access any more information on this site, it requests for you to \"subscribe\" for full access to the corporate record. We do not currently have an account for this."
+      }
+    ],
+    "legal_context": [],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "FM": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": "\n\nNote that while a register of disqualified directors exists in Micronesia, it is not publicly accessible."
+      }
+    ]
+  },
+  "GD": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access filings (Filing History), info on officers and shareholders (People), and current and former charges (Charges).\n\nCompany records are retained by the Grenada Registrar General's Department for 10 years after a company is dissolved."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "<div class=\"toccolours mw-collapsible mw-collapsed\">\n''Context''\n<div class=\"mw-collapsible-content\">\nGrenada has a common law legal system."
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": " They are not required by law to submit annual accounts to the Registrar General."
+      },
+      {
+        "section": "litigation",
+        "text": " Court records for cases that are neither precedent-setting nor of public importance are not publicly available."
+      }
+    ]
+  },
+  "GQ": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "further_public_records",
+        "text": " At the top of legal system is the country's 1991 Constitution (amended in 2005), also known as the Fundamental Law of Equatorial Guinea."
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "GT": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access filings (Filing History), info on officers and shareholders (People), and current and former charges (Charges).\n\nCompany records are retained by the Guatemala Mercantile Registry for 10 years after a company is dissolved."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "<div class=\"toccolours mw-collapsible mw-collapsed\">\n''Context''\n<div class=\"mw-collapsible-content\">\nGuatemala has a civil law legal system."
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": " They are not required by law to submit annual accounts to the Registrar General."
+      },
+      {
+        "section": "litigation",
+        "text": " Court records for cases that are neither precedent-setting nor of public importance are not publicly available."
+      }
+    ]
+  },
+  "HONG_KONG": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "<details>\n<summary>Context</summary>\n<div class=\"mw-collapsible-content\">\n\nThe legal system in Hong Kong is based on common law, with judges looking to past precedents to resolve legal questions."
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": " These companies are not required by law to submit annual accounts, making them attractive for maintaining financial secrecy."
+      }
+    ]
+  },
+  "JM": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access filings (Filing History), info on officers and PSCs (People), and current and former charges (Charges). In the Filing History tab, you can refine the filings by category by clicking on the relevant box at the top – for example, you can view Accounts, filings relating to officers, etc."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "<div class=\"toccolours mw-collapsible mw-collapsed\">\n''Context''\n<div class=\"mw-collapsible-content\">\n\nJamaica has a common law legal system."
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": " They are not required by law to submit annual accounts to the Registrar."
+      },
+      {
+        "section": "litigation",
+        "text": " Court records for cases that are neither precedent-setting nor of public importance are not publicly available."
+      }
+    ]
+  },
+  "MN": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": "\n\nNote that while a register of disqualified directors exists in Mongolia, it is not publicly accessible."
+      }
+    ]
+  },
+  "MO": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": "\n\nNote that while a register of disqualified directors exists in Morocco, it is not publicly accessible."
+      }
+    ]
+  },
+  "NI": {
+    "disclaimers": [
+      {
+        "section": "litigation",
+        "text": "We have carried out searches of litigation in Nigeria comprising publicised judgements from the Supreme Court since 1978. We note that not all litigation records are made publicly available and therefore these searches should not be considered comprehensive. We have not identified any mention of ***.\n\n* [http://commonlii.org/ng/cases/ Commonwealth Legal Information Institute -] database of decisions by the Special Court of Nigeria from 1921-2002 (''pub'')\n\n* [http://supremecourt.gov.ng/ Supreme "
+      }
+    ],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "SL": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "corporate_registry",
+        "text": "to access but registration is required. Search is available by the name or ID number of the company for all company types and it gives detailed and historical information."
+      }
+    ],
+    "legal_context": [],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "SP": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "\n\nSpain follows a civil law legal system, derived from Roman law, which relies on comprehensive legal codes rather than case law."
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "SV": {
+    "disclaimers": [],
+    "methodology": [
+      {
+        "section": "litigation",
+        "text": "to access criminal records in person, but the party seeking access must have a \"legitimate interest\" in a case. If determination of \"legitimate interest\" happens on an ad hoc basis, access may be granted; however, if all third party information retrieval services categorically are denied access, the"
+      },
+      {
+        "section": "regulatory",
+        "text": "to access public information.​ \n\n[https://www."
+      }
+    ],
+    "legal_context": [],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "US_AK": {
+    "disclaimers": [
+      {
+        "section": "litigation",
+        "text": "We searched litigation records in Alaska, including criminal, civil, and tax cases heard by Superior Courts and District Courts. We note that not all litigation records are made publicly available or are accessible online and therefore these searches should not be considered comprehensive. The information contained in these databases should not be considered a defendant's complete court history, nor is it a defendant's criminal history. Criminal histories are maintained by the Alaska Department "
+      }
+    ],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "\n\n===Legal System===\n\n====Alaska Superior Courts====\n\nSuperior Courts have general jurisdiction over all civil and criminal cases, and typically handle cases that are beyond the jurisdiction of District Courts."
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "US_AL": {
+    "disclaimers": [
+      {
+        "section": "litigation",
+        "text": "We searched litigation records in Alabama, including criminal, civil, and tax cases heard by Circuit Courts, District Courts, Probate Courts, and Municipal Courts. We note that not all litigation records are made publicly available or are accessible online and therefore these searches should not be considered comprehensive. The information contained in these databases should not be considered a defendant's complete court history, nor is it a defendant's criminal history. Criminal histories are m"
+      }
+    ],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "\n\n===Legal System===\n\n====Alabama Circuit Courts====\n\nCircuit Courts have general jurisdiction over all types of cases, and typically handle cases that are beyond the jurisdiction of other courts."
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "US_FL": {
+    "disclaimers": [
+      {
+        "section": "litigation",
+        "text": "We searched litigation records in Florida, including reported and unreported cases heard by the Supreme Court, District Courts of Appeal, Circuit Courts, and County Courts. Not all litigation records are publicly available online. Records from certain counties may require access via third-party services such as EZyCheck. Therefore, these searches should not be considered comprehensive."
+      }
+    ],
+    "methodology": [],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "\n\n===Legal System===\n\nThe Florida trial court system consists of Circuit Courts, County Courts, and Miami-Dade County Courts."
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "US_NJ": {
+    "disclaimers": [
+      {
+        "section": "litigation",
+        "text": "We searched litigation records in New Jersey, including criminal, civil, and tax cases heard by Superior Courts, Municipal Courts, and Tax Court. We note that not all litigation records are made publicly available or are accessible online and therefore these searches should not be considered comprehensive. The information contained in these databases should not be considered a defendant's complete court history, nor is it a defendant's criminal history. Criminal histories are maintained by the N"
+      }
+    ],
+    "methodology": [
+      {
+        "section": "litigation",
+        "text": "to access additional case details\n- The case search is automatically set at \"special civil part.\" Run the search for \"civil part\" as well\n- There is no login required for accessing this database."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "\n\n===Legal System===\n\nThe New Jersey trial court system consists of Superior Courts, Surrogate's Courts, Municipal Courts, and Tax Court."
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "US_NV": {
+    "disclaimers": [
+      {
+        "section": "litigation",
+        "text": "We searched litigation records in Nevada, including reported and unreported cases heard by the Supreme Court, Appellate Courts, District Courts, and limited jurisdiction courts in Clark and Washoe Counties. Not all litigation records are publicly available online. Records from counties outside Clark and Washoe typically require access via third-party services such as EZyCheck. Therefore, these searches should not be considered comprehensive."
+      }
+    ],
+    "methodology": [
+      {
+        "section": "litigation",
+        "text": "to access civil and criminal court records in Nevada counties other than Clark and Washoe.\n\n<div class=\"toccolours mw-collapsible mw-collapsed\">\n''Search Tips''\n<div class=\"mw-collapsible-content\">\n:-Login required (Zoho)."
+      }
+    ],
+    "legal_context": [
+      {
+        "section": "litigation",
+        "text": "\n\n===Legal System===\n\nNevada’s court system consists of the Supreme Court, Court of Appeals, District Courts (general jurisdiction), Justice Courts, and Municipal Courts (limited jurisdiction)."
+      }
+    ],
+    "research_limitations": [],
+    "standard_phrases": []
+  },
+  "NOT SPECIFIED": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "Precise ownership stakes in Cuprum Holding Limited",
+        "reason": "Various reports stated minority partnership but did not detail precise stakes",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "UNSPECIFIED": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "litigation records",
+        "reason": "not yet completed",
+        "category": "other"
+      },
+      {
+        "sought": "sanctions and Cuba-related issues",
+        "reason": "targeted search not yet completed",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "Evidence of PIDC Temporary Movement of Natural Persons Scheme launch",
+        "reason": "No evidence that this scheme was ever launched",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Investments of Long Mountain Services Inc and Harrogate Global Investments Inc",
+        "reason": "Time constraints on assignment",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  },
+  "MM": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [],
+    "standard_phrases": [
+      {
+        "section": "corporate_registry",
+        "text": "\n\nNote that while a register of disqualified directors exists in Myanmar, it is not publicly accessible."
+      }
+    ]
+  },
+  "UNASSIGNED": {
+    "disclaimers": [],
+    "methodology": [],
+    "legal_context": [],
+    "research_limitations": [
+      {
+        "sought": "Stephan Walz biographical information",
+        "reason": "Section header present but no content provided",
+        "category": "other"
+      },
+      {
+        "sought": "Detailed information on Fix Asset Management",
+        "reason": "Limited information available",
+        "category": "no_records_found"
+      },
+      {
+        "sought": "Comprehensive customer complaints review",
+        "reason": "Limited to specific platforms and timeframes due to volume",
+        "category": "other"
+      },
+      {
+        "sought": "LAF Investment Holdings incorporation details",
+        "reason": "Offshore entity with unclear jurisdiction",
+        "category": "offshore_opacity"
+      },
+      {
+        "sought": "PhD institution details",
+        "reason": "Institution name not reported despite degree verification",
+        "category": "other"
+      }
+    ],
+    "standard_phrases": []
+  }
+}

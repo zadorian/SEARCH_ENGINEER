@@ -1,0 +1,10 @@
+{
+    "name": "domain_scan",
+    "description": "Performs a multi-module scan on a domain (WHOIS, Archive, Backlinks, Tech Stack).",
+    "input_type": "domain",
+    "output_type": "json",
+    "executable": "SEARCH_ENGINEER/nexus/MODULES/SASTRE/alldom_macro.py",
+    "args": ["--operator", "scan", "--depth", "full"],
+    "version": "1.0",
+    "tags": ["enrichment", "domain", "alldom"]
+}

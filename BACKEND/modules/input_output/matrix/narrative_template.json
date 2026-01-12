@@ -1,0 +1,39 @@
+{
+  "class": "NARRATIVE",
+  "version": "0.1",
+  "templates": {
+    "project": {
+      "required": ["project_id", "name"],
+      "optional": ["description", "owner", "status", "start_date", "tags"],
+      "description": "Central hub node; everything linked here defines the project space."
+    },
+    "report": {
+      "required": ["title"],
+      "optional": [
+        "project_id",
+        "summary",
+        "author",
+        "published_at",
+        "linked_entities"
+      ],
+      "description": "Static or generated report artifact."
+    },
+    "note": {
+      "required": ["content"],
+      "optional": ["project_id", "author", "created_at", "linked_entities"],
+      "description": "Research note or annotation."
+    },
+    "chat": {
+      "required": ["conversation_id"],
+      "optional": ["project_id", "participants", "messages", "timestamp"],
+      "description": "Chat transcript or thread metadata."
+    },
+    "label": {
+      "required": ["label"],
+      "optional": ["project_id", "color", "description"],
+      "description": "Tag/label node for organizing related items."
+    }
+  }
+}
+
+

@@ -1,0 +1,2294 @@
+{
+  "generated_at": "2025-11-25T07:32:09.376206+00:00",
+  "source": "report_library_ingestion",
+  "jurisdictions": {
+    "CH": {
+      "jurisdiction": "CH",
+      "entity_types_explained": [
+        "AG - Aktiengesellschaft (joint-stock company)"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["basic company information"],
+        "restricted": ["ownership percentages"],
+        "unavailable": ["detailed ownership structures for private companies"]
+      },
+      "legal_notes": "Company ownership details for private companies are not required to be disclosed in Switzerland"
+    },
+    "HU": {
+      "jurisdiction": "HU",
+      "entity_types_explained": [
+        "Kft - Limited liability company",
+        "Zrt - Joint-stock company",
+        "Nyrt - Public limited company"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["regulatory approvals", "ownership changes"],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Energy sector ownership changes require MEKH approval"
+    },
+    "KY": {
+      "jurisdiction": "KY",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [],
+        "restricted": [],
+        "unavailable": ["shareholder disclosure"]
+      },
+      "legal_notes": "Disclosure of shareholders is not mandated by law in the Cayman Islands"
+    },
+    "DE": {
+      "jurisdiction": "DE",
+      "entity_types_explained": ["GmbH - German limited liability company"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "corporate registry records",
+          "director information",
+          "company structure"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "German corporate registry appears to provide comprehensive director information publicly"
+    },
+    "CY": {
+      "jurisdiction": "CY",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["Corporate registry showing directors"],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Cyprus registry provides director information for companies"
+    },
+    "BZ": {
+      "jurisdiction": "BZ",
+      "entity_types_explained": [
+        "Normeston Trading Limited - Belize company structure"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [],
+        "restricted": ["Full ownership details"],
+        "unavailable": ["Beneficial ownership transparency"]
+      },
+      "legal_notes": "Belize jurisdiction used for offshore holding structures"
+    },
+    "AT": {
+      "jurisdiction": "AT",
+      "entity_types_explained": [
+        "AG - Aktiengesellschaft (stock corporation)",
+        "GmbH - Gesellschaft mit beschr\u00e4nkter Haftung (limited liability company)"
+      ],
+      "id_formats": ["Austrian company registry numbers"],
+      "data_availability": {
+        "accessible": [
+          "basic company information",
+          "registered addresses",
+          "board members"
+        ],
+        "restricted": ["detailed financial information"],
+        "unavailable": ["beneficial ownership details for non-listed companies"]
+      },
+      "legal_notes": "Listed companies on Vienna Stock Exchange must disclose shareholdings above 4%"
+    },
+    "SG": {
+      "jurisdiction": "SG",
+      "entity_types_explained": ["PTE Limited - Private Limited Company"],
+      "id_formats": ["Singapore company registration numbers"],
+      "data_availability": {
+        "accessible": ["basic company information"],
+        "restricted": ["beneficial ownership information"],
+        "unavailable": ["detailed shareholder registers"]
+      },
+      "legal_notes": "Singapore privacy laws limit disclosure of ultimate beneficial ownership"
+    },
+    "ME": {
+      "jurisdiction": "ME",
+      "entity_types_explained": [
+        "AD - Akcionarsko dru\u0161tvo (joint stock company)"
+      ],
+      "id_formats": ["Montenegrin company numbers"],
+      "data_availability": {
+        "accessible": ["banking license information", "basic corporate data"],
+        "restricted": ["detailed regulatory filings"],
+        "unavailable": ["internal compliance reports"]
+      },
+      "legal_notes": "Banking sector subject to Central Bank of Montenegro oversight"
+    },
+    "NL": {
+      "jurisdiction": "NL",
+      "entity_types_explained": [
+        "B.V. - Besloten Vennootschap (Private Limited Company)",
+        "N.V. - Naamloze Vennootschap (Public Limited Company)"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["corporate registry records", "subsidiary structures"],
+        "restricted": ["beneficial ownership details"],
+        "unavailable": ["personal financial information"]
+      },
+      "legal_notes": "Netherlands used extensively for holding company structures"
+    },
+    "BV": {
+      "jurisdiction": "BV",
+      "entity_types_explained": [
+        "BVI company - British Virgin Islands corporation"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["basic incorporation details"],
+        "restricted": ["beneficial ownership", "financial records"],
+        "unavailable": ["shareholder registers"]
+      },
+      "legal_notes": "BVI provides significant privacy protection for beneficial owners"
+    },
+    "JE": {
+      "jurisdiction": "JE",
+      "entity_types_explained": [
+        "Jersey company - Channel Islands jurisdiction"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["basic company information"],
+        "restricted": ["beneficial ownership under certain thresholds"],
+        "unavailable": ["detailed financial records"]
+      },
+      "legal_notes": "Jersey jurisdiction commonly used for aviation companies and high-value assets"
+    },
+    "VG": {
+      "jurisdiction": "VG",
+      "entity_types_explained": [
+        "BVI - British Virgin Islands incorporated entities"
+      ],
+      "id_formats": ["BVI company registration numbers"],
+      "data_availability": {
+        "accessible": ["basic incorporation details"],
+        "restricted": ["ownership information"],
+        "unavailable": ["beneficial ownership transparency"]
+      },
+      "legal_notes": "Offshore jurisdiction with limited transparency requirements"
+    },
+    "PL": {
+      "jurisdiction": "PL",
+      "entity_types_explained": [
+        "SKA - Limited Joint-Stock Partnership",
+        "Sp. z o.o. - Limited Liability Company",
+        "SA - Joint Stock Company"
+      ],
+      "id_formats": [
+        "KRS - company registry number",
+        "PESEL - personal identification number (implied)"
+      ],
+      "data_availability": {
+        "accessible": [
+          "corporate filings",
+          "directorship positions",
+          "public tender records",
+          "media coverage",
+          "bankruptcy records"
+        ],
+        "restricted": [
+          "student graduation records due to privacy restrictions"
+        ],
+        "unavailable": [
+          "detailed personal financial information",
+          "private corporate transactions"
+        ]
+      },
+      "legal_notes": "Privacy restrictions prevent obtaining student attendance and graduation data without explicit consent"
+    },
+    "LR": {
+      "jurisdiction": "LR",
+      "entity_types_explained": ["Liberian-registered holding company"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["Basic registration information"],
+        "restricted": ["Detailed ownership structures"],
+        "unavailable": ["Real-time beneficial ownership data"]
+      },
+      "legal_notes": "Liberia is commonly used for offshore holding structures"
+    },
+    "GR": {
+      "jurisdiction": "GR",
+      "entity_types_explained": ["Greek branch of foreign company"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["Media reports", "public company filings"],
+        "restricted": [
+          "Real estate records require registered legal representative"
+        ],
+        "unavailable": []
+      },
+      "legal_notes": "Greek real estate records can only be obtained by registered legal representative in the country"
+    },
+    "MH": {
+      "jurisdiction": "MH",
+      "entity_types_explained": [
+        "Marshall Islands-registered shipping companies"
+      ],
+      "id_formats": ["Entity number (e.g., 44376, 27721)"],
+      "data_availability": {
+        "accessible": ["Entity status", "registration numbers"],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Popular jurisdiction for shipping company registration"
+    },
+    "FR": {
+      "jurisdiction": "FR",
+      "entity_types_explained": [
+        "SARL - equivalent to limited liability company"
+      ],
+      "id_formats": ["Bar association number - sequential numbering system"],
+      "data_availability": {
+        "accessible": [
+          "corporate filings",
+          "director information",
+          "registered addresses",
+          "incorporation dates"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "French corporate records provide comprehensive personal details including birth dates and marriage information"
+    },
+    "ES": {
+      "jurisdiction": "ES",
+      "entity_types_explained": [
+        "SA - Sociedad An\u00f3nima, equivalent to public limited company"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "current directors",
+          "historic directors",
+          "company officers"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Spanish corporate data shows both current and historic directors (232 historic directors for OHL)"
+    },
+    "GB": {
+      "jurisdiction": "GB",
+      "entity_types_explained": [
+        "Ltd - Private Limited Company",
+        "Limited - Private Limited Company"
+      ],
+      "id_formats": [
+        "Company registration number - 8 digit format",
+        "Date of birth format - d/m/yyyy"
+      ],
+      "data_availability": {
+        "accessible": [
+          "Company registrations",
+          "Director appointments",
+          "Registered addresses",
+          "Filing history",
+          "Government enforcement actions"
+        ],
+        "restricted": [
+          "Detailed financial information",
+          "Beneficial ownership (some restrictions)",
+          "Personal address details for directors"
+        ],
+        "unavailable": [
+          "Real-time trading standards investigations",
+          "Active criminal investigation details"
+        ]
+      },
+      "legal_notes": "UK has strong corporate transparency requirements. Trading Standards operate at local authority level. Copyright and trademark enforcement through civil and criminal routes."
+    },
+    "CN": {
+      "jurisdiction": "CN",
+      "entity_types_explained": [
+        "Limited liability company (wholly foreign owned enterprise)"
+      ],
+      "id_formats": ["Company registration number"],
+      "data_availability": {
+        "accessible": [
+          "company registration details",
+          "incorporation date",
+          "company status",
+          "registered capital",
+          "paid-up capital"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Wholly foreign owned enterprise structure indicates foreign investment vehicle"
+    },
+    "GE": {
+      "jurisdiction": "GE",
+      "entity_types_explained": ["Georgian registered bank"],
+      "id_formats": ["Georgian company registration number"],
+      "data_availability": {
+        "accessible": [
+          "Company registration details",
+          "Shareholder information"
+        ],
+        "restricted": [
+          "Detailed financial records",
+          "Internal governance documents"
+        ],
+        "unavailable": ["Confidential banking records", "Client information"]
+      },
+      "legal_notes": "Georgian banking sector subject to regulatory oversight"
+    },
+    "BR": {
+      "jurisdiction": "BR",
+      "entity_types_explained": [
+        "S.A. - Sociedade An\u00f4nima (Joint Stock Company)"
+      ],
+      "id_formats": [
+        "Brazilian company registration numbers",
+        "CNPJ - National Registry of Legal Entities"
+      ],
+      "data_availability": {
+        "accessible": [
+          "basic company information",
+          "registered address",
+          "board composition"
+        ],
+        "restricted": [
+          "detailed financial information",
+          "some regulatory filings"
+        ],
+        "unavailable": ["certain confidential regulatory matters"]
+      },
+      "legal_notes": "Brazilian corporate registry provides substantial transparency for public companies"
+    },
+    "RU": {
+      "jurisdiction": "RU",
+      "entity_types_explained": ["PJSC - Public Joint Stock Company"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["corporate filings", "regulatory information"],
+        "restricted": ["beneficial ownership details", "source of funds"],
+        "unavailable": ["detailed financial records"]
+      },
+      "legal_notes": "Russian banking sector subject to multiple regulatory frameworks and sanctions regimes"
+    },
+    "AM": {
+      "jurisdiction": "AM",
+      "entity_types_explained": ["CJSC - Closed Joint Stock Company"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "corporate registry information",
+          "basic company details"
+        ],
+        "restricted": ["detailed ownership structures", "source of funds"],
+        "unavailable": ["confidential regulatory filings"]
+      },
+      "legal_notes": "Armenian banking sector subject to specific regulatory oversight"
+    },
+    "NG": {
+      "jurisdiction": "NG",
+      "entity_types_explained": ["PLC - Public Limited Company"],
+      "id_formats": ["Nigerian company registration number"],
+      "data_availability": {
+        "accessible": ["annual reports", "regulatory filings"],
+        "restricted": ["detailed ownership records"],
+        "unavailable": ["complete beneficial ownership chains"]
+      },
+      "legal_notes": "Subject to Nigerian regulatory investigations in recent years"
+    },
+    "UA": {
+      "jurisdiction": "UA",
+      "entity_types_explained": ["NJSC - National Joint Stock Company"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["Criminal records check", "Property registry search"],
+        "restricted": ["Government connections require HUMINT sources"],
+        "unavailable": ["Complete beneficial ownership transparency limited"]
+      },
+      "legal_notes": "Ukrainian corporate transparency improving but still requires local source networks"
+    },
+    "AE": {
+      "jurisdiction": "AE",
+      "entity_types_explained": [
+        "UAE government ministries",
+        "Royal family structures"
+      ],
+      "id_formats": ["Government position titles", "Royal family designations"],
+      "data_availability": {
+        "accessible": ["Official government appointments", "Public statements"],
+        "restricted": [
+          "Security council activities",
+          "Intelligence operations"
+        ],
+        "unavailable": [
+          "Personal financial details",
+          "Internal government communications"
+        ]
+      },
+      "legal_notes": "UAE prohibits criticism of ruling families and government officials in media"
+    },
+    "KZ": {
+      "jurisdiction": "KZ",
+      "entity_types_explained": [
+        "JSC - Joint Stock Company",
+        "AO - Aktsionernoe Obshchestvo",
+        "LLC - Limited Liability Company"
+      ],
+      "id_formats": ["General banking licence", "KASE membership numbers"],
+      "data_availability": {
+        "accessible": [
+          "Corporate registry via Egov.kz",
+          "Court records via Directory of Judicial Affairs",
+          "Financial statements via Ministry of Finance"
+        ],
+        "restricted": ["Regulatory investigations", "Law enforcement records"],
+        "unavailable": ["Beneficial ownership beyond immediate shareholders"]
+      },
+      "legal_notes": "Media is dominated by state-owned and pro-government outlets with close government control and mass surveillance"
+    },
+    "ET": {
+      "jurisdiction": "ET",
+      "entity_types_explained": [
+        "S.C. - Share Company (Ethiopian corporate structure)"
+      ],
+      "id_formats": [
+        "Commercial Registry number - numerical identifier for registered companies"
+      ],
+      "data_availability": {
+        "accessible": [
+          "basic company registration details",
+          "registered addresses",
+          "share capital information"
+        ],
+        "restricted": [
+          "detailed beneficial ownership",
+          "confidential regulatory filings"
+        ],
+        "unavailable": [
+          "real-time sanctions updates",
+          "comprehensive PEP databases"
+        ]
+      },
+      "legal_notes": "Ethiopian corporate law requires commercial registry registration for share companies"
+    },
+    "KE": {
+      "jurisdiction": "KE",
+      "entity_types_explained": [
+        "Bank PLC - Public Limited Company operating as a bank"
+      ],
+      "id_formats": ["Kenya company registration numbers"],
+      "data_availability": {
+        "accessible": [
+          "Corporate registry information",
+          "Banking license details"
+        ],
+        "restricted": [
+          "Beneficial ownership details may require deeper investigation"
+        ],
+        "unavailable": ["Real-time sanctions updates may have delays"]
+      },
+      "legal_notes": "Kenya has specific banking regulations and corporate disclosure requirements"
+    },
+    "MD": {
+      "jurisdiction": "MD",
+      "entity_types_explained": [
+        "Financial Institution - regulated banking entity"
+      ],
+      "id_formats": ["Moldovan company registration numbers"],
+      "data_availability": {
+        "accessible": ["corporate registry data", "basic company information"],
+        "restricted": ["beneficial ownership details", "regulatory filings"],
+        "unavailable": ["real-time sanctions updates"]
+      },
+      "legal_notes": "Moldova has specific regulations for financial institutions requiring enhanced due diligence"
+    },
+    "AU": {
+      "jurisdiction": "AU",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "FATF mutual evaluations",
+          "national risk assessments",
+          "media reports",
+          "civil society reports"
+        ],
+        "restricted": ["detailed enforcement case files"],
+        "unavailable": ["confidential supervisory communications"]
+      },
+      "legal_notes": "Subject to assessment for equivalence to EU AML-CFT framework"
+    },
+    "BG": {
+      "jurisdiction": "BG",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "4th and 5th AMLD transposition status",
+          "FATF compliance reports"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "EU member state with direct AMLD obligations"
+    },
+    "CA": {
+      "jurisdiction": "CA",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "FATF mutual evaluations",
+          "national AML framework documentation"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "FATF member with comprehensive AML-CFT regime"
+    },
+    "JP": {
+      "jurisdiction": "JP",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "FATF compliance assessments",
+          "regulatory publications"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "FATF founding member with established framework"
+    },
+    "RO": {
+      "jurisdiction": "RO",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["AMLD implementation status", "EU compliance reports"],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "EU member state subject to AMLD requirements"
+    },
+    "US": {
+      "jurisdiction": "US",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "FATF mutual evaluations",
+          "federal AML regulations",
+          "FinCEN guidance"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "FATF member with comprehensive federal AML-CFT regime"
+    },
+    "AZ": {
+      "jurisdiction": "AZ",
+      "entity_types_explained": [
+        "Mobile telecommunications operator",
+        "Subsidiary structure"
+      ],
+      "id_formats": ["Company registration number", "Tax identification"],
+      "data_availability": {
+        "accessible": ["Corporate registry information", "Public filings"],
+        "restricted": [
+          "Beneficial ownership details",
+          "Government licensing records"
+        ],
+        "unavailable": [
+          "Detailed financial records",
+          "Internal governance documents"
+        ]
+      },
+      "legal_notes": "Azerbaijan telecommunications sector requires government licensing and regulatory oversight"
+    },
+    "LU": {
+      "jurisdiction": "LU",
+      "entity_types_explained": [
+        "S.a.r.l. - Private limited liability company"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Luxembourg entity used as foreign finance vehicle"
+    },
+    "BE": {
+      "jurisdiction": "BE",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["court records", "media archives"],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Belgian jurisdiction relevant due to historical prosecution of beneficial owners"
+    },
+    "VC": {
+      "jurisdiction": "VC",
+      "entity_types_explained": ["LLC - Limited Liability Company"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["basic company information", "registered addresses"],
+        "restricted": ["beneficial ownership", "director details"],
+        "unavailable": ["detailed corporate structures"]
+      },
+      "legal_notes": "Popular jurisdiction for offshore trading platforms"
+    },
+    "IL": {
+      "jurisdiction": "IL",
+      "entity_types_explained": ["LTD - Private Limited Company"],
+      "id_formats": ["Israeli company registration number - 9 digits"],
+      "data_availability": {
+        "accessible": ["directors", "shareholders", "corporate structure"],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Comprehensive corporate disclosure requirements"
+    },
+    "SC": {
+      "jurisdiction": "SC",
+      "entity_types_explained": [
+        "Seychelles-registered companies used for anonymity in development projects"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["basic company registration"],
+        "restricted": ["beneficial ownership", "financial records"],
+        "unavailable": ["detailed transaction records"]
+      },
+      "legal_notes": "Seychelles provides corporate secrecy suitable for offshore structures"
+    },
+    "DK": {
+      "jurisdiction": "DK",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["basic banking relationships"],
+        "restricted": [
+          "transaction records",
+          "internal banking communications"
+        ],
+        "unavailable": ["current active accounts"]
+      },
+      "legal_notes": "Danske Bank Estonia branch involved in major money laundering scandal"
+    },
+    "BM": {
+      "jurisdiction": "BM",
+      "entity_types_explained": [
+        "Limited companies incorporated under Bermuda law"
+      ],
+      "id_formats": ["Bermuda company registration numbers"],
+      "data_availability": {
+        "accessible": ["company incorporation details", "registered addresses"],
+        "restricted": ["beneficial ownership information"],
+        "unavailable": ["detailed financial records"]
+      },
+      "legal_notes": "Bermuda Digital Asset Business license required for cryptocurrency trading"
+    },
+    "IT": {
+      "jurisdiction": "IT",
+      "entity_types_explained": [
+        "SRL - societ\u00e0 a responsabilit\u00e0 limitata (limited liability company)",
+        "SRLS - societ\u00e0 a responsabilit\u00e0 limitata semplificata (simplified limited liability company)",
+        "SAS - societ\u00e0 in accomandita semplice (limited partnership)"
+      ],
+      "id_formats": [
+        "VAT number - 11 digits",
+        "Registration number format varies by province",
+        "ATECO classification codes for business activities"
+      ],
+      "data_availability": {
+        "accessible": [
+          "company registration details",
+          "ownership structure",
+          "officer information",
+          "financial statements",
+          "transportation licenses",
+          "protests register"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Italian companies must file annual returns with financial data. Transportation licenses are regulated separately by Ministry of Infrastructure and Transportation."
+    },
+    "IM": {
+      "jurisdiction": "IM",
+      "entity_types_explained": [
+        "Isle of Man Limited - IOM incorporated company"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["aircraft_registrations", "aviation_records"],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Aviation registry provides comprehensive ownership tracking"
+    },
+    "SI": {
+      "jurisdiction": "SI",
+      "entity_types_explained": [
+        "DD - Limited Liability Company (Delni\u0161ka Dru\u017eba)"
+      ],
+      "id_formats": ["Registration numbers in format XXXXXXXX000"],
+      "data_availability": {
+        "accessible": [
+          "corporate structure",
+          "management boards",
+          "financial statements"
+        ],
+        "restricted": ["ongoing investigation materials"],
+        "unavailable": ["privileged communications with regulators"]
+      },
+      "legal_notes": "State ownership requires parliamentary approval for major transactions"
+    },
+    "RS": {
+      "jurisdiction": "RS",
+      "entity_types_explained": [
+        "AD - Joint Stock Company (Akcionarsko Dru\u0161tvo)"
+      ],
+      "id_formats": ["Registration numbers starting with 07XXXXXX"],
+      "data_availability": {
+        "accessible": ["shareholder registers", "board compositions"],
+        "restricted": ["acquisition documentation"],
+        "unavailable": ["detailed due diligence materials"]
+      },
+      "legal_notes": "Foreign bank acquisitions require National Bank of Serbia approval"
+    },
+    "EE": {
+      "jurisdiction": "EE",
+      "entity_types_explained": [
+        "OU - Osa\u00fching (Private Limited Company)"
+      ],
+      "id_formats": ["Estonian company registration numbers"],
+      "data_availability": {
+        "accessible": [
+          "Beneficial ownership registers",
+          "Cross-border ownership disclosure",
+          "Residential addresses of beneficial owners"
+        ],
+        "restricted": ["Detailed financial records"],
+        "unavailable": ["Purpose and commercial rationale for structures"]
+      },
+      "legal_notes": "Strong beneficial ownership transparency requirements enable cross-border corporate intelligence"
+    },
+    "TR": {
+      "jurisdiction": "TR",
+      "entity_types_explained": [
+        "Anonim \u015eirketi - Joint Stock Company equivalent to corporation",
+        "Limited \u015eirketi - Limited Liability Company"
+      ],
+      "id_formats": ["Company registration number - numeric format"],
+      "data_availability": {
+        "accessible": [
+          "corporate registry data",
+          "branch information",
+          "bankruptcy status",
+          "basic ownership structure"
+        ],
+        "restricted": ["detailed financial information"],
+        "unavailable": ["litigation history", "court cases"]
+      },
+      "legal_notes": "Article 20 of Constitution and Article 23 of Right to Information Law severely restrict third-party access to litigation records"
+    },
+    "FI": {
+      "jurisdiction": "FI",
+      "entity_types_explained": ["OY - Finnish limited company"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "basic company information",
+          "director names",
+          "financial aggregated data",
+          "media archives",
+          "court judgements"
+        ],
+        "restricted": [
+          "complete shareholder register",
+          "complete director's register"
+        ],
+        "unavailable": ["beneficial ownership details without registry access"]
+      },
+      "legal_notes": "Domestic addresses used for business registration. Common for spouses to act as directors in personal services companies."
+    },
+    "GG": {
+      "jurisdiction": "GG",
+      "entity_types_explained": ["Guernsey holding company structures"],
+      "id_formats": ["Guernsey company registration numbers"],
+      "data_availability": {
+        "accessible": ["Basic incorporation details"],
+        "restricted": [
+          "Detailed shareholder information",
+          "Financial statements"
+        ],
+        "unavailable": ["Beneficial ownership details for most structures"]
+      },
+      "legal_notes": "Guernsey had zero capital gains tax and corporation tax for most companies during relevant period, making it attractive for tax planning structures."
+    },
+    "SA": {
+      "jurisdiction": "SA",
+      "entity_types_explained": [
+        "\u0634\u0631\u0643\u0629 - Company",
+        "\u0634\u0631\u0643\u0629 \u0639\u0628\u062f\u0627\u0644\u0644\u0647 \u0627\u0644\u0639\u062b\u064a\u0645 \u0644\u0644\u0627\u0632\u064a\u0627\u0621 - Abdullah Al Othaim Fashion Company"
+      ],
+      "id_formats": ["Tadawul ticker format: (AOTHAIM:AB)"],
+      "data_availability": {
+        "accessible": [
+          "Stock exchange filings for public companies",
+          "Corporate websites",
+          "Media coverage"
+        ],
+        "restricted": ["Corporate registry requires manual retrieval"],
+        "unavailable": [
+          "Saudi Corporate Registry not available online to public"
+        ]
+      },
+      "legal_notes": "Saudi Corporate Registry is not available to the public online but official filings can be retrieved manually upon request"
+    },
+    "CZ": {
+      "jurisdiction": "CZ",
+      "entity_types_explained": [
+        "a.s. - joint stock company",
+        "Association - industry organization"
+      ],
+      "id_formats": ["Company registration numbers for Czech entities"],
+      "data_availability": {
+        "accessible": [
+          "Company websites",
+          "public media reports",
+          "industry association contacts"
+        ],
+        "restricted": [
+          "Internal company information",
+          "confidential business dealings"
+        ],
+        "unavailable": [
+          "Private communications",
+          "internal decision-making processes"
+        ]
+      },
+      "legal_notes": "Investigation focused on potential EU subsidy fraud and conflict of interest issues"
+    },
+    "SK": {
+      "jurisdiction": "SK",
+      "entity_types_explained": ["Slovak subsidiaries and operations"],
+      "id_formats": ["Slovak company identifiers"],
+      "data_availability": {
+        "accessible": ["Cross-border company operations"],
+        "restricted": ["Detailed subsidiary information"],
+        "unavailable": ["Internal Slovak operations data"]
+      },
+      "legal_notes": "Part of broader Central European business network"
+    },
+    "EG": {
+      "jurisdiction": "EG",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["LinkedIn profiles", "corporate websites"],
+        "restricted": ["corporate registry details"],
+        "unavailable": ["press coverage", "public records"]
+      },
+      "legal_notes": "Limited public information availability for corporate officers"
+    },
+    "KW": {
+      "jurisdiction": "KW",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "bilateral cooperation council records",
+          "investment authority participation"
+        ],
+        "restricted": [
+          "detailed corporate ownership",
+          "investment fund structures"
+        ],
+        "unavailable": [
+          "private investment decisions",
+          "sovereign fund strategies"
+        ]
+      },
+      "legal_notes": "Kuwait Investment Authority participation indicates sovereign investment involvement"
+    },
+    "QA": {
+      "jurisdiction": "QA",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "Qatar Foundation public activities",
+          "investment announcements"
+        ],
+        "restricted": [
+          "detailed ownership percentages",
+          "investment performance"
+        ],
+        "unavailable": [
+          "internal investment committee decisions",
+          "sovereign fund strategies"
+        ]
+      },
+      "legal_notes": "Qatar Investment Authority and Qatar Foundation involvement suggests state-level strategic interest"
+    },
+    "PK": {
+      "jurisdiction": "PK",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["Media coverage of charity activities"],
+        "restricted": ["Government position details"],
+        "unavailable": ["Corporate registry searches not demonstrated"]
+      },
+      "legal_notes": "Limited investigation conducted in Pakistan jurisdiction"
+    },
+    "SE": {
+      "jurisdiction": "SE",
+      "entity_types_explained": ["AB - Limited company"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["Corporate registry", "Board member details"],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Swedish corporate records accessible for cross-border verification"
+    },
+    "AO": {
+      "jurisdiction": "AO",
+      "entity_types_explained": ["Lda - Limited liability company"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "basic company registration information",
+          "public sources"
+        ],
+        "restricted": ["beneficial ownership", "detailed financial records"],
+        "unavailable": [
+          "transparent customs processes",
+          "corruption-free licensing"
+        ]
+      },
+      "legal_notes": "Corruption is rife in customs administration and local authorities, particularly in Viana Municipality. Companies regularly deal with costly and non-transparent border processes."
+    },
+    "LV": {
+      "jurisdiction": "LV",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Example given of Ukrainian national residing in Latvia as source"
+    },
+    "LT": {
+      "jurisdiction": "LT",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["Embassy marriage records"],
+        "restricted": [],
+        "unavailable": ["Official insolvency records for individuals"]
+      },
+      "legal_notes": "Official insolvency records for individuals are not publicly available"
+    },
+    "KG": {
+      "jurisdiction": "KG",
+      "entity_types_explained": ["CJSC - Closed Joint Stock Company"],
+      "id_formats": ["Company registration numbers in format XXXXXXXXXXX"],
+      "data_availability": {
+        "accessible": [
+          "basic company registration data",
+          "banking license information",
+          "public media coverage"
+        ],
+        "restricted": [
+          "detailed financial records",
+          "regulatory inspection reports"
+        ],
+        "unavailable": [
+          "beneficial ownership details",
+          "internal compliance records"
+        ]
+      },
+      "legal_notes": "Banking sector underwent significant regulatory changes in 2011 and 2015 affecting microfinance institutions"
+    },
+    "BF": {
+      "jurisdiction": "BF",
+      "entity_types_explained": [
+        "State-owned company - La Poste Burkina Faso privatized in 1994"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "Census data",
+          "Government ministry websites",
+          "Central bank reports",
+          "Public policy documents"
+        ],
+        "restricted": [
+          "Detailed migration analysis from 2019 census not yet published"
+        ],
+        "unavailable": ["Specific financial inclusion measures for migrants"]
+      },
+      "legal_notes": "Part of Economic and Monetary Union of West Africa (UEMOA) with shared currency and regulatory framework under BCEAO"
+    },
+    "UZ": {
+      "jurisdiction": "UZ",
+      "entity_types_explained": [
+        "Karakalpakstan - autonomous republic within Uzbekistan"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "water management cooperation agreements",
+          "basin organization participation"
+        ],
+        "restricted": ["detailed water allocation data"],
+        "unavailable": ["comprehensive environmental monitoring data"]
+      },
+      "legal_notes": "Part of multilateral water management frameworks inherited from Soviet system"
+    },
+    "TJ": {
+      "jurisdiction": "TJ",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "hydroelectric project information",
+          "bilateral river agreements"
+        ],
+        "restricted": ["detailed dam construction data"],
+        "unavailable": ["comprehensive water flow monitoring"]
+      },
+      "legal_notes": "Upstream state with significant hydroelectric interests, particularly Rogun megaproject"
+    },
+    "TM": {
+      "jurisdiction": "TM",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "irrigation system information",
+          "desert water management"
+        ],
+        "restricted": ["detailed agricultural water use"],
+        "unavailable": ["comprehensive basin monitoring"]
+      },
+      "legal_notes": "Downstream state heavily dependent on Amu Darya irrigation"
+    },
+    "AF": {
+      "jurisdiction": "AF",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["bilateral agreements with Tajikistan"],
+        "restricted": ["regional cooperation participation"],
+        "unavailable": ["ICWC membership or participation"]
+      },
+      "legal_notes": "Excluded from regional cooperation due to ongoing conflict, limited to bilateral engagement"
+    },
+    "XK": {
+      "jurisdiction": "XK",
+      "entity_types_explained": [
+        "LLC - Limited Liability Company",
+        "ShPK - Limited Liability Company (Albanian)",
+        "ShA - Joint Stock Company",
+        "OP - Individual Enterprise",
+        "BI - Individual Business"
+      ],
+      "id_formats": [
+        "Company registration numbers in format 8xxxxxxxx",
+        "Identification numbers in format 7xxxxxxx"
+      ],
+      "data_availability": {
+        "accessible": [
+          "company registration details",
+          "ownership structures",
+          "authorized representatives",
+          "business activities",
+          "registered addresses"
+        ],
+        "restricted": ["historical ownership changes", "financial information"],
+        "unavailable": [
+          "detailed financial records",
+          "internal corporate documents"
+        ]
+      },
+      "legal_notes": "Kosovo corporate registry provides current ownership but limited historical data on ownership changes"
+    },
+    "AL": {
+      "jurisdiction": "AL",
+      "entity_types_explained": ["ShPK - Limited Liability Company"],
+      "id_formats": ["Registration numbers in format Lxxxxxxxx"],
+      "data_availability": {
+        "accessible": [
+          "basic company information",
+          "administrators",
+          "registered addresses"
+        ],
+        "restricted": [],
+        "unavailable": ["detailed ownership histories"]
+      },
+      "legal_notes": "Albanian registry accessible for basic company lookups"
+    },
+    "XX": {
+      "jurisdiction": "XX",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "local corporate records where available",
+          "basic company information"
+        ],
+        "restricted": ["detailed beneficial ownership in some jurisdictions"],
+        "unavailable": [
+          "certain offshore jurisdictions with limited disclosure"
+        ]
+      },
+      "legal_notes": "Corporate registry access varies by jurisdiction"
+    },
+    "LI": {
+      "jurisdiction": "LI",
+      "entity_types_explained": [
+        "Foundation - used for wealth management and succession planning"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["Basic foundation existence"],
+        "restricted": [
+          "Beneficial ownership details",
+          "Foundation beneficiaries"
+        ],
+        "unavailable": ["Real-time ownership changes"]
+      },
+      "legal_notes": "Liechtenstein foundations provide high privacy protection for beneficial owners"
+    },
+    "MT": {
+      "jurisdiction": "MT",
+      "entity_types_explained": ["Holding company"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["Basic company information"],
+        "restricted": ["Beneficial ownership"],
+        "unavailable": []
+      },
+      "legal_notes": "Malta used as EU-compliant holding jurisdiction"
+    },
+    "ZA": {
+      "jurisdiction": "ZA",
+      "entity_types_explained": [],
+      "id_formats": [
+        "13-digit national ID number with YYMMDD birth date format"
+      ],
+      "data_availability": {
+        "accessible": ["Property ownership records", "Company directorships"],
+        "restricted": ["National ID verification"],
+        "unavailable": []
+      },
+      "legal_notes": "Foreign residents receive South African national ID numbers following specific format conventions"
+    },
+    "MZ": {
+      "jurisdiction": "MZ",
+      "entity_types_explained": [],
+      "id_formats": ["Government ministry contact formats"],
+      "data_availability": {
+        "accessible": [
+          "Government official contact details",
+          "Ministry addresses"
+        ],
+        "restricted": ["Personal addresses of officials"],
+        "unavailable": ["Residential property records"]
+      },
+      "legal_notes": "Former government officials may face extradition vulnerability"
+    },
+    "HR": {
+      "jurisdiction": "HR",
+      "entity_types_explained": [
+        "d.o.o. - limited liability company equivalent to LLC"
+      ],
+      "id_formats": [
+        "OIB - 11 digit personal/corporate tax identification number"
+      ],
+      "data_availability": {
+        "accessible": [
+          "court judgments",
+          "corporate registry data",
+          "official legal proceedings"
+        ],
+        "restricted": [
+          "detailed financial records",
+          "internal corporate communications"
+        ],
+        "unavailable": [
+          "real-time betting system logs",
+          "internal operational procedures"
+        ]
+      },
+      "legal_notes": "Croatian gambling law requires strict adherence to published rules and regulations. Court emphasizes that betting operators must follow their own published terms and conditions."
+    },
+    "CO": {
+      "jurisdiction": "CO",
+      "entity_types_explained": [
+        "S.A.S. - Simplified Stock Company requiring only one shareholder with no maximum limit"
+      ],
+      "id_formats": ["Tax ID - 10 digit format (8600413673)"],
+      "data_availability": {
+        "accessible": [
+          "basic registration details",
+          "tax ID",
+          "registered address"
+        ],
+        "restricted": [
+          "incorporation documents for S.A.S.",
+          "detailed financial records"
+        ],
+        "unavailable": ["board of directors information for S.A.S."]
+      },
+      "legal_notes": "S.A.S. companies have simplified disclosure requirements with no requirement for board of directors and unpublished incorporation documents"
+    },
+    "PH": {
+      "jurisdiction": "PH",
+      "entity_types_explained": [
+        "SMDC - SM Development Corporation property projects"
+      ],
+      "id_formats": [
+        "SMDC project codes like SMDC/VLI/SYNERGY/2241/SM PRIME",
+        "CHEH BO73 LO27"
+      ],
+      "data_availability": {
+        "accessible": ["Property purchase documents", "Banking correspondence"],
+        "restricted": ["Personal property ownership records"],
+        "unavailable": []
+      },
+      "legal_notes": "Property purchases in Philippines with loan applications through China Banking Corporation"
+    },
+    "XY": {
+      "jurisdiction": "XY",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "government ministry websites",
+          "official strategy documents",
+          "law titles and publication dates"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Example uses fictional country 'Transylvania' to demonstrate research methodology"
+    },
+    "CI": {
+      "jurisdiction": "CI",
+      "entity_types_explained": [
+        "WAEMU - West African Economic and Monetary Union member state",
+        "BCEAO regulated financial institutions"
+      ],
+      "id_formats": [
+        "XOF currency amounts",
+        "WAEMU regulatory framework identifiers"
+      ],
+      "data_availability": {
+        "accessible": [
+          "central bank policy measures",
+          "government program data",
+          "regulatory announcements"
+        ],
+        "restricted": [
+          "detailed bank-specific data",
+          "individual beneficiary information"
+        ],
+        "unavailable": ["proprietary bank internal data"]
+      },
+      "legal_notes": "Subject to WAEMU monetary union regulations and Basel II/III framework implementation"
+    },
+    "MG": {
+      "jurisdiction": "MG",
+      "entity_types_explained": [
+        "BFM - Central Bank of Madagascar",
+        "MFIs - Microfinance Institutions",
+        "MSMEs - Micro, Small and Medium Enterprises"
+      ],
+      "id_formats": ["MGA - Malagasy Ariary currency code"],
+      "data_availability": {
+        "accessible": [
+          "central_bank_policy_announcements",
+          "government_program_details",
+          "regulatory_changes"
+        ],
+        "restricted": [
+          "detailed_bank_lending_data",
+          "individual_beneficiary_records"
+        ],
+        "unavailable": [
+          "private_bank_internal_policies",
+          "individual_loan_restructuring_details"
+        ]
+      },
+      "legal_notes": "Banks defined by law have different regulatory treatment than MFIs. Mandatory deposit limits are key regulatory tools."
+    },
+    "MA": {
+      "jurisdiction": "MA",
+      "entity_types_explained": [
+        "BAM - Bank al-Maghrib (central bank)",
+        "MFIs - Microfinance Institutions",
+        "SMEs - Small and Medium Enterprises"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "policy rates",
+          "regulatory measures",
+          "fund allocations"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Morocco implemented comprehensive COVID-19 financial response measures including monetary policy adjustments, banking sector support, and emergency funding mechanisms"
+    },
+    "IE": {
+      "jurisdiction": "IE",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [],
+        "restricted": [],
+        "unavailable": [
+          "criminal records",
+          "comprehensive civil litigation records"
+        ]
+      },
+      "legal_notes": "Criminal records are not part of the public record. Comprehensive and non-anonymized civil litigation records are not publicly accessible"
+    },
+    "BA": {
+      "jurisdiction": "BA",
+      "entity_types_explained": [
+        "d.o.o. - Limited Liability Company (dru\u0161tvo s ograni\u010denom odgovorno\u0161\u0107u)"
+      ],
+      "id_formats": [
+        "Registration Number format: 1-12270",
+        "Tax Number format: 4227593530000"
+      ],
+      "data_availability": {
+        "accessible": [
+          "corporate registration details",
+          "director information",
+          "shareholding structure",
+          "financial summaries",
+          "public tender awards"
+        ],
+        "restricted": [
+          "detailed financial records",
+          "internal corporate documents"
+        ],
+        "unavailable": [
+          "beneficial ownership beyond stated shareholders",
+          "detailed audit reports"
+        ]
+      },
+      "legal_notes": "Bosnia and Herzegovina has federal structure with entity-level registrations. Political party HDZ appears to have significant influence over public procurement processes."
+    },
+    "NO": {
+      "jurisdiction": "NO",
+      "entity_types_explained": ["ASA - Norwegian public limited company"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["Parent company structure through Telenor ASA"],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Norwegian parent company ownership creates cross-jurisdictional reporting requirements"
+    },
+    "SO": {
+      "jurisdiction": "SO",
+      "entity_types_explained": [
+        "telecommunications company registered in Somalia"
+      ],
+      "id_formats": [
+        "CRiS numbers with prefixes KEP, SOP, ZZP followed by 11 digits"
+      ],
+      "data_availability": {
+        "accessible": [
+          "company registration documents",
+          "executive officer information"
+        ],
+        "restricted": ["ownership structures require specialized sources"],
+        "unavailable": ["public beneficial ownership registers"]
+      },
+      "legal_notes": "Legal documents are filed but not publicly accessible, requiring indirect access through specialized sources"
+    },
+    "BH": {
+      "jurisdiction": "BH",
+      "entity_types_explained": [
+        "W.L.L. - With Limited Liability",
+        "SPC - Single Person Company",
+        "BSCC - Bahrain Shareholding Company Closed"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "corporate registry extracts via Diligencia",
+          "shareholding structures"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Detailed corporate ownership structures available"
+    },
+    "BY": {
+      "jurisdiction": "BY",
+      "entity_types_explained": [
+        "Sole Trader - individual business registration",
+        "OOO - Limited Liability Company equivalent"
+      ],
+      "id_formats": [
+        "Sole Trader Blinkov S.L. format for individual registrations"
+      ],
+      "data_availability": {
+        "accessible": [
+          "sole trader registrations",
+          "business activity types",
+          "registration periods"
+        ],
+        "restricted": ["company directors listings"],
+        "unavailable": ["detailed financial information"]
+      },
+      "legal_notes": "Belarus State Registry provides sole trader information but does not list company directors"
+    },
+    "JO": {
+      "jurisdiction": "JO",
+      "entity_types_explained": ["Banks"],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["Corporate information"],
+        "restricted": ["Detailed ownership"],
+        "unavailable": []
+      },
+      "legal_notes": "Part of Southern and Eastern Mediterranean region"
+    },
+    "PS": {
+      "jurisdiction": "PS",
+      "entity_types_explained": ["PSC - Public Shareholding Company"],
+      "id_formats": ["Registration number format: 9 digits (e.g., 562800078)"],
+      "data_availability": {
+        "accessible": [
+          "company registration data",
+          "basic corporate information"
+        ],
+        "restricted": [
+          "detailed financial filings",
+          "regulatory correspondence"
+        ],
+        "unavailable": ["beneficial ownership transparency registers"]
+      },
+      "legal_notes": "Palestinian Territories operates under Palestinian Authority jurisdiction with regulatory framework including Palestine Monetary Authority oversight of banking sector"
+    },
+    "PA": {
+      "jurisdiction": "PA",
+      "entity_types_explained": [
+        "Inc - Panamanian incorporation with enhanced privacy"
+      ],
+      "id_formats": ["Company numbers in brackets, e.g., (717116)"],
+      "data_availability": {
+        "accessible": ["basic company existence"],
+        "restricted": ["ownership details", "financial information"],
+        "unavailable": ["beneficial ownership without insider access"]
+      },
+      "legal_notes": "Panama entities used as intermediate holding companies for privacy"
+    },
+    "IQ": {
+      "jurisdiction": "IQ",
+      "entity_types_explained": [],
+      "id_formats": [
+        "Iraqi phone numbers: +964 followed by mobile operator codes 750, 751"
+      ],
+      "data_availability": {
+        "accessible": [
+          "company websites",
+          "physical location verification",
+          "contact information"
+        ],
+        "restricted": [],
+        "unavailable": ["formal business registries"]
+      },
+      "legal_notes": "Limited formal corporate registry access, relying on open source intelligence"
+    },
+    "MX": {
+      "jurisdiction": "MX",
+      "entity_types_explained": [
+        "Private Individual conducting business and professional activities"
+      ],
+      "id_formats": [
+        "RFC - Registro Federal de Contribuyentes (Tax identification number format: ROGE600319S75)"
+      ],
+      "data_availability": {
+        "accessible": [
+          "RFC tax identification",
+          "business classification",
+          "registered addresses"
+        ],
+        "restricted": ["Management structure details", "financial information"],
+        "unavailable": [
+          "Comprehensive corporate filings",
+          "detailed ownership structures"
+        ]
+      },
+      "legal_notes": "Sole proprietorship structure allows individual to conduct business activities under personal tax identification"
+    },
+    "IN": {
+      "jurisdiction": "IN",
+      "entity_types_explained": [
+        "Public, non-government company limited by shares"
+      ],
+      "id_formats": [
+        "U67190MH2005PLC157240 - company registration number format"
+      ],
+      "data_availability": {
+        "accessible": [
+          "High Court records",
+          "Supreme Court records",
+          "Corporate registry filings",
+          "Parent company prospectus disclosures"
+        ],
+        "restricted": [
+          "Lower court undertrial cases",
+          "Orders",
+          "Decrees",
+          "Judgments"
+        ],
+        "unavailable": ["Complete lower court records"]
+      },
+      "legal_notes": "Lower court undertrial cases, orders, decrees, and judgments are not available in the public domain"
+    },
+    "PT": {
+      "jurisdiction": "PT",
+      "entity_types_explained": ["Public limited company"],
+      "id_formats": [
+        "PT503264032 - Portuguese company registration number",
+        "PT507866673 - Portuguese company registration number"
+      ],
+      "data_availability": {
+        "accessible": [
+          "Corporate registry information",
+          "Court case names",
+          "Media reports"
+        ],
+        "restricted": [
+          "Full court proceeding details",
+          "Names often anonymized in court records"
+        ],
+        "unavailable": ["Criminal records without subject authorization"]
+      },
+      "legal_notes": "Court databases only provide results for previous few months and are only searchable per region. Full access to court proceeding information is restricted to parties and their representatives."
+    },
+    "MU": {
+      "jurisdiction": "MU",
+      "entity_types_explained": [
+        "Limited company",
+        "Holding/management/investment company"
+      ],
+      "id_formats": ["C17152356 - company registration number format"],
+      "data_availability": {
+        "accessible": [
+          "Corporate filings",
+          "Court judgements from multiple court levels",
+          "Director information",
+          "Shareholder information"
+        ],
+        "restricted": [],
+        "unavailable": ["Comprehensive insolvency and bankruptcy records"]
+      },
+      "legal_notes": "Comprehensive court system with Industrial Court, Intermediate Court, Court of Rodrigues, Regional Court, Appeal Court, and 13 district courts all accessible through Supreme Court database"
+    },
+    "TN": {
+      "jurisdiction": "TN",
+      "entity_types_explained": [
+        "Soci\u00e9t\u00e9 anonyme - public limited company"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "corporate registry information",
+          "stock exchange data",
+          "media coverage"
+        ],
+        "restricted": [
+          "comprehensive bankruptcy records",
+          "full criminal records"
+        ],
+        "unavailable": ["complete insolvency proceedings"]
+      },
+      "legal_notes": "Only limited number of criminal judgements published in Tunisia"
+    },
+    "UG": {
+      "jurisdiction": "UG",
+      "entity_types_explained": [
+        "Limited company - Equity Bank Uganda Limited with registration number format"
+      ],
+      "id_formats": ["Company registration number: 80010002469614 / 52619B"],
+      "data_availability": {
+        "accessible": [
+          "Corporate registry information",
+          "Court decisions",
+          "Media archives"
+        ],
+        "restricted": [
+          "Comprehensive insolvency and bankruptcy records not publicly available"
+        ],
+        "unavailable": [
+          "Complete beneficial ownership records",
+          "Detailed financial filings"
+        ]
+      },
+      "legal_notes": "Bank regulation by Bank of Uganda, incorporation process through Registration Services Bureau"
+    },
+    "TZ": {
+      "jurisdiction": "TZ",
+      "entity_types_explained": ["Limited liability company"],
+      "id_formats": ["Registration Number - 86780 format"],
+      "data_availability": {
+        "accessible": [
+          "Corporate registry information",
+          "Central bank supervisory data",
+          "Some court records"
+        ],
+        "restricted": [
+          "Complete court records",
+          "Comprehensive case summaries"
+        ],
+        "unavailable": ["All historical court records"]
+      },
+      "legal_notes": "Bank of Tanzania serves as banking supervisor and issues public statements on licensing actions"
+    },
+    "ML": {
+      "jurisdiction": "ML",
+      "entity_types_explained": [
+        "Union of cooperatives - owned by members of individual local cooperatives"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["basic company information from websites"],
+        "restricted": ["full criminal records", "full civil records"],
+        "unavailable": ["insolvency and bankruptcy records"]
+      },
+      "legal_notes": "Full criminal and civil records not publicly accessible in Mali"
+    },
+    "SN": {
+      "jurisdiction": "SN",
+      "entity_types_explained": [
+        "Soci\u00e9t\u00e9 Anonyme - public limited company"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "corporate registry information",
+          "commercial court summaries"
+        ],
+        "restricted": [
+          "full criminal records",
+          "comprehensive civil litigation records"
+        ],
+        "unavailable": ["comprehensive insolvency and bankruptcy records"]
+      },
+      "legal_notes": "Full criminal records not publicly accessible in Senegal, but commercial court hearing summaries are published"
+    },
+    "BD": {
+      "jurisdiction": "BD",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Grameen Bank is state-owned institution; government has 25% ownership and regulatory control"
+    },
+    "HK": {
+      "jurisdiction": "HK",
+      "entity_types_explained": [
+        "Limited company structures",
+        "Holdings companies"
+      ],
+      "id_formats": ["Company registration numbers", "Court case references"],
+      "data_availability": {
+        "accessible": ["Court filings", "Company registry", "Annual reports"],
+        "restricted": ["Some commercial databases"],
+        "unavailable": ["Confidential settlement terms"]
+      },
+      "legal_notes": "Common law jurisdiction with detailed court records"
+    },
+    "GLOBAL": {
+      "jurisdiction": "GLOBAL",
+      "entity_types_explained": [
+        "WHO member states",
+        "GHSA participating countries",
+        "IHR signatory countries"
+      ],
+      "id_formats": [
+        "WHO country codes",
+        "ISO country codes",
+        "UN member state designations"
+      ],
+      "data_availability": {
+        "accessible": [
+          "WHO public databases",
+          "published JEE reports",
+          "public legislation",
+          "government ministry websites"
+        ],
+        "restricted": [
+          "Unpublished OIE evaluations",
+          "Internal government communications",
+          "Classified health security assessments"
+        ],
+        "unavailable": [
+          "Information requiring interviews",
+          "Non-publicly available internal documents"
+        ]
+      },
+      "legal_notes": "Research limited to publicly available information only. No interviews permitted to maintain external assessment integrity."
+    },
+    "IS": {
+      "jurisdiction": "IS",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["court records", "directorship searches"],
+        "restricted": [],
+        "unavailable": ["directorships in Iceland"]
+      },
+      "legal_notes": "No directorships found for subject in Icelandic registries"
+    },
+    "AD": {
+      "jurisdiction": "AD",
+      "entity_types_explained": [
+        "SA - Sociedad An\u00f3nima (joint stock company)"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["company registration addresses"],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Used as holding company domicile despite German operations"
+    },
+    "EU": {
+      "jurisdiction": "EU",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [],
+        "restricted": ["European Patent Office applications"],
+        "unavailable": []
+      },
+      "legal_notes": "Same patent received negative reviews at European Patent Office, revised and resubmitted with continued negative reception"
+    },
+    "PR": {
+      "jurisdiction": "PR",
+      "entity_types_explained": [
+        "Businessperson Certificate (Registro de Comerciante) - for persons who opened or wants to open a business in Puerto Rico"
+      ],
+      "id_formats": ["Social Security Number - XXX-XX-XXXX format"],
+      "data_availability": {
+        "accessible": [
+          "Court records from Appeals Court and Supreme Court",
+          "Corporate registry by company name/number"
+        ],
+        "restricted": [
+          "Businessperson Certificate database not available for public consultation",
+          "Corporate registry searches by person name not supported"
+        ],
+        "unavailable": ["Public database of Businessperson Certificate holders"]
+      },
+      "legal_notes": "Chapter 13 bankruptcy designed to enable individuals to use regular income to return their debts"
+    },
+    "LAC": {
+      "jurisdiction": "LAC",
+      "entity_types_explained": [
+        "PPP - Public-Private Partnership involving long-term contract for design, construction, operation and maintenance",
+        "PPP-dedicated agency - specialized government unit for PPP oversight"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "PPP laws and regulations",
+          "official government websites",
+          "policy documents",
+          "bidding materials when published"
+        ],
+        "restricted": [
+          "detailed contract terms",
+          "financial auditing reports",
+          "internal agency communications"
+        ],
+        "unavailable": [
+          "confidential commercial information",
+          "proprietary financial data"
+        ]
+      },
+      "legal_notes": "Assessment focuses on national/federal level structures. When structures vary, most encompassing ones (>50% population coverage) are used for scoring"
+    },
+    "SD": {
+      "jurisdiction": "SD",
+      "entity_types_explained": [
+        "Banking sector under transformation post-Bashir"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["General banking sector information"],
+        "restricted": ["Historical compliance records"],
+        "unavailable": ["Detailed bank-specific compliance data"]
+      },
+      "legal_notes": "Sudan banking sector was 'no go' until recently, changing after President Omar al-Bashir's ouster"
+    },
+    "CD": {
+      "jurisdiction": "CD",
+      "entity_types_explained": [
+        "Direction G\u00e9n\u00e9rale de Migration",
+        "Commission Nationale pour les r\u00e9fugi\u00e9s",
+        "Direction des Congolais de l'Etranger",
+        "Agence pour la pr\u00e9vention et la lutte contre la traite des personnes"
+      ],
+      "id_formats": [
+        "Loi n\u00b0 format - law numbering system with year and sequential number",
+        "Ordonnance format - executive order numbering",
+        "Arr\u00eat\u00e9 format - ministerial decree numbering"
+      ],
+      "data_availability": {
+        "accessible": [
+          "Published laws and regulations",
+          "Official government decrees",
+          "Statistical yearbooks",
+          "Development plans"
+        ],
+        "restricted": [
+          "Internal ministry instructions",
+          "Police records",
+          "Migration enforcement data"
+        ],
+        "unavailable": [
+          "Real-time migration statistics",
+          "Individual case files",
+          "Internal government communications"
+        ]
+      },
+      "legal_notes": "DRC legal framework includes laws (loi), ordinances (ordonnance), and ministerial decrees (arr\u00eat\u00e9) with hierarchical authority. Migration law dates to 1983 with various implementing regulations."
+    },
+    "TO": {
+      "jurisdiction": "TO",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["court judgements", "business registry records"],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Multiple court jurisdictions available including Supreme Court divisions, Land Court, Magistrates Court, and Privy Council"
+    },
+    "LB": {
+      "jurisdiction": "LB",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "corporate records",
+          "directorship information",
+          "property records",
+          "litigation records",
+          "bankruptcy records"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "All standard search types available with property records accessible"
+    },
+    "CM": {
+      "jurisdiction": "CM",
+      "entity_types_explained": [
+        "Republic of Cameroon - sovereign state",
+        "Government ministries and agencies",
+        "International organizations"
+      ],
+      "id_formats": [
+        "Legal instrument numbers (e.g., Law No. 034-98/AN)",
+        "Decree numbers (e.g., Decree 2007/308)"
+      ],
+      "data_availability": {
+        "accessible": [
+          "Published laws and regulations",
+          "Ratified international conventions",
+          "Government policy documents"
+        ],
+        "restricted": [
+          "Internal government coordination mechanisms",
+          "Implementation statistics",
+          "Enforcement data"
+        ],
+        "unavailable": [
+          "Comprehensive migration statistics",
+          "Regular data collection systems"
+        ]
+      },
+      "legal_notes": "Cameroon has ratified key international migration conventions but lacks comprehensive national migration legislation framework"
+    },
+    "KM": {
+      "jurisdiction": "KM",
+      "entity_types_explained": [
+        "Commission Multisectorielle - Multi-sectoral coordination body",
+        "DCIE - Central Department of Immigration and Emigration"
+      ],
+      "id_formats": [
+        "Visa documentation systems",
+        "Residence permits",
+        "Work permits"
+      ],
+      "data_availability": {
+        "accessible": [
+          "Constitutional provisions",
+          "Labor Code provisions",
+          "Immigration law framework"
+        ],
+        "restricted": ["Migration data statistics", "Implementation details"],
+        "unavailable": [
+          "Comprehensive migration statistics",
+          "Regular data publications"
+        ]
+      },
+      "legal_notes": "2018 Constitution provides framework for migrant rights. Labor Code from 1984 governs foreign worker rights. Immigration law from 1988 sets entry/residence conditions."
+    },
+    "GY": {
+      "jurisdiction": "GY",
+      "entity_types_explained": [
+        "CARICOM nationals with specific skills mobility",
+        "Commonwealth citizens naturalization pathway"
+      ],
+      "id_formats": [
+        "Work permits (3-5 years renewable)",
+        "Residence permits (continuous application)",
+        "Citizenship (5-7 years depending on Commonwealth status)"
+      ],
+      "data_availability": {
+        "accessible": [
+          "Constitutional provisions",
+          "Immigration Act provisions",
+          "Ministry policy statements"
+        ],
+        "restricted": [
+          "Detailed migration statistics",
+          "Disaggregated data by nationality/sex"
+        ],
+        "unavailable": [
+          "Inter-ministerial coordination mechanisms",
+          "Comprehensive migration data"
+        ]
+      },
+      "legal_notes": "Immigration governed by 1947 Immigration Act; No overarching migration strategy; Limited inter-ministerial coordination"
+    },
+    "TT": {
+      "jurisdiction": "TT",
+      "entity_types_explained": [
+        "CARICOM nationals - Caribbean Community nationals with special migration privileges",
+        "Commonwealth citizens - requiring 5 years residence for citizenship",
+        "Non-Commonwealth citizens - requiring 8 years residence for citizenship"
+      ],
+      "id_formats": [
+        "Student Permit - issued by Chief Immigration Officer",
+        "Work Permit - required for non-temporary employment",
+        "Certificate of Immigration Status - for foreign passport holders"
+      ],
+      "data_availability": {
+        "accessible": [
+          "Immigration legislation",
+          "Government service information via TTConnect",
+          "Census migration data"
+        ],
+        "restricted": [
+          "Immigration division internal data",
+          "Inter-agency migration databases"
+        ],
+        "unavailable": [
+          "Standardized cross-agency migration statistics",
+          "Comprehensive emigration data"
+        ]
+      },
+      "legal_notes": "Two-tier system with preferential treatment for CARICOM nationals. Immigration Division under Ministry of National Security has primary authority."
+    },
+    "NE": {
+      "jurisdiction": "NE",
+      "entity_types_explained": [
+        "CIM - Comit\u00e9 Interminist\u00e9riel (Interministerial Committee)",
+        "IGM - Indicateurs de gouvernance des migrations (Migration Governance Indicators)"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "government focal points coordination",
+          "interministerial consultation processes"
+        ],
+        "restricted": ["internal government review processes"],
+        "unavailable": []
+      },
+      "legal_notes": "Document relates to migration governance implementation framework in Niger with structured government coordination mechanisms"
+    },
+    "NZ": {
+      "jurisdiction": "NZ",
+      "entity_types_explained": [
+        "Limited companies",
+        "Financial Service Providers"
+      ],
+      "id_formats": ["NZBN numbers", "FSPR registration numbers"],
+      "data_availability": {
+        "accessible": [
+          "Detailed shareholding changes",
+          "director consent forms",
+          "beneficial ownership"
+        ],
+        "restricted": ["Banking license verification"],
+        "unavailable": ["Complete transaction records"]
+      },
+      "legal_notes": "Reserve Bank Act 1989 prohibits non-banks using 'bank' designation, penalties up to NZD 1 million for corporations"
+    },
+    "MC": {
+      "jurisdiction": "MC",
+      "entity_types_explained": [
+        "SAM - Soci\u00e9t\u00e9 Anonyme Mon\u00e9gasque"
+      ],
+      "id_formats": ["Monaco registration numbers (e.g., 04S04239)"],
+      "data_availability": {
+        "accessible": [
+          "incorporation details",
+          "registered activities",
+          "property transactions"
+        ],
+        "restricted": ["director and shareholder information"],
+        "unavailable": ["detailed financial records"]
+      },
+      "legal_notes": "Monaco maintains corporate registry with basic information accessible online"
+    },
+    "MK": {
+      "jurisdiction": "MK",
+      "entity_types_explained": ["doo - Limited Liability Company"],
+      "id_formats": ["Company registration numbers available"],
+      "data_availability": {
+        "accessible": ["basic corporate information", "media coverage"],
+        "restricted": ["detailed regulatory filings"],
+        "unavailable": ["comprehensive litigation records"]
+      },
+      "legal_notes": "North Macedonian corporate data less comprehensive than Bulgarian sources"
+    },
+    "GI": {
+      "jurisdiction": "GI",
+      "entity_types_explained": [
+        "Gibraltar companies used for tax planning and offshore structures"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["basic company information"],
+        "restricted": ["beneficial ownership details"],
+        "unavailable": ["detailed financial records"]
+      },
+      "legal_notes": "Gibraltar serves as EU-compliant offshore jurisdiction with corporate secrecy protections"
+    },
+    "PE": {
+      "jurisdiction": "PE",
+      "entity_types_explained": ["SAC - Peruvian closed joint-stock company"],
+      "id_formats": ["RUC - Peruvian tax identification number (11 digits)"],
+      "data_availability": {
+        "accessible": [
+          "corporate registry records",
+          "court proceedings",
+          "regulatory sanctions"
+        ],
+        "restricted": ["financial information"],
+        "unavailable": ["official financial statements"]
+      },
+      "legal_notes": "Peruvian corporate registry provides transparent access to basic company information including officers and registration details"
+    },
+    "KN": {
+      "jurisdiction": "KN",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [],
+        "restricted": [],
+        "unavailable": ["beneficial ownership information"]
+      },
+      "legal_notes": "Offshore jurisdiction with limited transparency"
+    },
+    "CL": {
+      "jurisdiction": "CL",
+      "entity_types_explained": [
+        "S.A. - Sociedad an\u00f3nima (private limited company)",
+        "SpA - Sociedad por acciones"
+      ],
+      "id_formats": [
+        "RUT - Unique Tributary Roll (taxpayer identification number) format XX.XXX.XXX-X"
+      ],
+      "data_availability": {
+        "accessible": [
+          "corporate registry data",
+          "annual reports",
+          "competition tribunal records",
+          "media coverage"
+        ],
+        "restricted": [],
+        "unavailable": []
+      },
+      "legal_notes": "Chilean corporate disclosure requirements provide substantial transparency for public companies and their subsidiaries"
+    },
+    "ID": {
+      "jurisdiction": "ID",
+      "entity_types_explained": [
+        "CV - Commanditaire Vennootschap (Indonesian limited liability partnership)",
+        "PT - Indonesian limited liability company"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "Court records through Supreme Court database",
+          "Media mentions",
+          "LinkedIn profiles"
+        ],
+        "restricted": [
+          "CV company registry data",
+          "Financial information for partnerships"
+        ],
+        "unavailable": [
+          "Beneficial ownership for CV entities",
+          "Detailed financial records"
+        ]
+      },
+      "legal_notes": "CV companies in Indonesia always have at least two partners: a limited partner liable only to the extent of their contribution to share capital, and a general partner with unlimited liability, both domiciled in Indonesia. CVs are not listed in the standard corporate registry (Pengayoman)."
+    },
+    "EC": {
+      "jurisdiction": "EC",
+      "entity_types_explained": [
+        "S.A. - Sociedad An\u00f3nima (closed joint stock company)"
+      ],
+      "id_formats": ["RUC - taxpayer identification number (13 digits)"],
+      "data_availability": {
+        "accessible": [
+          "corporate registry data",
+          "taxpayer identification",
+          "registered addresses",
+          "current officers"
+        ],
+        "restricted": ["detailed financial records", "audit results"],
+        "unavailable": [
+          "beneficial ownership details beyond major shareholders",
+          "detailed executive career histories"
+        ]
+      },
+      "legal_notes": "Ecuador operates concession contracts for infrastructure through public-private partnerships. Companies can appeal court decisions through Constitutional Court extraordinary actions."
+    },
+    "AR": {
+      "jurisdiction": "AR",
+      "entity_types_explained": [
+        "S.A. - Sociedad An\u00f3nima (Argentine corporation)"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "subsidiary relationship through parent company disclosure"
+        ],
+        "restricted": [],
+        "unavailable": ["direct Argentine registry access not demonstrated"]
+      },
+      "legal_notes": "Subsidiary information obtained through Chilean parent company disclosures"
+    },
+    "CG": {
+      "jurisdiction": "CG",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["government appointments", "ministerial positions"],
+        "restricted": ["detailed corporate records"],
+        "unavailable": ["beneficial ownership registers"]
+      },
+      "legal_notes": "Strong tribal and family connections influence political appointments"
+    },
+    "GN": {
+      "jurisdiction": "GN",
+      "entity_types_explained": [
+        "Political parties",
+        "Crisis mediation organizations"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["Political party information", "Media coverage"],
+        "restricted": ["Government connections"],
+        "unavailable": ["Detailed organizational structures"]
+      },
+      "legal_notes": "Complex political environment with limited transparency on organizational connections"
+    },
+    "CK": {
+      "jurisdiction": "CK",
+      "entity_types_explained": [
+        "Cook Islands limited companies with authorized signatories"
+      ],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["leaked corporate documents via Offshore Leaks"],
+        "restricted": ["official registry records"],
+        "unavailable": ["beneficial ownership through official channels"]
+      },
+      "legal_notes": "Cook Islands maintains strict corporate secrecy but information available through leaked documents"
+    },
+    "KH": {
+      "jurisdiction": "KH",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": [
+          "corporate records in English",
+          "basic company information",
+          "director and shareholder details"
+        ],
+        "restricted": [
+          "property ownership details",
+          "court judgments",
+          "personal information"
+        ],
+        "unavailable": [
+          "speculative property searches",
+          "public litigation records",
+          "credit information"
+        ]
+      },
+      "legal_notes": "Dominated by Cambodian People's Party since 1979, press operates in restrictive environment with judicial harassment"
+    },
+    "IR": {
+      "jurisdiction": "IR",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["social_media_profiles"],
+        "restricted": ["government_records"],
+        "unavailable": ["official_identity_verification"]
+      },
+      "legal_notes": "Iranian subject identified through social media presence"
+    },
+    "BW": {
+      "jurisdiction": "BW",
+      "entity_types_explained": [],
+      "id_formats": [],
+      "data_availability": {
+        "accessible": ["government stake payments"],
+        "restricted": ["detailed corporate records"],
+        "unavailable": ["beneficial ownership details"]
+      },
+      "legal_notes": "Botswana government paid 500m pula for 24% stake"
+    }
+  }
+}

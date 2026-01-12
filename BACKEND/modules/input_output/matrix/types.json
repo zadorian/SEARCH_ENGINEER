@@ -1,0 +1,221 @@
+{
+  "_meta": {
+    "version": "1.1.0",
+    "title": "I/O Object Types",
+    "description": "Quick-lookup definitions for I/O node types. References entity_class_type_matrix.json as the authoritative central registry.",
+    "canonical_path": "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/types.json",
+    "last_updated": "2026-01-11",
+    "central_registry": "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/entity_class_type_matrix.json",
+    "related_files": {
+      "relationships": "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/relationships.json",
+      "codes": "/data/SEARCH_ENGINEER/BACKEND/modules/input_output/matrix/codes.json (LEGACY - conflates types/relationships/attributes)",
+      "entity_slots": "/data/CLASSES/NEXUS/SLOTS/entity_slots.json",
+      "industries": "/data/CLASSES/SUBJECT/industries.json",
+      "professions": "/data/CLASSES/SUBJECT/professions.json"
+    }
+  },
+
+  "hierarchy": {
+    "CLASS": ["SUBJECT", "NEXUS", "LOCATION", "NARRATIVE"],
+    "TYPE": ["ENTITY", "CONCEPT"],
+    "SUBTYPE": {
+      "CONCEPT": ["PHENOMENON"]
+    }
+  },
+
+  "types": {
+    "person": {
+      "code": "p",
+      "class": "SUBJECT",
+      "type": "ENTITY",
+      "description": "Human individual",
+      "identifiers": ["name", "national_id", "tax_id", "passport_id", "driver_license_id"],
+      "attributes": ["dob", "gender", "nationality", "country"],
+      "input_aliases": ["person_name", "individual", "natural_person"],
+      "example_values": ["John Smith", "Jane Doe"]
+    },
+
+    "company": {
+      "code": "c",
+      "class": "SUBJECT",
+      "type": "ENTITY",
+      "description": "Legal entity / organization",
+      "identifiers": ["name", "reg_id", "vat_id", "lei", "ocid"],
+      "attributes": ["status", "type", "incorporation_date", "dissolution_date", "sic_code", "country"],
+      "input_aliases": ["company_name", "organization", "legal_entity", "business"],
+      "example_values": ["Acme Corp", "Example Ltd"]
+    },
+
+    "email": {
+      "code": "e",
+      "description": "Email address",
+      "identifiers": ["address"],
+      "attributes": ["verified", "type"],
+      "input_aliases": ["email_address", "mail"],
+      "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      "example_values": ["john@example.com"]
+    },
+
+    "phone": {
+      "code": "t",
+      "description": "Phone number",
+      "identifiers": ["number"],
+      "attributes": ["type", "carrier", "country_code", "verified"],
+      "input_aliases": ["phone_number", "telephone", "mobile"],
+      "pattern": "^\\+?[0-9]{7,15}$",
+      "example_values": ["+44 7700 900000", "+1-555-123-4567"]
+    },
+
+    "domain": {
+      "code": "d",
+      "description": "Web domain",
+      "identifiers": ["name"],
+      "attributes": ["tld", "creation_date", "expiry_date", "nameservers", "status_codes"],
+      "input_aliases": ["domain_url", "website", "hostname"],
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]?\\.[a-zA-Z]{2,}$",
+      "example_values": ["example.com", "acme.co.uk"]
+    },
+
+    "address": {
+      "code": "a",
+      "description": "Physical/postal address",
+      "identifiers": ["full_address"],
+      "attributes": ["street", "city", "postcode", "country", "coordinates"],
+      "input_aliases": ["property_address", "location", "postal_address"],
+      "example_values": ["123 High Street, London, UK"]
+    },
+
+    "username": {
+      "code": "u",
+      "description": "Social media handle / username",
+      "identifiers": ["handle"],
+      "attributes": ["platform"],
+      "input_aliases": ["handle", "screen_name", "user_id"],
+      "example_values": ["@johndoe", "john_doe_123"]
+    },
+
+    "url": {
+      "code": "url",
+      "description": "Web URL / page",
+      "identifiers": ["url"],
+      "attributes": ["domain", "path", "title"],
+      "input_aliases": ["webpage", "link", "profile_url"],
+      "example_values": ["https://example.com/page"]
+    },
+
+    "ip_address": {
+      "code": "ip",
+      "description": "IP address (v4 or v6)",
+      "identifiers": ["address"],
+      "attributes": ["version", "asn", "isp", "country", "city"],
+      "input_aliases": ["ip", "ip_addr"],
+      "example_values": ["192.168.1.1", "2001:db8::1"]
+    },
+
+    "date": {
+      "code": "dt",
+      "description": "Date or datetime",
+      "identifiers": ["value"],
+      "attributes": ["precision"],
+      "input_aliases": ["datetime", "timestamp"],
+      "pattern": "ISO8601",
+      "example_values": ["1990-01-15", "2024-03-20T14:30:00Z"]
+    },
+
+    "vehicle": {
+      "code": "veh",
+      "description": "Motor vehicle",
+      "identifiers": ["reg_id", "vin"],
+      "attributes": ["make", "model", "year", "color"],
+      "input_aliases": ["car", "automobile"],
+      "example_values": ["AB12 CDE"]
+    },
+
+    "vessel": {
+      "code": "ves",
+      "description": "Ship / boat",
+      "identifiers": ["imo_id", "mmsi"],
+      "attributes": ["name", "flag", "type", "tonnage"],
+      "input_aliases": ["ship", "boat"],
+      "example_values": ["IMO 1234567"]
+    },
+
+    "aircraft": {
+      "code": "air",
+      "description": "Aircraft",
+      "identifiers": ["reg_id", "icao24"],
+      "attributes": ["type", "model", "operator"],
+      "input_aliases": ["plane", "airplane"],
+      "example_values": ["G-ABCD", "N12345"]
+    },
+
+    "property": {
+      "code": "prop",
+      "description": "Real estate / land",
+      "identifiers": ["title_id", "cadastral_id"],
+      "attributes": ["address", "type", "size", "value"],
+      "input_aliases": ["real_estate", "land", "building"],
+      "example_values": ["Title Number: ABC123456"]
+    },
+
+    "crypto_wallet": {
+      "code": "crypto",
+      "description": "Cryptocurrency wallet address",
+      "identifiers": ["address"],
+      "attributes": ["blockchain", "balance"],
+      "input_aliases": ["wallet", "btc_address", "eth_address"],
+      "example_values": ["0x742d35Cc6634C0532925a3b844Bc9e7595f"]
+    },
+
+    "bank_account": {
+      "code": "bank",
+      "description": "Bank account",
+      "identifiers": ["iban", "account_number"],
+      "attributes": ["bank_name", "bic", "country"],
+      "input_aliases": ["account", "iban"],
+      "example_values": ["GB82 WEST 1234 5698 7654 32"]
+    },
+
+    "document": {
+      "code": "doc",
+      "description": "Document / file",
+      "identifiers": ["url", "hash"],
+      "attributes": ["filename", "type", "size", "content"],
+      "input_aliases": ["file", "pdf", "attachment"],
+      "example_values": ["annual_report_2024.pdf"]
+    },
+
+    "password": {
+      "code": "pw",
+      "category": "entity",
+      "description": "Password (from breach data)",
+      "identifiers": ["value", "hash"],
+      "attributes": ["hash_type", "breach_source", "breach_date"],
+      "input_aliases": ["credential", "secret"],
+      "sensitive": true
+    },
+
+    "litigation": {
+      "code": "lit",
+      "class": "SUBJECT",
+      "type": "CONCEPT",
+      "subtype": "PHENOMENON",
+      "description": "Legal case / court proceeding",
+      "identifiers": ["case_id", "docket_id"],
+      "attributes": ["title", "court", "filing_date", "status", "judgment", "outcome"],
+      "input_aliases": ["case", "lawsuit", "court_case"],
+      "example_values": ["Smith v Jones [2024] EWHC 123"]
+    },
+
+  },
+
+  "type_shortcuts": {
+    "p:": "person",
+    "c:": "company",
+    "e:": "email",
+    "t:": "phone",
+    "d:": "domain",
+    "a:": "address",
+    "u:": "username"
+  }
+}

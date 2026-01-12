@@ -1,0 +1,554 @@
+==========================================================================================
+  INVESTIGATION-RELEVANT FIELDS BY ENTITY TYPE
+  5 Main Types: COMPANY | PERSON | DOMAIN | EMAIL | PHONE
+==========================================================================================
+
+##########################################################################################
+  COMPANY (354 fields)
+##########################################################################################
+
+  --- TYPE_FIELDS (136) ---
+    entity_type                              et3-entity-edges               
+    entity_type                              companies_unified              
+    entity_type                              cymonides_source_entities      
+    entity_type                              drill_entities                 
+    entity_type                              cymonides_unified              
+    entity_type                              openownership                  registeredEntity
+    entity_type_counts                       wdc-domain-profiles            
+    entity_type_tags                         wdc-domain-profiles            
+    entity_types                             atlas_unified_domains          
+    entity_types                             input_output_wiki_matrix       
+    entity_types                             domains_unified                
+    entity_types_count                       search_nodes_v3                
+    existing_entity_types                    wdc-domain-profiles            
+    primary_entity_type                      wdc-domain-profiles            
+    status                                   drill_atoms                    
+    status                                   jester_atoms_test-project      
+    status                                   cymonides-1-default            
+    status                                   cymonides-1-orange             
+    status                                   cymonides-1-alma               
+    status                                   cymonides-1-grid-scenario-suite-2025-12-12t18-25-27-453z 
+    status                                   cymonides-1-rakoncatlankodok   
+    status                                   cymonides-1-pericles           
+    status                                   cymonides-1-kaktusz            
+    status                                   cymonides-1-ksantex            
+    status                                   cymonides-1-grid-scenario-suite-2025-12-12t18-30-23-687z 
+    status                                   cymonides-1-global             
+    status                                   cymonides-1-grid-scenario-self-check-2025-12-12t17-58-00-935z 
+    status                                   cymonides-1-bekalencse         
+    status                                   cymonides-1-elma               
+    status                                   cymonides-1-ziaad              
+    ... and 106 more
+
+  --- ID_FIELDS (152) ---
+    activeIngredient                         wdc-person-entities            
+    activeIngredient                         wdc-product-entities           
+    activeIngredient                         wdc-organization-entities      
+    articleID                                wdc-governmentorganization-entities 
+    button_icon                              input_output_wiki_matrix       
+    company_id                               linkedin_unified               
+    company_id                               companies_unified              domain:direporter.com
+    company_ids                              persons_unified                
+    company_ids                              phones_unified                 
+    company_ids                              emails_unified                 
+    company_number                           companies_unified              
+    company_number                           uk_addresses                   
+    company_number                           openownership                  08641349
+    company_reg_no_1                         uk_ccod                        7530
+    company_reg_no_2                         uk_ccod                        
+    duns                                     companies_unified              
+    duns                                     wdc-person-entities            
+    duns                                     wdc-governmentorganization-entities 
+    duns                                     wdc-product-entities           
+    duns                                     wdc-localbusiness-entities     
+    duns                                     wdc-organization-entities      
+    duns_numbers                             cymonides-1-default            
+    duns_numbers                             search_nodes_v3                
+    duns_numbers                             cymonides-1                    
+    duns_numbers                             cymonides-1-test-project       
+    experienceInPlaceOfEducation             wdc-person-entities            
+    experienceInPlaceOfEducation             wdc-organization-entities      
+    hasCourseInstance                        wdc-person-entities            
+    hasCourseInstance                        wdc-product-entities           
+    hasCourseInstance                        wdc-localbusiness-entities     
+    ... and 122 more
+
+  --- NAME_FIELDS (66) ---
+    company_name                             affiliate_linkedin_companies   
+    company_name                             linkedin_unified               Sierra View Manor
+    company_name                             nexus_nodes                    
+    company_name                             company_profiles               
+    company_name                             domains_unified                
+    country_incorporated                     uk_addresses                   
+    country_incorporated                     uk_ocod                        BRITISH VIRGIN ISLANDS
+    employer                                 persons_unified                
+    employer_domains                         persons_unified                
+    employers                                persons_unified                
+    entity_name                              cymonides_unified              
+    entity_organizations                     linklater_corpus               
+    hiringOrganization                       wdc-product-entities           
+    incorporation_date                       openownership                  2013-08-07
+    interested_party_name                    openownership                  Alan Glassfield
+    legal_name                               companies_unified              
+    name                                     matrix_graph_routes            
+    name                                     companies_unified              Digital Imaging Reporter
+    name                                     wdc-person-entities            Elegancka sukienka w groszki wyszczuplaj
+    name                                     cymonides_source_entities      
+    name                                     wdc-governmentorganization-entities 
+    name                                     matrix_compositional           
+    Name                                     wdc-product-entities           
+    name                                     wdc-product-entities           
+    Name                                     wdc-localbusiness-entities     
+    name                                     wdc-localbusiness-entities     
+    name                                     openownership                  Alan Glassfield → VANTEGE LIMITED
+    name                                     matrix_jurisdiction_transfer   
+    name                                     breach_records                 18718190
+    name                                     matrix_investigation_templates 
+    ... and 36 more
+
+##########################################################################################
+  PERSON (135 fields)
+##########################################################################################
+
+  --- TITLE_FIELDS (56) ---
+    article_title                            cymonides_source_entities      
+    cc                                       kazaword_emails                
+    hasOccupation                            wdc-person-entities            
+    hasOccupation                            wdc-localbusiness-entities     
+    hasOccupation                            wdc-organization-entities      
+    job_title                                linkedin_unified               
+    job_title                                persons_unified                
+    job_titles                               persons_unified                
+    job_titles                               emails_unified                 
+    jobTitle                                 wdc-person-entities            
+    jobTitle                                 wdc-governmentorganization-entities 
+    jobTitle                                 wdc-product-entities           
+    jobTitle                                 wdc-localbusiness-entities     
+    jobTitle                                 wdc-organization-entities      
+    lessor_title                             uk_leases                      
+    occupationalCategory                     wdc-person-entities            
+    occupationalCategory                     wdc-localbusiness-entities     
+    occupationalCategory                     wdc-organization-entities      
+    occupationLocation                       wdc-person-entities            
+    person_title                             cymonides-1-default            
+    person_title                             search_nodes_v3                
+    person_title                             cymonides-1                    
+    person_title                             cymonides-1-test-project       
+    position                                 wdc-person-entities            
+    position                                 wdc-governmentorganization-entities 
+    position                                 wdc-product-entities           
+    position                                 wdc-localbusiness-entities     
+    position                                 wdc-organization-entities      
+    title                                    top_domains                    
+    title                                    domains_complete               
+    ... and 26 more
+
+  --- ID_FIELDS (60) ---
+    className                                cymonides-1-default            
+    className                                cymonides-1-orange             
+    className                                cymonides-1-alma               
+    className                                cymonides-1-grid-scenario-suite-2025-12-12t18-25-27-453z 
+    className                                cymonides-1-rakoncatlankodok   
+    className                                cymonides-1-pericles           
+    className                                cymonides-1-kaktusz            
+    className                                cymonides-1-ksantex            
+    className                                cymonides-1-grid-scenario-suite-2025-12-12t18-30-23-687z 
+    className                                cymonides-1-global             
+    className                                cymonides-1-grid-scenario-self-check-2025-12-12t17-58-00-935z 
+    className                                cymonides-1-bekalencse         
+    className                                cymonides-1-elma               
+    className                                cymonides-1-ziaad              
+    className                                cymonides-1-loo                
+    className                                search_nodes_v3                
+    className                                cymonides-1-eper               
+    className                                cymonides-1-kakadu             
+    className                                cymonides-1-macilaci           
+    className                                cymonides-1-default-project    
+    className                                cymonides-1-roka               
+    className                                cymonides-1-brokkoli           
+    className                                cymonides-1-grid-scenario-suite-2025-12-12t18-39-01-641z 
+    className                                cymonides-1-melon              
+    className                                cymonides-1-mohito             
+    className                                cymonides-1                    
+    className                                cymonides-1-grid-scenario-suite-2025-12-12t18-15-26-997z 
+    className                                cymonides-1-kabana             
+    className                                cymonides-1-kakas              
+    className                                cymonides-1-banan              
+    ... and 30 more
+
+  --- NAME_FIELDS (19) ---
+    director                                 wdc-person-entities            
+    family_name                              persons_unified                
+    full_name                                persons_unified                Koei Tecmo Releases New Trailer for Atta
+    given_name                               persons_unified                
+    owner_name                               uk_addresses                   
+    person_first_name                        search_nodes_v3                
+    person_last_name                         search_nodes_v3                
+    person_name                              linkedin_unified               
+    person_name                              nexus_nodes                    
+    person_names                             phones_unified                 家族旅行雨が降っても焦らない！【９９％の催行率】 | 沖縄でマングローブカヤック
+    person_names                             emails_unified                 
+    pro                                      wdc-person-entities            
+    proprietor_name                          uk_ocod                        ELDERFLOWER MANAGEMENT LIMITED
+    proprietor_name_1                        uk_ccod                        THE COUNCIL OF THE BOROUGH OF KIRKLEES
+    proprietor_name_2                        uk_ccod                        
+    to                                       search_edges                   
+    to                                       onion-graph-edges              
+    to                                       cymonides-2                    
+    to                                       kazaword_emails                
+
+##########################################################################################
+  DOMAIN (367 fields)
+##########################################################################################
+
+  --- URL_FIELDS (193) ---
+    @url                                     wdc-product-entities           
+    \u5185\u5BB9Url                          wdc-organization-entities      
+    additional_image_link                    wdc-product-entities           
+    additionalIimageLink                     wdc-product-entities           
+    additionalImageLink                      wdc-product-entities           
+    archive_url                              linklater_corpus               
+    backlinks                                linklater_corpus               
+    backlinks_fetched                        domains_complete               
+    backlinks_fetched                        unified_domain_profiles        
+    backlinks_fetched                        domains_unified                
+    backlinks_ips                            top_domains                    
+    backlinks_ips                            domains_complete               
+    backlinks_ips                            domains_unified                
+    backlinks_subnets                        top_domains                    
+    backlinks_subnets                        domains_complete               
+    backlinks_subnets                        domains_unified                
+    backlinks_tier                           domains_complete               
+    backlinks_tier                           unified_domain_profiles        
+    backlinks_tier                           domains_unified                
+    checkoutPageURLTemplate                  wdc-product-entities           
+    checkoutPageURLTemplate                  wdc-localbusiness-entities     
+    checkoutPageURLTemplate                  wdc-organization-entities      
+    company_linkedin_url                     domains_unified                
+    con\u5341\u4E2AtUrl                      wdc-organization-entities      
+    contentURL                               wdc-person-entities            
+    contentUrl                               wdc-person-entities            https://fashion4u.pl/wp-content/uploads/
+    contentUrl                               wdc-governmentorganization-entities 
+    contentURL                               wdc-product-entities           
+    contentUrl                               wdc-product-entities           
+    contentURL                               wdc-localbusiness-entities     
+    ... and 163 more
+
+  --- DOMAIN_FIELDS (174) ---
+    cc_host_count                            domains_unified                
+    company_domain                           linkedin_unified               sierraviewmanor.com
+    domain                                   top_domains                    
+    domain                                   affiliate_linkedin_companies   
+    domain                                   linkedin_unified               sierraviewmanor.com
+    domain                                   domains_complete               
+    domain                                   cymonides_cc_domain_vertices   
+    domain                                   onion-pages-test               
+    domain                                   atlas_unified_domains          
+    domain                                   nexus_nodes                    
+    domain                                   companies_unified              direporter.com
+    domain                                   wdc-person-entities            fashion4u.pl
+    domain                                   cymonides_source_entities      
+    domain                                   wdc-governmentorganization-entities 
+    domain                                   cymonides_bangs                
+    domain                                   company_profiles               
+    domain                                   onion-proxy-forums             
+    domain                                   wdc-product-entities           
+    domain                                   wdc-domain-profiles            
+    domain                                   et3-source-edges               
+    domain                                   cc_domain_filetypes            
+    domain                                   unified_domain_profiles        
+    domain                                   onion-pages                    
+    domain                                   wdc-localbusiness-entities     
+    domain                                   drill_pages                    
+    domain                                   onion-graph-nodes              
+    domain                                   soax-investigation             
+    domain                                   linklater_corpus               
+    domain                                   domains_unified                elmbridgenutritionaltherapy.co.uk
+    domain                                   wdc-organization-entities      balancecoffee.co.uk
+    ... and 144 more
+
+##########################################################################################
+  EMAIL (24 fields)
+##########################################################################################
+
+  --- EMAIL_FIELDS (22) ---
+    address                                  nexus_nodes                    
+    address                                  wdc-person-entities            
+    address                                  wdc-governmentorganization-entities 
+    Address                                  wdc-product-entities           
+    address                                  wdc-product-entities           
+    address                                  uk_addresses                   
+    Address                                  wdc-localbusiness-entities     
+    address                                  wdc-localbusiness-entities     
+    address                                  openownership                  Spaces The Maylands Building Maylands Av
+    address                                  breach_records                 
+    address                                  wdc-organization-entities      
+    all_emails                               kazaword_emails                
+    email_addresses                          cymonides-1-default            
+    email_addresses                          search_nodes_v3                
+    email_addresses                          cymonides-1                    
+    email_addresses                          cymonides-1-test-project       
+    email_id                                 emails_unified                 email:{'name': '', 'email': 'abay.s@mail
+    email_ids                                persons_unified                
+    emails                                   persons_unified                
+    emails                                   companies_unified              
+    emails                                   onion-pages                    
+    emails                                   drill_pages                    
+
+  --- EMAIL_PARTS (2) ---
+    local_part                               breach_records                 the_true_lulu
+    local_part                               emails_unified                 {'name': '', 'email': 'abay.s
+
+##########################################################################################
+  PHONE (44 fields)
+##########################################################################################
+
+  --- PHONE_FIELDS (44) ---
+    additionalTelephone                      wdc-localbusiness-entities     
+    cancellationPolicy                       wdc-localbusiness-entities     
+    fax                                      wdc-localbusiness-entities     
+    fax_number                               companies_unified              
+    faxNumber                                wdc-person-entities            
+    faxnumber                                wdc-person-entities            
+    faxNumber                                wdc-governmentorganization-entities 
+    faxNumber                                wdc-product-entities           
+    faxNumber                                wdc-localbusiness-entities     
+    faxNumber                                wdc-organization-entities      
+    has_phone_exposed                        persons_unified                
+    model%20iphone                           wdc-product-entities           
+    phone                                    nexus_nodes                    
+    phone                                    wdc-localbusiness-entities     
+    phone                                    breach_records                 
+    phone_e164                               phones_unified                 +81989235871
+    phone_id                                 phones_unified                 phone:+81989235871
+    phone_ids                                persons_unified                
+    phone_numbers                            cymonides-1-default            
+    phone_numbers                            search_nodes_v3                
+    phone_numbers                            cymonides-1                    
+    phone_numbers                            cymonides-1-test-project       
+    phone_raw                                phones_unified                 +81989235871
+    phone_type                               phones_unified                 
+    phones                                   onion-pages                    
+    phones                                   drill_pages                    
+    servicePhone                             wdc-product-entities           
+    servicePhone                             wdc-localbusiness-entities     
+    telephone                                persons_unified                
+    telephone                                companies_unified              
+    ... and 14 more
+
+##########################################################################################
+  ADDRESS (206 fields)
+##########################################################################################
+
+  --- COMPONENTS (97) ---
+    applicableCountry                        wdc-person-entities            
+    applicableCountry                        wdc-product-entities           
+    applicableCountry                        wdc-localbusiness-entities     
+    applicableCountry                        wdc-organization-entities      
+    capacity                                 wdc-product-entities           
+    city                                     companies_unified              
+    city                                     wdc-person-entities            
+    city                                     wdc-governmentorganization-entities 
+    city                                     wdc-product-entities           
+    city                                     phones_unified                 
+    city                                     wdc-localbusiness-entities     
+    city                                     breach_records                 
+    city                                     wdc-organization-entities      
+    code                                     search_schema                  
+    code                                     matrix_jurisdiction_transfer   
+    code                                     template_engines               
+    company_city                             domains_unified                
+    company_country                          domains_unified                
+    company_region                           domains_unified                
+    count                                    cymonides_cc_domain_vertices   
+    count                                    matrix_compositional           
+    country                                  top_domains                    
+    country                                  linkedin_unified               
+    country                                  domains_complete               
+    country                                  persons_unified                
+    country                                  companies_unified              
+    country                                  wdc-person-entities            
+    country                                  wdc-governmentorganization-entities 
+    country                                  cymonides_bangs                
+    country                                  company_profiles               
+    ... and 67 more
+
+  --- FULL_ADDRESS (31) ---
+    address_countries                        wdc-domain-profiles            
+    address_country                          openownership                  GB
+    address_locality                         persons_unified                
+    address_normalized                       uk_addresses                   
+    addressCountry                           wdc-person-entities            
+    addresses                                onion-pages                    
+    addressLocality                          wdc-person-entities            
+    addresslocality                          wdc-product-entities           
+    addressRegion                            wdc-person-entities            
+    crypto_addresses                         cymonides-1-default            
+    crypto_addresses                         cymonides-1                    
+    crypto_addresses                         cymonides-1-test-project       
+    ip_address                               nexus_nodes                    
+    ip_address                               breach_records                 
+    ip_addresses                             cymonides-1-default            
+    ip_addresses                             cymonides-1                    
+    ip_addresses                             cymonides-1-test-project       
+    multiple_address_indicator               uk_ccod                        N
+    multiple_address_indicator               uk_ocod                        N
+    property_address                         uk_ccod                        Land and buildings at School Lane, Berry
+    property_address                         uk_ocod                        Flat 8, 21 Warple Way, London (W3 0BD)
+    proprietor_address                       uk_ocod                        Oak House, Hirzel Street, St Peter Port,
+    proprietor_address_1                     uk_ccod                        Legal Services, 4th Floor South, Civic C
+    proprietor_address_2                     uk_ccod                        
+    street_address                           companies_unified              
+    streetAddress                            wdc-person-entities            
+    streetAddress                            wdc-governmentorganization-entities 
+    streetAddress                            wdc-product-entities           
+    streetAddress                            wdc-localbusiness-entities     
+    streetAddress                            wdc-organization-entities      
+    ... and 1 more
+
+  --- GEO (78) ---
+    actionPlatform                           wdc-localbusiness-entities     
+    actionPlatform                           wdc-organization-entities      
+    alat%20kasir                             wdc-product-entities           
+    estimated_latency_ms                     matrix_route_edges             
+    gamePlatform                             wdc-product-entities           
+    geo                                      wdc-person-entities            
+    geo                                      wdc-governmentorganization-entities 
+    geo                                      wdc-product-entities           
+    geo                                      wdc-localbusiness-entities     
+    geo                                      wdc-organization-entities      
+    geographicArea                           wdc-person-entities            
+    geographicArea                           wdc-product-entities           
+    geographicArea                           wdc-localbusiness-entities     
+    geographicArea                           wdc-organization-entities      
+    geoMidpoint                              wdc-person-entities            
+    geoMidpoint                              wdc-localbusiness-entities     
+    geoRadius                                wdc-person-entities            
+    geoRadius                                wdc-localbusiness-entities     
+    has_search_template                      atlas_unified_domains          
+    has_search_template                      domains_unified                
+    isRelatedTo                              wdc-person-entities            
+    isRelatedTo                              wdc-governmentorganization-entities 
+    IsRelatedTo                              wdc-product-entities           
+    isRelatedTo                              wdc-product-entities           
+    isRelatedto                              wdc-product-entities           
+    isRelatedTo                              wdc-localbusiness-entities     
+    isRelatedTo                              wdc-organization-entities      
+    kelengkapan%20alat                       wdc-product-entities           
+    latitude                                 wdc-person-entities            
+    latitude                                 wdc-product-entities           
+    ... and 48 more
+
+##########################################################################################
+  FINANCIAL (138 fields)
+##########################################################################################
+
+  --- MONEY (131) ---
+    amount                                   wdc-product-entities           
+    asset_value                              cymonides-1-default            
+    asset_value                              cymonides-1                    
+    asset_value                              cymonides-1-test-project       
+    baseSalary                               wdc-localbusiness-entities     
+    canonicalValue                           cymonides-1-default            
+    canonicalValue                           cymonides-1-project-cymonides-1-proxy 
+    canonicalValue                           cymonides-1-orange             
+    canonicalValue                           cymonides-1-alma               
+    canonicalValue                           cymonides-1-grid-scenario-suite-2025-12-12t18-25-27-453z 
+    canonicalValue                           cymonides-1-rakoncatlankodok   
+    canonicalValue                           cymonides-1-pericles           
+    canonicalValue                           cymonides-1-kaktusz            
+    canonicalValue                           cymonides-1-ksantex            
+    canonicalValue                           cymonides-1-grid-scenario-suite-2025-12-12t18-30-23-687z 
+    canonicalValue                           cymonides-1-global             
+    canonicalValue                           cymonides-1-grid-scenario-self-check-2025-12-12t17-58-00-935z 
+    canonicalValue                           cymonides-1-bekalencse         
+    canonicalValue                           corporate_registry             
+    canonicalValue                           system_database                
+    canonicalValue                           cymonides-1-elma               
+    canonicalValue                           cymonides-1-ziaad              
+    canonicalValue                           cymonides-1-loo                
+    canonicalValue                           search_nodes_v3                
+    canonicalValue                           cymonides-1-eper               
+    canonicalValue                           cymonides-1-kakadu             
+    canonicalValue                           cymonides-1-macilaci           
+    canonicalValue                           cymonides-1-default-project    
+    canonicalValue                           cymonides-1-roka               
+    canonicalValue                           cymonides-1-brokkoli           
+    ... and 101 more
+
+  --- OWNERSHIP (7) ---
+    ownership_percentage                     openownership                  25.0
+    ownershipFundingInfo                     wdc-person-entities            
+    ownershipFundingInfo                     wdc-governmentorganization-entities 
+    ownershipFundingInfo                     wdc-product-entities           
+    ownershipFundingInfo                     wdc-localbusiness-entities     
+    ownershipFundingInfo                     wdc-organization-entities      
+    voting_percentage                        openownership                  
+
+##########################################################################################
+  CREDENTIALS (31 fields)
+##########################################################################################
+
+  --- LOGIN (5) ---
+    social_handles                           cymonides-1-default            
+    social_handles                           search_nodes_v3                
+    social_handles                           cymonides-1                    
+    social_handles                           cymonides-1-test-project       
+    username                                 nexus_nodes                    
+
+  --- BREACH (12) ---
+    breach_count                             persons_unified                
+    breach_count                             phones_unified                 
+    breach_count                             emails_unified                 
+    breach_name                              breach_records                 MySpace
+    breach_name                              nexus_breach_records           
+    breach_names                             persons_unified                
+    breach_names                             phones_unified                 
+    breach_names                             emails_unified                 
+    breach_type                              nexus_breaches                 
+    breach_year                              breach_records                 2016
+    first_breach_date                        emails_unified                 
+    last_breach_date                         emails_unified                 
+
+  --- PASSWORD (14) ---
+    content_hash                             cymonides-2                    
+    educationalCredentialAwarded             wdc-person-entities            
+    educationalCredentialAwarded             wdc-product-entities           
+    educationalCredentialAwarded             wdc-localbusiness-entities     
+    has_password_exposed                     persons_unified                
+    has_password_exposed                     emails_unified                 
+    hasCredential                            wdc-person-entities            
+    hasCredential                            wdc-localbusiness-entities     
+    hasCredential                            wdc-organization-entities      
+    hash_type                                nexus_nodes                    
+    hash_type                                breach_records                 sha1
+    password_hash                            nexus_nodes                    
+    password_hash                            breach_records                 9FBD9B80AF7E652065E489F94C456971B7D9BB4D
+    password_hint                            breach_records                 
+
+##########################################################################################
+  SOCIAL (4 fields)
+##########################################################################################
+
+  --- PROFILES (4) ---
+    profile_slug                             linkedin_unified               sierra-view-manor
+    ram                                      wdc-product-entities           
+    slug                                     wdc-localbusiness-entities     
+    slug                                     wdc-organization-entities      
+
+==========================================================================================
+  SUMMARY BY ENTITY TYPE
+==========================================================================================
+  COMPANY           354 fields
+  PERSON            135 fields
+  DOMAIN            367 fields
+  EMAIL              24 fields
+  PHONE              44 fields
+  ADDRESS           206 fields
+  FINANCIAL         138 fields
+  CREDENTIALS        31 fields
+  SOCIAL              4 fields
+
+  MATCHED TOTAL:     1303 fields
+  UNMATCHED:         4260 fields (system/WDC schema fields)
+  GRAND TOTAL:       5563 fields

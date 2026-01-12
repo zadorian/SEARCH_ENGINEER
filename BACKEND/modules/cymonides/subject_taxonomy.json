@@ -1,0 +1,257 @@
+{
+  "_meta": {
+    "description": "Master taxonomy for subject IDs and labels. Used by extractors, frontend, and query expansion.",
+    "version": "1.0.0",
+    "last_updated": "2025-12-31"
+  },
+  "themes": {
+    "inv_ownership_analysis": {
+      "label": "Ownership Analysis",
+      "description": "Analysis of corporate ownership structures and beneficial ownership",
+      "category": "investigation"
+    },
+    "inv_sanctions_compliance": {
+      "label": "Sanctions Compliance",
+      "description": "Verification against sanctions lists and compliance frameworks",
+      "category": "compliance"
+    },
+    "inv_financial_crime": {
+      "label": "Financial Crime",
+      "description": "Money laundering, fraud, corruption investigations",
+      "category": "investigation"
+    },
+    "inv_due_diligence": {
+      "label": "Due Diligence",
+      "description": "KYC, KYB, and third-party risk assessment",
+      "category": "compliance"
+    },
+    "inv_litigation_support": {
+      "label": "Litigation Support",
+      "description": "Legal proceedings, disputes, court filings",
+      "category": "legal"
+    },
+    "inv_asset_tracing": {
+      "label": "Asset Tracing",
+      "description": "Identification and tracking of assets across jurisdictions",
+      "category": "investigation"
+    },
+    "inv_background_check": {
+      "label": "Background Check",
+      "description": "Personal and corporate background verification",
+      "category": "compliance"
+    },
+    "inv_market_intelligence": {
+      "label": "Market Intelligence",
+      "description": "Competitive analysis and market research",
+      "category": "business"
+    },
+    "inv_regulatory_filing": {
+      "label": "Regulatory Filing Analysis",
+      "description": "SEC, Companies House, and other regulatory filings",
+      "category": "regulatory"
+    },
+    "inv_corporate_governance": {
+      "label": "Corporate Governance",
+      "description": "Board structure, executive compensation, shareholder rights",
+      "category": "compliance"
+    }
+  },
+  "phenomena": {
+    "phenomenon_shell_company": {
+      "label": "Shell Company",
+      "description": "Indicators of shell company structures or nominee arrangements",
+      "severity": "medium"
+    },
+    "phenomenon_circular_ownership": {
+      "label": "Circular Ownership",
+      "description": "Companies owning each other in circular patterns",
+      "severity": "high"
+    },
+    "phenomenon_nominee_director": {
+      "label": "Nominee Director",
+      "description": "Professional directors serving multiple unrelated companies",
+      "severity": "medium"
+    },
+    "phenomenon_layered_structure": {
+      "label": "Layered Structure",
+      "description": "Multiple layers of corporate entities obscuring ownership",
+      "severity": "medium"
+    },
+    "phenomenon_rapid_ownership_change": {
+      "label": "Rapid Ownership Change",
+      "description": "Frequent changes in ownership or control",
+      "severity": "medium"
+    },
+    "phenomenon_cross_border_structure": {
+      "label": "Cross-Border Structure",
+      "description": "Complex multi-jurisdictional corporate arrangements",
+      "severity": "low"
+    },
+    "phenomenon_dormant_entity": {
+      "label": "Dormant Entity",
+      "description": "Company with no recent activity or filings",
+      "severity": "low"
+    },
+    "phenomenon_related_party_transaction": {
+      "label": "Related Party Transaction",
+      "description": "Transactions between related entities",
+      "severity": "medium"
+    },
+    "phenomenon_unusual_business_activity": {
+      "label": "Unusual Business Activity",
+      "description": "Business activities inconsistent with stated purpose",
+      "severity": "medium"
+    }
+  },
+  "red_flag_themes": {
+    "rf_sanctions": {
+      "label": "Sanctions Risk",
+      "description": "Connection to sanctioned entities or jurisdictions",
+      "severity": "critical"
+    },
+    "rf_pep": {
+      "label": "PEP Exposure",
+      "description": "Politically exposed person involvement",
+      "severity": "high"
+    },
+    "rf_adverse_media": {
+      "label": "Adverse Media",
+      "description": "Negative news coverage or media reports",
+      "severity": "medium"
+    },
+    "rf_litigation": {
+      "label": "Litigation Risk",
+      "description": "Involvement in legal proceedings or disputes",
+      "severity": "medium"
+    },
+    "rf_regulatory_action": {
+      "label": "Regulatory Action",
+      "description": "Subject of regulatory enforcement or investigation",
+      "severity": "high"
+    },
+    "rf_financial_distress": {
+      "label": "Financial Distress",
+      "description": "Signs of insolvency, bankruptcy, or financial difficulty",
+      "severity": "medium"
+    },
+    "rf_fraud_allegation": {
+      "label": "Fraud Allegation",
+      "description": "Allegations or findings of fraudulent activity",
+      "severity": "critical"
+    },
+    "rf_money_laundering": {
+      "label": "Money Laundering Risk",
+      "description": "Indicators of potential money laundering",
+      "severity": "critical"
+    },
+    "rf_tax_evasion": {
+      "label": "Tax Evasion Risk",
+      "description": "Indicators of tax evasion or aggressive tax avoidance",
+      "severity": "high"
+    },
+    "rf_bribery_corruption": {
+      "label": "Bribery/Corruption Risk",
+      "description": "Indicators of bribery or corrupt practices",
+      "severity": "critical"
+    },
+    "rf_environmental": {
+      "label": "Environmental Risk",
+      "description": "Environmental violations or sustainability concerns",
+      "severity": "medium"
+    },
+    "rf_human_rights": {
+      "label": "Human Rights Risk",
+      "description": "Human rights violations or labor concerns",
+      "severity": "high"
+    }
+  },
+  "methodologies": {
+    "method_regulatory_filing_search": {
+      "label": "Regulatory Filing Search",
+      "description": "Search SEC, Companies House, and regulatory databases",
+      "sources": ["SEC", "Companies House", "OpenCorporates", "GLEIF"]
+    },
+    "method_court_record_search": {
+      "label": "Court Record Search",
+      "description": "Search court filings, judgments, and legal databases",
+      "sources": ["PACER", "CourtListener", "national court systems"]
+    },
+    "method_sanctions_screening": {
+      "label": "Sanctions Screening",
+      "description": "Check against OFAC, EU, UN, and other sanctions lists",
+      "sources": ["OFAC", "EU Consolidated List", "UN Sanctions", "World-Check"]
+    },
+    "method_beneficial_ownership_trace": {
+      "label": "Beneficial Ownership Trace",
+      "description": "Trace ultimate beneficial owners through corporate layers",
+      "sources": ["OpenOwnership", "national registries", "corporate filings"]
+    },
+    "method_adverse_media_search": {
+      "label": "Adverse Media Search",
+      "description": "Search news and media for negative coverage",
+      "sources": ["LexisNexis", "Factiva", "web search", "archive.org"]
+    },
+    "method_property_record_search": {
+      "label": "Property Record Search",
+      "description": "Search land registries and property databases",
+      "sources": ["Land Registry", "cadastral records", "CCOD/OCOD"]
+    },
+    "method_social_media_analysis": {
+      "label": "Social Media Analysis",
+      "description": "Analyze social media presence and connections",
+      "sources": ["LinkedIn", "Twitter/X", "Facebook", "Instagram"]
+    },
+    "method_domain_intelligence": {
+      "label": "Domain Intelligence",
+      "description": "Analyze domain registration, hosting, and web presence",
+      "sources": ["WHOIS", "DNS records", "web archives", "SSL certificates"]
+    },
+    "method_financial_statement_analysis": {
+      "label": "Financial Statement Analysis",
+      "description": "Analyze published financial statements and reports",
+      "sources": ["annual reports", "10-K/10-Q", "audit reports"]
+    }
+  },
+  "sectors": {
+    "sector_financial_services": {
+      "label": "Financial Services",
+      "subsectors": ["banking", "insurance", "asset_management", "payments"]
+    },
+    "sector_real_estate": {
+      "label": "Real Estate",
+      "subsectors": ["commercial", "residential", "development", "reit"]
+    },
+    "sector_energy": {
+      "label": "Energy",
+      "subsectors": ["oil_gas", "renewables", "utilities", "mining"]
+    },
+    "sector_technology": {
+      "label": "Technology",
+      "subsectors": ["software", "hardware", "semiconductors", "ai_ml"]
+    },
+    "sector_healthcare": {
+      "label": "Healthcare",
+      "subsectors": ["pharmaceuticals", "biotech", "medical_devices", "hospitals"]
+    },
+    "sector_manufacturing": {
+      "label": "Manufacturing",
+      "subsectors": ["automotive", "aerospace", "industrial", "consumer_goods"]
+    },
+    "sector_retail": {
+      "label": "Retail",
+      "subsectors": ["ecommerce", "brick_mortar", "luxury", "grocery"]
+    },
+    "sector_construction": {
+      "label": "Construction",
+      "subsectors": ["infrastructure", "residential", "commercial", "engineering"]
+    },
+    "sector_professional_services": {
+      "label": "Professional Services",
+      "subsectors": ["legal", "accounting", "consulting", "recruitment"]
+    },
+    "sector_government": {
+      "label": "Government",
+      "subsectors": ["federal", "state_local", "defense", "public_services"]
+    }
+  }
+}

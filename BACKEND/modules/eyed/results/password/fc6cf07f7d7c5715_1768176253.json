@@ -1,0 +1,21 @@
+{
+  "id": "fc6cf07f7d7c5715",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "magic",
+  "label": "magic",
+  "value": "magic",
+  "comment": "{\n  \"id\": \"2mfaoudsgja2blcrowfnher2hyh\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"magic\"\n  ],\n  \"hashed_password\": [\n    \"2f3a4fccca6406e35bcf33e92dd93135:||MD5\",\n    \"b40981aab75932c5b2f555f50769d878e44913d7:||SHA1\",\n    \"3be7a505483c0050243c5cbad4700da13925aa4137a55e9e33efd8bc4d05850f:||SHA256\",\n    \"e419cdecd87be195afa05128b3d71f7c33ad81279adcc643482ee67d77a26477eebde1b07f34bbfa01d4fef7e2fe55578b4097dbf87481ed1fa8d26fed589442:||SHA512\",\n    \"bWFnaWM=:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:13.156101",
+  "updatedAt": "2026-01-12T00:04:13.156105",
+  "lastSeen": "2026-01-12T00:04:13.156106"
+}

@@ -1,0 +1,124 @@
+{
+  "index_name": "nexus_breaches",
+  "description": "Metadata about data breaches - names, dates, sizes, sources",
+  "document_count": 6,
+  "size": "21.9kb",
+  "status": "yellow",
+  "shards": {
+    "primary": 1,
+    "replica": 1
+  },
+  "health": "yellow (replica not allocated)",
+  "use_case": "data-breaches",
+  "related_indices": [
+    "nexus_breach_records (breach data)",
+    "cymonides-2 (related documents)",
+    "cymonides_source_entities (extracted entities)"
+  ],
+  "schema": {
+    "breach_name": "keyword - Unique breach identifier (e.g., LinkedInBreach2012)",
+    "breach_date": "date - Date breach occurred or was discovered",
+    "record_count": "long - Total number of records in this breach",
+    "source": "keyword - Origin (e.g., raidforums, pastebin)",
+    "data_types": "keyword[] - Types of data in breach (email, password, phone, etc.)",
+    "indexed": "boolean - Whether records are indexed in nexus_breach_records",
+    "index_name": "keyword - Target index for breach records",
+    "file_location": "text - Path to raw breach files",
+    "description": "text - Breach description and context",
+    "affected_domains": "keyword[] - Known affected organizations",
+    "severity": "keyword - Impact level (low, medium, high, critical)"
+  },
+  "sample_document": {
+    "_id": "linkedin_2012",
+    "breach_name": "LinkedInBreach2012",
+    "breach_date": "2012-06-05",
+    "record_count": 6500000,
+    "source": "raidforums",
+    "data_types": ["email", "password"],
+    "indexed": true,
+    "index_name": "nexus_breach_records",
+    "file_location": "/Volumes/My Book/Raidforums/DATABASES/linkedin/",
+    "description": "LinkedIn breach exposing 6.5M email/password combinations",
+    "affected_domains": ["linkedin.com"],
+    "severity": "high"
+  },
+  "query_patterns": {
+    "list_all_breaches": {
+      "query": {
+        "match_all": {}
+      },
+      "size": 100
+    },
+    "find_breach_by_name": {
+      "query": {
+        "term": {
+          "breach_name.keyword": "LinkedInBreach2012"
+        }
+      }
+    },
+    "indexed_breaches_only": {
+      "query": {
+        "term": {
+          "indexed": true
+        }
+      }
+    },
+    "high_severity_breaches": {
+      "query": {
+        "term": {
+          "severity.keyword": "high"
+        }
+      }
+    }
+  },
+  "current_breaches": [
+    {
+      "name": "LinkedInBreach2012",
+      "records": 6500000,
+      "indexed": true
+    },
+    {
+      "name": "AdobeBreach2013",
+      "records": 150000000,
+      "indexed": false
+    },
+    {
+      "name": "DropboxBreach2012",
+      "records": 68000000,
+      "indexed": false
+    },
+    {
+      "name": "MySpaceBreach2008",
+      "records": 360000000,
+      "indexed": false
+    },
+    {
+      "name": "TumblrBreach2013",
+      "records": 65000000,
+      "indexed": false
+    },
+    {
+      "name": "TwitterBreach2023",
+      "records": 200000000,
+      "indexed": false
+    }
+  ],
+  "indexing_priority": [
+    "LinkedIn (professional network data)",
+    "Adobe (password hints, real names)",
+    "Facebook (phone numbers, locations)",
+    "Twitter (verification data)",
+    "Dropbox (cloud storage users)"
+  ],
+  "data_source": {
+    "origin": "Raidforums Archive",
+    "location": "/Volumes/My Book/Raidforums/",
+    "total_dataset_size": "497GB",
+    "indexed_breaches": 1,
+    "pending_breaches": "10+ major breaches"
+  },
+  "performance": {
+    "list_breaches": "Instant (6 docs)",
+    "metadata_lookup": "Instant (single doc fetch)"
+  }
+}

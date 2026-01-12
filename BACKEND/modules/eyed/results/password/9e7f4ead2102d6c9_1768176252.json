@@ -1,0 +1,21 @@
+{
+  "id": "9e7f4ead2102d6c9",
+  "node_class": "ENTITY",
+  "type": "password",
+  "canonicalValue": "f286725e49415dfeb4546d96bba3dc88e9d9d096ff4e5b1e92c94ae237edefee7d9571dfbcfe6a9878ad3bd95559e2c4e121f4f1917b17ba224c716fa2ac964e:||SHA512",
+  "label": "f286725e49415dfeb4546d96bba3dc88...",
+  "value": "f286725e49415dfeb4546d96bba3dc88e9d9d096ff4e5b1e92c94ae237edefee7d9571dfbcfe6a9878ad3bd95559e2c4e121f4f1917b17ba224c716fa2ac964e:||SHA512",
+  "comment": "{\n  \"id\": \"2mfaomteudjmre0qbu2lvk2w8ao\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"password\": [\n    \"cocacola\"\n  ],\n  \"hashed_password\": [\n    \"6253e1406b64bbe6ba7b00ac0bf81257:||MD5\",\n    \"ffaaafbdee1de041310096e1ff171618a2049f6e:||SHA1\",\n    \"c46d87f1fb4a5df6df841030ffe300e8271af74b62f2545c6c1759d18932675d:||SHA256\",\n    \"f286725e49415dfeb4546d96bba3dc88e9d9d096ff4e5b1e92c94ae237edefee7d9571dfbcfe6a9878ad3bd95559e2c4e121f4f1917b17ba224c716fa2ac964e:||SHA512\",\n    \"Y29jYWNvbGE=:||BASE64\"\n  ],\n  \"database_name\": \"Collections\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:12.451432",
+  "updatedAt": "2026-01-12T00:04:12.451436",
+  "lastSeen": "2026-01-12T00:04:12.451437"
+}

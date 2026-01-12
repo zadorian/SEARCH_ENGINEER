@@ -1,0 +1,64 @@
+{
+  "SI": [
+    {
+      "name": "Slovenia Vessels Registry",
+      "domain": "aleph.occrp.org/datasets/954",
+      "url": "https://aleph.occrp.org/datasets/954",
+      "type": "investigative_archive",
+      "category": "transport",
+      "section": "ass",
+      "friction": "api",
+      "jurisdiction": "SI",
+      "jurisdictions": [
+        "SI"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 954,
+      "inputs": [
+        "vessel_name",
+        "company_name"
+      ],
+      "outputs": [
+        "vessel_records"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 954. Slovenia Vessels Registry",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=954",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=954",
+      "access_method": "api"
+    }
+  ],
+  "IM": [
+    {
+      "name": "Isle of Man Aircraft Registry",
+      "domain": "aleph.occrp.org/datasets/639",
+      "url": "https://aleph.occrp.org/datasets/639",
+      "type": "investigative_archive",
+      "category": "transport",
+      "section": "ass",
+      "friction": "api",
+      "jurisdiction": "IM",
+      "jurisdictions": [
+        "IM"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 639,
+      "inputs": [
+        "aircraft_registration",
+        "company_name"
+      ],
+      "outputs": [
+        "aircraft_records"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 639. Isle of Man Aircraft Registry",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=639",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=639",
+      "access_method": "api"
+    }
+  ]
+}

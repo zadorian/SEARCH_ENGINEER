@@ -1,0 +1,5049 @@
+====================================================================================================
+  REAL INVESTIGATION FIELDS - 1611 unique fields from 29 data indices
+====================================================================================================
+
+%20alternateName
+  indices: wdc-product-entities
+
+%20grade
+  indices: wdc-product-entities
+
+%20ram
+  indices: wdc-product-entities
+
+%20tatakan
+  indices: wdc-product-entities
+
+%20tray
+  indices: wdc-product-entities
+
+0
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+@Image
+  indices: wdc-product-entities
+
+@Name
+  indices: wdc-product-entities
+
+@additionalType
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+@additonalType
+  indices: wdc-localbusiness-entities
+
+@app
+  indices: wdc-product-entities
+
+@brand
+  indices: wdc-product-entities
+
+@caption
+  indices: wdc-product-entities
+
+@category
+  indices: wdc-person-entities, wdc-product-entities
+
+@class
+  indices: wdc-product-entities
+
+@description
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+@hasMap
+  indices: wdc-product-entities
+
+@image
+  indices: wdc-product-entities
+
+@inLanguage
+  indices: wdc-product-entities
+
+@isPartOf
+  indices: wdc-localbusiness-entities
+
+@logo
+  indices: wdc-localbusiness-entities
+
+@name
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+@numberOfItems
+  indices: wdc-product-entities
+
+@productID
+  indices: wdc-product-entities
+
+@sku
+  indices: wdc-product-entities
+
+@url
+  indices: wdc-product-entities
+
+About
+  indices: wdc-governmentorganization-entities, wdc-person-entities, wdc-product-entities
+
+AdditionalType
+  indices: wdc-localbusiness-entities
+
+Address
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+Agent
+  indices: wdc-product-entities
+
+AggregateRating
+  indices: wdc-organization-entities
+
+AlternateName
+  indices: wdc-product-entities
+
+Alternatename
+  indices: wdc-product-entities
+
+Alternativeheadline
+  indices: wdc-product-entities
+
+AlumniOf
+  indices: wdc-product-entities
+
+Areaserved
+  indices: wdc-localbusiness-entities
+
+ArticleBody
+  indices: wdc-organization-entities, wdc-person-entities
+
+Author
+  indices: wdc-organization-entities
+
+Availability
+  indices: wdc-product-entities
+
+Award
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+BirthPlace
+  indices: wdc-person-entities
+
+BookFormat
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+BranchCode
+  indices: wdc-person-entities
+
+Brand
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+Breadcrumb
+  indices: wdc-localbusiness-entities
+
+BreadcrumbList
+  indices: wdc-product-entities
+
+Caption
+  indices: wdc-organization-entities, wdc-product-entities
+
+Category
+  indices: wdc-product-entities
+
+ContactOption
+  indices: wdc-product-entities
+
+ContactPoint
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+Creator
+  indices: wdc-product-entities
+
+CurrenciesAccepted
+  indices: wdc-localbusiness-entities
+
+DateTime
+  indices: wdc-organization-entities, wdc-person-entities
+
+Description
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+Disambiguatingdescription
+  indices: wdc-product-entities
+
+EAN
+  indices: wdc-product-entities
+
+FloorLevel
+  indices: wdc-organization-entities
+
+Founder
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+Founders
+  indices: wdc-organization-entities
+
+GTIN
+  indices: wdc-product-entities
+
+GTIN14
+  indices: wdc-product-entities
+
+Gender
+  indices: wdc-organization-entities, wdc-person-entities
+
+HasMap
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+Hasmap
+  indices: wdc-product-entities
+
+Headline
+  indices: wdc-organization-entities
+
+Height
+  indices: wdc-organization-entities, wdc-person-entities
+
+Herstellung
+  indices: wdc-localbusiness-entities
+
+ISSN
+  indices: wdc-organization-entities
+
+Identifier
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+Image
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+IsRelatedTo
+  indices: wdc-product-entities
+
+IsSimilarTo
+  indices: wdc-product-entities
+
+Keywords
+  indices: wdc-person-entities, wdc-product-entities
+
+KnowsAbout
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+Knowsabout
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+Konektivitas
+  indices: wdc-product-entities
+
+Latitude
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+LegalName
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+Legalname
+  indices: wdc-product-entities
+
+LocalBusiness
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+Location
+  indices: wdc-localbusiness-entities
+
+Logo
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+Lohnfertigung
+  indices: wdc-localbusiness-entities
+
+Longitude
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+MPN
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+MainEntityOfPage
+  indices: wdc-organization-entities
+
+Mainentityofpage
+  indices: wdc-person-entities, wdc-product-entities
+
+MakesOffer
+  indices: wdc-product-entities
+
+Manufacturer%20Part%20No
+  indices: wdc-product-entities
+
+Map
+  indices: wdc-product-entities
+
+MedicalSpecialty
+  indices: wdc-person-entities, wdc-product-entities
+
+Name
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+NumberOfBathroomsTotal
+  indices: wdc-organization-entities
+
+NumberOfBedrooms
+  indices: wdc-organization-entities
+
+NumberOfRooms
+  indices: wdc-organization-entities
+
+Offer%203
+  indices: wdc-localbusiness-entities
+
+Offers
+  indices: wdc-product-entities
+
+OpeningHours
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+OpeningHoursSpecification
+  indices: wdc-localbusiness-entities
+
+Ortesi%20sostegno%20rizartrosi
+  indices: wdc-localbusiness-entities
+
+Owns
+  indices: wdc-product-entities
+
+ParentOrganization
+  indices: wdc-product-entities
+
+PriceRange
+  indices: wdc-localbusiness-entities, wdc-person-entities
+
+PriceSpecification
+  indices: wdc-organization-entities, wdc-product-entities
+
+Pricerange
+  indices: wdc-localbusiness-entities
+
+Producer
+  indices: wdc-product-entities
+
+Product
+  indices: wdc-product-entities
+
+Product%20specifications
+  indices: wdc-product-entities
+
+ProductID
+  indices: wdc-product-entities
+
+Produkte
+  indices: wdc-localbusiness-entities
+
+Publisher
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+Rasensprenger
+  indices: wdc-localbusiness-entities
+
+Review
+  indices: wdc-product-entities
+
+SKU
+  indices: wdc-person-entities, wdc-product-entities
+
+SameAs
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+Sameas
+  indices: wdc-product-entities
+
+ServiceArea
+  indices: wdc-product-entities
+
+ServiceType
+  indices: wdc-product-entities
+
+Telephone
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities
+
+URL
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+Url
+  indices: wdc-product-entities
+
+VATid
+  indices: wdc-localbusiness-entities
+
+VatID
+  indices: wdc-product-entities
+
+WorksFor
+  indices: wdc-person-entities, wdc-product-entities
+
+\u4E0D\u7ED3\u76DF\u8FD0\u52A8e
+  indices: wdc-product-entities
+
+\u5185\u5BB9Url
+  indices: wdc-organization-entities
+
+\u540D\u5B57
+  indices: wdc-organization-entities
+
+\u56FE\u50CF
+  indices: wdc-organization-entities
+
+\u6539\u52A8nateName
+  indices: wdc-localbusiness-entities
+
+\u65E5\u671FPublished
+  indices: wdc-product-entities
+
+\u6807\u5FD7
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+\u7535\u5B50\u90AE\u4EF6
+  indices: wdc-organization-entities
+
+_indexed_at
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  2025-12-14T11:59:45.983860
+
+_wdc_crawl
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  2024-10
+
+about
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+abstract
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+acceptedAnswer
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+acceptedPaymentMethod
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+acceptsReservations
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+accessMode
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+accessModeSufficient
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+accessibilityAPI
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+accessibilityControl
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+accessibilityFeature
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+accessibilityHazard
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+accessibilitySummary
+  indices: wdc-product-entities
+
+accessmode
+  indices: wdc-product-entities
+
+accessories
+  indices: wdc-product-entities
+
+accommodationCategory
+  indices: wdc-product-entities
+
+accommodationFloorPlan
+  indices: wdc-product-entities
+
+accountablePerson
+  indices: wdc-person-entities, wdc-product-entities
+
+acquireLicensePage
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+actionPlatform
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+actionableFeedbackPolicy
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+activeIngredient
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+actor
+  indices: wdc-person-entities, wdc-product-entities
+
+additionalDescription
+  indices: wdc-person-entities
+
+additionalIimageLink
+  indices: wdc-product-entities
+
+additionalImageLink
+  indices: wdc-product-entities
+
+additionalInformation
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+additionalName
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+additionalProperty
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+additionalTelephone
+  indices: wdc-localbusiness-entities
+
+additionalType
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+additional_image_link
+  indices: wdc-product-entities
+
+additional_proprietor_indicator
+  indices: uk_ocod
+  sample:  N
+
+additionaltype
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+address
+  indices: breach_records, openownership, uk_addresses, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  Spaces The Maylands Building Maylands Avenue, Hemel Hempstea
+
+addressCountry
+  indices: wdc-person-entities
+
+addressLocality
+  indices: wdc-person-entities
+
+addressRegion
+  indices: wdc-person-entities
+
+address_countries
+  indices: wdc-domain-profiles
+  sample:  HT
+
+address_country
+  indices: openownership
+  sample:  GB
+
+address_locality
+  indices: persons_unified
+
+address_normalized
+  indices: uk_addresses
+  sample:  LAND AT GILFACH HOLIDAY VILLAGE, GILFACH YR HALEN, LLWYNCELY
+
+addresses
+  indices: onion-pages
+  sample:  United States
+
+addresslocality
+  indices: wdc-product-entities
+
+addtionalType
+  indices: wdc-localbusiness-entities
+
+administrationRoute
+  indices: wdc-product-entities
+
+affiliation
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+age_group
+  indices: wdc-product-entities
+
+agent
+  indices: wdc-product-entities
+
+agentInteractionStatistic
+  indices: wdc-organization-entities, wdc-person-entities
+
+aggregate%20rating
+  indices: wdc-localbusiness-entities
+
+aggregateRating
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+aggregate_type
+  indices: wdc-organization-entities
+
+aksesories
+  indices: wdc-product-entities
+
+alat%20kasir
+  indices: wdc-product-entities
+
+album
+  indices: wdc-person-entities
+
+albumProductionType
+  indices: wdc-person-entities, wdc-product-entities
+
+albumRelease
+  indices: wdc-person-entities
+
+albumReleaseType
+  indices: wdc-person-entities, wdc-product-entities
+
+alienation_clause
+  indices: uk_leases
+
+all_categories
+  indices: domains_complete, domains_unified, unified_domain_profiles
+  sample:  sv
+
+all_emails
+  indices: kazaword_emails
+  sample:  sgoha@yahoo.com
+
+all_recipients
+  indices: kazaword_emails
+  sample:  abay.s@mail.ru
+
+alternateName
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  NTMA
+
+alternate\u540D\u5B57
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities
+
+alternate_names
+  indices: companies_unified, persons_unified
+  sample:  G4Developer
+
+alternatename
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+alternativeHeadline
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+alternativeName
+  indices: wdc-product-entities
+
+alternativeheadline
+  indices: wdc-person-entities, wdc-product-entities
+
+alternatives
+  indices: wdc-organization-entities
+
+alumni
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+alumniOf
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+amenityFeature
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+amount
+  indices: wdc-product-entities
+
+answerCount
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+antena
+  indices: wdc-product-entities
+
+anti%20gores
+  indices: wdc-product-entities
+
+antigores
+  indices: wdc-product-entities
+
+aplikasi
+  indices: wdc-product-entities
+
+aplikasi%20kasir
+  indices: wdc-product-entities
+
+apple%20airpods
+  indices: wdc-product-entities
+
+applicableCountry
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+applicationCategory
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+applicationSubCategory
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+applicationSubcategory
+  indices: wdc-product-entities
+
+applicationSuite
+  indices: wdc-product-entities
+
+arah%20bukaan
+  indices: wdc-product-entities
+
+archive_url
+  indices: linklater_corpus
+
+archivedAt
+  indices: wdc-product-entities
+
+area%20kirim
+  indices: wdc-product-entities
+
+area%20pengiriman
+  indices: wdc-product-entities
+
+areaServed
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+area_code
+  indices: phones_unified
+  sample:  989
+
+areasServed
+  indices: wdc-localbusiness-entities
+
+areaserved
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+arm%20stand
+  indices: wdc-product-entities
+
+aroma%20lilin
+  indices: wdc-product-entities
+
+arrivalBoatTerminal
+  indices: wdc-localbusiness-entities
+
+artMedium
+  indices: wdc-organization-entities, wdc-person-entities
+
+articleBody
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+articleID
+  indices: wdc-governmentorganization-entities
+
+articleSection
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  Thông báo kết quả
+
+articles_count
+  indices: wdc-organization-entities
+
+articlesection
+  indices: wdc-organization-entities, wdc-person-entities
+
+ascent
+  indices: wdc-organization-entities
+
+asin
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+assesses
+  indices: wdc-person-entities, wdc-product-entities
+
+assetId
+  indices: wdc-organization-entities
+
+associatedMedia
+  indices: wdc-person-entities, wdc-product-entities
+
+asuransi
+  indices: wdc-product-entities
+
+asuransi%20kehilangan
+  indices: wdc-product-entities
+
+attachment_count
+  indices: kazaword_emails
+  sample:  2
+
+attachments
+  indices: kazaword_emails
+  sample:  {'filename': 'Abay with NN0001.jpg', 'content_type': 'image/
+
+attendee
+  indices: wdc-governmentorganization-entities
+
+audience
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+audienceType
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+audio
+  indices: wdc-governmentorganization-entities, wdc-product-entities
+
+author
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://www.ntpcstar2024.com.tw/vi/2024-results-of-the-migra
+
+author_id
+  indices: wdc-product-entities
+
+author_name
+  indices: wdc-product-entities
+
+author_reference
+  indices: wdc-person-entities
+
+authority_rank
+  indices: atlas_unified_domains, domains_unified
+
+authority_score
+  indices: domains_complete, domains_unified, unified_domain_profiles
+
+availability
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+availabilityEnds
+  indices: wdc-product-entities
+
+availabilityStarts
+  indices: wdc-governmentorganization-entities, wdc-product-entities
+
+availableAtOrFrom
+  indices: wdc-product-entities
+
+availableChannel
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+availableDeliveryMethod
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+availableLanguage
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+availableService
+  indices: wdc-organization-entities, wdc-product-entities
+
+available_from
+  indices: wdc-product-entities
+
+avatar
+  indices: wdc-organization-entities
+
+award
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+awards
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+b\u8BFBcrumb
+  indices: wdc-organization-entities
+
+backlinks
+  indices: linklater_corpus
+
+backlinks_fetched
+  indices: domains_complete, domains_unified, unified_domain_profiles
+
+backlinks_ips
+  indices: domains_complete, domains_unified, top_domains
+  sample:  378
+
+backlinks_subnets
+  indices: domains_complete, domains_unified, top_domains
+  sample:  278
+
+backlinks_tier
+  indices: domains_complete, domains_unified, unified_domain_profiles
+  sample:  3
+
+bagpack
+  indices: wdc-product-entities
+
+bahan
+  indices: wdc-product-entities
+
+bahan%20kertas
+  indices: wdc-product-entities
+
+bahasa
+  indices: wdc-product-entities
+
+bang_categories
+  indices: domains_complete, domains_unified, unified_domain_profiles
+
+bang_shortcuts
+  indices: domains_complete, domains_unified, unified_domain_profiles
+
+bang_subcategories
+  indices: domains_complete, domains_unified, unified_domain_profiles
+
+bang_trigger
+  indices: atlas_unified_domains, domains_unified
+
+baseSalary
+  indices: wdc-localbusiness-entities
+
+baut
+  indices: wdc-product-entities
+
+bayar
+  indices: wdc-product-entities
+
+bcc
+  indices: kazaword_emails
+
+benefit
+  indices: wdc-product-entities
+
+benih
+  indices: wdc-product-entities
+
+bentuk
+  indices: wdc-product-entities
+
+bentuk%20kemasan
+  indices: wdc-product-entities
+
+berat
+  indices: wdc-product-entities
+
+best-before
+  indices: wdc-product-entities
+
+bestRating
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+best_rank
+  indices: domains_complete, domains_unified, unified_domain_profiles
+
+bestrating
+  indices: wdc-product-entities
+
+bibit
+  indices: wdc-product-entities
+
+birthDate
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+birthPlace
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+birthdate
+  indices: wdc-product-entities
+
+blogPost
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+body
+  indices: wdc-product-entities
+
+bodyLocation
+  indices: wdc-person-entities, wdc-product-entities
+
+bodyType
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+body_html
+  indices: kazaword_emails
+  sample:  &#1040;&#1073;&#1072;&#1081;,&#1087;&#1088;&#1080;&#1074;&#1
+
+body_text
+  indices: kazaword_emails
+  sample:  
+
+
+      
+
+bonus
+  indices: wdc-product-entities
+
+bonus%20paket%20diamond
+  indices: wdc-product-entities
+
+bonus%20rumus
+  indices: wdc-product-entities
+
+bookEdition
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+bookFormat
+  indices: wdc-governmentorganization-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+bookable
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+boost
+  indices: wdc-organization-entities
+
+box
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+br\u548C
+  indices: wdc-product-entities
+
+branchCode
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+branchOf
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+brand
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+breach_count
+  indices: emails_unified, persons_unified, phones_unified
+
+breach_name
+  indices: breach_records
+  sample:  MySpace
+
+breach_names
+  indices: emails_unified, persons_unified, phones_unified
+
+breach_year
+  indices: breach_records
+  sample:  2016
+
+breadcrumb
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://www.ntpcstar2024.com.tw/vi/2024-results-of-the-migra
+
+bridges_found
+  indices: onion-pages
+
+broader
+  indices: wdc-localbusiness-entities
+
+broker
+  indices: wdc-person-entities, wdc-product-entities
+
+browserRequirements
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+buku
+  indices: wdc-product-entities
+
+buku%20paket
+  indices: wdc-product-entities
+
+buku%20perjilid
+  indices: wdc-product-entities
+
+bundle
+  indices: wdc-product-entities
+
+bundling
+  indices: wdc-product-entities
+
+businessFunction
+  indices: wdc-organization-entities, wdc-product-entities
+
+byArtist
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+byDay
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+cache_valid_since
+  indices: wdc-organization-entities
+
+callsign
+  indices: wdc-person-entities
+
+cancellationPolicy
+  indices: wdc-localbusiness-entities
+
+capacity
+  indices: wdc-product-entities
+
+caption
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  系統管理員
+
+cara%20packing
+  indices: wdc-product-entities
+
+cara%20paking
+  indices: wdc-product-entities
+
+case
+  indices: wdc-product-entities
+
+categories
+  indices: atlas_unified_domains, domains_complete, domains_unified, top_domains, wdc-domain-profiles
+  sample:  /en/Regional/Europe/United_Kingdom/Health/Nutrition/Nutritio
+
+category
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+cc
+  indices: kazaword_emails
+
+cc_count
+  indices: domains_complete, emails_unified
+
+cc_host_count
+  indices: domains_unified
+
+cc_source
+  indices: domains_unified
+
+cc_vertex_id
+  indices: domains_complete, domains_unified
+
+channel
+  indices: wdc-product-entities
+
+channelId
+  indices: wdc-person-entities
+
+character
+  indices: wdc-person-entities
+
+checkInTime
+  indices: wdc-product-entities
+
+checkOutTime
+  indices: wdc-product-entities
+
+checkinTime
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+checkinTimeMax
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+checkoutPageURLTemplate
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+checkoutTime
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+checkoutTimeMin
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+circle
+  indices: wdc-person-entities
+
+citation
+  indices: wdc-governmentorganization-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+citation_flow
+  indices: atlas_unified_domains
+
+city
+  indices: breach_records, companies_unified, phones_unified, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+claimReviewed
+  indices: wdc-localbusiness-entities, wdc-person-entities
+
+classification
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+closes
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+colleague
+  indices: wdc-governmentorganization-entities, wdc-person-entities, wdc-product-entities
+
+collectionSize
+  indices: wdc-product-entities
+
+color
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+color%20variant
+  indices: wdc-product-entities
+
+colorSwatch
+  indices: wdc-product-entities
+
+comment
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+commentCount
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+commentText
+  indices: wdc-person-entities, wdc-product-entities
+
+commentTime
+  indices: wdc-person-entities, wdc-product-entities
+
+comment_count
+  indices: wdc-product-entities
+
+companies
+  indices: drill_pages, onion-pages
+  sample:  Copyright SOAX Ltd
+
+company_city
+  indices: domains_unified
+
+company_country
+  indices: domains_unified
+
+company_description
+  indices: domains_unified
+
+company_domain
+  indices: linkedin_unified
+  sample:  sierraviewmanor.com
+
+company_founded
+  indices: domains_unified
+
+company_id
+  indices: companies_unified, linkedin_unified
+  sample:  domain:direporter.com
+
+company_ids
+  indices: emails_unified, persons_unified, phones_unified
+
+company_industry
+  indices: domains_unified
+
+company_linkedin_url
+  indices: domains_unified
+
+company_name
+  indices: domains_unified, linkedin_unified
+  sample:  Sierra View Manor
+
+company_number
+  indices: companies_unified, openownership, uk_addresses
+  sample:  08641349
+
+company_reg_no_1
+  indices: uk_ccod
+  sample:  7530
+
+company_reg_no_2
+  indices: uk_ccod
+
+company_region
+  indices: domains_unified
+
+company_sic4
+  indices: domains_unified
+
+company_size
+  indices: domains_unified, linkedin_unified
+
+company_size_category
+  indices: domains_unified
+
+company_source_flags
+  indices: domains_unified
+
+company_updated_at
+  indices: domains_unified
+
+con\u5341\u4E2AtUrl
+  indices: wdc-organization-entities
+
+condition
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+conditionRating
+  indices: wdc-organization-entities
+
+confidence_score
+  indices: wdc-domain-profiles
+  sample:  0.92
+
+conformsTo
+  indices: wdc-organization-entities
+
+connector
+  indices: wdc-product-entities
+
+contactOption
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+contactPoint
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+contactType
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+contacts
+  indices: emails_unified
+  sample:  {'name': 'gaukhar sarsekeyeva', 'email': 'sgoha@yahoo.com'}
+
+containedIn
+  indices: wdc-localbusiness-entities
+
+containedInPlace
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+containsPlace
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-product-entities
+
+content
+  indices: drill_pages, linklater_corpus, onion-pages
+  sample:  What is a proxy server? Definition, uses, and examples Proxi
+
+contentBlock
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+contentLanguage
+  indices: wdc-product-entities
+
+contentLocation
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+contentRating
+  indices: wdc-governmentorganization-entities, wdc-product-entities
+
+contentSize
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+contentURL
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+contentUrl
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://www.ntpcstar2024.com.tw/storage/2024/06/Logo-18th.pn
+
+content_embedding
+  indices: drill_pages, openownership
+
+content_length
+  indices: linklater_corpus, onion-pages
+  sample:  17264
+
+content_type
+  indices: drill_pages, onion-pages, wdc-organization-entities
+  sample:  text/html
+
+contra
+  indices: wdc-person-entities
+
+contributedDistribution
+  indices: wdc-governmentorganization-entities
+
+contributor
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-person-entities
+
+control_types
+  indices: openownership
+  sample:  shareholding
+
+cookTime
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+cookingMethod
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+copyRightholder
+  indices: wdc-organization-entities
+
+copyrightHolder
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+copyrightNotice
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+copyrightYear
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+correctionsPolicy
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+cottage
+  indices: wdc-product-entities
+
+countries
+  indices: atlas_unified_domains, domains_complete, domains_unified, unified_domain_profiles
+  sample:  SE
+
+country
+  indices: breach_records, companies_unified, domains_complete, domains_unified, linkedin_unified, openownership, persons_unified, phones_unified, top_domains, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  JP
+
+countryOfAssembly
+  indices: wdc-person-entities, wdc-product-entities
+
+countryOfLastProcessing
+  indices: wdc-person-entities, wdc-product-entities
+
+countryOfManufacture
+  indices: wdc-organization-entities, wdc-product-entities
+
+countryOfOrigin
+  indices: wdc-person-entities, wdc-product-entities
+
+country_code
+  indices: phones_unified
+  sample:  81
+
+country_counts
+  indices: wdc-domain-profiles
+  sample:  {obj}
+
+country_incorporated
+  indices: uk_addresses, uk_ocod
+  sample:  BRITISH VIRGIN ISLANDS
+
+county
+  indices: uk_addresses, uk_ccod, uk_leases, uk_ocod
+  sample:  GREATER LONDON
+
+courseCode
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+coursePrerequisites
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+coverageEndTime
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+coverageStartTime
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+crawl_id
+  indices: onion-pages
+  sample:  20251203_141617
+
+crawl_timestamp
+  indices: drill_pages
+  sample:  2025-12-04T01:12:25.657958
+
+created
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+createdAt
+  indices: wdc-product-entities
+
+created_at
+  indices: wdc-organization-entities, wdc-product-entities
+
+creativeWorkStatus
+  indices: wdc-product-entities
+
+creator
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+creditText
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+crypto_wallets
+  indices: onion-pages
+
+cssSelector
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+curlie_categories
+  indices: domains_complete
+
+curlie_hierarchy
+  indices: domains_complete
+  sample:  {obj}
+
+curlie_paths
+  indices: domains_complete, domains_unified, unified_domain_profiles
+  sample:  /sv/Regionalt/Europa/Sverige/Sk%C3%A5ne_l%C3%A4n/Kommuner/Lu
+
+curlie_top_categories
+  indices: domains_complete, domains_unified, unified_domain_profiles
+  sample:  sv
+
+currenciesAccepted
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+currency
+  indices: wdc-organization-entities, wdc-product-entities
+
+custom
+  indices: wdc-product-entities
+
+custom%20nama
+  indices: wdc-product-entities
+
+custom%20wood%20crates
+  indices: wdc-product-entities
+
+custom_label_0
+  indices: wdc-product-entities
+
+custom_label_1
+  indices: wdc-product-entities
+
+custom_label_2
+  indices: wdc-product-entities
+
+custom_label_3
+  indices: wdc-product-entities
+
+custom_label_4
+  indices: wdc-product-entities
+
+customerRemorseReturnFees
+  indices: wdc-person-entities, wdc-product-entities
+
+customerRemorseReturnLabelSource
+  indices: wdc-person-entities, wdc-product-entities
+
+cutoffTime
+  indices: wdc-product-entities
+
+dataFeedElement
+  indices: wdc-product-entities
+
+data_completeness
+  indices: domains_complete
+  sample:  0.5428571428571428
+
+data_source
+  indices: uk_ccod, uk_leases, uk_ocod
+  sample:  uk_land_registry_ocod
+
+date
+  indices: kazaword_emails, wdc-localbusiness-entities
+  sample:  2008-12-07T09:48:16-08:00
+
+dateCreated
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+dateModified
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  2024-09-29T15:53:29+08:00
+
+datePosted
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+datePublished
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  2024-09-29T15:53:29+08:00
+
+date_created
+  indices: wdc-product-entities
+
+date_modified
+  indices: wdc-product-entities
+
+date_of_lease
+  indices: uk_leases
+
+date_proprietor_added
+  indices: uk_ocod
+
+date_proprietor_added_1
+  indices: uk_ccod
+
+date_proprietor_added_2
+  indices: uk_ccod
+
+dateline
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+datemodified
+  indices: wdc-organization-entities
+
+datepublished
+  indices: wdc-organization-entities
+
+dayOfWeek
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+deathDate
+  indices: wdc-person-entities
+
+decription
+  indices: wdc-person-entities
+
+delete
+  indices: wdc-product-entities
+
+delivery%20date
+  indices: wdc-product-entities
+
+deliveryLeadTime
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+department
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+departureBoatTerminal
+  indices: wdc-localbusiness-entities
+
+depth
+  indices: onion-pages, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+descent
+  indices: wdc-organization-entities
+
+description
+  indices: domains_complete, domains_unified, top_domains, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  The National Treasury Management Agency provides a range of 
+
+descriptionEn
+  indices: wdc-product-entities
+
+design
+  indices: wdc-product-entities
+
+dhd%207001%209
+  indices: wdc-product-entities
+
+difficultyRating
+  indices: wdc-organization-entities
+
+dikirim%20dari
+  indices: wdc-product-entities
+
+dimensi
+  indices: wdc-product-entities
+
+directionsForUse
+  indices: wdc-product-entities
+
+directionsPublicTransport
+  indices: wdc-organization-entities
+
+director
+  indices: wdc-person-entities
+
+disambiguatingDescription
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+disambiguatingdescription
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+discussionUrl
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+dissolutionDate
+  indices: wdc-organization-entities
+
+dissolution_date
+  indices: openownership
+  sample:  2021-11-30
+
+distribution
+  indices: wdc-governmentorganization-entities, wdc-organization-entities
+
+district
+  indices: uk_addresses, uk_ccod, uk_ocod
+  sample:  EALING
+
+diversityPolicy
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+diversityStaffingReport
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+divine
+  indices: wdc-product-entities
+
+doc_count
+  indices: cc_domain_filetypes
+  sample:  150
+
+document_authority_score
+  indices: cc_domain_filetypes
+  sample:  95
+
+domain
+  indices: atlas_unified_domains, cc_domain_filetypes, companies_unified, domains_complete, domains_unified, drill_pages, linkedin_unified, linklater_corpus, onion-pages, top_domains, unified_domain_profiles, wdc-domain-profiles, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  www.w3.org
+
+domains
+  indices: companies_unified
+  sample:  direporter.com
+
+doorTime
+  indices: wdc-governmentorganization-entities
+
+dosageForm
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+downloadUrl
+  indices: wdc-product-entities
+
+downvoteCount
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+driveWheelConfiguration
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+duns
+  indices: companies_unified, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+durasi
+  indices: wdc-product-entities
+
+duration
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+ean
+  indices: wdc-organization-entities
+
+ean13
+  indices: wdc-product-entities
+
+edisi
+  indices: wdc-product-entities
+
+editor
+  indices: wdc-person-entities, wdc-product-entities
+
+educationalCredentialAwarded
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+educationalLevel
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+educationalUse
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+effect
+  indices: wdc-product-entities
+
+elevation
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+eligibleCustomerType
+  indices: wdc-product-entities
+
+eligibleRegion
+  indices: wdc-product-entities
+
+email
+  indices: breach_records, emails_unified, persons_unified, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  the_true_lulu@hotmal.com.uk
+
+email_domain
+  indices: breach_records, emails_unified
+  sample:  hotmal.com.uk
+
+email_id
+  indices: emails_unified
+  sample:  email:{'name': '', 'email': 'abay.s@mail.ru'}
+
+email_ids
+  indices: persons_unified
+
+emails
+  indices: companies_unified, drill_pages, onion-pages, persons_unified
+
+embedURL
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+embedUrl
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+embedded_edges
+  indices: emails_unified, linkedin_unified, persons_unified, phones_unified
+
+embedding
+  indices: onion-pages
+  sample:  -0.03285752609372139
+
+embedding_text
+  indices: domains_complete
+  sample:  Domain: baseboll.nu. Top-level classification: . Secondary c
+
+emissionsCO2
+  indices: wdc-localbusiness-entities
+
+employee
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+employees
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+employer
+  indices: persons_unified
+
+employer_domains
+  indices: persons_unified
+
+employers
+  indices: persons_unified
+
+employmentType
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities
+
+encoding
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+encodingFormat
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+endDate
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+endTime
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+engine
+  indices: wdc-product-entities
+
+engsel
+  indices: wdc-product-entities
+
+enriched_at
+  indices: onion-pages
+  sample:  2025-12-04T15:11:52.838024+00:00
+
+entities
+  indices: linklater_corpus
+
+entityUrl
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+entity_count
+  indices: drill_pages, onion-pages
+  sample:  15
+
+entity_locations
+  indices: linklater_corpus
+
+entity_organizations
+  indices: linklater_corpus
+
+entity_persons
+  indices: linklater_corpus
+
+entity_type
+  indices: companies_unified, openownership
+  sample:  registeredEntity
+
+entity_type_counts
+  indices: wdc-domain-profiles
+  sample:  {obj}
+
+entity_type_tags
+  indices: wdc-domain-profiles
+  sample:  thing
+
+entity_types
+  indices: atlas_unified_domains, domains_unified
+
+episodeNumber
+  indices: wdc-person-entities, wdc-product-entities
+
+equipment
+  indices: wdc-organization-entities
+
+equivalentProduct
+  indices: wdc-organization-entities, wdc-person-entities
+
+estimatedCost
+  indices: wdc-organization-entities, wdc-person-entities
+
+estimatedSalary
+  indices: wdc-person-entities
+
+ethicsPolicy
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+event
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-product-entities
+
+eventAttendanceMode
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+eventSchedule
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+eventStatus
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+existing_entity_types
+  indices: wdc-domain-profiles
+
+existing_sources
+  indices: wdc-domain-profiles
+
+experienceInPlaceOfEducation
+  indices: wdc-organization-entities, wdc-person-entities
+
+experienceRating
+  indices: wdc-organization-entities
+
+expired
+  indices: wdc-product-entities
+
+expires
+  indices: wdc-organization-entities, wdc-person-entities
+
+externalIdentifier
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+external_key
+  indices: wdc-organization-entities
+
+external_source_id
+  indices: wdc-organization-entities
+
+external_url
+  indices: wdc-organization-entities
+
+fakultas
+  indices: wdc-product-entities
+
+familyName
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+family_name
+  indices: persons_unified
+
+fat
+  indices: wdc-product-entities
+
+favImage
+  indices: wdc-localbusiness-entities
+
+fax
+  indices: wdc-localbusiness-entities
+
+faxNumber
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  705-325-9929
+
+fax_number
+  indices: companies_unified
+
+faxnumber
+  indices: wdc-person-entities
+
+fb_product_category
+  indices: wdc-product-entities
+
+featureList
+  indices: wdc-organization-entities, wdc-product-entities
+
+features
+  indices: wdc-product-entities
+
+feesAndCommissionsSpecification
+  indices: wdc-product-entities
+
+fetched_at
+  indices: onion-pages
+  sample:  2025-12-03T14:25:46.577428
+
+fileFormat
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+fileName
+  indices: wdc-product-entities
+
+filetypes
+  indices: cc_domain_filetypes
+  sample:  {obj}
+
+financialAidEligible
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+first_breach_date
+  indices: emails_unified
+
+first_indexed
+  indices: cc_domain_filetypes
+  sample:  2025-12-03T11:09:06.415786
+
+flagged
+  indices: onion-pages
+
+flavor
+  indices: wdc-product-entities
+
+flavour
+  indices: wdc-product-entities
+
+floorLevel
+  indices: wdc-product-entities
+
+floorSize
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+flower%20background
+  indices: wdc-product-entities
+
+followup
+  indices: wdc-person-entities, wdc-product-entities
+
+founded
+  indices: linkedin_unified
+
+founder
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+founders
+  indices: wdc-localbusiness-entities, wdc-person-entities
+
+foundingDate
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+foundingLocation
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+founding_date
+  indices: companies_unified
+
+foundingdate
+  indices: wdc-organization-entities
+
+free
+  indices: wdc-product-entities
+
+free%20gift
+  indices: wdc-product-entities
+
+freebies
+  indices: wdc-product-entities
+
+from
+  indices: kazaword_emails
+  sample:  {obj}
+
+fuelCapacity
+  indices: wdc-product-entities
+
+fuelConsumption
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+fuelEfficiency
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+fuelType
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+full_name
+  indices: persons_unified
+  sample:  Koei Tecmo Releases New Trailer for Attack on Titan Game - C
+
+funder
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+gambar
+  indices: wdc-product-entities
+
+game
+  indices: wdc-product-entities
+
+gamePlatform
+  indices: wdc-product-entities
+
+garansi
+  indices: wdc-product-entities
+
+gasDetection
+  indices: wdc-product-entities
+
+gender
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+genre
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+geo
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+geoMidpoint
+  indices: wdc-localbusiness-entities, wdc-person-entities
+
+geoRadius
+  indices: wdc-localbusiness-entities, wdc-person-entities
+
+geographicArea
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+get%20flavor
+  indices: wdc-product-entities
+
+givenName
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+given_name
+  indices: persons_unified
+
+globalLocationNumber
+  indices: wdc-organization-entities, wdc-product-entities
+
+gmail
+  indices: wdc-localbusiness-entities
+
+googleProductCategory
+  indices: wdc-product-entities
+
+google_product_category
+  indices: wdc-organization-entities, wdc-product-entities
+
+google_stars
+  indices: wdc-product-entities
+
+grade
+  indices: wdc-product-entities
+
+gravity
+  indices: wdc-localbusiness-entities
+
+gree%20-%20flife
+  indices: wdc-product-entities
+
+grossWeight
+  indices: wdc-organization-entities, wdc-person-entities
+
+group_id
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+gtin
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+gtin0
+  indices: wdc-product-entities
+
+gtin10
+  indices: wdc-product-entities
+
+gtin11
+  indices: wdc-product-entities
+
+gtin12
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+gtin13
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+gtin14
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+gtin15
+  indices: wdc-product-entities
+
+gtin16
+  indices: wdc-product-entities
+
+gtin17
+  indices: wdc-product-entities
+
+gtin3
+  indices: wdc-product-entities
+
+gtin32
+  indices: wdc-product-entities
+
+gtin4
+  indices: wdc-person-entities, wdc-product-entities
+
+gtin5
+  indices: wdc-product-entities
+
+gtin52
+  indices: wdc-product-entities
+
+gtin6
+  indices: wdc-product-entities
+
+gtin7
+  indices: wdc-product-entities
+
+gtin8
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+gtin9
+  indices: wdc-product-entities
+
+gudang
+  indices: wdc-product-entities
+
+guestCardBenefits
+  indices: wdc-localbusiness-entities
+
+guestCardName
+  indices: wdc-localbusiness-entities
+
+gwc-09moo5s
+  indices: wdc-product-entities
+
+h1
+  indices: onion-pages
+  sample:  Welcome back!
+
+hardness
+  indices: wdc-product-entities
+
+harga
+  indices: wdc-product-entities
+
+harga%20otr%20(sesuai%20ktp)
+  indices: wdc-product-entities
+
+hari
+  indices: wdc-product-entities
+
+hasCertification
+  indices: wdc-governmentorganization-entities
+
+hasConcept
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+hasCourseInstance
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+hasCredential
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities
+
+hasDriveThroughService
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+hasMap
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+hasMenu
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+hasMenuSection
+  indices: wdc-product-entities
+
+hasMerchantReturnPolicy
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+hasOccupation
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities
+
+hasOfferCatalog
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+hasPOS
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+hasPart
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+hasProductCategory
+  indices: wdc-localbusiness-entities
+
+hasVariant
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+has_annual_reports
+  indices: cc_domain_filetypes
+  sample:  True
+
+has_attachments
+  indices: kazaword_emails
+  sample:  True
+
+has_password_exposed
+  indices: emails_unified, persons_unified
+
+has_phone_exposed
+  indices: persons_unified
+
+has_search_shortcut
+  indices: domains_complete, domains_unified, unified_domain_profiles
+
+has_search_template
+  indices: atlas_unified_domains, domains_unified
+
+hash_type
+  indices: breach_records
+  sample:  sha1
+
+hasmap
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+haspart
+  indices: wdc-person-entities
+
+head
+  indices: wdc-product-entities
+
+headline
+  indices: linkedin_unified, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  [Semi-Final] 2024 Results Of The Migrant Star Group Semi-Fin
+
+healthPlanNetworkId
+  indices: wdc-person-entities
+
+height
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  180
+
+heldBy
+  indices: wdc-product-entities
+
+highPrice
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+highprice
+  indices: wdc-product-entities
+
+hiringOrganization
+  indices: wdc-product-entities
+
+homeLocation
+  indices: wdc-organization-entities
+
+honorificPrefix
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+honorificSuffix
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+hospitalAffiliation
+  indices: wdc-product-entities
+
+hostname
+  indices: cc_host_vertices
+  sample:  com.arwebo.katrinaxdjj030525
+
+hoursAvailable
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+howPerformed
+  indices: wdc-person-entities, wdc-product-entities
+
+html_raw
+  indices: drill_pages
+
+ibadah%20adab%20akhlak
+  indices: wdc-product-entities
+
+ical
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+id
+  indices: linklater_corpus, wdc-product-entities
+  sample:  ll_3s5s1n
+
+identifier
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+identifier_exists
+  indices: wdc-person-entities, wdc-product-entities
+
+illustrator
+  indices: wdc-product-entities
+
+im\u5E74\u9F84
+  indices: wdc-organization-entities, wdc-person-entities
+
+image
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://www.ntpcstar2024.com.tw/storage/2024/08/results_e_30
+
+imageGallery
+  indices: wdc-person-entities
+
+imageLink
+  indices: wdc-product-entities
+
+image_link
+  indices: wdc-organization-entities, wdc-product-entities
+
+inDefinedTermSet
+  indices: wdc-governmentorganization-entities
+
+inLangu\u5E74\u9F84
+  indices: wdc-organization-entities, wdc-person-entities
+
+inLanguage
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  vi
+
+inProductGroupWithID
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+inScheme
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+inStoreReturnsOffered
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+in\u8BED\u8A00
+  indices: wdc-organization-entities
+
+incorporation_date
+  indices: openownership
+  sample:  2013-08-07
+
+indexed_at
+  indices: atlas_unified_domains, domains_unified, kazaword_emails, linklater_corpus, onion-pages, openownership, uk_addresses, uk_ccod, uk_leases, uk_ocod, wdc-domain-profiles
+  sample:  2025-12-24T20:13:30.444433
+
+industry
+  indices: companies_unified, linkedin_unified, wdc-organization-entities, wdc-product-entities
+  sample:  Hospitals and Health Care
+
+ineligibleRegion
+  indices: wdc-product-entities
+
+inisial%20di%20pot
+  indices: wdc-product-entities
+
+inisial%20pot
+  indices: wdc-product-entities
+
+inlanguage
+  indices: wdc-organization-entities
+
+instalasi
+  indices: wdc-product-entities
+
+instance
+  indices: wdc-product-entities
+
+instructionType
+  indices: wdc-product-entities
+
+instructions
+  indices: wdc-organization-entities
+
+instructionsSingleField
+  indices: wdc-product-entities
+
+insulasi
+  indices: wdc-product-entities
+
+interactionCount
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+interactionStatistic
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+interactionType
+  indices: wdc-product-entities
+
+interactivityType
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities
+
+interestRate
+  indices: wdc-product-entities
+
+interested_party_id
+  indices: openownership
+  sample:  6366463210304560900
+
+interested_party_name
+  indices: openownership
+  sample:  Alan Glassfield
+
+internal_links
+  indices: drill_pages
+  sample:  https://soax.com/
+
+inventoryLevel
+  indices: wdc-product-entities
+
+ip_address
+  indices: breach_records
+
+ipi
+  indices: wdc-product-entities
+
+isAcceptingNewPatients
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+isAccessibleForFree
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+isAccessoryOrSparePartFor
+  indices: wdc-product-entities
+
+isBasedOn
+  indices: wdc-person-entities, wdc-product-entities
+
+isBasedOnUrl
+  indices: wdc-person-entities
+
+isConsumableFor
+  indices: wdc-product-entities
+
+isFamilyFriendly
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+isLinkedTo
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+isP\u827A\u672FOf
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities
+
+isPartOf
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://www.ntpcstar2024.com.tw/#website
+
+isPartof
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+isRelatedTo
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+isRelatedto
+  indices: wdc-product-entities
+
+isSimilarTo
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+isVari_antOf
+  indices: wdc-product-entities
+
+isVariantOf
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+isacceptingnewpatients
+  indices: wdc-person-entities
+
+isbn
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+isi
+  indices: wdc-product-entities
+
+isi%20bundling
+  indices: wdc-product-entities
+
+isi%20pempek
+  indices: wdc-product-entities
+
+isicV4
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+isicv4
+  indices: wdc-localbusiness-entities
+
+iso6523Code
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+ispartof
+  indices: wdc-organization-entities
+
+issn
+  indices: wdc-governmentorganization-entities, wdc-organization-entities
+
+issueNumber
+  indices: wdc-governmentorganization-entities, wdc-organization-entities
+
+item
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+itemCondition
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+itemDefectReturnFees
+  indices: wdc-person-entities, wdc-product-entities
+
+itemDefectReturnLabelSource
+  indices: wdc-person-entities, wdc-product-entities
+
+itemGroupID
+  indices: wdc-product-entities
+
+itemListElement
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+itemListOrder
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+itemOffered
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+itemReviewed
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+itemcondition
+  indices: wdc-product-entities
+
+jaringan
+  indices: wdc-product-entities
+
+jenis
+  indices: wdc-product-entities
+
+jenis%20body
+  indices: wdc-product-entities
+
+jenis%20buku
+  indices: wdc-product-entities
+
+jenis%20cartridge
+  indices: wdc-product-entities
+
+jenis%20connector
+  indices: wdc-product-entities
+
+jenis%20drat%20jack%20antena%20tv
+  indices: wdc-product-entities
+
+jenis%20game
+  indices: wdc-product-entities
+
+jenis%20kertas
+  indices: wdc-product-entities
+
+jenis%20lampu
+  indices: wdc-product-entities
+
+jenis%20sticker
+  indices: wdc-product-entities
+
+jenis%20tanaman
+  indices: wdc-product-entities
+
+jet%20700
+  indices: wdc-product-entities
+
+jilid
+  indices: wdc-product-entities
+
+jobImmediateStart
+  indices: wdc-organization-entities
+
+jobLocation
+  indices: wdc-product-entities
+
+jobLocationType
+  indices: wdc-localbusiness-entities
+
+jobTitle
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+job_title
+  indices: linkedin_unified, persons_unified
+
+job_titles
+  indices: emails_unified, persons_unified
+
+judul
+  indices: wdc-product-entities
+
+judul%20buku
+  indices: wdc-product-entities
+
+judul%20game
+  indices: wdc-product-entities
+
+jumlah
+  indices: wdc-product-entities
+
+jumlah%20peserta
+  indices: wdc-product-entities
+
+jurisdiction
+  indices: openownership, uk_addresses
+  sample:  gb
+
+jurisdiction_code
+  indices: companies_unified
+
+ka%20special%20merah
+  indices: wdc-product-entities
+
+kaktus
+  indices: wdc-product-entities
+
+kandungan
+  indices: wdc-product-entities
+
+kapasitas
+  indices: wdc-product-entities
+
+kapasitas%20ram
+  indices: wdc-product-entities
+
+karakter
+  indices: wdc-product-entities
+
+kassapi
+  indices: wdc-product-entities
+
+kategori
+  indices: wdc-product-entities
+
+kekuatan
+  indices: wdc-product-entities
+
+kelas%208
+  indices: wdc-product-entities
+
+kelengkapan
+  indices: wdc-product-entities
+
+kelengkapan%20alat
+  indices: wdc-product-entities
+
+kelengkapan%20kasur
+  indices: wdc-product-entities
+
+kemasan
+  indices: wdc-product-entities
+
+ketebalan
+  indices: wdc-product-entities
+
+keyIngredients
+  indices: wdc-product-entities
+
+keyword
+  indices: wdc-product-entities
+
+keyword_hits
+  indices: linklater_corpus
+
+keyword_snippet
+  indices: linklater_corpus
+
+keywords
+  indices: linklater_corpus, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  2024 Results of the Migrant Star Group Semi-Finals and List 
+
+keywords_found
+  indices: drill_pages
+  sample:  affiliate
+
+knm
+  indices: wdc-localbusiness-entities
+
+knows
+  indices: wdc-person-entities, wdc-product-entities
+
+knowsAbout
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+knowsLanguage
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+knowsabout
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+knowslanguage
+  indices: wdc-organization-entities
+
+kode
+  indices: wdc-product-entities
+
+kondisi
+  indices: wdc-product-entities
+
+kota
+  indices: wdc-product-entities
+
+kualitas
+  indices: wdc-product-entities
+
+kuota
+  indices: wdc-product-entities
+
+kuota%20harian
+  indices: wdc-product-entities
+
+kuota%20total
+  indices: wdc-product-entities
+
+label
+  indices: wdc-product-entities
+
+landscapeRating
+  indices: wdc-organization-entities
+
+lang
+  indices: domains_complete, domains_unified, top_domains
+
+language
+  indices: onion-pages
+
+language_counts
+  indices: wdc-domain-profiles
+
+language_tags
+  indices: wdc-domain-profiles
+
+languages
+  indices: atlas_unified_domains, domains_complete, domains_unified, unified_domain_profiles
+  sample:  sv
+
+lastReviewed
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+last_breach_date
+  indices: emails_unified
+
+last_updated
+  indices: atlas_unified_domains, cc_domain_filetypes, domains_complete, domains_unified
+  sample:  2025-12-14T13:16:29.342443
+
+last_updated_locale
+  indices: wdc-organization-entities
+
+latitude
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+layer
+  indices: wdc-product-entities
+
+layer%20height
+  indices: wdc-product-entities
+
+learningResourceType
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+leaseLength
+  indices: wdc-product-entities
+
+lease_date
+  indices: uk_addresses
+
+lease_term
+  indices: uk_addresses
+
+legalName
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+legal_name
+  indices: companies_unified
+
+legalname
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+legislationChanges
+  indices: wdc-governmentorganization-entities
+
+legislationDate
+  indices: wdc-governmentorganization-entities
+
+legislationIdentifier
+  indices: wdc-governmentorganization-entities
+
+legislationJurisdiction
+  indices: wdc-governmentorganization-entities
+
+legislationLegalForce
+  indices: wdc-governmentorganization-entities
+
+legislationPassedBy
+  indices: wdc-governmentorganization-entities
+
+legislationResponsible
+  indices: wdc-governmentorganization-entities
+
+legislationType
+  indices: wdc-governmentorganization-entities
+
+leiCode
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+lengan
+  indices: wdc-product-entities
+
+length
+  indices: wdc-organization-entities
+
+lessor_title
+  indices: uk_leases
+
+level%20manis
+  indices: wdc-product-entities
+
+license
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+like_count
+  indices: wdc-product-entities
+
+line
+  indices: wdc-organization-entities
+
+link
+  indices: wdc-product-entities
+
+linkedThing
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+linked_companies
+  indices: domains_unified
+
+linked_people
+  indices: domains_unified
+
+linkedin_authority
+  indices: domains_unified
+
+linkedin_id
+  indices: linkedin_unified
+  sample:  linkedin:company:sierra-view-manor
+
+linkedin_url
+  indices: companies_unified, linkedin_unified, persons_unified
+  sample:  https://linkedin.com/company/sierra-view-manor
+
+links_found
+  indices: onion-pages
+  sample:  32
+
+liter
+  indices: wdc-product-entities
+
+lithium%20battery%20packaging
+  indices: wdc-product-entities
+
+liveBlogUpdate
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+loanTerm
+  indices: wdc-product-entities
+
+local_number
+  indices: phones_unified
+  sample:  235871
+
+local_part
+  indices: breach_records, emails_unified
+  sample:  the_true_lulu
+
+location
+  indices: linkedin_unified, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://www.ntpcstar2024.com.tw/#place
+
+locationCreated
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+logo
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://www.ntpcstar2024.com.tw/#logo
+
+lol
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+longitude
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+lowPrice
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+lowprice
+  indices: wdc-product-entities
+
+lyrics
+  indices: wdc-person-entities
+
+made%20in
+  indices: wdc-product-entities
+
+mah
+  indices: wdc-product-entities
+
+mainContentOfPage
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+mainContentofPage
+  indices: wdc-product-entities
+
+mainEntity
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+mainEntityOfP\u5E74\u9F84
+  indices: wdc-person-entities
+
+mainEntityOfPage
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://www.ntpcstar2024.com.tw/vi/2024-results-of-the-migra
+
+mainEntityOfpage
+  indices: wdc-product-entities
+
+mainEntityofPage
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+mainentity
+  indices: wdc-person-entities
+
+mainentityofpage
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+maintainer
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities
+
+majestic_rank
+  indices: atlas_unified_domains, domains_complete, domains_unified, unified_domain_profiles
+
+majestic_tld_rank
+  indices: domains_complete, domains_unified, unified_domain_profiles
+
+makesOffer
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+mandatoryLicense
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+manufacturer
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+map
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+mapel
+  indices: wdc-product-entities
+
+maps
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+masa%20aktif
+  indices: wdc-product-entities
+
+masthead
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+material
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+maxAltitude
+  indices: wdc-organization-entities
+
+maxValue
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+maximumAttendeeCapacity
+  indices: wdc-person-entities, wdc-product-entities
+
+media
+  indices: wdc-product-entities
+
+media%20tanam
+  indices: wdc-product-entities
+
+medicalSpecialty
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+medicalspecialty
+  indices: wdc-person-entities
+
+medicineSystem
+  indices: wdc-person-entities, wdc-product-entities
+
+meetsEmissionStandard
+  indices: wdc-localbusiness-entities
+
+member
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities
+
+memberOf
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+memory
+  indices: wdc-product-entities
+
+memory%20card
+  indices: wdc-product-entities
+
+memory%20size
+  indices: wdc-product-entities
+
+mentions
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+menu
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+merchantReturnDays
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+merchantReturnLink
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+merchantReturnLint
+  indices: wdc-product-entities
+
+merek
+  indices: wdc-product-entities
+
+merged_at
+  indices: domains_complete
+  sample:  2025-12-01T00:53:13.797183
+
+merk
+  indices: wdc-product-entities
+
+message_id
+  indices: kazaword_emails
+  sample:  <208012.35168.qm@web50606.mail.re2.yahoo.com>
+
+meta
+  indices: onion-pages
+  sample:  eCash Cards: trusted, automatic Visa credit card, Mastercard
+
+metadata
+  indices: domains_complete, domains_unified, top_domains
+  sample:  {obj}
+
+mic%20or%20no%20mic
+  indices: wdc-product-entities
+
+mileageFromOdometer
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+minAltitude
+  indices: wdc-organization-entities
+
+minPrice
+  indices: wdc-localbusiness-entities
+
+minValue
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+missionCoveragePrioritiesPolicy
+  indices: wdc-person-entities, wdc-product-entities
+
+mnp
+  indices: wdc-localbusiness-entities
+
+model
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+model%20iphone
+  indices: wdc-product-entities
+
+model%20kaos
+  indices: wdc-product-entities
+
+model%20pb
+  indices: wdc-product-entities
+
+modelDate
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+modified
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+modul%20kendang%20kb300
+  indices: wdc-product-entities
+
+monitor
+  indices: wdc-product-entities
+
+motif
+  indices: wdc-product-entities
+
+mpn
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+multilingual
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+multiple_address_indicator
+  indices: uk_ccod, uk_ocod
+  sample:  N
+
+muye%202
+  indices: wdc-product-entities
+
+naics
+  indices: companies_unified, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+nama
+  indices: wdc-product-entities
+
+name
+  indices: breach_records, companies_unified, openownership, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  18718190
+
+nameDeDe
+  indices: wdc-product-entities
+
+nameEnUs
+  indices: wdc-product-entities
+
+name_normalized
+  indices: openownership
+  sample:  schooltechhub ltd
+
+narrower
+  indices: wdc-governmentorganization-entities
+
+nationality
+  indices: persons_unified, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+negativeNotes
+  indices: wdc-product-entities
+
+netWorth
+  indices: wdc-person-entities
+
+news_categories
+  indices: domains_complete, domains_unified, unified_domain_profiles
+
+nextItem
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+nico
+  indices: wdc-product-entities
+
+noBylinePolicy
+  indices: wdc-person-entities
+
+noBylinesPolicy
+  indices: wdc-product-entities
+
+nomor
+  indices: wdc-product-entities
+
+nonProprietaryName
+  indices: wdc-product-entities
+
+nonprofitStatus
+  indices: wdc-governmentorganization-entities
+
+notes
+  indices: onion-pages
+
+novel
+  indices: wdc-product-entities
+
+numberOfAccommodationUnits
+  indices: wdc-localbusiness-entities, wdc-person-entities
+
+numberOfAirbags
+  indices: wdc-organization-entities, wdc-product-entities
+
+numberOfAvailableAccommodationUnits
+  indices: wdc-localbusiness-entities, wdc-person-entities
+
+numberOfBathrooms
+  indices: wdc-product-entities
+
+numberOfBathroomsTotal
+  indices: wdc-product-entities
+
+numberOfBedrooms
+  indices: wdc-person-entities, wdc-product-entities
+
+numberOfDoors
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+numberOfEmployees
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+numberOfForwardGears
+  indices: wdc-product-entities
+
+numberOfFullBathrooms
+  indices: wdc-product-entities
+
+numberOfItems
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+numberOfPages
+  indices: wdc-governmentorganization-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+numberOfPartialBathrooms
+  indices: wdc-product-entities
+
+numberOfPlayers
+  indices: wdc-product-entities
+
+numberOfRooms
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+numberOfdoors
+  indices: wdc-product-entities
+
+numberOfitems
+  indices: wdc-localbusiness-entities
+
+numberOfrooms
+  indices: wdc-product-entities
+
+number_of_employees
+  indices: companies_unified
+
+nutrition
+  indices: wdc-person-entities, wdc-product-entities
+
+obat%20mata
+  indices: wdc-product-entities
+
+object
+  indices: wdc-product-entities
+
+occupationLocation
+  indices: wdc-person-entities
+
+occupationalCategory
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities
+
+offerCount
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+offercount
+  indices: wdc-product-entities
+
+offeredBy
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+offers
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+openingHours
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+openingHoursSpecification
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+openinghours
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+opens
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+operatingSystem
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+operation%20system
+  indices: wdc-product-entities
+
+order
+  indices: wdc-product-entities
+
+organization_names
+  indices: emails_unified, phones_unified
+  sample:  戦争・・・
+
+organizer
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+originating_ip
+  indices: kazaword_emails
+  sample:  84.190.207.114
+
+other_categories
+  indices: domains_complete
+
+outlink_count
+  indices: drill_pages
+  sample:  2
+
+outlinks
+  indices: drill_pages, linklater_corpus
+  sample:  https://www.linkedin.com/company/soax-network
+
+override
+  indices: wdc-product-entities
+
+owner_name
+  indices: uk_addresses
+  sample:  VALE HOLIDAY PARKS LIMITED
+
+owner_type
+  indices: uk_addresses
+  sample:  unknown
+
+ownershipFundingInfo
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+ownership_percentage
+  indices: openownership
+  sample:  25.0
+
+owns
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+package
+  indices: wdc-product-entities
+
+packaging
+  indices: wdc-product-entities
+
+packing
+  indices: wdc-product-entities
+
+pageEnd
+  indices: wdc-organization-entities, wdc-person-entities
+
+pageStart
+  indices: wdc-governmentorganization-entities, wdc-organization-entities, wdc-person-entities
+
+pagination
+  indices: wdc-organization-entities, wdc-person-entities
+
+paid
+  indices: wdc-person-entities
+
+paket
+  indices: wdc-product-entities
+
+paket%20bundling
+  indices: wdc-product-entities
+
+paket%20diet
+  indices: wdc-product-entities
+
+paket%20oleh2
+  indices: wdc-product-entities
+
+paket%20penjualan
+  indices: wdc-product-entities
+
+paket%20tour
+  indices: wdc-product-entities
+
+pallets
+  indices: wdc-product-entities
+
+panjang
+  indices: wdc-product-entities
+
+parentItem
+  indices: wdc-person-entities, wdc-product-entities
+
+parentOrganization
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+parent_organization
+  indices: companies_unified
+
+parentorganization
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+part
+  indices: wdc-product-entities
+
+partOfSeries
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+partySize
+  indices: wdc-product-entities
+
+password_hash
+  indices: breach_records
+  sample:  9FBD9B80AF7E652065E489F94C456971B7D9BB4D
+
+password_hint
+  indices: breach_records
+
+pattern
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+payload
+  indices: wdc-product-entities
+
+paymentAccepted
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  Cash, Visa, MasterCard, Debit Card, Gift Certificate
+
+pdf_count
+  indices: cc_domain_filetypes
+  sample:  800
+
+pedal
+  indices: wdc-product-entities
+
+pembelian
+  indices: wdc-product-entities
+
+pengaman%20barang
+  indices: wdc-product-entities
+
+pengiriman
+  indices: wdc-product-entities
+
+performer
+  indices: wdc-governmentorganization-entities, wdc-person-entities, wdc-product-entities
+
+periode%20garansi
+  indices: wdc-product-entities
+
+periode%20sewa
+  indices: wdc-product-entities
+
+person_id
+  indices: linkedin_unified, persons_unified
+  sample:  name:cogconnected.com:koei tecmo releases new trailer for at
+
+person_ids
+  indices: emails_unified, phones_unified
+
+person_name
+  indices: linkedin_unified
+
+person_names
+  indices: emails_unified, phones_unified
+  sample:  家族旅行雨が降っても焦らない！【９９％の催行率】 | 沖縄でマングローブカヤックならカヤックイーズ
+
+persons
+  indices: drill_pages, onion-pages
+  sample:  JulyJailbait
+
+peserta
+  indices: wdc-product-entities
+
+petsAllowed
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+phone
+  indices: breach_records, wdc-localbusiness-entities
+
+phone_e164
+  indices: phones_unified
+  sample:  +81989235871
+
+phone_id
+  indices: phones_unified
+  sample:  phone:+81989235871
+
+phone_ids
+  indices: persons_unified
+
+phone_raw
+  indices: phones_unified
+  sample:  +81989235871
+
+phone_type
+  indices: phones_unified
+
+phones
+  indices: drill_pages, onion-pages
+
+photo
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+photos
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+physicalLocation
+  indices: wdc-product-entities
+
+pilih%20bonus
+  indices: wdc-product-entities
+
+pilih%20paket
+  indices: wdc-product-entities
+
+pilih%20pilih%20produk
+  indices: wdc-product-entities
+
+pilih%20varian%20windows
+  indices: wdc-product-entities
+
+pilih%20varin%20bundling
+  indices: wdc-product-entities
+
+pilihan
+  indices: wdc-product-entities
+
+pilihan!!!
+  indices: wdc-product-entities
+
+pilihan%20bentuk%20kopi
+  indices: wdc-product-entities
+
+pilihan%20paket
+  indices: wdc-product-entities
+
+pilihan%20pot
+  indices: wdc-product-entities
+
+pilihan%20warna
+  indices: wdc-product-entities
+
+pilihan%20windows
+  indices: wdc-product-entities
+
+pinset%20(%20ecer)
+  indices: wdc-product-entities
+
+pinset%20(%20lusin)
+  indices: wdc-product-entities
+
+pinset%20bengkok%20(ecer)
+  indices: wdc-product-entities
+
+platinum
+  indices: wdc-product-entities
+
+playMode
+  indices: wdc-product-entities
+
+playerType
+  indices: wdc-person-entities
+
+po\u5341\u4E2AtialAction
+  indices: wdc-organization-entities
+
+position
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+positiveNotes
+  indices: wdc-product-entities
+
+possibleTreatment
+  indices: wdc-person-entities
+
+postId
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+postOfficeBoxNumber
+  indices: wdc-localbusiness-entities
+
+postalCode
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+postal_code
+  indices: companies_unified
+
+postcode
+  indices: uk_addresses, uk_ccod, uk_ocod
+  sample:  W3 0BD
+
+postcode_district
+  indices: uk_ccod, uk_ocod
+  sample:  W3
+
+pot
+  indices: wdc-product-entities
+
+pot%20&%20tatakan
+  indices: wdc-product-entities
+
+potentialAction
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://fashion4u.pl/elegancka-sukienka-w-groszki-wyszczupla
+
+power
+  indices: wdc-product-entities
+
+prefLabel
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities
+
+preloved%20novel
+  indices: wdc-product-entities
+
+prepTime
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+preparedName
+  indices: wdc-product-entities
+
+prescriptionStatus
+  indices: wdc-product-entities
+
+previousItem
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+previousStartDate
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+price
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+priceCurrency
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+priceRange
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  15k-500k
+
+priceSpecification
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+priceValidUntil
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+priceValiduntil
+  indices: wdc-product-entities
+
+price_paid
+  indices: uk_addresses, uk_ccod, uk_leases, uk_ocod
+  sample:  240000.0
+
+pricerange
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+primaryIm\u5E74\u9F84OfP\u5E74\u9F84
+  indices: wdc-organization-entities, wdc-person-entities
+
+primaryImageOfP\u00E0gina
+  indices: wdc-person-entities
+
+primaryImageOfPage
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://www.ntpcstar2024.com.tw/storage/2024/08/results_e_30
+
+primaryImageOfPuslapis
+  indices: wdc-organization-entities
+
+primaryImageOfSivu
+  indices: wdc-product-entities
+
+primaryImageOf\u9875\u9762
+  indices: wdc-localbusiness-entities
+
+primaryImageofPage
+  indices: wdc-product-entities
+
+primaryPrevention
+  indices: wdc-person-entities
+
+primary\u56FE\u50CFOfPage
+  indices: wdc-person-entities
+
+primary_category
+  indices: atlas_unified_domains, domains_unified
+
+primary_country
+  indices: atlas_unified_domains, domains_complete, domains_unified, unified_domain_profiles, wdc-domain-profiles
+  sample:  HT
+
+primary_entity_type
+  indices: wdc-domain-profiles
+  sample:  Thing
+
+primary_language
+  indices: wdc-domain-profiles
+
+primaryimageOfPage
+  indices: wdc-organization-entities
+
+printEdition
+  indices: wdc-governmentorganization-entities
+
+printPage
+  indices: wdc-governmentorganization-entities
+
+printSection
+  indices: wdc-governmentorganization-entities, wdc-product-entities
+
+pro
+  indices: wdc-person-entities
+
+producer
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+product
+  indices: wdc-person-entities, wdc-product-entities
+
+productDescription
+  indices: wdc-organization-entities, wdc-person-entities
+
+productForm
+  indices: wdc-product-entities
+
+productGroupID
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+productHighlights
+  indices: wdc-product-entities
+
+productID
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+productId
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+productName
+  indices: wdc-organization-entities, wdc-person-entities
+
+productReturnCategory
+  indices: wdc-product-entities
+
+productSupported
+  indices: wdc-localbusiness-entities
+
+productType
+  indices: wdc-person-entities, wdc-product-entities
+
+product_type
+  indices: wdc-product-entities
+
+product_weight
+  indices: wdc-product-entities
+
+productid
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+productionCompany
+  indices: wdc-organization-entities
+
+productionDate
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+produk
+  indices: wdc-product-entities
+
+produk%20po
+  indices: wdc-product-entities
+
+profile_slug
+  indices: linkedin_unified
+  sample:  sierra-view-manor
+
+profile_type
+  indices: linkedin_unified
+  sample:  company
+
+project_id
+  indices: drill_pages, linklater_corpus
+
+promo
+  indices: wdc-product-entities
+
+promo%203%20gratis%201
+  indices: wdc-product-entities
+
+promo%20bundling
+  indices: wdc-product-entities
+
+property_address
+  indices: uk_ccod, uk_ocod
+  sample:  Flat 8, 21 Warple Way, London (W3 0BD)
+
+property_description
+  indices: uk_addresses, uk_leases
+
+proprietor_address
+  indices: uk_ocod
+  sample:  Oak House, Hirzel Street, St Peter Port, Guernsey, GY1 3RH
+
+proprietor_address_1
+  indices: uk_ccod
+  sample:  Legal Services, 4th Floor South, Civic Centre 1, High Street
+
+proprietor_address_2
+  indices: uk_ccod
+
+proprietor_name
+  indices: uk_ocod
+  sample:  ELDERFLOWER MANAGEMENT LIMITED
+
+proprietor_name_1
+  indices: uk_ccod
+  sample:  THE COUNCIL OF THE BOROUGH OF KIRKLEES
+
+proprietor_name_2
+  indices: uk_ccod
+
+proprietorship_category_1
+  indices: uk_ccod
+  sample:  Local Authority
+
+proprietorship_category_2
+  indices: uk_ccod
+
+prosesor%20dan%20memori
+  indices: wdc-product-entities
+
+protection
+  indices: wdc-product-entities
+
+protein
+  indices: wdc-product-entities
+
+provider
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+providerMobility
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+publicAccess
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+publication
+  indices: wdc-organization-entities, wdc-person-entities
+
+publisher
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://www.ntpcstar2024.com.tw/#organization
+
+publishingPrinciples
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+purchaseDate
+  indices: wdc-product-entities
+
+quantity
+  indices: wdc-product-entities
+
+quantity_to_sell_on_facebook
+  indices: wdc-product-entities
+
+query
+  indices: linklater_corpus
+  sample:  ”KVIKA” “libya”
+
+query-input
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+ram
+  indices: wdc-product-entities
+
+ram%20&%20os
+  indices: wdc-product-entities
+
+rank
+  indices: domains_complete, domains_unified, top_domains
+  sample:  919440
+
+ratingCount
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+ratingValue
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+rdfs:comment
+  indices: wdc-localbusiness-entities
+
+rdfs:label
+  indices: wdc-localbusiness-entities
+
+rdfs:subClassOf
+  indices: wdc-localbusiness-entities
+
+re-pack
+  indices: wdc-product-entities
+
+received_count
+  indices: emails_unified
+  sample:  611
+
+recipeCategory
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+recipeCuisine
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+recipeIngredient
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+recipeInstructions
+  indices: wdc-organization-entities, wdc-person-entities
+
+recipeYield
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+record_id
+  indices: openownership
+  sample:  ownership:8526301191794936
+
+ref_ips
+  indices: domains_complete, domains_unified, unified_domain_profiles
+
+ref_subnets
+  indices: domains_complete, domains_unified, unified_domain_profiles
+
+referenceQuantity
+  indices: wdc-product-entities
+
+refundType
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+region
+  indices: companies_unified, phones_unified, uk_addresses, uk_ccod, uk_leases, uk_ocod, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  GREATER LONDON
+
+regionsAllowed
+  indices: wdc-localbusiness-entities, wdc-person-entities
+
+relatedLink
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+relatedTo
+  indices: wdc-person-entities
+
+relatedlink
+  indices: wdc-organization-entities
+
+releaseDate
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+releasedEvent
+  indices: wdc-product-entities
+
+relevantSpecialty
+  indices: wdc-person-entities, wdc-product-entities
+
+repeatFrequency
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+representativeOfPage
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+requiredQuantity
+  indices: wdc-person-entities
+
+requiresSubscription
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+restockingFee
+  indices: wdc-product-entities
+
+result
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+return
+  indices: wdc-person-entities, wdc-product-entities
+
+returnFees
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+returnLabelSource
+  indices: wdc-person-entities, wdc-product-entities
+
+returnMethod
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+returnPolicy
+  indices: wdc-product-entities
+
+returnPolicyCategory
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+returnPolicyCountry
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+reversed_domain
+  indices: domains_complete
+
+review
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+reviewBody
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+reviewCount
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+reviewRating
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+reviewbody
+  indices: wdc-localbusiness-entities
+
+reviewedBy
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+reviewedby
+  indices: wdc-person-entities
+
+reviews
+  indices: wdc-person-entities, wdc-product-entities
+
+ring
+  indices: wdc-product-entities
+
+safetyInstructions
+  indices: wdc-organization-entities
+
+sale_price
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+sale_price_effective_date
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+salesPrice
+  indices: wdc-product-entities
+
+sameAS
+  indices: wdc-product-entities
+
+sameAs
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://ie.linkedin.com/company/national-treasury-management
+
+same_as
+  indices: companies_unified, persons_unified
+  sample:  https://www.youtube.com/COGConnected
+
+sameas
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+sample_urls
+  indices: cc_domain_filetypes
+
+sastre_paragraph_count
+  indices: domains_unified
+
+schedule
+  indices: wdc-organization-entities
+
+scheduleTimezone
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+schema
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+schemaAlternativeHeadline
+  indices: wdc-person-entities
+
+schemaVersion
+  indices: wdc-governmentorganization-entities, wdc-person-entities, wdc-product-entities
+
+schema_types
+  indices: atlas_unified_domains, companies_unified, domains_unified, persons_unified
+  sample:  Article
+
+score
+  indices: wdc-governmentorganization-entities
+
+scraped
+  indices: onion-pages
+
+scraped_at
+  indices: linklater_corpus
+  sample:  2025-12-01T07:23:03.147Z
+
+screenshot
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+sd%20card%20memory
+  indices: wdc-product-entities
+
+sdDatePublished
+  indices: wdc-person-entities, wdc-product-entities
+
+sdPublisher
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+search_text
+  indices: domains_complete, domains_unified, openownership, unified_domain_profiles
+  sample:  VANTEGE LIMITED Alan Glassfield shareholding voting-rights
+
+search_url
+  indices: atlas_unified_domains, domains_unified
+
+search_url_templates
+  indices: domains_complete, domains_unified, unified_domain_profiles
+
+seatingCapacity
+  indices: wdc-organization-entities, wdc-product-entities
+
+seller
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+sent_count
+  indices: emails_unified
+  sample:  6
+
+seri
+  indices: wdc-product-entities
+
+servesCuisine
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+service
+  indices: wdc-localbusiness-entities
+
+service%2040k
+  indices: wdc-product-entities
+
+service%20berkala
+  indices: wdc-product-entities
+
+serviceArea
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+serviceLocation
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+serviceOperator
+  indices: wdc-governmentorganization-entities
+
+serviceOutput
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+servicePhone
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+serviceType
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+serviceUrl
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+servicearea
+  indices: wdc-person-entities
+
+servicetype
+  indices: wdc-localbusiness-entities
+
+servis%20berkala
+  indices: wdc-product-entities
+
+servis%20berkala%20mobilio
+  indices: wdc-product-entities
+
+set
+  indices: wdc-product-entities
+
+shade
+  indices: wdc-product-entities
+
+shape
+  indices: wdc-product-entities
+
+sharedContent
+  indices: wdc-organization-entities, wdc-person-entities
+
+shipping
+  indices: wdc-person-entities, wdc-product-entities
+
+shipping%20crates
+  indices: wdc-product-entities
+
+shippingDestination
+  indices: wdc-person-entities, wdc-product-entities
+
+shippingDetails
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+shippingLabel
+  indices: wdc-product-entities
+
+shippingPolicy
+  indices: wdc-product-entities
+
+shippingSettingsLink
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+shipping_weight
+  indices: wdc-product-entities
+
+signature
+  indices: wdc-product-entities
+
+significantLink
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+significantLinks
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+sisi%20&%20finishing
+  indices: wdc-product-entities
+
+sistem%20operasi
+  indices: wdc-product-entities
+
+site_type
+  indices: linklater_corpus
+
+size
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+skills
+  indices: wdc-person-entities
+
+skinType
+  indices: wdc-product-entities
+
+sku
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  07-9013 - 07-9021
+
+slogan
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+slug
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+smokingAllowed
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+snippet
+  indices: linklater_corpus
+  sample:  # PERSÓNUVERNDARSTEFNA KVIKU BANKA HF.
+
+Sampykkt í september
+
+social_links
+  indices: domains_unified
+
+socket
+  indices: wdc-product-entities
+
+softwareRequirements
+  indices: wdc-product-entities
+
+softwareVersion
+  indices: wdc-product-entities
+
+sortOrder
+  indices: wdc-product-entities
+
+source
+  indices: cc_domain_filetypes, drill_pages, linklater_corpus, onion-pages, uk_addresses, wdc-governmentorganization-entities, wdc-organization-entities
+  sample:  ccod
+
+sourceOrganization
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+source_archive
+  indices: kazaword_emails
+  sample:  abay
+
+source_count
+  indices: companies_unified, domains_complete, domains_unified, emails_unified, linkedin_unified, persons_unified, phones_unified, unified_domain_profiles
+  sample:  2
+
+source_description
+  indices: openownership
+  sample:  GB Persons Of Significant Control Register
+
+source_file
+  indices: breach_records, uk_addresses
+  sample:  Myspace.com.txt
+
+source_id
+  indices: wdc-product-entities
+
+source_type
+  indices: openownership, wdc-product-entities
+  sample:  officialRegister
+
+source_url
+  indices: linklater_corpus, openownership
+  sample:  https://api.company-information.service.gov.uk/company/10327
+
+sources
+  indices: atlas_unified_domains, companies_unified, domains_complete, domains_unified, emails_unified, linkedin_unified, persons_unified, phones_unified, top_domains, unified_domain_profiles
+  sample:  wdc-person
+
+spatial
+  indices: wdc-governmentorganization-entities, wdc-organization-entities, wdc-person-entities
+
+spatialCoverage
+  indices: wdc-governmentorganization-entities, wdc-organization-entities, wdc-product-entities
+
+speakable
+  indices: wdc-governmentorganization-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+special%20colour
+  indices: wdc-product-entities
+
+specialOpeningHoursSpecification
+  indices: wdc-localbusiness-entities
+
+specialties
+  indices: linkedin_unified
+
+specialty
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+specification
+  indices: wdc-product-entities
+
+speed
+  indices: wdc-localbusiness-entities
+
+spesifikasi
+  indices: wdc-product-entities
+
+spf
+  indices: wdc-product-entities
+
+sponsor
+  indices: wdc-governmentorganization-entities, wdc-organization-entities, wdc-person-entities
+
+sport
+  indices: wdc-person-entities
+
+spouse
+  indices: wdc-person-entities
+
+ssd%20card%20memory
+  indices: wdc-product-entities
+
+stang%20gergaji
+  indices: wdc-product-entities
+
+starRating
+  indices: wdc-localbusiness-entities, wdc-person-entities
+
+startDate
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+startOffset-input
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities
+
+startTime
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+state
+  indices: breach_records
+
+statement_date
+  indices: openownership
+  sample:  2016-08-12
+
+statement_id
+  indices: openownership
+  sample:  8526301191794936
+
+statement_type
+  indices: openownership
+  sample:  ownershipOrControlStatement
+
+status_code
+  indices: drill_pages, onion-pages
+  sample:  200
+
+stranger%20things%20pack
+  indices: wdc-product-entities
+
+strap
+  indices: wdc-product-entities
+
+streetAddress
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+streetAddress_2
+  indices: wdc-localbusiness-entities
+
+street_address
+  indices: companies_unified
+
+strengthUnit
+  indices: wdc-organization-entities, wdc-person-entities
+
+strengthValue
+  indices: wdc-organization-entities, wdc-person-entities
+
+styleCode
+  indices: wdc-product-entities
+
+subClassOf
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+subEvent
+  indices: wdc-governmentorganization-entities, wdc-person-entities
+
+subOrganization
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+sub_organizations
+  indices: companies_unified
+
+subcategories
+  indices: wdc-domain-profiles
+
+subject
+  indices: kazaword_emails, wdc-governmentorganization-entities
+  sample:  photos
+
+subjectOf
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+subject_id
+  indices: openownership
+  sample:  6892016234205338988
+
+subject_name
+  indices: openownership
+  sample:  VANTEGE LIMITED
+
+subjectof
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+suborganization
+  indices: wdc-organization-entities
+
+suggestedAnswer
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities
+
+suggestedGender
+  indices: wdc-product-entities
+
+suggestedMaxAge
+  indices: wdc-product-entities
+
+suggestedMinAge
+  indices: wdc-product-entities
+
+suggestion
+  indices: wdc-organization-entities
+
+suitableForDiet
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+suitableforDiet
+  indices: wdc-person-entities
+
+summary
+  indices: wdc-product-entities
+
+superEvent
+  indices: wdc-person-entities, wdc-product-entities
+
+syllabusSections
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+systemRequirements
+  indices: wdc-product-entities
+
+tabahkan
+  indices: wdc-product-entities
+
+tagline
+  indices: wdc-localbusiness-entities
+
+tags
+  indices: onion-pages
+
+tambah%20selang
+  indices: wdc-product-entities
+
+tambahan%20packing
+  indices: wdc-product-entities
+
+tanggal%20tour
+  indices: wdc-product-entities
+
+target
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+tatakan
+  indices: wdc-product-entities
+
+taxID
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+taxId
+  indices: wdc-product-entities
+
+tax_id
+  indices: companies_unified
+
+teaches
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+tebal
+  indices: wdc-product-entities
+
+tebus%20hemat
+  indices: wdc-product-entities
+
+techniqueRating
+  indices: wdc-organization-entities
+
+telePhone
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+tele\u7535\u8BDD
+  indices: wdc-localbusiness-entities
+
+telephone
+  indices: companies_unified, persons_unified, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  +353 1 238 4000
+
+telephones
+  indices: persons_unified
+
+tema%20patung
+  indices: wdc-product-entities
+
+template_name
+  indices: wdc-organization-entities
+
+temporalCoverage
+  indices: wdc-governmentorganization-entities, wdc-organization-entities
+
+tenure
+  indices: uk_addresses, uk_ccod, uk_leases, uk_ocod
+  sample:  Leasehold
+
+term
+  indices: uk_leases
+  sample:  125 years from 1 November 2004
+
+termsOfService
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+text
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+tf%20speed
+  indices: wdc-product-entities
+
+thumbnail
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+thumbnailURL
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities
+
+thumbnailUrl
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://fashion4u.pl/wp-content/uploads/2016/06/e.jpg
+
+thumbnail_url
+  indices: wdc-product-entities
+
+tickerSymbol
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+timeRequired
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+timestamp
+  indices: linklater_corpus
+
+tipe
+  indices: wdc-product-entities
+
+tipe%20&%20warna
+  indices: wdc-product-entities
+
+tipe%20-%20warna
+  indices: wdc-product-entities
+
+tipe%20casing
+  indices: wdc-product-entities
+
+tipe%20figura
+  indices: wdc-product-entities
+
+tipe%20handphone
+  indices: wdc-product-entities
+
+tipe%20kemasan
+  indices: wdc-product-entities
+
+tipe%20oli
+  indices: wdc-product-entities
+
+tipe%20pintu
+  indices: wdc-product-entities
+
+tipe%20plat
+  indices: wdc-product-entities
+
+tipe%20produk
+  indices: wdc-product-entities
+
+title
+  indices: domains_complete, domains_unified, drill_pages, linklater_corpus, onion-pages, top_domains, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  What is a proxy server? Definition, uses, and examples
+
+titleEn
+  indices: wdc-product-entities
+
+title_number
+  indices: uk_addresses, uk_ccod, uk_ocod
+  sample:  AGL334118
+
+tld
+  indices: atlas_unified_domains, domains_complete, domains_unified, top_domains, unified_domain_profiles, wdc-domain-profiles
+  sample:  org
+
+tld_rank
+  indices: domains_complete, domains_unified, top_domains
+  sample:  2744
+
+to
+  indices: kazaword_emails
+  sample:  {'name': '', 'email': 'abay.s@mail.ru'}
+
+tombol
+  indices: wdc-product-entities
+
+totalHistoricalEnrollment
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+totalNumberOfBeds
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+totalTime
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+total_documents
+  indices: cc_domain_filetypes
+  sample:  1000
+
+total_entities
+  indices: wdc-domain-profiles
+  sample:  80
+
+total_quads
+  indices: wdc-domain-profiles
+  sample:  14039
+
+total_unique_categories
+  indices: domains_complete
+  sample:  12
+
+tourBookingPage
+  indices: wdc-localbusiness-entities, wdc-person-entities, wdc-product-entities
+
+touristType
+  indices: wdc-product-entities
+
+tranco_rank
+  indices: atlas_unified_domains, domains_complete, domains_unified, top_domains, unified_domain_profiles
+
+transcript
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+transitTimeLabel
+  indices: wdc-product-entities
+
+translation
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+translationOfWork
+  indices: wdc-governmentorganization-entities, wdc-person-entities, wdc-product-entities
+
+translator
+  indices: wdc-localbusiness-entities, wdc-person-entities
+
+trust_flow
+  indices: atlas_unified_domains
+
+twitter:card
+  indices: wdc-organization-entities
+
+twitter:site
+  indices: wdc-organization-entities
+
+type
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  Organization
+
+type%20produk
+  indices: wdc-product-entities
+
+types
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  Organization
+
+typicalAgeRange
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+ukuran
+  indices: wdc-product-entities
+
+ukuran%20buku
+  indices: wdc-product-entities
+
+ukuran%20inch
+  indices: wdc-product-entities
+
+ukuran%20mobil
+  indices: wdc-product-entities
+
+ukuran%20sablon
+  indices: wdc-product-entities
+
+ukuran%20seling
+  indices: wdc-product-entities
+
+unique_id
+  indices: uk_leases
+  sample:  8C878AED2F1EC50E9610DFBD3B5F4EB51C16D674
+
+unitCode
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+unitText
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+unlisted
+  indices: wdc-person-entities
+
+unnamedSourcesPolicy
+  indices: wdc-product-entities
+
+uno
+  indices: wdc-product-entities
+
+upc
+  indices: wdc-organization-entities, wdc-product-entities
+
+updated_at
+  indices: wdc-organization-entities
+
+updated_on
+  indices: onion-pages
+  sample:  2025-12-03T14:25:46.577428
+
+uploadDate
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+upload_date
+  indices: wdc-product-entities
+
+uprn
+  indices: uk_addresses, uk_leases
+  sample:  1004267562.0
+
+upvoteCount
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+url
+  indices: domains_complete, domains_unified, drill_pages, linklater_corpus, onion-pages, top_domains, wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://www.ntma.ie
+
+urlTemplate
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+url_list
+  indices: wdc-organization-entities, wdc-person-entities
+
+usageInfo
+  indices: wdc-organization-entities, wdc-person-entities
+
+userInteractionCount
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+user_id
+  indices: breach_records, linklater_corpus
+  sample:  18718190
+
+uses
+  indices: wdc-product-entities
+
+validFrom
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+validThrough
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+validitySchedule
+  indices: wdc-localbusiness-entities, wdc-organization-entities
+
+validity_range
+  indices: wdc-organization-entities
+
+value
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+valueAddedTaxIncluded
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+varasi
+  indices: wdc-product-entities
+
+varian
+  indices: wdc-product-entities
+
+varian%20aroma
+  indices: wdc-product-entities
+
+varian%20bundling
+  indices: wdc-product-entities
+
+varian%20giling
+  indices: wdc-product-entities
+
+varian%20ic
+  indices: wdc-product-entities
+
+varian%20paket
+  indices: wdc-product-entities
+
+varian%20paket%20usaha
+  indices: wdc-product-entities
+
+varian%20produk
+  indices: wdc-product-entities
+
+varian%20rasa
+  indices: wdc-product-entities
+
+variant
+  indices: wdc-product-entities
+
+variant%20ram
+  indices: wdc-product-entities
+
+variant%20type
+  indices: wdc-product-entities
+
+variantID
+  indices: wdc-product-entities
+
+variasi
+  indices: wdc-product-entities
+
+variation
+  indices: wdc-product-entities
+
+variesBy
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+vatID
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+vatId
+  indices: wdc-organization-entities, wdc-person-entities
+
+vat_id
+  indices: companies_unified
+
+vatid
+  indices: wdc-product-entities
+
+vehicleConfiguration
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+vehicleEngine
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+vehicleIdentificationNumber
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+vehicleInteriorColor
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+vehicleInteriorType
+  indices: wdc-localbusiness-entities
+
+vehicleModelDate
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+vehicleSeatingCapacity
+  indices: wdc-product-entities
+
+vehicleTransmission
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-product-entities
+
+vendor
+  indices: wdc-product-entities
+
+verificationFactCheckingPolicy
+  indices: wdc-product-entities
+
+verified_search_template
+  indices: domains_unified
+
+versi
+  indices: wdc-product-entities
+
+version
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+vertex_id
+  indices: cc_host_vertices
+  sample:  53104571
+
+video
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+videoFrameSize
+  indices: wdc-person-entities, wdc-product-entities
+
+videoId
+  indices: wdc-person-entities
+
+videoQuality
+  indices: wdc-person-entities, wdc-product-entities
+
+villa
+  indices: wdc-product-entities
+
+volume
+  indices: wdc-product-entities
+
+volumeNumber
+  indices: wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+volumneNumber
+  indices: wdc-governmentorganization-entities
+
+voting_percentage
+  indices: openownership
+
+wadah
+  indices: wdc-product-entities
+
+wangi
+  indices: wdc-product-entities
+
+warna
+  indices: wdc-product-entities
+
+warna%20cat
+  indices: wdc-product-entities
+
+watt
+  indices: wdc-product-entities
+
+wdc_confidence
+  indices: domains_unified
+
+wdc_crawl
+  indices: companies_unified, persons_unified
+  sample:  2024-10
+
+wdc_crawl_date
+  indices: wdc-domain-profiles
+  sample:  2024-10
+
+wdc_entity_count
+  indices: domains_unified
+
+wdc_entity_names
+  indices: domains_unified
+
+wdc_source
+  indices: wdc-domain-profiles
+  sample:  True
+
+webFeed
+  indices: wdc-organization-entities, wdc-person-entities
+
+webUrl
+  indices: wdc-localbusiness-entities
+
+website
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+website_url
+  indices: companies_unified
+  sample:  https://direporter.com/tag/zeiss-group
+
+weight
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+weightTotal
+  indices: wdc-product-entities
+
+wheelbase
+  indices: wdc-localbusiness-entities, wdc-product-entities
+
+width
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  180
+
+windows
+  indices: wdc-product-entities
+
+wordCount
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  87
+
+word_count
+  indices: linklater_corpus
+  sample:  2693
+
+wordcount
+  indices: wdc-localbusiness-entities
+
+workExample
+  indices: wdc-governmentorganization-entities, wdc-person-entities, wdc-product-entities
+
+workFeatured
+  indices: wdc-person-entities
+
+workLocation
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+workTranslation
+  indices: wdc-governmentorganization-entities, wdc-person-entities, wdc-product-entities
+
+worksFor
+  indices: wdc-governmentorganization-entities, wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+  sample:  https://www.ntpcstar2024.com.tw/#organization
+
+worstRating
+  indices: wdc-localbusiness-entities, wdc-organization-entities, wdc-person-entities, wdc-product-entities
+
+worstrating
+  indices: wdc-product-entities
+
+write_history
+  indices: wdc-organization-entities
+
+xls_count
+  indices: cc_domain_filetypes
+  sample:  50
+
+xpath
+  indices: wdc-product-entities
+
+yearBuilt
+  indices: wdc-product-entities
+
+yield
+  indices: wdc-organization-entities, wdc-person-entities

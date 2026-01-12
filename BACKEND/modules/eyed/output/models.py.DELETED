@@ -1,0 +1,114 @@
+"""
+Legend-aligned output dataclasses for EYE-D.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field, asdict
+from datetime import datetime
+from typing import Dict, List, Optional
+
+
+@dataclass
+class BreachRecord:
+    """Legend 187: person_email_breaches entry."""
+    source: str
+    breach: str
+    breached_at: Optional[str] = None
+    compromised_fields: List[str] = field(default_factory=list)
+    password_exposed: bool = False
+    raw: Optional[Dict] = None
+
+@dataclass
+class BreachData:
+    """Legend 187: person_email_breaches aggregate."""
+    identifier: str
+    total_breaches: int
+    breaches: List[BreachRecord] = field(default_factory=list)
+    sensitive_data_exposed: List[str] = field(default_factory=list)
+
+    def to_dict(self):
+        return asdict(self)
+
+@dataclass
+class SocialProfile:
+    """Legend 188: person_social_profiles."""
+    platform: str
+    username: str
+    url: str
+    followers: Optional[int] = None
+    verified: bool = False
+    raw: Optional[Dict] = None
+
+    def to_dict(self):
+        return asdict(self)
+
+@dataclass
+class PhoneRecord:
+    """Legend 189: person_phone_records."""
+    phone_number: str
+    carrier: Optional[str] = None
+    location: Optional[str] = None
+    line_type: Optional[str] = None
+    associated_emails: List[str] = field(default_factory=list)
+    associated_names: List[str] = field(default_factory=list)
+
+    def to_dict(self):
+        return asdict(self)
+
+@dataclass
+class PersonIdentityGraph:
+    """Legend 190: person_identity_graph."""
+    seed_identifier: str
+    linked_emails: List[str] = field(default_factory=list)
+    linked_domains: List[str] = field(default_factory=list)
+    linked_orgs: List[str] = field(default_factory=list)
+    social_profiles: List[SocialProfile] = field(default_factory=list)
+
+    def to_dict(self):
+        return asdict(self)
+
+@dataclass
+class Backlink:
+    """Legend 191: domain_backlinks entry."""
+    source_url: str
+    target_url: str
+    anchor_text: Optional[str] = None
+    first_seen: Optional[str] = None
+    last_seen: Optional[str] = None
+    domain_authority: Optional[float] = None
+
+@dataclass
+class DomainBacklinks:
+    """Legend 191: domain_backlinks aggregate."""
+    domain: str
+    backlinks: List[Backlink] = field(default_factory=list)
+    total_backlinks: int = 0
+    unique_domains: int = 0
+
+    def to_dict(self):
+        return asdict(self)
+
+@dataclass
+class DNSRecord:
+    """Legend 193: domain_dns_records entry."""
+    record_type: str
+    value: str
+    ttl: Optional[int] = None
+    last_seen: Optional[str] = None
+
+    def to_dict(self):
+        return asdict(self)
+
+@dataclass
+class WhoisHistoryEntry:
+    """Legend 195: domain_whois_history entry."""
+    observed_at: str
+    registrar: Optional[str] = None
+    registrant: Optional[str] = None
+    registrant_email: Optional[str] = None
+    name_servers: List[str] = field(default_factory=list)
+    raw: Optional[Dict] = None
+
+    def to_dict(self):
+        return asdict(self)

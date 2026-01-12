@@ -1,0 +1,21 @@
+{
+  "id": "b5e80d5089726e2a",
+  "node_class": "ENTITY",
+  "type": "username",
+  "canonicalValue": "sandroklegain",
+  "label": "sandroklegain",
+  "value": "sandroklegain",
+  "comment": "{\n  \"module\": \"wbgames\",\n  \"category\": {\n    \"type\": \"Activity\",\n    \"name\": \"Gaming\",\n    \"description\": \"Platforms focused on gaming communities.\"\n  },\n  \"front_schemas\": [\n    {\n      \"module\": \"Warner Bros Games\",\n      \"image\": \"https://d3tex00qsove6i.cloudfront.net/network/account-wbgames-com/network-configuration-public/avatars/multiversus-reinddog-3935656437616236303164366437666137343761663766333636343265653339.jpg\",\n      \"body\": {\n        \"Avatar Name\": \"MultiVersus Reinddog\"\n      },\n      \"tags\": [],\n      \"timeline\": {\n        \"last_seen\": true,\n        \"registered\": true,\n        \"last_seen_date\": null,\n        \"registered_date\": null,\n        \"groups\": {\n          \"wbgames\": {\n            \"color\": \"#663399\",\n            \"flavor_text\": \"$count$ activites in $year$\",\n            \"tolerance\": 5\n          }\n        },\n        \"group_items\": {},\n        \"group_years\": {}\n      }\n    }\n  ],\n  \"spec_format\": [\n    {\n      \"registered\": {\n        \"type\": \"bool\",\n        \"proper_key\": \"Registered\",\n        \"value\": true\n      },\n      \"id\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Id\",\n        \"value\": \"pebe624f75216461bb04d85c0341ca61d\"\n      },\n      \"picture_url\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Picture Url\",\n        \"value\": \"https://d3tex00qsove6i.cloudfront.net/network/account-wbgames-com/network-configuration-public/avatars/multiversus-reinddog-3935656437616236303164366437666137343761663766333636343265653339.jpg\"\n      },\n      \"username\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Username\",\n        \"value\": \"sandroklegain\"\n      },\n      \"platform_variables\": [\n        {\n          \"key\": \"avatar_name\",\n          \"proper_key\": \"Avatar Name\",\n          \"value\": \"MultiVersus Reinddog\",\n          \"type\": \"str\"\n        }\n      ]\n    }\n  ],\n  \"data\": {\n    \"data\": true\n  },\n  \"status\": \"found\",\n  \"query\": \"tyrion@gmail.com\",\n  \"from\": \"User supplied email.\",\n  \"reliable_source\": true\n}",
+  "embedded_edges": [
+    {
+      "target_id": "c3f8a498f50c4de6",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-11T23:53:05.609367",
+  "updatedAt": "2026-01-11T23:53:05.609372",
+  "lastSeen": "2026-01-11T23:53:05.609372"
+}

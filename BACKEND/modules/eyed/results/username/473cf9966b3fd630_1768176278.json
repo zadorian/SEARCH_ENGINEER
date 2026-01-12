@@ -1,0 +1,33 @@
+{
+  "id": "473cf9966b3fd630",
+  "node_class": "ENTITY",
+  "type": "username",
+  "canonicalValue": "chris1357467",
+  "label": "chris1357467",
+  "value": "chris1357467",
+  "comment": "{\n  \"module\": \"foursquare\",\n  \"category\": {\n    \"type\": \"Activity\",\n    \"name\": \"Social Media\",\n    \"description\": \"Platforms that function as social media networks.\"\n  },\n  \"front_schemas\": [\n    {\n      \"module\": \"Foursquare\",\n      \"image\": \"https://fastly.4sqi.net/img/user/width960/blank_boy.png\",\n      \"body\": {},\n      \"tags\": [\n        {\n          \"tag\": \"Anonymous: False\"\n        }\n      ],\n      \"timeline\": {\n        \"last_seen\": true,\n        \"registered\": true,\n        \"last_seen_date\": null,\n        \"registered_date\": null,\n        \"groups\": {\n          \"foursquare\": {\n            \"color\": \"#663399\",\n            \"flavor_text\": \"$count$ activites in $year$\",\n            \"tolerance\": 5\n          }\n        },\n        \"group_items\": {},\n        \"group_years\": {}\n      }\n    }\n  ],\n  \"spec_format\": [\n    {\n      \"registered\": {\n        \"type\": \"bool\",\n        \"proper_key\": \"Registered\",\n        \"value\": true\n      },\n      \"id\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Id\",\n        \"value\": \"2155636\"\n      },\n      \"first_name\": {\n        \"type\": \"str\",\n        \"proper_key\": \"First Name\",\n        \"value\": \"Chris\"\n      },\n      \"picture_url\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Picture Url\",\n        \"value\": \"https://fastly.4sqi.net/img/user/width960/blank_boy.png\"\n      },\n      \"gender\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Gender\",\n        \"value\": \"Male\"\n      },\n      \"location\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Location\",\n        \"value\": \"City: Staten Island, NY\\nCountry: US\"\n      },\n      \"username\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Username\",\n        \"value\": \"chris1357467\"\n      },\n      \"profile_url\": {\n        \"type\": \"str\",\n        \"proper_key\": \"Profile Url\",\n        \"value\": \"https://app.foursquare.com/user/2155636\"\n      },\n      \"private\": {\n        \"type\": \"bool\",\n        \"proper_key\": \"Private\",\n        \"value\": false\n      },\n      \"platform_variables\": [\n        {\n          \"key\": \"anonymous\",\n          \"proper_key\": \"Anonymous\",\n          \"value\": false,\n          \"type\": \"bool\"\n        }\n      ]\n    }\n  ],\n  \"data\": {\n    \"data\": true\n  },\n  \"status\": \"found\",\n  \"query\": \"tyrion@gmail.com\",\n  \"from\": \"User supplied email.\",\n  \"reliable_source\": true\n}",
+  "embedded_edges": [
+    {
+      "target_id": "175de7c7d55a2bf4",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    },
+    {
+      "target_id": "50ba40754cd34c49",
+      "relation": "related_to",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "input_context"
+    },
+    {
+      "target_id": "b507d8b07cafc4b8",
+      "relation": "account_on",
+      "verification_status": "VERIFIED",
+      "connection_reason": "platform_association"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:38.922402",
+  "updatedAt": "2026-01-12T00:04:38.922405",
+  "lastSeen": "2026-01-12T00:04:38.922406"
+}

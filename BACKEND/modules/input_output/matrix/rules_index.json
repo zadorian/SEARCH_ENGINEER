@@ -1,0 +1,647 @@
+{
+  "summary": {
+    "total_rules": 4090,
+    "executable_rules": 4088,
+    "execution_percentage": 99.95,
+    "total_jurisdictions": 622,
+    "total_categories": 54,
+    "total_unique_input_types": 46
+  },
+  "execution_methods": {
+    "code": 155,
+    "resources": 4088,
+    "via_module": 5,
+    "url": 2475
+  },
+  "execution_examples": {
+    "code_based": [
+      {
+        "id": "WHOIS_FROM_DOMAIN",
+        "label": "Domain WHOIS + registrant & DNS metadata",
+        "code_type": "script"
+      },
+      {
+        "id": "USERNAME_OSINT_SWEEP",
+        "label": "Username OSINT (EYE-D / OSINT tools)",
+        "code_type": "script"
+      },
+      {
+        "id": "PHONE_OSINT_SWEEP",
+        "label": "Phone OSINT (EYE-D / eye_d_phone)",
+        "code_type": "script"
+      },
+      {
+        "id": "EMAIL_OSINT_SWEEP",
+        "label": "Email OSINT (EYE-D / OSINT Industries)",
+        "code_type": "python"
+      },
+      {
+        "id": "COMPANY_CORE_FROM_NAME",
+        "label": "Company core via name or previous name",
+        "code_type": "string"
+      }
+    ],
+    "resource_based": [
+      {
+        "id": "WHOIS_FROM_DOMAIN",
+        "label": "Domain WHOIS + registrant & DNS metadata",
+        "resource_types": [
+          "api",
+          "script"
+        ]
+      },
+      {
+        "id": "ENRICH_FROM_EMAIL",
+        "label": "Person/company enrichment from email",
+        "resource_types": [
+          "module"
+        ]
+      },
+      {
+        "id": "SOCIAL_FROM_LINKEDIN_URL",
+        "label": "Person profile from LinkedIn URL",
+        "resource_types": [
+          "brute_search"
+        ]
+      },
+      {
+        "id": "SOCIAL_FROM_USERNAME",
+        "label": "Person profile from username/handle",
+        "resource_types": [
+          "brute_search"
+        ]
+      },
+      {
+        "id": "USERNAME_OSINT_SWEEP",
+        "label": "Username OSINT (EYE-D / OSINT tools)",
+        "resource_types": [
+          "module",
+          "script",
+          "api"
+        ]
+      }
+    ],
+    "brute_search": []
+  },
+  "by_jurisdiction": {
+    "top_20": {
+      "GB": 149,
+      "none": 127,
+      "HU": 119,
+      "GLOBAL": 108,
+      "DE": 103,
+      "CH": 95,
+      "AR": 83,
+      "PL": 78,
+      "CZ": 74,
+      "AT": 74,
+      "US": 74,
+      "UN": 73,
+      "EU": 68,
+      "CA": 67,
+      "IE": 67,
+      "RO": 64,
+      "CO": 64,
+      "NL": 58,
+      "CY": 54,
+      "MX": 52
+    },
+    "total_count": 622
+  },
+  "by_input_type": {
+    "human_readable": {
+      "litigation_id": {
+        "count": 466,
+        "field_id": "17"
+      },
+      "property_address": {
+        "count": 237,
+        "field_id": "20"
+      },
+      "company_name": {
+        "count": 45,
+        "field_id": "42"
+      },
+      "person_name": {
+        "count": 42,
+        "field_id": "31"
+      },
+      "domain_url": {
+        "count": 37,
+        "field_id": "129"
+      },
+      "keyword_term": {
+        "count": 22,
+        "field_id": "147"
+      },
+      "email": {
+        "count": 18,
+        "field_id": "1"
+      },
+      "username": {
+        "count": 10,
+        "field_id": "3"
+      },
+      "backlink_urls": {
+        "count": 8,
+        "field_id": "218"
+      },
+      "outlink_urls": {
+        "count": 7,
+        "field_id": "220"
+      },
+      "archive_snapshots": {
+        "count": 7,
+        "field_id": "225"
+      },
+      "document_content": {
+        "count": 6,
+        "field_id": "146"
+      },
+      "company_reg_id": {
+        "count": 5,
+        "field_id": "43"
+      },
+      "person_linkedin_url": {
+        "count": 5,
+        "field_id": "5"
+      },
+      "company_officer_name": {
+        "count": 5,
+        "field_id": "59"
+      },
+      "event_name": {
+        "count": 4,
+        "field_id": "260"
+      },
+      "person_address": {
+        "count": 4,
+        "field_id": "35"
+      },
+      "company_address": {
+        "count": 4,
+        "field_id": "47"
+      },
+      "phone": {
+        "count": 3,
+        "field_id": "2"
+      },
+      "person_profile_url": {
+        "count": 3,
+        "field_id": "38"
+      },
+      "person_passport_id": {
+        "count": 2,
+        "field_id": "10"
+      },
+      "person_national_id": {
+        "count": 2,
+        "field_id": "8"
+      },
+      "person_tax_id": {
+        "count": 2,
+        "field_id": "9"
+      },
+      "person_driver_license_id": {
+        "count": 2,
+        "field_id": "11"
+      },
+      "company_vat_id": {
+        "count": 2,
+        "field_id": "15"
+      },
+      "property_title_id": {
+        "count": 2,
+        "field_id": "22"
+      },
+      "vehicle_reg_id": {
+        "count": 2,
+        "field_id": "23"
+      },
+      "vessel_imo_id": {
+        "count": 2,
+        "field_id": "24"
+      },
+      "aircraft_reg_id": {
+        "count": 2,
+        "field_id": "25"
+      },
+      "password": {
+        "count": 2,
+        "field_id": "4"
+      }
+    },
+    "top_5_summary": [
+      {
+        "field_name": "company_name",
+        "count": 45,
+        "field_id": "42"
+      },
+      {
+        "field_name": "person_name",
+        "count": 42,
+        "field_id": "31"
+      },
+      {
+        "field_name": "company_reg_id",
+        "count": 5,
+        "field_id": "43"
+      },
+      {
+        "field_name": "litigation_id",
+        "count": 466,
+        "field_id": "17"
+      },
+      {
+        "field_name": "property_address",
+        "count": 237,
+        "field_id": "20"
+      }
+    ]
+  },
+  "by_category": {
+    "all": {
+      "wiki": 2475,
+      "arb": 776,
+      "playbook": 500,
+      "registry": 123,
+      "brute": 36,
+      "linklater": 28,
+      "arbitrage": 27,
+      "majestic": 18,
+      "company": 12,
+      "uncategorized": 8,
+      "wdc": 8,
+      "domain": 7,
+      "chain": 7,
+      "person": 6,
+      "document": 4,
+      "email": 3,
+      "sanctions": 3,
+      "eyed": 3,
+      "social": 2,
+      "phone": 2,
+      "litigation": 2,
+      "property": 2,
+      "aircraft": 2,
+      "breach": 2,
+      "officer": 2,
+      "beneficial": 2,
+      "uk": 2,
+      "jester": 2,
+      "whois": 1,
+      "enrich": 1,
+      "username": 1,
+      "country": 1,
+      "vehicle": 1,
+      "vessel": 1,
+      "license": 1,
+      "permit": 1,
+      "regulatory": 1,
+      "password": 1,
+      "shareholdings": 1,
+      "vessels": 1,
+      "vehicles": 1,
+      "text": 1,
+      "national": 1,
+      "raidforums": 1,
+      "openownership": 1,
+      "icij": 1,
+      "sec": 1,
+      "fincen": 1,
+      "torpedo": 1,
+      "exa": 1,
+      "alldom": 1,
+      "url": 1,
+      "event": 1,
+      "narrative": 1
+    },
+    "top_10": {
+      "wiki": 2475,
+      "arb": 776,
+      "playbook": 500,
+      "registry": 123,
+      "brute": 36,
+      "linklater": 28,
+      "arbitrage": 27,
+      "majestic": 18,
+      "company": 12,
+      "uncategorized": 8
+    }
+  },
+  "sample_executable_rules": [
+    {
+      "rule_id": "WHOIS_FROM_DOMAIN",
+      "description": "",
+      "requires_any": [
+        6,
+        1
+      ],
+      "returns": [
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141
+      ],
+      "execution_type": "code",
+      "full_structure": {
+        "id": "WHOIS_FROM_DOMAIN",
+        "label": "Domain WHOIS + registrant & DNS metadata",
+        "requires_any": [
+          6,
+          1
+        ],
+        "requires_all": [],
+        "returns": [
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141
+        ],
+        "friction": "Paywalled",
+        "jurisdiction": "none",
+        "notes": "Email -> domain via domain part; WHOIS may be redacted.",
+        "resources": [
+          {
+            "type": "script",
+            "path": "python-backend/eyed/whois.py",
+            "exec": "python3 python-backend/eyed/whois.py {domain}"
+          },
+          {
+            "type": "api",
+            "name": "WhoisXML History",
+            "url": "https://whois-history.whoisxmlapi.com/api/v1"
+          },
+          {
+            "type": "api",
+            "name": "WhoisXML Reverse WHOIS",
+            "url": "https://reverse-whois-api.whoisxmlapi.com/api/v2"
+          }
+        ],
+        "category": "domain",
+        "friction_raw": "Open/Paywalled",
+        "code": {
+          "type": "script",
+          "exec": "python3 python-backend/eyed/whois.py {domain}",
+          "path": "python-backend/eyed/whois.py"
+        }
+      }
+    },
+    {
+      "rule_id": "ENRICH_FROM_EMAIL",
+      "description": "",
+      "requires_any": [
+        1
+      ],
+      "returns": [
+        31,
+        32,
+        34,
+        36,
+        38,
+        39,
+        41,
+        42,
+        129
+      ],
+      "execution_type": "resources",
+      "full_structure": {
+        "id": "ENRICH_FROM_EMAIL",
+        "label": "Person/company enrichment from email",
+        "requires_any": [
+          1
+        ],
+        "requires_all": [],
+        "returns": [
+          31,
+          32,
+          34,
+          36,
+          38,
+          39,
+          41,
+          42,
+          129
+        ],
+        "friction": "Paywalled",
+        "jurisdiction": "none",
+        "notes": "Often yields person profile, employer (41), company (42), and site (129).",
+        "category": "corporate",
+        "friction_raw": "Paywalled/Open",
+        "resources": [
+          {
+            "type": "module",
+            "import": "EYE-D.unified_osint.UnifiedSearcher",
+            "method": "search_email",
+            "note": "Auto-added by batch_add_execution_methods.py"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "SOCIAL_FROM_LINKEDIN_URL",
+      "description": "",
+      "requires_any": [
+        5
+      ],
+      "returns": [
+        31,
+        32,
+        34,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "execution_type": "resources",
+      "full_structure": {
+        "id": "SOCIAL_FROM_LINKEDIN_URL",
+        "label": "Person profile from LinkedIn URL",
+        "requires_any": [
+          5
+        ],
+        "requires_all": [],
+        "returns": [
+          31,
+          32,
+          34,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "friction": "Open",
+        "jurisdiction": "none",
+        "notes": "Availability varies; 39=platform 'linkedin'.",
+        "category": "person",
+        "friction_raw": "Open (rate-limited)",
+        "resources": [
+          {
+            "type": "brute_search",
+            "engines": [
+              "LI",
+              "GO",
+              "BI"
+            ],
+            "wave": "instant_start",
+            "query_template": "site:linkedin.com \"{person_name}\"",
+            "note": "Auto-added by batch_add_execution_methods.py"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "SOCIAL_FROM_USERNAME",
+      "description": "",
+      "requires_any": [
+        3
+      ],
+      "returns": [
+        31,
+        32,
+        34,
+        38,
+        39,
+        40,
+        41
+      ],
+      "execution_type": "resources",
+      "full_structure": {
+        "id": "SOCIAL_FROM_USERNAME",
+        "label": "Person profile from username/handle",
+        "requires_any": [
+          3
+        ],
+        "requires_all": [],
+        "returns": [
+          31,
+          32,
+          34,
+          38,
+          39,
+          40,
+          41
+        ],
+        "friction": "Paywalled",
+        "jurisdiction": "none",
+        "notes": "Platform determined by source scope.",
+        "category": "person",
+        "friction_raw": "Open/Paywalled",
+        "resources": [
+          {
+            "type": "brute_search",
+            "engines": [
+              "GO",
+              "BI",
+              "PX",
+              "BR"
+            ],
+            "wave": "instant_start",
+            "query_template": "\"{person_name}\" contact OR profile OR biography",
+            "note": "Auto-added by batch_add_execution_methods.py"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "USERNAME_OSINT_SWEEP",
+      "description": "",
+      "requires_any": [
+        3
+      ],
+      "returns": [
+        170,
+        171,
+        172,
+        173,
+        174
+      ],
+      "execution_type": "code",
+      "full_structure": {
+        "id": "USERNAME_OSINT_SWEEP",
+        "label": "Username OSINT (EYE-D / OSINT tools)",
+        "requires_any": [
+          3
+        ],
+        "requires_all": [],
+        "returns": [
+          170,
+          171,
+          172,
+          173,
+          174
+        ],
+        "friction": "Paywalled",
+        "jurisdiction": "none",
+        "notes": "Routes username inputs through EYE-D/username.py (python3 EYE-D/username.py username:{username}), EyeDSearchHandler.search_username for breach pulls, bare_social social search, and Sherlock pattern sweeps; URLs include Google, Bing, Yandex, WhatsMyName, Namechk, UserSearch, Social-Searcher, platform templates, and wiki_io_extractions.json for cached intel.",
+        "resources": [
+          {
+            "type": "script",
+            "path": "EYE-D/username.py",
+            "exec": "python3 EYE-D/username.py username:{username}"
+          },
+          {
+            "type": "module",
+            "import": "Search_Types.subject.entity_search.EyeDSearchHandler",
+            "method": "search_username"
+          },
+          {
+            "type": "module",
+            "import": "Search_Engines.exact_phrase_recall_runner_baresearch.bare_social",
+            "method": "bare_social"
+          },
+          {
+            "type": "module",
+            "import": "Search_Types.sherlock_integration.search_username_sherlock_sync",
+            "method": "search_username_sherlock_sync"
+          },
+          {
+            "type": "module",
+            "import": "python-backend.eyed.osintindustries.OSINTIndustriesClient",
+            "method": "search"
+          },
+          {
+            "type": "api",
+            "name": "Search portals",
+            "endpoints": [
+              "https://www.google.com/search?q={username}",
+              "https://www.bing.com/search?q={username}",
+              "https://yandex.com/search/?text={username}",
+              "https://duckduckgo.com/?q={username}",
+              "https://pipl.com/search/?q={username}",
+              "https://whatsmyname.app/?username={username}",
+              "https://namechk.com/{username}",
+              "https://usersearch.org/results/?username={username}"
+            ]
+          }
+        ],
+        "friction_raw": "Open/Paywalled (EYE-D stack)",
+        "code": {
+          "type": "script",
+          "exec": "python3 EYE-D/username.py username:{username}",
+          "path": "EYE-D/username.py"
+        }
+      }
+    }
+  ]
+}

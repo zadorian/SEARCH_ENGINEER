@@ -1,0 +1,267 @@
+{
+  "US": [
+    {
+      "name": "Donald Trump Tax Returns (2015-2020)",
+      "domain": "aleph.occrp.org/datasets/7151",
+      "url": "https://aleph.occrp.org/datasets/7151",
+      "type": "investigative_archive",
+      "category": "finance",
+      "section": "ass",
+      "friction": "api",
+      "jurisdiction": "US",
+      "jurisdictions": [
+        "US"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 7151,
+      "inputs": [
+        "person_name"
+      ],
+      "outputs": [
+        "tax_records"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 7151. Donald Trump Tax Returns (2015-2020)",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=7151",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=7151",
+      "access_method": "api"
+    }
+  ],
+  "GE": [
+    {
+      "name": "Georgian Asset Declarations 2025",
+      "domain": "aleph.occrp.org/datasets/11295",
+      "url": "https://aleph.occrp.org/datasets/11295",
+      "type": "investigative_archive",
+      "category": "finance",
+      "section": "ass",
+      "friction": "api",
+      "jurisdiction": "GE",
+      "jurisdictions": [
+        "GE"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 11295,
+      "inputs": [
+        "person_name"
+      ],
+      "outputs": [
+        "asset_declarations"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 11295. Georgian Asset Declarations 2025",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=11295",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=11295",
+      "access_method": "api"
+    },
+    {
+      "name": "Georgia Asset Declarations",
+      "domain": "aleph.occrp.org/datasets/10735",
+      "url": "https://aleph.occrp.org/datasets/10735",
+      "type": "investigative_archive",
+      "category": "finance",
+      "section": "ass",
+      "friction": "api",
+      "jurisdiction": "GE",
+      "jurisdictions": [
+        "GE"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 10735,
+      "inputs": [
+        "person_name"
+      ],
+      "outputs": [
+        "asset_declarations"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 10735. Georgia Asset Declarations",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=10735",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=10735",
+      "access_method": "api"
+    },
+    {
+      "name": "Georgian Political Donations",
+      "domain": "aleph.occrp.org/datasets/2654",
+      "url": "https://aleph.occrp.org/datasets/2654",
+      "type": "investigative_archive",
+      "category": "finance",
+      "section": "ass",
+      "friction": "api",
+      "jurisdiction": "GE",
+      "jurisdictions": [
+        "GE"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 2654,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "donations"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 2654. Georgian Political Donations",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=2654",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=2654",
+      "access_method": "api"
+    }
+  ],
+  "RS": [
+    {
+      "name": "Serbian Political Donations",
+      "domain": "aleph.occrp.org/datasets/1994",
+      "url": "https://aleph.occrp.org/datasets/1994",
+      "type": "investigative_archive",
+      "category": "finance",
+      "section": "ass",
+      "friction": "api",
+      "jurisdiction": "RS",
+      "jurisdictions": [
+        "RS"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 1994,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "donations"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 1994. Serbian Political Donations",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=1994",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=1994",
+      "access_method": "api"
+    }
+  ],
+  "SI": [
+    {
+      "name": "Slovenia Gifts received by officials",
+      "domain": "aleph.occrp.org/datasets/8850",
+      "url": "https://aleph.occrp.org/datasets/8850",
+      "type": "investigative_archive",
+      "category": "finance",
+      "section": "ass",
+      "friction": "api",
+      "jurisdiction": "SI",
+      "jurisdictions": [
+        "SI"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 8850,
+      "inputs": [
+        "person_name"
+      ],
+      "outputs": [
+        "gift_records"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 8850. Slovenia Gifts received by officials",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=8850",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=8850",
+      "access_method": "api"
+    },
+    {
+      "name": "Slovenia Register of lobbying contacts",
+      "domain": "aleph.occrp.org/datasets/8859",
+      "url": "https://aleph.occrp.org/datasets/8859",
+      "type": "investigative_archive",
+      "category": "finance",
+      "section": "ass",
+      "friction": "api",
+      "jurisdiction": "SI",
+      "jurisdictions": [
+        "SI"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 8859,
+      "inputs": [
+        "person_name",
+        "company_name"
+      ],
+      "outputs": [
+        "lobbying_records"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 8859. Slovenia Register of lobbying contacts",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=8859",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=8859",
+      "access_method": "api"
+    },
+    {
+      "name": "Slovenia Business restrictions entities",
+      "domain": "aleph.occrp.org/datasets/8867",
+      "url": "https://aleph.occrp.org/datasets/8867",
+      "type": "investigative_archive",
+      "category": "finance",
+      "section": "ass",
+      "friction": "api",
+      "jurisdiction": "SI",
+      "jurisdictions": [
+        "SI"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 8867,
+      "inputs": [
+        "company_name"
+      ],
+      "outputs": [
+        "restriction_records"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 8867. Slovenia Business restrictions entities",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=8867",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=8867",
+      "access_method": "api"
+    }
+  ],
+  "EU": [
+    {
+      "name": "EU Financial Transparency",
+      "domain": "aleph.occrp.org/datasets/829",
+      "url": "https://aleph.occrp.org/datasets/829",
+      "type": "investigative_archive",
+      "category": "finance",
+      "section": "ass",
+      "friction": "api",
+      "jurisdiction": "EU",
+      "jurisdictions": [
+        "EU"
+      ],
+      "module": "CORPORELLA",
+      "aggregator": "OCCRP_ALEPH",
+      "aleph_collection_id": 829,
+      "inputs": [
+        "company_name"
+      ],
+      "outputs": [
+        "financial_records"
+      ],
+      "searchable": true,
+      "notes": "Aleph Collection 829. EU Financial Transparency",
+      "api_search_url": "https://aleph.occrp.org/api/2/search?q={q}&filter:collection_id=829",
+      "handled_by": "CORPORELLA",
+      "api_endpoint": "https://aleph.occrp.org/api/2/entities?filter:collection_id=829",
+      "access_method": "api"
+    }
+  ]
+}

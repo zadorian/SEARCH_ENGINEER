@@ -1,0 +1,20 @@
+{
+  "event_edges": {
+    "originated": {
+      "inverse": "originator",
+      "description": "Event edge to the source of value or action."
+    },
+    "benefited_from": {
+      "inverse": "beneficiary",
+      "description": "Event edge to the recipient of value."
+    },
+    "facilitated": {
+      "inverse": "facilitator",
+      "description": "Event edge to an entity that enabled the event (e.g., lawyer, bank)."
+    },
+    "happened_at": {
+      "inverse": "contains_event",
+      "description": "Temporal anchor linking Event -> TimeNode."
+    }
+  }
+}

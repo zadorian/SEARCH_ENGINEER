@@ -1,0 +1,690 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "MASTER OBSERVATION CODEBOOK - Standardized codes for jurisdiction characteristics derived from empirical investigation data",
+    "generated_at": "2025-12-29",
+    "total_categories": 7,
+    "total_codes": 62,
+    "source": "Derived from jurisdictions.json dead_ends, proven_methods, capabilities, data_availability, and legal_notes"
+  },
+  "categories": {
+    "TRANSPARENCY": {
+      "description": "Overall transparency level of corporate and public records",
+      "codes": {
+        "TRANSPARENCY_HIGH": {
+          "code": "TRANSPARENCY_HIGH",
+          "description": "Jurisdiction with comprehensive public disclosure requirements and accessible records",
+          "indicators": [
+            "friction_profile.open > 0.8",
+            "data_availability.accessible contains multiple data types",
+            "wiki_sections contain extensive registry links",
+            "dead_ends rarely cite 'access_restricted' as reason"
+          ],
+          "example_jurisdictions": ["UK", "AL", "XK"]
+        },
+        "TRANSPARENCY_MEDIUM": {
+          "code": "TRANSPARENCY_MEDIUM",
+          "description": "Moderate transparency with some records public, others restricted or paywalled",
+          "indicators": [
+            "friction_profile.open between 0.5-0.8",
+            "friction_profile.restricted > 0.1",
+            "Mix of accessible and restricted data",
+            "Registry requires registration or payment for full records"
+          ],
+          "example_jurisdictions": ["AM", "AZ", "KZ"]
+        },
+        "TRANSPARENCY_LOW": {
+          "code": "TRANSPARENCY_LOW",
+          "description": "Limited transparency with most records restricted or unavailable",
+          "indicators": [
+            "friction_profile.open < 0.5",
+            "friction_profile.restricted > 0.3",
+            "data_availability.unavailable contains beneficial_ownership",
+            "dead_ends frequently cite 'access_restricted' or 'disclosure_not_required'"
+          ],
+          "example_jurisdictions": ["AE", "AZ"]
+        },
+        "TRANSPARENCY_OPAQUE": {
+          "code": "TRANSPARENCY_OPAQUE",
+          "description": "Jurisdiction designed for opacity, no meaningful public disclosure",
+          "indicators": [
+            "legal_notes mentions 'limited transparency' or 'no disclosure'",
+            "dead_ends cite 'BVI company structures provide opacity'",
+            "data_availability.unavailable contains 'beneficial ownership transparency'",
+            "proven_methods primarily rely on OFFSHORE_LEAKS sources"
+          ],
+          "example_jurisdictions": ["VG", "KY", "PA"]
+        },
+        "TRANSPARENCY_PAYWALLED": {
+          "code": "TRANSPARENCY_PAYWALLED",
+          "description": "Data exists but requires payment to access",
+          "indicators": [
+            "friction_profile.paywalled > 0.1",
+            "wiki_sections mention purchase/payment requirements",
+            "Registry notes 'must be purchased' or similar"
+          ],
+          "example_jurisdictions": ["AM"]
+        }
+      }
+    },
+    "REGISTRY": {
+      "description": "Corporate registry characteristics and capabilities",
+      "codes": {
+        "REGISTRY_PUBLIC": {
+          "code": "REGISTRY_PUBLIC",
+          "description": "Corporate registry is publicly accessible online without registration",
+          "indicators": [
+            "wiki_sections.corporate_registry contains (pub) markers",
+            "source_domains includes gov registry domains",
+            "proven_methods.REGISTRY_COMPANY.friction_profile.open > 0"
+          ],
+          "example_jurisdictions": ["UK", "AL", "XK"]
+        },
+        "REGISTRY_REGISTRATION_REQUIRED": {
+          "code": "REGISTRY_REGISTRATION_REQUIRED",
+          "description": "Registry access requires free registration/login",
+          "indicators": [
+            "wiki_sections mention 'free registration' or 'login required'",
+            "wiki_sections contain (reg) markers"
+          ],
+          "example_jurisdictions": ["AM", "RU"]
+        },
+        "REGISTRY_PAID": {
+          "code": "REGISTRY_PAID",
+          "description": "Full registry records require payment",
+          "indicators": [
+            "wiki_sections mention purchase price or payment",
+            "friction_profile.paywalled > 0",
+            "Notes mention 'companydocuments.com' or similar paid services"
+          ],
+          "example_jurisdictions": ["AM", "AD"]
+        },
+        "REGISTRY_FRAGMENTED": {
+          "code": "REGISTRY_FRAGMENTED",
+          "description": "Multiple separate registries for different entity types or regions",
+          "indicators": [
+            "wiki_sections.corporate_registry lists multiple different registries",
+            "source_domains contains multiple gov registry domains",
+            "Free zone registries separate from national registry"
+          ],
+          "example_jurisdictions": ["AE", "CH"]
+        },
+        "REGISTRY_LIMITED": {
+          "code": "REGISTRY_LIMITED",
+          "description": "Registry exists but provides minimal information",
+          "indicators": [
+            "dead_ends cite 'registry_limitation'",
+            "legal_notes mention 'limited' registry capabilities",
+            "data_availability.restricted contains core data types"
+          ],
+          "example_jurisdictions": ["KY", "VG"]
+        },
+        "REGISTRY_OFFLINE": {
+          "code": "REGISTRY_OFFLINE",
+          "description": "Registry requires physical visit or written request",
+          "indicators": [
+            "wiki_sections mention 'offline' or 'in person'",
+            "No online registry URL available",
+            "dead_ends cite 'technical_failure' for registry access"
+          ],
+          "example_jurisdictions": ["AF"]
+        },
+        "REGISTRY_HISTORICAL_GAP": {
+          "code": "REGISTRY_HISTORICAL_GAP",
+          "description": "Registry lacks historical ownership/change data",
+          "indicators": [
+            "legal_notes mention 'limited historical data'",
+            "dead_ends cite inability to access 'historical ownership'",
+            "data_availability.restricted contains 'historical' items"
+          ],
+          "example_jurisdictions": ["XK"]
+        },
+        "REGISTRY_OFFICERS_AVAILABLE": {
+          "code": "REGISTRY_OFFICERS_AVAILABLE",
+          "description": "Director/officer information accessible",
+          "indicators": [
+            "capabilities.atoms_available contains 'REGISTRY_OFFICERS'",
+            "data_availability.accessible contains 'directors' or 'officers'",
+            "proven_methods includes REGISTRY_OFFICERS patterns"
+          ],
+          "example_jurisdictions": ["UK", "AM", "AZ"]
+        },
+        "REGISTRY_OWNERSHIP_HIDDEN": {
+          "code": "REGISTRY_OWNERSHIP_HIDDEN",
+          "description": "Beneficial ownership not disclosed in registry",
+          "indicators": [
+            "legal_notes mention 'shareholders not disclosed' or 'commercial secret'",
+            "dead_ends frequently seek 'beneficial_ownership' with permanent=true",
+            "data_availability.unavailable contains 'shareholder' or 'ownership'"
+          ],
+          "example_jurisdictions": ["AZ", "KY", "VG"]
+        }
+      }
+    },
+    "LEGAL_SYSTEM": {
+      "description": "Legal framework and judicial system characteristics",
+      "codes": {
+        "LEGAL_COMMON_LAW": {
+          "code": "LEGAL_COMMON_LAW",
+          "description": "Common law jurisdiction with precedent-based system",
+          "indicators": [
+            "Jurisdiction code is UK, US state, Commonwealth country",
+            "wiki_sections.litigation references case law databases",
+            "BAILII or similar case law resources available"
+          ],
+          "example_jurisdictions": ["UK", "KY", "VG"]
+        },
+        "LEGAL_CIVIL_LAW": {
+          "code": "LEGAL_CIVIL_LAW",
+          "description": "Civil law jurisdiction with codified statute system",
+          "indicators": [
+            "Continental European or Latin American jurisdiction",
+            "wiki_sections reference civil codes or statute databases",
+            "Entity types include SA, SARL, GmbH, etc."
+          ],
+          "example_jurisdictions": ["CH", "DE", "FR"]
+        },
+        "LEGAL_HYBRID": {
+          "code": "LEGAL_HYBRID",
+          "description": "Mixed legal system combining multiple traditions",
+          "indicators": [
+            "Post-Soviet or post-colonial jurisdiction",
+            "Multiple legal influences noted in legal_notes",
+            "Islamic and civil law elements present"
+          ],
+          "example_jurisdictions": ["AE", "KZ"]
+        },
+        "LEGAL_AUTHORITARIAN": {
+          "code": "LEGAL_AUTHORITARIAN",
+          "description": "Authoritarian system where rule of law is compromised",
+          "indicators": [
+            "legal_notes mention 'authoritarian' or 'state capture'",
+            "dead_ends cite political influence on records",
+            "Media restrictions noted in legal_notes",
+            "HUMINT patterns show high reliance on confidential sources"
+          ],
+          "example_jurisdictions": ["AZ", "KZ"]
+        },
+        "LEGAL_CONFLICT_ZONE": {
+          "code": "LEGAL_CONFLICT_ZONE",
+          "description": "Active or recent conflict affects legal system functionality",
+          "indicators": [
+            "legal_notes mention 'conflict' or 'civil war'",
+            "dead_ends cite 'pending_action' due to instability",
+            "observations include CONFLICT_ZONE code"
+          ],
+          "example_jurisdictions": ["AF", "UA"]
+        },
+        "LEGAL_COURTS_ACCESSIBLE": {
+          "code": "LEGAL_COURTS_ACCESSIBLE",
+          "description": "Court records available through online databases",
+          "indicators": [
+            "wiki_sections.litigation contains searchable court databases",
+            "proven_methods includes LITIGATION_COURT with open friction",
+            "capabilities.atoms_available contains 'REGISTRY_COURT'"
+          ],
+          "example_jurisdictions": ["UK", "AM", "AL"]
+        },
+        "LEGAL_COURTS_RESTRICTED": {
+          "code": "LEGAL_COURTS_RESTRICTED",
+          "description": "Court records not publicly accessible or heavily restricted",
+          "indicators": [
+            "dead_ends frequently cite 'litigation_records' as sought category",
+            "reason_category includes 'access_restricted' for court records",
+            "No court database URLs in wiki_sections.litigation"
+          ],
+          "example_jurisdictions": ["AZ", "AE"]
+        },
+        "LEGAL_REGULATORY_ACTIVE": {
+          "code": "LEGAL_REGULATORY_ACTIVE",
+          "description": "Active regulatory bodies with enforcement powers and public records",
+          "indicators": [
+            "wiki_sections.regulatory contains multiple agency links",
+            "proven_methods includes REGULATORY_FILINGS_SEARCH",
+            "capabilities mentions COMPLIANCE atoms"
+          ],
+          "example_jurisdictions": ["UK", "AM"]
+        }
+      }
+    },
+    "LANGUAGE": {
+      "description": "Language accessibility and availability of translations",
+      "codes": {
+        "LANGUAGE_ENGLISH": {
+          "code": "LANGUAGE_ENGLISH",
+          "description": "Primary sources available in English",
+          "indicators": [
+            "source_domains include .uk, .com, .org with English content",
+            "wiki_sections show English-language links",
+            "No translation notes in proven_methods"
+          ],
+          "example_jurisdictions": ["UK", "US", "KY", "VG"]
+        },
+        "LANGUAGE_BILINGUAL": {
+          "code": "LANGUAGE_BILINGUAL",
+          "description": "Sources available in local language AND English",
+          "indicators": [
+            "wiki_sections contain both /en/ and local language URLs",
+            "Registry notes mention English interface available",
+            "Multiple language versions of same source"
+          ],
+          "example_jurisdictions": ["CH", "AE", "AM"]
+        },
+        "LANGUAGE_LOCAL_ONLY": {
+          "code": "LANGUAGE_LOCAL_ONLY",
+          "description": "Primary sources only in local/native language",
+          "indicators": [
+            "wiki_sections predominantly in non-English script",
+            "dead_ends.workaround suggests 'native language media sources'",
+            "proven_methods.sample_sources in local language names"
+          ],
+          "example_jurisdictions": ["AZ", "KZ", "AM"]
+        },
+        "LANGUAGE_CYRILLIC": {
+          "code": "LANGUAGE_CYRILLIC",
+          "description": "Primary sources in Cyrillic script languages",
+          "indicators": [
+            "Post-Soviet jurisdiction",
+            "wiki_sections contain Cyrillic text",
+            "source_domains include .ru, .kz, .az, .am"
+          ],
+          "example_jurisdictions": ["RU", "KZ", "AZ", "AM"]
+        },
+        "LANGUAGE_ARABIC": {
+          "code": "LANGUAGE_ARABIC",
+          "description": "Primary sources in Arabic language",
+          "indicators": [
+            "Middle East/North Africa jurisdiction",
+            "wiki_sections mention Arabic search capability",
+            "dead_ends mention 'Arabic language media'"
+          ],
+          "example_jurisdictions": ["AE", "SA", "EG"]
+        },
+        "LANGUAGE_BARRIER_HIGH": {
+          "code": "LANGUAGE_BARRIER_HIGH",
+          "description": "Significant language barrier for English-speaking researchers",
+          "indicators": [
+            "LANGUAGE_LOCAL_ONLY combined with non-Latin script",
+            "dead_ends frequently cite language as limiting factor",
+            "proven_methods show reliance on HUMINT for translation"
+          ],
+          "example_jurisdictions": ["CN", "JP", "KR"]
+        }
+      }
+    },
+    "ACCESS": {
+      "description": "Methods and channels for accessing data",
+      "codes": {
+        "ACCESS_DIRECT_ONLINE": {
+          "code": "ACCESS_DIRECT_ONLINE",
+          "description": "Data directly accessible via web interfaces",
+          "indicators": [
+            "Multiple URLs in wiki_sections",
+            "proven_methods show REGISTRY patterns with open friction",
+            "source_domains contains active registry URLs"
+          ],
+          "example_jurisdictions": ["UK", "AL", "AM"]
+        },
+        "ACCESS_API_AVAILABLE": {
+          "code": "ACCESS_API_AVAILABLE",
+          "description": "Programmatic API access to registry data",
+          "indicators": [
+            "wiki_sections mention API or machine-readable data",
+            "source_domains includes api. subdomains",
+            "OpenCorporates coverage available"
+          ],
+          "example_jurisdictions": ["UK", "US"]
+        },
+        "ACCESS_HUMINT_REQUIRED": {
+          "code": "ACCESS_HUMINT_REQUIRED",
+          "description": "Human intelligence sources necessary for meaningful data",
+          "indicators": [
+            "proven_methods.HUMINT shows high count",
+            "capabilities.atoms_available contains 'HUMINT_NETWORK'",
+            "friction_profile.restricted correlates with HUMINT usage"
+          ],
+          "example_jurisdictions": ["AZ", "AM", "KZ"]
+        },
+        "ACCESS_LEAKS_DEPENDENT": {
+          "code": "ACCESS_LEAKS_DEPENDENT",
+          "description": "Primary access through leaked databases rather than official sources",
+          "indicators": [
+            "proven_methods contains OFFSHORE_LEAKS patterns",
+            "dead_ends.attempted_sources mention 'Leaked databases' or 'Panama Papers'",
+            "wiki_sections mention ICIJ or OCCRP leak databases"
+          ],
+          "example_jurisdictions": ["VG", "PA", "KY"]
+        },
+        "ACCESS_PAID_SERVICES": {
+          "code": "ACCESS_PAID_SERVICES",
+          "description": "Commercial data providers main access channel",
+          "indicators": [
+            "wiki_sections mention companydocuments.com or similar",
+            "friction_profile.paywalled significant",
+            "dead_ends suggest paid alternatives"
+          ],
+          "example_jurisdictions": ["AD", "AM"]
+        },
+        "ACCESS_MEDIA_ROUTE": {
+          "code": "ACCESS_MEDIA_ROUTE",
+          "description": "Media sources primary channel for entity information",
+          "indicators": [
+            "proven_methods.MEDIA_MONITORING high count",
+            "dead_ends.workaround suggests 'media sources'",
+            "capabilities.strengths includes 'MEDIA_MONITORING'"
+          ],
+          "example_jurisdictions": ["AE", "AZ", "KZ"]
+        },
+        "ACCESS_COURT_ROUTE": {
+          "code": "ACCESS_COURT_ROUTE",
+          "description": "Litigation records primary source of corporate information",
+          "indicators": [
+            "proven_methods.LITIGATION_COURT high count",
+            "UK courts reveal ownership in judgments",
+            "dead_ends.workaround mentions court documents"
+          ],
+          "example_jurisdictions": ["UK", "US"]
+        },
+        "ACCESS_BLOCKED": {
+          "code": "ACCESS_BLOCKED",
+          "description": "Data access systematically blocked or prevented",
+          "indicators": [
+            "dead_ends.permanent = true frequently",
+            "reason_category includes 'access_restricted' with no workaround",
+            "legal_notes mention prohibition on access"
+          ],
+          "example_jurisdictions": ["KP"]
+        }
+      }
+    },
+    "COVERAGE": {
+      "description": "What types of data exist and are maintained",
+      "codes": {
+        "COVERAGE_COMPREHENSIVE": {
+          "code": "COVERAGE_COMPREHENSIVE",
+          "description": "Full coverage of company, officer, ownership, and filing data",
+          "indicators": [
+            "data_availability.accessible contains 5+ data types",
+            "wiki_sections has content in multiple categories",
+            "capabilities.total_patterns > 50"
+          ],
+          "example_jurisdictions": ["UK"]
+        },
+        "COVERAGE_BASIC": {
+          "code": "COVERAGE_BASIC",
+          "description": "Basic registration data only (name, number, status, address)",
+          "indicators": [
+            "data_availability.accessible limited to registration info",
+            "data_availability.restricted contains detailed information",
+            "wiki_sections.corporate_registry only category with content"
+          ],
+          "example_jurisdictions": ["VG", "KY"]
+        },
+        "COVERAGE_OWNERSHIP_GAP": {
+          "code": "COVERAGE_OWNERSHIP_GAP",
+          "description": "Ownership/shareholding data not maintained or accessible",
+          "indicators": [
+            "data_availability.unavailable contains 'shareholder' or 'ownership'",
+            "dead_ends.sought_category frequently 'beneficial_ownership'",
+            "legal_notes mention ownership disclosure exemption"
+          ],
+          "example_jurisdictions": ["KY", "VG", "AZ"]
+        },
+        "COVERAGE_FINANCIAL_GAP": {
+          "code": "COVERAGE_FINANCIAL_GAP",
+          "description": "Financial statements/filings not publicly available",
+          "indicators": [
+            "dead_ends.sought_category includes 'financial_information' with permanent=true",
+            "data_availability.restricted or unavailable contains 'financial'",
+            "No financial filing search in proven_methods"
+          ],
+          "example_jurisdictions": ["VG", "KY", "many_private_jurisdictions"]
+        },
+        "COVERAGE_LITIGATION_AVAILABLE": {
+          "code": "COVERAGE_LITIGATION_AVAILABLE",
+          "description": "Court records and litigation history accessible",
+          "indicators": [
+            "wiki_sections.litigation has substantive content",
+            "proven_methods includes LITIGATION patterns",
+            "capabilities mentions REGISTRY_COURT"
+          ],
+          "example_jurisdictions": ["UK", "AM", "AL"]
+        },
+        "COVERAGE_PROPERTY_AVAILABLE": {
+          "code": "COVERAGE_PROPERTY_AVAILABLE",
+          "description": "Land/property registry data accessible",
+          "indicators": [
+            "wiki_sections.asset_registries contains land/cadastre links",
+            "proven_methods includes REGISTRY_LAND_PROPERTY",
+            "capabilities.atoms_available contains property-related atoms"
+          ],
+          "example_jurisdictions": ["UK", "AM"]
+        },
+        "COVERAGE_IP_AVAILABLE": {
+          "code": "COVERAGE_IP_AVAILABLE",
+          "description": "Intellectual property (trademark, patent) registries available",
+          "indicators": [
+            "wiki_sections.asset_registries contains IP/trademark links",
+            "source_domains includes patent/trademark office URLs"
+          ],
+          "example_jurisdictions": ["UK", "AM", "AD"]
+        },
+        "COVERAGE_PEP_DATA": {
+          "code": "COVERAGE_PEP_DATA",
+          "description": "Politically exposed persons data available",
+          "indicators": [
+            "wiki_sections.political has substantive content",
+            "source_domains includes parliament/government personnel databases",
+            "capabilities mentions COMPLIANCE_PEP"
+          ],
+          "example_jurisdictions": ["UK", "AM"]
+        },
+        "COVERAGE_SANCTIONS_LISTS": {
+          "code": "COVERAGE_SANCTIONS_LISTS",
+          "description": "Sanctions and watchlist data accessible",
+          "indicators": [
+            "source_domains includes sanctions/OFSI databases",
+            "proven_methods includes COMPLIANCE_SANCTIONS",
+            "wiki_sections references sanctions checking resources"
+          ],
+          "example_jurisdictions": ["UK", "US"]
+        }
+      }
+    },
+    "RELIABILITY": {
+      "description": "Data quality, accuracy, and update frequency",
+      "codes": {
+        "RELIABILITY_HIGH": {
+          "code": "RELIABILITY_HIGH",
+          "description": "Data is current, accurate, and regularly updated",
+          "indicators": [
+            "capabilities.success_rate > 0.8",
+            "dead_ends rarely cite 'technical_failure'",
+            "Registry shows recent update dates",
+            "Legal requirements mandate timely filing"
+          ],
+          "example_jurisdictions": ["UK"]
+        },
+        "RELIABILITY_MEDIUM": {
+          "code": "RELIABILITY_MEDIUM",
+          "description": "Data generally reliable but may have gaps or delays",
+          "indicators": [
+            "capabilities.success_rate between 0.6-0.8",
+            "Some dead_ends cite outdated information",
+            "Mix of current and historical data issues"
+          ],
+          "example_jurisdictions": ["AM", "AL"]
+        },
+        "RELIABILITY_LOW": {
+          "code": "RELIABILITY_LOW",
+          "description": "Data may be incomplete, outdated, or inaccurate",
+          "indicators": [
+            "capabilities.success_rate < 0.6",
+            "dead_ends frequently cite 'data_not_collected' or 'technical_failure'",
+            "Registry noted as offline or intermittent"
+          ],
+          "example_jurisdictions": ["AF"]
+        },
+        "RELIABILITY_CORRUPTION_RISK": {
+          "code": "RELIABILITY_CORRUPTION_RISK",
+          "description": "Data integrity compromised by corruption or manipulation",
+          "indicators": [
+            "legal_notes mention 'corruption'",
+            "dead_ends cite records being altered or removed",
+            "HUMINT sources contradict official records"
+          ],
+          "example_jurisdictions": ["AO", "AZ"]
+        },
+        "RELIABILITY_TECHNICAL_ISSUES": {
+          "code": "RELIABILITY_TECHNICAL_ISSUES",
+          "description": "Technical problems affect data availability",
+          "indicators": [
+            "dead_ends.reason_category includes 'technical_failure'",
+            "wiki_sections note 'website offline' or 'unavailable'",
+            "Internet Archive references for offline sources"
+          ],
+          "example_jurisdictions": ["AL", "various"]
+        },
+        "RELIABILITY_NOMINEE_PREVALENT": {
+          "code": "RELIABILITY_NOMINEE_PREVALENT",
+          "description": "Nominee structures common, obscuring true ownership",
+          "indicators": [
+            "dead_ends mention 'nominee structures'",
+            "legal_notes reference nominee/shell company usage",
+            "Proven patterns show low beneficial ownership success"
+          ],
+          "example_jurisdictions": ["VG", "KY", "PA"]
+        },
+        "RELIABILITY_STATE_MANIPULATION": {
+          "code": "RELIABILITY_STATE_MANIPULATION",
+          "description": "State actors may manipulate or suppress records",
+          "indicators": [
+            "legal_notes mention 'state-owned media' or government control",
+            "dead_ends cite information 'removed' or 'no longer available'",
+            "Authoritarian characteristics present"
+          ],
+          "example_jurisdictions": ["AZ", "KZ"]
+        }
+      }
+    }
+  },
+  "special_observations": {
+    "description": "Additional jurisdiction-specific observation codes from existing data",
+    "codes": {
+      "OFFSHORE_STRUCTURE": {
+        "code": "OFFSHORE_STRUCTURE",
+        "description": "Jurisdiction used for offshore/holding company structures",
+        "indicators": ["legal_notes mention 'holding company' or 'offshore'"]
+      },
+      "MEDIA_RESTRICTED": {
+        "code": "MEDIA_RESTRICTED",
+        "description": "Media operates under government restrictions or censorship",
+        "indicators": ["legal_notes mention 'prohibits criticism' or 'state-owned media'"]
+      },
+      "CONFLICT_ZONE": {
+        "code": "CONFLICT_ZONE",
+        "description": "Active conflict affects data accessibility",
+        "indicators": ["legal_notes mention 'conflict' or 'civil war'"]
+      },
+      "BILATERAL_ONLY": {
+        "code": "BILATERAL_ONLY",
+        "description": "Limited international cooperation, bilateral relations only",
+        "indicators": ["legal_notes mention 'bilateral' or 'excluded from regional'"]
+      },
+      "BANKING_REGULATED": {
+        "code": "BANKING_REGULATED",
+        "description": "Banking sector under specific regulatory oversight",
+        "indicators": ["legal_notes mention 'banking sector' and 'regulatory oversight'"]
+      },
+      "FREEZONE_FRAGMENTED": {
+        "code": "FREEZONE_FRAGMENTED",
+        "description": "Multiple free zones with separate registries",
+        "indicators": ["Multiple freezone URLs in source_domains"]
+      },
+      "EU_MEMBER": {
+        "code": "EU_MEMBER",
+        "description": "European Union member with harmonized disclosure",
+        "indicators": ["EU country code", "References to EU directives in legal_notes"]
+      },
+      "SANCTIONS_TARGET": {
+        "code": "SANCTIONS_TARGET",
+        "description": "Jurisdiction or key actors under international sanctions",
+        "indicators": ["dead_ends reference sanctions-related searches"]
+      }
+    }
+  },
+  "assignment_rules": {
+    "description": "Rules for automatically assigning observation codes to jurisdictions",
+    "transparency_assignment": {
+      "HIGH": "friction_profile.open >= 0.8 AND data_availability.accessible.length >= 4",
+      "MEDIUM": "friction_profile.open >= 0.5 AND friction_profile.open < 0.8",
+      "LOW": "friction_profile.open < 0.5 AND friction_profile.restricted > 0.2",
+      "OPAQUE": "dead_ends contains permanent=true for beneficial_ownership OR legal_notes contains 'no transparency'"
+    },
+    "registry_assignment": {
+      "PUBLIC": "wiki_sections.corporate_registry contains (pub) markers AND no payment required",
+      "PAID": "wiki_sections contains payment/purchase mentions OR friction_profile.paywalled > 0.05",
+      "LIMITED": "dead_ends.reason_category contains 'registry_limitation'"
+    },
+    "language_assignment": {
+      "CYRILLIC": "jurisdiction_code IN ['RU', 'KZ', 'AZ', 'AM', 'BY', 'UA', 'KG', 'TJ', 'UZ', 'TM', 'MN', 'BG', 'RS', 'ME', 'MK', 'BA']",
+      "ARABIC": "jurisdiction_code IN ['AE', 'SA', 'EG', 'IQ', 'SY', 'JO', 'LB', 'KW', 'QA', 'BH', 'OM', 'YE', 'LY', 'TN', 'DZ', 'MA']"
+    }
+  },
+  "usage_examples": {
+    "description": "How to apply these codes in practice",
+    "example_uk": {
+      "jurisdiction": "UK",
+      "assigned_codes": [
+        "TRANSPARENCY_HIGH",
+        "REGISTRY_PUBLIC",
+        "REGISTRY_OFFICERS_AVAILABLE",
+        "LEGAL_COMMON_LAW",
+        "LEGAL_COURTS_ACCESSIBLE",
+        "LEGAL_REGULATORY_ACTIVE",
+        "LANGUAGE_ENGLISH",
+        "ACCESS_DIRECT_ONLINE",
+        "ACCESS_API_AVAILABLE",
+        "COVERAGE_COMPREHENSIVE",
+        "COVERAGE_LITIGATION_AVAILABLE",
+        "COVERAGE_PROPERTY_AVAILABLE",
+        "COVERAGE_IP_AVAILABLE",
+        "RELIABILITY_HIGH"
+      ]
+    },
+    "example_vg": {
+      "jurisdiction": "VG",
+      "assigned_codes": [
+        "TRANSPARENCY_OPAQUE",
+        "REGISTRY_LIMITED",
+        "REGISTRY_OWNERSHIP_HIDDEN",
+        "LEGAL_COMMON_LAW",
+        "LANGUAGE_ENGLISH",
+        "ACCESS_LEAKS_DEPENDENT",
+        "COVERAGE_BASIC",
+        "COVERAGE_OWNERSHIP_GAP",
+        "COVERAGE_FINANCIAL_GAP",
+        "RELIABILITY_NOMINEE_PREVALENT"
+      ]
+    },
+    "example_az": {
+      "jurisdiction": "AZ",
+      "assigned_codes": [
+        "TRANSPARENCY_LOW",
+        "REGISTRY_PUBLIC",
+        "REGISTRY_OWNERSHIP_HIDDEN",
+        "LEGAL_HYBRID",
+        "LEGAL_AUTHORITARIAN",
+        "LEGAL_COURTS_RESTRICTED",
+        "LANGUAGE_CYRILLIC",
+        "LANGUAGE_LOCAL_ONLY",
+        "ACCESS_HUMINT_REQUIRED",
+        "ACCESS_MEDIA_ROUTE",
+        "COVERAGE_OWNERSHIP_GAP",
+        "RELIABILITY_CORRUPTION_RISK",
+        "RELIABILITY_STATE_MANIPULATION",
+        "MEDIA_RESTRICTED"
+      ]
+    }
+  }
+}

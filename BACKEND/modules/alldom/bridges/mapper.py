@@ -19,23 +19,30 @@ async def discover(domain: str, mode: str = "fast", **kwargs) -> List[Dict[str, 
     - thorough: All sources (30-60s)
     """
     try:
-        from modules.JESTER.MAPPER.mapper import JesterMapper
+        from modules.jester.MAPPER.mapper import Mapper
 
-        mapper = JesterMapper()
-        results = await mapper.discover(domain, mode=mode, **kwargs)
+        results = []
+        is_fast = (mode == "fast")
+        
+        async with Mapper() as mapper:
+            async for r in mapper.map_domain(domain, fast=is_fast, **kwargs):
+                # Convert DiscoveredURL to ALLDOM format
+                data = r.to_dict()
+                # Extract top-level keys
+                url = data.pop("url")
+                source = data.pop("source") 
+                discovered_at = data.pop("discovered_at")
+                
+                results.append({
+                    "url": url,
+                    "source": source,
+                    "discovered_at": discovered_at,
+                    "metadata": data,
+                })
 
-        return [
-            {
-                "url": r.url,
-                "source": r.source,
-                "discovered_at": r.discovered_at,
-                "metadata": r.metadata,
-            }
-            for r in results
-        ]
+        return results
     except ImportError:
         logger.warning("JESTER MAPPER not available, using fallback")
-        # Fallback to simpler discovery
         return await _fallback_discover(domain, **kwargs)
     except Exception as e:
         logger.error(f"Mapper discover error: {e}")
@@ -57,7 +64,7 @@ async def _fallback_discover(domain: str, **kwargs) -> List[Dict[str, Any]]:
     try:
         sub_results = await subdomains(domain)
         for sub in sub_results:
-            results.append({"url": f"https://{sub}", "source": "subdomain"})
+            results.append({"url": f"https://{sub}", "source": "subdomain", "metadata": {}})
     except Exception:
         pass
 
@@ -69,10 +76,12 @@ async def subdomains(domain: str, **kwargs) -> List[str]:
     Discover subdomains (sub!).
     """
     try:
-        from modules.JESTER.MAPPER.mapper import JesterMapper
+        from modules.jester.MAPPER.mapper import Mapper
 
-        mapper = JesterMapper()
-        results = await mapper.discover_subdomains(domain, **kwargs)
+        results = []
+        async with Mapper() as mapper:
+            async for sub in mapper.discover_subdomains(domain, **kwargs):
+                results.append(sub)
         return results
     except ImportError:
         # Fallback to basic subdomain discovery
@@ -96,11 +105,19 @@ async def sitemaps(domain: str, **kwargs) -> List[Dict[str, Any]]:
     Parse domain sitemaps (sitemap:).
     """
     try:
-        from modules.JESTER.MAPPER.mapper import JesterMapper
+        from modules.jester.MAPPER.mapper import Mapper
 
-        mapper = JesterMapper()
-        results = await mapper.parse_sitemaps(domain, **kwargs)
-        return [{"url": url, "source": "sitemap"} for url in results]
+        results = []
+        async with Mapper() as mapper:
+            # Jester's 'sitemap' source covers sitemaps
+            async for r in mapper.map_domain(domain, sources=["sitemap"], **kwargs):
+                 data = r.to_dict()
+                 results.append({
+                     "url": data["url"], 
+                     "source": "sitemap",
+                     "metadata": data
+                 })
+        return results
     except ImportError:
         # Fallback to basic sitemap parsing
         try:
@@ -108,7 +125,7 @@ async def sitemaps(domain: str, **kwargs) -> List[Dict[str, Any]]:
             parser = SitemapParser()
             results = []
             async for r in parser.parse_all(domain):
-                results.append({"url": r.url, "source": "sitemap"})
+                results.append({"url": r.url, "source": "sitemap", "metadata": {}})
             return results
         except Exception:
             pass
@@ -123,12 +140,30 @@ async def search_engines(domain: str, **kwargs) -> List[Dict[str, Any]]:
     Discover URLs via search engines.
     """
     try:
-        from modules.alldom.sources.search_engines import SearchEngineDiscovery
-        se = SearchEngineDiscovery()
+        from modules.jester.MAPPER.mapper import Mapper
+        
         results = []
-        async for r in se.search_all(domain):
-            results.append({"url": r.url, "source": r.source, "metadata": r.metadata})
+        async with Mapper() as mapper:
+            async for r in mapper.map_domain(domain, sources=["search_engines"], **kwargs):
+                data = r.to_dict()
+                results.append({
+                    "url": data["url"],
+                    "source": data["source"],
+                    "metadata": data
+                })
         return results
+    except ImportError:
+        # Fallback
+        try:
+            from modules.alldom.sources.search_engines import SearchEngineDiscovery
+            se = SearchEngineDiscovery()
+            results = []
+            async for r in se.search_all(domain):
+                results.append({"url": r.url, "source": r.source, "metadata": r.metadata})
+            return results
+        except Exception:
+            pass
+        return []
     except Exception as e:
         logger.error(f"Search engine discovery error: {e}")
         return []
@@ -139,12 +174,30 @@ async def firecrawl_map(domain: str, **kwargs) -> List[Dict[str, Any]]:
     Discover URLs via Firecrawl map endpoint.
     """
     try:
-        from modules.alldom.sources.firecrawl_mapper import FirecrawlMapper
-        fm = FirecrawlMapper()
+        from modules.jester.MAPPER.mapper import Mapper
+        
         results = []
-        async for r in fm.map_domain(domain):
-            results.append({"url": r.url, "source": "firecrawl", "metadata": r.metadata})
+        async with Mapper() as mapper:
+            async for r in mapper.map_domain(domain, sources=["firecrawl_map"], **kwargs):
+                data = r.to_dict()
+                results.append({
+                    "url": data["url"],
+                    "source": "firecrawl",
+                    "metadata": data
+                })
         return results
+    except ImportError:
+        # Fallback
+        try:
+            from modules.alldom.sources.firecrawl_mapper import FirecrawlMapper
+            fm = FirecrawlMapper()
+            results = []
+            async for r in fm.map_domain(domain):
+                results.append({"url": r.url, "source": "firecrawl", "metadata": r.metadata})
+            return results
+        except Exception:
+            pass
+        return []
     except Exception as e:
         logger.error(f"Firecrawl map error: {e}")
         return []
@@ -153,13 +206,20 @@ async def firecrawl_map(domain: str, **kwargs) -> List[Dict[str, Any]]:
 async def discover_stream(domain: str, mode: str = "fast", **kwargs) -> AsyncIterator[Dict]:
     """Streaming URL discovery."""
     try:
-        from modules.JESTER.MAPPER.mapper import JesterMapper
+        from modules.jester.MAPPER.mapper import Mapper
 
-        mapper = JesterMapper()
-        async for result in mapper.discover_stream(domain, mode=mode, **kwargs):
-            yield {
-                "url": result.url,
-                "source": result.source,
-            }
+        is_fast = (mode == "fast")
+        
+        async with Mapper() as mapper:
+            async for r in mapper.map_domain(domain, fast=is_fast, **kwargs):
+                data = r.to_dict()
+                url = data.pop("url")
+                source = data.pop("source")
+                
+                yield {
+                    "url": url,
+                    "source": source,
+                    "metadata": data
+                }
     except Exception as e:
         logger.error(f"Mapper stream error: {e}")

@@ -1,0 +1,53 @@
+{
+  "UK": {
+    "type": "cli",
+    "module": "JURISDICTIONAL.UK.uk_cli",
+    "class": "UKCLI",
+    "method": "execute",
+    "description": "Unified UK access (Companies House, FCA, Land Registry, FOI)",
+    "status": "active"
+  },
+  "GB": {
+    "alias": "UK"
+  },
+  "FR": {
+    "type": "cli",
+    "module": "JURISDICTIONAL.FR.fr_cli",
+    "class": "FRCLI",
+    "method": "execute",
+    "description": "France (Sirene API)",
+    "status": "active"
+  },
+  "NO": {
+    "type": "cli",
+    "module": "JURISDICTIONAL.NO.no_cli",
+    "class": "NOCLI",
+    "method": "execute",
+    "description": "Norway (Brreg API)",
+    "status": "active"
+  },
+  "FI": {
+    "type": "cli",
+    "module": "JURISDICTIONAL.FI.fi_cli",
+    "class": "FICLI",
+    "method": "execute",
+    "description": "Finland (PRH API)",
+    "status": "active"
+  },
+  "PL": {
+    "type": "cli",
+    "module": "JURISDICTIONAL.PL.pl_cli",
+    "class": "PLCLI",
+    "method": "execute",
+    "description": "Poland (KRS/CEIDG API)",
+    "status": "active"
+  },
+  "CZ": {
+    "type": "cli",
+    "module": "JURISDICTIONAL.CZ.cz_cli",
+    "class": "CZCLI",
+    "method": "execute",
+    "description": "Czech Republic (ARES API)",
+    "status": "active"
+  }
+}

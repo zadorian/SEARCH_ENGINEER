@@ -1,0 +1,21 @@
+{
+  "id": "759af5dc82b593d2",
+  "node_class": "ENTITY",
+  "type": "company",
+  "canonicalValue": "adobe",
+  "label": "Adobe",
+  "value": "Adobe",
+  "comment": "{\n  \"id\": \"2gujp74rrchc5m0lw2nf5ilsgk2\",\n  \"email\": [\n    \"tyrion@gmail.com\"\n  ],\n  \"database_name\": \"Adobe\"\n}",
+  "embedded_edges": [
+    {
+      "target_id": "ba8e9c35f7630fde",
+      "relation": "output_of",
+      "verification_status": "UNVERIFIED",
+      "connection_reason": "aggregator_link"
+    }
+  ],
+  "metadata": {},
+  "createdAt": "2026-01-12T00:04:12.906204",
+  "updatedAt": "2026-01-12T00:04:12.906210",
+  "lastSeen": "2026-01-12T00:04:12.906211"
+}

@@ -1,0 +1,951 @@
+{
+  "$schema": "io_integration_v1",
+  "$description": "Maps IO CLI field codes and prefixes to index clusters and routing rules",
+  "field_code_mappings": {
+    "1": {
+      "name": "email",
+      "prefix": "e:",
+      "cluster": "breach",
+      "fallback_clusters": [
+        "person"
+      ],
+      "indices": [
+        "breach_records",
+        "persons_unified",
+        "wdc-person-entities"
+      ],
+      "query_type": "term",
+      "io_rules": [
+        "breach_email_lookup",
+        "person_by_email"
+      ]
+    },
+    "2": {
+      "name": "phone",
+      "prefix": "t:",
+      "cluster": "person",
+      "indices": [
+        "phones_unified",
+        "persons_unified",
+        "wdc-organization-entities"
+      ],
+      "query_type": "term",
+      "io_rules": [
+        "phone_lookup"
+      ]
+    },
+    "3": {
+      "name": "username",
+      "prefix": "u:",
+      "cluster": "breach",
+      "indices": [
+        "breach_records",
+        "nexus_breach_records"
+      ],
+      "query_type": "term",
+      "io_rules": [
+        "breach_username_lookup"
+      ]
+    },
+    "5": {
+      "name": "linkedin_url",
+      "prefix": "li:",
+      "cluster": "person",
+      "indices": [
+        "linkedin_unified",
+        "affiliate_linkedin_companies",
+        "wdc-person-entities"
+      ],
+      "query_type": "term",
+      "io_rules": [
+        "linkedin_profile_lookup"
+      ]
+    },
+    "6": {
+      "name": "domain",
+      "prefix": "d:",
+      "cluster": "domain",
+      "indices": [
+        "domains_unified",
+        "cymonides_cc_domain_vertices",
+        "unified_domain_profiles"
+      ],
+      "query_type": "term",
+      "io_rules": [
+        "domain_profile",
+        "domain_backlinks",
+        "domain_whois"
+      ]
+    },
+    "7": {
+      "name": "person",
+      "prefix": "p:",
+      "cluster": "person",
+      "indices": [
+        "persons_unified",
+        "wdc-person-entities",
+        "linkedin_unified",
+        "openownership"
+      ],
+      "query_type": "match",
+      "io_rules": [
+        "person_search",
+        "person_comprehensive"
+      ]
+    },
+    "13": {
+      "name": "company",
+      "prefix": "c:",
+      "cluster": "corporate",
+      "indices": [
+        "companies_unified",
+        "openownership",
+        "affiliate_linkedin_companies",
+        "wdc-organization-entities"
+      ],
+      "query_type": "match",
+      "io_rules": [
+        "company_search",
+        "company_officers",
+        "company_filings"
+      ]
+    },
+    "14": {
+      "name": "company_reg_id",
+      "prefix": "crn:",
+      "cluster": "corporate",
+      "indices": [
+        "companies_unified",
+        "openownership"
+      ],
+      "query_type": "term",
+      "io_rules": [
+        "company_by_number"
+      ]
+    },
+    "20": {
+      "name": "address",
+      "prefix": "a:",
+      "cluster": "corporate",
+      "fallback_clusters": [
+        "person"
+      ],
+      "indices": [
+        "uk_addresses",
+        "companies_unified",
+        "openownership",
+        "wdc-organization-entities"
+      ],
+      "query_type": "match",
+      "io_rules": [
+        "address_lookup",
+        "entities_at_address"
+      ]
+    },
+    "21": {
+      "name": "ip_address",
+      "prefix": "ip:",
+      "cluster": "breach",
+      "indices": [
+        "breach_records"
+      ],
+      "query_type": "term",
+      "io_rules": [
+        "ip_lookup"
+      ]
+    },
+    "22": {
+      "name": "url",
+      "prefix": "url:",
+      "cluster": "corpus",
+      "fallback_clusters": [
+        "web_graph"
+      ],
+      "indices": [
+        "cymonides-2",
+        "cymonides_cc_domain_edges"
+      ],
+      "query_type": "term",
+      "io_rules": [
+        "url_content",
+        "url_backlinks"
+      ]
+    },
+    "30": {
+      "name": "hash",
+      "prefix": "h:",
+      "cluster": "breach",
+      "indices": [
+        "breach_records"
+      ],
+      "query_type": "term",
+      "io_rules": [
+        "hash_lookup"
+      ]
+    },
+    "40": {
+      "name": "document",
+      "prefix": "doc:",
+      "cluster": "corpus",
+      "indices": [
+        "cymonides-2",
+        "linklater_corpus"
+      ],
+      "query_type": "match",
+      "io_rules": [
+        "document_search"
+      ]
+    }
+  },
+  "prefix_routing": {
+    "e:": {
+      "field_code": 1,
+      "cluster": "breach",
+      "description": "Email lookup"
+    },
+    "t:": {
+      "field_code": 2,
+      "cluster": "person",
+      "description": "Phone lookup"
+    },
+    "u:": {
+      "field_code": 3,
+      "cluster": "breach",
+      "description": "Username lookup"
+    },
+    "li:": {
+      "field_code": 5,
+      "cluster": "person",
+      "description": "LinkedIn URL"
+    },
+    "d:": {
+      "field_code": 6,
+      "cluster": "domain",
+      "description": "Domain lookup"
+    },
+    "p:": {
+      "field_code": 7,
+      "cluster": "person",
+      "description": "Person search"
+    },
+    "c:": {
+      "field_code": 13,
+      "cluster": "corporate",
+      "description": "Company search"
+    },
+    "crn:": {
+      "field_code": 14,
+      "cluster": "corporate",
+      "description": "Company by reg number"
+    },
+    "a:": {
+      "field_code": 20,
+      "cluster": "corporate",
+      "description": "Address search"
+    },
+    "ip:": {
+      "field_code": 21,
+      "cluster": "breach",
+      "description": "IP address lookup"
+    },
+    "url:": {
+      "field_code": 22,
+      "cluster": "corpus",
+      "description": "URL lookup"
+    },
+    "h:": {
+      "field_code": 30,
+      "cluster": "breach",
+      "description": "Hash lookup"
+    },
+    "doc:": {
+      "field_code": 40,
+      "cluster": "corpus",
+      "description": "Document search"
+    },
+    "bl:": {
+      "field_code": 50,
+      "cluster": "web_graph",
+      "description": "Backlinks for domain"
+    },
+    "ol:": {
+      "field_code": 51,
+      "cluster": "web_graph",
+      "description": "Outlinks from domain"
+    },
+    "cje:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "JERSEY"
+      },
+      "description": "Jersey companies (UK property)"
+    },
+    "cgg:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "GUERNSEY"
+      },
+      "description": "Guernsey companies (UK property)"
+    },
+    "cim:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "ISLE OF MAN"
+      },
+      "description": "Isle of Man companies (UK property)"
+    },
+    "cbvi:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "BRITISH VIRGIN ISLANDS"
+      },
+      "description": "BVI companies (UK property)"
+    },
+    "cky:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "CAYMAN ISLANDS"
+      },
+      "description": "Cayman companies (UK property)"
+    },
+    "ccy:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "CYPRUS"
+      },
+      "description": "Cyprus companies (UK property)"
+    },
+    "cpa:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "PANAMA"
+      },
+      "description": "Panama companies (UK property)"
+    },
+    "csc:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "SEYCHELLES"
+      },
+      "description": "Seychelles companies (UK property)"
+    },
+    "clu:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "LUXEMBOURG"
+      },
+      "description": "Luxembourg companies (UK property)"
+    },
+    "cnl:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "NETHERLANDS"
+      },
+      "description": "Netherlands companies (UK property)"
+    },
+    "chk:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "HONG KONG"
+      },
+      "description": "Hong Kong companies (UK property)"
+    },
+    "csg:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "SINGAPORE"
+      },
+      "description": "Singapore companies (UK property)"
+    },
+    "cae:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "UNITED ARAB EMIRATES"
+      },
+      "description": "UAE companies (UK property)"
+    },
+    "cdxb:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "DUBAI"
+      },
+      "description": "Dubai companies (UK property)"
+    },
+    "cusde:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "DELAWARE"
+      },
+      "description": "Delaware companies (UK property)"
+    },
+    "cusny:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "NEW YORK"
+      },
+      "description": "New York companies (UK property)"
+    },
+    "cusfl:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "FLORIDA"
+      },
+      "description": "Florida companies (UK property)"
+    },
+    "cusca:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "CALIFORNIA"
+      },
+      "description": "California companies (UK property)"
+    },
+    "custx:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "TEXAS"
+      },
+      "description": "Texas companies (UK property)"
+    },
+    "cde:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "GERMANY"
+      },
+      "description": "German companies (UK property)"
+    },
+    "cfr:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "FRANCE"
+      },
+      "description": "French companies (UK property)"
+    },
+    "cie:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "IRELAND"
+      },
+      "description": "Irish companies (UK property)"
+    },
+    "cch:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "SWITZERLAND"
+      },
+      "description": "Swiss companies (UK property)"
+    },
+    "cmu:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "MAURITIUS"
+      },
+      "description": "Mauritius companies (UK property)"
+    },
+    "cli:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "LIECHTENSTEIN"
+      },
+      "description": "Liechtenstein companies (UK property)"
+    },
+    "cgi:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "GIBRALTAR"
+      },
+      "description": "Gibraltar companies (UK property)"
+    },
+    "cmt:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "MALTA"
+      },
+      "description": "Malta companies (UK property)"
+    },
+    "cmc:": {
+      "field_code": 60,
+      "cluster": "uk_property",
+      "index": "uk_ocod",
+      "filter": {
+        "country_incorporated": "MONACO"
+      },
+      "description": "Monaco companies (UK property)"
+    }
+  },
+  "cluster_to_indices": {
+    "breach": [
+      "breach_records",
+      "nexus_breach_records",
+      "kazaword_emails"
+    ],
+    "person": [
+      "persons_unified",
+      "wdc-person-entities",
+      "linkedin_unified",
+      "openownership"
+    ],
+    "corporate": [
+      "companies_unified",
+      "openownership",
+      "affiliate_linkedin_companies",
+      "wdc-organization-entities"
+    ],
+    "domain": [
+      "domains_unified",
+      "cymonides_cc_domain_vertices",
+      "unified_domain_profiles",
+      "top_domains"
+    ],
+    "corpus": [
+      "cymonides-2",
+      "linklater_corpus"
+    ],
+    "web_graph": [
+      "cymonides_cc_domain_edges",
+      "cymonides_cc_domain_vertices",
+      "cc_web_graph_host_edges"
+    ],
+    "uk_property": [
+      "uk_ccod",
+      "uk_ocod",
+      "uk_leases"
+    ]
+  },
+  "index_to_module": {
+    "breach_records": "ATLAS/loaders/breach_ingester",
+    "nexus_breach_records": "ATLAS/breach",
+    "kazaword_emails": "country_engines/KZ",
+    "persons_unified": "ATLAS/entity",
+    "companies_unified": "CORPORELLA",
+    "openownership": "scripts/index_openownership",
+    "domains_unified": "ATLAS/domain",
+    "cymonides-2": "CYMONIDES/indexer",
+    "cymonides_cc_domain_edges": "LINKLATER/linkgraph",
+    "cymonides_cc_domain_vertices": "LINKLATER/linkgraph",
+    "linkedin_unified": "ATLAS/social",
+    "affiliate_linkedin_companies": "ATLAS/social",
+    "wdc-person-entities": "WDC/loaders",
+    "wdc-organization-entities": "WDC/loaders",
+    "uk_addresses": "country_engines/UK",
+    "uk_ccod": "uk_modules/uk_property_ingester",
+    "uk_ocod": "uk_modules/uk_property_ingester",
+    "uk_leases": "uk_modules/uk_property_ingester"
+  },
+  "io_rules": {
+    "breach_email_lookup": {
+      "input_type": "email",
+      "output_types": [
+        "password",
+        "hash",
+        "username",
+        "breach_source",
+        "ip"
+      ],
+      "primary_index": "breach_records",
+      "sensitivity": "high"
+    },
+    "person_by_email": {
+      "input_type": "email",
+      "output_types": [
+        "name",
+        "phone",
+        "company",
+        "title"
+      ],
+      "primary_index": "persons_unified"
+    },
+    "person_search": {
+      "input_type": "person_name",
+      "output_types": [
+        "email",
+        "phone",
+        "company",
+        "linkedin_url",
+        "address"
+      ],
+      "primary_index": "persons_unified"
+    },
+    "person_comprehensive": {
+      "input_type": "person_name",
+      "output_types": [
+        "email",
+        "phone",
+        "company",
+        "breach_records",
+        "linkedin",
+        "beneficial_ownership"
+      ],
+      "clusters": [
+        "person",
+        "breach",
+        "corporate"
+      ],
+      "strategy": "parallel_then_merge"
+    },
+    "company_search": {
+      "input_type": "company_name",
+      "output_types": [
+        "company_number",
+        "jurisdiction",
+        "status",
+        "address",
+        "officers",
+        "linkedin"
+      ],
+      "primary_index": "companies_unified"
+    },
+    "company_officers": {
+      "input_type": "company_name_or_number",
+      "output_types": [
+        "officer_name",
+        "officer_role",
+        "appointment_date",
+        "nationality"
+      ],
+      "primary_index": "openownership"
+    },
+    "company_by_number": {
+      "input_type": "company_reg_id",
+      "output_types": [
+        "name",
+        "status",
+        "address",
+        "officers",
+        "filings"
+      ],
+      "primary_index": "companies_unified"
+    },
+    "domain_profile": {
+      "input_type": "domain",
+      "output_types": [
+        "whois",
+        "dns",
+        "technologies",
+        "rank",
+        "inlinks",
+        "company"
+      ],
+      "clusters": [
+        "domain"
+      ],
+      "strategy": "cascade"
+    },
+    "domain_backlinks": {
+      "input_type": "domain",
+      "output_types": [
+        "linking_domain",
+        "anchor_text",
+        "link_count"
+      ],
+      "primary_index": "cymonides_cc_domain_edges",
+      "query_field": "to_domain"
+    },
+    "phone_lookup": {
+      "input_type": "phone",
+      "output_types": [
+        "owner_name",
+        "carrier",
+        "address",
+        "email"
+      ],
+      "primary_index": "phones_unified"
+    },
+    "address_lookup": {
+      "input_type": "address",
+      "output_types": [
+        "postcode",
+        "companies_at_address",
+        "persons_at_address"
+      ],
+      "clusters": [
+        "corporate",
+        "person"
+      ]
+    },
+    "document_search": {
+      "input_type": "keywords",
+      "output_types": [
+        "url",
+        "title",
+        "snippet",
+        "entities"
+      ],
+      "primary_index": "cymonides-2"
+    }
+  },
+  "module_executors": {
+    "company": [
+      {
+        "module": "country_api.mcp_server",
+        "class": "CountryApiMCP",
+        "method": "search_company",
+        "requires_jurisdiction": true,
+        "priority": 0
+      },
+      {
+        "module": "country_api.mcp_server",
+        "class": "CountryApiMCP",
+        "method": "search_company",
+        "requires_jurisdiction": true,
+        "priority": 0
+      },
+      {
+        "module": "torpedo.torpedo",
+        "class": "Torpedo",
+        "method": "fetch_profile",
+        "init_method": "load_sources",
+        "requires_jurisdiction": true,
+        "priority": 1
+      },
+      {
+        "module": "corporella.api",
+        "function": "get_company_profile",
+        "requires_jurisdiction": false,
+        "priority": 2
+      },
+      {
+        "module": "corporella.api",
+        "function": "get_officers",
+        "requires_jurisdiction": false,
+        "priority": 3
+      },
+      {
+        "module": "corporella.api",
+        "function": "get_beneficial_owners",
+        "requires_jurisdiction": false,
+        "priority": 4
+      },
+      {
+        "module": "eyed.unified_osint",
+        "class": "UnifiedSearcher",
+        "method": "search_linkedin",
+        "requires_jurisdiction": false,
+        "priority": 5
+      },
+      {
+        "module": "socialite.mcp_server",
+        "function": "search_multi_platform",
+        "requires_jurisdiction": false,
+        "priority": 6
+      }
+    ],
+    "person": [
+      {
+        "module": "country_api.mcp_server",
+        "class": "CountryApiMCP",
+        "method": "search_person",
+        "requires_jurisdiction": true,
+        "priority": 0
+      },
+      {
+        "module": "country_api.mcp_server",
+        "class": "CountryApiMCP",
+        "method": "search_person",
+        "requires_jurisdiction": true,
+        "priority": 0
+      },
+      {
+        "module": "eyed.unified_osint",
+        "class": "UnifiedSearcher",
+        "method": "search_people",
+        "requires_jurisdiction": false,
+        "priority": 1
+      },
+      {
+        "module": "corporella.mcp_server",
+        "class": "CorporellaMCP",
+        "method": "_search_person",
+        "requires_jurisdiction": false,
+        "priority": 2
+      },
+      {
+        "module": "socialite.mcp_server",
+        "function": "search_person",
+        "requires_jurisdiction": false,
+        "priority": 3
+      }
+    ],
+    "email": [
+      {
+        "module": "eyed.unified_osint",
+        "class": "UnifiedSearcher",
+        "method": "search_email",
+        "requires_jurisdiction": false,
+        "priority": 1
+      }
+    ],
+    "phone": [
+      {
+        "module": "eyed.unified_osint",
+        "class": "UnifiedSearcher",
+        "method": "search_phone",
+        "requires_jurisdiction": false,
+        "priority": 1
+      }
+    ],
+    "domain": [
+      {
+        "module": "alldom.mcp_server",
+        "class": "AllDomMCP",
+        "method": "alldom_scan",
+        "requires_jurisdiction": false,
+        "priority": 0
+      },
+      {
+        "module": "eyed.whois",
+        "function": "whois_lookup",
+        "requires_jurisdiction": false,
+        "priority": 1
+      },
+      {
+        "module": "linklater.api",
+        "function": "get_backlinks",
+        "requires_jurisdiction": false,
+        "priority": 2
+      },
+      {
+        "module": "linklater.api",
+        "function": "get_outlinks",
+        "requires_jurisdiction": false,
+        "priority": 3
+      },
+      {
+        "module": "corporella.domain_mapper",
+        "class": "UnifiedDomainMapper",
+        "method": "collect_all_data",
+        "requires_jurisdiction": false,
+        "priority": 4
+      }
+    ],
+    "username": [
+      {
+        "module": "eyed.unified_osint",
+        "class": "UnifiedSearcher",
+        "method": "search_username",
+        "requires_jurisdiction": false,
+        "priority": 1
+      },
+      {
+        "module": "socialite.mcp_server",
+        "function": "map_social_network",
+        "requires_jurisdiction": false,
+        "priority": 2
+      }
+    ],
+    "linkedin_url": [
+      {
+        "module": "eyed.unified_osint",
+        "class": "UnifiedSearcher",
+        "method": "search_linkedin",
+        "requires_jurisdiction": false,
+        "priority": 1
+      },
+      {
+        "module": "socialite.mcp_server",
+        "function": "map_social_network",
+        "requires_jurisdiction": false,
+        "priority": 2
+      }
+    ],
+    "social_media": []
+  },
+  "cli_flags": {
+    "--cluster": {
+      "description": "Query by cluster name instead of individual index",
+      "example": "--cluster corporate 'Acme Corp'",
+      "valid_values": [
+        "breach",
+        "person",
+        "corporate",
+        "domain",
+        "corpus",
+        "web_graph",
+        "wdc",
+        "graph",
+        "et3",
+        "matrix"
+      ]
+    },
+    "--list-indices": {
+      "description": "List all available indices with doc counts",
+      "example": "--list-indices"
+    },
+    "--index-info": {
+      "description": "Show detailed info for a specific index",
+      "example": "--index-info breach_records"
+    },
+    "--object-type": {
+      "description": "Query by object type across all relevant indices",
+      "example": "--object-type email 'user@example.com'",
+      "valid_values": [
+        "email",
+        "phone",
+        "username",
+        "linkedin_url",
+        "domain",
+        "person",
+        "company",
+        "company_reg_id",
+        "address",
+        "ip_address",
+        "url",
+        "hash",
+        "document"
+      ]
+    }
+  }
+}
