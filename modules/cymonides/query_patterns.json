@@ -1,0 +1,862 @@
+{
+  "_meta": {
+    "generated": "2025-12-30",
+    "method": "10 parallel agents analyzing query patterns per field group",
+    "total_groups": 43,
+    "purpose": "Per-index and group-total query patterns with unique opportunities"
+  },
+
+  "IDENTITY": {
+    "PERSON_NAME": {
+      "status": "SPARSE_BUT_CLEAN",
+      "per_index": {
+        "openownership": {
+          "field": "interested_party_name",
+          "doc_count": "36.4M",
+          "queries": {
+            "exact": {"term": {"interested_party_name.keyword": "Alan Glassfield"}},
+            "match": {"match": {"interested_party_name": "Alan"}},
+            "fuzzy": {"fuzzy": {"interested_party_name": {"value": "Alan", "fuzziness": "AUTO"}}}
+          },
+          "sample_hit": "Alan Glassfield",
+          "notes": "Only clean person names in corpus - sparse but highest quality"
+        }
+      },
+      "group_total": {
+        "fields": ["interested_party_name"],
+        "indices": ["openownership"],
+        "multi_match": {
+          "query": "$NAME",
+          "fields": ["interested_party_name"],
+          "type": "best_fields"
+        }
+      },
+      "unique_opportunity": "Only verified person names - use for high-precision person search"
+    },
+
+    "COMPANY_NAME": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "uk_ccod": {
+          "field": "proprietor_name_1",
+          "doc_count": "4.3M",
+          "cardinality": "856,604 unique",
+          "queries": {
+            "exact": {"term": {"proprietor_name_1.keyword": "VANTEGE LIMITED"}},
+            "match": {"match": {"proprietor_name_1": "LIMITED"}},
+            "wildcard": {"wildcard": {"proprietor_name_1.keyword": "*LIMITED"}}
+          },
+          "sample_hit": "ELDERFLOWER MANAGEMENT LIMITED",
+          "unique": "UK Charges Register - links to financial obligations"
+        },
+        "linkedin_unified": {
+          "field": "company_name",
+          "doc_count": "2.9M",
+          "queries": {
+            "match": {"match": {"company_name": "Sierra"}}
+          },
+          "sample_hit": "Ventana Sierra",
+          "unique": "Profile data, employee counts, industry categories"
+        },
+        "uk_addresses": {
+          "field": "owner_name",
+          "doc_count": "4.3M",
+          "queries": {
+            "match": {"match": {"owner_name": "LIMITED"}}
+          },
+          "unique": "Property ownership - location-centric research"
+        },
+        "uk_ocod": {
+          "field": "proprietor_name",
+          "doc_count": "91.6K",
+          "unique": "Official Copies - overseas ownership"
+        },
+        "openownership": {
+          "field": "subject_name",
+          "doc_count": "36.4M",
+          "notes": "SKIP - returns 0 hits, appears sparse"
+        }
+      },
+      "group_total": {
+        "fields": ["proprietor_name_1^3", "company_name^2", "owner_name", "proprietor_name"],
+        "indices": ["uk_ccod", "linkedin_unified", "uk_addresses", "uk_ocod"],
+        "multi_match": {
+          "query": "$COMPANY",
+          "fields": ["proprietor_name_1^3", "company_name^2", "owner_name", "proprietor_name"],
+          "type": "best_fields"
+        }
+      },
+      "unique_opportunity": "Cross-index union across 4 property/corporate sources"
+    },
+
+    "MIXED_NAME": {
+      "status": "MEDIUM_QUALITY",
+      "per_index": {
+        "openownership": {
+          "field": "name_normalized",
+          "notes": "Contains 'ltd ltd ltd' - data quality issues"
+        },
+        "uk_ccod": {
+          "field": "proprietor_name_2",
+          "queries": {
+            "match": {"match": {"proprietor_name_2": "ltd"}}
+          },
+          "sample_hit": "3,216 hits"
+        }
+      },
+      "group_total": {
+        "fields": ["name_normalized", "proprietor_name_2"],
+        "indices": ["openownership", "uk_ccod"]
+      },
+      "unique_opportunity": "Fallback when COMPANY_NAME + PERSON_NAME fail",
+      "warning": "Results ambiguous - require manual entity type verification"
+    },
+
+    "GARBAGE_NAME": {
+      "status": "DO_NOT_USE",
+      "warning": "NER extraction failures - contains article titles, usernames, locations",
+      "fields_to_avoid": [
+        "persons_unified.full_name",
+        "companies_unified.name",
+        "breach_records.name",
+        "phones_unified.person_names",
+        "drill_pages.persons",
+        "drill_pages.companies"
+      ],
+      "unique_opportunity": "Negative filtering only - exclude known trash patterns"
+    }
+  },
+
+  "EMAIL": {
+    "EMAIL_RAW": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "breach_records": {
+          "field": "email",
+          "doc_count": "37.8M",
+          "queries": {
+            "exact": {"term": {"email.keyword": "user@gmail.com"}},
+            "domain_wildcard": {"wildcard": {"email": "*@gmail.com"}},
+            "local_wildcard": {"wildcard": {"email": "admin@*"}},
+            "prefix": {"prefix": {"email": "test"}}
+          },
+          "sample_hits": {
+            "*@gmail.com": "33.2M hits",
+            "admin@*": "107K hits",
+            "test*": "68.9K hits"
+          }
+        },
+        "kazaword_emails": {
+          "field": "all_emails",
+          "unique": "Leaked email corpus with full message content"
+        },
+        "onion-pages": {
+          "field": "emails",
+          "doc_count": "762 records with emails (21.9% coverage)"
+        }
+      },
+      "group_total": {
+        "fields": ["email", "all_emails", "emails", "all_recipients"],
+        "indices": ["breach_records", "kazaword_emails", "onion-pages"],
+        "multi_match": {
+          "query": "$EMAIL",
+          "fields": ["email", "all_emails", "emails"],
+          "type": "best_fields"
+        }
+      },
+      "unique_opportunity": "Provider-specific searches (*@gmail.com), typo detection"
+    },
+
+    "EMAIL_DOMAIN": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "breach_records": {
+          "field": "email_domain",
+          "doc_count": "37.8M",
+          "queries": {
+            "exact": {"term": {"email_domain": "gmail.com"}},
+            "tld_wildcard": {"wildcard": {"email_domain": "*.uk"}},
+            "prefix": {"prefix": {"email_domain": "hot"}}
+          },
+          "sample_hits": {
+            "*.uk": "4.6M hits (12.2%)",
+            "hot*": "37.3M hits (98.5%)"
+          }
+        }
+      },
+      "group_total": {
+        "fields": ["email_domain"],
+        "indices": ["breach_records"]
+      },
+      "unique_opportunity": "FAST domain filtering without parsing full email - jurisdiction-based (*.ru, *.uk)"
+    },
+
+    "EMAIL_LOCAL": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "breach_records": {
+          "field": "local_part",
+          "queries": {
+            "prefix": {"prefix": {"local_part": "admin"}},
+            "wildcard": {"wildcard": {"local_part": "*test*"}}
+          },
+          "sample_hits": {
+            "admin*": "136K hits",
+            "test*": "68K hits",
+            "hello*": "49K hits"
+          }
+        }
+      },
+      "unique_opportunity": "Service account discovery (admin@*, info@*, support@*)"
+    },
+
+    "EMAIL_OBJECT": {
+      "status": "MEDIUM",
+      "per_index": {
+        "kazaword_emails": {
+          "fields": ["from", "to", "cc"],
+          "format": "Object with name+email subfields",
+          "queries": {
+            "sender_email": {"match": {"from.email": "user@domain.com"}},
+            "sender_name": {"match": {"from.name": "John Smith"}}
+          },
+          "notes": "Index appears empty or not fully populated"
+        },
+        "emails_unified": {
+          "field": "contacts",
+          "format": "Python dict strings - requires parsing",
+          "doc_count": "5K"
+        }
+      },
+      "unique_opportunity": "Search by sender NAME not just email address"
+    }
+  },
+
+  "PHONE": {
+    "PHONE_FULL": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "phones_unified": {
+          "field": "phone_e164",
+          "doc_count": "49,524",
+          "format": "+<country><number>",
+          "queries": {
+            "exact": {"term": {"phone_e164": "+12127940044"}},
+            "prefix": {"prefix": {"phone_e164": "+1212"}},
+            "wildcard": {"wildcard": {"phone_e164": "*212*"}}
+          },
+          "samples": ["+12127940044", "+81989235871", "+4921295662226"]
+        },
+        "phones_unified_raw": {
+          "field": "phone_raw",
+          "format": "Regional with punctuation",
+          "samples": ["+49 2129 5662226", "(708) 371-0747", "881 730 630"]
+        }
+      },
+      "group_total": {
+        "fields": ["phone_e164", "phone_raw"],
+        "indices": ["phones_unified"]
+      },
+      "unique_opportunity": "Exact number lookup, E.164 for programmatic, raw for human input"
+    },
+
+    "PHONE_PART": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "phones_unified": {
+          "fields": {
+            "area_code": {
+              "cardinality": "974 unique",
+              "queries": {
+                "exact": {"term": {"area_code": "212"}},
+                "range": {"range": {"area_code": {"gte": "100", "lte": "120"}}}
+              },
+              "warning": "NOT unique to country (212 in US, DE, BR)"
+            },
+            "country_code": {
+              "cardinality": "50+ ITU codes",
+              "queries": {
+                "exact": {"term": {"country_code": "44"}}
+              },
+              "top_countries": {
+                "1": "US/CA (5,192)",
+                "49": "Germany (2,365)",
+                "81": "Japan (1,656)",
+                "44": "UK (750)"
+              }
+            },
+            "local_number": {
+              "queries": {
+                "prefix": {"prefix": {"local_number": "794"}}
+              }
+            }
+          }
+        }
+      },
+      "group_total": {
+        "fields": ["area_code", "country_code", "local_number"],
+        "indices": ["phones_unified"]
+      },
+      "unique_opportunities": [
+        "Geographic clustering WITHOUT parsing (country_code=44 → UK)",
+        "Area code intelligence (212 + country_code=1 → NYC only)",
+        "Compound query: {country_code: 44, area_code: 20} → London"
+      ]
+    }
+  },
+
+  "DOMAIN_URL": {
+    "DOMAIN_BARE": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "domains_unified": {
+          "field": "domain",
+          "doc_count": "178M",
+          "queries": {
+            "exact": {"term": {"domain": "example.com"}},
+            "subdomain": {"wildcard": {"domain": "*.example.com"}},
+            "tld": {"wildcard": {"domain": "*.co.uk"}}
+          }
+        },
+        "linkedin_unified": {"field": "domain"},
+        "companies_unified": {"field": "domain", "also": "domains"},
+        "drill_pages": {"field": "domain"},
+        "top_domains": {"field": "domain"}
+      },
+      "group_total": {
+        "fields": ["domain", "domains", "company_domain"],
+        "indices": ["domains_unified", "linkedin_unified", "companies_unified", "drill_pages", "top_domains"]
+      },
+      "unique_opportunity": "Subdomain enumeration - attack surface mapping"
+    },
+
+    "DOMAIN_PART": {
+      "status": "CRITICAL",
+      "per_index": {
+        "domains_unified": {
+          "field": "tld",
+          "queries": {
+            "exact": {"term": {"tld": "ru"}},
+            "aggregation": {"terms": {"field": "tld", "size": 50}}
+          },
+          "sample_results": "10,000+ Russian domains instantly"
+        }
+      },
+      "unique_opportunity": "ONLY way to instant jurisdiction query - 'Find ALL Russian domains'"
+    },
+
+    "URL_FULL": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "drill_pages": {
+          "field": "url",
+          "queries": {
+            "path_search": {"wildcard": {"url": "*/admin*"}},
+            "protocol": {"prefix": {"url": "https://"}},
+            "cms": {"wildcard": {"url": "*wordpress*"}}
+          }
+        },
+        "linklater_corpus": {"fields": ["url", "source_url", "archive_url"]},
+        "top_domains": {"field": "url"}
+      },
+      "unique_opportunity": "Security surface mapping - find admin panels, APIs, vulnerable endpoints"
+    },
+
+    "URL_ARRAY": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "drill_pages": {
+          "fields": ["outlinks", "internal_links"],
+          "queries": {
+            "backlink_search": {
+              "nested": {
+                "path": "outlinks",
+                "query": {"match": {"outlinks": "target-domain.com"}}
+              }
+            }
+          }
+        }
+      },
+      "unique_opportunities": [
+        "REVERSE ATTRIBUTION - WHO links to target?",
+        "Site topology mapping - complete internal structure",
+        "Coordination detection - find sites linking to same targets"
+      ]
+    },
+
+    "URL_SOCIAL": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "linkedin_unified": {"field": "linkedin_url"},
+        "companies_unified": {"fields": ["linkedin_url", "same_as"]},
+        "persons_unified": {"field": "same_as"}
+      },
+      "queries": {
+        "has_linkedin": {"exists": {"field": "linkedin_url"}},
+        "multi_social": {"wildcard": {"same_as": "*facebook*"}},
+        "co_presence": {
+          "bool": {
+            "must": [
+              {"exists": {"field": "linkedin_url"}},
+              {"wildcard": {"same_as": "*twitter*"}}
+            ]
+          }
+        }
+      },
+      "unique_opportunities": [
+        "Legitimacy verification - multi-social = active business",
+        "Social presence mapping across platforms",
+        "Distinguish real vs shell companies"
+      ]
+    }
+  },
+
+  "LOCATION": {
+    "ADDRESS_FULL": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "uk_ccod": {"field": "property_address", "doc_count": "4.3M"},
+        "uk_ocod": {"fields": ["property_address", "proprietor_address"]},
+        "uk_addresses": {"fields": ["address", "address_normalized"]},
+        "openownership": {"field": "address"}
+      },
+      "queries": {
+        "phrase": {"match_phrase": {"property_address": "Oxford Street London"}},
+        "match": {"match": {"property_address": "Baker Street"}}
+      },
+      "unique_opportunity": "Multi-dataset entity correlation via address matching"
+    },
+
+    "POSTCODE": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "uk_ccod": {
+          "fields": ["postcode", "postcode_district"],
+          "queries": {
+            "district_prefix": {"prefix": {"postcode_district": "W1"}},
+            "full_match": {"term": {"postcode": "W1A 1AA"}}
+          }
+        }
+      },
+      "unique_opportunities": [
+        "Area-level clustering (W = West London, E = East London)",
+        "Postcode + County combo disambiguates regions",
+        "High-density property targeting (CR0=9,675 properties)"
+      ],
+      "high_density_districts": ["CR0 (9,675)", "FY8 (9,616)", "NW10 (7,578)", "SE1 (6,516)"]
+    },
+
+    "CITY": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "uk_ccod": {"field": "district"},
+        "uk_ocod": {"field": "district"},
+        "uk_addresses": {"field": "district"}
+      },
+      "queries": {
+        "match": {"match": {"district": "TOWER HAMLETS"}}
+      },
+      "unique_opportunity": "UK local authority boundary filtering"
+    },
+
+    "COUNTY": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "uk_ccod": {"fields": ["county", "region"]},
+        "uk_ocod": {"fields": ["county", "region"]},
+        "uk_addresses": {"fields": ["county", "region"]}
+      },
+      "queries": {
+        "match": {"match": {"county": "GREATER LONDON"}}
+      },
+      "unique_opportunity": "Regional scope definition for UK investigations"
+    },
+
+    "COUNTRY": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "openownership": {"fields": ["country", "address_country"]},
+        "phones_unified": {"field": "country"}
+      },
+      "queries": {
+        "term": {"term": {"country": "GB"}}
+      },
+      "distribution": {
+        "GB": "10,299,397",
+        "DK": "873,347",
+        "SK": "44,677",
+        "US": "4,536"
+      },
+      "unique_opportunity": "Cross-border investigation filtering"
+    },
+
+    "JURISDICTION": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "openownership": {"field": "jurisdiction"},
+        "uk_addresses": {"field": "jurisdiction"}
+      },
+      "queries": {
+        "term": {"term": {"jurisdiction": "GB"}}
+      },
+      "unique_opportunity": "Legal jurisdiction filtering for regulatory compliance"
+    }
+  },
+
+  "CORPORATE": {
+    "COMPANY_REG_ID": {
+      "status": "HIGHLY_OPERABLE",
+      "per_index": {
+        "openownership": {
+          "field": "company_number",
+          "queries": {
+            "exact": {"term": {"company_number": "08641349"}},
+            "scottish": {"wildcard": {"company_number": "SC*"}},
+            "ni": {"wildcard": {"company_number": "NI*"}}
+          }
+        },
+        "uk_ccod": {
+          "fields": ["company_reg_no_1", "company_reg_no_2"]
+        }
+      },
+      "unique_opportunities": [
+        "Direct Companies House lookup",
+        "Geographic inference via prefix (SC=Scottish, NI=Northern Ireland)",
+        "Cross-reference with UK land registry"
+      ],
+      "warning": "Occasional URL contamination in data"
+    },
+
+    "LAND_TITLE": {
+      "status": "HIGHLY_OPERABLE",
+      "per_index": {
+        "uk_ccod": {
+          "field": "title_number",
+          "format": "3-letter regional + 6 digits (WYK803313)",
+          "queries": {
+            "exact": {"term": {"title_number": "WYK803313"}},
+            "regional": {"prefix": {"title_number": "WYK"}}
+          }
+        }
+      },
+      "tenure_distribution": {
+        "Freehold": "3,066,914",
+        "Leasehold": "1,223,627"
+      },
+      "unique_opportunity": "UK property chain investigation"
+    },
+
+    "OWNERSHIP": {
+      "status": "HIGHLY_OPERABLE",
+      "per_index": {
+        "openownership": {
+          "fields": ["ownership_percentage", "control_types"],
+          "queries": {
+            "ubo_threshold": {"range": {"ownership_percentage": {"gte": 25}}},
+            "controlling": {"range": {"ownership_percentage": {"gte": 50}}},
+            "sole": {"term": {"ownership_percentage": 100}}
+          }
+        }
+      },
+      "distribution": {
+        "0-10%": "7,020 (minor)",
+        "10-25%": "40,034 (substantial below threshold)",
+        "25-50%": "4,717,699 (UBO THRESHOLD)",
+        "50-100%": "8,219,191 (controlling)",
+        "100%": "551,710 (sole)"
+      },
+      "control_types": ["shareholding", "voting-rights", "appointment-of-board", "other-influence-or-control"],
+      "unique_opportunity": "UBO discovery at 25%+ threshold, minority shareholders with board control"
+    },
+
+    "ENTITY_TYPE": {
+      "status": "OPERATIONAL",
+      "per_index": {
+        "openownership": {
+          "fields": ["entity_type", "statement_type"],
+          "distribution": {
+            "registeredEntity": "11,305,615 (31%)",
+            "knownPerson": "10,070,749 (27.6%)"
+          }
+        }
+      },
+      "unique_opportunity": "Separate persons from corporate entities in BODS data"
+    },
+
+    "INDUSTRY": {
+      "status": "DATA_UNAVAILABLE",
+      "per_index": {
+        "linkedin_unified": {"field": "industry"},
+        "companies_unified": {"field": "industry"}
+      },
+      "notes": "Field poorly populated - sector clustering not currently possible"
+    }
+  },
+
+  "CONTENT": {
+    "CONTENT_LONG": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "drill_pages": {"field": "content", "avg_size": "5KB-500KB"},
+        "onion-pages": {"fields": ["content", "meta"]},
+        "linklater_corpus": {"field": "content"},
+        "kazaword_emails": {"fields": ["body_text", "body_html"]}
+      },
+      "queries": {
+        "full_text": {"match": {"content": "offshore company"}},
+        "phrase": {"match_phrase": {"content": "beneficial owner"}},
+        "phrase_proximity": {"match_phrase": {"content": {"query": "company director", "slop": 5}}},
+        "highlight": {
+          "query": {"match": {"content": "sanctions"}},
+          "highlight": {"fields": {"content": {}}}
+        }
+      },
+      "unique_opportunity": "Deep document search with highlighting and phrase proximity"
+    },
+
+    "TITLE_SHORT": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "drill_pages": {"field": "title"},
+        "onion-pages": {"fields": ["title", "h1"]},
+        "top_domains": {"field": "title"},
+        "kazaword_emails": {"field": "subject"}
+      },
+      "queries": {
+        "boosted": {"match": {"title": {"query": "$TERM", "boost": 3}}},
+        "exact": {"term": {"title.keyword": "Welcome"}},
+        "prefix": {"prefix": {"title": "Annual Report"}}
+      },
+      "unique_opportunity": "Fast headline-only filtering - pages ABOUT X rank higher than mentioning X"
+    },
+
+    "KEYWORDS": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "linklater_corpus": {"field": "keywords"},
+        "drill_pages": {"field": "keywords_found"}
+      },
+      "queries": {
+        "match": {"match": {"keywords": "sanctions"}},
+        "terms": {"terms": {"keywords": ["offshore", "shell", "nominee"]}},
+        "aggregation": {"terms": {"field": "keywords", "size": 20}}
+      },
+      "unique_opportunity": "Pre-extracted terms - 1000x faster than full-text analysis"
+    }
+  },
+
+  "BREACH": {
+    "BREACH_INFO": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "breach_records": {
+          "fields": ["breach_name", "breach_year"],
+          "doc_count": "189.2M",
+          "queries": {
+            "by_breach": {"term": {"breach_name": "LinkedIn"}},
+            "by_year": {"range": {"breach_year": {"gte": 2015, "lte": 2020}}},
+            "timeline_agg": {"terms": {"field": "breach_name", "size": 20}}
+          },
+          "top_breaches": {
+            "Adobe": "57M (2013)",
+            "intelx_paste": "44M (2020)",
+            "MySpace": "33M (2016)",
+            "LinkedIn": "20M (2012)"
+          }
+        }
+      },
+      "unique_opportunity": "Breach-specific exposure analysis, timeline reconstruction"
+    },
+
+    "PASSWORD_HASH": {
+      "status": "SECURITY_SENSITIVE",
+      "per_index": {
+        "breach_records": {
+          "fields": ["password_hash", "hash_type"],
+          "queries": {
+            "by_type": {"term": {"hash_type": "sha1"}},
+            "exact_hash": {"term": {"password_hash": "$HASH"}}
+          },
+          "distribution": {
+            "3DES": "57M",
+            "SHA-1": "48M",
+            "bcrypt": "20M",
+            "plaintext": "14.9M (CRITICAL RISK)"
+          }
+        }
+      },
+      "warning": "PASSWORD_HASH should be stored-only in production (not indexed)",
+      "unique_opportunity": "Hash reuse detection across breaches (same hash = same password)"
+    },
+
+    "IP_ADDRESS": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "breach_records": {"field": "ip_address"},
+        "kazaword_emails": {"field": "originating_ip"}
+      },
+      "queries": {
+        "exact": {"term": {"ip_address": "192.168.1.1"}},
+        "prefix": {"prefix": {"ip_address": "192.168"}},
+        "class_c": {"wildcard": {"ip_address": "202.67.*"}}
+      },
+      "unique_opportunity": "Geographic attribution, breach infrastructure clustering"
+    }
+  },
+
+  "DATE": {
+    "DATE_BUSINESS": {
+      "status": "PRODUCTION_READY",
+      "per_index": {
+        "openownership": {
+          "fields": ["incorporation_date", "dissolution_date", "statement_date"],
+          "format": "YYYY-MM-DD",
+          "queries": {
+            "range": {"range": {"incorporation_date": {"gte": "2020-01-01", "lte": "2022-12-31"}}},
+            "exists_dissolved": {"exists": {"field": "dissolution_date"}},
+            "combined": {
+              "bool": {
+                "must": [
+                  {"range": {"incorporation_date": {"gte": "2020-01-01"}}},
+                  {"exists": {"field": "dissolution_date"}}
+                ]
+              }
+            }
+          }
+        }
+      },
+      "unique_opportunities": [
+        "Corporate lifecycle tracking",
+        "Shell company detection (<2 year lifespan)",
+        "Regulatory timeline compliance"
+      ]
+    },
+
+    "DATE_MESSAGE": {
+      "status": "PRODUCTION_READY",
+      "per_index": {
+        "kazaword_emails": {
+          "field": "date",
+          "format": "ISO8601 with timezone (2008-12-07T09:48:16-08:00)",
+          "queries": {
+            "range": {"range": {"date": {"gte": "2008-01-01", "lte": "2009-12-31"}}},
+            "sorted": {"sort": [{"date": "asc"}]}
+          }
+        }
+      },
+      "unique_opportunity": "Email timeline reconstruction, timezone pattern analysis for behavioral profiling"
+    },
+
+    "DATE_SYSTEM": {
+      "status": "INTERNAL_ONLY",
+      "per_index": {
+        "openownership": {"field": "indexed_at"},
+        "domains_unified": {"field": "indexed_at"},
+        "drill_pages": {"field": "crawl_timestamp"},
+        "onion-pages": {"fields": ["fetched_at", "enriched_at"]}
+      },
+      "queries": {
+        "freshness": {"range": {"indexed_at": {"gte": "now-30d"}}}
+      },
+      "warning": "NEVER expose to users - backend quality gates only",
+      "unique_opportunity": "Data freshness filtering for ETL monitoring"
+    }
+  },
+
+  "METADATA": {
+    "SOURCE_PROVENANCE": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "uk_addresses": {"field": "source_file", "sample": "CCOD_FULL_2025_08.csv"},
+        "openownership": {"field": "source_type", "sample": "officialRegister"},
+        "drill_pages": {"field": "source"},
+        "breach_records": {"field": "source_file"}
+      },
+      "queries": {
+        "by_source": {"term": {"source_type": "officialRegister"}},
+        "aggregation": {"terms": {"field": "source_file", "size": 20}}
+      },
+      "unique_opportunity": "Data lineage tracking, breach attribution, compliance evidence chain"
+    },
+
+    "COUNT_METRIC": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "linklater_corpus": {"fields": ["word_count", "content_length"]},
+        "drill_pages": {"fields": ["entity_count", "outlink_count"]},
+        "kazaword_emails": {"field": "attachment_count"},
+        "companies_unified": {"field": "source_count"},
+        "emails_unified": {"field": "source_count"}
+      },
+      "queries": {
+        "substantive_content": {"range": {"word_count": {"gte": 1000}}},
+        "multi_source": {"range": {"source_count": {"gte": 5}}}
+      },
+      "unique_opportunities": [
+        "Quality gating (word_count > 1000 = substantive)",
+        "Confidence scoring (source_count >= 5 = HIGH CONFIDENCE)",
+        "Sort by richness (entity_count DESC)"
+      ]
+    },
+
+    "RANK": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "top_domains": {
+          "fields": ["rank", "tld_rank", "backlinks_ips", "backlinks_subnets"],
+          "queries": {
+            "top_1000": {"range": {"rank": {"lte": 1000}}},
+            "sorted": {"sort": [{"rank": "asc"}]}
+          }
+        }
+      },
+      "unique_opportunity": "Authority-based prioritization - filter out spam/low-traffic sites"
+    },
+
+    "ATTACHMENT": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "kazaword_emails": {
+          "fields": ["attachments", "has_attachments", "attachment_count"],
+          "queries": {
+            "has_docs": {"term": {"has_attachments": true}},
+            "multi_attach": {"range": {"attachment_count": {"gte": 3}}}
+          }
+        }
+      },
+      "unique_opportunity": "Direct business documents in leaked email corpus"
+    },
+
+    "UK_PROPERTY_META": {
+      "status": "EXCELLENT",
+      "per_index": {
+        "uk_ccod": {
+          "fields": ["price_paid", "tenure", "title_number"],
+          "queries": {
+            "high_value": {"range": {"price_paid": {"gte": 1000000}}},
+            "freehold_only": {"term": {"tenure": "Freehold"}}
+          },
+          "top_transaction": "£900,000,000 (KCH ASHFORD LIMITED)"
+        },
+        "uk_leases": {
+          "fields": ["uprn", "term", "price_paid"]
+        }
+      },
+      "unique_opportunity": "Property transaction analysis, AML red flag detection"
+    },
+
+    "SYSTEM_META": {
+      "status": "INTERNAL_ONLY",
+      "per_index": {
+        "drill_pages": {"fields": ["status_code", "content_type"]},
+        "onion-pages": {"fields": ["status_code", "crawl_id"]},
+        "kazaword_emails": {"field": "message_id"}
+      },
+      "queries": {
+        "successful_only": {"term": {"status_code": 200}},
+        "pdf_only": {"term": {"content_type": "application/pdf"}}
+      },
+      "warning": "INTERNAL_ONLY - for debugging, not user queries"
+    }
+  }
+}

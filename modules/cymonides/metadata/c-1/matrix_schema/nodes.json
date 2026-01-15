@@ -1,0 +1,2698 @@
+{
+  "meta": {
+    "version": "4.3",
+    "description": "Canonical node schema v4.2 aligned to NARRATIVE/SUBJECT/NEXUS/LOCATION taxonomy.",
+    "breaking_changes": [
+      "Each node type now has explicit 'codes' array mapping to legend.json IDs",
+      "Added 'handled_by' to specify which module processes this type",
+      "Property definitions now include validation (required, type, format)",
+      "Embedded FtM mapping directly in node definitions",
+      "Classes now use NARRATIVE/SUBJECT/NEXUS/LOCATION (legacy ENTITY/SOURCE/QUERY removed).",
+      "Added search_engine_hits slot (code 211) across SUBJECT types for brute search outputs."
+    ]
+  },
+  "shared_metadata": {
+    "description": "Metadata fields automatically added to ALL nodes regardless of type",
+    "fields": {
+      "raw_properties": {
+        "type": "object",
+        "description": "CRITICAL: Complete FTM properties object - preserves ALL data from source. Never indexed, only stored. Ensures NO DATA LOSS when importing from Aleph/OpenSanctions/OpenOwnership.",
+        "required": false,
+        "index": false,
+        "es_mapping": {
+          "type": "object",
+          "enabled": false
+        }
+      },
+      "ftm_schema": {
+        "type": "string",
+        "description": "Original FTM schema name (Person, Company, Organization, etc.) from source system",
+        "required": false,
+        "examples": [
+          "Person",
+          "Company",
+          "Organization",
+          "LegalEntity"
+        ]
+      },
+      "ftm_id": {
+        "type": "string",
+        "description": "Original FTM entity ID from source system (Aleph, OpenSanctions, OpenOwnership)",
+        "required": false
+      },
+      "suite": {
+        "type": "enum",
+        "values": [
+          "corporella",
+          "eyed",
+          "alldom",
+          "factassembler",
+          "core"
+        ],
+        "description": "Which module/suite created this node"
+      },
+      "mode": {
+        "type": "enum",
+        "values": [
+          "manual",
+          "auto",
+          "batch",
+          "enrichment"
+        ],
+        "description": "How this node was created"
+      },
+      "source_system": {
+        "type": "string",
+        "description": "Original source system (opencorporates, dehashed, etc.)",
+        "examples": [
+          "opencorporates",
+          "dehashed",
+          "majestic",
+          "whoisxml",
+          "aleph",
+          "opensanctions",
+          "openownership"
+        ]
+      },
+      "ftm_origin": {
+        "type": "string",
+        "description": "Aleph collection ID or FtM dataset origin",
+        "nullable": true
+      },
+      "project_id": {
+        "type": "uuid",
+        "description": "Associated project/investigation ID",
+        "nullable": true
+      },
+      "query_ids": {
+        "type": "array",
+        "items": "uuid",
+        "description": "Query IDs that contributed to discovering this node"
+      },
+      "created_at": {
+        "type": "datetime",
+        "description": "Node creation timestamp"
+      },
+      "updated_at": {
+        "type": "datetime",
+        "description": "Last update timestamp"
+      },
+      "confidence": {
+        "type": "float",
+        "min": 0.0,
+        "max": 1.0,
+        "default": 0.8,
+        "description": "Data quality confidence score"
+      }
+    }
+  },
+  "classes": {
+    "NARRATIVE": {
+      "description": "NARRATIVE class (projects, notes, watchers, tracks, tags).",
+      "types": {
+        "project": {
+          "label": "Project",
+          "description": "An investigation case",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": true
+            },
+            "description": {
+              "type": "text"
+            },
+            "start_date": {
+              "type": "date",
+              "format": "YYYY-MM-DD"
+            },
+            "status": {
+              "type": "enum",
+              "values": [
+                "active",
+                "on_hold",
+                "completed",
+                "archived"
+              ]
+            },
+            "notes": {
+              "type": "text"
+            }
+          }
+        },
+        "note": {
+          "label": "Note",
+          "description": "A text note or annotation",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "content": {
+              "type": "text",
+              "required": true
+            },
+            "author": {
+              "type": "string"
+            },
+            "date": {
+              "type": "datetime"
+            },
+            "tags": {
+              "type": "array",
+              "items": "string"
+            },
+            "note_type": {
+              "type": "enum",
+              "values": [
+                "note",
+                "template"
+              ],
+              "description": "Note subtype."
+            }
+          }
+        },
+        "watcher": {
+          "label": "Watcher",
+          "description": "Watcher node created from narrative note headers.",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "title": {
+              "type": "string",
+              "required": true
+            },
+            "source_note_id": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "text"
+            }
+          }
+        },
+        "track": {
+          "label": "Track",
+          "description": "Narrative track node (goal -> track -> path topology).",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": true
+            },
+            "description": {
+              "type": "text"
+            },
+            "status": {
+              "type": "enum",
+              "values": [
+                "active",
+                "on_hold",
+                "completed",
+                "archived"
+              ]
+            },
+            "notes": {
+              "type": "text"
+            }
+          }
+        },
+        "tag": {
+          "label": "Tag",
+          "description": "User-created organizational tag for filtering and categorizing nodes",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": true,
+              "description": "Tag name/label"
+            },
+            "color": {
+              "type": "string",
+              "description": "Hex color code for visual display",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "description": {
+              "type": "text",
+              "description": "Optional description of what this tag represents"
+            },
+            "category": {
+              "type": "enum",
+              "values": [
+                "status",
+                "priority",
+                "topic",
+                "workflow",
+                "custom"
+              ],
+              "description": "Tag category for grouping similar tags"
+            },
+            "icon": {
+              "type": "string",
+              "description": "Icon name or emoji for visual display"
+            },
+            "parent_tag_id": {
+              "type": "uuid",
+              "description": "Parent tag ID for hierarchical tags",
+              "nullable": true
+            },
+            "created_by": {
+              "type": "string",
+              "description": "User who created this tag"
+            },
+            "is_system": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether this is a system-defined tag vs user-created"
+            }
+          }
+        }
+      }
+    },
+    "SUBJECT": {
+      "description": "SUBJECT class (entities + concepts).",
+      "types": {
+        "person": {
+          "label": "Person",
+          "description": "A human being",
+          "codes": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            181,
+            187,
+            188,
+            189,
+            190,
+            281,
+            346,
+            347,
+            348,
+            349,
+            510,
+            511,
+            516,
+            517,
+            518,
+            519,
+            520,
+            521
+          ],
+          "handled_by": [
+            "eyed",
+            "corporella",
+            "brute",
+            "cymonides"
+          ],
+          "ftm_schema": "Person",
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": true,
+              "ftm_property": "name",
+              "codes": [
+                7
+              ],
+              "validation": {
+                "min_length": 2,
+                "max_length": 200
+              }
+            },
+            "alias": {
+              "type": "array",
+              "items": "string",
+              "ftm_property": "alias",
+              "codes": [
+                8
+              ]
+            },
+            "birth_date": {
+              "type": "date",
+              "ftm_property": "birthDate",
+              "codes": [
+                12
+              ],
+              "format": "YYYY-MM-DD"
+            },
+            "death_date": {
+              "type": "date",
+              "ftm_property": "deathDate",
+              "format": "YYYY-MM-DD"
+            },
+            "nationality": {
+              "type": "string",
+              "ftm_property": "nationality",
+              "codes": [
+                9
+              ]
+            },
+            "country": {
+              "type": "string",
+              "ftm_property": "country",
+              "codes": [
+                10
+              ]
+            },
+            "gender": {
+              "type": "enum",
+              "values": [
+                "male",
+                "female",
+                "other",
+                "unknown"
+              ],
+              "ftm_property": "gender"
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "ftm_property": "email",
+              "codes": [
+                1
+              ]
+            },
+            "phone": {
+              "type": "string",
+              "ftm_property": "phone",
+              "codes": [
+                2
+              ]
+            },
+            "address": {
+              "type": "string",
+              "ftm_property": "address"
+            },
+            "website": {
+              "type": "string",
+              "format": "url",
+              "ftm_property": "website"
+            },
+            "notes": {
+              "type": "text",
+              "ftm_property": "notes"
+            },
+            "full_name": {
+              "type": "string",
+              "codes": [
+                31
+              ],
+              "description": "Complete formatted name"
+            },
+            "contact_email": {
+              "type": "string",
+              "format": "email",
+              "codes": [
+                32
+              ]
+            },
+            "contact_phone": {
+              "type": "string",
+              "codes": [
+                33
+              ]
+            },
+            "personal_website": {
+              "type": "string",
+              "format": "url",
+              "codes": [
+                34
+              ]
+            },
+            "residential_address": {
+              "type": "string",
+              "codes": [
+                35
+              ]
+            },
+            "residence_country": {
+              "type": "string",
+              "codes": [
+                36
+              ]
+            },
+            "date_of_birth": {
+              "type": "date",
+              "codes": [
+                37
+              ],
+              "format": "YYYY-MM-DD"
+            },
+            "profile_url": {
+              "type": "string",
+              "format": "url",
+              "codes": [
+                38
+              ],
+              "description": "Social media or professional profile URL"
+            },
+            "platform": {
+              "type": "string",
+              "codes": [
+                39
+              ],
+              "description": "Social media platform name"
+            },
+            "role": {
+              "type": "string",
+              "codes": [
+                40
+              ],
+              "description": "Job role or position"
+            },
+            "employer": {
+              "type": "string",
+              "codes": [
+                41
+              ],
+              "description": "Current employer"
+            },
+            "email_breaches": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                187
+              ],
+              "description": "Email breaches found for this person (EYE-D output)",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "breach_name": {
+                  "type": "string"
+                },
+                "breach_date": {
+                  "type": "date"
+                }
+              }
+            },
+            "social_profiles": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                188
+              ],
+              "description": "Social media profiles (EYE-D output)",
+              "properties": {
+                "platform": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                }
+              }
+            },
+            "phone_records": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                189
+              ],
+              "description": "Phone number records (EYE-D output)",
+              "properties": {
+                "phone": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "verified": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "identity_graph": {
+              "type": "object",
+              "codes": [
+                190
+              ],
+              "description": "Complete identity graph mapping (EYE-D output)",
+              "properties": {
+                "emails": {
+                  "type": "array",
+                  "items": "string"
+                },
+                "phones": {
+                  "type": "array",
+                  "items": "string"
+                },
+                "usernames": {
+                  "type": "array",
+                  "items": "string"
+                },
+                "domains": {
+                  "type": "array",
+                  "items": "string"
+                }
+              }
+            },
+            "national_id_decoded": {
+              "type": "object",
+              "codes": [
+                181
+              ],
+              "description": "Decoded information from national ID number",
+              "properties": {
+                "birth_date": {
+                  "type": "date"
+                },
+                "gender": {
+                  "type": "string"
+                },
+                "region": {
+                  "type": "string"
+                }
+              }
+            },
+            "fca_individual_irn": {
+              "type": "string",
+              "codes": [
+                346
+              ],
+              "description": "FCA Individual Reference Number"
+            },
+            "fca_individual_status": {
+              "type": "string",
+              "codes": [
+                347
+              ],
+              "description": "FCA authorisation status"
+            },
+            "fca_controlled_functions": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                348
+              ],
+              "description": "FCA controlled functions (CF1 Director, CF10 Compliance, etc.)"
+            },
+            "fca_firm_history": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                349
+              ],
+              "description": "Firms where individual was/is FCA authorised"
+            },
+            "psc_control_of_companies": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                281
+              ],
+              "description": "Companies where this person is a PSC"
+            },
+            "search_engine_hits": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                211
+              ],
+              "description": "URLs returned by brute search and open-web discovery."
+            },
+            "associated_persons": {
+              "type": "array",
+              "items": "string",
+              "description": "Associated persons linked to this person.",
+              "codes": [
+                516
+              ]
+            },
+            "associated_companies": {
+              "type": "array",
+              "items": "string",
+              "description": "Associated companies linked to this person.",
+              "codes": [
+                517
+              ]
+            },
+            "domains": {
+              "type": "array",
+              "items": "string",
+              "description": "Domains or websites linked to this person.",
+              "codes": [
+                518
+              ]
+            },
+            "documents": {
+              "type": "array",
+              "items": "string",
+              "description": "Documents or files referencing this person.",
+              "codes": [
+                519
+              ]
+            },
+            "assets": {
+              "type": "array",
+              "items": "object",
+              "description": "Assets linked to this person (property, vehicles, holdings).",
+              "codes": [
+                520
+              ]
+            },
+            "pep_status": {
+              "type": "array",
+              "items": "object",
+              "description": "Politically exposed person status and positions.",
+              "codes": [
+                521
+              ]
+            },
+            "media_mentions": {
+              "type": "array",
+              "items": "object",
+              "description": "Media mentions for this person (news/social).",
+              "codes": [
+                510,
+                511
+              ]
+            }
+          }
+        },
+        "company": {
+          "label": "Company",
+          "description": "Company or organization (legal entity).",
+          "codes": [
+            13,
+            14,
+            15,
+            16,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            281,
+            282,
+            285,
+            287,
+            288,
+            289,
+            293,
+            295,
+            298,
+            299,
+            327,
+            186,
+            318,
+            319,
+            320,
+            321,
+            328,
+            330,
+            331,
+            333,
+            335,
+            342,
+            343
+          ],
+          "handled_by": [
+            "corporella"
+          ],
+          "ftm_schema": "Company",
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": true,
+              "ftm_property": "name",
+              "codes": [
+                13,
+                42
+              ]
+            },
+            "registration_number": {
+              "type": "string",
+              "ftm_property": "registrationNumber",
+              "codes": [
+                14,
+                43
+              ]
+            },
+            "vat_number": {
+              "type": "string",
+              "codes": [
+                15
+              ]
+            },
+            "previous_names": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                16
+              ]
+            },
+            "jurisdiction": {
+              "type": "string",
+              "ftm_property": "jurisdiction"
+            },
+            "incorporation_date": {
+              "type": "date",
+              "ftm_property": "incorporationDate",
+              "codes": [
+                50
+              ],
+              "format": "YYYY-MM-DD"
+            },
+            "dissolution_date": {
+              "type": "date",
+              "ftm_property": "dissolutionDate",
+              "codes": [
+                51
+              ],
+              "format": "YYYY-MM-DD"
+            },
+            "status": {
+              "type": "enum",
+              "values": [
+                "active",
+                "dissolved",
+                "inactive",
+                "unknown"
+              ],
+              "ftm_property": "status",
+              "codes": [
+                49
+              ]
+            },
+            "address": {
+              "type": "string",
+              "ftm_property": "address",
+              "codes": [
+                47
+              ]
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "ftm_property": "email",
+              "codes": [
+                44
+              ]
+            },
+            "phone": {
+              "type": "string",
+              "ftm_property": "phone",
+              "codes": [
+                45
+              ]
+            },
+            "website": {
+              "type": "string",
+              "format": "url",
+              "ftm_property": "website",
+              "codes": [
+                46
+              ]
+            },
+            "country": {
+              "type": "string",
+              "ftm_property": "country",
+              "codes": [
+                48
+              ]
+            },
+            "industry": {
+              "type": "string",
+              "ftm_property": "sector"
+            },
+            "notes": {
+              "type": "text",
+              "ftm_property": "notes"
+            },
+            "company_type": {
+              "type": "string",
+              "codes": [
+                52
+              ]
+            },
+            "sic_codes": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                53
+              ],
+              "description": "Standard Industrial Classification codes"
+            },
+            "financial_statements": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                54
+              ]
+            },
+            "financial_year_end": {
+              "type": "string",
+              "codes": [
+                55
+              ]
+            },
+            "share_capital": {
+              "type": "object",
+              "codes": [
+                56
+              ]
+            },
+            "accounts_filing_date": {
+              "type": "date",
+              "codes": [
+                57
+              ],
+              "format": "YYYY-MM-DD"
+            },
+            "officers": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                58
+              ],
+              "description": "Company officers (directors, secretaries, etc.)"
+            },
+            "officer_names": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                59
+              ]
+            },
+            "officer_roles": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                60
+              ]
+            },
+            "officer_appointment_dates": {
+              "type": "array",
+              "items": "date",
+              "codes": [
+                61
+              ]
+            },
+            "officer_resignation_dates": {
+              "type": "array",
+              "items": "date",
+              "codes": [
+                62
+              ]
+            },
+            "officer_nationalities": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                63
+              ]
+            },
+            "officer_dobs": {
+              "type": "array",
+              "items": "date",
+              "codes": [
+                64
+              ]
+            },
+            "officer_addresses": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                65
+              ]
+            },
+            "beneficial_owners": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                66
+              ],
+              "description": "Ultimate beneficial owners (UBOs)"
+            },
+            "beneficial_owner_names": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                67
+              ]
+            },
+            "beneficial_owner_ownership_pct": {
+              "type": "array",
+              "items": "float",
+              "codes": [
+                68
+              ]
+            },
+            "beneficial_owner_control_nature": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                69
+              ]
+            },
+            "beneficial_owner_nationalities": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                70
+              ]
+            },
+            "shareholders": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                71
+              ]
+            },
+            "shareholder_names": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                72
+              ]
+            },
+            "shareholder_companies": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                73
+              ]
+            },
+            "shareholder_persons": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                74
+              ]
+            },
+            "shareholder_types": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                75
+              ]
+            },
+            "shareholder_shares": {
+              "type": "array",
+              "items": "integer",
+              "codes": [
+                76
+              ]
+            },
+            "shareholder_share_classes": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                77
+              ]
+            },
+            "psc_records": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                281
+              ],
+              "description": "UK PSC (Persons with Significant Control) records"
+            },
+            "psc_person_names": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                282
+              ],
+              "description": "Names of individual PSCs"
+            },
+            "psc_person_nationalities": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                285
+              ]
+            },
+            "psc_corporate_names": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                287
+              ],
+              "description": "Names of corporate PSCs (foreign companies)"
+            },
+            "psc_corporate_jurisdictions": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                289
+              ],
+              "description": "Jurisdictions of corporate PSCs (DE, FR, BVI, etc.) - for cross-country routing"
+            },
+            "psc_corporate_reg_numbers": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                288
+              ],
+              "description": "Registration numbers of corporate PSCs in their home jurisdiction"
+            },
+            "psc_natures_of_control": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                293
+              ],
+              "description": "Types of control: ownership-of-shares-25-to-50-percent, voting-rights, etc."
+            },
+            "psc_ownership_bands": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                295
+              ],
+              "description": "Ownership bands: 25-50%, 50-75%, 75-100%"
+            },
+            "psc_notified_dates": {
+              "type": "array",
+              "items": "date",
+              "codes": [
+                298
+              ]
+            },
+            "psc_ceased_dates": {
+              "type": "array",
+              "items": "date",
+              "codes": [
+                299
+              ]
+            },
+            "foreign_psc_companies": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                327
+              ],
+              "description": "List of foreign companies that are PSCs, with their jurisdictions for cross-country routing"
+            },
+            "fca_frn": {
+              "type": "string",
+              "codes": [
+                328
+              ],
+              "description": "FCA Firm Reference Number"
+            },
+            "fca_status": {
+              "type": "string",
+              "codes": [
+                330
+              ],
+              "description": "FCA authorisation status: Authorised, Registered, No longer authorised"
+            },
+            "fca_business_type": {
+              "type": "string",
+              "codes": [
+                331
+              ]
+            },
+            "fca_permissions": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                333
+              ],
+              "description": "FCA regulatory permissions (licences)"
+            },
+            "fca_individuals": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                335
+              ],
+              "description": "Authorised individuals at the firm"
+            },
+            "fca_disciplinary_history": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                342
+              ],
+              "description": "FCA disciplinary actions"
+            },
+            "fca_fines": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                343
+              ],
+              "description": "FCA fines with amounts and dates"
+            },
+            "fca_fines_total": {
+              "type": "float",
+              "description": "Total FCA fines amount in GBP"
+            },
+            "openownership_records": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                186,
+                318,
+                319,
+                320,
+                321
+              ],
+              "description": "OpenOwnership beneficial ownership records"
+            },
+            "search_engine_hits": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                211
+              ],
+              "description": "URLs returned by brute search and open-web discovery."
+            }
+          }
+        },
+        "vehicle": {
+          "label": "Vehicle",
+          "description": "A car, truck, or other land vehicle",
+          "codes": [
+            23,
+            116,
+            117,
+            118,
+            119,
+            120
+          ],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "Vehicle",
+          "properties": {
+            "vin": {
+              "type": "string",
+              "ftm_property": "vinCode"
+            },
+            "plate": {
+              "type": "string",
+              "ftm_property": "registrationNumber"
+            },
+            "make": {
+              "type": "string",
+              "ftm_property": "make"
+            },
+            "model": {
+              "type": "string",
+              "ftm_property": "model"
+            },
+            "year": {
+              "type": "integer",
+              "codes": [
+                120
+              ],
+              "description": "Year of manufacture"
+            },
+            "color": {
+              "type": "string",
+              "ftm_property": "color"
+            },
+            "notes": {
+              "type": "text",
+              "ftm_property": "notes"
+            },
+            "owner": {
+              "type": "string",
+              "codes": [
+                116
+              ],
+              "description": "Vehicle owner name"
+            },
+            "reg_id": {
+              "type": "string",
+              "codes": [
+                23,
+                117
+              ],
+              "description": "Vehicle registration/license plate number"
+            },
+            "vin_id": {
+              "type": "string",
+              "codes": [
+                118
+              ],
+              "description": "Vehicle Identification Number (VIN)"
+            },
+            "make_model": {
+              "type": "string",
+              "codes": [
+                119
+              ],
+              "description": "Vehicle make and model"
+            },
+            "search_engine_hits": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                211
+              ],
+              "description": "URLs returned by brute search and open-web discovery."
+            }
+          },
+          "subtypes": [
+            "plane",
+            "vessel"
+          ]
+        },
+        "email": {
+          "label": "Email Address",
+          "description": "An email address entity",
+          "codes": [
+            1
+          ],
+          "handled_by": [
+            "eyed"
+          ],
+          "ftm_schema": "LegalEntity",
+          "ftm_note": "FtM lacks dedicated Email schema",
+          "properties": {
+            "email_address": {
+              "type": "string",
+              "required": true,
+              "format": "email",
+              "ftm_property": "email",
+              "codes": [
+                1
+              ]
+            },
+            "provider": {
+              "type": "string",
+              "description": "Email provider (gmail, outlook, etc.)"
+            },
+            "domain": {
+              "type": "string",
+              "description": "Domain portion of email"
+            },
+            "notes": {
+              "type": "text",
+              "ftm_property": "notes"
+            },
+            "search_engine_hits": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                211
+              ],
+              "description": "URLs returned by brute search and open-web discovery."
+            }
+          }
+        },
+        "phone": {
+          "label": "Phone Number",
+          "description": "A telephone number entity",
+          "codes": [
+            2,
+            175,
+            176,
+            177,
+            178,
+            179
+          ],
+          "handled_by": [
+            "eyed"
+          ],
+          "ftm_schema": "LegalEntity",
+          "ftm_note": "FtM lacks dedicated Phone schema",
+          "properties": {
+            "phone_number": {
+              "type": "string",
+              "required": true,
+              "ftm_property": "phone",
+              "codes": [
+                2
+              ]
+            },
+            "country_code": {
+              "type": "string",
+              "pattern": "^\\+\\d{1,3}$"
+            },
+            "carrier": {
+              "type": "string"
+            },
+            "line_type": {
+              "type": "enum",
+              "values": [
+                "mobile",
+                "landline",
+                "voip",
+                "unknown"
+              ]
+            },
+            "notes": {
+              "type": "text",
+              "ftm_property": "notes"
+            },
+            "breach_records": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                176
+              ],
+              "description": "Breach records for this phone number (EYE-D output)",
+              "properties": {
+                "breach_name": {
+                  "type": "string"
+                },
+                "breach_date": {
+                  "type": "date"
+                },
+                "associated_email": {
+                  "type": "string"
+                }
+              }
+            },
+            "osint_profiles": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                175
+              ],
+              "description": "OSINT profile discoveries (EYE-D output)",
+              "properties": {
+                "platform": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              }
+            },
+            "related_entities": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                177
+              ],
+              "description": "Related entities discovered via phone",
+              "properties": {
+                "entity_type": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "confidence": {
+                  "type": "float"
+                }
+              }
+            },
+            "geo_signals": {
+              "type": "object",
+              "codes": [
+                178
+              ],
+              "description": "Geographic signals from phone activity",
+              "properties": {
+                "country_code": {
+                  "type": "string"
+                },
+                "region": {
+                  "type": "string"
+                },
+                "carrier": {
+                  "type": "string"
+                }
+              }
+            },
+            "osint_summary": {
+              "type": "object",
+              "codes": [
+                179
+              ],
+              "description": "Comprehensive OSINT summary (EYE-D output)",
+              "properties": {
+                "total_hits": {
+                  "type": "integer"
+                },
+                "sources": {
+                  "type": "array",
+                  "items": "string"
+                },
+                "confidence_score": {
+                  "type": "float"
+                }
+              }
+            },
+            "search_engine_hits": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                211
+              ],
+              "description": "URLs returned by brute search and open-web discovery."
+            }
+          }
+        },
+        "ip_address": {
+          "label": "IP Address",
+          "description": "An internet protocol address",
+          "codes": [],
+          "handled_by": [
+            "alldom"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "ip": {
+              "type": "string",
+              "required": true,
+              "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$|^[0-9a-fA-F:]+$"
+            },
+            "version": {
+              "type": "enum",
+              "values": [
+                "ipv4",
+                "ipv6"
+              ]
+            },
+            "asn": {
+              "type": "string"
+            },
+            "isp": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "text"
+            },
+            "search_engine_hits": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                211
+              ],
+              "description": "URLs returned by brute search and open-web discovery."
+            }
+          }
+        },
+        "crypto_wallet": {
+          "label": "Crypto Wallet",
+          "description": "A cryptocurrency wallet address",
+          "codes": [],
+          "handled_by": [
+            "eyed"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "address": {
+              "type": "string",
+              "required": true
+            },
+            "currency": {
+              "type": "enum",
+              "values": [
+                "BTC",
+                "ETH",
+                "USDT",
+                "other"
+              ]
+            },
+            "network": {
+              "type": "string",
+              "description": "Blockchain network"
+            },
+            "notes": {
+              "type": "text"
+            },
+            "search_engine_hits": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                211
+              ],
+              "description": "URLs returned by brute search and open-web discovery."
+            }
+          }
+        },
+        "phenomenon": {
+          "label": "Phenomenon",
+          "description": "Observed phenomenon or event-class (e.g., litigation, breach, regulatory action).",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "Document",
+          "properties": {
+            "label": {
+              "type": "string",
+              "required": true
+            },
+            "event_type": {
+              "type": "string",
+              "description": "Event type (ipo, litigation, breach, appointment...)"
+            },
+            "date": {
+              "type": "date",
+              "format": "YYYY-MM-DD"
+            },
+            "time_range": {
+              "type": "object",
+              "description": "Optional date range binding"
+            },
+            "jurisdiction": {
+              "type": "string",
+              "description": "Place binding"
+            },
+            "actor_ids": {
+              "type": "array",
+              "items": "uuid",
+              "description": "Actors (people/companies) involved"
+            },
+            "notes": {
+              "type": "text"
+            },
+            "search_engine_hits": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                211
+              ],
+              "description": "URLs returned by brute search and open-web discovery."
+            }
+          }
+        },
+        "theme": {
+          "label": "Theme",
+          "description": "Conceptual theme/category (topic-level).",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "label": {
+              "type": "string",
+              "required": true
+            },
+            "aliases": {
+              "type": "array",
+              "items": "string"
+            },
+            "notes": {
+              "type": "text"
+            },
+            "search_engine_hits": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                211
+              ],
+              "description": "URLs returned by brute search and open-web discovery."
+            }
+          }
+        }
+      }
+    },
+    "NEXUS": {
+      "description": "NEXUS class (queries and operators).",
+      "types": {
+        "query": {
+          "label": "Search Query",
+          "description": "Query node (NEXUS).",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "queryText": {
+              "type": "string",
+              "required": true,
+              "description": "The search query text"
+            },
+            "queryType": {
+              "type": "enum",
+              "values": [
+                "open-web",
+                "eye-d",
+                "archive",
+                "backdrill",
+                "alldom",
+                "engine_specific",
+                "corpus"
+              ],
+              "description": "Type of search query"
+            },
+            "engines": {
+              "type": "array",
+              "items": "string",
+              "description": "Search engines used"
+            },
+            "filters": {
+              "type": "object",
+              "description": "Applied search filters"
+            },
+            "resultCount": {
+              "type": "integer",
+              "description": "Number of results returned"
+            },
+            "timestamp": {
+              "type": "datetime",
+              "description": "When the query was executed"
+            },
+            "queryPrimary": {
+              "type": "enum",
+              "values": [
+                "keyword",
+                "semantic",
+                "exact_phrase",
+                "variations",
+                "question",
+                "definitional"
+              ],
+              "description": "Primary query intent."
+            },
+            "queryScope": {
+              "type": "enum",
+              "values": [
+                "on_dom",
+                "on_page",
+                "openweb",
+                "filter",
+                "corporella",
+                "eye-d",
+                "historic"
+              ],
+              "description": "Query scope/destination."
+            },
+            "queryMode": {
+              "type": "enum",
+              "values": [
+                "brute",
+                "targeted"
+              ],
+              "description": "Execution mode."
+            },
+            "selectors": {
+              "type": "array",
+              "items": "string",
+              "description": "Selectors embedded in the query (intitle, inurl, indom, inanchor, site)."
+            }
+          }
+        }
+      }
+    },
+    "LOCATION": {
+      "description": "LOCATION class (geo, linguistic, virtual, temporal).",
+      "types": {
+        "address": {
+          "label": "Address",
+          "description": "Physical address (LOCATION/geo).",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "Address",
+          "properties": {
+            "full_address": {
+              "type": "string",
+              "ftm_property": "full"
+            },
+            "street": {
+              "type": "string",
+              "ftm_property": "street"
+            },
+            "city": {
+              "type": "string",
+              "ftm_property": "city"
+            },
+            "region": {
+              "type": "string",
+              "ftm_property": "region"
+            },
+            "postal_code": {
+              "type": "string",
+              "ftm_property": "postalCode"
+            },
+            "country": {
+              "type": "string",
+              "ftm_property": "country"
+            },
+            "coordinates": {
+              "type": "object",
+              "properties": {
+                "lat": {
+                  "type": "float",
+                  "min": -90,
+                  "max": 90
+                },
+                "lng": {
+                  "type": "float",
+                  "min": -180,
+                  "max": 180
+                }
+              }
+            },
+            "notes": {
+              "type": "text",
+              "ftm_property": "notes"
+            }
+          }
+        },
+        "domain": {
+          "label": "Domain",
+          "description": "Web domain (virtual coordinate).",
+          "codes": [
+            6,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            148,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            169,
+            182,
+            184,
+            191,
+            192,
+            193,
+            195,
+            196,
+            197,
+            198,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            207,
+            208,
+            209,
+            211,
+            212,
+            213,
+            214
+          ],
+          "handled_by": [
+            "alldom"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "domain": {
+              "type": "string",
+              "required": true,
+              "codes": [
+                6
+              ],
+              "pattern": "^[a-z0-9]+([-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,}$"
+            },
+            "tld": {
+              "type": "string"
+            },
+            "registrar": {
+              "type": "string"
+            },
+            "creation_date": {
+              "type": "date",
+              "format": "YYYY-MM-DD"
+            },
+            "expiry_date": {
+              "type": "date",
+              "format": "YYYY-MM-DD"
+            },
+            "notes": {
+              "type": "text"
+            },
+            "backlinks": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                191
+              ],
+              "description": "Domains linking to this domain (AllDom primary output)",
+              "properties": {
+                "source_domain": {
+                  "type": "string"
+                },
+                "anchor_text": {
+                  "type": "string"
+                },
+                "link_type": {
+                  "type": "string"
+                },
+                "first_seen": {
+                  "type": "date"
+                }
+              }
+            },
+            "wayback_snapshots": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                192
+              ],
+              "description": "Historical snapshots from Internet Archive",
+              "properties": {
+                "timestamp": {
+                  "type": "datetime"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "status_code": {
+                  "type": "integer"
+                }
+              }
+            },
+            "dns_records": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                193
+              ],
+              "description": "DNS records (A, MX, TXT, etc.)",
+              "properties": {
+                "record_type": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "ttl": {
+                  "type": "integer"
+                }
+              }
+            },
+            "whois_history": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                195,
+                201
+              ],
+              "description": "Historical WHOIS records",
+              "properties": {
+                "registrant": {
+                  "type": "string"
+                },
+                "registrant_email": {
+                  "type": "string"
+                },
+                "registrant_org": {
+                  "type": "string"
+                },
+                "date_captured": {
+                  "type": "datetime"
+                }
+              }
+            },
+            "ssl_certificates": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                196,
+                202
+              ],
+              "description": "SSL/TLS certificate history",
+              "properties": {
+                "issuer": {
+                  "type": "string"
+                },
+                "subject": {
+                  "type": "string"
+                },
+                "valid_from": {
+                  "type": "date"
+                },
+                "valid_to": {
+                  "type": "date"
+                }
+              }
+            },
+            "url_timelines": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                197
+              ],
+              "description": "Timeline of URL changes and snapshots"
+            },
+            "keyword_hits": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                198
+              ],
+              "description": "Keywords found in domain content",
+              "properties": {
+                "keyword": {
+                  "type": "string"
+                },
+                "frequency": {
+                  "type": "integer"
+                },
+                "context": {
+                  "type": "string"
+                }
+              }
+            },
+            "subdomains": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                200
+              ],
+              "description": "Discovered subdomains (AllDom output)"
+            },
+            "outlinks": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                203
+              ],
+              "description": "Domains this domain links to",
+              "properties": {
+                "target_domain": {
+                  "type": "string"
+                },
+                "anchor_text": {
+                  "type": "string"
+                },
+                "link_type": {
+                  "type": "string"
+                }
+              }
+            },
+            "ga_codes": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                204
+              ],
+              "description": "Google Analytics tracking codes (AllDom primary output for shares_ga_with)"
+            },
+            "domain_age": {
+              "type": "object",
+              "codes": [
+                205
+              ],
+              "description": "Age metrics for the domain",
+              "properties": {
+                "registration_date": {
+                  "type": "date"
+                },
+                "age_days": {
+                  "type": "integer"
+                }
+              }
+            },
+            "page_age": {
+              "type": "object",
+              "codes": [
+                206
+              ],
+              "description": "Age metrics for specific pages"
+            },
+            "referring_pages": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                207
+              ],
+              "description": "Specific pages linking to this domain",
+              "properties": {
+                "page_url": {
+                  "type": "string"
+                },
+                "domain": {
+                  "type": "string"
+                },
+                "anchor_text": {
+                  "type": "string"
+                }
+              }
+            },
+            "linked_pages": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                208
+              ],
+              "description": "Specific pages this domain links to"
+            },
+            "historic_link_data": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                209
+              ],
+              "description": "Historical backlink data over time",
+              "properties": {
+                "date": {
+                  "type": "date"
+                },
+                "backlinks_count": {
+                  "type": "integer"
+                },
+                "referring_domains": {
+                  "type": "integer"
+                }
+              }
+            },
+            "search_engine_hits": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                211
+              ],
+              "description": "Search engine results mentioning this domain",
+              "properties": {
+                "engine": {
+                  "type": "string"
+                },
+                "query": {
+                  "type": "string"
+                },
+                "position": {
+                  "type": "integer"
+                },
+                "url": {
+                  "type": "string"
+                }
+              }
+            },
+            "similar_sites": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                212
+              ],
+              "description": "Similar or related domains",
+              "properties": {
+                "domain": {
+                  "type": "string"
+                },
+                "similarity_score": {
+                  "type": "float"
+                }
+              }
+            },
+            "sitemap_urls": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                213
+              ],
+              "description": "URLs extracted from sitemap.xml"
+            },
+            "domain_archives": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                214
+              ],
+              "description": "Archive snapshots from various sources",
+              "properties": {
+                "archive_source": {
+                  "type": "string"
+                },
+                "snapshot_url": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "datetime"
+                }
+              }
+            },
+            "domain_url": {
+              "type": "string",
+              "codes": [
+                129
+              ],
+              "description": "Full domain URL"
+            },
+            "ip_address": {
+              "type": "string",
+              "codes": [
+                130
+              ],
+              "description": "Current IP address"
+            },
+            "registrant_person": {
+              "type": "string",
+              "codes": [
+                131
+              ],
+              "description": "Registrant person name"
+            },
+            "registrant_company": {
+              "type": "string",
+              "codes": [
+                132
+              ],
+              "description": "Registrant company name"
+            },
+            "registrant_email": {
+              "type": "string",
+              "codes": [
+                133
+              ],
+              "description": "Registrant email address"
+            },
+            "registrant_phone": {
+              "type": "string",
+              "codes": [
+                134
+              ],
+              "description": "Registrant phone number"
+            },
+            "registrant_address": {
+              "type": "string",
+              "codes": [
+                135
+              ],
+              "description": "Registrant address"
+            },
+            "creation_date_extended": {
+              "type": "date",
+              "codes": [
+                136
+              ],
+              "description": "Domain creation/registration date",
+              "format": "YYYY-MM-DD"
+            },
+            "update_date": {
+              "type": "date",
+              "codes": [
+                137
+              ],
+              "description": "Last update date",
+              "format": "YYYY-MM-DD"
+            },
+            "expiry_date_extended": {
+              "type": "date",
+              "codes": [
+                138
+              ],
+              "description": "Domain expiry date",
+              "format": "YYYY-MM-DD"
+            },
+            "nameservers": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                139
+              ],
+              "description": "Nameserver list"
+            },
+            "status_codes": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                140
+              ],
+              "description": "Domain status codes (EPP status)"
+            },
+            "whois_raw": {
+              "type": "text",
+              "codes": [
+                141
+              ],
+              "description": "Raw WHOIS record"
+            },
+            "anchor_text_profile": {
+              "type": "object",
+              "codes": [
+                148
+              ],
+              "description": "Anchor text distribution analysis"
+            },
+            "index_item_metrics": {
+              "type": "object",
+              "codes": [
+                150
+              ],
+              "description": "Search engine indexing metrics"
+            },
+            "hosted_domains": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                151
+              ],
+              "description": "Other domains hosted on same IP"
+            },
+            "backlink_history": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                152
+              ],
+              "description": "Historical backlink data"
+            },
+            "backlink_records": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                153
+              ],
+              "description": "Detailed backlink records"
+            },
+            "new_lost_backlinks": {
+              "type": "object",
+              "codes": [
+                154
+              ],
+              "description": "Recently gained and lost backlinks",
+              "properties": {
+                "new": {
+                  "type": "array",
+                  "items": "object"
+                },
+                "lost": {
+                  "type": "array",
+                  "items": "object"
+                }
+              }
+            },
+            "link_profile": {
+              "type": "object",
+              "codes": [
+                155
+              ],
+              "description": "Overall link profile analysis"
+            },
+            "ref_domains": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                156
+              ],
+              "description": "Referring domains list"
+            },
+            "ref_domain_metrics": {
+              "type": "object",
+              "codes": [
+                157
+              ],
+              "description": "Metrics for referring domains"
+            },
+            "related_sites": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                158
+              ],
+              "description": "Related/similar websites"
+            },
+            "topics_profile": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                159
+              ],
+              "description": "Content topic classification"
+            },
+            "crawl_submission": {
+              "type": "object",
+              "codes": [
+                161
+              ],
+              "description": "Crawl submission status"
+            },
+            "top_pages": {
+              "type": "array",
+              "items": "object",
+              "codes": [
+                162
+              ],
+              "description": "Top performing pages"
+            },
+            "prefix_estimate": {
+              "type": "object",
+              "codes": [
+                163
+              ],
+              "description": "Domain prefix/subdomain estimate"
+            },
+            "gov_backlinks_count": {
+              "type": "integer",
+              "codes": [
+                164
+              ],
+              "description": "Number of .gov backlinks"
+            },
+            "gov_ref_domains": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                165
+              ],
+              "description": "Government domains linking here"
+            },
+            "mil_backlinks_count": {
+              "type": "integer",
+              "codes": [
+                166
+              ],
+              "description": "Number of .mil backlinks"
+            },
+            "mil_ref_domains": {
+              "type": "array",
+              "items": "string",
+              "codes": [
+                167
+              ],
+              "description": "Military domains linking here"
+            },
+            "backlink_segment_profiles": {
+              "type": "object",
+              "codes": [
+                169
+              ],
+              "description": "Backlink segmentation analysis"
+            },
+            "geo_summary": {
+              "type": "object",
+              "codes": [
+                182
+              ],
+              "description": "Geographic distribution summary"
+            },
+            "commoncrawl_attrs": {
+              "type": "object",
+              "codes": [
+                184
+              ],
+              "description": "Common Crawl attributes and metrics"
+            }
+          }
+        },
+        "url": {
+          "label": "URL",
+          "description": "A specific web page address",
+          "codes": [],
+          "handled_by": [
+            "alldom"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "url": {
+              "type": "string",
+              "required": true,
+              "format": "url"
+            },
+            "domain": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "date_accessed": {
+              "type": "datetime"
+            },
+            "notes": {
+              "type": "text"
+            }
+          }
+        },
+        "file": {
+          "label": "File",
+          "description": "File or document (virtual coordinate).",
+          "codes": [
+            146
+          ],
+          "handled_by": [
+            "factassembler"
+          ],
+          "ftm_schema": "Document",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "required": true,
+              "ftm_property": "fileName"
+            },
+            "file_type": {
+              "type": "string",
+              "ftm_property": "mimeType"
+            },
+            "size": {
+              "type": "integer",
+              "ftm_property": "fileSize"
+            },
+            "hash": {
+              "type": "string",
+              "ftm_property": "contentHash"
+            },
+            "author": {
+              "type": "string",
+              "ftm_property": "author"
+            },
+            "created_at": {
+              "type": "datetime",
+              "ftm_property": "date"
+            },
+            "notes": {
+              "type": "text",
+              "ftm_property": "notes"
+            },
+            "content": {
+              "type": "text",
+              "codes": [
+                146
+              ],
+              "description": "Full document content/text",
+              "ftm_property": "bodyText"
+            }
+          }
+        },
+        "jurisdiction": {
+          "label": "Jurisdiction",
+          "description": "Jurisdiction or legal territory (geo).",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "Address",
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": true
+            },
+            "iso_code": {
+              "type": "string"
+            }
+          }
+        },
+        "country": {
+          "label": "Country",
+          "description": "Country (geo).",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "Address",
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": true
+            },
+            "iso_code": {
+              "type": "string"
+            }
+          }
+        },
+        "region": {
+          "label": "Region",
+          "description": "Region/state/province (geo).",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "Address",
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": true
+            },
+            "code": {
+              "type": "string"
+            }
+          }
+        },
+        "municipality": {
+          "label": "Municipality",
+          "description": "Municipality/city (geo).",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "Address",
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": true
+            },
+            "region_code": {
+              "type": "string"
+            }
+          }
+        },
+        "language": {
+          "label": "Language",
+          "description": "Language/linguistic coordinate.",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "code": {
+              "type": "string",
+              "required": true
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "year": {
+          "label": "Year",
+          "description": "Temporal coordinate (YYYY).",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "value": {
+              "type": "string",
+              "required": true,
+              "format": "YYYY"
+            }
+          }
+        },
+        "month": {
+          "label": "Month",
+          "description": "Temporal coordinate (MM YYYY).",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "value": {
+              "type": "string",
+              "required": true,
+              "format": "MM YYYY"
+            }
+          }
+        },
+        "day": {
+          "label": "Day",
+          "description": "Temporal coordinate (DD MM YYYY).",
+          "codes": [],
+          "handled_by": [
+            "core"
+          ],
+          "ftm_schema": "LegalEntity",
+          "properties": {
+            "value": {
+              "type": "string",
+              "required": true,
+              "format": "DD MM YYYY"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5259 @@
+"""
+SASTRE Unified Executor - Routes queries based on operator syntax.
+
+ONE interface for ALL investigation queries:
+
+MACRO CHAINS (=> Operator):
+    execute('"John Smith" => !uk_registry => c?')     → MacroExecutor (chain operations)
+    execute('!example.com => bl! => p? => disambiguate!')  → MacroExecutor
+    execute('{ !domain1.com, !domain2.com } => c?')   → MacroExecutor (parallel)
+
+CHAIN OPERATORS (Multi-Step Investigations):
+    execute("chain: due_diligence c: Acme Corp :US")  → IOPlanner (33 steps, 8 sections)
+    execute("chain: ubo c: Siemens AG :DE")           → IOPlanner (UBO chain)
+    execute("chain: officers c: Tesco PLC :GB")       → IOPlanner (officers + sanctions)
+    execute("chain: pep p: John Smith")               → IOPlanner (PEP check)
+    execute("chain: full_company c: Example Ltd")     → IOPlanner (complete investigation)
+
+GRID QUERIES (Node Operations):
+    execute("ent? :!#querynode")             → Grid (entities from node + edges)
+    execute("ent? :#querynode!")             → Grid (entities from node only)
+    execute("ent? :!#q1 #q2 => #EXTRACTED")  → Grid (multi-target, tag results)
+    execute("=? :!#node1 #node2!")           → Grid (compare nodes)
+    execute("ent? :!#query @SOURCE ##unchecked") → Grid (filtered by class/dimension)
+
+IO PREFIXES (Entity Investigation):
+    execute("p: John Smith")        → IOExecutor (person investigation)
+    execute("c: Acme Corp :US")     → IOExecutor (company investigation)
+    execute("e: email@test.com")    → IOExecutor (email investigation)
+    execute("d: domain.com")        → IOExecutor (domain investigation)
+
+REGISTRY OPERATORS (Company Profiles):
+    execute("csr: Metal Kovin")     → Torpedo (Serbian registry)
+    execute("chr: Podravka")        → Torpedo (Croatian registry)
+    execute("cde: Siemens AG")      → Torpedo (German registry)
+    execute("cuk: Tesco PLC")       → Torpedo (UK Companies House)
+
+QUERY OPERATORS (Link Analysis):
+    execute("bl? :!domain.com")     → LINKLATER (backlink pages)
+    execute("?bl :!domain.com")     → LINKLATER (backlink domains - fast)
+    execute("ol? :!domain.com")     → LINKLATER (outlink pages)
+    execute("pdf! :!domain.com")    → LINKLATER (find PDFs)
+
+ENTITY EXTRACTION (JESTER scrape + PACMAN extract):
+    execute("ent? :!domain.com")    → JESTER scrape → PACMAN extract (all entities)
+    execute("p? :!domain.com")      → JESTER scrape → PACMAN extract (persons only)
+    execute("c? :!domain.com")      → JESTER scrape → PACMAN extract (companies only)
+    execute("p? c? :!domain.com")   → JESTER scrape → PACMAN extract (persons + companies)
+    execute("ent? :2022! !domain.com") → BACKDRILL fetch → PACMAN extract (historic)
+
+EXACT PHRASE (Maximum Recall):
+    execute('"John Smith"')         → BruteSearch (40+ engines)
+    execute('"Acme Corporation"')   → BruteSearch (exact phrase)
+
+TARGET SYNTAX:
+    !domain.com     → domain level (expanded scope)
+    url.com/page!   → page level (contracted scope)
+    !#nodename      → grid node + related edges (expanded)
+    #nodename!      → grid node only (contracted)
+
+FILTERS & MODIFIERS:
+    @CLASS          → class filter (@PERSON, @COMPANY, @SOURCE, @DOCUMENT)
+    ##dimension:val → dimension filter (##jurisdiction:CY, ##source:registry)
+    ##unchecked     → state filter (unchecked/verified/flagged)
+    ##2020          → year filter
+    => #tag         → tag results with #tag
+
+The agent writes queries in operator syntax. This executor routes to the right backend.
+"""
+
+import os
+import sys
+import re
+import shlex
+import asyncio
+import logging
+import aiohttp
+from pathlib import Path
+from urllib.parse import urlparse
+from typing import Dict, Any, Optional, Tuple, List
+
+# =============================================================================
+# PATH BOOTSTRAP
+# =============================================================================
+
+DATA_ROOT = Path(__file__).resolve().parents[3]  # /data
+
+def _add_sys_path(path: Path) -> None:
+    try:
+        path_str = str(path)
+        if path.exists() and path_str not in sys.path:
+            sys.path.insert(0, path_str)
+    except Exception:
+        return
+
+_add_sys_path(DATA_ROOT)
+_add_sys_path(DATA_ROOT / "SEARCH_ENGINEER")
+_add_sys_path(DATA_ROOT / "SEARCH_ENGINEER" / "modules")
+
+# Backends
+backend_candidates = [
+    DATA_ROOT / "SEARCH_ENGINEER" / "nexus" / "BACKEND",
+    DATA_ROOT / "SEARCH_ENGINEER" / "BACKEND",
+]
+for backend_root in backend_candidates:
+    _add_sys_path(backend_root / "modules")
+    _add_sys_path(backend_root)
+
+# IO matrix
+matrix_candidates = [
+    DATA_ROOT / "SEARCH_ENGINEER" / "input_output" / "matrix",
+    DATA_ROOT / "INPUT_OUTPUT" / "matrix",
+    DATA_ROOT / "SEARCH_ENGINEER" / "modules" / "input_output" / "matrix",
+]
+for matrix_root in matrix_candidates:
+    _add_sys_path(matrix_root)
+
+IO_MATRIX_DIR = Path(__file__).resolve().parent.parent / "input_output" / "matrix"
+
+# Import unified query parser from local package
+from .parser import (
+    parse as parse_unified_query,
+    ParsedQuery,
+    TargetType,
+    OperatorType,
+    GridTarget,
+    # Subject-side / Location-side classification
+    NodeClass,
+    SubjectSide,
+    LocationSide,
+    OPERATOR_TO_SUBJECT_SIDE,
+)
+from .operators import (
+    OPERATORS,
+    OperatorCategory,
+)
+
+# Import KU router for UNKNOWN/KNOWN-based routing
+try:
+    from .ku_router import KURouter, route_ku
+    KU_ROUTER_AVAILABLE = True
+except ImportError:
+    KU_ROUTER_AVAILABLE = False
+    KURouter = None
+    route_ku = None
+
+# Optional imports handled inside methods or lazily
+def expand_class_filter(*args, **kwargs): return []
+
+# Import full similarity engine and compare operator
+try:
+    from modules.sastre.similarity.compare import CompareOperator, CompareMode, IdentityVerdict
+    from modules.sastre.similarity.engine import SimilarityEngine
+    from modules.sastre.similarity.vectors import build_vector_from_node
+    SIMILARITY_ENGINE_AVAILABLE = True
+except ImportError:
+    SIMILARITY_ENGINE_AVAILABLE = False
+    CompareOperator = None
+    SimilarityEngine = None
+
+# Import surprising AND detection
+try:
+    from modules.sastre.narrative.surprising_and import SurprisingAndDetector, detect_surprising_ands
+    SURPRISING_AND_AVAILABLE = True
+except ImportError:
+    SURPRISING_AND_AVAILABLE = False
+    SurprisingAndDetector = None
+
+# Import chain parser (=> syntax) - uses real parser, not fake macro operators
+try:
+    from .parser import SyntaxParser
+    CHAIN_PARSER_AVAILABLE = True
+except ImportError:
+    CHAIN_PARSER_AVAILABLE = False
+    SyntaxParser = None
+
+# Import JESTER for live scraping
+try:
+    from modules.jester import Jester, scrape as jester_scrape
+    JESTER_AVAILABLE = True
+except ImportError:
+    JESTER_AVAILABLE = False
+    Jester = None
+    jester_scrape = None
+
+# Import BACKDRILL for historic/archive content
+try:
+    from modules.backdrill import Backdrill
+    BACKDRILL_AVAILABLE = True
+except ImportError:
+    BACKDRILL_AVAILABLE = False
+    Backdrill = None
+
+# Import PACMAN for entity extraction
+try:
+    from modules.pacman import extract_all as pacman_extract, Pacman
+    PACMAN_AVAILABLE = True
+except ImportError:
+    PACMAN_AVAILABLE = False
+    pacman_extract = None
+    Pacman = None
+
+logger = logging.getLogger("syntax.executor")
+
+# Cymonides API for grid queries
+CYMONIDES_API = os.getenv("CYMONIDES_API", "http://localhost:3001/api/graph")
+
+
+# =============================================================================
+# IO PREFIX DETECTION
+# =============================================================================
+
+IO_PREFIXES = {
+    'p:': 'person',
+    'c:': 'company',
+    'e:': 'email',
+    't:': 'phone',
+    'd:': 'domain',
+    'b:': 'brand',
+    'pr:': 'product',
+    'u:': 'username',
+    'li:': 'linkedin_url',
+    'linkedin:': 'linkedin_url',
+    'liu:': 'linkedin_username',
+    'liuser:': 'linkedin_username',
+}
+
+# DD/Lit/Reg operator patterns
+DD_OPERATOR_RE = re.compile(r'^dd([a-z]{2})?([pc])?:', re.IGNORECASE)
+LIT_OPERATOR_RE = re.compile(r'^lit([a-z]{2})?:', re.IGNORECASE)
+REG_OPERATOR_RE = re.compile(r'^reg([a-z]{2})?:', re.IGNORECASE)
+
+
+def has_dd_operator(query: str) -> bool:
+    """Check if query has a DD operator (dd:, dduk:, ddusp:, etc.)."""
+    return bool(DD_OPERATOR_RE.match(query.strip()))
+
+
+def has_lit_operator(query: str) -> bool:
+    """Check if query has a lit operator (lit:, lituk:, etc.)."""
+    return bool(LIT_OPERATOR_RE.match(query.strip()))
+
+
+def has_reg_operator(query: str) -> bool:
+    """Check if query has a reg operator (reg:, reguk:, etc.)."""
+    return bool(REG_OPERATOR_RE.match(query.strip()))
+
+
+def parse_dd_operator(query: str) -> tuple[str, str, str]:
+    """
+    Parse DD operator into (jurisdiction, entity_type, subject).
+
+    Examples:
+        "dd: John Smith" → (None, "auto", "John Smith")
+        "dduk: Tesco" → ("UK", "auto", "Tesco")
+        "ddusp: John Smith" → ("US", "person", "John Smith")
+        "ddukc: Acme Ltd" → ("UK", "company", "Acme Ltd")
+    """
+    query = query.strip()
+    match = DD_OPERATOR_RE.match(query)
+    if not match:
+        return None, None, query
+
+    jurisdiction = match.group(1).upper() if match.group(1) else None
+    type_char = match.group(2).lower() if match.group(2) else None
+
+    entity_type = "auto"
+    if type_char == "p":
+        entity_type = "person"
+    elif type_char == "c":
+        entity_type = "company"
+
+    # Extract subject (everything after the operator)
+    subject = query[match.end():].strip()
+
+    return jurisdiction, entity_type, subject
+
+
+def parse_lit_operator(query: str) -> tuple[str, str]:
+    """
+    Parse lit operator into (jurisdiction, subject).
+
+    Examples:
+        "lit: John Smith :UK" → ("UK", "John Smith")
+        "lituk: Acme Ltd" → ("UK", "Acme Ltd")
+    """
+    query = query.strip()
+    match = LIT_OPERATOR_RE.match(query)
+    if not match:
+        return None, query
+
+    jurisdiction = match.group(1).upper() if match.group(1) else None
+    subject = query[match.end():].strip()
+
+    # Check for inline jurisdiction suffix
+    if not jurisdiction and subject.endswith(":"):
+        parts = subject.rsplit(":", 2)
+        if len(parts) >= 2 and len(parts[-1]) == 2:
+            jurisdiction = parts[-1].upper()
+            subject = parts[0].strip()
+
+    return jurisdiction, subject
+
+
+def parse_reg_operator(query: str) -> tuple[str, str]:
+    """Parse reg operator into (jurisdiction, subject)."""
+    # Same logic as lit
+    return parse_lit_operator(query.replace("reg", "lit", 1))
+
+
+SOCIAL_IO_PREFIX_RE = re.compile(
+    r'^(fb|facebook|tw|twitter|x|ig|instagram|threads|social|all)\s*:',
+    re.IGNORECASE,
+)
+
+
+_SUBMARINE_EXPLORATION_RE = re.compile(r"\b(?:indom|inurl)\s*:", re.IGNORECASE)
+_SUBMARINE_HOP_RE = re.compile(r"\bhop\(\d+\)", re.IGNORECASE)
+
+
+def looks_like_submarine_exploration(query: str) -> bool:
+    q = (query or "").strip()
+    if not q:
+        return False
+    return bool(_SUBMARINE_EXPLORATION_RE.search(q) or _SUBMARINE_HOP_RE.search(q))
+
+
+def has_io_prefix(query: str) -> bool:
+    """Check if query has an IO prefix (p:, c:, e:, t:, d:)."""
+    query_lower = query.lower().strip()
+    if SOCIAL_IO_PREFIX_RE.match(query_lower):
+        return True
+    return any(query_lower.startswith(prefix) for prefix in IO_PREFIXES.keys())
+
+
+def normalize_linkedin_url(value: str) -> str:
+    """Normalize a LinkedIn profile/company URL or slug to a canonical URL."""
+    v = (value or "").strip().strip('"').strip("'").strip()
+    if not v:
+        return v
+
+    v = v.lstrip("@")
+
+    if re.match(r'^(?:https?://)?(?:www\.)?linkedin\.com/', v, re.IGNORECASE):
+        if not v.lower().startswith(("http://", "https://")):
+            v = "https://" + v
+        v = re.sub(
+            r'^https?://(?:[a-z]{2,3}\.)?(?:www\.)?linkedin\.com',
+            'https://linkedin.com',
+            v,
+            flags=re.IGNORECASE,
+        )
+        v = v.split("?", 1)[0].split("#", 1)[0].rstrip("/")
+        return v
+
+    # Handle 'in/<slug>' or 'company/<slug>' forms.
+    m = re.match(r'^(in|company)/([^/?#]+)/?$', v, re.IGNORECASE)
+    if m:
+        kind = m.group(1).lower()
+        slug = m.group(2)
+        return f"https://linkedin.com/{kind}/{slug}"
+
+    # Treat bare slug as profile.
+    if re.match(r"^[A-Za-z0-9][A-Za-z0-9-]{2,}$", v):
+        return f"https://linkedin.com/in/{v}"
+
+    return v
+
+
+def normalize_linkedin_username(value: str) -> str:
+    """Normalize a LinkedIn username/slug (accepts URL, in/<slug>, or bare slug)."""
+    v = (value or "").strip().strip('"').strip("'").strip()
+    if not v:
+        return v
+    v = v.lstrip("@")
+
+    # URL → extract slug
+    m = re.search(r'linkedin\.com/(?:in|company)/([^/?#]+)/?', v, re.IGNORECASE)
+    if m:
+        return m.group(1)
+
+    # in/<slug> or company/<slug>
+    m = re.match(r'^(?:in|company)/([^/?#]+)/?$', v, re.IGNORECASE)
+    if m:
+        return m.group(1)
+
+    return v
+
+
+def _parse_io_exec_flags(query: str) -> tuple[dict, str]:
+    """Parse IO execution flags from a query string and return (flags, cleaned_query)."""
+    flags: dict = {
+        "recurse": False,
+        "max_depth": 2,
+        "max_nodes": 50,
+        "recurse_types": None,
+    }
+
+    try:
+        tokens = shlex.split(query)
+    except Exception:
+        return flags, query
+
+    cleaned: list[str] = []
+    i = 0
+    while i < len(tokens):
+        tok = tokens[i]
+
+        if tok == "--recurse":
+            flags["recurse"] = True
+            i += 1
+            continue
+
+        if tok.startswith("--max-depth"):
+            if tok == "--max-depth" and i + 1 < len(tokens):
+                i += 1
+                tok = f"--max-depth={tokens[i]}"
+            try:
+                flags["max_depth"] = int(tok.split("=", 1)[1])
+            except Exception:
+                pass
+            i += 1
+            continue
+
+        if tok.startswith("--max-nodes"):
+            if tok == "--max-nodes" and i + 1 < len(tokens):
+                i += 1
+                tok = f"--max-nodes={tokens[i]}"
+            try:
+                flags["max_nodes"] = int(tok.split("=", 1)[1])
+            except Exception:
+                pass
+            i += 1
+            continue
+
+        if tok.startswith("--recurse-types"):
+            if tok == "--recurse-types" and i + 1 < len(tokens):
+                i += 1
+                tok = f"--recurse-types={tokens[i]}"
+            try:
+                raw = tok.split("=", 1)[1]
+                parsed = [t.strip() for t in raw.split(",") if t.strip()]
+                flags["recurse_types"] = parsed or None
+            except Exception:
+                pass
+            i += 1
+            continue
+
+        cleaned.append(tok)
+        i += 1
+
+    return flags, " ".join(cleaned).strip()
+
+
+def parse_io_prefix(query: str) -> Tuple[str, str, Optional[str]]:
+    """
+    Parse IO prefix query into (entity_type, value, jurisdiction).
+
+    Examples:
+        "p: John Smith" → ("person", "John Smith", None)
+        "c: Acme Corp :US" → ("company", "Acme Corp", "US")
+        "c: Acme Corp --jurisdiction US" → ("company", "Acme Corp", "US")
+    """
+    query_stripped = query.strip()
+    entity_type = None
+    value = query_stripped
+
+    # Social media prefixes (pass through to IO social_media handler)
+    social_match = SOCIAL_IO_PREFIX_RE.match(query_stripped)
+    if social_match:
+        prefix = social_match.group(1).lower()
+        value = query_stripped[social_match.end():].strip()
+        # Preserve platform intent for downstream parsing (fb:, twitter:, li:, ...).
+        value = f"{prefix}: {value}".strip() if value else prefix + ":"
+        return "social_media", value, None
+
+    # Parse prefix
+    for prefix, etype in IO_PREFIXES.items():
+        if query_stripped.lower().startswith(prefix):
+            entity_type = etype
+            value = query_stripped[len(prefix):].strip()
+            break
+
+    if not entity_type:
+        # Auto-detect
+        entity_type = _detect_entity_type(value) or 'person'
+
+    # Parse jurisdiction (either :XX or --jurisdiction XX)
+    jurisdiction = None
+
+    # Check for :XX at end (e.g., "Acme Corp :US")
+    match = re.search(r'\s+:([A-Z]{2})\s*$', value)
+    if match:
+        jurisdiction = match.group(1)
+        value = value[:match.start()].strip()
+
+    # Check for --jurisdiction XX
+    match = re.search(r'--jurisdiction\s+(\w+)', value, re.IGNORECASE)
+    if match:
+        jurisdiction = match.group(1).upper()
+        value = re.sub(r'\s*--jurisdiction\s+\w+', '', value, flags=re.IGNORECASE).strip()
+
+    if entity_type == "linkedin_url" and value:
+        value = normalize_linkedin_url(value)
+    elif entity_type == "linkedin_username" and value:
+        value = normalize_linkedin_username(value)
+
+    return entity_type, value, jurisdiction
+
+
+def _detect_entity_type(value: str) -> Optional[str]:
+    """Auto-detect entity type from value."""
+    # Email
+    if re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', value):
+        return 'email'
+    # Phone
+    if re.match(r'^[\+]?[\d\s\-\(\)]{7,}$', value.replace(' ', '')):
+        return 'phone'
+    # LinkedIn URL
+    if re.search(r'linkedin\.com/(?:in|company)/', value, re.IGNORECASE):
+        return 'linkedin_url'
+    # Domain
+    if re.match(r'^[a-zA-Z0-9][a-zA-Z0-9-]*\.[a-zA-Z]{2,}$', value):
+        return 'domain'
+    # URL
+    if value.startswith('http://') or value.startswith('https://'):
+        return 'domain'
+    return None
+
+
+# =============================================================================
+# REGISTRY OPERATOR DETECTION (dynamically loaded from Matrix)
+# =============================================================================
+
+def _load_registry_operators() -> Dict[str, Dict[str, str]]:
+    """
+    Load registry operators dynamically from Matrix registries.json.
+
+    Registry operator format: c{country_code_lower}: → jurisdiction mapping
+    Examples:
+        csr: → RS (Serbian)
+        chr: → HR (Croatian)
+        cuk: → GB (UK)
+
+    Returns:
+        Dict mapping operator prefixes to jurisdiction configs.
+        Example: {'csr:': {'jurisdiction': 'RS', 'name': 'Serbian Company Registry'}}
+    """
+    import json
+
+    # Try multiple possible locations for registries.json
+    possible_paths = [
+        IO_MATRIX_DIR / "registries.json",
+        DATA_ROOT / "input_output" / "matrix" / "registries.json",
+    ]
+
+    registries_path = None
+    for path in possible_paths:
+        if path.exists():
+            registries_path = path
+            break
+
+    if not registries_path:
+        logger.warning(f"Registry file not found in any of: {possible_paths}")
+        return {}
+
+    try:
+        with open(registries_path, 'r', encoding='utf-8') as f:
+            registries = json.load(f)
+
+        operators = {}
+
+        # Build operator mapping from jurisdiction codes
+        # Pattern: c{operator_code}: where operator_code may differ from ISO code
+
+        # Map ISO codes to operator codes (for non-standard mappings)
+        iso_to_operator = {
+            'RS': 'sr',  # Serbia: ISO=RS, operator=csr:
+            'GB': 'uk',  # UK: ISO=GB, operator=cuk:
+            # All others use lowercase ISO code
+        }
+
+        # Map ISO codes to friendly names
+        jurisdiction_names = {
+            'RS': 'Serbian Company Registry',
+            'HR': 'Croatian Company Registry',
+            'SI': 'Slovenian Company Registry',
+            'HU': 'Hungarian Company Registry',
+            'DE': 'German Company Registry',
+            'GB': 'UK Companies House',
+            'US': 'US SEC/State Registries',
+            'PL': 'Polish Company Registry',
+            'CZ': 'Czech Company Registry',
+            'RO': 'Romanian Company Registry',
+            'AT': 'Austrian Company Registry',
+            'BE': 'Belgian Company Registry',
+            'BG': 'Bulgarian Company Registry',
+            'CH': 'Swiss Company Registry',
+            'CY': 'Cyprus Company Registry',
+            'DK': 'Danish Company Registry',
+            'EE': 'Estonian Company Registry',
+            'ES': 'Spanish Company Registry',
+            'FI': 'Finnish Company Registry',
+            'FR': 'French Company Registry',
+            'GR': 'Greek Company Registry',
+            'IE': 'Irish Company Registry',
+            'IT': 'Italian Company Registry',
+            'LT': 'Lithuanian Company Registry',
+            'LU': 'Luxembourg Company Registry',
+            'LV': 'Latvian Company Registry',
+            'MT': 'Maltese Company Registry',
+            'NL': 'Dutch Company Registry',
+            'NO': 'Norwegian Company Registry',
+            'PT': 'Portuguese Company Registry',
+            'SE': 'Swedish Company Registry',
+            'SK': 'Slovak Company Registry',
+        }
+
+        # Skip duplicate jurisdiction codes (e.g., UK is duplicate of GB)
+        skip_codes = {'UK'}  # Use GB instead
+
+        # For each jurisdiction in registries.json, create operator
+        for jurisdiction_code in registries.keys():
+            if len(jurisdiction_code) == 2 and jurisdiction_code not in skip_codes:
+                # Get operator code (may differ from ISO code)
+                operator_code = iso_to_operator.get(jurisdiction_code, jurisdiction_code.lower())
+                operator = f"c{operator_code}:"
+
+                registry_name = jurisdiction_names.get(
+                    jurisdiction_code,
+                    f"{jurisdiction_code} Company Registry"
+                )
+                operators[operator] = {
+                    'jurisdiction': jurisdiction_code,
+                    'name': registry_name
+                }
+
+        logger.info(f"Loaded {len(operators)} registry operators from Matrix")
+        return operators
+
+    except Exception as e:
+        logger.error(f"Failed to load registry operators: {e}")
+        return {}
+
+
+# Load registry operators at module level (lazy load on first use)
+_REGISTRY_OPERATORS_CACHE = None
+
+
+def get_registry_operators() -> Dict[str, Dict[str, str]]:
+    """Get registry operators (lazy loaded and cached)."""
+    global _REGISTRY_OPERATORS_CACHE
+    if _REGISTRY_OPERATORS_CACHE is None:
+        _REGISTRY_OPERATORS_CACHE = _load_registry_operators()
+    return _REGISTRY_OPERATORS_CACHE
+
+
+# Backwards compatibility: REGISTRY_OPERATORS points to function result
+def _get_registry_operators_compat():
+    """Backwards compatible access to REGISTRY_OPERATORS."""
+    return get_registry_operators()
+
+
+REGISTRY_OPERATORS = property(lambda self: get_registry_operators())
+
+
+# =============================================================================
+# CHAIN OPERATOR DETECTION
+# =============================================================================
+
+CHAIN_TYPES = {
+    'ubo': 'Ultimate Beneficial Owners',
+    'pep': 'Politically Exposed Person check',
+    'officers': 'Company officers with details',
+    'full_company': 'Complete company investigation',
+    'due_diligence': 'Full Due Diligence Report (33 steps, 8 sections)',
+}
+
+# =============================================================================
+# HISTORICAL OPERATOR DETECTION
+# =============================================================================
+
+# Patterns:
+#   :2022! or :2020-2023! - year/year-range search
+#   :<- or :<-2015! - backwards (all historical or back to year)
+#   :-> or :->2015! - forwards (from present to year, or live crawl)
+#   :-><- or :-><-2015! - bidirectional (both directions)
+#   :01.06.2022! - specific date (DD.MM.YYYY)
+HISTORICAL_PATTERN = re.compile(
+    r':(\d{4})!'                           # Group 1: Single year
+    r'|:(\d{4})-(\d{4})!'                  # Groups 2,3: Year range
+    r'|:-><-(\d{4})?!?'                    # Group 4: Bidirectional
+    r'|:->(\d{4})?!?'                      # Group 5: Forwards
+    r'|:<-(\d{4})?!?'                      # Group 6: Backwards
+    r'|:(\d{2})\.(\d{2})\.(\d{4})!'        # Groups 7,8,9: Specific date
+)
+
+
+def has_historical_operator(query: str) -> bool:
+    """Check if query has historical operators (:2022!, :<-, :->, :-><-, :DD.MM.YYYY!)."""
+    return bool(HISTORICAL_PATTERN.search(query))
+
+
+# =============================================================================
+# TLD FILTER DETECTION
+# =============================================================================
+
+# TLD filter patterns: de!, uk!, us!, com!, gov!, news!, ru!, cy!
+TLD_FILTERS = {'de!', 'uk!', 'us!', 'com!', 'gov!', 'news!', 'ru!', 'cy!', 'fr!', 'nl!', 'pl!', 'it!', 'es!'}
+TLD_PATTERN = re.compile(r'\b(' + '|'.join(re.escape(t) for t in TLD_FILTERS) + r')\b')
+
+
+def has_tld_filter(query: str) -> bool:
+    """Check if query has TLD filter operators (de!, uk!, news!, etc.)."""
+    return bool(TLD_PATTERN.search(query.lower()))
+
+
+def parse_tld_filter(query: str) -> Tuple[List[str], str]:
+    """
+    Parse TLD filter operators from query.
+
+    Returns:
+        (tld_filters, remaining_query)
+    """
+    query_lower = query.lower()
+    found_filters = []
+
+    for match in TLD_PATTERN.finditer(query_lower):
+        found_filters.append(match.group(1))
+
+    # Remove TLD filters from query
+    remaining = TLD_PATTERN.sub('', query).strip()
+
+    return found_filters, remaining
+
+
+def get_site_filters_for_tld(tld_filter: str) -> List[str]:
+    """Get site: search modifiers for a TLD filter."""
+    # Import from syntax operators
+    try:
+        from .operators import get_tld_site_filters
+        return get_tld_site_filters(tld_filter)
+    except ImportError:
+        # Fallback mappings
+        TLD_TO_SITES = {
+            "de!": ["site:.de"],
+            "uk!": ["site:.uk", "site:.co.uk"],
+            "us!": ["site:.us", "site:.gov"],
+            "com!": ["site:.com"],
+            "gov!": ["site:.gov"],
+            "news!": [],  # Uses news engines
+            "ru!": ["site:.ru"],
+            "cy!": ["site:.cy"],
+            "fr!": ["site:.fr"],
+            "nl!": ["site:.nl"],
+            "pl!": ["site:.pl"],
+            "it!": ["site:.it"],
+            "es!": ["site:.es"],
+        }
+        return TLD_TO_SITES.get(tld_filter, [])
+
+
+def parse_historical_operator(query: str) -> Tuple[Optional[dict], str]:
+    """
+    Parse historical operator from query.
+
+    Returns:
+        (temporal_filter, remaining_query)
+        temporal_filter = {
+            'type': 'year' | 'range' | 'back_to' | 'forward' | 'bidirectional' | 'all' | 'date',
+            'direction': 'backward' | 'forward' | 'bidirectional',
+            'year': int,           # for 'year' type
+            'start_year': int,     # for 'range' type
+            'end_year': int,       # for 'range' type
+            'back_to': int,        # for 'back_to' type
+            'forward_to': int,     # for 'forward' type
+            'date': 'DD.MM.YYYY',  # for 'date' type
+        }
+        temporal_filter = None means no historical operator
+    """
+    match = HISTORICAL_PATTERN.search(query)
+    if not match:
+        return None, query
+
+    temporal = {}
+
+    if match.group(1):  # Single year :2022!
+        temporal = {'type': 'year', 'year': int(match.group(1)), 'direction': 'backward'}
+    elif match.group(2) and match.group(3):  # Year range :2020-2023!
+        temporal = {'type': 'range', 'start_year': int(match.group(2)), 'end_year': int(match.group(3)), 'direction': 'backward'}
+    elif match.group(4) is not None or ':-><-' in query:  # Bidirectional :-><- or :-><-2015!
+        if match.group(4):
+            temporal = {'type': 'bidirectional', 'to_year': int(match.group(4)), 'direction': 'bidirectional'}
+        else:
+            temporal = {'type': 'bidirectional', 'direction': 'bidirectional'}
+    elif match.group(5) is not None or ':->' in query and ':-><-' not in query:  # Forward :-> or :->2015!
+        if match.group(5):
+            temporal = {'type': 'forward', 'forward_to': int(match.group(5)), 'direction': 'forward'}
+        else:
+            temporal = {'type': 'forward', 'direction': 'forward'}
+    elif match.group(6) is not None or ':<-' in query:  # Back to year :<- or :<-2015!
+        if match.group(6):
+            temporal = {'type': 'back_to', 'back_to': int(match.group(6)), 'direction': 'backward'}
+        else:
+            temporal = {'type': 'all', 'direction': 'backward'}
+    elif match.group(7) and match.group(8) and match.group(9):  # Specific date :01.06.2022!
+        date_str = f"{match.group(7)}.{match.group(8)}.{match.group(9)}"
+        temporal = {'type': 'date', 'date': date_str, 'day': int(match.group(7)), 'month': int(match.group(8)), 'year': int(match.group(9)), 'direction': 'backward'}
+    else:  # Just :<- (all historical)
+        temporal = {'type': 'all', 'direction': 'backward'}
+
+    # Remove the historical operator from query
+    remaining = HISTORICAL_PATTERN.sub('', query).strip()
+
+    return temporal, remaining
+
+
+# =============================================================================
+# MACRO CHAIN DETECTION (=> syntax)
+# =============================================================================
+
+# Macro chain pattern: detects => operator (must have at least one =>)
+def has_chain_pipe(query: str) -> bool:
+    """
+    Check if query has chain pipe operator (=>).
+
+    Chain just pipes output from one operator to the next.
+    No special operators - just regular operators chained.
+
+    Examples:
+        p: John Smith => c?       → Person search → extract companies from results
+        bl? example.com => p?     → Backlinks → extract persons from results
+        c: Acme Corp => ent?      → Company search → extract all entities
+    """
+    return '=>' in query and CHAIN_PARSER_AVAILABLE
+
+
+def has_chain_operator(query: str) -> bool:
+    """Check if query has a chain operator (chain: <type>)."""
+    return query.lower().strip().startswith('chain:')
+
+
+def has_template_operator(query: str) -> bool:
+    """Check if query has a template operator (template:genre:jurisdiction)."""
+    return query.lower().strip().startswith('template:')
+
+
+def parse_template_operator(query: str) -> Tuple[str, str, Optional[str]]:
+    """
+    Parse template operator into (genre, jurisdiction, entity_name).
+
+    Syntax: template:genre:jurisdiction [:entity_name] or template:genre:jurisdiction :#entity
+
+    Examples:
+        "template:company_dd:UK :#AcmeCorp"
+            → ("company_dd", "UK", "AcmeCorp")
+        "template:asset_trace:HU :SzaboKft"
+            → ("asset_trace", "HU", "SzaboKft")
+        "template:person_dd:DE"
+            → ("person_dd", "DE", None)
+    """
+    query_stripped = query.strip()
+
+    # Remove "template:" prefix
+    if query_stripped.lower().startswith('template:'):
+        query_stripped = query_stripped[9:].strip()
+
+    # Split on spaces to separate template spec from entity
+    parts = query_stripped.split(None, 1)
+    template_spec = parts[0] if parts else ""
+    entity_part = parts[1] if len(parts) > 1 else None
+
+    # Parse template spec (genre:jurisdiction)
+    spec_parts = template_spec.split(':')
+    genre = spec_parts[0] if spec_parts else None
+    jurisdiction = spec_parts[1] if len(spec_parts) > 1 else None
+
+    # Parse entity name (remove :# or : prefix)
+    entity_name = None
+    if entity_part:
+        entity_part = entity_part.strip()
+        if entity_part.startswith(':#'):
+            entity_name = entity_part[2:]
+        elif entity_part.startswith(':'):
+            entity_name = entity_part[1:]
+        else:
+            entity_name = entity_part
+
+    return genre, jurisdiction, entity_name
+
+
+def parse_chain_operator(query: str) -> Tuple[str, str, str, Optional[str]]:
+    """
+    Parse chain operator into (chain_type, entity_type, value, jurisdiction).
+
+    Syntax: chain: <chain_type> <io_prefix>: <value> [:jurisdiction]
+
+    Examples:
+        "chain: due_diligence c: Acme Corp :US"
+            → ("due_diligence", "company", "Acme Corp", "US")
+        "chain: ubo c: Siemens AG :DE"
+            → ("ubo", "company", "Siemens AG", "DE")
+        "chain: officers p: John Smith"
+            → ("officers", "person", "John Smith", None)
+    """
+    query_stripped = query.strip()
+
+    # Remove "chain:" prefix
+    if query_stripped.lower().startswith('chain:'):
+        query_stripped = query_stripped[6:].strip()
+
+    # Parse chain type (first word)
+    parts = query_stripped.split(None, 1)
+    if not parts:
+        return None, None, None, None
+
+    chain_type = parts[0].lower()
+    remainder = parts[1] if len(parts) > 1 else ""
+
+    # Parse IO prefix in remainder
+    entity_type, value, jurisdiction = parse_io_prefix(remainder)
+
+    return chain_type, entity_type, value, jurisdiction
+
+
+def has_registry_operator(query: str) -> bool:
+    """Check if query has a registry operator (csr:, chr:, cde:, etc.)."""
+    query_lower = query.lower().strip()
+    return any(query_lower.startswith(prefix) for prefix in get_registry_operators().keys())
+
+
+def parse_registry_operator(query: str) -> Tuple[str, str, str]:
+    """Parse registry operator into (jurisdiction, company_name, registry_name)."""
+    query_stripped = query.strip()
+    registry_ops = get_registry_operators()
+    for prefix, config in registry_ops.items():
+        if query_stripped.lower().startswith(prefix):
+            company_name = query_stripped[len(prefix):].strip()
+            return config['jurisdiction'], company_name, config['name']
+    return None, query_stripped, None
+
+
+# =============================================================================
+# MACRO OPERATOR DETECTION (alldom:, cdom:, crel:, age:, rep:, dns:)
+# =============================================================================
+
+MACRO_OPERATORS = {
+    'alldom:': 'full_domain_analysis',
+    'cdom:': 'find_company_domain',
+    'crel:': 'find_related_companies',
+    'age:': 'find_person_age',
+    'rep:': 'analyze_reputation',
+    # Red-flag focus aliases (reputation/adverse signals)
+    'red_flag:': 'analyze_reputation',
+    'rf:': 'analyze_reputation',
+    'dns:': 'dns_lookup',
+}
+
+
+def has_macro_operator(query: str) -> bool:
+    """Check if query has a macro operator (alldom:, cdom:, crel:, etc.)."""
+    query_lower = query.lower().strip()
+    return any(query_lower.startswith(prefix) for prefix in MACRO_OPERATORS.keys())
+
+
+def parse_macro_operator(query: str) -> Tuple[str, str]:
+    """Parse macro operator into (macro_type, target)."""
+    query_stripped = query.strip()
+    for prefix, macro_type in MACRO_OPERATORS.items():
+        if query_stripped.lower().startswith(prefix):
+            target = query_stripped[len(prefix):].strip()
+            return macro_type, target
+    return None, query_stripped
+
+
+# =============================================================================
+# ENTITY EXTRACTION OPERATORS (ent?, p?, c?, e?, t?, a?, u?)
+# =============================================================================
+
+ENTITY_OPERATORS = {
+    'ent?': 'all',
+    'p?': 'persons',
+    'c?': 'companies',
+    'e?': 'emails',
+    't?': 'phones',
+    'a?': 'addresses',
+    'u?': 'usernames',
+}
+
+
+def has_entity_operator(query: str) -> bool:
+    """Check if query starts with entity extraction operator."""
+    query_lower = query.lower().strip()
+    # Check for entity operator at start (before target)
+    for op in ENTITY_OPERATORS.keys():
+        if query_lower.startswith(op):
+            return True
+    return False
+
+
+def parse_entity_operator(query: str) -> Tuple[List[str], str]:
+    """Parse entity operators and target from query."""
+    query_stripped = query.strip()
+    entity_types = []
+    remaining = query_stripped
+
+    # Extract all entity operators from start
+    while True:
+        found = False
+        for op, etype in ENTITY_OPERATORS.items():
+            if remaining.lower().startswith(op):
+                entity_types.append(etype)
+                remaining = remaining[len(op):].strip()
+                found = True
+                break
+        if not found:
+            break
+
+    # Parse target from remaining (e.g., ":!domain.com" or "domain.com")
+    target = remaining.lstrip(':').lstrip('!').strip()
+
+    return entity_types, target
+
+
+# =============================================================================
+# TAGGING OPERATORS (=> +#tag, => -#tag, => #tag, => #workstream)
+# =============================================================================
+
+# Pattern: => +#tag or => -#tag or => #tag
+TAGGING_PATTERN = re.compile(r'=>\s*([+-]?)#([\w_]+)', re.IGNORECASE)
+
+
+def has_tagging_operator(query: str) -> bool:
+    """Check if query has tagging operator (=> #tag, => +#tag, => -#tag)."""
+    return TAGGING_PATTERN.search(query) is not None
+
+
+def parse_tagging_operators(query: str) -> Tuple[str, List[Dict[str, str]]]:
+    """
+    Parse tagging operators from query.
+
+    Returns (base_query, [{"op": "+/-/", "tag": "tagname"}, ...])
+    """
+    # Find all tagging operations
+    tags = []
+    for match in TAGGING_PATTERN.finditer(query):
+        modifier = match.group(1)  # + or - or empty
+        tag_name = match.group(2)
+        tags.append({"op": modifier or "=", "tag": tag_name})
+
+    # Get base query (everything before first =>)
+    base_query = query
+    if "=>" in query:
+        base_query = query.split("=>")[0].strip()
+
+    return base_query, tags
+
+
+# =============================================================================
+# BOOLEAN TAG QUERIES: (#a AND #b), (#a OR #b)
+# =============================================================================
+
+# Pattern for boolean tag queries
+BOOLEAN_TAG_PATTERN = re.compile(
+    r'^\s*\(\s*#\w+\s+(?:AND|OR)\s+#\w+(?:\s+(?:AND|OR)\s+#\w+)*\s*\)',
+    re.IGNORECASE
+)
+
+
+def has_boolean_tag_query(query: str) -> bool:
+    """Check if query is a boolean tag query like (#a AND #b)."""
+    return BOOLEAN_TAG_PATTERN.match(query.strip()) is not None
+
+
+def parse_boolean_tag_query(query: str) -> Tuple[str, List[str]]:
+    """
+    Parse boolean tag query.
+
+    Returns (operator: "AND"|"OR", [tag_names])
+    """
+    query = query.strip()
+
+    # Remove outer parens
+    if query.startswith('(') and query.endswith(')'):
+        query = query[1:-1].strip()
+
+    # Detect operator
+    if ' AND ' in query.upper():
+        operator = "AND"
+        parts = re.split(r'\s+AND\s+', query, flags=re.IGNORECASE)
+    elif ' OR ' in query.upper():
+        operator = "OR"
+        parts = re.split(r'\s+OR\s+', query, flags=re.IGNORECASE)
+    else:
+        operator = "SINGLE"
+        parts = [query]
+
+    # Extract tag names
+    tags = [p.lstrip('#').strip() for p in parts]
+
+    return operator, tags
+
+
+# =============================================================================
+# WATCHER OPERATORS (Actions only - queries handled by Grid)
+# =============================================================================
+
+# Watcher ACTION operators (not query - grid handles that):
+# #note => +#w       → create watchers from note headers (chain pattern)
+# -#w:{id}           → delete watcher
+# ~#w:{id}           → toggle watcher active/paused
+# +#w:evt:{type}     → create event watcher
+# +#w:top:{topic}    → create topic watcher
+# +#w:ent:{type}     → create entity watcher
+
+WATCHER_CHAIN_PATTERN = re.compile(
+    r'=>\s*\+#w(?:atcher)?(?:\s*##\w+:\S+)*\s*$',
+    re.IGNORECASE
+)
+WATCHER_DELETE_PATTERN = re.compile(
+    r'^\s*-#w(?:atcher)?:(.+)$',
+    re.IGNORECASE
+)
+WATCHER_TOGGLE_PATTERN = re.compile(
+    r'^\s*~#w(?:atcher)?:(.+)$',
+    re.IGNORECASE
+)
+# ET3 watcher patterns
+WATCHER_EVENT_PATTERN = re.compile(
+    r'^\s*\+#w(?:atcher)?:evt:(.+)$',
+    re.IGNORECASE
+)
+WATCHER_TOPIC_PATTERN = re.compile(
+    r'^\s*\+#w(?:atcher)?:top:(.+)$',
+    re.IGNORECASE
+)
+WATCHER_ENTITY_PATTERN = re.compile(
+    r'^\s*\+#w(?:atcher)?:ent:(.+)$',
+    re.IGNORECASE
+)
+# Full /watcher command pattern: /watcher +##Name context{...} IF ...
+WATCHER_FULL_PATTERN = re.compile(
+    r'^\s*/watcher\s+\+##(.+)$',
+    re.IGNORECASE
+)
+# Ad-hoc watcher pattern: /w{Instruction} IF Trigger
+WATCHER_ADHOC_PATTERN = re.compile(
+    r'^\s*/w(?:atcher)?\{(.+?)\}(?:\s+IF\s+(.+))?$',
+    re.IGNORECASE
+)
+
+
+def has_watcher_operator(query: str) -> bool:
+    """Check if query is a watcher operator (actions only, not queries)."""
+    query = query.strip()
+    return any([
+        WATCHER_CHAIN_PATTERN.search(query),  # #note => +#w
+        WATCHER_DELETE_PATTERN.match(query),
+        WATCHER_TOGGLE_PATTERN.match(query),
+        WATCHER_EVENT_PATTERN.match(query),
+        WATCHER_TOPIC_PATTERN.match(query),
+        WATCHER_ENTITY_PATTERN.match(query),
+        WATCHER_ADHOC_PATTERN.match(query),
+        WATCHER_FULL_PATTERN.match(query),  # /watcher +##Name...
+    ])
+
+
+def parse_watcher_operator(query: str) -> Tuple[str, Optional[str], Optional[Dict[str, Any]]]:
+    """
+    Parse watcher operator.
+
+    Returns (operation, target, options)
+    - operation: 'create_from_note', 'delete', 'toggle',
+                 'create_event', 'create_topic', 'create_entity', 'create_adhoc'
+    - target: note ID, watcher ID, type, or instruction
+    - options: additional options like filters or trigger
+    """
+    query = query.strip()
+    options = {}
+
+    # Parse ##filters from query
+    filter_pattern = re.compile(r'##(\w+):([^\s#]+)')
+    for match in filter_pattern.finditer(query):
+        options[match.group(1)] = match.group(2)
+    # Remove filters from query for further parsing
+    query_clean = filter_pattern.sub('', query).strip()
+
+    # Ad-hoc watcher: /w{Instruction} IF Trigger
+    match = WATCHER_ADHOC_PATTERN.match(query_clean)
+    if match:
+        instruction = match.group(1).strip()
+        trigger = match.group(2).strip() if match.group(2) else None
+        if trigger:
+            options['trigger'] = trigger
+        return 'create_adhoc', instruction, options
+
+    # Full /watcher +##Name context{...} IF query:"..." syntax
+    match = WATCHER_FULL_PATTERN.match(query_clean)
+    if match:
+        rest = match.group(1).strip()
+        # Extract watcher name (everything before context{ or IF)
+        name = rest.split('context{')[0].split(' IF ')[0].strip()
+        # Extract context if present
+        if 'context{' in rest.lower():
+            ctx_match = re.search(r'context\{([^}]*)\}', rest, re.IGNORECASE)
+            if ctx_match:
+                options['context'] = ctx_match.group(1)
+        # Extract query condition if present
+        if ' IF ' in rest.upper():
+            if_parts = re.split(r'\s+IF\s+', rest, maxsplit=1, flags=re.IGNORECASE)
+            if len(if_parts) > 1:
+                options['condition'] = if_parts[1].strip()
+        return 'create_full', name, options
+
+    # Chain pattern: #note => +#w (create watchers from note headers)
+    if WATCHER_CHAIN_PATTERN.search(query_clean):
+        # Extract note reference before =>
+        note_ref = query_clean.split('=>')[0].strip()
+        # Remove # prefix if present
+        note_ref = note_ref.lstrip('#')
+        return 'create_from_note', note_ref, options
+
+    # Check ET3 patterns first (more specific)
+    match = WATCHER_EVENT_PATTERN.match(query_clean)
+    if match:
+        return 'create_event', match.group(1).strip(), options
+
+    match = WATCHER_TOPIC_PATTERN.match(query_clean)
+    if match:
+        return 'create_topic', match.group(1).strip(), options
+
+    match = WATCHER_ENTITY_PATTERN.match(query_clean)
+    if match:
+        return 'create_entity', match.group(1).strip(), options
+
+    # Delete watcher
+    match = WATCHER_DELETE_PATTERN.match(query_clean)
+    if match:
+        return 'delete', match.group(1).strip(), options
+
+    # Toggle watcher
+    match = WATCHER_TOGGLE_PATTERN.match(query_clean)
+    if match:
+        return 'toggle', match.group(1).strip(), options
+
+    return 'unknown', None, options
+
+
+# =============================================================================
+# DIRECT AGENT ADDRESSING
+# =============================================================================
+
+# Agent prefixes for direct addressing (agent_name: query)
+AGENT_DIRECT_PREFIXES = {
+    "wikiman:": "wikiman",
+    "edith:": "edith",
+    "cymonides:": "cymonides",
+    "cy:": "cymonides",  # alias
+    "nexus:": "nexus",  # project grid queries
+    "grid:": "nexus",  # alias
+    "linklater:": "linklater",
+    "ll:": "linklater",  # alias
+    "corporella:": "corporella",
+    "corp:": "corporella",  # alias
+    "pacman:": "pacman",
+    "torpedo:": "torpedo",
+    "brute:": "brute",
+    "clink:": "clink",  # Fast person disambiguation
+    "serdavos:": "serdavos",
+    "tor:": "serdavos",  # alias
+    "onion:": "serdavos",  # alias
+    "backdrill:": "backdrill",
+    "archive:": "backdrill",  # alias
+    # EYE-D OSINT Search (person, email, phone, company, entity)
+    "eyed:": "eyed",
+    "osint:": "eyed",  # alias
+    "p:": "eyed_person",      # Person search
+    "e:": "eyed_email",       # Email search
+    "t:": "eyed_phone",       # Phone/Telephone search
+    "c:": "eyed_company",     # Company search (routes to EYE-D or CORPORELLA)
+    "ent:": "eyed_entity",    # Entity search (full OSINT)
+    # OPTICS (Image/Media Intelligence)
+    "optics:": "optics",
+    "img:": "optics",  # alias
+    "image:": "optics",  # alias
+    # SOCIALITE (Social Media)
+    "socialite:": "socialite",
+    "social:": "socialite",  # alias
+    "sm:": "socialite",  # alias
+    # STORIES (Narrative Generation)
+    "stories:": "stories",
+    "narrative:": "stories",  # alias
+}
+
+
+def has_agent_direct_operator(query: str) -> bool:
+    """Check if query is a direct agent addressing command (agent_name: query)."""
+    query_lower = query.lower().strip()
+    return any(query_lower.startswith(prefix) for prefix in AGENT_DIRECT_PREFIXES.keys())
+
+
+def parse_agent_direct(query: str) -> Tuple[str, str]:
+    """
+    Parse direct agent addressing.
+
+    Returns (agent_name, remaining_query)
+    """
+    query_lower = query.lower().strip()
+    for prefix, agent in AGENT_DIRECT_PREFIXES.items():
+        if query_lower.startswith(prefix):
+            remaining = query.strip()[len(prefix):].strip()
+            return agent, remaining
+    return None, query
+
+
+# =============================================================================
+# MULTI-DOMAIN BATCH BACKLINK QUERIES
+# =============================================================================
+
+# Pattern to detect multi-domain backlink queries:
+#   bl? :!domain1 :!domain2 :!domain3          (space separated)
+#   bl? :!domain1 AND :!domain2 AND :!domain3  (AND separated)
+#   ?bl :!domain1 :!domain2                    (domain mode)
+MULTI_DOMAIN_BACKLINK_PATTERN = re.compile(
+    r'^(\?bl|bl\?)\s+(:![\w.-]+(?:\s+(?:AND\s+)?:![\w.-]+)+)',
+    re.IGNORECASE
+)
+
+
+def has_multi_domain_backlink(query: str) -> bool:
+    """Check if query is a multi-domain batch backlink query."""
+    return MULTI_DOMAIN_BACKLINK_PATTERN.match(query.strip()) is not None
+
+
+def parse_multi_domain_backlink(query: str) -> Tuple[str, List[str]]:
+    """
+    Parse multi-domain backlink query.
+
+    Syntax:
+        bl? :!domain1 :!domain2 :!domain3          (space separated)
+        bl? :!domain1 AND :!domain2 AND :!domain3  (AND separated)
+        ?bl :!domain1 :!domain2                    (domain mode)
+
+    Returns (mode: "bl?"|"?bl", [domains])
+    """
+    query = query.strip()
+    match = MULTI_DOMAIN_BACKLINK_PATTERN.match(query)
+
+    if not match:
+        return None, []
+
+    mode = match.group(1).lower()  # "bl?" or "?bl"
+    targets_part = match.group(2)
+
+    # Extract domains - split by AND or space, then extract domain from :!domain
+    # Remove AND keywords and split by whitespace
+    targets_part = re.sub(r'\s+AND\s+', ' ', targets_part, flags=re.IGNORECASE)
+    tokens = targets_part.split()
+
+    domains = []
+    for token in tokens:
+        # Extract domain from :!domain format
+        if token.startswith(':!'):
+            domain = token[2:].strip()
+            if domain:
+                domains.append(domain)
+
+    return mode, domains
+
+
+# =============================================================================
+# UNIFIED EXECUTOR
+# =============================================================================
+
+class BruteSearchWrapper:
+    """Wrapper to adapt BruteSearchOptimal to the async API expected by UnifiedExecutor."""
+    
+    async def search_async(self, query: str, engines: List[str] = None, 
+                          max_results: int = 100, timeout: int = 60, 
+                          scrape: bool = True) -> Dict[str, Any]:
+        """Run search asynchronously."""
+        from modules.brute.brute_optimal import BruteSearchOptimal
+        import asyncio
+        
+        def _run():
+            # Initialize optimal search
+            opt = BruteSearchOptimal(
+                max_results_per_engine=max_results,
+                deduplicate=True,
+                performance_mode='balanced'
+            )
+            # Run synchronous search
+            return opt.search(query, engines=engines)
+            
+        # Run in thread pool to avoid blocking event loop
+        result = await asyncio.to_thread(_run)
+        
+        # Convert OptimalSearchResult to expected dict format
+        return {
+            "results": [
+                {
+                    "title": r.title,
+                    "url": r.url,
+                    "snippet": r.snippet,
+                    "source": r.engine,
+                    "score": r.confidence_score
+                }
+                for r in result.results
+            ],
+            "count": result.total_results,
+            "unique_count": result.unique_urls,
+            "engines_used": result.engines_succeeded,
+            "time_ms": result.total_time_ms
+        }
+
+class UnifiedExecutor:
+    """
+    Unified query executor - simple routing.
+
+    1. Chain Operators (chain: due_diligence, chain: ubo) → IOPlanner.execute_chain
+    2. Registry Operators (csr:, chr:, cde:, cuk:) → Torpedo
+    3. IO Prefixes (p:, c:, e:, t:, d:) → IOExecutor
+    4. Compare Operators (=?) → SimilarityEngine + CompareOperator
+    5. Everything else → BRUTE (already parses bl?, ent?, pdf!, de!, "phrases")
+    """
+
+    def __init__(self):
+        self._io_executor = None
+        self._io_router = None
+        self._io_planner = None
+        self._torpedo = None
+        self._brute_search = None
+        self._compare_operator = None
+        self._similarity_engine = None
+        self._linklater = None
+        self._loaded = False
+
+    def _lazy_load(self):
+        """Lazy load executors to avoid import issues."""
+        if self._loaded:
+            return
+
+        # Load IO Executor, Router, and Planner
+        try:
+            from io_cli import IOExecutor, IORouter, IOPlanner
+            self._io_router = IORouter()
+            self._io_executor = IOExecutor(self._io_router)
+            self._io_planner = IOPlanner(self._io_router)
+            logger.info("✓ IOExecutor + IOPlanner loaded")
+        except ImportError as e:
+            logger.warning(f"IOExecutor not available: {e}")
+
+        # Load Torpedo (for csr:, chr:, cde:, cuk: registry operators)
+        try:
+            from modules.torpedo.EXECUTION.cr_searcher import CRSearcher
+            self._torpedo = CRSearcher()
+            logger.info("✓ Torpedo (CRSearcher) loaded")
+        except ImportError as e:
+            logger.warning(f"Torpedo not available: {e}")
+
+        # Load Similarity Engine + Compare Operator (for =? operator)
+        if SIMILARITY_ENGINE_AVAILABLE:
+            try:
+                self._similarity_engine = SimilarityEngine()
+                self._compare_operator = CompareOperator(
+                    similarity_engine=self._similarity_engine,
+                    state_provider=None  # Will be set per-query with project context
+                )
+                logger.info("✓ SimilarityEngine + CompareOperator loaded")
+            except Exception as e:
+                logger.warning(f"SimilarityEngine not available: {e}")
+
+        # Load LINKLATER (for alldom:, entity extraction, link analysis)
+        try:
+            from modules.linklater.api import get_linklater
+            self._linklater = get_linklater()
+            logger.info("✓ LINKLATER loaded")
+        except ImportError as e:
+            logger.warning(f"LINKLATER not available: {e}")
+
+        # BruteSearch loaded on-demand (handles everything else)
+        self._loaded = True
+
+    async def _get_brute_search(self):
+        """Lazy load BruteSearch (heavy dependencies)."""
+        if self._brute_search is None:
+            self._brute_search = BruteSearchWrapper()
+            logger.info("✓ BruteSearch (Optimal Wrapper) loaded")
+        return self._brute_search
+
+    async def execute(self, query: str, project_id: str = "default") -> Dict[str, Any]:
+        """
+        Execute any query using unified routing.
+
+        ROUTING ORDER:
+        1. Chain Operators (chain: due_diligence, ubo, officers) → IOPlanner.execute_chain
+        2. Grid Queries (#nodename targets) → Elasticsearch via Cymonides
+        3. Registry Operators (csr:, chr:, cde:, cuk:) → Torpedo
+        4. IO Prefixes (p:, c:, e:, d:, t:) → IOExecutor
+        5. Query Operators (bl?, ent?, pdf!, etc.) → QueryExecutor (web targets)
+        6. Exact Phrases → BRUTE (40+ engines)
+        """
+        self._lazy_load()
+        query = query.strip()
+
+        # Submarine discovery command
+        if query.lower().startswith("/submarine"):
+            return await self._execute_submarine(query, project_id)
+
+        # SUBMARINE exploration shortcuts (indom:/inurl:/hop(n)) without requiring "/submarine explore"
+        if looks_like_submarine_exploration(query):
+            return await self._execute_submarine(f"/submarine explore {query}", project_id)
+
+        # Chain pipes (=> syntax) → execute each step, pass results forward
+        if has_chain_pipe(query):
+            return await self._execute_chain_pipe(query, project_id)
+
+        # Chain operators → IOPlanner (multi-step investigations)
+        if has_chain_operator(query):
+            return await self._execute_chain(query, project_id)
+
+        # Direct agent addressing (edith:, wikiman:, cymonides:, etc.)
+        if has_agent_direct_operator(query):
+            return await self._execute_agent_direct(query, project_id)
+
+        # Template operators → ThinOrchestrator (full investigation flow)
+        if has_template_operator(query):
+            return await self._execute_template(query, project_id)
+
+        # Index command (stub)
+        if query.lower().startswith("/index"):
+            return await self._execute_index_command(query, project_id)
+
+        # Scrape command (single URL or depth-based crawl)
+        if query.lower().startswith("/scrape"):
+            return await self._execute_scrape_command(query, project_id)
+
+        # First, try unified parser to detect grid queries and operators
+        parsed = parse_unified_query(query)
+        if parsed and parsed.is_grid_query:
+            return await self._execute_grid(parsed, project_id)
+
+        # Historical operators (:2022!, :<-) → Archive search via Linklater
+        if has_historical_operator(query):
+            return await self._execute_historical(query, project_id)
+
+        # Macro operators (alldom:, cdom:, crel:, age:, rep:, dns:) → LINKLATER/specialized
+        if has_macro_operator(query):
+            return await self._execute_macro(query, project_id)
+
+        # Entity extraction operators (ent?, p?, c?, e?, t?, a?, u?) → LINKLATER
+        if has_entity_operator(query):
+            return await self._execute_entity_extraction(query, project_id)
+
+        # Multi-domain batch backlink queries (bl? :!domain1 :!domain2 ...) → Batch LINKLATER
+        if has_multi_domain_backlink(query):
+            return await self._execute_multi_domain_backlinks(query, project_id)
+
+        # Boolean tag queries (#a AND #b), (#a OR #b) → GraphProvider
+        if has_boolean_tag_query(query):
+            return await self._execute_boolean_tag_query(query, project_id)
+
+        # Watcher operators (+#w:, -#w:, #w?, +#watcher:) → WatcherBridge
+        if has_watcher_operator(query):
+            return await self._execute_watcher(query, project_id)
+
+        # Tagging operators (=> +#tag, => -#tag, => #tag) → GraphProvider
+        if has_tagging_operator(query):
+            return await self._execute_tagging(query, project_id)
+
+# DD operators → Template-driven DD investigation
+        if has_dd_operator(query):
+            return await self._execute_dd(query, project_id)
+
+        # Litigation operators → Jurisdictional litigation module
+        if has_lit_operator(query):
+            return await self._execute_lit(query, project_id)
+
+        # Regulatory operators → Jurisdictional regulatory module
+        if has_reg_operator(query):
+            return await self._execute_reg(query, project_id)
+
+        # Registry operators → Torpedo
+        if has_registry_operator(query):
+            return await self._execute_registry(query, project_id)
+
+        # IO prefixes → IOExecutor
+        if has_io_prefix(query):
+            return await self._execute_io(query, project_id)
+
+        # If we have parsed operators but not grid query, use appropriate executor
+        if parsed and parsed.operators:
+            # Query operators for web targets → Query executor (link analysis, entity extraction)
+            if parsed.wants_backlinks or parsed.wants_outlinks or parsed.wants_entities:
+                return await self._execute_query(parsed, project_id)
+            # Filetype search
+            if parsed.wants_filetype:
+                return await self._execute_query(parsed, project_id)
+
+        # Auto-route bare IO values (email/phone/domain/linkedin) into IOExecutor
+        auto_type = _detect_entity_type(query)
+        if auto_type in {"email", "phone", "domain", "linkedin_url"}:
+            prefix_map = {
+                "email": "e:",
+                "phone": "t:",
+                "domain": "d:",
+                "linkedin_url": "li:",
+            }
+            return await self._execute_io(f"{prefix_map[auto_type]} {query}", project_id)
+
+        # Everything else → BRUTE (exact phrases, general search)
+        return await self._execute_brute(query, project_id)
+
+    async def _execute_io(self, query: str, project_id: str) -> Dict[str, Any]:
+        """Execute IO prefix query."""
+        if not self._io_router:
+            return {"error": "IOExecutor not available", "query": query}
+
+        flags, cleaned_query = _parse_io_exec_flags(query)
+        entity_type, value, jurisdiction = parse_io_prefix(cleaned_query)
+
+        logger.info(
+            f"IO Execute: {entity_type}={value} (jurisdiction={jurisdiction}, recurse={flags.get('recurse')})"
+        )
+
+        try:
+            # Ensure IOExecutor uses the correct project for persistence (cymonides-1-{project_id})
+            if (not self._io_executor) or getattr(self._io_executor, "project_id", None) != project_id:
+                from io_cli import IOExecutor
+                self._io_executor = IOExecutor(self._io_router, project_id=project_id)
+
+            if flags.get("recurse"):
+                result = await self._io_executor.execute_recursive(
+                    entity_type,
+                    value,
+                    jurisdiction,
+                    max_depth=int(flags.get("max_depth", 2)),
+                    max_nodes=int(flags.get("max_nodes", 50)),
+                    recurse_types=flags.get("recurse_types"),
+                    persist_project=project_id,
+                )
+            else:
+                result = await self._io_executor.execute(entity_type, value, jurisdiction)
+            result["_executor"] = "io"
+            result["_project_id"] = project_id
+            return result
+        except Exception as e:
+            logger.error(f"IO execution error: {e}")
+            return {
+                "error": str(e),
+                "query": query,
+                "entity_type": entity_type,
+                "value": value,
+                "_executor": "io"
+            }
+
+    async def _execute_dd(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute Due Diligence query - dd: and ddp: macros.
+
+        dd:AcmeCorp:UK runs:
+          1. brute:"AcmeCorp" uk!
+          2. cuk:AcmeCorp
+          3. reguk:AcmeCorp
+          4. lituk:AcmeCorp
+          → classify results
+          → EDITH writes
+
+        ddp:JohnSmith:US runs:
+          1. brute:"JohnSmith" us!
+          2. pus:JohnSmith
+          → classify results
+          → EDITH writes
+        """
+        try:
+            from classes.narrative.edith.dd_template import handle_dd
+            result = await handle_dd(query, self.execute, project_id)
+            result["_executor"] = "dd_template"
+            result["_project_id"] = project_id
+            return result
+        except ImportError as e:
+            logger.error(f"dd_template not available: {e}")
+            # Fallback to old template method
+            jurisdiction, entity_type, subject = parse_dd_operator(query)
+            genre = "person_dd" if entity_type == "person" else "company_dd"
+            template_query = f"template:{genre}"
+            if jurisdiction:
+                template_query += f":{jurisdiction}"
+            template_query += f" :#{subject.replace(' ', '_')}"
+            return await self._execute_template(template_query, project_id)
+        except Exception as e:
+            logger.error(f"DD execution failed: {e}")
+            return {"error": str(e), "query": query, "_executor": "dd_template"}
+
+    async def _execute_lit(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute litigation search.
+
+        Routes to jurisdiction-specific litigation module.
+        """
+        jurisdiction, subject = parse_lit_operator(query)
+
+        if not jurisdiction:
+            return {"error": "Litigation search requires jurisdiction (lituk:, litus:, etc.)", "query": query}
+
+        logger.info(f"Lit Execute: jurisdiction={jurisdiction} subject={subject}")
+
+        # Route to jurisdictional module
+        try:
+            from modules.jurisdictional.country_api.router import CountryRouter
+            router = CountryRouter()
+            result = await router.execute(f"lit{jurisdiction.lower()}:{subject}", project_id)
+            result["_executor"] = "litigation"
+            return result
+        except ImportError:
+            # Fallback to UK CLI if available
+            if jurisdiction.upper() == "UK":
+                from modules.jurisdictional.UK.uk_cli import UKUnifiedSearch
+                search = UKUnifiedSearch()
+                result = await search.execute_operator(f"lituk:{subject}")
+                result["_executor"] = "litigation_uk"
+                return result
+            return {"error": f"No litigation module for {jurisdiction}", "query": query}
+
+    async def _execute_reg(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute regulatory search.
+
+        Routes to jurisdiction-specific regulatory module.
+        """
+        jurisdiction, subject = parse_reg_operator(query)
+
+        if not jurisdiction:
+            return {"error": "Regulatory search requires jurisdiction (reguk:, regus:, etc.)", "query": query}
+
+        logger.info(f"Reg Execute: jurisdiction={jurisdiction} subject={subject}")
+
+        # Route to jurisdictional module
+        try:
+            from modules.jurisdictional.country_api.router import CountryRouter
+            router = CountryRouter()
+            result = await router.execute(f"reg{jurisdiction.lower()}:{subject}", project_id)
+            result["_executor"] = "regulatory"
+            return result
+        except ImportError:
+            # Fallback to UK CLI if available
+            if jurisdiction.upper() == "UK":
+                from modules.jurisdictional.UK.uk_cli import UKUnifiedSearch
+                search = UKUnifiedSearch()
+                result = await search.execute_operator(f"reguk:{subject}")
+                result["_executor"] = "regulatory_uk"
+                return result
+            return {"error": f"No regulatory module for {jurisdiction}", "query": query}
+
+    def _looks_like_company(self, subject: str) -> bool:
+        """Heuristic to detect if subject looks like a company name."""
+        company_indicators = [
+            "ltd", "limited", "plc", "inc", "corp", "corporation",
+            "llc", "llp", "gmbh", "ag", "sa", "bv", "nv",
+            "co.", "company", "group", "holdings", "partners"
+        ]
+        subject_lower = subject.lower()
+        return any(indicator in subject_lower for indicator in company_indicators)
+
+    async def _execute_macro(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute macro operators (alldom:, cdom:, crel:, age:, rep:, dns:).
+
+        These are composite operations that chain multiple sub-operations.
+        """
+        macro_type, target = parse_macro_operator(query)
+        logger.info(f"Macro Execute: {macro_type} on {target}")
+
+        try:
+            if macro_type == 'full_domain_analysis':
+                # alldom: → Full LINKLATER analysis
+                if not self._linklater:
+                    return {"error": "LINKLATER not available", "query": query}
+                result = await self._linklater.full_domain_analysis(target)
+                result["_executor"] = "macro"
+                result["_macro_type"] = macro_type
+                result["_project_id"] = project_id
+                return result
+
+            elif macro_type == 'find_related_companies':
+                # crel: → Find related companies via ownership/officers
+                if not self._linklater:
+                    return {"error": "LINKLATER not available", "query": query}
+                result = await self._linklater.find_related_companies(target)
+                result["_executor"] = "macro"
+                result["_macro_type"] = macro_type
+                result["_project_id"] = project_id
+                return result
+
+            elif macro_type == 'find_company_domain':
+                # cdom: → Chain c: => brute => domain extraction
+                results = {"target": target, "domains_found": [], "_executor": "macro", "_macro_type": macro_type}
+                # First try company lookup via IO
+                if self._io_executor:
+                    company_result = await self._io_executor.execute('company', target, None)
+                    if company_result.get('websites'):
+                        results["domains_found"] = company_result['websites']
+                        results["source"] = "registry"
+                        return results
+                # Fallback to brute search + domain extraction
+                brute = await self._get_brute_search()
+                if brute:
+                    search_result = await brute.search(f'"{target}" website OR domain', max_results=50)
+                    # Extract domains from results
+                    import re
+                    domain_pattern = re.compile(r'https?://([a-zA-Z0-9][a-zA-Z0-9-]*\.[a-zA-Z]{2,})')
+                    for r in search_result.get('results', []):
+                        match = domain_pattern.search(r.get('url', ''))
+                        if match:
+                            results["domains_found"].append(match.group(1))
+                    results["source"] = "brute_search"
+                return results
+
+            elif macro_type == 'find_person_age':
+                # age: → Chain p: => brute for DOB/age
+                results = {"target": target, "age_info": [], "_executor": "macro", "_macro_type": macro_type}
+                # Try EYE-D via IO first
+                if self._io_executor:
+                    person_result = await self._io_executor.execute('person', target, None)
+                    if person_result.get('dob') or person_result.get('age'):
+                        results["age_info"] = person_result
+                        results["source"] = "eyed"
+                        return results
+                # Fallback to brute search
+                brute = await self._get_brute_search()
+                if brute:
+                    search_result = await brute.search(f'"{target}" born OR DOB OR "date of birth" OR age', max_results=50)
+                    results["search_results"] = search_result.get('results', [])[:10]
+                    results["source"] = "brute_search"
+                return results
+
+            elif macro_type == 'analyze_reputation':
+                # rep: → Brute search for reviews/complaints + red flags
+                results = {"target": target, "reputation_data": [], "_executor": "macro", "_macro_type": macro_type}
+                brute = await self._get_brute_search()
+                if brute:
+                    # Search for negative indicators
+                    search_result = await brute.search(
+                        f'"{target}" review OR complaint OR scam OR fraud OR "red flag"',
+                        max_results=100
+                    )
+                    results["reputation_data"] = search_result.get('results', [])
+                    results["total_mentions"] = len(search_result.get('results', []))
+                    results["source"] = "brute_search"
+                return results
+
+            elif macro_type == 'dns_lookup':
+                # dns: → DNS record lookup
+                try:
+                    import dns.resolver
+                    results = {"domain": target, "dns_records": {}, "_executor": "macro", "_macro_type": macro_type}
+                    for rtype in ['A', 'AAAA', 'MX', 'NS', 'TXT', 'CNAME', 'SOA']:
+                        try:
+                            answers = dns.resolver.resolve(target, rtype)
+                            results["dns_records"][rtype] = [str(r) for r in answers]
+                        except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.NoNameservers):
+                            pass
+                    return results
+                except ImportError:
+                    return {"error": "dnspython not installed. Run: pip install dnspython", "query": query}
+
+            else:
+                return {"error": f"Unknown macro type: {macro_type}", "query": query}
+
+        except Exception as e:
+            logger.error(f"Macro execution error: {e}")
+            return {"error": str(e), "query": query, "_executor": "macro"}
+
+    async def _execute_entity_extraction(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute entity extraction operators (ent?, p?, c?, e?, t?, a?, u?).
+
+        Uses:
+        - JESTER for live/present scraping
+        - BACKDRILL for historic/archive content (when year modifier present)
+        - PACMAN for entity extraction
+
+        Subject-side / Location-side:
+        - LEFT of colon (subject_side): What entity types to extract (person, company, email...)
+        - RIGHT of colon (location_side): Where to look (domain, url, jurisdiction...)
+        """
+        # Parse query using unified parser for subject/location classification
+        parsed = None
+        if SyntaxParser:
+            parser = SyntaxParser()
+            parsed = parser.parse(query)
+
+        entity_types, target = parse_entity_operator(query)
+
+        # Extract subject-side and location-side from parsed query
+        subject_side = parsed.subject_side if parsed else SubjectSide.from_operators(entity_types)
+        location_side = parsed.location_side if parsed else None
+
+        logger.info(f"Entity Extract: {entity_types} from {target}")
+        logger.info(f"  Subject-side (UNKNOWN): {subject_side.to_dict() if subject_side else 'N/A'}")
+        logger.info(f"  Location-side (KNOWN): {location_side.to_dict() if location_side else 'N/A'}")
+
+        # Use KU router for intelligent routing (UNKNOWN + KNOWN → action)
+        routing_action = None
+        if KU_ROUTER_AVAILABLE and subject_side and location_side:
+            try:
+                routing_action = route_ku(
+                    unknown_class=subject_side.node_class.value,  # UNKNOWN class (subject-side)
+                    unknown_type=subject_side.node_type,          # UNKNOWN type
+                    known_class=location_side.node_class.value,   # KNOWN class (location-side)
+                    known_type=location_side.node_type,           # KNOWN type
+                    known_value=location_side.value               # KNOWN value
+                )
+                if routing_action:
+                    logger.info(f"  Routing action: {routing_action}")
+            except Exception as e:
+                logger.warning(f"KU router error (non-fatal): {e}")
+
+        # Check for historic modifier (e.g., :2022! or :2020-2024!)
+        historic_match = re.search(r':(\d{4})(?:-(\d{4}))?!', query)
+        is_historic = historic_match is not None
+        year_from = historic_match.group(1) if historic_match else None
+        year_to = historic_match.group(2) if historic_match else year_from
+
+        # Clean target of year modifiers
+        clean_target = re.sub(r':\d{4}(?:-\d{4})?!', '', target).strip()
+
+        try:
+            # Determine URL
+            if clean_target.startswith('http://') or clean_target.startswith('https://'):
+                url = clean_target
+            elif '.' in clean_target:
+                url = f"https://{clean_target}"
+            else:
+                return {"error": f"Invalid target for entity extraction: {clean_target}", "query": query}
+
+            content = None
+            scrape_method = None
+
+            # HISTORIC: Use BACKDRILL
+            if is_historic:
+                if not BACKDRILL_AVAILABLE:
+                    return {"error": "BACKDRILL not available for historic extraction", "query": query}
+
+                logger.info(f"[BACKDRILL] Fetching historic content for {url} (year: {year_from})")
+                bd = Backdrill()
+                result = await bd.fetch(url)
+
+                if result and hasattr(result, 'content'):
+                    content = result.content
+                elif result and isinstance(result, dict):
+                    content = result.get('content') or result.get('html') or result.get('text')
+
+                scrape_method = f"BACKDRILL:{year_from}"
+
+            # PRESENT: Use JESTER
+            else:
+                if not JESTER_AVAILABLE:
+                    return {"error": "JESTER not available for live scraping", "query": query}
+
+                logger.info(f"[JESTER] Scraping live content for {url}")
+                jester = Jester()
+                result = await jester.scrape(url)
+
+                if result:
+                    # JesterResult has html, markdown, or content attributes
+                    content = getattr(result, 'html', None) or getattr(result, 'markdown', None) or getattr(result, 'content', None)
+                    if not content and isinstance(result, dict):
+                        content = result.get('html') or result.get('markdown') or result.get('content')
+                    scrape_method = getattr(result, 'method', 'JESTER')
+
+            if not content:
+                return {"error": f"No content retrieved from {url}", "query": query, "scrape_method": scrape_method}
+
+            # EXTRACT: Use PACMAN
+            if not PACMAN_AVAILABLE:
+                return {"error": "PACMAN not available for entity extraction", "query": query}
+
+            logger.info(f"[PACMAN] Extracting entities from {len(content)} chars")
+            extraction_result = pacman_extract(content)
+
+            # Convert PACMAN result to standard format
+            entities = {}
+            if hasattr(extraction_result, 'persons'):
+                entities['persons'] = extraction_result.persons or []
+            if hasattr(extraction_result, 'companies'):
+                entities['companies'] = extraction_result.companies or []
+            if hasattr(extraction_result, 'emails'):
+                entities['emails'] = extraction_result.emails or []
+            if hasattr(extraction_result, 'phones'):
+                entities['phones'] = extraction_result.phones or []
+            if hasattr(extraction_result, 'addresses'):
+                entities['addresses'] = extraction_result.addresses or []
+            if hasattr(extraction_result, 'identifiers'):
+                entities['identifiers'] = extraction_result.identifiers or []
+
+            # If extraction_result is dict-like
+            if isinstance(extraction_result, dict):
+                entities = {
+                    'persons': extraction_result.get('persons', []),
+                    'companies': extraction_result.get('companies', []),
+                    'emails': extraction_result.get('emails', []),
+                    'phones': extraction_result.get('phones', []),
+                    'addresses': extraction_result.get('addresses', []),
+                    'identifiers': extraction_result.get('identifiers', []),
+                }
+
+            # Filter to requested types if not 'all'
+            if 'all' not in entity_types:
+                type_mapping = {
+                    'persons': 'persons',
+                    'companies': 'companies',
+                    'emails': 'emails',
+                    'phones': 'phones',
+                    'addresses': 'addresses',
+                    'usernames': 'usernames',
+                    'identifiers': 'identifiers',
+                }
+                filtered = {}
+                for etype in entity_types:
+                    key = type_mapping.get(etype, etype)
+                    if key in entities:
+                        filtered[key] = entities[key]
+                entities = filtered
+
+            return {
+                "target": clean_target,
+                "url": url,
+                "entities": entities,
+                "entity_types_requested": entity_types,
+                "total_extracted": sum(len(v) for v in entities.values() if isinstance(v, list)),
+                "scrape_method": scrape_method,
+                "historic": is_historic,
+                "year_from": year_from,
+                "year_to": year_to,
+                # KU Matrix: subject_side=UNKNOWN, location_side=KNOWN
+                "subject_side": subject_side.to_dict() if subject_side else None,
+                "location_side": location_side.to_dict() if location_side else None,
+                "routing_action": routing_action,
+                "_executor": "entity_extraction",
+                "_project_id": project_id
+            }
+
+        except Exception as e:
+            logger.error(f"Entity extraction error: {e}")
+            return {"error": str(e), "query": query, "_executor": "entity_extraction"}
+
+    async def _execute_multi_domain_backlinks(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute batch backlink query for multiple domains.
+
+        Syntax:
+            bl? :!domain1 :!domain2 :!domain3          (page-level backlinks)
+            bl? :!domain1 AND :!domain2 AND :!domain3  (AND-separated)
+            ?bl :!domain1 :!domain2                    (domain-level, fast)
+
+        Runs backlink queries in parallel for all domains and aggregates results.
+        """
+        mode, domains = parse_multi_domain_backlink(query)
+        logger.info(f"Multi-Domain Backlinks: mode={mode} domains={domains}")
+
+        if not domains:
+            return {"error": "No domains found in query", "query": query}
+
+        if not self._linklater:
+            return {"error": "LINKLATER not available for backlinks", "query": query}
+
+        import asyncio
+
+        async def get_backlinks_for_domain(domain: str) -> Dict[str, Any]:
+            """Get backlinks for a single domain."""
+            try:
+                if mode == "bl?":
+                    # Page-level backlinks (rich)
+                    result = await self._linklater.get_backlinks_pages(f"!{domain}")
+                else:
+                    # Domain-level backlinks (fast)
+                    result = await self._linklater.get_referring_domains(f"!{domain}")
+
+                return {
+                    "domain": domain,
+                    "ok": True,
+                    "data": result
+                }
+            except Exception as e:
+                return {
+                    "domain": domain,
+                    "ok": False,
+                    "error": str(e)
+                }
+
+        # Run all domains in parallel
+        tasks = [get_backlinks_for_domain(d) for d in domains]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+
+        # Aggregate results
+        aggregated = {
+            "mode": mode,
+            "domains_queried": domains,
+            "total_domains": len(domains),
+            "results_by_domain": {},
+            "summary": {
+                "total_backlinks": 0,
+                "total_referring_domains": 0,
+                "domains_with_backlinks": [],
+                "domains_without_backlinks": [],
+            },
+            "_executor": "multi_domain_backlinks",
+            "_project_id": project_id,
+        }
+
+        for r in results:
+            if isinstance(r, Exception):
+                continue
+            domain = r.get("domain")
+            if r.get("ok"):
+                data = r.get("data", {})
+                aggregated["results_by_domain"][domain] = data
+
+                # Update summary
+                backlink_count = data.get("total", 0) or len(data.get("backlinks", [])) or len(data.get("referring_domains", []))
+                if backlink_count > 0:
+                    aggregated["summary"]["domains_with_backlinks"].append({
+                        "domain": domain,
+                        "backlinks": backlink_count
+                    })
+                    aggregated["summary"]["total_backlinks"] += backlink_count
+                else:
+                    aggregated["summary"]["domains_without_backlinks"].append(domain)
+            else:
+                aggregated["results_by_domain"][domain] = {"error": r.get("error")}
+                aggregated["summary"]["domains_without_backlinks"].append(domain)
+
+        # Sort domains with backlinks by count
+        aggregated["summary"]["domains_with_backlinks"].sort(
+            key=lambda x: x.get("backlinks", 0),
+            reverse=True
+        )
+
+        return aggregated
+
+    async def _execute_index_command(
+        self,
+        query: str,
+        project_id: str,
+        previous_result: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        """
+        Index content and entities into the corpus.
+        """
+        if not self._linklater:
+            return {"error": "LINKLATER not available for /index", "query": query}
+
+        try:
+            from modules.linklater.cymonides_bridge import get_indexer
+        except Exception as e:
+            return {"error": f"Index backend not available: {e}", "query": query}
+
+        def _get_value(obj: Any, key: str) -> Any:
+            if isinstance(obj, dict):
+                return obj.get(key)
+            return getattr(obj, key, None)
+
+        def _extract_context_list(value: str, name: str) -> Tuple[List[str], str]:
+            if not value:
+                return [], value
+            match = re.search(rf"\\b{name}\\(([^)]*)\\)", value, re.IGNORECASE)
+            if not match:
+                return [], value
+            raw = match.group(1).strip()
+            tokens: List[str] = []
+            for chunk in raw.split(","):
+                for part in chunk.strip().split():
+                    token = part.strip().lower().replace("-", "_")
+                    if token:
+                        tokens.append(token)
+            cleaned = re.sub(rf"\\b{name}\\([^)]*\\)", "", value, flags=re.IGNORECASE)
+            cleaned = re.sub(r"\\s+", " ", cleaned).strip()
+            return tokens, cleaned
+
+        def _resolve_store(tokens: List[str]) -> Tuple[bool, bool]:
+            if not tokens:
+                return True, True
+            wants_content = False
+            wants_entities = False
+            for token in tokens:
+                if token in ("all", "both"):
+                    wants_content = True
+                    wants_entities = True
+                elif token in ("content", "contents", "documents", "docs"):
+                    wants_content = True
+                elif token in ("entities", "entity", "nodes"):
+                    wants_entities = True
+                elif token in ("none", "off"):
+                    wants_content = False
+                    wants_entities = False
+            return wants_content, wants_entities
+
+        def _normalize_extract_tokens(tokens: List[str]) -> Tuple[bool, Set[str]]:
+            if not tokens:
+                return True, {"concepts", "temporal", "spatial", "flags", "events"}
+            if any(token in ("none", "off") for token in tokens):
+                return False, set()
+            normalized: Set[str] = set()
+            for token in tokens:
+                if token in ("all", "full"):
+                    normalized.update({"concepts", "temporal", "spatial", "flags", "events"})
+                elif token in ("concept", "concepts", "themes", "phenomena", "methodologies"):
+                    normalized.add("concepts")
+                elif token in ("time", "temporal"):
+                    normalized.add("temporal")
+                elif token in ("space", "spatial", "geo", "location", "locations"):
+                    normalized.add("spatial")
+                elif token in ("flag", "flags", "red_flags", "redflag", "redflags"):
+                    normalized.add("flags")
+                elif token in ("event", "events"):
+                    normalized.add("events")
+                elif token in ("entities", "entity"):
+                    normalized.add("entities")
+            if not normalized:
+                normalized.update({"concepts", "temporal", "spatial", "flags", "events"})
+            return True, normalized
+
+        def _filter_extraction(extraction: Dict[str, Any], features: Set[str]) -> Dict[str, Any]:
+            if not extraction or not features:
+                return {}
+            extracted = extraction.get("extracted", {}) if isinstance(extraction, dict) else {}
+            filtered: Dict[str, Any] = {}
+            extracted_out: Dict[str, Any] = {}
+
+            if "concepts" in features:
+                extracted_out["themes"] = extracted.get("themes", [])
+                extracted_out["phenomena"] = extracted.get("phenomena", [])
+                extracted_out["red_flag_themes"] = extracted.get("red_flag_themes", [])
+                extracted_out["methodologies"] = extracted.get("methodologies", [])
+            if "entities" in features:
+                extracted_out["entities"] = extracted.get("entities", [])
+            if "flags" in features:
+                extracted_out["red_flag_entities"] = extracted.get("red_flag_entities", [])
+                filtered["red_flag_entity_alert"] = extraction.get("red_flag_entity_alert")
+
+            if extracted_out:
+                filtered["extracted"] = extracted_out
+            if "temporal" in features:
+                filtered["temporal"] = extraction.get("temporal")
+            if "spatial" in features:
+                filtered["spatial"] = extraction.get("spatial")
+            if "events" in features:
+                filtered["events"] = extraction.get("events")
+
+            return filtered
+
+        cleaned = re.sub(r"^/index\\b", "", query, flags=re.IGNORECASE).strip()
+        extract_tokens, cleaned = _extract_context_list(cleaned, "extract")
+        store_tokens, cleaned = _extract_context_list(cleaned, "store")
+        _, cleaned = _extract_context_list(cleaned, "embed")
+
+        store_content, store_entities = _resolve_store(store_tokens)
+        extraction_enabled, extraction_features = _normalize_extract_tokens(extract_tokens)
+        if not store_content and not store_entities:
+            return {
+                "error": "store() disabled all outputs",
+                "query": query,
+                "_executor": "index",
+            }
+
+        entity_type_map = {
+            "@person?": "persons",
+            "@p?": "persons",
+            "@company?": "companies",
+            "@c?": "companies",
+            "@email?": "emails",
+            "@e?": "emails",
+            "@phone?": "phones",
+            "@t?": "phones",
+            "@address?": "addresses",
+            "@a?": "addresses",
+            "@username?": "usernames",
+            "@u?": "usernames",
+        }
+        entity_types_requested: Set[str] = set()
+        for token, entity_type in entity_type_map.items():
+            pattern = re.compile(rf"(?i)(?:^|\\s){re.escape(token)}(?:\\s|$)")
+            if pattern.search(cleaned):
+                entity_types_requested.add(entity_type)
+                cleaned = pattern.sub(" ", cleaned)
+        cleaned = re.sub(r"\\s+", " ", cleaned).strip()
+
+        target = None
+        if cleaned:
+            if cleaned.startswith(":"):
+                target = cleaned[1:].strip()
+            else:
+                colon_match = re.search(r"\\s:\\s*(.+)$", cleaned)
+                if colon_match:
+                    target = colon_match.group(1).strip()
+                else:
+                    target = cleaned
+
+        source_url = None
+        scraped_payload = None
+        if previous_result:
+            source_url = previous_result.get("url") or previous_result.get("target")
+            scraped_payload = previous_result.get("result")
+            if scraped_payload and not isinstance(scraped_payload, dict) and hasattr(scraped_payload, "__dict__"):
+                scraped_payload = scraped_payload.__dict__
+
+        if not target and source_url:
+            target = source_url
+
+        if target and (target.startswith("#") or target.startswith("!#")):
+            return {
+                "error": "Tag targets not supported for /index yet",
+                "query": query,
+                "_executor": "index",
+            }
+
+        if target:
+            target = target.strip()
+            if target.startswith("!"):
+                target = target[1:].strip()
+            if target.endswith("!"):
+                target = target[:-1].strip()
+
+        if not target and not scraped_payload:
+            return {"error": "Missing target for /index", "query": query, "_executor": "index"}
+
+        url = None
+        if target:
+            if target.startswith("http://") or target.startswith("https://"):
+                url = target
+            else:
+                url = f"https://{target}"
+
+        if not scraped_payload:
+            scraped = await self._linklater.scrape_url(url)
+            if not scraped:
+                return {"error": f"Failed to scrape for index: {url}", "query": query, "_executor": "index"}
+            scraped_payload = scraped if isinstance(scraped, dict) else getattr(scraped, "__dict__", {})
+
+        content = _get_value(scraped_payload, "content") or _get_value(scraped_payload, "markdown")
+        title = _get_value(scraped_payload, "title") or _get_value(scraped_payload, "page_title")
+        outlinks = _get_value(scraped_payload, "outlinks")
+        source = _get_value(scraped_payload, "source") or "sastre_index"
+        timestamp = _get_value(scraped_payload, "fetched_at") or _get_value(scraped_payload, "timestamp")
+
+        if not url:
+            url = _get_value(scraped_payload, "url") or source_url
+
+        if not content:
+            return {"error": "No content to index", "query": query, "_executor": "index"}
+
+        entities: Dict[str, Any] = {}
+        if store_entities:
+            entities = _get_value(scraped_payload, "entities") or {}
+            if not entities:
+                try:
+                    entities = await self._linklater.extract_entities(
+                        text=content,
+                        url=url,
+                        backend="auto",
+                    )
+                except Exception as e:
+                    logger.warning(f"/index entity extraction failed: {e}")
+                    entities = {}
+            if entity_types_requested:
+                entities = {
+                    key: value
+                    for key, value in entities.items()
+                    if key in entity_types_requested
+                }
+
+        extraction = None
+        if store_content and extraction_enabled and content and len(content) > 100:
+            try:
+                from cymonides.extraction.universal_extractor import extract_all
+                extraction = extract_all(content, meta_date=timestamp)
+            except Exception as e:
+                logger.warning(f"/index extraction failed: {e}")
+
+        indexer = await get_indexer()
+        extra_fields: Dict[str, Any] = {}
+        if extraction:
+            filtered = _filter_extraction(extraction, extraction_features)
+            if filtered:
+                extra_fields["extraction"] = filtered
+
+        content_id = None
+        if store_content:
+            content_id = await indexer.index_content(
+                url=url,
+                content=content,
+                title=title,
+                outlinks=outlinks,
+                archive_url=None,
+                timestamp=timestamp,
+                source=source,
+                project_id=project_id,
+                query=query,
+                **extra_fields,
+            )
+
+        entity_nodes: Dict[str, List[str]] = {}
+        if store_entities and entities and project_id and project_id != "default":
+            try:
+                entity_nodes = await indexer.index_entities(
+                    entities=entities,
+                    project_id=project_id,
+                    source_url=url,
+                )
+            except Exception as e:
+                logger.warning(f"/index entity indexing failed: {e}")
+
+        return {
+            "query": query,
+            "url": url,
+            "content_id": content_id,
+            "entity_nodes": entity_nodes,
+            "stored": {
+                "content": bool(content_id) if store_content else False,
+                "entities": bool(entity_nodes) if store_entities else False,
+            },
+            "extraction": sorted(extraction_features) if extraction_enabled else [],
+            "_executor": "index",
+            "_project_id": project_id,
+        }
+
+    async def _execute_scrape_command(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute /scrape with optional depth(N) and expanse(N).
+        depth(1) or no depth → single URL fetch.
+        depth(2+) → Jester D crawl with hop budget.
+        expanse(N) → page budget for multi-hop crawl.
+        """
+        depth_match = re.search(r"\\bdepth\\((\\d+)\\)", query, re.IGNORECASE)
+        depth = None
+        if depth_match:
+            try:
+                depth = max(1, int(depth_match.group(1)))
+            except ValueError:
+                depth = None
+        expanse_match = re.search(r"\\bexpanse\\((\\d+)\\)", query, re.IGNORECASE)
+        expanse = None
+        if expanse_match:
+            try:
+                expanse = max(1, int(expanse_match.group(1)))
+            except ValueError:
+                expanse = None
+        generate_embeddings = True
+        embed_match = re.search(r"\\bembed\\(([^)]+)\\)", query, re.IGNORECASE)
+        if embed_match:
+            raw = embed_match.group(1).strip().lower()
+            if raw in ("off", "false", "0", "no"):
+                generate_embeddings = False
+            elif raw in ("on", "true", "1", "yes"):
+                generate_embeddings = True
+
+        cleaned = re.sub(r"\\bdepth\\(\\d+\\)", "", query, flags=re.IGNORECASE).strip()
+        cleaned = re.sub(r"\\bexpanse\\(\\d+\\)", "", cleaned, flags=re.IGNORECASE).strip()
+        cleaned = re.sub(r"\\bembed\\([^)]*\\)", "", cleaned, flags=re.IGNORECASE).strip()
+        cleaned = re.sub(r"^/scrape\\b", "", cleaned, flags=re.IGNORECASE).strip()
+
+        if not cleaned:
+            return {"error": "Missing target for /scrape", "query": query, "_executor": "scrape"}
+
+        target = None
+        if cleaned.startswith(":"):
+            target = cleaned[1:].strip()
+        else:
+            colon_match = re.search(r"\\s:\\s*(.+)$", cleaned)
+            if colon_match:
+                target = colon_match.group(1).strip()
+            else:
+                target = cleaned
+
+        if not target:
+            return {"error": "Missing target for /scrape", "query": query, "_executor": "scrape"}
+
+        if target.startswith("#") or target.startswith("!#"):
+            return {
+                "error": "Tag targets not supported for /scrape yet",
+                "query": query,
+                "_executor": "scrape",
+            }
+
+        target = target.strip()
+        if target.startswith("!"):
+            target = target[1:].strip()
+        if target.endswith("!"):
+            target = target[:-1].strip()
+
+        if not target:
+            return {"error": "Missing target for /scrape", "query": query, "_executor": "scrape"}
+
+        if target.startswith("http://") or target.startswith("https://"):
+            url = target
+        else:
+            url = f"https://{target}"
+
+        parsed = urlparse(url if "://" in url else f"https://{url}")
+        domain = parsed.netloc or parsed.path.split("/")[0]
+        effective_depth = depth or 1
+
+        if effective_depth > 1:
+            try:
+                from modules.linklater.scraping.web import JesterD, JesterDConfig
+            except ImportError as e:
+                return {
+                    "error": f"Jester D crawler not available: {e}",
+                    "query": query,
+                    "_executor": "scrape",
+                }
+
+            config_kwargs = {
+                "max_depth": effective_depth,
+                "project_id": project_id,
+                "generate_embeddings": generate_embeddings,
+            }
+            if expanse is not None:
+                config_kwargs["max_pages"] = expanse
+            config = JesterDConfig(**config_kwargs)
+            crawler = JesterD(config)
+            seed_urls = None
+            if parsed.path and parsed.path not in ("", "/"):
+                seed_urls = [url]
+            stats = await crawler.crawl(domain, seed_urls=seed_urls)
+            crawl_stats = stats.to_dict() if hasattr(stats, "to_dict") else stats
+            return {
+                "target": target,
+                "url": url,
+                "depth": effective_depth,
+                "expanse": expanse,
+                "embeddings": generate_embeddings,
+                "crawl_stats": crawl_stats,
+                "_executor": "scrape",
+                "_project_id": project_id,
+            }
+
+        if not self._linklater:
+            return {"error": "LINKLATER not available for /scrape", "query": query}
+
+        scraped = await self._linklater.scrape_url(url)
+        if not scraped:
+            return {"error": f"Failed to scrape: {url}", "query": query, "_executor": "scrape"}
+
+        if isinstance(scraped, dict):
+            payload = scraped
+        else:
+            payload = getattr(scraped, "__dict__", {"content": str(scraped)})
+
+        return {
+            "target": target,
+            "url": url,
+            "depth": effective_depth,
+            "expanse": expanse,
+            "embeddings": generate_embeddings,
+            "result": payload,
+            "_executor": "scrape",
+            "_project_id": project_id,
+        }
+
+    async def _execute_watcher(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute watcher operators (actions only - queries handled by Grid).
+
+        Uses WatcherBridge from bridges.py for watcher operations.
+
+        Syntax:
+            #note_name => +#w             → Create watchers from ALL headers in note
+            -#w:watcher_123               → Delete watcher
+            ~#w:watcher_123               → Toggle watcher (active/paused)
+            +#w:evt:ipo                   → Create event watcher (IPO)
+            +#w:top:sanctions             → Create topic watcher (sanctions)
+            +#w:ent:person                → Create entity watcher (person)
+        """
+        operation, target, options = parse_watcher_operator(query)
+        logger.info(f"Watcher Execute: {operation} on {target} (options: {options})")
+
+        try:
+            # Lazy load WatcherBridge
+            if not hasattr(self, '_watcher_bridge') or self._watcher_bridge is None:
+                try:
+                    from modules.sastre.bridges import WatcherBridge
+                    self._watcher_bridge = WatcherBridge()
+                    logger.info("✓ WatcherBridge loaded")
+                except ImportError as e:
+                    logger.warning(f"WatcherBridge not available: {e}")
+                    self._watcher_bridge = None
+
+            if not self._watcher_bridge:
+                return {"error": "WatcherBridge not available", "query": query}
+
+            bridge = self._watcher_bridge
+
+            if operation == 'create_adhoc':
+                instruction = target
+                trigger = options.get('trigger')
+                # Ad-hoc watcher usually needs a name. Use instruction or first few words.
+                name = instruction[:50]
+                result = await bridge.create(
+                    name=name,
+                    project_id=project_id,
+                    query=instruction,
+                    trigger=trigger
+                )
+                return {
+                    "watcher": result,
+                    "operation": "create_adhoc",
+                    "instruction": instruction,
+                    "trigger": trigger
+                }
+
+            if operation == 'create_full':
+                # Full /watcher +##Name context{...} IF query:"..." syntax
+                watcher_name = target
+                context_value = options.get('context', '')
+                condition = options.get('condition', '')
+                
+                # Build the query from condition (e.g., query:"lawsuit OR court")
+                query_str = condition
+                if query_str.startswith('query:'):
+                    query_str = query_str[6:].strip().strip('"').strip("'")
+                
+                result = await bridge.create(
+                    name=watcher_name,
+                    project_id=project_id,
+                    query=query_str,
+                )
+                
+                # Add context if specified
+                if context_value and result.get('id'):
+                    await bridge.add_context(
+                        watcher_id=result['id'],
+                        context_node_id=context_value,  # Could be entity ref or text
+                    )
+                
+                return {
+                    "watcher": result,
+                    "operation": "create_full",
+                    "name": watcher_name,
+                    "context": context_value,
+                    "condition": condition,
+                }
+
+            if operation == 'create_from_note':
+                # Get note content and extract headers
+                note_id = target
+
+                # Fetch note from Cymonides/Elasticsearch
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(
+                        f"{CYMONIDES_API}/nodes/{note_id}",
+                        params={"projectId": project_id}
+                    ) as resp:
+                        if resp.status != 200:
+                            return {"error": f"Note not found: {note_id}", "query": query}
+                        note_data = await resp.json()
+
+                # Extract headers from note content (markdown ## headers)
+                # Supports context{} and {IF: "pattern"} blocks
+                content = note_data.get("content", "") or note_data.get("label", "") or ""
+                lines = content.split('\n')
+                created_watchers = []
+                
+                # Block-based parser logic
+                current_block = []
+                
+                async def process_block(block):
+                    if not block: return
+                    header_line = block[0]
+                    # Header regex: ## Title [\w optional]
+                    header_match = re.match(r"^(#{1,6})\s+(.+?)(\s*[\\/]w)?$", header_line)
+                    if not header_match: return
+                    
+                    header_title = header_match.group(2).strip()
+                    trigger = None
+                    context_ids = []
+                    
+                    for line in block[1:]:
+                        line = line.strip()
+                        # Trigger: {IF: "pattern"}
+                        trig_match = re.match(r"^\{IF:\s*[\"'](.+?)[\"']\}$", line, re.IGNORECASE)
+                        if trig_match:
+                            trigger = trig_match.group(1)
+                        # Context: context{id1, id2}
+                        ctx_match = re.match(r"^context\{(.+?)\}$", line, re.IGNORECASE)
+                        if ctx_match:
+                            parts = [p.strip() for p in re.split(r"[,|]", ctx_match.group(1))]
+                            for part in parts:
+                                tid = part.split(":", 1)[1].strip() if ":" in part else part
+                                if tid: context_ids.append(tid)
+
+                    # Create Watcher
+                    w = await bridge.create(
+                        name=header_title,
+                        project_id=project_id,
+                        parent_document_id=note_id,
+                        query=header_title,
+                        trigger=trigger
+                    )
+                    
+                    if w and not w.get("error"):
+                        wid = w.get("id") or w.get("watcherId")
+                        if wid:
+                            for cid in context_ids:
+                                try:
+                                    await bridge.add_context(wid, cid)
+                                except Exception: pass
+                        created_watchers.append({
+                            "header": header_title,
+                            "watcher_id": wid,
+                            "trigger": trigger,
+                            "context_count": len(context_ids)
+                        })
+
+                for line in lines:
+                    if re.match(r"^(#{1,6})\s+", line):
+                        if current_block:
+                            await process_block(current_block)
+                        current_block = [line]
+                    else:
+                        if current_block:
+                            current_block.append(line)
+                
+                if current_block:
+                    await process_block(current_block)
+
+                return {
+                    "result": created_watchers,
+                    "count": len(created_watchers),
+                    "note_id": note_id,
+                    "_executor": "watcher"
+                }
+
+                if not created_watchers: # Fallback if regex failed completely on empty content
+                     return {
+                        "error": "No headers found in note",
+                        "note_id": note_id,
+                        "query": query
+                    }
+
+                # (Legacy code removed by overwrite)
+
+                return {
+                    "operation": "create_from_note",
+                    "note_id": note_id,
+                    "watchers_created": len(created_watchers),
+                    "watchers": created_watchers,
+                    "options": options,
+                    "_executor": "watcher",
+                    "_project_id": project_id
+                }
+
+            elif operation == 'create_event':
+                # Create ET3 event watcher
+                result = await bridge.create_event_watcher(
+                    project_id=project_id,
+                    monitored_event=f"evt_{target}",
+                    monitored_entities=options.get('entities', '').split(',') if options.get('entities') else [],
+                    alert_on_any_match=options.get('alert_any', 'false').lower() == 'true',
+                    temporal_window={
+                        "start": options.get('since'),
+                        "end": options.get('until')
+                    } if options.get('since') else None,
+                    parent_document_id=options.get('document')
+                )
+                return {
+                    "operation": "create_event",
+                    "watcher_id": result.get("id") if isinstance(result, dict) else result,
+                    "event_type": target,
+                    "options": options,
+                    "_executor": "watcher",
+                    "_project_id": project_id
+                }
+
+            elif operation == 'create_topic':
+                # Create ET3 topic watcher
+                result = await bridge.create_topic_watcher(
+                    project_id=project_id,
+                    label=f"Watch for {target}",
+                    monitored_topic=f"top_{target}",
+                    monitored_entities=options.get('entities', '').split(',') if options.get('entities') else [],
+                    jurisdiction_filter=options.get('jurisdiction', '').split(',') if options.get('jurisdiction') else None
+                )
+                return {
+                    "operation": "create_topic",
+                    "watcher_id": result.get("id") if isinstance(result, dict) else result,
+                    "topic": target,
+                    "options": options,
+                    "_executor": "watcher",
+                    "_project_id": project_id
+                }
+
+            elif operation == 'create_entity':
+                # Create ET3 entity watcher
+                result = await bridge.create_entity_watcher(
+                    project_id=project_id,
+                    label=f"Watch for {target}",
+                    monitored_types=[target] if target else None,
+                    monitored_names=options.get('names', '').split(',') if options.get('names') else None,
+                    role_filter=options.get('roles', '').split(',') if options.get('roles') else None,
+                    jurisdiction_filter=options.get('jurisdiction', '').split(',') if options.get('jurisdiction') else None
+                )
+                return {
+                    "operation": "create_entity",
+                    "watcher_id": result.get("id") if isinstance(result, dict) else result,
+                    "entity_type": target,
+                    "options": options,
+                    "_executor": "watcher",
+                    "_project_id": project_id
+                }
+
+            elif operation == 'delete':
+                await bridge.delete(watcher_id=target)
+                return {
+                    "operation": "delete",
+                    "watcher_id": target,
+                    "success": True,
+                    "_executor": "watcher",
+                    "_project_id": project_id
+                }
+
+            elif operation == 'toggle':
+                await bridge.toggle(watcher_id=target)
+                return {
+                    "operation": "toggle",
+                    "watcher_id": target,
+                    "success": True,
+                    "_executor": "watcher",
+                    "_project_id": project_id
+                }
+
+            # Note: list, get, findings operations removed - use Grid with @WATCHER filter
+            else:
+                return {
+                    "error": f"Unknown watcher operation: {operation}",
+                    "query": query,
+                    "_executor": "watcher"
+                }
+
+        except Exception as e:
+            logger.error(f"Watcher execution error: {e}")
+            return {"error": str(e), "query": query, "_executor": "watcher"}
+
+    async def _execute_tagging(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute tagging operators (=> +#tag, => -#tag, => #tag, => #workstream).
+
+        Uses GraphProvider for tag operations.
+
+        Syntax:
+            ?bl :!domain.com => +#backlink_sources   → Tag backlink results
+            => -#old_tag                              → Remove tag
+            ent? :!domain.com => #EXTRACTED           → Tag extracted entities
+            => #investigation_ws                      → Link to workstream
+
+        When there's a base query before =>, execute it first, then tag results.
+        When there's no base query, apply to existing node selection.
+        """
+        base_query, tag_ops = parse_tagging_operators(query)
+        logger.info(f"Tagging Execute: {tag_ops} (base_query: {base_query})")
+
+        try:
+            # Lazy load graph provider
+            if not hasattr(self, '_graph_provider') or self._graph_provider is None:
+                try:
+                    from modules.sastre.bulk.graph_provider import get_graph_provider
+                    self._graph_provider = get_graph_provider()
+                except ImportError as e:
+                    logger.warning(f"GraphProvider not available: {e}")
+                    self._graph_provider = None
+
+            if not self._graph_provider:
+                return {"error": "GraphProvider not available for tagging", "query": query}
+
+            results_to_tag = []
+            base_result = None
+
+            # If there's a base query, execute it first
+            if base_query and base_query.strip():
+                base_result = await self.execute(base_query, project_id)
+
+                # Extract node IDs or result IDs from the base result
+                if "results" in base_result:
+                    for r in base_result["results"]:
+                        if isinstance(r, dict):
+                            node_id = r.get("id") or r.get("node_id") or r.get("url")
+                            if node_id:
+                                results_to_tag.append(node_id)
+                elif "entities" in base_result:
+                    for etype, entities in base_result["entities"].items():
+                        for ent in (entities if isinstance(entities, list) else [entities]):
+                            if isinstance(ent, dict):
+                                results_to_tag.append(ent.get("value") or ent.get("name") or str(ent))
+                            else:
+                                results_to_tag.append(str(ent))
+
+            # Apply tag operations
+            tagging_results = []
+            for tag_op in tag_ops:
+                op = tag_op["op"]
+                tag = tag_op["tag"]
+
+                # Check if this is a workstream link
+                is_workstream = tag.endswith('_ws') or tag.endswith('_workstream')
+
+                if op == "+":
+                    # Add tag
+                    count = self._graph_provider.tag_multiple(results_to_tag, tag)
+                    tagging_results.append({
+                        "operation": "add_tag",
+                        "tag": tag,
+                        "nodes_tagged": count,
+                    })
+                elif op == "-":
+                    # Remove tag
+                    count = self._graph_provider.untag_multiple(results_to_tag, tag)
+                    tagging_results.append({
+                        "operation": "remove_tag",
+                        "tag": tag,
+                        "nodes_untagged": count,
+                    })
+                else:
+                    # Default (=) - add tag or link to workstream
+                    if is_workstream:
+                        ws_id = self._graph_provider.get_workstream_by_tag(tag)
+                        if ws_id:
+                            linked = 0
+                            for node_id in results_to_tag:
+                                if self._graph_provider.link_to_workstream(node_id, ws_id):
+                                    linked += 1
+                            tagging_results.append({
+                                "operation": "link_workstream",
+                                "workstream": tag,
+                                "workstream_id": ws_id,
+                                "nodes_linked": linked,
+                            })
+                        else:
+                            # Create workstream and link
+                            ws = self._graph_provider.create_workstream(tag)
+                            for node_id in results_to_tag:
+                                self._graph_provider.link_to_workstream(node_id, ws.id)
+                            tagging_results.append({
+                                "operation": "create_and_link_workstream",
+                                "workstream": tag,
+                                "workstream_id": ws.id,
+                                "nodes_linked": len(results_to_tag),
+                            })
+                    else:
+                        count = self._graph_provider.tag_multiple(results_to_tag, tag)
+                        tagging_results.append({
+                            "operation": "tag",
+                            "tag": tag,
+                            "nodes_tagged": count,
+                        })
+
+            return {
+                "query": query,
+                "base_query": base_query,
+                "base_result": base_result,
+                "tag_operations": tagging_results,
+                "nodes_processed": len(results_to_tag),
+                "_executor": "tagging",
+                "_project_id": project_id,
+            }
+
+        except Exception as e:
+            logger.error(f"Tagging error: {e}")
+            return {"error": str(e), "query": query, "_executor": "tagging"}
+
+    async def _execute_boolean_tag_query(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute boolean tag queries (#a AND #b), (#a OR #b).
+
+        Uses GraphProvider to find nodes matching tag combinations.
+
+        Syntax:
+            (#john AND #acme)         → Nodes with BOTH tags
+            (#offshore OR #suspicious) → Nodes with EITHER tag
+            (#a AND #b AND #c)        → Nodes with ALL three tags
+        """
+        operator, tags = parse_boolean_tag_query(query)
+        logger.info(f"Boolean Tag Query: {operator} {tags}")
+
+        try:
+            # Lazy load graph provider
+            if not hasattr(self, '_graph_provider') or self._graph_provider is None:
+                try:
+                    from modules.sastre.bulk.graph_provider import get_graph_provider
+                    self._graph_provider = get_graph_provider()
+                except ImportError as e:
+                    logger.warning(f"GraphProvider not available: {e}")
+                    self._graph_provider = None
+
+            if not self._graph_provider:
+                return {"error": "GraphProvider not available for tag queries", "query": query}
+
+            # Evaluate the boolean query
+            matching_nodes = self._graph_provider.evaluate_tag_query(query)
+
+            return {
+                "query": query,
+                "operator": operator,
+                "tags": tags,
+                "matching_nodes": matching_nodes,
+                "count": len(matching_nodes),
+                "_executor": "boolean_tag_query",
+                "_project_id": project_id,
+            }
+
+        except Exception as e:
+            logger.error(f"Boolean tag query error: {e}")
+            return {"error": str(e), "query": query, "_executor": "boolean_tag_query"}
+
+    async def _execute_chain_pipe(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute chain pipe operator (=> syntax).
+
+        Chain just pipes output from one operator to the next.
+        No special operators - just regular operators chained.
+
+        Examples:
+            p: John Smith => c?       → Person search → extract companies from results
+            bl? example.com => p?     → Backlinks → extract persons from results
+            c: Acme Corp => ent?      → Company search → extract all entities
+        """
+        if not CHAIN_PARSER_AVAILABLE:
+            return {"error": "Chain parser not available", "query": query}
+
+        logger.info(f"Chain Pipe Execute: {query}")
+
+        try:
+            # Parse the chain using the real syntax parser
+            parser = SyntaxParser()
+            parsed = parser.parse(query)
+
+            if not parsed:
+                return {"error": "Failed to parse chain", "query": query}
+
+            # Execute the first query (primary)
+            results = []
+            context = {"input": query}
+
+            # Execute primary query
+            first_step = query.split("=>")[0].strip()
+            step_result = await self.execute(first_step, project_id)
+            results.append(step_result)
+            context["step_0"] = first_step
+
+            # Execute each chain step, passing previous results as context
+            if parsed.chain_steps:
+                for i, step in enumerate(parsed.chain_steps, 1):
+                    step_query = self._chain_step_to_query(step, results[-1] if results else None)
+                    if step_query:
+                        if step_query.lower().startswith("/index"):
+                            step_result = await self._execute_index_command(
+                                step_query,
+                                project_id,
+                                previous_result=results[-1] if results else None,
+                            )
+                        else:
+                            step_result = await self.execute(step_query, project_id)
+                        results.append(step_result)
+                        context[f"step_{i}"] = step_query
+
+            return {
+                "chain": query,
+                "steps": len(results),
+                "results": results,
+                "final_result": results[-1] if results else None,
+                "context": context,
+                "_executor": "chain_pipe",
+                "_project_id": project_id
+            }
+
+        except Exception as e:
+            logger.error(f"Chain pipe execution error: {e}")
+            import traceback
+            return {
+                "error": str(e),
+                "traceback": traceback.format_exc(),
+                "query": query,
+                "_executor": "chain_pipe"
+            }
+
+    def _chain_step_to_query(self, step, previous_result: Dict = None) -> Optional[str]:
+        """Convert a ChainStep to an executable query string."""
+        if step.step_type == "query":
+            # Build query from operators and target
+            ops = " ".join(step.operators) if step.operators else ""
+            target = step.target or ""
+            return f"{ops} {target}".strip()
+        elif step.step_type == "action":
+            # Actions like merge, extract, dedupe operate on previous results
+            return f"{step.action}:"
+        elif step.step_type == "filter":
+            return f"##{step.filter_dimension}:{step.filter_value}"
+        elif step.step_type == "tag":
+            # Tags are for result labeling, not execution
+            return None
+        return None
+
+    async def _execute_chain(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute multi-step investigation chain via IOPlanner.
+
+        Syntax: chain: <chain_type> <io_prefix>: <value> [:jurisdiction]
+
+        Examples:
+            chain: due_diligence c: Acme Corp :US
+            chain: ubo c: Siemens AG :DE
+            chain: officers c: Tesco PLC :GB
+
+        Chain types:
+            - due_diligence: 33 steps, 8 sections (Corporate, Ownership, Management,
+                            Litigation, Regulatory, Financial, Media, OSINT)
+            - ubo: Ultimate Beneficial Owners (recursive shareholder chain)
+            - pep: Politically Exposed Person check
+            - officers: Company officers with sanctions screening
+            - full_company: Complete company investigation
+        """
+        if not self._io_planner:
+            return {"error": "IOPlanner not available", "query": query}
+
+        chain_type, entity_type, value, jurisdiction = parse_chain_operator(query)
+
+        if not chain_type:
+            return {"error": "Invalid chain syntax", "query": query}
+
+        if chain_type not in CHAIN_TYPES:
+            return {
+                "error": f"Unknown chain type: {chain_type}",
+                "valid_types": list(CHAIN_TYPES.keys()),
+                "query": query
+            }
+
+        logger.info(f"Chain Execute: {chain_type} for {entity_type}={value} (jurisdiction={jurisdiction})")
+
+        try:
+            # Plan the chain
+            chain_plan = self._io_planner.plan_chain(
+                start_type=entity_type,
+                start_value=value,
+                target_type=chain_type,
+                jurisdiction=jurisdiction
+            )
+
+            if "error" in chain_plan:
+                return {
+                    "error": chain_plan["error"],
+                    "chain_type": chain_type,
+                    "query": query,
+                    "_executor": "chain"
+                }
+
+            # Execute the chain
+            result = await self._io_planner.execute_chain(
+                chain=chain_plan,
+                executor=self._io_executor,
+                dry_run=False
+            )
+
+            # Merge results into section-grouped output
+            merged = self._io_planner.merge_results(result)
+
+            return {
+                "chain_type": chain_type,
+                "description": CHAIN_TYPES[chain_type],
+                "entity_type": entity_type,
+                "value": value,
+                "jurisdiction": jurisdiction,
+                "sections": merged.get("sections", {}),
+                "entities_found": result.get("extracted_entities", {}),
+                "step_count": len(result.get("step_results", [])),
+                "errors": result.get("errors", []),
+                "_executor": "chain",
+                "_project_id": project_id,
+                "_raw_result": result  # Full result for debugging
+            }
+
+        except Exception as e:
+            logger.error(f"Chain execution error: {e}")
+            import traceback
+            return {
+                "error": str(e),
+                "traceback": traceback.format_exc(),
+                "chain_type": chain_type,
+                "query": query,
+                "_executor": "chain"
+            }
+
+    async def _execute_agent_direct(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute direct agent addressing command.
+
+        Syntax: agent_name: query
+
+        Examples:
+            wikiman: GR asset trace limitations
+            edith: Greek real estate research
+            cymonides: shipping company Piraeus
+            cy: breach records john@example.com
+            linklater: backlinks example.com
+            corporella: Acme Corp :US enrich
+            pacman: extract https://example.com
+            torpedo: UK Tesco PLC
+            brute: "John Smith" CEO London
+            serdavos: marketplace search
+            backdrill: 2022 example.com
+
+        Routes to the appropriate agent/subsystem directly.
+        """
+        agent_name, remaining_query = parse_agent_direct(query)
+
+        if not agent_name:
+            return {"error": "Could not parse agent direct query", "query": query}
+
+        logger.info(f"Agent Direct: {agent_name} - {remaining_query}")
+
+        try:
+            if agent_name == "wikiman":
+                # WikiMan jurisdictional query
+                from .agents.wikiman_bridge import execute_wikiman_query
+                result = await execute_wikiman_query(remaining_query, project_id)
+                return {
+                    "_agent": "wikiman",
+                    "_executor": "agent_direct",
+                    "_query": remaining_query,
+                    **result
+                }
+
+            elif agent_name == "edith":
+                # EDITH template/library search
+                from .agents.edith_bridge import execute_edith_search
+                result = await execute_edith_search(remaining_query, project_id)
+                return {
+                    "_agent": "edith",
+                    "_executor": "agent_direct",
+                    "_query": remaining_query,
+                    **result
+                }
+
+            elif agent_name == "cymonides":
+                # Cymonides unified search (all indices)
+                if self._cymonides_bridge:
+                    # Use unified search for all indices
+                    result = await self._search_cymonides_unified(remaining_query, project_id)
+                    return {
+                        "_agent": "cymonides",
+                        "_executor": "agent_direct",
+                        "_query": remaining_query,
+                        **result
+                    }
+                else:
+                    return {"error": "Cymonides not available", "_agent": "cymonides"}
+
+            elif agent_name == "nexus":
+                # NEXUS - just pass through to main executor with grid syntax
+                # User provides grid syntax directly: nexus: #john_smith, nexus: !#company, etc.
+                return await self.execute(remaining_query, project_id)
+
+            elif agent_name == "linklater":
+                # LINKLATER link analysis
+                # Parse subcommand: backlinks, whois, techstack, subdomains
+                parts = remaining_query.split(None, 1)
+                subcommand = parts[0].lower() if parts else "analyze"
+                target = parts[1] if len(parts) > 1 else remaining_query
+
+                if self._linklater:
+                    if subcommand in ("backlinks", "bl"):
+                        result = await self._linklater.get_backlinks_pages(target)
+                    elif subcommand in ("whois",):
+                        result = await self._linklater.whois(target)
+                    elif subcommand in ("techstack", "tech"):
+                        result = await self._linklater.get_tech_stack(target)
+                    elif subcommand in ("subdomains", "subs"):
+                        result = await self._linklater.discover_subdomains(target)
+                    else:
+                        # Default: full domain analysis
+                        result = await self._linklater.analyze_domain(target)
+                    return {
+                        "_agent": "linklater",
+                        "_executor": "agent_direct",
+                        "_subcommand": subcommand,
+                        "_query": remaining_query,
+                        **result
+                    }
+                else:
+                    return {"error": "LINKLATER not available", "_agent": "linklater"}
+
+            elif agent_name == "corporella":
+                # CORPORELLA company intelligence
+                # Forward to IO executor with company prefix
+                return await self._execute_io(f"c: {remaining_query}", project_id)
+
+            elif agent_name == "pacman":
+                # PACMAN entity extraction - route through entity extraction executor
+                # Syntax: pacman: extract URL | pacman: URL (default extract)
+                parts = remaining_query.split(None, 1)
+                subcommand = parts[0].lower() if parts else "extract"
+                target = parts[1] if len(parts) > 1 else remaining_query
+
+                # Route to entity extraction which handles PACMAN
+                if subcommand in ("extract", "classify", "tripwire"):
+                    query_for_extraction = f"ent? :!{target}" if target.startswith("http") else f"ent? {target}"
+                else:
+                    query_for_extraction = f"ent? :!{remaining_query}" if remaining_query.startswith("http") else f"ent? {remaining_query}"
+
+                result = await self._execute_entity_extraction(query_for_extraction, project_id)
+                return {
+                    "_agent": "pacman",
+                    "_executor": "agent_direct",
+                    "_subcommand": subcommand,
+                    "_query": remaining_query,
+                    **result
+                }
+
+            elif agent_name == "torpedo":
+                # TORPEDO registry search - route to registry executor
+                return await self._execute_registry(remaining_query, project_id)
+
+            elif agent_name == "brute":
+                # BRUTE multi-engine search
+                return await self._execute_brute(remaining_query, project_id)
+
+            elif agent_name == "clink":
+                # CLINK fast disambiguation - expects two person dicts
+                # Syntax: clink: {"name":"John","corporate_roles":[...]} {"name":"John",...}
+                import json
+                try:
+                    # Parse two JSON objects separated by '} {'
+                    query_stripped = remaining_query.strip()
+                    split_idx = query_stripped.find('} {')
+                    if split_idx > 0:
+                        person_a = json.loads(query_stripped[:split_idx+1])
+                        person_b = json.loads(query_stripped[split_idx+2:])
+                        return await self._execute_clink(person_a, person_b, project_id)
+                    else:
+                        return {"error": "CLINK expects two person objects: clink: {...} {...}"}
+                except json.JSONDecodeError as e:
+                    return {"error": f"CLINK JSON parse error: {e}", "query": remaining_query}
+
+            elif agent_name == "serdavos":
+                # SERDAVOS tor/onion search - route through :tor context modifier
+                # Syntax: serdavos: query | tor: query | onion: query
+                tor_query = f":tor {remaining_query}"
+                try:
+                    # Try via LINKLATER's tor scraping if available
+                    if self._linklater:
+                        result = await self._linklater.search_tor(remaining_query)
+                        return {
+                            "_agent": "serdavos",
+                            "_executor": "agent_direct",
+                            "_query": remaining_query,
+                            **result
+                        }
+                    else:
+                        # Fallback: run as brute search with tor context
+                        return await self._execute_brute(tor_query, project_id)
+                except Exception as e:
+                    return {
+                        "error": f"SERDAVOS/Tor search failed: {str(e)}",
+                        "_agent": "serdavos",
+                        "_query": remaining_query
+                    }
+
+            elif agent_name == "backdrill":
+                # BACKDRILL archive search
+                return await self._execute_historical(f":<- {remaining_query}", project_id)
+
+            # =================================================================
+            # EYE-D OSINT SEARCH (p:, e:, t:, c:, ent:, eyed:, osint:)
+            # =================================================================
+            elif agent_name in ("eyed", "eyed_person", "eyed_email", "eyed_phone", "eyed_company", "eyed_entity"):
+                return await self._execute_eyed(agent_name, remaining_query, project_id)
+
+            # =================================================================
+            # OPTICS (Image/Media Intelligence)
+            # =================================================================
+            elif agent_name == "optics":
+                return await self._execute_optics(remaining_query, project_id)
+
+            # =================================================================
+            # SOCIALITE (Social Media Search)
+            # =================================================================
+            elif agent_name == "socialite":
+                return await self._execute_socialite(remaining_query, project_id)
+
+            # =================================================================
+            # STORIES (Narrative Generation)
+            # =================================================================
+            elif agent_name == "stories":
+                return await self._execute_stories(remaining_query, project_id)
+
+            else:
+                return {
+                    "error": f"Unknown agent: {agent_name}",
+                    "available_agents": list(AGENT_DIRECT_PREFIXES.values()),
+                    "_executor": "agent_direct"
+                }
+
+        except Exception as e:
+            logger.error(f"Agent direct execution error: {e}")
+            import traceback
+            return {
+                "error": str(e),
+                "traceback": traceback.format_exc(),
+                "_agent": agent_name,
+                "_query": remaining_query,
+                "_executor": "agent_direct"
+            }
+
+    async def _search_cymonides_unified(self, query: str, project_id: str) -> Dict[str, Any]:
+        """Search all Cymonides indices via unified search."""
+        try:
+            # Try importing CymonidesUnifiedSearch
+            from cymonides.cymonides_unified import CymonidesUnifiedSearch
+            search = CymonidesUnifiedSearch()
+            result = await search.search(query)
+            return result
+        except ImportError:
+            # Fallback to bridge's basic search
+            if self._cymonides_bridge:
+                result = self._cymonides_bridge.check_unknown_knowns("text", query)
+                return {"results": result, "method": "bridge_fallback"}
+            return {"error": "No Cymonides search available"}
+
+    async def _execute_template(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute template-driven investigation flow.
+
+        Syntax: template:genre:jurisdiction :#entity_name
+
+        Examples:
+            template:company_dd:UK :#AcmeCorp
+            template:asset_trace:HU :#SzaboKft
+            template:person_dd:DE :#JohnSmith
+
+        This is the FULL END-TO-END flow:
+        1. Load template (genre + jurisdiction)
+        2. Create watchers for each section
+        3. Execute initial queries based on template's allowed_actions
+        4. Loop until sufficient (max_iterations)
+        5. Return structured result with sections and entities
+        """
+        genre, jurisdiction, entity_name = parse_template_operator(query)
+
+        if not genre:
+            return {"error": "Invalid template syntax - genre required", "query": query}
+
+        logger.info(f"Template Execute: genre={genre} jurisdiction={jurisdiction} entity={entity_name}")
+
+        try:
+            # Load template via template_loader
+            from modules.sastre.template_loader import compose_report_template
+
+            template_context = compose_report_template(
+                genre=genre,
+                jurisdiction=jurisdiction,
+                entity_type="company" if genre.lower().startswith("company") else "person"
+            )
+
+            if not template_context.get("is_template_mode"):
+                return {
+                    "error": f"Genre '{genre}' is not a template genre",
+                    "query": query,
+                    "_executor": "template"
+                }
+
+            # Get sections and create watchers for each
+            sections = template_context.get("sections", [])
+            watchers_created = []
+
+            # Create watchers for each section (if bridges available)
+            if hasattr(self, '_watcher_bridge') and self._watcher_bridge:
+                for section in sections:
+                    section_id = section.get("id", section.get("name", "unknown"))
+                    try:
+                        watcher = await self._watcher_bridge.create_topic_watcher(
+                            topic=section_id,
+                            project_id=project_id,
+                            entity_name=entity_name,
+                        )
+                        watchers_created.append(section_id)
+                    except Exception as e:
+                        logger.warning(f"Failed to create watcher for section {section_id}: {e}")
+
+            # Build initial queries from template's allowed_actions
+            initial_queries = []
+            jurisdiction_template = template_context.get("jurisdiction_template", {})
+            allowed_actions = jurisdiction_template.get("allowed_actions", []) if jurisdiction_template else []
+
+            # Map allowed_actions to queries
+            for action in allowed_actions[:10]:  # Limit initial batch
+                action_query = self._action_to_query(action, entity_name, jurisdiction)
+                if action_query:
+                    initial_queries.append({"action": action, "query": action_query})
+
+            # Execute initial queries in parallel
+            initial_results = []
+            if initial_queries:
+                tasks = [
+                    self.execute(q["query"], project_id)
+                    for q in initial_queries
+                ]
+                results = await asyncio.gather(*tasks, return_exceptions=True)
+                for i, result in enumerate(results):
+                    if isinstance(result, Exception):
+                        initial_results.append({
+                            "action": initial_queries[i]["action"],
+                            "error": str(result)
+                        })
+                    else:
+                        initial_results.append({
+                            "action": initial_queries[i]["action"],
+                            "result": result
+                        })
+
+            return {
+                "genre": genre,
+                "jurisdiction": jurisdiction,
+                "entity": entity_name,
+                "is_template_mode": True,
+                "sections": [s.get("name", s.get("id")) for s in sections],
+                "section_count": len(sections),
+                "watchers_created": watchers_created,
+                "initial_queries_executed": len(initial_queries),
+                "initial_results": initial_results,
+                "template_context": {
+                    "genre_template": bool(template_context.get("genre_template")),
+                    "jurisdiction_template": bool(template_context.get("jurisdiction_template")),
+                    "writing_style": bool(template_context.get("writing_style")),
+                },
+                "_executor": "template",
+                "_project_id": project_id,
+            }
+
+        except Exception as e:
+            logger.error(f"Template execution error: {e}")
+            import traceback
+            return {
+                "error": str(e),
+                "traceback": traceback.format_exc(),
+                "genre": genre,
+                "jurisdiction": jurisdiction,
+                "query": query,
+                "_executor": "template"
+            }
+
+    def _action_to_query(self, action: str, entity_name: str, jurisdiction: str) -> Optional[str]:
+        """Convert an allowed_action to an executable query."""
+        action_upper = action.upper()
+        entity = entity_name or "ENTITY"
+        jur = jurisdiction or ""
+
+        # Map common actions to operator queries
+        action_map = {
+            "SEARCH_REGISTRY": f"c{jur.lower()}: {entity}" if jur else f"c: {entity}",
+            "SEARCH_OFFICERS": f"p? :#registry_data @PERSON",
+            "SEARCH_SHAREHOLDERS": f"c? :#registry_data @COMPANY ##shareholder",
+            "SEARCH_FINANCIALS": f"doc{jur.lower()}: {entity} ##accounts" if jur else None,
+            "SEARCH_LITIGATION": f"lit{jur.lower()}: {entity}" if jur else f'"{entity}" litigation',
+            "SEARCH_SANCTIONS": f"OFAC: {entity}",
+            "SEARCH_ADVERSE_MEDIA": f'"{entity}" scandal OR fraud OR investigation',
+            "SEARCH_NEWS": f'"{entity}"',
+            "SEARCH_PEP": f"pep: {entity}",
+            "SEARCH_INSOLVENCY": f'"{entity}" insolvency OR bankruptcy OR liquidation',
+        }
+
+        return action_map.get(action_upper)
+
+    async def _execute_historical(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute historical/archive search via Linklater.
+
+        Syntax:
+            ent? :2022! !domain.com  → Entities from 2022 archived version
+            "John Smith" :2018!      → Search for phrase in 2018 archives
+            bl? :<- !domain.com      → Historical backlinks (any year)
+
+        Uses Linklater's historical-search endpoint which combines:
+        - Common Crawl Web Graph archives
+        - Wayback Machine snapshots
+        - Archive.org content
+        """
+        year, remaining_query = parse_historical_operator(query)
+
+        logger.info(f"Historical Execute: year={year or 'any'} query={remaining_query}")
+
+        # Extract domain from query if present
+        domain = None
+        domain_match = re.search(r'!([a-zA-Z0-9][a-zA-Z0-9.-]+\.[a-zA-Z]{2,})', remaining_query)
+        if domain_match:
+            domain = domain_match.group(1)
+
+        # Extract search keyword
+        keyword = None
+        phrase_match = re.search(r'"([^"]+)"', remaining_query)
+        if phrase_match:
+            keyword = phrase_match.group(1)
+        elif not domain:
+            # Use remaining query as keyword
+            keyword = remaining_query.strip()
+
+        try:
+            # Use Linklater bridge for archive search
+            from modules.sastre.bridges import ExtendedLinklaterBridge
+            linklater = ExtendedLinklaterBridge()
+
+            if domain:
+                # Search archives for specific domain
+                result = await linklater.search_archives(
+                    domain=domain,
+                    keyword=keyword,
+                    year=year
+                )
+            else:
+                # Generic archive search (limited to keyword search)
+                result = {
+                    "error": "Historical search requires domain target (e.g., :2022! !domain.com)",
+                    "suggestion": f"Try: \"{keyword}\" :2022! !example.com"
+                }
+
+            result["_executor"] = "historical"
+            result["_project_id"] = project_id
+            result["year"] = year
+            result["domain"] = domain
+            result["keyword"] = keyword
+            return result
+
+        except ImportError:
+            # Fallback: Use direct HTTP call to Linklater
+            try:
+                async with aiohttp.ClientSession() as session:
+                    linklater_url = os.getenv("LINKLATER_URL", "http://localhost:3001")
+                    async with session.post(
+                        f"{linklater_url}/api/linklater/historical-search",
+                        json={
+                            "domain": domain,
+                            "keyword": keyword,
+                            "year": year
+                        },
+                        timeout=aiohttp.ClientTimeout(total=120)
+                    ) as resp:
+                        if resp.status >= 400:
+                            return {
+                                "error": f"Linklater returned {resp.status}",
+                                "query": query,
+                                "_executor": "historical"
+                            }
+                        result = await resp.json()
+                        result["_executor"] = "historical"
+                        result["_project_id"] = project_id
+                        return result
+            except Exception as e:
+                logger.error(f"Historical execution error: {e}")
+                return {
+                    "error": str(e),
+                    "query": query,
+                    "year": year,
+                    "_executor": "historical"
+                }
+
+        except Exception as e:
+            logger.error(f"Historical execution error: {e}")
+            return {
+                "error": str(e),
+                "query": query,
+                "year": year,
+                "_executor": "historical"
+            }
+
+    async def _execute_registry(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute registry operator query via Torpedo.
+
+        Fetches full company profile from corporate registry.
+        """
+        if not self._torpedo:
+            return {"error": "Torpedo not available", "query": query}
+
+        jurisdiction, company_name, registry_name = parse_registry_operator(query)
+
+        logger.info(f"Registry Execute: {company_name} in {jurisdiction} ({registry_name})")
+
+        try:
+            # Load sources if not loaded
+            await self._torpedo.load_sources()
+
+            # Fetch company profile using CRSearcher.search()
+            # CRSearcher returns {results: [...], errors: [...]}
+            search_result = await self._torpedo.search(
+                query=company_name,
+                jurisdiction=jurisdiction,
+                max_sources=5
+            )
+
+            # Map results to expected format
+            profile = {}
+            sources = []
+            
+            for res in search_result.get("results", []):
+                if res.get("success"):
+                    sources.append({
+                        "name": res.get("source"),
+                        "url": res.get("url"),
+                        "status": "success"
+                    })
+                    # Use first successful result HTML as "profile" placeholder
+                    # Ideally this would be parsed, but raw HTML/text is better than nothing
+                    if not profile:
+                        profile["raw_content"] = res.get("html") or res.get("json") or ""
+                        profile["source_url"] = res.get("url")
+
+            return {
+                "profile": profile,
+                "sources": sources,
+                "company_name": company_name,
+                "jurisdiction": jurisdiction,
+                "registry": registry_name,
+                "_executor": "registry",
+                "_project_id": project_id
+            }
+        except Exception as e:
+            logger.error(f"Registry execution error: {e}")
+            return {
+                "error": str(e),
+                "query": query,
+                "company_name": company_name,
+                "jurisdiction": jurisdiction,
+                "_executor": "registry"
+            }
+
+    def _parse_layer_tier_from_query(self, query: str) -> tuple:
+        """
+        Parse layer and tier modifiers from query string.
+
+        TIERS (which engines):
+            t1 = fast engines (GO, BI, BR, DD, EX, CY)
+            t2 = all standard engines (default)
+            t3 = all engines including slow
+            t4 = all + LINKLATER (link analysis)
+            t0 = no tier override (use default)
+            t10, t20, t30 = same as t1-t3 but no scraping
+
+        LAYERS (search intensity):
+            l1 = NATIVE (fast, 30s timeout, 50 results/engine)
+            l2 = ENHANCED (balanced, 60s timeout, 100 results/engine) - DEFAULT
+            l3 = BRUTE (maximum recall, 120s timeout, 200 results/engine)
+            l4 = NUCLEAR (recursive link expansion, 300s timeout)
+            l0 = no layer override (use default)
+
+        Returns: (clean_query, layer, tier, scrape)
+        """
+        import re
+        clean_query = query.strip()
+        layer = None
+        tier = None
+        scrape = True  # Default to scraping
+
+        # Match patterns at end of query: l1, l2, t3, t10, t20, t30, l1 t4, etc.
+        # Support 1-2 digit values
+        pattern = r'\s+([lt]\d{1,2})(?:\s+([lt]\d{1,2}))?\s*$'
+        match = re.search(pattern, clean_query, re.I)
+
+        if match:
+            clean_query = clean_query[:match.start()].strip()
+            for group in [match.group(1), match.group(2)]:
+                if group:
+                    modifier = group.lower()
+                    if modifier.startswith('l'):
+                        layer = int(modifier[1:])
+                    elif modifier.startswith('t'):
+                        tier_val = int(modifier[1:])
+                        # t10, t20, t30 = no-scrape variants
+                        if tier_val >= 10:
+                            scrape = False
+                            tier = tier_val // 10  # t10 -> 1, t20 -> 2, t30 -> 3
+                        elif tier_val == 0:
+                            tier = None  # t0 = use default
+                        else:
+                            tier = tier_val
+
+        # l0 = no layer override
+        if layer == 0:
+            layer = None
+
+        return clean_query, layer, tier, scrape
+
+    def _get_tier_engines(self, tier: int) -> List[str]:
+        """Get engine codes for a tier level."""
+        TIER_ENGINES = {
+            1: ["GO", "BI", "BR", "DD", "EX", "CY"],
+            2: ["GO", "BI", "BR", "DD", "EX", "CY", "YA", "QW", "GR", "NA", "GD", "AL"],
+            3: ["GO", "BI", "BR", "DD", "EX", "CY", "YA", "QW", "GR", "NA", "GD", "AL", "AR", "YE", "PW"],
+            4: ["GO", "BI", "BR", "DD", "EX", "CY", "YA", "QW", "GR", "NA", "GD", "AL", "AR", "YE", "PW", "WG", "MJ", "BD", "GL"],
+        }
+        return TIER_ENGINES.get(tier, TIER_ENGINES[2])
+
+    def _get_layer_config(self, layer: int) -> Dict[str, Any]:
+        """Get configuration for a layer level."""
+        LAYER_CONFIGS = {
+            1: {"timeout": 30, "max_results": 50, "expansion": False},
+            2: {"timeout": 60, "max_results": 100, "expansion": True},
+            3: {"timeout": 120, "max_results": 200, "expansion": True},
+            4: {"timeout": 300, "max_results": 200, "expansion": True, "nuclear": True},
+        }
+        return LAYER_CONFIGS.get(layer, LAYER_CONFIGS[2])
+
+    async def _execute_brute(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute via BruteSearch with tier/layer/TLD filter support.
+
+        SYNTAX:
+            "search query"           → Default (l2 t2)
+            "search query" l1 t4     → Native intensity + link analysis engines
+            "search query" l3 t10    → Maximum recall + fast engines + no scrape
+            "exact phrase" l2        → Enhanced intensity (exact phrase auto-detected)
+            de! "search query"       → German TLD filter
+
+        TLD filters (de!, uk!, news!, etc.) are detected and:
+        1. Converted to site: modifiers for geographic TLDs
+        2. Routed to specific engine tiers for news!
+
+        TIER/LAYER modifiers:
+        - l1-l4: Search intensity (native/enhanced/brute/nuclear)
+        - t1-t4: Engine selection (fast/all/all+slow/all+link)
+        - t10-t30: No-scrape variants (raw results only)
+        - l0/t0: Use defaults
+        """
+        brute = await self._get_brute_search()
+        if not brute:
+            return {"error": "BruteSearch not available", "query": query}
+
+        # Parse tier/layer modifiers from query
+        search_query, layer, tier, scrape = self._parse_layer_tier_from_query(query)
+
+        # Apply defaults
+        layer = layer if layer else 2  # Default: ENHANCED
+        tier = tier if tier else 2     # Default: all standard engines
+
+        # Get engine list and layer config
+        engines = self._get_tier_engines(tier)
+        layer_config = self._get_layer_config(layer)
+
+        logger.info(f"BruteSearch: layer={layer} tier={tier} scrape={scrape} engines={len(engines)}")
+
+        # Detect and process TLD filters
+        tld_filters = []
+        site_modifiers = []
+        engine_filters = []
+
+        if has_tld_filter(search_query):
+            tld_filters, search_query = parse_tld_filter(search_query)
+
+            for tld in tld_filters:
+                # Get site: modifiers for geographic TLDs
+                sites = get_site_filters_for_tld(tld)
+                site_modifiers.extend(sites)
+
+                # Check for engine tier (news!)
+                try:
+                    from .operators import get_tld_engine_tiers
+                    tld_engines = get_tld_engine_tiers(tld)
+                    engine_filters.extend(tld_engines)
+                except ImportError:
+                    if tld == "news!":
+                        engine_filters.extend(["NewsAPI", "GDELT", "Google News", "Bing News"])
+
+            # Add site: modifiers to query
+            if site_modifiers:
+                site_clause = " OR ".join(site_modifiers)
+                search_query = f"({search_query}) ({site_clause})"
+
+            logger.info(f"BruteSearch Execute (TLD filtered): {search_query}")
+            logger.info(f"  TLD filters: {tld_filters}, Sites: {site_modifiers}")
+        else:
+            logger.info(f"BruteSearch Execute: {search_query}")
+
+        # Merge engine filters with tier engines
+        if engine_filters:
+            # Prioritize TLD-specific engines but include tier engines
+            engines = list(set(engine_filters + engines))
+
+        try:
+            # Pass query to BruteSearch with tier/layer config
+            results = await brute.search_async(
+                search_query,
+                engines=engines,
+                max_results=layer_config.get("max_results", 100),
+                timeout=layer_config.get("timeout", 60),
+                scrape=scrape
+            )
+
+            # Add execution metadata
+            results["_executor"] = "brute"
+            results["_project_id"] = project_id
+            results["_layer"] = layer
+            results["_tier"] = tier
+            results["_scrape"] = scrape
+            results["_tld_filters"] = tld_filters
+            results["_site_modifiers"] = site_modifiers
+            results["_layer_config"] = layer_config
+            return results
+
+        except TypeError:
+            # BruteSearch may not support all params - try simpler call
+            try:
+                results = await brute.search_async(search_query)
+                results["_executor"] = "brute"
+                results["_project_id"] = project_id
+                results["_layer"] = layer
+                results["_tier"] = tier
+                results["_scrape"] = scrape
+                results["_tld_filters"] = tld_filters
+                return results
+            except Exception as e:
+                logger.error(f"BruteSearch execution error: {e}")
+                return {
+                    "error": str(e),
+                    "query": query,
+                    "_executor": "brute"
+                }
+        except Exception as e:
+            logger.error(f"BruteSearch execution error: {e}")
+            return {
+                "error": str(e),
+                "query": query,
+                "_executor": "brute"
+            }
+
+    async def _execute_clink(self, person_a: Dict, person_b: Dict, project_id: str) -> Dict[str, Any]:
+        """
+        Execute CLINK disambiguation between two person nodes.
+
+        Uses surname + company co-occurrence search to determine if two
+        person nodes represent the same individual.
+
+        Returns:
+            signal: FUSE | REPEL | INVESTIGATE | INSUFFICIENT
+            confidence: 0.0 - 1.0
+            evidence: explanation string
+        """
+        try:
+            from clink import clink_disambiguate_persons
+            result = clink_disambiguate_persons(person_a, person_b)
+            result["_executor"] = "clink"
+            result["_project_id"] = project_id
+            return result
+        except Exception as e:
+            logger.error(f"CLINK execution error: {e}")
+            return {
+                "signal": "ERROR",
+                "error": str(e),
+                "_executor": "clink"
+            }
+
+    async def _execute_grid(self, parsed: ParsedQuery, project_id: str) -> Dict[str, Any]:
+        """
+        Execute query against grid nodes via Cymonides.
+
+        1. Resolve node IDs from targets
+        2. Apply scope (expanded = include edges, contracted = node only)
+        3. Apply class and dimension filters
+        4. Execute operator action
+        5. Apply result tag if specified
+        """
+        logger.info(f"Grid Execute: {parsed.raw_query} ({len(parsed.targets)} targets)")
+
+        try:
+            # 1. Resolve all grid targets to nodes
+            resolved_nodes = []
+            for target in parsed.targets:
+                nodes = await self._resolve_grid_target(target, project_id)
+                resolved_nodes.extend(nodes)
+
+            # 2. Apply class filter
+            if parsed.class_filter:
+                allowed_classes = expand_class_filter(parsed.class_filter)
+                resolved_nodes = [
+                    n for n in resolved_nodes
+                    if f"@{n.get('className', '').upper()}" in allowed_classes
+                ]
+
+            # 3. Apply dimension filters
+            for dim_filter in parsed.dimension_filters:
+                resolved_nodes = self._apply_dimension_filter(resolved_nodes, dim_filter)
+
+            # 4. Execute operator action on filtered nodes
+            results = []
+            for node in resolved_nodes:
+                # Check if operator applies to this node class
+                for op in parsed.operators:
+                    op_str = op.value
+                    applicable = ACTION_APPLICABILITY.get(op_str, ["*"])
+                    node_class = f"@{node.get('className', '').upper()}"
+
+                    if "*" in applicable or node_class in applicable:
+                        result = await self._execute_operator_on_node(op, node, project_id)
+                        if result:
+                            results.append(result)
+
+            # 4b. If compare operator, compute similarity matrix and create narrative node
+            comparison_results = None
+            comparison_node = None
+            if parsed.wants_compare and len(results) > 1:
+                comparison_results = self._compute_similarity_matrix(results)
+                # Create narrative node with comparison log
+                comparison_node = await self._create_comparison_narrative(
+                    parsed, results, comparison_results, project_id
+                )
+
+            # 5. Apply result tag
+            if parsed.result_tag and results:
+                await self._apply_result_tag(results, parsed.result_tag, project_id)
+
+            response = {
+                "nodes": resolved_nodes,
+                "results": results,
+                "target_count": len(parsed.targets),
+                "filtered_count": len(resolved_nodes),
+                "result_count": len(results),
+                "tag_applied": parsed.result_tag,
+                "_executor": "grid",
+                "_project_id": project_id,
+                "_parsed": {
+                    "operators": [op.value for op in parsed.operators],
+                    "targets": [{"id": t.node_id, "expanded": t.expanded} for t in parsed.targets],
+                    "class_filter": parsed.class_filter,
+                    "dimension_filters": [{"dim": f.dimension, "val": f.value} for f in parsed.dimension_filters]
+                }
+            }
+
+            # Add comparison analysis if compare operator was used
+            if comparison_results:
+                response["comparison"] = comparison_results
+                if comparison_node:
+                    response["comparison_node"] = comparison_node
+
+            return response
+        except Exception as e:
+            logger.error(f"Grid execution error: {e}")
+            return {
+                "error": str(e),
+                "query": parsed.raw_query,
+                "_executor": "grid"
+            }
+
+    async def _resolve_grid_target(self, target: GridTarget, project_id: str) -> List[Dict]:
+        """Resolve a grid target to actual nodes from Elasticsearch."""
+        async with aiohttp.ClientSession() as session:
+            # Get the target node
+            url = f"{CYMONIDES_API}/nodes/{target.node_id}"
+            params = {"projectId": project_id}
+
+            async with session.get(url, params=params, timeout=aiohttp.ClientTimeout(total=30)) as resp:
+                if resp.status != 200:
+                    logger.warning(f"Node not found: {target.node_id}")
+                    return []
+                node = await resp.json()
+
+            nodes = [node]
+
+            # If expanded, also get connected nodes
+            if target.expanded:
+                edges_url = f"{CYMONIDES_API}/nodes/{target.node_id}/edges"
+                async with session.get(edges_url, params=params, timeout=aiohttp.ClientTimeout(total=30)) as resp:
+                    if resp.status == 200:
+                        edges = await resp.json()
+                        # Get connected node IDs
+                        connected_ids = set()
+                        for edge in edges.get("edges", []):
+                            if edge.get("fromNodeId") == target.node_id:
+                                connected_ids.add(edge.get("toNodeId"))
+                            else:
+                                connected_ids.add(edge.get("fromNodeId"))
+
+                        # Fetch connected nodes
+                        for conn_id in connected_ids:
+                            conn_url = f"{CYMONIDES_API}/nodes/{conn_id}"
+                            async with session.get(conn_url, params=params, timeout=aiohttp.ClientTimeout(total=10)) as conn_resp:
+                                if conn_resp.status == 200:
+                                    nodes.append(await conn_resp.json())
+
+            return nodes
+
+    def _apply_dimension_filter(self, nodes: List[Dict], dim_filter) -> List[Dict]:
+        """Apply a dimension filter to nodes."""
+        filtered = []
+        for node in nodes:
+            metadata = node.get("metadata", {})
+
+            if dim_filter.dimension == "year":
+                node_year = metadata.get("year") or metadata.get("created_year")
+                if str(node_year) == dim_filter.value:
+                    filtered.append(node)
+            elif dim_filter.dimension == "year_range":
+                parts = dim_filter.value.split("-")
+                if len(parts) == 2:
+                    start, end = int(parts[0]), int(parts[1])
+                    node_year = metadata.get("year") or metadata.get("created_year") or 0
+                    if start <= int(node_year) <= end:
+                        filtered.append(node)
+            elif dim_filter.dimension == "jurisdiction":
+                if metadata.get("jurisdiction", "").upper() == dim_filter.value.upper():
+                    filtered.append(node)
+            elif dim_filter.dimension == "unchecked":
+                if metadata.get("state") == "unchecked" or not metadata.get("verified"):
+                    filtered.append(node)
+            elif dim_filter.dimension == "verified":
+                if metadata.get("state") == "verified" or metadata.get("verified"):
+                    filtered.append(node)
+            elif dim_filter.dimension == "source":
+                if metadata.get("source_type", "").lower() == dim_filter.value.lower():
+                    filtered.append(node)
+            else:
+                # Generic dimension: check metadata field
+                if metadata.get(dim_filter.dimension) == dim_filter.value:
+                    filtered.append(node)
+
+        return filtered if filtered else nodes  # Return original if no matches
+
+    async def _execute_operator_on_node(self, op: OperatorType, node: Dict, project_id: str) -> Optional[Dict]:
+        """Execute an operator on a specific node."""
+        node_url = node.get("metadata", {}).get("url") or node.get("url")
+        node_domain = node.get("metadata", {}).get("domain") or node.get("domain")
+
+        # For link/entity operators, we need a URL or domain
+        if op in (OperatorType.BACKLINK_PAGES, OperatorType.BACKLINK_DOMAINS,
+                  OperatorType.OUTLINK_PAGES, OperatorType.OUTLINK_DOMAINS,
+                  OperatorType.ENTITIES_ALL, OperatorType.PERSON, OperatorType.COMPANY,
+                  OperatorType.EMAIL, OperatorType.TELEPHONE, OperatorType.ADDRESS):
+
+            target = node_url or node_domain
+            if not target:
+                return None
+
+            # Construct query for web executor
+            op_str = op.value
+            expanded = "!" if node.get("_expanded", True) else ""
+            web_query = f"{op_str}:{expanded}{target}"
+
+            # Execute via query executor
+            try:
+                parsed = parse_unified_query(web_query)
+                if parsed:
+                    return await self._execute_query(parsed, project_id)
+            except Exception as e:
+                logger.error(f"Operator execution error: {e}")
+                return None
+
+        # Compare operator - return node data for full comparison
+        elif op == OperatorType.COMPARE:
+            return {
+                "node_id": node.get("id"),
+                "label": node.get("label"),
+                "className": node.get("className"),
+                "typeName": node.get("typeName"),
+                "metadata": node.get("metadata", {}),
+                "_for_comparison": True,
+                "_comparison_vectors": self._extract_comparison_vectors(node)
+            }
+
+        return None
+
+    def _extract_comparison_vectors(self, node: Dict) -> Dict:
+        """Extract comparison vectors for similarity analysis."""
+        metadata = node.get("metadata", {})
+
+        return {
+            # Entity dimensions
+            "name_tokens": set(node.get("label", "").lower().split()),
+            "entity_type": node.get("typeName", ""),
+            "identifiers": {
+                "tax_id": metadata.get("tax_id") or metadata.get("oib") or metadata.get("vat"),
+                "reg_number": metadata.get("registration_number") or metadata.get("mbs") or metadata.get("company_number"),
+                "passport": metadata.get("passport"),
+                "ssn": metadata.get("ssn"),
+            },
+            "dates": {
+                "birth": metadata.get("date_of_birth"),
+                "incorporation": metadata.get("incorporation_date"),
+                "registered": metadata.get("registered_date"),
+            },
+            # Location dimensions
+            "jurisdiction": metadata.get("jurisdiction", "").upper(),
+            "country": metadata.get("country", "").upper(),
+            "address": metadata.get("address", "").lower(),
+            "domain": metadata.get("domain"),
+            # Temporal
+            "active_years": set(str(y) for y in metadata.get("active_years", [])),
+            # Source
+            "sources": set(metadata.get("sources", [])),
+        }
+
+    def _compute_similarity_matrix(self, comparison_nodes: List[Dict]) -> Dict:
+        """
+        Compute similarity matrix across all comparison nodes.
+
+        Uses full SimilarityEngine + CompareOperator when available,
+        falls back to basic implementation otherwise.
+
+        Returns:
+            - similarity_matrix: Pairwise similarity scores
+            - high_similarity_pairs: Pairs with score > 0.8 (potential duplicates)
+            - clusters: Groups of similar nodes
+            - nearest_neighbors: For each node, its closest matches
+            - verdicts: FUSE/REPEL/BINARY_STAR verdicts (if CompareOperator available)
+        """
+        nodes = [n for n in comparison_nodes if n.get("_for_comparison")]
+        if len(nodes) < 2:
+            return {"error": "Need at least 2 nodes to compare"}
+
+        # Use full CompareOperator if available
+        if self._compare_operator and SIMILARITY_ENGINE_AVAILABLE:
+            return self._compute_similarity_with_full_engine(nodes)
+
+        # Fallback: basic similarity computation
+        return self._compute_similarity_basic(nodes)
+
+    def _compute_similarity_with_full_engine(self, nodes: List[Dict]) -> Dict:
+        """Use full SimilarityEngine + CompareOperator for rich comparison."""
+        node_ids = [n["node_id"] for n in nodes]
+
+        # Use CompareOperator.compare_nodes for full analysis
+        result = self._compare_operator.compare_nodes(
+            node_ids=node_ids,
+            nodes={n["node_id"]: n for n in nodes}
+        )
+
+        # Convert to our format
+        matrix = []
+        high_pairs = []
+        neighbors = {}
+        verdicts = {}
+
+        # Build similarity matrix from pairwise comparisons
+        id_to_idx = {nid: i for i, nid in enumerate(node_ids)}
+
+        # Initialize matrix
+        for _ in nodes:
+            matrix.append([0.0] * len(nodes))
+
+        # Fill diagonal
+        for i in range(len(nodes)):
+            matrix[i][i] = 1.0
+
+        # Fill from comparisons
+        for comp in result.comparisons:
+            i = id_to_idx.get(comp.node_a_id)
+            j = id_to_idx.get(comp.node_b_id)
+            if i is not None and j is not None:
+                score = comp.score.total
+                matrix[i][j] = score
+                matrix[j][i] = score
+
+                # Track verdicts
+                verdicts[f"{comp.node_a_id}:{comp.node_b_id}"] = {
+                    "verdict": comp.verdict.value,
+                    "repel_reasons": comp.repel_reasons,
+                    "fuse_reasons": comp.fuse_reasons,
+                    "wedge_queries": comp.wedge_queries,
+                }
+
+                if score > 0.8:
+                    high_pairs.append({
+                        "node_a": comp.node_a_id,
+                        "node_b": comp.node_b_id,
+                        "score": score,
+                        "breakdown": comp.score.breakdown,
+                        "verdict": comp.verdict.value,
+                        "suggested_action": comp.verdict.value.upper(),
+                        "wedge_queries": comp.wedge_queries,
+                    })
+
+        # Build neighbors
+        for i, node in enumerate(nodes):
+            node_id = node["node_id"]
+            neighbors[node_id] = []
+            for j, other in enumerate(nodes):
+                if i != j:
+                    neighbors[node_id].append({
+                        "node_id": other["node_id"],
+                        "label": other.get("label"),
+                        "score": matrix[i][j]
+                    })
+            neighbors[node_id] = sorted(neighbors[node_id], key=lambda x: -x["score"])[:5]
+
+        # Cluster using CompareOperator or fallback
+        clusters = self._cluster_similar_nodes(nodes, matrix, threshold=0.7)
+
+        return {
+            "similarity_matrix": matrix,
+            "node_order": node_ids,
+            "high_similarity_pairs": high_pairs,
+            "potential_duplicates": len([p for p in high_pairs if p["verdict"] == "fuse"]),
+            "nearest_neighbors": neighbors,
+            "clusters": clusters,
+            "verdicts": verdicts,
+            "overall_verdict": result.overall_verdict.value if result.overall_verdict else None,
+            "engine": "full_similarity_engine",
+            "summary": {
+                "total_nodes": len(nodes),
+                "high_similarity_count": len(high_pairs),
+                "cluster_count": len(clusters),
+                "fuse_count": len([v for v in verdicts.values() if v["verdict"] == "fuse"]),
+                "repel_count": len([v for v in verdicts.values() if v["verdict"] == "repel"]),
+                "binary_star_count": len([v for v in verdicts.values() if v["verdict"] == "binary_star"]),
+            }
+        }
+
+    def _compute_similarity_basic(self, nodes: List[Dict]) -> Dict:
+        """Fallback basic similarity computation."""
+        # Compute pairwise similarities
+        matrix = []
+        high_pairs = []
+        neighbors = {}
+
+        for i, node_a in enumerate(nodes):
+            row = []
+            vec_a = node_a.get("_comparison_vectors", {})
+            neighbors[node_a["node_id"]] = []
+
+            for j, node_b in enumerate(nodes):
+                if i == j:
+                    row.append(1.0)
+                    continue
+
+                vec_b = node_b.get("_comparison_vectors", {})
+                score, breakdown = self._compute_node_similarity(vec_a, vec_b)
+                row.append(score)
+
+                if score > 0.8:
+                    high_pairs.append({
+                        "node_a": node_a["node_id"],
+                        "node_b": node_b["node_id"],
+                        "score": score,
+                        "breakdown": breakdown,
+                        "suggested_action": "FUSE" if score > 0.95 else "INVESTIGATE"
+                    })
+
+                neighbors[node_a["node_id"]].append({
+                    "node_id": node_b["node_id"],
+                    "label": node_b.get("label"),
+                    "score": score
+                })
+
+            matrix.append(row)
+
+        # Sort neighbors by score
+        for node_id in neighbors:
+            neighbors[node_id] = sorted(neighbors[node_id], key=lambda x: -x["score"])[:5]
+
+        # Cluster similar nodes (simple single-linkage)
+        clusters = self._cluster_similar_nodes(nodes, matrix, threshold=0.7)
+
+        return {
+            "similarity_matrix": matrix,
+            "node_order": [n["node_id"] for n in nodes],
+            "high_similarity_pairs": high_pairs,
+            "potential_duplicates": len([p for p in high_pairs if p["score"] > 0.95]),
+            "nearest_neighbors": neighbors,
+            "clusters": clusters,
+            "engine": "basic",
+            "summary": {
+                "total_nodes": len(nodes),
+                "high_similarity_count": len(high_pairs),
+                "cluster_count": len(clusters)
+            }
+        }
+
+    def _compute_node_similarity(self, vec_a: Dict, vec_b: Dict) -> Tuple[float, Dict]:
+        """Compute similarity between two node vectors."""
+        scores = {}
+
+        # Name similarity (Jaccard)
+        name_a = vec_a.get("name_tokens", set())
+        name_b = vec_b.get("name_tokens", set())
+        if name_a and name_b:
+            intersection = len(name_a & name_b)
+            union = len(name_a | name_b)
+            scores["name"] = intersection / union if union > 0 else 0
+        else:
+            scores["name"] = 0
+
+        # Type match (exact)
+        scores["type"] = 1.0 if vec_a.get("entity_type") == vec_b.get("entity_type") else 0
+
+        # Identifier match (any shared = high signal)
+        id_a = vec_a.get("identifiers", {})
+        id_b = vec_b.get("identifiers", {})
+        shared_ids = 0
+        for key in id_a:
+            if id_a.get(key) and id_b.get(key):
+                if id_a[key] == id_b[key]:
+                    shared_ids += 1
+                else:
+                    scores["identifier_conflict"] = True
+        scores["identifiers"] = min(1.0, shared_ids * 0.5)  # Each shared ID = 0.5
+
+        # Jurisdiction match
+        scores["jurisdiction"] = 1.0 if (vec_a.get("jurisdiction") and vec_a["jurisdiction"] == vec_b.get("jurisdiction")) else 0
+
+        # Country match
+        scores["country"] = 1.0 if (vec_a.get("country") and vec_a["country"] == vec_b.get("country")) else 0
+
+        # Address similarity
+        addr_a = vec_a.get("address", "")
+        addr_b = vec_b.get("address", "")
+        if addr_a and addr_b:
+            # Simple token overlap
+            tokens_a = set(addr_a.split())
+            tokens_b = set(addr_b.split())
+            intersection = len(tokens_a & tokens_b)
+            union = len(tokens_a | tokens_b)
+            scores["address"] = intersection / union if union > 0 else 0
+        else:
+            scores["address"] = 0
+
+        # Temporal overlap
+        years_a = vec_a.get("active_years", set())
+        years_b = vec_b.get("active_years", set())
+        if years_a and years_b:
+            intersection = len(years_a & years_b)
+            union = len(years_a | years_b)
+            scores["temporal"] = intersection / union if union > 0 else 0
+        else:
+            scores["temporal"] = 0
+
+        # Source overlap
+        sources_a = vec_a.get("sources", set())
+        sources_b = vec_b.get("sources", set())
+        if sources_a and sources_b:
+            intersection = len(sources_a & sources_b)
+            union = len(sources_a | sources_b)
+            scores["sources"] = intersection / union if union > 0 else 0
+        else:
+            scores["sources"] = 0
+
+        # Weighted average - only count dimensions with data
+        weights = {
+            "name": 0.25,
+            "type": 0.10,
+            "identifiers": 0.40,  # Unique IDs are strongest signal
+            "jurisdiction": 0.10,
+            "country": 0.05,
+            "address": 0.05,
+            "temporal": 0.03,
+            "sources": 0.02
+        }
+
+        # Only use dimensions that have data (non-zero scores)
+        active_weights = {}
+        for k, w in weights.items():
+            # Identifiers always count (0 means no match, which is meaningful)
+            if k == "identifiers" or scores.get(k, 0) > 0 or (k in ["type"] and scores.get(k) == 0):
+                active_weights[k] = w
+
+        # Normalize weights
+        total_weight = sum(active_weights.values())
+        if total_weight == 0:
+            total = 0
+        else:
+            total = sum(scores.get(k, 0) * (w / total_weight) for k, w in active_weights.items())
+
+        # Identifier match is a STRONG signal - boost if identifiers match
+        if scores.get("identifiers", 0) > 0:
+            total = max(total, 0.8 + (scores["identifiers"] * 0.2))  # Floor at 0.8 if any ID matches
+
+        # Identifier conflict = strong signal of difference
+        if scores.get("identifier_conflict"):
+            total *= 0.3  # Heavy penalty
+
+        return round(total, 3), {k: round(v, 3) for k, v in scores.items() if isinstance(v, (int, float))}
+
+    def _cluster_similar_nodes(self, nodes: List[Dict], matrix: List[List[float]], threshold: float) -> List[Dict]:
+        """Simple single-linkage clustering of similar nodes."""
+        n = len(nodes)
+        visited = set()
+        clusters = []
+
+        for i in range(n):
+            if i in visited:
+                continue
+
+            # Start new cluster
+            cluster_members = [i]
+            visited.add(i)
+
+            # Find all connected nodes above threshold
+            queue = [i]
+            while queue:
+                current = queue.pop(0)
+                for j in range(n):
+                    if j not in visited and matrix[current][j] >= threshold:
+                        cluster_members.append(j)
+                        visited.add(j)
+                        queue.append(j)
+
+            if len(cluster_members) > 1:
+                clusters.append({
+                    "members": [nodes[idx]["node_id"] for idx in cluster_members],
+                    "labels": [nodes[idx].get("label") for idx in cluster_members],
+                    "size": len(cluster_members),
+                    "avg_similarity": round(sum(matrix[i][j] for i in cluster_members for j in cluster_members if i != j) / max(1, len(cluster_members) * (len(cluster_members) - 1)), 3)
+                })
+
+        return clusters
+
+    async def _create_comparison_narrative(
+        self,
+        parsed: ParsedQuery,
+        compared_nodes: List[Dict],
+        comparison_results: Dict,
+        project_id: str
+    ) -> Optional[Dict]:
+        """
+        Create a narrative node (class=narrative, type=note) containing:
+        - The original query
+        - All compared nodes
+        - Full comparison log with similarity scores
+        - High similarity pairs and suggested actions
+        - Clusters found
+
+        Links all compared nodes to this narrative node.
+        """
+        import uuid
+        from datetime import datetime
+
+        # Generate node ID
+        node_id = f"comparison:{uuid.uuid4().hex[:12]}"
+        timestamp = datetime.utcnow().isoformat()
+
+        # Build narrative content
+        content = self._format_comparison_log(parsed, compared_nodes, comparison_results)
+
+        # Create narrative node
+        node_data = {
+            "id": node_id,
+            "label": f"Comparison: {parsed.raw_query[:50]}",
+            "className": "narrative",
+            "typeName": "note",
+            "projectId": project_id,
+            "content": content,
+            "metadata": {
+                "query": parsed.raw_query,
+                "created_at": timestamp,
+                "source": "compare_operator",
+                "node_count": len(compared_nodes),
+                "high_similarity_count": comparison_results.get("summary", {}).get("high_similarity_count", 0),
+                "cluster_count": comparison_results.get("summary", {}).get("cluster_count", 0),
+                "potential_duplicates": comparison_results.get("potential_duplicates", 0),
+            }
+        }
+
+        try:
+            async with aiohttp.ClientSession() as session:
+                # Create the narrative node
+                async with session.post(
+                    f"{CYMONIDES_API}/nodes",
+                    json=node_data,
+                    timeout=aiohttp.ClientTimeout(total=30)
+                ) as resp:
+                    if resp.status >= 400:
+                        logger.error(f"Failed to create comparison node: {resp.status}")
+                        return None
+
+                # Link all compared nodes to this narrative
+                for node in compared_nodes:
+                    source_id = node.get("node_id") or node.get("id")
+                    if source_id:
+                        edge_data = {
+                            "fromNodeId": source_id,
+                            "toNodeId": node_id,
+                            "relation": "compared_in",
+                            "projectId": project_id,
+                            "metadata": {
+                                "created_at": timestamp,
+                                "source": "compare_operator"
+                            }
+                        }
+                        async with session.post(
+                            f"{CYMONIDES_API}/edges",
+                            json=edge_data,
+                            timeout=aiohttp.ClientTimeout(total=10)
+                        ) as edge_resp:
+                            pass  # Continue even if edge creation fails
+
+                return {
+                    "node_id": node_id,
+                    "label": node_data["label"],
+                    "className": "narrative",
+                    "typeName": "note",
+                    "linked_nodes": [n.get("node_id") or n.get("id") for n in compared_nodes]
+                }
+
+        except Exception as e:
+            logger.error(f"Failed to create comparison narrative: {e}")
+            return None
+
+    def _format_comparison_log(
+        self,
+        parsed: ParsedQuery,
+        compared_nodes: List[Dict],
+        comparison_results: Dict
+    ) -> str:
+        """Format comparison results as readable narrative content."""
+        lines = []
+
+        # Header
+        lines.append("# Comparison Analysis")
+        lines.append("")
+        lines.append(f"**Query:** `{parsed.raw_query}`")
+        lines.append(f"**Nodes Compared:** {len(compared_nodes)}")
+        lines.append("")
+
+        # Nodes queried
+        lines.append("## Nodes Queried")
+        lines.append("")
+        for node in compared_nodes:
+            node_id = node.get("node_id") or node.get("id")
+            label = node.get("label", "Unknown")
+            class_name = node.get("className", "")
+            type_name = node.get("typeName", "")
+            lines.append(f"- **{label}** (`{node_id}`)")
+            if class_name or type_name:
+                lines.append(f"  - Type: {class_name}/{type_name}")
+            # Key metadata
+            meta = node.get("metadata", {})
+            if meta.get("jurisdiction"):
+                lines.append(f"  - Jurisdiction: {meta['jurisdiction']}")
+            if meta.get("tax_id") or meta.get("oib"):
+                lines.append(f"  - Tax ID: {meta.get('tax_id') or meta.get('oib')}")
+        lines.append("")
+
+        # Summary
+        summary = comparison_results.get("summary", {})
+        lines.append("## Summary")
+        lines.append("")
+        lines.append(f"- **High Similarity Pairs:** {summary.get('high_similarity_count', 0)}")
+        lines.append(f"- **Potential Duplicates:** {comparison_results.get('potential_duplicates', 0)}")
+        lines.append(f"- **Clusters Found:** {summary.get('cluster_count', 0)}")
+        lines.append("")
+
+        # High similarity pairs
+        high_pairs = comparison_results.get("high_similarity_pairs", [])
+        if high_pairs:
+            lines.append("## High Similarity Pairs")
+            lines.append("")
+            # Dedupe (A↔B appears twice)
+            seen = set()
+            for pair in high_pairs:
+                key = tuple(sorted([pair["node_a"], pair["node_b"]]))
+                if key in seen:
+                    continue
+                seen.add(key)
+
+                lines.append(f"### {pair['node_a']} ↔ {pair['node_b']}")
+                lines.append("")
+                lines.append(f"- **Similarity Score:** {pair['score']}")
+                lines.append(f"- **Suggested Action:** {pair['suggested_action']}")
+                lines.append("")
+                lines.append("**Breakdown:**")
+                for dim, score in pair.get("breakdown", {}).items():
+                    if dim != "identifier_conflict":
+                        lines.append(f"  - {dim}: {score}")
+                if pair.get("breakdown", {}).get("identifier_conflict"):
+                    lines.append("  - ⚠️ **IDENTIFIER CONFLICT DETECTED**")
+                lines.append("")
+
+        # Clusters
+        clusters = comparison_results.get("clusters", [])
+        if clusters:
+            lines.append("## Clusters")
+            lines.append("")
+            for i, cluster in enumerate(clusters, 1):
+                lines.append(f"### Cluster {i}")
+                lines.append("")
+                lines.append(f"- **Members:** {', '.join(cluster.get('labels', []))}")
+                lines.append(f"- **Size:** {cluster.get('size', 0)}")
+                lines.append(f"- **Average Similarity:** {cluster.get('avg_similarity', 0)}")
+                lines.append("")
+
+        # Nearest neighbors
+        neighbors = comparison_results.get("nearest_neighbors", {})
+        if neighbors:
+            lines.append("## Nearest Neighbors")
+            lines.append("")
+            for node_id, nn_list in neighbors.items():
+                if nn_list:
+                    lines.append(f"**{node_id}:**")
+                    for nn in nn_list[:3]:  # Top 3
+                        lines.append(f"  - {nn.get('label', nn['node_id'])} (score: {nn['score']})")
+                    lines.append("")
+
+        # Similarity matrix (compact)
+        matrix = comparison_results.get("similarity_matrix", [])
+        node_order = comparison_results.get("node_order", [])
+        if matrix and len(matrix) <= 10:  # Only show for small matrices
+            lines.append("## Similarity Matrix")
+            lines.append("")
+            lines.append("```")
+            # Header row
+            header = "          " + " ".join(f"{n[:8]:>8}" for n in node_order)
+            lines.append(header)
+            # Data rows
+            for i, row in enumerate(matrix):
+                row_str = f"{node_order[i][:8]:>8}  " + " ".join(f"{v:>8.2f}" for v in row)
+                lines.append(row_str)
+            lines.append("```")
+            lines.append("")
+
+        return "\n".join(lines)
+
+    async def _apply_result_tag(self, results: List[Dict], tag: str, project_id: str) -> None:
+        """Apply a tag to all result nodes."""
+        async with aiohttp.ClientSession() as session:
+            tag_node_id = f"tag:{tag.lower().replace(' ', '-')}"
+
+            # Create or get tag node
+            tag_data = {
+                "id": tag_node_id,
+                "label": tag,
+                "className": "narrative",
+                "typeName": "tag",
+                "projectId": project_id,
+                "metadata": {"source": "grid_executor"}
+            }
+
+            try:
+                async with session.post(f"{CYMONIDES_API}/nodes", json=tag_data,
+                                       timeout=aiohttp.ClientTimeout(total=10)) as resp:
+                    pass  # Tag created or already exists
+
+                # Create edges from result nodes to tag
+                for result in results:
+                    node_id = result.get("node_id") or result.get("id")
+                    if node_id:
+                        edge_data = {
+                            "fromNodeId": node_id,
+                            "toNodeId": tag_node_id,
+                            "relation": "tagged_with",
+                            "projectId": project_id,
+                            "metadata": {"source": "grid_executor"}
+                        }
+                        async with session.post(f"{CYMONIDES_API}/edges", json=edge_data,
+                                               timeout=aiohttp.ClientTimeout(total=10)) as resp:
+                            pass
+            except Exception as e:
+                logger.error(f"Tag application error: {e}")
+
+    async def _execute_query(self, parsed: ParsedQuery, project_id: str) -> Dict[str, Any]:
+        """
+        Execute web query operators (backlinks, outlinks, entities, filetypes).
+
+        Uses QueryExecutor which is optimized for these operations.
+        """
+        logger.info(f"Query Execute: {parsed.raw_query}")
+
+        try:
+            # Try to load QueryExecutor
+            try:
+                from query_executor import QueryExecutor
+                executor = QueryExecutor()
+
+                # QueryExecutor.execute_async expects the raw query string, not a config dict
+                # It parses the query string internally using parse_query()
+                result = await executor.execute_async(parsed.raw_query)
+                result["_executor"] = "query"
+                result["_project_id"] = project_id
+                return result
+
+            except ImportError:
+                # Fall back to BruteSearch if QueryExecutor not available
+                logger.warning("QueryExecutor not available, falling back to BruteSearch")
+                return await self._execute_brute(parsed.raw_query, project_id)
+
+        except Exception as e:
+            logger.error(f"Query execution error: {e}")
+            return {
+                "error": str(e),
+                "query": parsed.raw_query,
+                "_executor": "query"
+            }
+
+    async def _execute_submarine(self, query: str, project_id: str) -> Dict[str, Any]:
+        """Execute /submarine discovery orchestration."""
+        try:
+            from submarine.discovery_orchestrator import run_submarine
+        except Exception as e:
+            return {
+                "error": f"Submarine discovery unavailable: {e}",
+                "query": query,
+                "_executor": "submarine",
+            }
+
+        try:
+            result = await run_submarine(query=query, project_id=project_id)
+            result["_executor"] = "submarine"
+            result["_project_id"] = project_id
+            return result
+        except Exception as e:
+            logger.error(f"Submarine discovery error: {e}")
+            return {
+                "error": str(e),
+                "query": query,
+                "_executor": "submarine",
+                "_project_id": project_id,
+            }
+
+    # =========================================================================
+    # EYE-D OSINT SEARCH
+    # =========================================================================
+    async def _execute_eyed(self, agent_type: str, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute EYE-D OSINT search.
+
+        Syntax:
+            p: John Smith           → Person search
+            e: john@example.com     → Email search
+            t: +14155551234         → Phone search
+            c: Acme Corp            → Company search
+            ent: target             → Full entity OSINT
+            eyed: email john@x.com  → Direct EYE-D command
+            osint: person John      → Alias for eyed:
+
+        Routes to EYE-D unified searcher via CLI or direct import.
+        """
+        logger.info(f"EYE-D Execute: type={agent_type} query={query}")
+
+        try:
+            # Try importing UnifiedSearcher
+            try:
+                sys.path.insert(0, str(Path(__file__).parent.parent / "eyed"))
+                from unified_osint import UnifiedSearcher
+                searcher = UnifiedSearcher()
+            except ImportError:
+                # Fallback to CLI
+                return await self._execute_eyed_cli(agent_type, query, project_id)
+
+            result = {}
+
+            if agent_type == "eyed_person" or (agent_type == "eyed" and query.lower().startswith("person ")):
+                target = query.replace("person ", "", 1) if query.lower().startswith("person ") else query
+                result = await searcher.search_people(target)
+
+            elif agent_type == "eyed_email" or (agent_type == "eyed" and query.lower().startswith("email ")):
+                target = query.replace("email ", "", 1) if query.lower().startswith("email ") else query
+                result = await searcher.search_email(target)
+
+            elif agent_type == "eyed_phone" or (agent_type == "eyed" and query.lower().startswith("phone ")):
+                target = query.replace("phone ", "", 1) if query.lower().startswith("phone ") else query
+                result = await searcher.search_phone(target)
+
+            elif agent_type == "eyed_company" or (agent_type == "eyed" and query.lower().startswith("company ")):
+                target = query.replace("company ", "", 1) if query.lower().startswith("company ") else query
+                # Route to CORPORELLA for company enrichment
+                return await self._execute_io(f"c: {target}", project_id)
+
+            elif agent_type == "eyed_entity" or (agent_type == "eyed" and query.lower().startswith("entity ")):
+                target = query.replace("entity ", "", 1) if query.lower().startswith("entity ") else query
+                # Full chain reaction OSINT
+                result = await searcher.run_chain_reaction(target, "unknown", depth=2)
+
+            else:
+                # Generic EYE-D - try to auto-detect type
+                if "@" in query and "." in query:
+                    result = await searcher.search_email(query)
+                elif query.startswith("+") or query.replace("-", "").replace(" ", "").isdigit():
+                    result = await searcher.search_phone(query)
+                elif "linkedin.com" in query.lower():
+                    result = await searcher.search_linkedin(query)
+                else:
+                    result = await searcher.search_people(query)
+
+            return {
+                "_agent": agent_type,
+                "_executor": "eyed",
+                "_query": query,
+                "_project_id": project_id,
+                **result
+            }
+
+        except Exception as e:
+            logger.error(f"EYE-D execution error: {e}")
+            return {
+                "error": str(e),
+                "_agent": agent_type,
+                "_query": query,
+                "_executor": "eyed"
+            }
+
+    async def _execute_eyed_cli(self, agent_type: str, query: str, project_id: str) -> Dict[str, Any]:
+        """Fallback: Execute EYE-D via CLI."""
+        import subprocess
+        import json
+
+        cli_path = Path(__file__).parent.parent / "eyed" / "eyed_cli.py"
+        if not cli_path.exists():
+            return {"error": "EYE-D CLI not found", "_agent": agent_type}
+
+        # Map agent type to CLI command
+        cmd_map = {
+            "eyed_person": "person",
+            "eyed_email": "email",
+            "eyed_phone": "phone",
+            "eyed_company": "company",
+            "eyed_entity": "entity",
+            "eyed": "search"
+        }
+        cmd = cmd_map.get(agent_type, "search")
+
+        try:
+            result = subprocess.run(
+                ["python3", str(cli_path), cmd, query, "--json"],
+                capture_output=True,
+                text=True,
+                timeout=60
+            )
+            if result.returncode == 0:
+                return json.loads(result.stdout)
+            return {"error": result.stderr, "_agent": agent_type}
+        except Exception as e:
+            return {"error": str(e), "_agent": agent_type}
+
+    # =========================================================================
+    # OPTICS (Image/Media Intelligence)
+    # =========================================================================
+    async def _execute_optics(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute OPTICS image/media analysis.
+
+        Syntax:
+            optics: analyze <url>           → Full image analysis
+            optics: reverse <url>           → Reverse image search
+            optics: exif <url>              → Extract EXIF metadata
+            optics: faces <url>             → Face detection
+            optics: ocr <url>               → Text extraction (OCR)
+            img: <url>                      → Alias (auto-detect)
+            image: <url>                    → Alias (auto-detect)
+        """
+        logger.info(f"OPTICS Execute: {query}")
+
+        try:
+            # Try importing OPTICS
+            try:
+                sys.path.insert(0, str(Path(__file__).parent.parent / "optics"))
+                from optics_api import OpticsAPI
+                optics = OpticsAPI()
+            except ImportError:
+                return await self._execute_optics_cli(query, project_id)
+
+            parts = query.split(None, 1)
+            subcommand = parts[0].lower() if parts else "analyze"
+            target = parts[1] if len(parts) > 1 else query
+
+            result = {}
+
+            if subcommand in ("analyze", "full"):
+                result = await optics.analyze(target)
+            elif subcommand in ("reverse", "ris"):
+                result = await optics.reverse_image_search(target)
+            elif subcommand in ("exif", "metadata"):
+                result = await optics.extract_exif(target)
+            elif subcommand in ("faces", "face"):
+                result = await optics.detect_faces(target)
+            elif subcommand in ("ocr", "text"):
+                result = await optics.extract_text(target)
+            else:
+                # Auto-detect: treat as URL for analysis
+                result = await optics.analyze(query)
+
+            return {
+                "_agent": "optics",
+                "_executor": "optics",
+                "_subcommand": subcommand,
+                "_query": query,
+                "_project_id": project_id,
+                **result
+            }
+
+        except Exception as e:
+            logger.error(f"OPTICS execution error: {e}")
+            return {
+                "error": str(e),
+                "_agent": "optics",
+                "_query": query,
+                "_executor": "optics"
+            }
+
+    async def _execute_optics_cli(self, query: str, project_id: str) -> Dict[str, Any]:
+        """Fallback: Execute OPTICS via CLI."""
+        import subprocess
+        import json
+
+        cli_path = Path(__file__).parent.parent / "optics" / "optics_cli.py"
+        if not cli_path.exists():
+            return {"error": "OPTICS CLI not found", "_agent": "optics"}
+
+        try:
+            result = subprocess.run(
+                ["python3", str(cli_path), query, "--json"],
+                capture_output=True,
+                text=True,
+                timeout=120
+            )
+            if result.returncode == 0:
+                return json.loads(result.stdout)
+            return {"error": result.stderr, "_agent": "optics"}
+        except Exception as e:
+            return {"error": str(e), "_agent": "optics"}
+
+    # =========================================================================
+    # SOCIALITE (Social Media Search)
+    # =========================================================================
+    async def _execute_socialite(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute SOCIALITE social media search.
+
+        Syntax:
+            socialite: username <handle>    → Username search across platforms
+            socialite: profile <url>        → Profile analysis
+            socialite: mentions <name>      → Social mentions search
+            social: <handle>                → Alias (username search)
+            sm: <handle>                    → Alias (username search)
+        """
+        logger.info(f"SOCIALITE Execute: {query}")
+
+        try:
+            # Try importing SOCIALITE
+            try:
+                sys.path.insert(0, str(Path(__file__).parent.parent / "socialite"))
+                from socialite_api import SocialiteAPI
+                socialite = SocialiteAPI()
+            except ImportError:
+                return await self._execute_socialite_cli(query, project_id)
+
+            parts = query.split(None, 1)
+            subcommand = parts[0].lower() if parts else "username"
+            target = parts[1] if len(parts) > 1 else query
+
+            result = {}
+
+            if subcommand in ("username", "user", "handle"):
+                result = await socialite.search_username(target)
+            elif subcommand in ("profile", "analyze"):
+                result = await socialite.analyze_profile(target)
+            elif subcommand in ("mentions", "search"):
+                result = await socialite.search_mentions(target)
+            else:
+                # Default: username search
+                result = await socialite.search_username(query)
+
+            return {
+                "_agent": "socialite",
+                "_executor": "socialite",
+                "_subcommand": subcommand,
+                "_query": query,
+                "_project_id": project_id,
+                **result
+            }
+
+        except Exception as e:
+            logger.error(f"SOCIALITE execution error: {e}")
+            return {
+                "error": str(e),
+                "_agent": "socialite",
+                "_query": query,
+                "_executor": "socialite"
+            }
+
+    async def _execute_socialite_cli(self, query: str, project_id: str) -> Dict[str, Any]:
+        """Fallback: Execute SOCIALITE via CLI."""
+        import subprocess
+        import json
+
+        cli_path = Path(__file__).parent.parent / "socialite" / "socialite_cli.py"
+        if not cli_path.exists():
+            return {"error": "SOCIALITE CLI not found", "_agent": "socialite"}
+
+        try:
+            result = subprocess.run(
+                ["python3", str(cli_path), "search", query, "--json"],
+                capture_output=True,
+                text=True,
+                timeout=60
+            )
+            if result.returncode == 0:
+                return json.loads(result.stdout)
+            return {"error": result.stderr, "_agent": "socialite"}
+        except Exception as e:
+            return {"error": str(e), "_agent": "socialite"}
+
+    # =========================================================================
+    # STORIES (Narrative Generation)
+    # =========================================================================
+    async def _execute_stories(self, query: str, project_id: str) -> Dict[str, Any]:
+        """
+        Execute STORIES narrative generation.
+
+        Syntax:
+            stories: generate <entity>      → Generate investigation narrative
+            stories: timeline <entity>      → Generate timeline narrative
+            stories: summary <entity>       → Generate executive summary
+            narrative: <entity>             → Alias (generate)
+        """
+        logger.info(f"STORIES Execute: {query}")
+
+        try:
+            # Try importing STORIES
+            try:
+                sys.path.insert(0, str(Path(__file__).parent.parent / "stories"))
+                from stories_api import StoriesAPI
+                stories = StoriesAPI()
+            except ImportError:
+                return await self._execute_stories_cli(query, project_id)
+
+            parts = query.split(None, 1)
+            subcommand = parts[0].lower() if parts else "generate"
+            target = parts[1] if len(parts) > 1 else query
+
+            result = {}
+
+            if subcommand in ("generate", "narrative"):
+                result = await stories.generate_narrative(target, project_id)
+            elif subcommand in ("timeline", "chrono"):
+                result = await stories.generate_timeline(target, project_id)
+            elif subcommand in ("summary", "exec"):
+                result = await stories.generate_summary(target, project_id)
+            else:
+                # Default: generate narrative
+                result = await stories.generate_narrative(query, project_id)
+
+            return {
+                "_agent": "stories",
+                "_executor": "stories",
+                "_subcommand": subcommand,
+                "_query": query,
+                "_project_id": project_id,
+                **result
+            }
+
+        except Exception as e:
+            logger.error(f"STORIES execution error: {e}")
+            return {
+                "error": str(e),
+                "_agent": "stories",
+                "_query": query,
+                "_executor": "stories"
+            }
+
+    async def _execute_stories_cli(self, query: str, project_id: str) -> Dict[str, Any]:
+        """Fallback: Execute STORIES via CLI."""
+        import subprocess
+        import json
+
+        cli_path = Path(__file__).parent.parent / "stories" / "stories_cli.py"
+        if not cli_path.exists():
+            return {"error": "STORIES CLI not found", "_agent": "stories"}
+
+        try:
+            result = subprocess.run(
+                ["python3", str(cli_path), "generate", query, "--project", project_id, "--json"],
+                capture_output=True,
+                text=True,
+                timeout=120
+            )
+            if result.returncode == 0:
+                return json.loads(result.stdout)
+            return {"error": result.stderr, "_agent": "stories"}
+        except Exception as e:
+            return {"error": str(e), "_agent": "stories"}
+
+
+# =============================================================================
+# MODULE-LEVEL SINGLETON
+# =============================================================================
+
+_executor: UnifiedExecutor = None
+
+
+def get_executor() -> UnifiedExecutor:
+    """Get or create executor singleton."""
+    global _executor
+    if _executor is None:
+        _executor = UnifiedExecutor()
+    return _executor
+
+
+async def execute(query: str, project_id: str = "default") -> Dict[str, Any]:
+    """
+    Execute any operator syntax query (convenience function).
+
+    Examples:
+        # IO Prefixes → IOExecutor
+        await execute("p: John Smith")
+        await execute("c: Acme Corp :US")
+
+        # Registry Operators → Torpedo
+        await execute("csr: Metal Kovin")
+        await execute("cuk: Tesco PLC")
+
+        # Query Operators → QueryExecutor
+        await execute("bl? :!domain.com")
+        await execute("ent? :2022! !domain.com")
+        await execute("pdf! :!example.com")
+
+        # Exact Phrase → BruteSearch
+        await execute('"John Smith"')
+        await execute('"Acme Corporation"')
+    """
+    return await get_executor().execute(query, project_id)
+
+
+# =============================================================================
+# CLI
+# =============================================================================
+
+if __name__ == "__main__":
+    import asyncio
+    import json
+
+    async def main():
+        if len(sys.argv) < 2:
+            print("SASTRE Unified Executor - Routes queries based on operator syntax\n")
+            print("Usage: python executor.py '<query>'\n")
+            print("Examples:")
+            print("  Chain Operators (Multi-Step Investigations):")
+            print("    python executor.py 'chain: due_diligence c: Acme Corp :US'")
+            print("    python executor.py 'chain: ubo c: Siemens AG :DE'")
+            print("    python executor.py 'chain: officers c: Tesco PLC :GB'")
+            print()
+            print("  IO Prefixes (Entity Investigation):")
+            print("    python executor.py 'p: John Smith'")
+            print("    python executor.py 'c: Acme Corp :US'")
+            print("    python executor.py 'e: email@test.com'")
+            print()
+            print("  Registry Operators (Company Profiles):")
+            print("    python executor.py 'csr: Metal Kovin'")
+            print("    python executor.py 'chr: Podravka'")
+            print("    python executor.py 'cuk: Tesco PLC'")
+            print()
+            print("  Query Operators (Link Analysis, Entity Extraction):")
+            print("    python executor.py 'bl? :!domain.com'")
+            print("    python executor.py 'ent? :!domain.com'")
+            print("    python executor.py 'pdf! :!example.com'")
+            print()
+            print("  Exact Phrase (BruteSearch 40+ engines):")
+            print('    python executor.py \'"John Smith"\'')
+            return
+
+        query = ' '.join(sys.argv[1:])
+        result = await execute(query)
+        print(json.dumps(result, indent=2, default=str))
+
+    asyncio.run(main())
+
+
+# Alias for backward compatibility
+SyntaxExecutor = UnifiedExecutor

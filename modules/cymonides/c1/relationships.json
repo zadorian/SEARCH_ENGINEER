@@ -1,0 +1,1087 @@
+{
+  "_meta": {
+    "version": "3.2.1",
+    "title": "NEXUS Atomic Relationship Ontology",
+    "philosophy": "Atomic particles + hierarchy. Let patterns emerge from the graph, don't bake them into edge types.",
+    "canonical_location": "/data/SEARCH_ENGINEER/BACKEND/modules/cymonides/c1/relationships.json",
+    "last_updated": "2026-01-13",
+    "changelog": {
+      "3.2.1": [
+        "CONSOLIDATED: Moved to cymonides/c1/ as canonical single source of truth",
+        "Symlink created at /data/CLASSES/NEXUS/RELATIONSHIPS/ontology.json for backward compatibility"
+      ],
+      "3.2.0": [
+        "Added enrichment_of root relationship (code 16) for NEXUS enrichment queries (Discovery = NEXUS enrichment of unknowns)",
+        "Added subtypes: resolved_to (161), rejected_as (162), candidate_of (163), sourced_from (164), discovered_via (165)",
+        "Added node types: enrichment_profile, enrichment_candidate",
+        "Added alias mappings for enrichment relationships"
+      ],
+      "3.1.1": [
+        "FIXED: Converted jurisdictional officer terms to aliases of director_of (consejero_of, syndic_of, gerant_of)",
+        "FIXED: Moved German KG partnership roles from officer_of to partner_of subtypes (general_partner_of, limited_partner_of)",
+        "Cleaner taxonomy: aliases for equivalent concepts, correct legal classification (partners ≠ officers)"
+      ],
+      "3.1.0": [
+        "Added regulated_by root (code 14) for regulatory relationships",
+        "Added not_same_as (code 15) for entity resolution",
+        "Added commercial relationship subtypes: supplies_to (23), customer_of (24), competitor_of (25)",
+        "Expanded alias coverage (70+ new mappings from Aleph, ICIJ, PSC, EU registers)"
+      ]
+    },
+    "design_principles": [
+      "1. ATOMIC: ~14 fundamental relationship types (particles)",
+      "2. HIERARCHICAL: Subtypes inherit from parents (officer_of → director_of)",
+      "3. ALIASES: External system mappings (ftm:Directorship → officer_of)",
+      "4. EMERGENT: Complex patterns emerge from graph traversal, not special edge types",
+      "5. ALWAYS VALID: Parent type is always acceptable (officer_of works even if you know director_of)"
+    ],
+    "structure": {
+      "value": "Canonical relationship name (snake_case)",
+      "aliases": "Alternative names from external systems",
+      "subtypes": "More specific children that inherit from parent"
+    }
+  },
+
+  "relationships": {
+
+    "same_as": {
+      "code": 1,
+      "description": "Two nodes represent the same real-world entity (identity/deduplication)",
+      "source_types": ["*"],
+      "target_types": ["*"],
+      "inverse": "same_as",
+      "bidirectional": true,
+      "aliases": ["ftm:SameAs", "owl:sameAs", "skos:exactMatch"],
+      "metadata": {
+        "match_type": ["identifier", "name_exact", "name_fuzzy", "multi_criteria", "manual"],
+        "confidence": "float 0-1"
+      },
+      "subtypes": {
+        "not_same_as": {
+          "code": 15,
+          "description": "Explicitly different entities (negative entity resolution). Critical for preventing false positives.",
+          "inverse": "not_same_as",
+          "bidirectional": true,
+          "aliases": ["different_from", "distinct_from", "owl:differentFrom"],
+          "metadata": {
+            "reason": ["different_jurisdiction", "different_birth_date", "different_identifier", "manual_review"],
+            "confidence": "float 0-1"
+          },
+          "note": "Negative evidence is as valuable as positive. Person A ≠ Person B prevents incorrect merging."
+        }
+      }
+    },
+
+    "related_to": {
+      "code": 2,
+      "description": "Generic association between entities. Use when specific type unknown.",
+      "source_types": ["*"],
+      "target_types": ["*"],
+      "inverse": "related_to",
+      "bidirectional": true,
+      "aliases": ["ftm:UnknownLink", "ftm:Associate", "linked_to", "associated_with"],
+      "metadata": {
+        "relationship_description": "string",
+        "strength": ["weak", "moderate", "strong"]
+      },
+      "subtypes": {
+        "family_of": {
+          "code": 21,
+          "description": "Family relationship (generic)",
+          "source_types": ["person"],
+          "target_types": ["person"],
+          "inverse": "family_of",
+          "bidirectional": true,
+          "aliases": ["ftm:Family", "relative_of"],
+          "subtypes": {
+            "spouse_of": {
+              "code": 211,
+              "aliases": ["married_to", "husband_of", "wife_of"],
+              "bidirectional": true,
+              "metadata": { "status": ["married", "divorced", "widowed", "separated"] }
+            },
+            "parent_of": {
+              "code": 212,
+              "inverse": "child_of",
+              "aliases": ["father_of", "mother_of"]
+            },
+            "child_of": {
+              "code": 213,
+              "inverse": "parent_of",
+              "aliases": ["son_of", "daughter_of"]
+            },
+            "sibling_of": {
+              "code": 214,
+              "bidirectional": true,
+              "aliases": ["brother_of", "sister_of"]
+            }
+          }
+        },
+        "partner_of": {
+          "code": 22,
+          "description": "Business partnership (company-to-company) or person-to-company partnership role",
+          "source_types": ["person", "company", "organization"],
+          "target_types": ["company", "organization"],
+          "inverse": "partner_of",
+          "bidirectional": true,
+          "aliases": ["joint_venture_with", "strategic_partner_of"],
+          "subtypes": {
+            "general_partner_of": {
+              "code": 221,
+              "description": "General partner with unlimited liability and management rights",
+              "source_types": ["person"],
+              "target_types": ["company"],
+              "inverse": "has_general_partner",
+              "aliases": [
+                "komplementar_of",
+                "unbeschrankt_haftender_gesellschafter_of",
+                "general_partner_in"
+              ],
+              "jurisdiction_hint": ["DE", "AT", "CH", "US", "GB"],
+              "metadata": {
+                "liability": "unlimited",
+                "management_rights": true,
+                "capital_contribution": "number"
+              },
+              "note": "German KG Komplementär, US/UK general partner - unlimited personal liability"
+            },
+            "limited_partner_of": {
+              "code": 222,
+              "description": "Limited partner with limited liability (passive investor, no management)",
+              "source_types": ["person"],
+              "target_types": ["company"],
+              "inverse": "has_limited_partner",
+              "aliases": [
+                "kommanditist_of",
+                "beschrankt_haftender_gesellschafter_of",
+                "limited_partner_in"
+              ],
+              "jurisdiction_hint": ["DE", "AT", "CH", "US", "GB"],
+              "metadata": {
+                "liability": "limited",
+                "management_rights": false,
+                "capital_contribution": "number"
+              },
+              "note": "German KG Kommanditist, US/UK limited partner - liability limited to investment"
+            }
+          }
+        },
+        "supplies_to": {
+          "code": 23,
+          "description": "Supply chain relationship",
+          "source_types": ["company", "organization"],
+          "target_types": ["company", "organization"],
+          "inverse": "supplied_by",
+          "aliases": ["vendor_of", "supplier_of"],
+          "metadata": {
+            "supply_type": ["goods", "services", "materials", "components"],
+            "contract_value": "float",
+            "is_exclusive": "boolean"
+          }
+        },
+        "customer_of": {
+          "code": 24,
+          "description": "Customer/client relationship",
+          "source_types": ["company", "organization", "person"],
+          "target_types": ["company", "organization"],
+          "inverse": "has_customer",
+          "aliases": ["client_of", "buyer_from"],
+          "metadata": {
+            "customer_type": ["retail", "wholesale", "enterprise", "government"],
+            "relationship_value": "float"
+          }
+        },
+        "competitor_of": {
+          "code": 25,
+          "description": "Competitive relationship (same market/industry)",
+          "source_types": ["company", "organization"],
+          "target_types": ["company", "organization"],
+          "inverse": "competitor_of",
+          "bidirectional": true,
+          "aliases": ["competes_with", "rival_of"],
+          "metadata": {
+            "market_overlap": ["direct", "indirect", "partial"],
+            "geographic_overlap": "array"
+          }
+        }
+      }
+    },
+
+    "owns": {
+      "code": 3,
+      "description": "Ownership relationship. The fundamental property right.",
+      "source_types": ["person", "company", "organization"],
+      "target_types": ["company", "property", "vehicle", "vessel", "aircraft", "domain", "crypto_wallet", "bank_account"],
+      "inverse": "owned_by",
+      "aliases": ["ftm:Ownership", "owner_of", "proprietor_of"],
+      "metadata": {
+        "percentage": "float 0-100",
+        "ownership_type": ["legal", "beneficial", "economic"],
+        "acquisition_date": "ISO8601",
+        "disposal_date": "ISO8601"
+      },
+      "subtypes": {
+        "beneficial_owner_of": {
+          "code": 31,
+          "description": "Ultimate beneficial owner (UBO) - the natural person who ultimately benefits",
+          "source_types": ["person", "company"],
+          "target_types": ["company"],
+          "aliases": ["ubo_of", "ftm:Ownership", "ultimate_owner_of", "psc_of"],
+          "metadata": {
+            "percentage": "float 0-100",
+            "voting_percentage": "float 0-100",
+            "control_mechanism": ["shares", "voting_rights", "appointment_rights", "contract", "trust", "nominee"],
+            "natures_of_control": "array"
+          }
+        },
+        "shareholder_of": {
+          "code": 32,
+          "description": "Direct share ownership in a company",
+          "source_types": ["person", "company"],
+          "target_types": ["company"],
+          "aliases": ["stockholder_of", "equity_holder_of"],
+          "metadata": {
+            "percentage": "float 0-100",
+            "share_class": "string",
+            "voting_rights": "boolean"
+          },
+          "subtypes": {
+            "majority_shareholder_of": { "code": 321 },
+            "minority_shareholder_of": { "code": 322 }
+          }
+        },
+        "legal_owner_of": {
+          "code": 33,
+          "description": "Registered/legal owner (may differ from beneficial owner)",
+          "aliases": ["registered_owner_of", "title_holder_of"]
+        }
+      }
+    },
+
+    "controls": {
+      "code": 4,
+      "description": "Control/authority relationship without ownership",
+      "source_types": ["person", "company", "organization"],
+      "target_types": ["company", "organization", "bank_account", "crypto_wallet"],
+      "inverse": "controlled_by",
+      "aliases": ["has_control_over", "manages"],
+      "metadata": {
+        "control_type": ["voting", "appointment", "contractual", "operational", "de_facto"]
+      },
+      "subtypes": {
+        "parent_of": {
+          "code": 41,
+          "description": "Corporate parent (controls subsidiary)",
+          "source_types": ["company"],
+          "target_types": ["company"],
+          "inverse": "subsidiary_of",
+          "aliases": ["ftm:Ownership", "holding_company_of"],
+          "subtypes": {
+            "ultimate_parent_of": {
+              "code": 411,
+              "aliases": ["gleif:IS_ULTIMATELY_CONSOLIDATED_BY", "group_parent_of"]
+            }
+          }
+        },
+        "subsidiary_of": {
+          "code": 42,
+          "description": "Corporate subsidiary (controlled by parent)",
+          "source_types": ["company"],
+          "target_types": ["company"],
+          "inverse": "parent_of",
+          "aliases": ["gleif:IS_DIRECTLY_CONSOLIDATED_BY", "controlled_entity_of"]
+        },
+        "branch_of": {
+          "code": 43,
+          "description": "Branch/establishment of a company (not separate legal entity)",
+          "source_types": ["company"],
+          "target_types": ["company"],
+          "inverse": "has_branch",
+          "aliases": ["gleif:IS_INTERNATIONAL_BRANCH_OF", "establishment_of"]
+        },
+        "trustee_of": {
+          "code": 44,
+          "description": "Trustee controlling assets for beneficiaries",
+          "source_types": ["person", "company"],
+          "target_types": ["company", "property"],
+          "inverse": "has_trustee",
+          "aliases": ["trust_controller_of"]
+        }
+      }
+    },
+
+    "member_of": {
+      "code": 5,
+      "description": "Membership/role in an organization",
+      "source_types": ["person", "company"],
+      "target_types": ["company", "organization"],
+      "inverse": "has_member",
+      "aliases": ["ftm:Membership", "belongs_to"],
+      "metadata": {
+        "role": "string",
+        "start_date": "ISO8601",
+        "end_date": "ISO8601",
+        "status": ["active", "inactive", "resigned", "removed"]
+      },
+      "subtypes": {
+        "officer_of": {
+          "code": 51,
+          "description": "Corporate officer (director, secretary, executive)",
+          "source_types": ["person"],
+          "target_types": ["company", "organization"],
+          "inverse": "has_officer",
+          "aliases": ["ftm:Directorship", "oc:officer", "sayari:officer_of"],
+          "metadata": {
+            "position": "string",
+            "appointment_date": "ISO8601",
+            "resignation_date": "ISO8601"
+          },
+          "subtypes": {
+            "director_of": {
+              "code": 511,
+              "aliases": [
+                "board_member_of",
+                "verwaltungsrat_of",
+                "consejero_de",
+                "consejero_of",
+                "consejero_delegado_of",
+                "vocal_of",
+                "syndic_of",
+                "membre_du_conseil_of",
+                "stiftungsrat_of",
+                "gerant_of",
+                "grant_majoritaire_of",
+                "grant_minoritaire_of"
+              ],
+              "jurisdiction_hint": ["*"],
+              "note": "Includes Spanish consejero, Swiss/Belgian syndic, French gérant - all are board/director roles",
+              "subtypes": {
+                "executive_director_of": { "code": 5111 },
+                "non_executive_director_of": { "code": 5112 },
+                "chairman_of": { "code": 5113, "aliases": ["chair_of", "president_of_board"] }
+              }
+            },
+            "secretary_of": {
+              "code": 512,
+              "aliases": ["company_secretary_of", "corporate_secretary_of"],
+              "jurisdiction_hint": ["GB", "IE", "AU", "NZ", "SG", "HK", "MY"]
+            },
+            "geschaeftsfuehrer_of": {
+              "code": 513,
+              "aliases": ["gf_of", "gerant_of"],
+              "jurisdiction_hint": ["DE", "AT", "CH"],
+              "description": "German/Austrian GmbH managing director - STATUTORY role with legal liability"
+            },
+            "amministratore_of": {
+              "code": 514,
+              "aliases": ["amministratore_delegato_of", "ad_of"],
+              "jurisdiction_hint": ["IT"],
+              "description": "Italian administrator - STATUTORY role"
+            },
+            "liquidator_of": {
+              "code": 515,
+              "aliases": ["insolvency_practitioner_of", "administrator_of"],
+              "description": "Appointed to wind up company - STATUTORY role"
+            },
+            "authorized_signatory_of": {
+              "code": 516,
+              "aliases": ["prokura_of", "signing_authority_of", "prokurist_of"],
+              "description": "Legal signing authority - STATUTORY role"
+            }
+          }
+        },
+        "employee_of": {
+          "code": 52,
+          "description": "Employment relationship. Titles (CEO, CFO, etc.) are separate NODES via has_title.",
+          "source_types": ["person"],
+          "target_types": ["company", "organization"],
+          "inverse": "employs",
+          "aliases": ["ftm:Employment", "works_for", "employed_by"],
+          "metadata": {
+            "department": "string",
+            "employment_type": ["full_time", "part_time", "contract", "intern"],
+            "start_date": "ISO8601",
+            "end_date": "ISO8601"
+          },
+          "subtypes": {
+            "executive_of": {
+              "code": 521,
+              "description": "Executive-level employment. Use has_title to specify CEO/CFO/etc. May also have officer_of if statutory role.",
+              "aliases": ["c_level_at", "senior_executive_of"],
+              "note": "Specific titles (CEO, CFO) are title NODES connected via has_title. A person can be: executive_of + has_title→CEO + officer_of(director)"
+            }
+          }
+        },
+        "contractor_of": {
+          "code": 53,
+          "description": "Contract/service provider relationship",
+          "source_types": ["person", "company"],
+          "target_types": ["company", "organization"],
+          "inverse": "has_contractor",
+          "aliases": ["consultant_to", "service_provider_of"]
+        },
+        "founder_of": {
+          "code": 54,
+          "description": "Founded the organization",
+          "source_types": ["person"],
+          "target_types": ["company", "organization"],
+          "inverse": "founded_by",
+          "aliases": ["wikidata:P112"]
+        },
+        "advisor_to": {
+          "code": 55,
+          "description": "Advisory role",
+          "source_types": ["person"],
+          "target_types": ["company", "organization", "person"],
+          "inverse": "has_advisor",
+          "aliases": ["counselor_to"]
+        },
+        "auditor_of": {
+          "code": 56,
+          "description": "External auditor",
+          "source_types": ["company", "person"],
+          "target_types": ["company", "organization"],
+          "inverse": "audited_by",
+          "aliases": ["sayari:auditor_of"]
+        },
+        "legal_representative_of": {
+          "code": 57,
+          "description": "Legal representative/agent",
+          "source_types": ["person", "company"],
+          "target_types": ["company", "organization", "person"],
+          "inverse": "represented_by",
+          "aliases": ["ftm:Representation", "lawyer_of", "attorney_of", "registered_agent_of"]
+        }
+      }
+    },
+
+    "located_at": {
+      "code": 6,
+      "description": "Spatial/geographic relationship",
+      "source_types": ["person", "company", "organization", "property"],
+      "target_types": ["address", "municipality", "region", "country"],
+      "inverse": "location_of",
+      "aliases": ["based_at", "situated_at"],
+      "subtypes": {
+        "registered_in": {
+          "code": 61,
+          "description": "Jurisdiction of registration/incorporation",
+          "source_types": ["company", "vessel", "aircraft", "vehicle"],
+          "target_types": ["country", "region"],
+          "inverse": "registers",
+          "aliases": ["incorporated_in", "gleif:LegalJurisdiction"]
+        },
+        "headquartered_at": {
+          "code": 62,
+          "description": "Headquarters location",
+          "source_types": ["company", "organization"],
+          "target_types": ["address", "municipality", "country"],
+          "inverse": "headquarters_of",
+          "aliases": ["hq_at", "wikidata:P159"]
+        },
+        "resides_at": {
+          "code": 63,
+          "description": "Person's residence",
+          "source_types": ["person"],
+          "target_types": ["address"],
+          "inverse": "residence_of",
+          "aliases": ["lives_at", "domiciled_at"]
+        },
+        "operates_in": {
+          "code": 64,
+          "description": "Geographic area of business operations",
+          "source_types": ["company", "organization"],
+          "target_types": ["country", "region"],
+          "inverse": "has_operations",
+          "aliases": ["active_in", "does_business_in"]
+        },
+        "citizen_of": {
+          "code": 65,
+          "description": "Citizenship/nationality",
+          "source_types": ["person"],
+          "target_types": ["country"],
+          "inverse": "has_citizen",
+          "aliases": ["national_of", "wikidata:P27"]
+        }
+      }
+    },
+
+    "has": {
+      "code": 7,
+      "description": "Attribute/contact attachment",
+      "source_types": ["person", "company", "organization", "domain"],
+      "target_types": ["email", "phone", "address", "username", "url"],
+      "inverse": "belongs_to",
+      "aliases": ["has_contact", "has_attribute"],
+      "subtypes": {
+        "has_email": {
+          "code": 71,
+          "source_types": ["person", "company", "organization", "domain"],
+          "target_types": ["email"],
+          "inverse": "email_of",
+          "metadata": { "email_type": ["personal", "work", "corporate", "registrant"] }
+        },
+        "has_phone": {
+          "code": 72,
+          "source_types": ["person", "company", "organization"],
+          "target_types": ["phone"],
+          "inverse": "phone_of",
+          "metadata": { "phone_type": ["mobile", "work", "home", "fax"] }
+        },
+        "has_address": {
+          "code": 73,
+          "source_types": ["person", "company", "organization"],
+          "target_types": ["address"],
+          "inverse": "address_of",
+          "metadata": { "address_type": ["registered", "trading", "residential", "mailing"] }
+        },
+        "has_website": {
+          "code": 74,
+          "source_types": ["person", "company", "organization"],
+          "target_types": ["domain", "url"],
+          "inverse": "website_of"
+        },
+        "has_profile": {
+          "code": 75,
+          "description": "Social media or professional profile",
+          "source_types": ["person", "company", "organization"],
+          "target_types": ["url"],
+          "inverse": "profile_of",
+          "metadata": { "platform": "string" }
+        },
+        "has_username": {
+          "code": 76,
+          "source_types": ["person"],
+          "target_types": ["username"],
+          "inverse": "username_of"
+        },
+        "has_title": {
+          "code": 77,
+          "description": "Professional title attachment. Titles are NODES in the TITLES ontology.",
+          "source_types": ["person"],
+          "target_types": ["title"],
+          "inverse": "title_of",
+          "aliases": ["holds_title", "has_position"],
+          "metadata": {
+            "context_entity": "company|organization - where the title is held",
+            "from_date": "ISO8601",
+            "to_date": "ISO8601",
+            "is_current": "boolean"
+          },
+          "note": "person --[has_title]--> title(CEO) + person --[executive_of]--> company = 'Person X is CEO at Company Y'"
+        },
+        "has_profession": {
+          "code": 78,
+          "description": "Professional occupation (independent of employer). Professions are NODES.",
+          "source_types": ["person"],
+          "target_types": ["profession"],
+          "inverse": "profession_of",
+          "aliases": ["works_as", "occupation_is"],
+          "metadata": {
+            "is_primary": "boolean",
+            "years_experience": "integer"
+          },
+          "note": "Different from title: profession=lawyer, title=General Counsel. Profession persists across employers."
+        }
+      }
+    },
+
+    "links_to": {
+      "code": 8,
+      "description": "Digital/web relationship",
+      "source_types": ["domain", "url"],
+      "target_types": ["domain", "url", "ip_address"],
+      "inverse": "linked_from",
+      "aliases": ["hyperlinks_to", "references"],
+      "metadata": {
+        "anchor_text": "string",
+        "link_count": "integer"
+      },
+      "subtypes": {
+        "hosted_at": {
+          "code": 81,
+          "description": "Domain hosted at IP",
+          "source_types": ["domain"],
+          "target_types": ["ip_address"],
+          "inverse": "hosts",
+          "metadata": { "record_type": ["A", "AAAA", "CNAME"] }
+        },
+        "registrant_of": {
+          "code": 82,
+          "description": "Domain registrant (from WHOIS)",
+          "source_types": ["person", "company"],
+          "target_types": ["domain"],
+          "inverse": "registered_by",
+          "aliases": ["whois_registrant_of"]
+        },
+        "subdomain_of": {
+          "code": 83,
+          "source_types": ["domain"],
+          "target_types": ["domain"],
+          "inverse": "has_subdomain"
+        },
+        "shares_tracker_with": {
+          "code": 84,
+          "description": "Domains share analytics/tracking code",
+          "source_types": ["domain"],
+          "target_types": ["domain"],
+          "bidirectional": true,
+          "metadata": { "tracker_type": "string", "tracker_id": "string" }
+        }
+      }
+    },
+
+    "mentioned_in": {
+      "code": 9,
+      "description": "Evidence/provenance relationship",
+      "source_types": ["person", "company", "organization", "address", "event"],
+      "target_types": ["document", "url", "file", "source"],
+      "inverse": "mentions",
+      "aliases": ["appears_in", "referenced_in"],
+      "metadata": {
+        "mention_type": ["subject", "reference", "quote"],
+        "context_snippet": "string",
+        "sentiment": ["positive", "neutral", "negative"]
+      },
+      "subtypes": {
+        "extracted_from": {
+          "code": 91,
+          "description": "Entity was extracted from this source (provenance)",
+          "inverse": "yielded",
+          "aliases": ["sourced_from", "derived_from"]
+        },
+        "documented_by": {
+          "code": 92,
+          "description": "Entity is documented/evidenced by",
+          "inverse": "documents"
+        },
+        "filed_with": {
+          "code": 93,
+          "description": "Document filed with regulatory body",
+          "source_types": ["document", "file"],
+          "target_types": ["organization"],
+          "inverse": "received_filing"
+        }
+      }
+    },
+
+    "party_to": {
+      "code": 10,
+      "description": "Legal proceeding involvement",
+      "source_types": ["person", "company", "organization"],
+      "target_types": ["legal_case"],
+      "inverse": "involves",
+      "aliases": ["ftm:CourtCaseParty", "litigant_in", "involved_in"],
+      "metadata": {
+        "party_role": "string",
+        "case_status": ["active", "settled", "dismissed", "judgment"]
+      },
+      "subtypes": {
+        "plaintiff_in": {
+          "code": 101,
+          "description": "Plaintiff/claimant",
+          "inverse": "has_plaintiff",
+          "aliases": ["claimant_in", "petitioner_in"]
+        },
+        "defendant_in": {
+          "code": 102,
+          "description": "Defendant/respondent",
+          "inverse": "has_defendant",
+          "aliases": ["respondent_in"]
+        },
+        "witness_in": {
+          "code": 103,
+          "source_types": ["person"],
+          "inverse": "has_witness"
+        }
+      }
+    },
+
+    "transacts_with": {
+      "code": 11,
+      "description": "Financial transaction relationship",
+      "source_types": ["person", "company", "bank_account", "crypto_wallet"],
+      "target_types": ["person", "company", "bank_account", "crypto_wallet"],
+      "inverse": "transacts_with",
+      "bidirectional": true,
+      "aliases": ["ftm:Payment", "pays", "receives_from"],
+      "metadata": {
+        "amount": "number",
+        "currency": "string",
+        "transaction_date": "ISO8601",
+        "transaction_type": "string"
+      },
+      "subtypes": {
+        "creditor_of": {
+          "code": 111,
+          "description": "Is owed money by",
+          "inverse": "debtor_of"
+        },
+        "debtor_of": {
+          "code": 112,
+          "description": "Owes money to",
+          "inverse": "creditor_of"
+        },
+        "investor_in": {
+          "code": 113,
+          "description": "Has invested in",
+          "source_types": ["person", "company"],
+          "target_types": ["company"],
+          "inverse": "has_investor",
+          "metadata": { "investment_type": ["equity", "debt", "convertible", "vc", "pe"] }
+        },
+        "funded_by": {
+          "code": 114,
+          "description": "Receives funding from",
+          "inverse": "funds"
+        }
+      }
+    },
+
+    "flagged_with": {
+      "code": 12,
+      "description": "Risk flag attachment. The flag itself is a NODE, relationship just connects.",
+      "source_types": ["person", "company", "organization", "vessel", "aircraft"],
+      "target_types": ["tag", "sanction_entry", "pep_entry"],
+      "inverse": "flags",
+      "aliases": ["ftm:Sanction", "tagged_with", "risk_flagged"],
+      "note": "PEP/sanction status emerges from graph: entity --[flagged_with]--> tag(type=PEP). No need for pep_related_to.",
+      "metadata": {
+        "flag_type": ["PEP", "sanction", "adverse_media", "watchlist", "high_risk"],
+        "severity": ["low", "medium", "high", "critical"],
+        "source": "string",
+        "listing_date": "ISO8601"
+      }
+    },
+
+    "succeeds": {
+      "code": 13,
+      "description": "Legal succession (corporate lineage)",
+      "source_types": ["company", "organization"],
+      "target_types": ["company", "organization"],
+      "inverse": "preceded_by",
+      "aliases": ["ftm:Succession", "legal_successor_of", "sayari:legal_successor_of"],
+      "metadata": {
+        "succession_type": ["merger", "acquisition", "spin_off", "rename", "conversion"]
+      },
+      "subtypes": {
+        "merged_from": {
+          "code": 131,
+          "description": "Formed by merger of",
+          "inverse": "merged_into"
+        },
+        "spun_off_from": {
+          "code": 132,
+          "description": "Spun off from parent",
+          "inverse": "spun_off"
+        },
+        "renamed_from": {
+          "code": 133,
+          "description": "Previously known as",
+          "inverse": "renamed_to"
+        }
+      }
+    },
+
+    "regulated_by": {
+      "code": 14,
+      "description": "Regulatory/supervisory relationship. Entity is subject to regulatory authority.",
+      "source_types": ["company", "organization", "person", "vessel", "aircraft"],
+      "target_types": ["organization", "government_agency"],
+      "inverse": "regulates",
+      "aliases": ["supervised_by", "overseen_by"],
+      "metadata": {
+        "regulatory_type": ["financial", "professional", "environmental", "safety", "industry_specific"],
+        "license_number": "string",
+        "license_date": "ISO8601",
+        "expiry_date": "ISO8601",
+        "status": ["active", "suspended", "revoked", "pending"]
+      },
+      "subtypes": {
+        "licensed_by": {
+          "code": 141,
+          "description": "Holds license/authorization from regulatory body",
+          "inverse": "licenses",
+          "aliases": ["authorized_by", "permitted_by"],
+          "metadata": {
+            "license_type": ["professional", "operating", "export", "import", "broadcast"]
+          }
+        },
+        "supervised_by": {
+          "code": 142,
+          "description": "Under regulatory supervision (ongoing oversight)",
+          "inverse": "supervises",
+          "aliases": ["overseen_by", "monitored_by"]
+        },
+        "registered_with": {
+          "code": 143,
+          "description": "Registered with regulatory authority (not same as incorporated_in)",
+          "inverse": "has_registered",
+          "aliases": ["enrolled_with"]
+        },
+        "approved_by": {
+          "code": 144,
+          "description": "Product/service approval from regulatory body",
+          "inverse": "approved",
+          "aliases": ["certified_by", "accredited_by"],
+          "metadata": {
+            "approval_type": ["product", "service", "process", "facility"],
+            "standards": "array"
+          }
+        },
+        "audited_by": {
+          "code": 145,
+          "description": "External audit relationship (regulatory or statutory)",
+          "source_types": ["company", "organization"],
+          "target_types": ["company", "organization"],
+          "inverse": "audits",
+          "aliases": ["sayari:auditor_of"],
+          "metadata": {
+            "audit_type": ["financial", "compliance", "quality", "safety"],
+            "audit_period": "string"
+          },
+          "note": "Moved from member_of tree - auditors regulate, they don't have membership"
+        }
+      }
+    },
+
+    "enrichment_of": {
+      "code": 16,
+      "description": "NEXUS enrichment query relationship - Discovery = NEXUS enrichment of unknowns",
+      "source_types": ["enrichment_profile", "enrichment_candidate"],
+      "target_types": ["*"],
+      "inverse": "enriched_by",
+      "bidirectional": false,
+      "aliases": ["discovery_of", "search_for"],
+      "metadata": {
+        "confidence": "float 0-1",
+        "method": "string",
+        "source_name": "string"
+      },
+      "subtypes": {
+        "resolved_to": {
+          "code": 161,
+          "description": "Enrichment query resolved to selected entity (query → selected candidate)",
+          "source_types": ["enrichment_profile"],
+          "target_types": ["person", "company", "organization", "email", "phone", "username", "vehicle", "vessel", "aircraft", "domain"],
+          "inverse": "resolved_from",
+          "aliases": ["discovered_as", "identified_as"],
+          "metadata": {
+            "resolution_time": "datetime",
+            "candidate_id": "string",
+            "confidence": "float 0-1"
+          },
+          "note": "Creates concrete SUBJECT entity from enrichment candidate selection"
+        },
+        "rejected_as": {
+          "code": 162,
+          "description": "Enrichment query rejected candidate (negative match)",
+          "source_types": ["enrichment_profile"],
+          "target_types": ["enrichment_candidate"],
+          "inverse": "rejected_from",
+          "aliases": ["not_match", "excluded"],
+          "metadata": {
+            "rejection_reason": "string",
+            "reviewer": "string"
+          },
+          "note": "Negative evidence prevents future false positives"
+        },
+        "candidate_of": {
+          "code": 163,
+          "description": "Entity is potential match for enrichment query",
+          "source_types": ["enrichment_candidate"],
+          "target_types": ["enrichment_profile"],
+          "inverse": "has_candidate",
+          "aliases": ["potential_match_for", "suggested_for"],
+          "metadata": {
+            "confidence": "float 0-1",
+            "rank": "integer",
+            "source": "string"
+          }
+        },
+        "sourced_from": {
+          "code": 164,
+          "description": "Candidate data retrieved from external source",
+          "source_types": ["enrichment_candidate"],
+          "target_types": ["source"],
+          "inverse": "provided",
+          "aliases": ["fetched_from", "retrieved_from"],
+          "metadata": {
+            "source_type": ["api", "database", "scrape", "manual"],
+            "fetch_time": "datetime"
+          }
+        },
+        "discovered_via": {
+          "code": 165,
+          "description": "Entity discovered through enrichment method",
+          "source_types": ["person", "company", "organization", "email", "phone", "username", "vehicle", "vessel", "aircraft", "domain"],
+          "target_types": ["enrichment_profile"],
+          "inverse": "discovered",
+          "aliases": ["found_via", "identified_via"],
+          "metadata": {
+            "method": ["linkedin_search", "osint_lookup", "registry_search", "breach_search", "whois_lookup", "plate_lookup"],
+            "discovery_time": "datetime"
+          }
+        }
+      }
+    }
+  },
+
+  "node_types": [
+    "person", "company", "organization", "government_agency",
+    "address", "email", "phone", "username", "url", "domain", "ip_address",
+    "property", "vehicle", "vessel", "aircraft",
+    "bank_account", "crypto_wallet",
+    "document", "file", "source",
+    "legal_case",
+    "tag", "sanction_entry", "pep_entry",
+    "event", "topic", "theme",
+    "country", "region", "municipality",
+    "title", "profession", "industry",
+    "enrichment_profile", "enrichment_candidate"
+  ],
+
+  "alias_index": {
+    "_description": "Quick lookup: alias → canonical relationship",
+
+    "_comment_ftm": "FollowTheMoney (Aleph/OCCRP) mappings",
+    "ftm:Directorship": "officer_of",
+    "ftm:Ownership": "owns",
+    "ftm:Employment": "employee_of",
+    "ftm:Family": "family_of",
+    "ftm:Membership": "member_of",
+    "ftm:Payment": "transacts_with",
+    "ftm:Sanction": "flagged_with",
+    "ftm:SameAs": "same_as",
+    "ftm:UnknownLink": "related_to",
+    "ftm:Associate": "related_to",
+    "ftm:Representation": "legal_representative_of",
+    "ftm:Succession": "succeeds",
+    "ftm:CourtCaseParty": "party_to",
+
+    "_comment_aleph": "Aleph (OCCRP) additional mappings",
+    "aleph:Ownership": "owns",
+    "aleph:Directorship": "officer_of",
+    "aleph:Family": "family_of",
+    "aleph:Partnership": "partner_of",
+    "aleph:Shareholding": "shareholder_of",
+    "aleph:ControlledBy": "controls",
+    "aleph:SameAs": "same_as",
+
+    "_comment_icij": "ICIJ (Offshore Leaks, Paradise Papers, etc.) mappings",
+    "icij:officer": "officer_of",
+    "icij:intermediary": "legal_representative_of",
+    "icij:shareholder": "shareholder_of",
+    "icij:beneficialOwner": "beneficial_owner_of",
+    "icij:connected": "related_to",
+
+    "_comment_psc": "UK PSC (Persons with Significant Control) granular mappings",
+    "psc:ownership-of-shares-25-to-50-percent": "shareholder_of",
+    "psc:ownership-of-shares-50-to-75-percent": "majority_shareholder_of",
+    "psc:ownership-of-shares-75-to-100-percent": "majority_shareholder_of",
+    "psc:voting-rights-25-to-50-percent": "shareholder_of",
+    "psc:voting-rights-50-to-75-percent": "majority_shareholder_of",
+    "psc:voting-rights-75-to-100-percent": "majority_shareholder_of",
+    "psc:right-to-appoint-and-remove-directors": "controls",
+    "psc:significant-influence-or-control": "controls",
+    "psc:ownership-of-shares-25-to-50-percent-as-trust": "trustee_of",
+    "psc:ownership-of-shares-50-to-75-percent-as-trust": "trustee_of",
+
+    "_comment_eu": "EU Transparency Register and corporate registers",
+    "eu:RegisteredRepresentative": "legal_representative_of",
+    "eu:BeneficialOwner": "beneficial_owner_of",
+    "eu:UltimateBeneficialOwner": "beneficial_owner_of",
+
+    "_comment_gleif": "GLEIF (Legal Entity Identifier) mappings",
+    "gleif:IS_DIRECTLY_CONSOLIDATED_BY": "subsidiary_of",
+    "gleif:IS_ULTIMATELY_CONSOLIDATED_BY": "ultimate_parent_of",
+    "gleif:IS_INTERNATIONAL_BRANCH_OF": "branch_of",
+    "gleif:LegalJurisdiction": "registered_in",
+
+    "_comment_opencorporates": "OpenCorporates mappings",
+    "oc:officer": "officer_of",
+    "oc:director": "director_of",
+    "oc:secretary": "secretary_of",
+    "oc:shareholder": "shareholder_of",
+
+    "_comment_sayari": "Sayari Graph mappings",
+    "sayari:officer_of": "officer_of",
+    "sayari:shareholder_of": "shareholder_of",
+    "sayari:legal_successor_of": "succeeds",
+    "sayari:auditor_of": "audited_by",
+    "sayari:supplier_of": "supplies_to",
+
+    "_comment_wikidata": "Wikidata property mappings",
+    "wikidata:P112": "founder_of",
+    "wikidata:P127": "owns",
+    "wikidata:P749": "parent_of",
+    "wikidata:P159": "headquartered_at",
+    "wikidata:P27": "citizen_of",
+    "wikidata:P1830": "owns",
+    "wikidata:P108": "employee_of",
+    "wikidata:P169": "director_of",
+
+    "_comment_owl": "OWL (Web Ontology Language) mappings",
+    "owl:sameAs": "same_as",
+    "owl:differentFrom": "not_same_as",
+
+    "_comment_skos": "SKOS (Simple Knowledge Organization System) mappings",
+    "skos:exactMatch": "same_as",
+    "skos:closeMatch": "related_to",
+
+    "_comment_common": "Common alternative names",
+    "ubo_of": "beneficial_owner_of",
+    "psc_of": "beneficial_owner_of",
+    "married_to": "spouse_of",
+    "works_for": "employee_of",
+    "employed_by": "employee_of",
+    "linked_to": "related_to",
+    "associated_with": "related_to",
+    "different_from": "not_same_as",
+    "distinct_from": "not_same_as",
+    "vendor_of": "supplies_to",
+    "supplier_of": "supplies_to",
+    "client_of": "customer_of",
+    "buyer_from": "customer_of",
+    "competes_with": "competitor_of",
+    "rival_of": "competitor_of",
+    "joint_venture_with": "partner_of",
+    "strategic_partner_of": "partner_of",
+    "overseen_by": "supervised_by",
+    "monitored_by": "supervised_by",
+    "authorized_by": "licensed_by",
+    "permitted_by": "licensed_by",
+    "certified_by": "approved_by",
+    "accredited_by": "approved_by",
+    "enrolled_with": "registered_with",
+
+    "_comment_enrichment": "NEXUS Enrichment (v3.2.0) mappings",
+    "discovery_of": "enrichment_of",
+    "search_for": "enrichment_of",
+    "discovered_as": "resolved_to",
+    "identified_as": "resolved_to",
+    "not_match": "rejected_as",
+    "excluded": "rejected_as",
+    "potential_match_for": "candidate_of",
+    "suggested_for": "candidate_of",
+    "fetched_from": "sourced_from",
+    "retrieved_from": "sourced_from",
+    "found_via": "discovered_via",
+    "identified_via": "discovered_via",
+
+    "_comment_v311_reclassified": "v3.1.1 reclassified relationships (now aliases or moved to correct parent)",
+    "gerant_of": "director_of",
+    "grant_majoritaire_of": "director_of",
+    "grant_minoritaire_of": "director_of",
+    "consejero_of": "director_of",
+    "consejero_delegado_of": "director_of",
+    "vocal_of": "director_of",
+    "syndic_of": "director_of",
+    "membre_du_conseil_of": "director_of",
+    "stiftungsrat_of": "director_of",
+    "komplementar_of": "general_partner_of",
+    "unbeschrankt_haftender_gesellschafter_of": "general_partner_of",
+    "kommanditist_of": "limited_partner_of",
+    "beschrankt_haftender_gesellschafter_of": "limited_partner_of"
+  }
+}

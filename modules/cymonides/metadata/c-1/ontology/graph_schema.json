@@ -1,0 +1,2293 @@
+{
+  "schema_version": "1.1",
+  "generated_at": "2025-11-04T00:09:55.899042Z",
+  "description": "Property-graph schema for investigative OSINT: nodes (websites, emails, phones, usernames, passwords, companies, people, addresses, vehicles, art, IP, etc.) and typed, directional relationships with provenance and temporal qualifiers. Extensions v1.1: expanded nodes/edges for network, finance, trust, logistics, media, social, repos, and geography.",
+  "conventions": {
+    "id_format": "prefix:base58 or UUIDv4 (stable per entity)",
+    "datetime_format": "ISO-8601",
+    "country_format": "ISO-3166-1 alpha-2",
+    "currency_format": "ISO-4217",
+    "phone_format": "E.164",
+    "email_normalization": "lowercase local@domain; punycode for IDN domains",
+    "domain_normalization": "lowercase FQDN; punycode for IDN; no trailing dot",
+    "confidence": "0.0\u20131.0 (Bayesian posterior or heuristic score)",
+    "sensitivity": ["PUBLIC", "PII", "SPII", "RESTRICTED"]
+  },
+  "node_types": {
+    "PERSON": {
+      "key_props": ["person_id"],
+      "unique": ["person_id"],
+      "indexes": ["names.full", "names.family", "dob.value"],
+      "props": {
+        "person_id": "string",
+        "names": "array<object>{full,given,family,script?,type?}",
+        "aka_names": "array<string>",
+        "dob": "object{value,date_precision}",
+        "nationalities": "array<string>",
+        "addresses": "array<object>{line1,city,region,postal_code,country_code,geo?}",
+        "emails": "array<string>",
+        "phones": "array<string>",
+        "pep_status": "boolean?",
+        "sanctions_flags": "array<string>?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "PERSONA": {
+      "key_props": ["persona_id"],
+      "unique": ["persona_id"],
+      "indexes": ["platform", "handle"],
+      "props": {
+        "persona_id": "string",
+        "platform": "string",
+        "handle": "string",
+        "profile_url": "string?",
+        "username": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "COMPANY": {
+      "key_props": ["company_id"],
+      "unique": ["company_id"],
+      "indexes": ["name", "company_number", "vat_id"],
+      "props": {
+        "company_id": "string",
+        "name": "string",
+        "company_number": "string?",
+        "jurisdiction": "string?",
+        "vat_id": "string?",
+        "status": "string?",
+        "incorporation_date": "date?",
+        "dissolution_date": "date?",
+        "type": "string?",
+        "sic_code": "string?",
+        "address": "object{line1,city,region,postal_code,country_code}?",
+        "website": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "ADDRESS": {
+      "key_props": ["address_id"],
+      "unique": ["address_id"],
+      "indexes": ["city", "region", "country_code", "postal_code"],
+      "props": {
+        "address_id": "string",
+        "line1": "string",
+        "line2": "string?",
+        "city": "string?",
+        "region": "string?",
+        "postal_code": "string?",
+        "country_code": "string",
+        "geo": "object{lat,lon}?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "EMAIL": {
+      "key_props": ["email_id"],
+      "unique": ["email_id", "address"],
+      "indexes": ["domain"],
+      "props": {
+        "email_id": "string",
+        "address": "string",
+        "domain": "string",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "PHONE": {
+      "key_props": ["phone_id"],
+      "unique": ["phone_id", "e164"],
+      "indexes": ["country_code"],
+      "props": {
+        "phone_id": "string",
+        "e164": "string",
+        "raw": "string?",
+        "country_code": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "USERNAME": {
+      "key_props": ["username_id"],
+      "unique": ["username_id", "platform", "handle"],
+      "indexes": ["platform", "handle"],
+      "props": {
+        "username_id": "string",
+        "platform": "string",
+        "handle": "string",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "PASSWORD_CREDENTIAL": {
+      "key_props": ["cred_id"],
+      "unique": ["cred_id", "hash"],
+      "indexes": ["hash_prefix"],
+      "props": {
+        "cred_id": "string",
+        "hash": "string",
+        "hash_prefix": "string",
+        "exposed": "boolean",
+        "source": "string?",
+        "breach_date": "date?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "DOMAIN": {
+      "key_props": ["domain_id"],
+      "unique": ["domain_id", "fqdn"],
+      "indexes": ["fqdn"],
+      "props": {
+        "domain_id": "string",
+        "fqdn": "string",
+        "creation_date": "date?",
+        "update_date": "date?",
+        "expiry_date": "date?",
+        "registrar": "string?",
+        "nameservers": "array<string>?",
+        "status_codes": "array<string>?",
+        "whois_raw_sha256": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "WEBPAGE": {
+      "key_props": ["page_id"],
+      "unique": ["page_id", "url"],
+      "indexes": ["domain", "path"],
+      "props": {
+        "page_id": "string",
+        "url": "string",
+        "domain": "string",
+        "path": "string?",
+        "title": "string?",
+        "first_seen": "datetime?",
+        "last_seen": "datetime?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "PROPERTY": {
+      "key_props": ["property_id"],
+      "unique": ["property_id"],
+      "indexes": ["title_id", "cadastral_id"],
+      "props": {
+        "property_id": "string",
+        "address_id": "string?",
+        "title_id": "string?",
+        "cadastral_id": "string?",
+        "size": "string?",
+        "value": "number?",
+        "value_currency": "string?",
+        "purchase_date": "date?",
+        "purchase_price": "number?",
+        "purchase_currency": "string?",
+        "mortgage": "object{lender,amount,currency,start_date,maturity_date}?",
+        "type": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "VEHICLE": {
+      "key_props": ["vehicle_id"],
+      "unique": ["vehicle_id", "vin?", "reg_id?"],
+      "indexes": ["reg_id", "vin"],
+      "props": {
+        "vehicle_id": "string",
+        "reg_id": "string?",
+        "vin": "string?",
+        "make_model": "string?",
+        "year": "integer?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "VESSEL": {
+      "key_props": ["vessel_id"],
+      "unique": ["vessel_id", "imo?", "mmsi?"],
+      "indexes": ["imo", "mmsi"],
+      "props": {
+        "vessel_id": "string",
+        "name": "string?",
+        "imo": "string?",
+        "flag": "string?",
+        "mmsi": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "AIRCRAFT": {
+      "key_props": ["aircraft_id"],
+      "unique": ["aircraft_id", "reg_id?", "icao24?"],
+      "indexes": ["reg_id", "icao24"],
+      "props": {
+        "aircraft_id": "string",
+        "reg_id": "string?",
+        "manufacturer": "string?",
+        "model": "string?",
+        "icao24": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "ARTWORK": {
+      "key_props": ["art_id"],
+      "unique": ["art_id"],
+      "indexes": ["title", "year", "artist_name"],
+      "props": {
+        "art_id": "string",
+        "title": "string",
+        "artist_name": "string?",
+        "year": "integer?",
+        "medium": "string?",
+        "catalogue_number": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "IP_ASSET": {
+      "key_props": ["ip_id"],
+      "unique": ["ip_id", "type", "registry_number"],
+      "indexes": ["type", "registry_number", "jurisdiction"],
+      "props": {
+        "ip_id": "string",
+        "type": "enum{PATENT,TRADEMARK,COPYRIGHT,DESIGN}",
+        "registry_number": "string",
+        "title": "string?",
+        "jurisdiction": "string?",
+        "filing_date": "date?",
+        "grant_date": "date?",
+        "status": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "LITIGATION_CASE": {
+      "key_props": ["case_id"],
+      "unique": ["case_id", "docket_id?"],
+      "indexes": ["title", "court", "docket_id"],
+      "props": {
+        "case_id": "string",
+        "title": "string",
+        "court": "string?",
+        "docket_id": "string?",
+        "filing_date": "date?",
+        "status": "string?",
+        "judgment": "string?",
+        "judgment_date": "date?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "LICENSE": {
+      "key_props": ["license_id"],
+      "unique": ["license_id"],
+      "props": {
+        "license_id": "string",
+        "type": "string?",
+        "issued_date": "date?",
+        "expiry_date": "date?",
+        "status": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "PERMIT": {
+      "key_props": ["permit_id"],
+      "unique": ["permit_id"],
+      "props": {
+        "permit_id": "string",
+        "type": "string?",
+        "issued_date": "date?",
+        "expiry_date": "date?",
+        "status": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "REGULATORY_ACTION": {
+      "key_props": ["action_id"],
+      "unique": ["action_id"],
+      "props": {
+        "action_id": "string",
+        "agency": "string?",
+        "action_type": "string?",
+        "date": "date?",
+        "description": "string?",
+        "penalty_amount": "number?",
+        "penalty_currency": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "SANCTIONS_ENTRY": {
+      "key_props": ["sanction_id"],
+      "unique": ["sanction_id"],
+      "props": {
+        "sanction_id": "string",
+        "issuing_body": "string",
+        "program": "string?",
+        "list_name": "string?",
+        "date_added": "date?",
+        "date_removed": "date?",
+        "reason": "string?",
+        "entity_type": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "DOCUMENT": {
+      "key_props": ["doc_id"],
+      "unique": ["doc_id", "url?", "sha256?"],
+      "props": {
+        "doc_id": "string",
+        "url": "string?",
+        "sha256": "string?",
+        "title": "string?",
+        "type": "string?",
+        "published_at": "datetime?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "IP_ADDRESS": {
+      "key_props": ["ip_id"],
+      "unique": ["ip_id", "ip"],
+      "indexes": ["ip", "asn"],
+      "props": {
+        "ip_id": "string",
+        "ip": "string",
+        "version": "enum{IPv4,IPv6}?",
+        "asn": "string?",
+        "rir": "string?",
+        "geo": "object{lat,lon}?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "AUTONOMOUS_SYSTEM": {
+      "key_props": ["asn_id"],
+      "unique": ["asn_id", "asn"],
+      "indexes": ["asn", "org_name"],
+      "props": {
+        "asn_id": "string",
+        "asn": "string",
+        "org_name": "string?",
+        "country_code": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "SERVER": {
+      "key_props": ["server_id"],
+      "unique": ["server_id", "hostname"],
+      "indexes": ["hostname"],
+      "props": {
+        "server_id": "string",
+        "hostname": "string?",
+        "provider": "string?",
+        "geo": "object{lat,lon}?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "WALLET": {
+      "key_props": ["wallet_id"],
+      "unique": ["wallet_id", "address"],
+      "indexes": ["address", "chain"],
+      "props": {
+        "wallet_id": "string",
+        "address": "string",
+        "chain": "string",
+        "tag": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "ONCHAIN_TX": {
+      "key_props": ["tx_id"],
+      "unique": ["tx_id", "hash"],
+      "indexes": ["hash", "chain", "block_time"],
+      "props": {
+        "tx_id": "string",
+        "hash": "string",
+        "chain": "string",
+        "block_time": "datetime?",
+        "value": "number?",
+        "fee": "number?",
+        "token": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "BANK_ACCOUNT": {
+      "key_props": ["acct_id"],
+      "unique": ["acct_id", "iban?", "account_no?"],
+      "indexes": ["iban", "account_no", "currency"],
+      "props": {
+        "acct_id": "string",
+        "iban": "string?",
+        "account_no": "string?",
+        "currency": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "FINANCIAL_INSTITUTION": {
+      "key_props": ["fi_id"],
+      "unique": ["fi_id", "bic?", "name"],
+      "indexes": ["name", "bic"],
+      "props": {
+        "fi_id": "string",
+        "name": "string",
+        "bic": "string?",
+        "country_code": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "TRUST": {
+      "key_props": ["trust_id"],
+      "unique": ["trust_id"],
+      "indexes": ["name", "jurisdiction"],
+      "props": {
+        "trust_id": "string",
+        "name": "string",
+        "jurisdiction": "string?",
+        "deed_date": "date?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "FUND": {
+      "key_props": ["fund_id"],
+      "unique": ["fund_id"],
+      "indexes": ["name", "lei?", "domicile"],
+      "props": {
+        "fund_id": "string",
+        "name": "string",
+        "lei": "string?",
+        "domicile": "string?",
+        "type": "enum{GP,LP,Fund}?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "LAW_OR_REGULATION": {
+      "key_props": ["law_id"],
+      "unique": ["law_id"],
+      "indexes": ["code", "section", "jurisdiction"],
+      "props": {
+        "law_id": "string",
+        "code": "string?",
+        "section": "string?",
+        "jurisdiction": "string?",
+        "title": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "EVENT": {
+      "key_props": ["event_id"],
+      "unique": ["event_id"],
+      "indexes": ["type", "started_at", "ended_at"],
+      "props": {
+        "event_id": "string",
+        "type": "string",
+        "started_at": "datetime?",
+        "ended_at": "datetime?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "DEVICE": {
+      "key_props": ["device_id"],
+      "unique": ["device_id", "imei?"],
+      "indexes": ["imei", "model"],
+      "props": {
+        "device_id": "string",
+        "imei": "string?",
+        "model": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "SIM_CARD": {
+      "key_props": ["sim_id"],
+      "unique": ["sim_id", "imsi?"],
+      "indexes": ["imsi", "carrier"],
+      "props": {
+        "sim_id": "string",
+        "imsi": "string?",
+        "msisdn": "string?",
+        "carrier": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "IMAGE": {
+      "key_props": ["image_id"],
+      "unique": ["image_id", "sha256?"],
+      "indexes": ["sha256", "captured_at"],
+      "props": {
+        "image_id": "string",
+        "sha256": "string?",
+        "mime": "string?",
+        "captured_at": "datetime?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "VIDEO": {
+      "key_props": ["video_id"],
+      "unique": ["video_id", "sha256?"],
+      "indexes": ["sha256", "captured_at"],
+      "props": {
+        "video_id": "string",
+        "sha256": "string?",
+        "mime": "string?",
+        "captured_at": "datetime?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "AUDIO": {
+      "key_props": ["audio_id"],
+      "unique": ["audio_id", "sha256?"],
+      "indexes": ["sha256", "captured_at"],
+      "props": {
+        "audio_id": "string",
+        "sha256": "string?",
+        "mime": "string?",
+        "captured_at": "datetime?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "TAG_TOPIC": {
+      "key_props": ["tag_id"],
+      "unique": ["tag_id", "label"],
+      "indexes": ["label", "taxonomy"],
+      "props": {
+        "tag_id": "string",
+        "label": "string",
+        "taxonomy": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "LOCATION": {
+      "key_props": ["loc_id"],
+      "unique": ["loc_id"],
+      "indexes": ["name", "type", "country_code"],
+      "props": {
+        "loc_id": "string",
+        "name": "string",
+        "type": "enum{country,region,city,poi}",
+        "geo": "object{lat,lon}?",
+        "country_code": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "AIRPORT": {
+      "key_props": ["airport_id"],
+      "unique": ["airport_id", "iata?", "icao?"],
+      "indexes": ["iata", "icao", "name"],
+      "props": {
+        "airport_id": "string",
+        "iata": "string?",
+        "icao": "string?",
+        "name": "string?",
+        "country_code": "string?",
+        "geo": "object{lat,lon}?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "FLIGHT": {
+      "key_props": ["flight_id"],
+      "unique": ["flight_id", "number?", "carrier?"],
+      "indexes": ["number", "carrier", "dep_time", "arr_time"],
+      "props": {
+        "flight_id": "string",
+        "number": "string?",
+        "carrier": "string?",
+        "dep_time": "datetime?",
+        "arr_time": "datetime?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "SHIPMENT": {
+      "key_props": ["shipment_id"],
+      "unique": ["shipment_id", "bol_no?"],
+      "indexes": ["bol_no", "carrier"],
+      "props": {
+        "shipment_id": "string",
+        "bol_no": "string?",
+        "carrier": "string?",
+        "port_load": "string?",
+        "port_discharge": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "CERTIFICATE": {
+      "key_props": ["cert_id"],
+      "unique": ["cert_id", "fingerprint?"],
+      "indexes": ["fingerprint", "issuer"],
+      "props": {
+        "cert_id": "string",
+        "fingerprint": "string?",
+        "issuer": "string?",
+        "not_before": "datetime?",
+        "not_after": "datetime?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "AD_ACCOUNT": {
+      "key_props": ["ad_id"],
+      "unique": ["ad_id", "platform?", "account_id?"],
+      "indexes": ["platform", "account_id"],
+      "props": {
+        "ad_id": "string",
+        "platform": "string?",
+        "account_id": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "REPOSITORY": {
+      "key_props": ["repo_id"],
+      "unique": ["repo_id", "url?"],
+      "indexes": ["host", "url"],
+      "props": {
+        "repo_id": "string",
+        "vcs": "string?",
+        "host": "string?",
+        "url": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "PACKAGE": {
+      "key_props": ["pkg_id"],
+      "unique": ["pkg_id", "ecosystem?", "name?", "version?"],
+      "indexes": ["ecosystem", "name", "version"],
+      "props": {
+        "pkg_id": "string",
+        "ecosystem": "string?",
+        "name": "string?",
+        "version": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "MAILBOX": {
+      "key_props": ["mailbox_id"],
+      "unique": ["mailbox_id", "address?", "provider?"],
+      "indexes": ["address", "provider"],
+      "props": {
+        "mailbox_id": "string",
+        "address": "string?",
+        "provider": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "MESSAGE": {
+      "key_props": ["msg_id"],
+      "unique": ["msg_id", "header_hash?"],
+      "indexes": ["sent_at", "subject?", "from?", "to?"],
+      "props": {
+        "msg_id": "string",
+        "header_hash": "string?",
+        "sent_at": "datetime?",
+        "subject": "string?",
+        "from": "string?",
+        "to": "array<string>?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "GROUP": {
+      "key_props": ["group_id"],
+      "unique": ["group_id"],
+      "indexes": ["platform", "name"],
+      "props": {
+        "group_id": "string",
+        "platform": "string?",
+        "name": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "AGENCY": {
+      "key_props": ["agency_id"],
+      "unique": ["agency_id", "name"],
+      "indexes": ["name", "jurisdiction"],
+      "props": {
+        "agency_id": "string",
+        "name": "string",
+        "jurisdiction": "string?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    },
+    "CONTRACT": {
+      "key_props": ["contract_id"],
+      "unique": ["contract_id"],
+      "indexes": ["type", "date"],
+      "props": {
+        "contract_id": "string",
+        "type": "string?",
+        "date": "date?",
+        "created_at": "datetime",
+        "updated_at": "datetime"
+      }
+    }
+  },
+  "edge_types": [
+    {
+      "name": "SAME_AS",
+      "from": "ANY",
+      "to": "ANY",
+      "symmetry": "symmetric",
+      "inverse": "SAME_AS",
+      "props": {
+        "confidence": "number",
+        "evidence": "array<object>",
+        "as_of": "datetime?"
+      }
+    },
+    {
+      "name": "ALIAS_OF",
+      "from": "PERSONA",
+      "to": "PERSONA",
+      "symmetry": "directed",
+      "inverse": "HAS_ALIAS",
+      "props": {
+        "note": "string?",
+        "evidence": "array<object>",
+        "as_of": "datetime?"
+      }
+    },
+    {
+      "name": "PERSONA_OF",
+      "from": "PERSONA",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "HAS_PERSONA",
+      "props": {
+        "match_method": "string",
+        "confidence": "number",
+        "evidence": "array<object>",
+        "as_of": "datetime?"
+      }
+    },
+    {
+      "name": "EMAIL_OF",
+      "from": "EMAIL",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "HAS_EMAIL",
+      "props": {
+        "as_of": "datetime?",
+        "evidence": "array<object>",
+        "confidence": "number"
+      }
+    },
+    {
+      "name": "PHONE_OF",
+      "from": "PHONE",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "HAS_PHONE",
+      "props": {
+        "as_of": "datetime?",
+        "evidence": "array<object>",
+        "confidence": "number"
+      }
+    },
+    {
+      "name": "USERNAME_OF",
+      "from": "USERNAME",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "HAS_USERNAME",
+      "props": {
+        "platform": "string",
+        "as_of": "datetime?",
+        "evidence": "array<object>",
+        "confidence": "number"
+      }
+    },
+    {
+      "name": "CREDENTIAL_FOR",
+      "from": "PASSWORD_CREDENTIAL",
+      "to": "USERNAME",
+      "symmetry": "directed",
+      "inverse": "HAS_CREDENTIAL",
+      "props": {
+        "evidence": "array<object>",
+        "as_of": "datetime?"
+      }
+    },
+    {
+      "name": "FATHER_OF",
+      "from": "PERSON",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "CHILD_OF",
+      "props": {
+        "evidence": "array<object>",
+        "as_of": "datetime?"
+      }
+    },
+    {
+      "name": "MOTHER_OF",
+      "from": "PERSON",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "CHILD_OF",
+      "props": {
+        "evidence": "array<object>",
+        "as_of": "datetime?"
+      }
+    },
+    {
+      "name": "SPOUSE_OF",
+      "from": "PERSON",
+      "to": "PERSON",
+      "symmetry": "symmetric",
+      "inverse": "SPOUSE_OF",
+      "props": {
+        "marriage_date": "date?",
+        "divorce_date": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "SIBLING_OF",
+      "from": "PERSON",
+      "to": "PERSON",
+      "symmetry": "symmetric",
+      "inverse": "SIBLING_OF",
+      "props": {
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "EMPLOYED_BY",
+      "from": "PERSON",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "EMPLOYS",
+      "props": {
+        "role": "string?",
+        "start_date": "date?",
+        "end_date": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "OFFICER_OF",
+      "from": "PERSON",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "HAS_OFFICER",
+      "props": {
+        "role": "string?",
+        "appointment_date": "date?",
+        "resignation_date": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "SHAREHOLDER_OF",
+      "from": "PERSON",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "HAS_SHAREHOLDER",
+      "props": {
+        "shares": "number?",
+        "share_class": "string?",
+        "pct": "number?",
+        "as_of": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "BENEFICIAL_OWNER_OF",
+      "from": "PERSON",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "HAS_BENEFICIAL_OWNER",
+      "props": {
+        "pct": "number?",
+        "control_nature": "string?",
+        "effective_from": "date?",
+        "effective_to": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "PREVIOUS_NAME_OF",
+      "from": "COMPANY",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "RENAMED_FROM",
+      "props": {
+        "from_date": "date?",
+        "to_date": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "REGISTERED_AT",
+      "from": "COMPANY",
+      "to": "ADDRESS",
+      "symmetry": "directed",
+      "inverse": "REG_ADDRESS_OF",
+      "props": {
+        "as_of": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "OWNS_PROPERTY",
+      "from": "PERSON",
+      "to": "PROPERTY",
+      "symmetry": "directed",
+      "inverse": "PROPERTY_OWNED_BY",
+      "props": {
+        "pct": "number?",
+        "from": "date?",
+        "to": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "OWNS_PROPERTY",
+      "from": "COMPANY",
+      "to": "PROPERTY",
+      "symmetry": "directed",
+      "inverse": "PROPERTY_OWNED_BY",
+      "props": {
+        "pct": "number?",
+        "from": "date?",
+        "to": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "REGISTERED_TO",
+      "from": "VEHICLE",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "REGISTRANT_OF_VEHICLE",
+      "props": {
+        "as_of": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "REGISTERED_TO",
+      "from": "VEHICLE",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "REGISTRANT_OF_VEHICLE",
+      "props": {
+        "as_of": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "REGISTERED_TO",
+      "from": "VESSEL",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "REGISTRANT_OF_VESSEL",
+      "props": {
+        "as_of": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "REGISTERED_TO",
+      "from": "AIRCRAFT",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "REGISTRANT_OF_AIRCRAFT",
+      "props": {
+        "as_of": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "CREATED",
+      "from": "PERSON",
+      "to": "ARTWORK",
+      "symmetry": "directed",
+      "inverse": "CREATED_BY",
+      "props": {
+        "year": "integer?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "OWNS_ARTWORK",
+      "from": "PERSON",
+      "to": "ARTWORK",
+      "symmetry": "directed",
+      "inverse": "ARTWORK_OWNED_BY",
+      "props": {
+        "from": "date?",
+        "to": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "OWNS_IP",
+      "from": "PERSON",
+      "to": "IP_ASSET",
+      "symmetry": "directed",
+      "inverse": "IP_OWNED_BY",
+      "props": {
+        "pct": "number?",
+        "from": "date?",
+        "to": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "ASSIGNED_TO",
+      "from": "IP_ASSET",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "HAS_ASSIGNED_IP",
+      "props": {
+        "date": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "PARTY_IN",
+      "from": "PERSON",
+      "to": "LITIGATION_CASE",
+      "symmetry": "directed",
+      "inverse": "HAS_PARTY",
+      "props": {
+        "role": "enum{PLAINTIFF,DEFENDANT,APPELLANT,RESPONDENT,THIRD_PARTY}?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "PARTY_IN",
+      "from": "COMPANY",
+      "to": "LITIGATION_CASE",
+      "symmetry": "directed",
+      "inverse": "HAS_PARTY",
+      "props": {
+        "role": "enum{PLAINTIFF,DEFENDANT,APPELLANT,RESPONDENT,THIRD_PARTY}?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "LICENSED_BY",
+      "from": "COMPANY",
+      "to": "LICENSE",
+      "symmetry": "directed",
+      "inverse": "ISSUED_TO",
+      "props": {
+        "jurisdiction": "string?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "PERMITTED_BY",
+      "from": "COMPANY",
+      "to": "PERMIT",
+      "symmetry": "directed",
+      "inverse": "PERMIT_ISSUED_TO",
+      "props": {
+        "jurisdiction": "string?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "SUBJECT_TO",
+      "from": "PERSON",
+      "to": "REGULATORY_ACTION",
+      "symmetry": "directed",
+      "inverse": "AGAINST",
+      "props": {
+        "agency": "string?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "LISTED_ON",
+      "from": "PERSON",
+      "to": "SANCTIONS_ENTRY",
+      "symmetry": "directed",
+      "inverse": "LISTS",
+      "props": {
+        "as_of": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "LISTED_ON",
+      "from": "COMPANY",
+      "to": "SANCTIONS_ENTRY",
+      "symmetry": "directed",
+      "inverse": "LISTS",
+      "props": {
+        "as_of": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "REGISTRANT_OF",
+      "from": "PERSON",
+      "to": "DOMAIN",
+      "symmetry": "directed",
+      "inverse": "REGISTERED_TO_PERSON",
+      "props": {
+        "as_of": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "REGISTRANT_OF",
+      "from": "COMPANY",
+      "to": "DOMAIN",
+      "symmetry": "directed",
+      "inverse": "REGISTERED_TO_COMPANY",
+      "props": {
+        "as_of": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "BACKLINKS_TO",
+      "from": "WEBPAGE",
+      "to": "WEBPAGE",
+      "symmetry": "directed",
+      "inverse": "BACKLINKED_FROM",
+      "props": {
+        "first_seen": "datetime?",
+        "last_seen": "datetime?",
+        "anchor_text": "string?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "HOSTS_PAGE",
+      "from": "DOMAIN",
+      "to": "WEBPAGE",
+      "symmetry": "directed",
+      "inverse": "HOSTED_ON",
+      "props": {
+        "as_of": "datetime?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "RESIDES_AT",
+      "from": "PERSON",
+      "to": "ADDRESS",
+      "symmetry": "directed",
+      "inverse": "RESIDENCE_OF",
+      "props": {
+        "from": "date?",
+        "to": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "LOCATED_AT",
+      "from": "COMPANY",
+      "to": "ADDRESS",
+      "symmetry": "directed",
+      "inverse": "LOCATION_OF",
+      "props": {
+        "from": "date?",
+        "to": "date?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "CITED_IN",
+      "from": "ANY",
+      "to": "DOCUMENT",
+      "symmetry": "directed",
+      "inverse": "CITES",
+      "props": {
+        "snippet": "string?",
+        "page": "string?",
+        "confidence": "number"
+      }
+    },
+    {
+      "name": "RESOLVES_TO",
+      "from": "DOMAIN",
+      "to": "IP_ADDRESS",
+      "symmetry": "directed",
+      "inverse": "RESOLVED_FROM",
+      "props": {
+        "record_type": "enum{A,AAAA}",
+        "first_seen": "datetime?",
+        "last_seen": "datetime?"
+      }
+    },
+    {
+      "name": "ANNOUNCED_BY",
+      "from": "IP_ADDRESS",
+      "to": "AUTONOMOUS_SYSTEM",
+      "symmetry": "directed",
+      "inverse": "ANNOUNCES",
+      "props": {
+        "as_of": "datetime?"
+      }
+    },
+    {
+      "name": "ALLOCATED_TO",
+      "from": "IP_ADDRESS",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "HOLDS_ALLOCATION",
+      "props": {
+        "as_of": "datetime?",
+        "evidence": "array<object>"
+      }
+    },
+    {
+      "name": "HOSTED_ON_SERVER",
+      "from": "DOMAIN",
+      "to": "SERVER",
+      "symmetry": "directed",
+      "inverse": "HOSTS_DOMAIN",
+      "props": {
+        "as_of": "datetime?"
+      }
+    },
+    {
+      "name": "TLS_CERT",
+      "from": "DOMAIN",
+      "to": "CERTIFICATE",
+      "symmetry": "directed",
+      "inverse": "CERT_FOR_DOMAIN",
+      "props": {
+        "as_of": "datetime?"
+      }
+    },
+    {
+      "name": "ISSUED_BY",
+      "from": "CERTIFICATE",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "ISSUED_CERTIFICATE",
+      "props": {
+        "as_of": "datetime?"
+      }
+    },
+    {
+      "name": "SAN_FOR",
+      "from": "CERTIFICATE",
+      "to": "DOMAIN",
+      "symmetry": "directed",
+      "inverse": "HAS_SAN",
+      "props": {
+        "as_of": "datetime?"
+      }
+    },
+    {
+      "name": "REQUESTS_TO",
+      "from": "WEBPAGE",
+      "to": "DOMAIN",
+      "symmetry": "directed",
+      "inverse": "REQUESTED_FROM",
+      "props": {
+        "path": "string?",
+        "method": "string?",
+        "first_seen": "datetime?",
+        "last_seen": "datetime?"
+      }
+    },
+    {
+      "name": "PIXEL_FROM",
+      "from": "WEBPAGE",
+      "to": "DOMAIN",
+      "symmetry": "directed",
+      "inverse": "PIXEL_ON",
+      "props": {
+        "vendor": "string?"
+      }
+    },
+    {
+      "name": "TRACKED_BY",
+      "from": "WEBPAGE",
+      "to": "AD_ACCOUNT",
+      "symmetry": "directed",
+      "inverse": "TRACKS",
+      "props": {
+        "tech": "string?",
+        "tracker_id": "string?"
+      }
+    },
+    {
+      "name": "ARCHIVED_AT",
+      "from": "WEBPAGE",
+      "to": "DOCUMENT",
+      "symmetry": "directed",
+      "inverse": "ARCHIVE_OF",
+      "props": {
+        "timestamp": "datetime?",
+        "archive_url": "string?"
+      }
+    },
+    {
+      "name": "APPEARS_ON",
+      "from": "PERSON",
+      "to": "WEBPAGE",
+      "symmetry": "directed",
+      "inverse": "FEATURES",
+      "props": {
+        "context": "string?"
+      }
+    },
+    {
+      "name": "SENT_EMAIL",
+      "from": "EMAIL",
+      "to": "EMAIL",
+      "symmetry": "directed",
+      "inverse": "RECEIVED_EMAIL_FROM",
+      "props": {
+        "message_id_hash": "string?",
+        "sent_at": "datetime?"
+      }
+    },
+    {
+      "name": "CALLED",
+      "from": "PHONE",
+      "to": "PHONE",
+      "symmetry": "directed",
+      "inverse": "CALLED_BY",
+      "props": {
+        "start_at": "datetime?",
+        "duration_s": "number?"
+      }
+    },
+    {
+      "name": "MESSAGED",
+      "from": "PERSONA",
+      "to": "PERSONA",
+      "symmetry": "directed",
+      "inverse": "MESSAGED_BY",
+      "props": {
+        "platform": "string?",
+        "sent_at": "datetime?"
+      }
+    },
+    {
+      "name": "REGISTERED_WITH",
+      "from": "EMAIL",
+      "to": "DOMAIN",
+      "symmetry": "directed",
+      "inverse": "HAS_REGISTRATION_FROM",
+      "props": {
+        "created_at": "datetime?",
+        "verified": "boolean?"
+      }
+    },
+    {
+      "name": "SUBSIDIARY_OF",
+      "from": "COMPANY",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "PARENT_OF",
+      "props": {
+        "pct": "number?",
+        "since": "date?",
+        "basis": "enum{legal,management,financial}?"
+      }
+    },
+    {
+      "name": "HOLDS_STAKE_IN",
+      "from": "COMPANY",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "HAS_SHAREHOLDER_COMPANY",
+      "props": {
+        "pct": "number?",
+        "as_of": "date?"
+      }
+    },
+    {
+      "name": "CONTROLS",
+      "from": "PERSON",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "CONTROLLED_BY",
+      "props": {
+        "basis": "string?",
+        "pct": "number?",
+        "since": "date?"
+      }
+    },
+    {
+      "name": "CONTROLS",
+      "from": "COMPANY",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "CONTROLLED_BY",
+      "props": {
+        "basis": "string?",
+        "pct": "number?",
+        "since": "date?"
+      }
+    },
+    {
+      "name": "ADVISES",
+      "from": "PERSON",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "ADVISED_BY",
+      "props": {
+        "scope": "string?",
+        "since": "date?"
+      }
+    },
+    {
+      "name": "ADVISES",
+      "from": "COMPANY",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "ADVISED_BY",
+      "props": {
+        "scope": "string?",
+        "since": "date?"
+      }
+    },
+    {
+      "name": "REPRESENTED_BY",
+      "from": "PERSON",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "REPRESENTS",
+      "props": {
+        "matter": "string?",
+        "since": "date?"
+      }
+    },
+    {
+      "name": "REPRESENTED_BY",
+      "from": "COMPANY",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "REPRESENTS",
+      "props": {
+        "matter": "string?",
+        "since": "date?"
+      }
+    },
+    {
+      "name": "MORTGAGE_ON",
+      "from": "COMPANY",
+      "to": "PROPERTY",
+      "symmetry": "directed",
+      "inverse": "ENCUMBERS",
+      "props": {
+        "amount": "number?",
+        "currency": "string?",
+        "start": "date?",
+        "maturity": "date?"
+      }
+    },
+    {
+      "name": "MORTGAGE_ON",
+      "from": "FINANCIAL_INSTITUTION",
+      "to": "PROPERTY",
+      "symmetry": "directed",
+      "inverse": "ENCUMBERS",
+      "props": {
+        "amount": "number?",
+        "currency": "string?",
+        "start": "date?",
+        "maturity": "date?"
+      }
+    },
+    {
+      "name": "LEASES",
+      "from": "PERSON",
+      "to": "PROPERTY",
+      "symmetry": "directed",
+      "inverse": "LEASED_TO",
+      "props": {
+        "start": "date?",
+        "end": "date?"
+      }
+    },
+    {
+      "name": "LEASES",
+      "from": "COMPANY",
+      "to": "PROPERTY",
+      "symmetry": "directed",
+      "inverse": "LEASED_TO",
+      "props": {
+        "start": "date?",
+        "end": "date?"
+      }
+    },
+    {
+      "name": "TENANT_AT",
+      "from": "PERSON",
+      "to": "ADDRESS",
+      "symmetry": "directed",
+      "inverse": "TENANCY_OF",
+      "props": {
+        "start": "date?",
+        "end": "date?"
+      }
+    },
+    {
+      "name": "TENANT_AT",
+      "from": "COMPANY",
+      "to": "ADDRESS",
+      "symmetry": "directed",
+      "inverse": "TENANCY_OF",
+      "props": {
+        "start": "date?",
+        "end": "date?"
+      }
+    },
+    {
+      "name": "OWNS_VEHICLE",
+      "from": "PERSON",
+      "to": "VEHICLE",
+      "symmetry": "directed",
+      "inverse": "VEHICLE_OWNED_BY",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "OWNS_VEHICLE",
+      "from": "COMPANY",
+      "to": "VEHICLE",
+      "symmetry": "directed",
+      "inverse": "VEHICLE_OWNED_BY",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "OWNS_ACCOUNT",
+      "from": "PERSON",
+      "to": "BANK_ACCOUNT",
+      "symmetry": "directed",
+      "inverse": "ACCOUNT_OWNED_BY",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "OWNS_ACCOUNT",
+      "from": "COMPANY",
+      "to": "BANK_ACCOUNT",
+      "symmetry": "directed",
+      "inverse": "ACCOUNT_OWNED_BY",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "ACCOUNT_AT",
+      "from": "BANK_ACCOUNT",
+      "to": "FINANCIAL_INSTITUTION",
+      "symmetry": "directed",
+      "inverse": "HOLDS_ACCOUNT",
+      "props": {
+        "as_of": "date?"
+      }
+    },
+    {
+      "name": "TRANSFERRED_TO",
+      "from": "BANK_ACCOUNT",
+      "to": "BANK_ACCOUNT",
+      "symmetry": "directed",
+      "inverse": "TRANSFERRED_FROM",
+      "props": {
+        "amount": "number?",
+        "currency": "string?",
+        "at": "datetime?"
+      }
+    },
+    {
+      "name": "WALLET_OF",
+      "from": "WALLET",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "HAS_WALLET",
+      "props": {
+        "confidence": "number"
+      }
+    },
+    {
+      "name": "WALLET_OF",
+      "from": "WALLET",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "HAS_WALLET",
+      "props": {
+        "confidence": "number"
+      }
+    },
+    {
+      "name": "SENT_TO",
+      "from": "WALLET",
+      "to": "WALLET",
+      "symmetry": "directed",
+      "inverse": "RECEIVED_FROM",
+      "props": {
+        "tx_hash": "string?",
+        "chain": "string?",
+        "at": "datetime?",
+        "value": "number?",
+        "token": "string?"
+      }
+    },
+    {
+      "name": "INTERACTED_WITH",
+      "from": "WALLET",
+      "to": "ONCHAIN_TX",
+      "symmetry": "directed",
+      "inverse": "INTERACTED_BY_TX",
+      "props": {
+        "method_sig": "string?",
+        "at": "datetime?"
+      }
+    },
+    {
+      "name": "EXCHANGED_AT",
+      "from": "WALLET",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "SERVED_EXCHANGE",
+      "props": {
+        "at": "datetime?"
+      }
+    },
+    {
+      "name": "HOLDINGS_IN",
+      "from": "PERSON",
+      "to": "FUND",
+      "symmetry": "directed",
+      "inverse": "HAS_HOLDER",
+      "props": {
+        "pct": "number?",
+        "units": "number?",
+        "as_of": "date?"
+      }
+    },
+    {
+      "name": "HOLDINGS_IN",
+      "from": "COMPANY",
+      "to": "FUND",
+      "symmetry": "directed",
+      "inverse": "HAS_HOLDER",
+      "props": {
+        "pct": "number?",
+        "units": "number?",
+        "as_of": "date?"
+      }
+    },
+    {
+      "name": "GP_OF",
+      "from": "COMPANY",
+      "to": "FUND",
+      "symmetry": "directed",
+      "inverse": "HAS_GP",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "LP_IN",
+      "from": "PERSON",
+      "to": "FUND",
+      "symmetry": "directed",
+      "inverse": "HAS_LP",
+      "props": {
+        "commitment": "number?",
+        "currency": "string?",
+        "since": "date?"
+      }
+    },
+    {
+      "name": "SETTLOR_OF",
+      "from": "PERSON",
+      "to": "TRUST",
+      "symmetry": "directed",
+      "inverse": "SETTLED_BY",
+      "props": {
+        "date": "date?"
+      }
+    },
+    {
+      "name": "TRUSTEE_OF",
+      "from": "PERSON",
+      "to": "TRUST",
+      "symmetry": "directed",
+      "inverse": "HAS_TRUSTEE",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "TRUSTEE_OF",
+      "from": "COMPANY",
+      "to": "TRUST",
+      "symmetry": "directed",
+      "inverse": "HAS_TRUSTEE",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "BENEFICIARY_OF",
+      "from": "PERSON",
+      "to": "TRUST",
+      "symmetry": "directed",
+      "inverse": "HAS_BENEFICIARY",
+      "props": {
+        "class": "string?",
+        "pct": "number?"
+      }
+    },
+    {
+      "name": "HOLDS_FOR",
+      "from": "TRUST",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "HELD_BY_TRUST",
+      "props": {
+        "asset_ref": "string?",
+        "since": "date?"
+      }
+    },
+    {
+      "name": "HOLDS_FOR",
+      "from": "TRUST",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "HELD_BY_TRUST",
+      "props": {
+        "asset_ref": "string?",
+        "since": "date?"
+      }
+    },
+    {
+      "name": "PARTY_TO_CONTRACT",
+      "from": "PERSON",
+      "to": "CONTRACT",
+      "symmetry": "directed",
+      "inverse": "HAS_PARTY",
+      "props": {
+        "role": "string?",
+        "date": "date?"
+      }
+    },
+    {
+      "name": "PARTY_TO_CONTRACT",
+      "from": "COMPANY",
+      "to": "CONTRACT",
+      "symmetry": "directed",
+      "inverse": "HAS_PARTY",
+      "props": {
+        "role": "string?",
+        "date": "date?"
+      }
+    },
+    {
+      "name": "FILED_WITH",
+      "from": "DOCUMENT",
+      "to": "LAW_OR_REGULATION",
+      "symmetry": "directed",
+      "inverse": "RECEIVED_FILING",
+      "props": {
+        "date": "date?"
+      }
+    },
+    {
+      "name": "FILED_WITH",
+      "from": "DOCUMENT",
+      "to": "REGULATORY_ACTION",
+      "symmetry": "directed",
+      "inverse": "RECEIVED_FILING",
+      "props": {
+        "date": "date?"
+      }
+    },
+    {
+      "name": "FILED_WITH",
+      "from": "DOCUMENT",
+      "to": "AGENCY",
+      "symmetry": "directed",
+      "inverse": "RECEIVED_FILING",
+      "props": {
+        "date": "date?"
+      }
+    },
+    {
+      "name": "COMPLIES_WITH",
+      "from": "COMPANY",
+      "to": "LAW_OR_REGULATION",
+      "symmetry": "directed",
+      "inverse": "APPLIES_TO",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "VIOLATES",
+      "from": "PERSON",
+      "to": "LAW_OR_REGULATION",
+      "symmetry": "directed",
+      "inverse": "VIOLATED_BY",
+      "props": {
+        "date": "date?",
+        "outcome": "string?"
+      }
+    },
+    {
+      "name": "VIOLATES",
+      "from": "COMPANY",
+      "to": "LAW_OR_REGULATION",
+      "symmetry": "directed",
+      "inverse": "VIOLATED_BY",
+      "props": {
+        "date": "date?",
+        "outcome": "string?"
+      }
+    },
+    {
+      "name": "BOARDED",
+      "from": "PERSON",
+      "to": "FLIGHT",
+      "symmetry": "directed",
+      "inverse": "HAD_PASSENGER",
+      "props": {
+        "seat": "string?",
+        "at": "datetime?"
+      }
+    },
+    {
+      "name": "DEPARTED_FROM",
+      "from": "FLIGHT",
+      "to": "AIRPORT",
+      "symmetry": "directed",
+      "inverse": "DEPARTURE_OF",
+      "props": {
+        "at": "datetime?"
+      }
+    },
+    {
+      "name": "ARRIVED_AT",
+      "from": "FLIGHT",
+      "to": "AIRPORT",
+      "symmetry": "directed",
+      "inverse": "ARRIVAL_OF",
+      "props": {
+        "at": "datetime?"
+      }
+    },
+    {
+      "name": "BORDER_CROSSED",
+      "from": "PERSON",
+      "to": "EVENT",
+      "symmetry": "directed",
+      "inverse": "CROSSING_OF",
+      "props": {
+        "country_from": "string?",
+        "country_to": "string?",
+        "at": "datetime?"
+      }
+    },
+    {
+      "name": "STAYED_AT",
+      "from": "PERSON",
+      "to": "ADDRESS",
+      "symmetry": "directed",
+      "inverse": "HOSTED",
+      "props": {
+        "start": "date?",
+        "end": "date?",
+        "purpose": "string?"
+      }
+    },
+    {
+      "name": "CARRIED_BY",
+      "from": "SHIPMENT",
+      "to": "VESSEL",
+      "symmetry": "directed",
+      "inverse": "CARRIED",
+      "props": {
+        "voyage_no": "string?",
+        "load_date": "date?",
+        "discharge_date": "date?"
+      }
+    },
+    {
+      "name": "DEPICTS",
+      "from": "IMAGE",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "DEPICTED_IN",
+      "props": {
+        "face_match_score": "number?"
+      }
+    },
+    {
+      "name": "DEPICTS",
+      "from": "VIDEO",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "DEPICTED_IN",
+      "props": {
+        "face_match_score": "number?"
+      }
+    },
+    {
+      "name": "OCR_TEXT_FROM",
+      "from": "DOCUMENT",
+      "to": "IMAGE",
+      "symmetry": "directed",
+      "inverse": "HAS_OCR_SOURCE",
+      "props": {
+        "quality": "number?"
+      }
+    },
+    {
+      "name": "AUTHORED_BY",
+      "from": "DOCUMENT",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "AUTHORED",
+      "props": {
+        "published_at": "datetime?"
+      }
+    },
+    {
+      "name": "AUTHORED_BY",
+      "from": "DOCUMENT",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "AUTHORED",
+      "props": {
+        "published_at": "datetime?"
+      }
+    },
+    {
+      "name": "MENTIONS",
+      "from": "DOCUMENT",
+      "to": "PERSON",
+      "symmetry": "directed",
+      "inverse": "MENTIONED_IN",
+      "props": {
+        "count": "number?"
+      }
+    },
+    {
+      "name": "MENTIONS",
+      "from": "DOCUMENT",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "MENTIONED_IN",
+      "props": {
+        "count": "number?"
+      }
+    },
+    {
+      "name": "MENTIONS",
+      "from": "DOCUMENT",
+      "to": "DOMAIN",
+      "symmetry": "directed",
+      "inverse": "MENTIONED_IN",
+      "props": {
+        "count": "number?"
+      }
+    },
+    {
+      "name": "DERIVED_FROM",
+      "from": "ANY",
+      "to": "DOCUMENT",
+      "symmetry": "directed",
+      "inverse": "DERIVATION_OF",
+      "props": {
+        "method": "string?"
+      }
+    },
+    {
+      "name": "VERIFIED_BY_SOURCE",
+      "from": "ANY",
+      "to": "DOCUMENT",
+      "symmetry": "directed",
+      "inverse": "VERIFIES",
+      "props": {
+        "result": "string?"
+      }
+    },
+    {
+      "name": "FOLLOWS",
+      "from": "PERSONA",
+      "to": "PERSONA",
+      "symmetry": "directed",
+      "inverse": "FOLLOWED_BY",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "FRIEND_OF",
+      "from": "PERSONA",
+      "to": "PERSONA",
+      "symmetry": "symmetric",
+      "inverse": "FRIEND_OF",
+      "props": {}
+    },
+    {
+      "name": "MEMBER_OF",
+      "from": "PERSONA",
+      "to": "GROUP",
+      "symmetry": "directed",
+      "inverse": "HAS_MEMBER",
+      "props": {
+        "since": "date?",
+        "role": "string?"
+      }
+    },
+    {
+      "name": "ADMIN_OF",
+      "from": "PERSONA",
+      "to": "GROUP",
+      "symmetry": "directed",
+      "inverse": "HAS_ADMIN",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "CONNECTED_TO",
+      "from": "PERSON",
+      "to": "PERSON",
+      "symmetry": "symmetric",
+      "inverse": "CONNECTED_TO",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "OWNS_REPOSITORY",
+      "from": "PERSON",
+      "to": "REPOSITORY",
+      "symmetry": "directed",
+      "inverse": "REPO_OWNED_BY",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "OWNS_REPOSITORY",
+      "from": "COMPANY",
+      "to": "REPOSITORY",
+      "symmetry": "directed",
+      "inverse": "REPO_OWNED_BY",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "PUBLISHES_PACKAGE",
+      "from": "REPOSITORY",
+      "to": "PACKAGE",
+      "symmetry": "directed",
+      "inverse": "PUBLISHED_FROM_REPO",
+      "props": {
+        "released_at": "datetime?"
+      }
+    },
+    {
+      "name": "DOWNLOADS_FROM",
+      "from": "DOMAIN",
+      "to": "REPOSITORY",
+      "symmetry": "directed",
+      "inverse": "SERVES_TO",
+      "props": {
+        "first_seen": "datetime?",
+        "last_seen": "datetime?"
+      }
+    },
+    {
+      "name": "LOCATED_IN",
+      "from": "ADDRESS",
+      "to": "LOCATION",
+      "symmetry": "directed",
+      "inverse": "CONTAINS",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "LOCATED_IN",
+      "from": "PROPERTY",
+      "to": "LOCATION",
+      "symmetry": "directed",
+      "inverse": "CONTAINS",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "LOCATED_IN",
+      "from": "COMPANY",
+      "to": "LOCATION",
+      "symmetry": "directed",
+      "inverse": "CONTAINS",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "LOCATED_IN",
+      "from": "SERVER",
+      "to": "LOCATION",
+      "symmetry": "directed",
+      "inverse": "CONTAINS",
+      "props": {
+        "since": "date?"
+      }
+    },
+    {
+      "name": "WITHIN",
+      "from": "LOCATION",
+      "to": "LOCATION",
+      "symmetry": "directed",
+      "inverse": "CONTAINS",
+      "props": {}
+    },
+    {
+      "name": "INDIRECT_OWNER_OF",
+      "from": "PERSON",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "INDIRECTLY_OWNED_BY",
+      "props": {
+        "total_pct": "number?",
+        "path_len": "integer?"
+      }
+    },
+    {
+      "name": "INDIRECT_OWNER_OF",
+      "from": "COMPANY",
+      "to": "COMPANY",
+      "symmetry": "directed",
+      "inverse": "INDIRECTLY_OWNED_BY",
+      "props": {
+        "total_pct": "number?",
+        "path_len": "integer?"
+      }
+    },
+    {
+      "name": "ASSOCIATED_WITH",
+      "from": "ANY",
+      "to": "ANY",
+      "symmetry": "symmetric",
+      "inverse": "ASSOCIATED_WITH",
+      "props": {
+        "reasons": "array<string>?"
+      }
+    },
+    {
+      "name": "CO_OCCURS_WITH",
+      "from": "ANY",
+      "to": "ANY",
+      "symmetry": "symmetric",
+      "inverse": "CO_OCCURS_WITH",
+      "props": {
+        "count": "integer?",
+        "first_seen": "datetime?",
+        "last_seen": "datetime?"
+      }
+    }
+  ],
+  "evidence_object": {
+    "schema": "object{source_name,source_url?,doc_id?,collected_at?,last_verified_at?,jurisdiction?,method?,rule_id?,chain_of_custody?}",
+    "examples": [
+      {
+        "source_name": "Companies House",
+        "source_url": "https://beta.companieshouse.gov.uk/",
+        "collected_at": "2025-11-04T00:00:00Z",
+        "jurisdiction": "GB",
+        "method": "API",
+        "rule_id": "COMPANY_OFFICERS"
+      },
+      {
+        "source_name": "WHOIS",
+        "source_url": "whois:example.com",
+        "collected_at": "2025-11-04T00:00:00Z",
+        "method": "WHOIS",
+        "rule_id": "WHOIS_FROM_DOMAIN"
+      }
+    ]
+  },
+  "merge_rules": {
+    "PERSON": ["exact names+dob", "fuzzy names + address + email"],
+    "COMPANY": ["company_number", "name + jurisdiction"],
+    "DOMAIN": ["fqdn exact"],
+    "EMAIL": ["address exact"],
+    "PHONE": ["e164 exact"],
+    "WEBPAGE": ["url exact"],
+    "USERNAME": ["platform+handle exact"]
+  },
+  "privacy_defaults": {
+    "PASSWORD_CREDENTIAL": "RESTRICTED",
+    "PERSON.dob": "SPII",
+    "EMAIL.address": "PII",
+    "PHONE.e164": "PII",
+    "ADDRESS": "PII",
+    "default": "PUBLIC"
+  },
+  "id_prefixes": {
+    "PERSON": "pers_",
+    "PERSONA": "pern_",
+    "COMPANY": "co_",
+    "ADDRESS": "addr_",
+    "EMAIL": "em_",
+    "PHONE": "ph_",
+    "USERNAME": "usr_",
+    "PASSWORD_CREDENTIAL": "cred_",
+    "DOMAIN": "dom_",
+    "WEBPAGE": "pg_",
+    "PROPERTY": "prop_",
+    "VEHICLE": "veh_",
+    "VESSEL": "vsl_",
+    "AIRCRAFT": "air_",
+    "ARTWORK": "art_",
+    "IP_ASSET": "ip_",
+    "LITIGATION_CASE": "case_",
+    "LICENSE": "lic_",
+    "PERMIT": "prm_",
+    "REGULATORY_ACTION": "reg_",
+    "SANCTIONS_ENTRY": "snc_",
+    "DOCUMENT": "doc_"
+  }
+}

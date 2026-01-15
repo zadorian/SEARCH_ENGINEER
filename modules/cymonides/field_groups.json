@@ -1,0 +1,461 @@
+{
+  "_meta": {
+    "generated": "2025-12-30",
+    "method": "10 parallel agents sampling 10+ records per field",
+    "total_groups": 35,
+    "notes": "Groups based on ACTUAL content analysis, not field names"
+  },
+  "field_groups": {
+    "PERSON_NAME": {
+      "description": "Individual person names (verified clean data)",
+      "fields": {
+        "name": ["search_nodes"],
+        "interested_party_name": ["openownership"]
+      },
+      "samples": ["Alan Glassfield", "Graham Alexander Powell", "Harvinder Singh Hunjan"],
+      "quality": "HIGH"
+    },
+    "COMPANY_NAME": {
+      "description": "Legal entity/organization names (verified clean data)",
+      "fields": {
+        "name": ["search_nodes"],
+        "subject_name": ["openownership"],
+        "company_name": ["linkedin_unified"],
+        "owner_name": ["uk_addresses"],
+        "proprietor_name": ["uk_ocod"],
+        "proprietor_name_1": ["uk_ccod"]
+      },
+      "samples": ["VANTEGE LIMITED", "Sierra View Manor", "ELDERFLOWER MANAGEMENT LIMITED"],
+      "quality": "HIGH"
+    },
+    "MIXED_NAME": {
+      "description": "Contains both person and company names - use with caution",
+      "fields": {
+        "name_normalized": ["openownership"],
+        "proprietor_name_2": ["uk_ccod"]
+      },
+      "samples": ["schooltechhub ltd", "rosanna worboys", "GUY MOLESWORTH KINDERSLEY"],
+      "quality": "MEDIUM"
+    },
+    "GARBAGE_NAME": {
+      "description": "Fields that LOOK like names but contain garbage - DO NOT USE for name search",
+      "fields": {
+        "full_name": ["persons_unified"],
+        "name": ["breach_records", "companies_unified"],
+        "person_names": ["phones_unified"],
+        "persons": ["drill_pages", "onion-pages"],
+        "companies": ["drill_pages", "onion-pages"],
+        "alternate_names": ["companies_unified"],
+        "organization_names": ["phones_unified"]
+      },
+      "samples": ["Koei Tecmo Releases New Trailer for Attack on Titan Game", "18718190", "Hong Kong"],
+      "quality": "GARBAGE",
+      "notes": "NER extraction failures, usernames, article titles, locations"
+    },
+    "EMAIL_RAW": {
+      "description": "Raw email addresses (user@domain.com format)",
+      "fields": {
+        "email": ["breach_records", "comms_unified"],
+        "all_emails": ["kazaword_emails"],
+        "emails": ["onion-pages"],
+        "all_recipients": ["kazaword_emails"]
+      },
+      "samples": ["the_true_lulu@hotmal.com.uk", "sgoha@yahoo.com", "pharmacystore121@gmail.com"],
+      "quality": "HIGH"
+    },
+    "EMAIL_OBJECT": {
+      "description": "Structured email objects with name+email",
+      "fields": {
+        "from": ["kazaword_emails"],
+        "to": ["kazaword_emails"],
+        "cc": ["kazaword_emails"],
+        "contacts": ["emails_unified"]
+      },
+      "samples": [{"name": "Gaukhar Sarsekeyeva", "email": "sgoha@yahoo.com"}],
+      "quality": "HIGH",
+      "notes": "emails_unified.contacts is stringified Python dict - parse as JSON"
+    },
+    "EMAIL_DOMAIN": {
+      "description": "Domain part of email address",
+      "fields": {
+        "email_domain": ["breach_records", "comms_unified"]
+      },
+      "samples": ["hotmal.com.uk", "doyouknowme.net", "hotmail.com"],
+      "quality": "HIGH",
+      "notes": "emails_unified.email_domain is CORRUPTED - do not use"
+    },
+    "EMAIL_LOCAL": {
+      "description": "Local part of email (before @)",
+      "fields": {
+        "local_part": ["breach_records", "comms_unified"]
+      },
+      "samples": ["the_true_lulu", "hello", "daifduncan"],
+      "quality": "HIGH",
+      "notes": "emails_unified.local_part is CORRUPTED - do not use"
+    },
+    "PHONE_FULL": {
+      "description": "Complete phone numbers",
+      "fields": {
+        "phone_e164": ["phones_unified"],
+        "phone_raw": ["phones_unified"]
+      },
+      "samples": ["+81989235871", "(708) 371-0747", "881 730 630"],
+      "quality": "HIGH"
+    },
+    "PHONE_PART": {
+      "description": "Phone number components",
+      "fields": {
+        "area_code": ["phones_unified"],
+        "local_number": ["phones_unified"],
+        "country_code": ["phones_unified"]
+      },
+      "samples": ["989", "235871", "81"],
+      "quality": "HIGH"
+    },
+    "DOMAIN_BARE": {
+      "description": "Bare domain names (no protocol)",
+      "fields": {
+        "domain": ["domains_unified", "linkedin_unified", "companies_unified", "drill_pages", "onion-pages", "top_domains", "linklater_corpus", "atlas"],
+        "domains": ["companies_unified"],
+        "company_domain": ["linkedin_unified"]
+      },
+      "samples": ["sierraviewmanor.com", "elmbridgenutritionaltherapy.co.uk"],
+      "quality": "HIGH"
+    },
+    "URL_FULL": {
+      "description": "Full URLs with protocol",
+      "fields": {
+        "url": ["drill_pages", "onion-pages", "linklater_corpus", "top_domains"],
+        "source_url": ["openownership", "linklater_corpus"],
+        "archive_url": ["linklater_corpus"],
+        "website_url": ["companies_unified"]
+      },
+      "samples": ["https://soax.com/glossary/proxy-server", "http://paullzqj3ntil7vyar3gxeks7bz5haiteeehz5vdk5fadvtto7q7liid.onion/"],
+      "quality": "HIGH"
+    },
+    "URL_ARRAY": {
+      "description": "Arrays of extracted URLs",
+      "fields": {
+        "outlinks": ["drill_pages"],
+        "internal_links": ["drill_pages"]
+      },
+      "samples": [["https://www.linkedin.com/company/soax-network", "https://www.youtube.com/channel/UCNKa8ZgcPHHc1A2KcKIQy1g"]],
+      "quality": "HIGH"
+    },
+    "URL_SOCIAL": {
+      "description": "Social media profile URLs",
+      "fields": {
+        "linkedin_url": ["linkedin_unified", "companies_unified"],
+        "same_as": ["companies_unified", "persons_unified"]
+      },
+      "samples": ["https://linkedin.com/company/sierra-view-manor", "https://www.facebook.com/DIReporter"],
+      "quality": "HIGH"
+    },
+    "DOMAIN_PART": {
+      "description": "TLD/domain component",
+      "fields": {
+        "tld": ["domains_unified", "top_domains", "atlas"]
+      },
+      "samples": ["uk", "com", "vn"],
+      "quality": "HIGH"
+    },
+    "ADDRESS_FULL": {
+      "description": "Complete street addresses",
+      "fields": {
+        "address": ["openownership", "uk_addresses"],
+        "address_normalized": ["uk_addresses"],
+        "property_address": ["uk_ccod", "uk_ocod", "uk_property_unified"],
+        "proprietor_address": ["uk_ocod"],
+        "proprietor_address_1": ["uk_ccod"],
+        "proprietor_address_2": ["uk_ccod"]
+      },
+      "samples": ["Spaces The Maylands Building Maylands Avenue, Hemel Hempstead, HP2 7TG", "Oak House, Hirzel Street, St Peter Port, Guernsey, GY1 3RH"],
+      "quality": "HIGH"
+    },
+    "CITY": {
+      "description": "City/district names",
+      "fields": {
+        "district": ["uk_ccod", "uk_ocod", "uk_addresses"]
+      },
+      "samples": ["KIRKLEES", "TOWER HAMLETS", "LIVERPOOL"],
+      "quality": "HIGH"
+    },
+    "COUNTY": {
+      "description": "County/region administrative areas",
+      "fields": {
+        "county": ["uk_ccod", "uk_ocod", "uk_leases", "uk_addresses"],
+        "region": ["uk_ccod", "uk_ocod", "uk_leases", "uk_addresses"]
+      },
+      "samples": ["WEST YORKSHIRE", "GREATER LONDON", "YORKS AND HUMBER"],
+      "quality": "HIGH"
+    },
+    "COUNTRY": {
+      "description": "Country names and codes",
+      "fields": {
+        "country": ["openownership", "phones_unified"],
+        "address_country": ["openownership"],
+        "country_incorporated": ["uk_ocod"]
+      },
+      "samples": ["GB", "BRITISH VIRGIN ISLANDS", "CYPRUS"],
+      "quality": "HIGH"
+    },
+    "POSTCODE": {
+      "description": "Postal codes",
+      "fields": {
+        "postcode": ["uk_ccod", "uk_ocod", "uk_addresses", "uk_property_unified"],
+        "postcode_district": ["uk_ccod", "uk_ocod"]
+      },
+      "samples": ["HX3 7AF", "LS12 3NP", "W3"],
+      "quality": "HIGH"
+    },
+    "JURISDICTION": {
+      "description": "Legal jurisdiction codes (ISO 2-letter)",
+      "fields": {
+        "jurisdiction": ["openownership", "uk_addresses"]
+      },
+      "samples": ["gb", "GB"],
+      "quality": "HIGH"
+    },
+    "COMPANY_REG_ID": {
+      "description": "Official company registration numbers (externally resolvable)",
+      "fields": {
+        "company_number": ["openownership"],
+        "company_reg_no_1": ["uk_ccod"],
+        "company_reg_no_2": ["uk_ccod"]
+      },
+      "samples": ["08641349", "NI625881", "22981R"],
+      "quality": "HIGH",
+      "notes": "Can be looked up at Companies House"
+    },
+    "SYSTEM_ID": {
+      "description": "Internal synthetic identifiers (NOT externally resolvable)",
+      "fields": {
+        "company_id": ["companies_unified"],
+        "linkedin_id": ["linkedin_unified"],
+        "person_id": ["persons_unified"],
+        "interested_party_id": ["openownership"],
+        "user_id": ["breach_records"],
+        "record_id": ["openownership"],
+        "statement_id": ["openownership"],
+        "subject_id": ["openownership"],
+        "phone_id": ["phones_unified"],
+        "email_id": ["emails_unified"]
+      },
+      "samples": ["domain:direporter.com", "linkedin:company:sierra-view-manor", "6366463210304560900"],
+      "quality": "INTERNAL_ONLY"
+    },
+    "LAND_TITLE": {
+      "description": "UK Land Registry title numbers",
+      "fields": {
+        "title_number": ["uk_ccod", "uk_ocod", "uk_addresses", "uk_property_unified"],
+        "tenure": ["uk_ccod", "uk_addresses"]
+      },
+      "samples": ["WYK803313", "AGL334118", "Freehold"],
+      "quality": "HIGH"
+    },
+    "OWNERSHIP": {
+      "description": "Beneficial ownership data",
+      "fields": {
+        "ownership_percentage": ["openownership"],
+        "control_types": ["openownership"]
+      },
+      "samples": [25.0, 50.0, ["shareholding", "voting-rights"]],
+      "quality": "HIGH"
+    },
+    "ENTITY_TYPE": {
+      "description": "BODS entity classifications",
+      "fields": {
+        "entity_type": ["openownership"],
+        "statement_type": ["openownership"]
+      },
+      "samples": ["registeredEntity", "knownPerson", "ownershipOrControlStatement"],
+      "quality": "HIGH"
+    },
+    "CONTENT_LONG": {
+      "description": "Long-form page/document content",
+      "fields": {
+        "content": ["drill_pages", "onion-pages", "linklater_corpus"],
+        "body_text": ["kazaword_emails"],
+        "body_html": ["kazaword_emails"],
+        "meta": ["onion-pages"]
+      },
+      "samples": ["Paul's ONION LINKS DIRECTORY...", "<HTML content>"],
+      "quality": "HIGH"
+    },
+    "TITLE_SHORT": {
+      "description": "Short titles/subjects/headings",
+      "fields": {
+        "title": ["drill_pages", "onion-pages", "top_domains"],
+        "h1": ["onion-pages"],
+        "subject": ["kazaword_emails"]
+      },
+      "samples": ["Welcome back!", "photos", "vungkhopvinhgia.com.vn"],
+      "quality": "HIGH"
+    },
+    "KEYWORDS": {
+      "description": "Keyword/search terms",
+      "fields": {
+        "keywords": ["linklater_corpus"],
+        "keywords_found": ["drill_pages"],
+        "snippet": ["linklater_corpus"]
+      },
+      "samples": ["\"KVIKA\"", "affiliate"],
+      "quality": "HIGH"
+    },
+    "BREACH_INFO": {
+      "description": "Data breach metadata",
+      "fields": {
+        "breach_name": ["breach_records"],
+        "breach_year": ["breach_records"]
+      },
+      "samples": ["MySpace", "Adobe", "LinkedIn", 2016],
+      "quality": "HIGH"
+    },
+    "PASSWORD_HASH": {
+      "description": "Password hash values (stored, not indexed)",
+      "fields": {
+        "password_hash": ["breach_records"],
+        "hash_type": ["breach_records"]
+      },
+      "samples": ["9FBD9B80AF7E652065E489F94C456971B7D9BB4D", "sha1", "bcrypt"],
+      "quality": "HIGH"
+    },
+    "IP_ADDRESS": {
+      "description": "IP addresses",
+      "fields": {
+        "ip_address": ["breach_records"],
+        "originating_ip": ["kazaword_emails"]
+      },
+      "samples": ["39.53.210.188", "84.190.207.114"],
+      "quality": "HIGH"
+    },
+    "DATE_BUSINESS": {
+      "description": "Legal/business event dates",
+      "fields": {
+        "incorporation_date": ["openownership", "search_nodes"],
+        "dissolution_date": ["openownership"],
+        "statement_date": ["openownership"]
+      },
+      "samples": ["2013-08-07", "2021-11-30"],
+      "format": "YYYY-MM-DD",
+      "quality": "HIGH"
+    },
+    "DATE_MESSAGE": {
+      "description": "Communication timestamps",
+      "fields": {
+        "date": ["kazaword_emails"]
+      },
+      "samples": ["2008-12-07T09:48:16-08:00"],
+      "format": "ISO8601 with timezone",
+      "quality": "HIGH"
+    },
+    "DATE_SYSTEM": {
+      "description": "System/ETL processing timestamps (not for user search)",
+      "fields": {
+        "indexed_at": ["openownership", "domains_unified", "kazaword_emails", "linklater_corpus", "uk_addresses", "uk_ccod", "uk_leases", "uk_ocod"],
+        "crawl_timestamp": ["drill_pages"],
+        "fetched_at": ["onion-pages"],
+        "enriched_at": ["onion-pages"],
+        "scraped_at": ["linklater_corpus"],
+        "last_updated": ["domains_unified"],
+        "updated_on": ["onion-pages"]
+      },
+      "samples": ["2025-12-29T18:31:41.531239"],
+      "format": "ISO8601 with microseconds",
+      "quality": "INTERNAL_ONLY"
+    },
+    "INDUSTRY": {
+      "description": "Industry/category classifications",
+      "fields": {
+        "industry": ["linkedin_unified", "companies_unified"],
+        "categories": ["domains_unified"]
+      },
+      "samples": ["Hospitals and Health Care", "/en/Regional/Europe/United_Kingdom/Health/Nutrition"],
+      "quality": "HIGH"
+    },
+    "SOURCE_PROVENANCE": {
+      "description": "Data origin/provenance tracking",
+      "fields": {
+        "source": ["drill_pages", "linklater_corpus"],
+        "sources": ["companies_unified", "domains_unified"],
+        "source_type": ["openownership"],
+        "source_description": ["openownership"],
+        "data_source": ["uk_ccod", "uk_leases"],
+        "source_file": ["breach_records", "uk_addresses"],
+        "source_archive": ["kazaword_emails"]
+      },
+      "samples": ["drill", "firecrawl", "officialRegister", "Myspace.com.txt"],
+      "quality": "HIGH"
+    },
+    "COUNT_METRIC": {
+      "description": "Numeric counts/metrics",
+      "fields": {
+        "source_count": ["companies_unified", "emails_unified"],
+        "content_length": ["linklater_corpus", "onion-pages"],
+        "word_count": ["linklater_corpus"],
+        "entity_count": ["drill_pages"],
+        "links_found": ["onion-pages"],
+        "outlink_count": ["drill_pages"],
+        "sent_count": ["emails_unified"],
+        "received_count": ["emails_unified"],
+        "attachment_count": ["kazaword_emails"]
+      },
+      "samples": [15, 17264, 2693],
+      "quality": "HIGH"
+    },
+    "RANK": {
+      "description": "Domain ranking metrics",
+      "fields": {
+        "rank": ["top_domains"],
+        "tld_rank": ["top_domains"],
+        "backlinks_ips": ["top_domains"],
+        "backlinks_subnets": ["top_domains"]
+      },
+      "samples": [919440, 2744, 378],
+      "quality": "HIGH"
+    },
+    "ATTACHMENT": {
+      "description": "Email attachment metadata",
+      "fields": {
+        "attachments": ["kazaword_emails"],
+        "has_attachments": ["kazaword_emails"]
+      },
+      "samples": [{"filename": "Contract.pdf", "size": 130897}, true],
+      "quality": "HIGH"
+    },
+    "SYSTEM_META": {
+      "description": "Technical crawl/HTTP metadata",
+      "fields": {
+        "status_code": ["drill_pages", "onion-pages"],
+        "content_type": ["drill_pages", "onion-pages"],
+        "crawl_id": ["onion-pages"],
+        "profile_slug": ["linkedin_unified"],
+        "profile_type": ["linkedin_unified"],
+        "schema_types": ["companies_unified", "persons_unified"],
+        "wdc_crawl": ["companies_unified", "persons_unified"],
+        "message_id": ["kazaword_emails"]
+      },
+      "samples": [200, "text/html", "company", ["Organization", "WebPage"]],
+      "quality": "INTERNAL_ONLY"
+    },
+    "UK_PROPERTY_META": {
+      "description": "UK Land Registry transaction data",
+      "fields": {
+        "unique_id": ["uk_leases"],
+        "uprn": ["uk_leases"],
+        "term": ["uk_leases"],
+        "price_paid": ["uk_ccod", "uk_leases", "uk_property_unified"]
+      },
+      "samples": [1004267562.0, "125 years from 1 November 2004", 240000.0],
+      "quality": "HIGH"
+    },
+    "EMBEDDING": {
+      "description": "Vector embeddings (384-dim float arrays) - similarity search only",
+      "fields": {
+        "embedding": ["onion-pages"]
+      },
+      "quality": "UNGROUPABLE",
+      "notes": "Computational artifact, not searchable text"
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "index_name": "cymonides_source_enrichments",
+  "stats": "green  open   cymonides_source_enrichments j-UYdh1rTjmap9LBpKjN3A   2   0          5            0     34.1kb 2025-12-01T01:04:50.736Z",
+  "mapping": {
+    "cymonides_source_enrichments": {
+      "mappings": {
+        "properties": {
+          "api_endpoints": {
+            "type": "nested"
+          },
+          "cc_coverage": {
+            "properties": {
+              "checked_at": {
+                "type": "date"
+              },
+              "domain": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "inlink_count": {
+                "type": "long"
+              },
+              "is_fresh": {
+                "type": "boolean"
+              },
+              "outlink_count": {
+                "type": "long"
+              },
+              "pages_indexed": {
+                "type": "long"
+              }
+            }
+          },
+          "country": {
+            "type": "keyword"
+          },
+          "domain": {
+            "type": "keyword"
+          },
+          "drill_duration_ms": {
+            "type": "integer"
+          },
+          "drilled_at": {
+            "type": "date"
+          },
+          "entity_pages": {
+            "type": "nested"
+          },
+          "errors": {
+            "type": "text"
+          },
+          "outlinks": {
+            "type": "object"
+          },
+          "search_pages": {
+            "type": "nested"
+          },
+          "source_id": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "cymonides_source_enrichments": {
+      "settings": {
+        "index": {
+          "routing": {
+            "allocation": {
+              "include": {
+                "_tier_preference": "data_content"
+              }
+            }
+          },
+          "number_of_shards": "2",
+          "provided_name": "cymonides_source_enrichments",
+          "creation_date": "1764551090736",
+          "number_of_replicas": "0",
+          "uuid": "j-UYdh1rTjmap9LBpKjN3A",
+          "version": {
+            "created": "8500003"
+          }
+        }
+      }
+    }
+  },
+  "sample_document": {
+    "took": 3,
+    "timed_out": false,
+    "_shards": {
+      "total": 2,
+      "successful": 2,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 5,
+        "relation": "eq"
+      },
+      "max_score": 1.0,
+      "hits": [
+        {
+          "_index": "cymonides_source_enrichments",
+          "_id": "www.gjykataelarte.gov.al_court_records",
+          "_score": 1.0,
+          "_source": {
+            "source_id": "www.gjykataelarte.gov.al_court_records",
+            "domain": "www.gjykataelarte.gov.al",
+            "country": "AL",
+            "cc_coverage": null,
+            "search_pages": [],
+            "api_endpoints": [],
+            "entity_pages": [],
+            "outlinks": null,
+            "drilled_at": "2025-12-01T01:07:07.955312+00:00",
+            "drill_duration_ms": 4314,
+            "errors": []
+          }
+        }
+      ]
+    }
+  }
+}

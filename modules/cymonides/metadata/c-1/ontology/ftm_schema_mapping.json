@@ -1,0 +1,229 @@
+{
+  "mappings": {
+    "person": {
+      "ftm_schema": "Person",
+      "properties": {
+        "name": "name",
+        "alias": "alias",
+        "birth_date": "birthDate",
+        "nationality": "nationality",
+        "country": "country"
+      }
+    },
+    "company": {
+      "ftm_schema": "Company",
+      "properties": {
+        "name": "name",
+        "jurisdiction": "jurisdiction",
+        "registration_number": "registrationNumber",
+        "incorporation_date": "incorporationDate",
+        "status": "status",
+        "address": "address",
+        "industry": "sector"
+      }
+    },
+    "organization": {
+      "ftm_schema": "Organization",
+      "properties": {
+        "name": "name",
+        "jurisdiction": "jurisdiction"
+      }
+    },
+    "address": {
+      "ftm_schema": "Address",
+      "properties": {
+        "full_address": "full",
+        "street": "street",
+        "city": "city",
+        "country": "country",
+        "postal_code": "postalCode"
+      }
+    },
+    "vessel": {
+      "ftm_schema": "Vessel",
+      "properties": {
+        "name": "name",
+        "imo": "imoNumber",
+        "mmsi": "mmsi",
+        "flag": "flag",
+        "type": "type"
+      }
+    },
+    "plane": {
+      "ftm_schema": "Airplane",
+      "properties": {
+        "name": "name",
+        "tail_number": "registrationNumber",
+        "icao": "icaoCode",
+        "model": "model"
+      }
+    },
+    "vehicle": {
+      "ftm_schema": "Vehicle",
+      "properties": {
+        "name": "name",
+        "plate": "registrationNumber",
+        "vin": "vinCode"
+      }
+    },
+    "email": {
+      "ftm_schema": "LegalEntity",
+      "properties": {
+        "email_address": "email"
+      },
+      "note": "Mapped to LegalEntity as FtM lacks a dedicated Email node type"
+    },
+    "phone": {
+      "ftm_schema": "LegalEntity",
+      "properties": {
+        "phone_number": "phone"
+      },
+      "note": "Mapped to LegalEntity as FtM lacks a dedicated Phone node type"
+    },
+    "asset": {
+      "ftm_schema": "Asset",
+      "properties": {
+        "name": "name",
+        "description": "description",
+        "registration_number": "registrationNumber",
+        "country": "country"
+      }
+    }
+  },
+  "relationships": {
+    "officer_of": {
+      "ftm_schema": "Directorship",
+      "source": "director",
+      "target": "organization",
+      "properties": {
+        "role": "role",
+        "start_date": "startDate",
+        "end_date": "endDate"
+      }
+    },
+    "director_of": {
+      "ftm_schema": "Directorship",
+      "source": "director",
+      "target": "organization",
+      "properties": {
+        "role": "role",
+        "start_date": "startDate",
+        "end_date": "endDate"
+      }
+    },
+    "owner_of": {
+      "ftm_schema": "Ownership",
+      "source": "owner",
+      "target": "asset",
+      "properties": {
+        "percentage": "percentage",
+        "shares": "sharesCount",
+        "start_date": "startDate"
+      }
+    },
+    "owns": {
+      "ftm_schema": "Ownership",
+      "source": "owner",
+      "target": "asset",
+      "properties": {
+        "percentage": "percentage",
+        "shares": "sharesCount",
+        "start_date": "startDate"
+      }
+    },
+    "employee_of": {
+      "ftm_schema": "Employment",
+      "source": "employee",
+      "target": "employer",
+      "properties": {
+        "role": "role",
+        "start_date": "startDate",
+        "end_date": "endDate"
+      }
+    },
+    "employs": {
+      "ftm_schema": "Employment",
+      "source": "employer",
+      "target": "employee",
+      "properties": {
+        "role": "role",
+        "start_date": "startDate",
+        "end_date": "endDate"
+      }
+    },
+    "family_of": {
+      "ftm_schema": "Family",
+      "source": "person",
+      "target": "relative",
+      "properties": {
+        "relationship": "relationship"
+      }
+    },
+    "child_of": {
+      "ftm_schema": "Family",
+      "source": "person",
+      "target": "relative",
+      "properties": {
+        "relationship": "relationship"
+      }
+    },
+    "parent_of": {
+      "ftm_schema": "Family",
+      "source": "relative",
+      "target": "person",
+      "properties": {
+        "relationship": "relationship"
+      }
+    },
+    "associate_of": {
+      "ftm_schema": "Associate",
+      "source": "person",
+      "target": "associate",
+      "properties": {
+        "relationship": "relationship"
+      }
+    },
+    "membership_of": {
+      "ftm_schema": "Membership",
+      "source": "member",
+      "target": "organization",
+      "properties": {
+        "role": "role"
+      }
+    },
+    "representation_of": {
+      "ftm_schema": "Representation",
+      "source": "agent",
+      "target": "client",
+      "properties": {
+        "role": "role"
+      }
+    },
+    "unknown_link": {
+      "ftm_schema": "UnknownLink",
+      "source": "subject",
+      "target": "object",
+      "properties": {
+        "role": "role"
+      }
+    },
+    "legal_parent_of": {
+      "ftm_schema": "Ownership",
+      "source": "parent",
+      "target": "subsidiary",
+      "aliases": ["parent"],
+      "properties": {
+        "share_pct": "percentage"
+      }
+    },
+    "subsidiary_of": {
+      "ftm_schema": "Ownership",
+      "source": "subsidiary",
+      "target": "parent",
+      "aliases": ["subsidiaries", "subsidiary"],
+      "properties": {
+        "share_pct": "percentage"
+      }
+    }
+  }
+}

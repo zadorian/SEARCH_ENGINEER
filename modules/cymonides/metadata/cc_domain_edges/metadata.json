@@ -1,0 +1,75 @@
+{
+  "index_name": "cymonides_cc_domain_edges",
+  "stats": "green  open   cymonides_cc_domain_edges pYuMues8RR-6PnMedwKvag   5   0  435770000      2036246     16.5gb 2025-11-30T22:04:18.590Z",
+  "mapping": {
+    "cymonides_cc_domain_edges": {
+      "mappings": {
+        "properties": {
+          "link_count": {
+            "type": "integer"
+          },
+          "source_vertex_id": {
+            "type": "long"
+          },
+          "target_vertex_id": {
+            "type": "long"
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "cymonides_cc_domain_edges": {
+      "settings": {
+        "index": {
+          "routing": {
+            "allocation": {
+              "include": {
+                "_tier_preference": "data_content"
+              }
+            }
+          },
+          "refresh_interval": "-1",
+          "number_of_shards": "5",
+          "provided_name": "cymonides_cc_domain_edges",
+          "max_result_window": "1000000",
+          "creation_date": "1764540258590",
+          "number_of_replicas": "0",
+          "uuid": "pYuMues8RR-6PnMedwKvag",
+          "version": {
+            "created": "8500003"
+          }
+        }
+      }
+    }
+  },
+  "sample_document": {
+    "took": 22,
+    "timed_out": false,
+    "_shards": {
+      "total": 5,
+      "successful": 5,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": {
+        "value": 10000,
+        "relation": "gte"
+      },
+      "max_score": 1.0,
+      "hits": [
+        {
+          "_index": "cymonides_cc_domain_edges",
+          "_id": "794073_794060",
+          "_score": 1.0,
+          "_source": {
+            "source_vertex_id": 794073,
+            "target_vertex_id": 794060,
+            "link_count": 1
+          }
+        }
+      ]
+    }
+  }
+}

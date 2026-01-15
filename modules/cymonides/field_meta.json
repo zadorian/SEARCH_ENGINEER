@@ -1,0 +1,2567 @@
+{
+  "1": {
+    "name": "email",
+    "group": 1,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "2": {
+    "name": "phone",
+    "group": 1,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "3": {
+    "name": "username",
+    "group": 1,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "4": {
+    "name": "password",
+    "group": 1,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": true,
+    "description": "Person/contact attribute."
+  },
+  "5": {
+    "name": "person_linkedin_url",
+    "group": 1,
+    "role": "input",
+    "datatype": "url",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "6": {
+    "name": "domain_url",
+    "group": 1,
+    "role": "input",
+    "datatype": "url",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Domain WHOIS/DNS attribute. Also known as webdomain."
+  },
+  "7": {
+    "name": "person_name",
+    "group": 1,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "8": {
+    "name": "person_national_id",
+    "group": 1,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "9": {
+    "name": "person_tax_id",
+    "group": 1,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "10": {
+    "name": "person_passport_id",
+    "group": 1,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "11": {
+    "name": "person_driver_license_id",
+    "group": 2,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "12": {
+    "name": "person_dob",
+    "group": 2,
+    "role": "input",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "13": {
+    "name": "company_name",
+    "group": 2,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "14": {
+    "name": "company_reg_id",
+    "group": 2,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "15": {
+    "name": "company_vat_id",
+    "group": 2,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "16": {
+    "name": "company_previous_name",
+    "group": 2,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "17": {
+    "name": "litigation_id",
+    "group": 2,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "18": {
+    "name": "litigation_party_name",
+    "group": 2,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "19": {
+    "name": "litigation_docket_id",
+    "group": 2,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "20": {
+    "name": "property_address",
+    "group": 2,
+    "role": "input",
+    "datatype": "address",
+    "cardinality": "single",
+    "pii": true,
+    "description": "Land/property register attribute."
+  },
+  "21": {
+    "name": "property_cadastral_id",
+    "group": 3,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Land/property register attribute."
+  },
+  "22": {
+    "name": "property_title_id",
+    "group": 3,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Land/property register attribute."
+  },
+  "23": {
+    "name": "vehicle_reg_id",
+    "group": 3,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Vehicle registry attribute."
+  },
+  "24": {
+    "name": "vessel_imo_id",
+    "group": 3,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Maritime registry attribute."
+  },
+  "25": {
+    "name": "aircraft_reg_id",
+    "group": 3,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Civil aircraft registry attribute."
+  },
+  "26": {
+    "name": "license_id",
+    "group": 3,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "27": {
+    "name": "permit_id",
+    "group": 3,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "28": {
+    "name": "regulatory_filing_id",
+    "group": 3,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "29": {
+    "name": "sanction_list_id",
+    "group": 3,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Sanctions/watchlist attribute from official lists."
+  },
+  "30": {
+    "name": "sanctions_entity_id",
+    "group": 3,
+    "role": "input",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Sanctions/watchlist attribute from official lists."
+  },
+  "31": {
+    "name": "person_name",
+    "group": 4,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "32": {
+    "name": "person_email",
+    "group": 4,
+    "role": "output",
+    "datatype": "email",
+    "cardinality": "single",
+    "pii": true,
+    "description": "Person/contact attribute."
+  },
+  "33": {
+    "name": "person_phone",
+    "group": 4,
+    "role": "output",
+    "datatype": "phone",
+    "cardinality": "single",
+    "pii": true,
+    "description": "Person/contact attribute."
+  },
+  "34": {
+    "name": "person_website",
+    "group": 4,
+    "role": "output",
+    "datatype": "url",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "35": {
+    "name": "person_address",
+    "group": 4,
+    "role": "output",
+    "datatype": "address",
+    "cardinality": "single",
+    "pii": true,
+    "description": "Person/contact attribute."
+  },
+  "36": {
+    "name": "person_country",
+    "group": 4,
+    "role": "output",
+    "datatype": "country_code",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "37": {
+    "name": "person_dob",
+    "group": 4,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "38": {
+    "name": "person_profile_url",
+    "group": 4,
+    "role": "output",
+    "datatype": "url",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "39": {
+    "name": "person_platform",
+    "group": 4,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "40": {
+    "name": "person_role_job",
+    "group": 4,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "41": {
+    "name": "person_employer_job",
+    "group": 5,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Person/contact attribute."
+  },
+  "42": {
+    "name": "company_name",
+    "group": 5,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "43": {
+    "name": "company_reg_id",
+    "group": 5,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "44": {
+    "name": "company_email",
+    "group": 5,
+    "role": "output",
+    "datatype": "email",
+    "cardinality": "single",
+    "pii": true,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "45": {
+    "name": "company_phone",
+    "group": 5,
+    "role": "output",
+    "datatype": "phone",
+    "cardinality": "single",
+    "pii": true,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "46": {
+    "name": "company_website",
+    "group": 5,
+    "role": "output",
+    "datatype": "url",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "47": {
+    "name": "company_address",
+    "group": 5,
+    "role": "output",
+    "datatype": "address",
+    "cardinality": "single",
+    "pii": true,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "48": {
+    "name": "company_country",
+    "group": 5,
+    "role": "output",
+    "datatype": "country_code",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "49": {
+    "name": "company_status",
+    "group": 5,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "50": {
+    "name": "company_incorporation_date",
+    "group": 5,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "51": {
+    "name": "company_dissolution_date",
+    "group": 6,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "52": {
+    "name": "company_type",
+    "group": 6,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "53": {
+    "name": "company_sic_code",
+    "group": 6,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "54": {
+    "name": "company_financial_statements",
+    "group": 6,
+    "role": "output",
+    "datatype": "array",
+    "cardinality": "array",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "55": {
+    "name": "company_financial_year_end",
+    "group": 6,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "56": {
+    "name": "company_share_capital",
+    "group": 6,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "57": {
+    "name": "company_accounts_filing_date",
+    "group": 6,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "58": {
+    "name": "company_officers",
+    "group": 6,
+    "role": "output",
+    "datatype": "array",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Company officer attribute from corporate registries."
+  },
+  "59": {
+    "name": "company_officer_name",
+    "group": 6,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Company officer attribute from corporate registries."
+  },
+  "60": {
+    "name": "company_officer_role",
+    "group": 6,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Company officer attribute from corporate registries."
+  },
+  "61": {
+    "name": "company_officer_appointment_date",
+    "group": 7,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Company officer attribute from corporate registries."
+  },
+  "62": {
+    "name": "company_officer_resignation_date",
+    "group": 7,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Company officer attribute from corporate registries."
+  },
+  "63": {
+    "name": "company_officer_nationality",
+    "group": 7,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Company officer attribute from corporate registries."
+  },
+  "64": {
+    "name": "company_officer_dob",
+    "group": 7,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Company officer attribute from corporate registries."
+  },
+  "65": {
+    "name": "company_officer_address",
+    "group": 7,
+    "role": "output",
+    "datatype": "address",
+    "cardinality": "single",
+    "pii": true,
+    "description": "Company officer attribute from corporate registries."
+  },
+  "66": {
+    "name": "company_beneficial_owners",
+    "group": 7,
+    "role": "output",
+    "datatype": "array",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Beneficial owner details as recorded in registries/filings."
+  },
+  "67": {
+    "name": "company_beneficial_owner_name",
+    "group": 7,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Beneficial owner details as recorded in registries/filings."
+  },
+  "68": {
+    "name": "company_beneficial_owner_ownership_pct",
+    "group": 7,
+    "role": "output",
+    "datatype": "number",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Beneficial owner details as recorded in registries/filings."
+  },
+  "69": {
+    "name": "company_beneficial_owner_control_nature",
+    "group": 7,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Beneficial owner details as recorded in registries/filings."
+  },
+  "70": {
+    "name": "company_beneficial_owner_nationality",
+    "group": 7,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Beneficial owner details as recorded in registries/filings."
+  },
+  "71": {
+    "name": "company_shareholders",
+    "group": 8,
+    "role": "output",
+    "datatype": "array",
+    "cardinality": "array",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "72": {
+    "name": "company_shareholder_name",
+    "group": 8,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "73": {
+    "name": "company_shareholder_company",
+    "group": 8,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "74": {
+    "name": "company_shareholder_person",
+    "group": 8,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "75": {
+    "name": "company_shareholder_type",
+    "group": 8,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "76": {
+    "name": "company_shareholder_shares",
+    "group": 8,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "77": {
+    "name": "company_shareholder_share_class",
+    "group": 8,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "78": {
+    "name": "litigation_id",
+    "group": 8,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "79": {
+    "name": "litigation_about_company",
+    "group": 8,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "80": {
+    "name": "litigation_about_person",
+    "group": 8,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "81": {
+    "name": "litigation_title",
+    "group": 9,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "82": {
+    "name": "litigation_parties",
+    "group": 9,
+    "role": "output",
+    "datatype": "array",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "83": {
+    "name": "litigation_court",
+    "group": 9,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "84": {
+    "name": "litigation_filing_date",
+    "group": 9,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "85": {
+    "name": "litigation_status",
+    "group": 9,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "86": {
+    "name": "litigation_judgment",
+    "group": 9,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "87": {
+    "name": "litigation_judgment_date",
+    "group": 9,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "88": {
+    "name": "litigation_outcome",
+    "group": 9,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "89": {
+    "name": "litigation_parties_anonymized",
+    "group": 9,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Court case attribute from court dockets/judgments."
+  },
+  "90": {
+    "name": "regulatory_actions",
+    "group": 9,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "91": {
+    "name": "license_status",
+    "group": 10,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "92": {
+    "name": "license_type",
+    "group": 10,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "93": {
+    "name": "license_issued_date",
+    "group": 10,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "94": {
+    "name": "license_expiry_date",
+    "group": 10,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "95": {
+    "name": "license_violations",
+    "group": 10,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "96": {
+    "name": "license_violation_date",
+    "group": 10,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "97": {
+    "name": "license_violation_description",
+    "group": 10,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "98": {
+    "name": "license_fine_amount",
+    "group": 10,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "License/permit/regulatory enforcement attribute."
+  },
+  "99": {
+    "name": "sanction_status",
+    "group": 10,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Sanctions/watchlist attribute from official lists."
+  },
+  "100": {
+    "name": "sanction_list",
+    "group": 10,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Sanctions/watchlist attribute from official lists."
+  },
+  "101": {
+    "name": "sanction_program",
+    "group": 11,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Sanctions/watchlist attribute from official lists."
+  },
+  "102": {
+    "name": "sanction_date_added",
+    "group": 11,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Sanctions/watchlist attribute from official lists."
+  },
+  "103": {
+    "name": "sanction_date_removed",
+    "group": 11,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Sanctions/watchlist attribute from official lists."
+  },
+  "104": {
+    "name": "sanction_reason",
+    "group": 11,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Sanctions/watchlist attribute from official lists."
+  },
+  "105": {
+    "name": "sanction_entity_type",
+    "group": 11,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Sanctions/watchlist attribute from official lists."
+  },
+  "106": {
+    "name": "property_owner",
+    "group": 11,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Land/property register attribute."
+  },
+  "107": {
+    "name": "property_previous_owners",
+    "group": 11,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Land/property register attribute."
+  },
+  "108": {
+    "name": "property_cadastral_id",
+    "group": 11,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Land/property register attribute."
+  },
+  "109": {
+    "name": "property_title_id",
+    "group": 11,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Land/property register attribute."
+  },
+  "110": {
+    "name": "property_size",
+    "group": 11,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Land/property register attribute."
+  },
+  "111": {
+    "name": "property_value",
+    "group": 12,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Land/property register attribute."
+  },
+  "112": {
+    "name": "property_purchase_date",
+    "group": 12,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Land/property register attribute."
+  },
+  "113": {
+    "name": "property_purchase_price",
+    "group": 12,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Land/property register attribute."
+  },
+  "114": {
+    "name": "property_mortgage",
+    "group": 12,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Land/property register attribute."
+  },
+  "115": {
+    "name": "property_type",
+    "group": 12,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Land/property register attribute."
+  },
+  "116": {
+    "name": "vehicle_owner",
+    "group": 12,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Vehicle registry attribute."
+  },
+  "117": {
+    "name": "vehicle_reg_id",
+    "group": 12,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Vehicle registry attribute."
+  },
+  "118": {
+    "name": "vehicle_vin_id",
+    "group": 12,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Vehicle registry attribute."
+  },
+  "119": {
+    "name": "vehicle_make_model",
+    "group": 12,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Vehicle registry attribute."
+  },
+  "120": {
+    "name": "vehicle_year",
+    "group": 12,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Vehicle registry attribute."
+  },
+  "121": {
+    "name": "vessel_owner",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Maritime registry attribute."
+  },
+  "122": {
+    "name": "vessel_name",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Maritime registry attribute."
+  },
+  "123": {
+    "name": "vessel_imo_id",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Maritime registry attribute."
+  },
+  "124": {
+    "name": "vessel_flag",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Maritime registry attribute."
+  },
+  "125": {
+    "name": "aircraft_owner",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Civil aircraft registry attribute."
+  },
+  "126": {
+    "name": "aircraft_name",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Civil aircraft registry attribute."
+  },
+  "127": {
+    "name": "aircraft_reg_id",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Civil aircraft registry attribute."
+  },
+  "128": {
+    "name": "aircraft_type",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Civil aircraft registry attribute."
+  },
+  "129": {
+    "name": "domain_url",
+    "group": 13,
+    "role": "output",
+    "datatype": "url",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "130": {
+    "name": "domain_ip",
+    "group": 13,
+    "role": "output",
+    "datatype": "ip",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "131": {
+    "name": "domain_registrant_person",
+    "group": 14,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "132": {
+    "name": "domain_registrant_company",
+    "group": 14,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "133": {
+    "name": "domain_registrant_email",
+    "group": 14,
+    "role": "output",
+    "datatype": "email",
+    "cardinality": "single",
+    "pii": true,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "134": {
+    "name": "domain_registrant_phone",
+    "group": 14,
+    "role": "output",
+    "datatype": "phone",
+    "cardinality": "single",
+    "pii": true,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "135": {
+    "name": "domain_registrant_address",
+    "group": 14,
+    "role": "output",
+    "datatype": "address",
+    "cardinality": "single",
+    "pii": true,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "136": {
+    "name": "domain_creation_date",
+    "group": 14,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "137": {
+    "name": "domain_update_date",
+    "group": 14,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "138": {
+    "name": "domain_expiry_date",
+    "group": 14,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "139": {
+    "name": "domain_nameservers",
+    "group": 14,
+    "role": "output",
+    "datatype": "array",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "140": {
+    "name": "domain_status_codes",
+    "group": 14,
+    "role": "output",
+    "datatype": "array",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "141": {
+    "name": "domain_whois_raw",
+    "group": 15,
+    "role": "output",
+    "datatype": "text",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Domain WHOIS/DNS attribute."
+  },
+  "142": {
+    "name": "breach_password_hash",
+    "group": 15,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": true,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "143": {
+    "name": "breach_password_plain",
+    "group": 15,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": true,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "144": {
+    "name": "breach_source",
+    "group": 15,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "145": {
+    "name": "breach_date",
+    "group": 15,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "See name; standard meaning in investigations context."
+  },
+  "146": {
+    "name": "document_content",
+    "group": 16,
+    "role": "output",
+    "datatype": "text",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Full text chunk indexed into the FTS5 + embeddings layer."
+  },
+  "147": {
+    "name": "keyword_term",
+    "group": 13,
+    "role": "input",
+    "datatype": "text",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Free-text keyword or phrase used for Majestic keyword APIs."
+  },
+  "148": {
+    "name": "domain_anchor_text_profile",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Anchor text phrases with backlink/ref-domain counts, flags, and first/last seen timestamps (Majestic get-anchor-text)."
+  },
+  "149": {
+    "name": "keyword_visibility_metrics",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Keyword competitiveness/visibility metrics (Majestic get-keyword-info)."
+  },
+  "150": {
+    "name": "domain_index_item_metrics",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Trust Flow, Citation Flow, backlink totals, Crawled URLs etc. from Majestic GetIndexItemInfo."
+  },
+  "151": {
+    "name": "domain_hosted_domains",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Domains hosted on the same IP/C-block (Majestic get-hosted-domains)."
+  },
+  "152": {
+    "name": "domain_backlink_history",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Historic backlink counts per day/week (Majestic get-back-links-history)."
+  },
+  "153": {
+    "name": "domain_backlink_records",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Detailed backlink rows with source URLs, anchors, topical TF (Majestic get-back-link-data)."
+  },
+  "154": {
+    "name": "domain_new_lost_backlinks",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "New and lost backlink listings (Majestic get-new-lost-back-links)."
+  },
+  "155": {
+    "name": "domain_link_profile",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Link profile chart bins (Trust Flow vs Citation Flow) from Majestic get-link-profile."
+  },
+  "156": {
+    "name": "domain_ref_domains",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Referring domains list with backlink counts (Majestic get-ref-domains)."
+  },
+  "157": {
+    "name": "domain_ref_domain_metrics",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Per ref-domain metrics including Trust Flow/Citation Flow (Majestic get-ref-domain-info)."
+  },
+  "158": {
+    "name": "domain_related_sites",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Sites related by link graph similarity (Majestic get-related-sites)."
+  },
+  "159": {
+    "name": "domain_topics_profile",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Topical Trust Flow categories and scores (Majestic get-topics)."
+  },
+  "160": {
+    "name": "keyword_search_results",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Domains/URLs discovered via Majestic search-by-keyword."
+  },
+  "161": {
+    "name": "domain_crawl_submission",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Submission receipt/job ID for Majestic submit-urls-to-crawl."
+  },
+  "162": {
+    "name": "domain_top_pages",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Top pages with inbound metrics (Majestic get-top-pages)."
+  },
+  "163": {
+    "name": "domain_prefix_estimate",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Estimated stats for URL prefix query (Majestic get-prefix-query-estimate)."
+  },
+  "164": {
+    "name": "domain_gov_backlinks_count",
+    "group": 13,
+    "role": "output",
+    "datatype": "integer",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Count of backlinks originating from government domains (.gov, .gouv, .gov.xx)."
+  },
+  "165": {
+    "name": "domain_gov_ref_domains",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "List of government referring domains with TF/CF and link counts."
+  },
+  "166": {
+    "name": "domain_mil_backlinks_count",
+    "group": 13,
+    "role": "output",
+    "datatype": "integer",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Count of backlinks originating from military domains (.mil, defence TLDs)."
+  },
+  "167": {
+    "name": "domain_mil_ref_domains",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "List of military referring domains with metrics."
+  },
+  "168": {
+    "name": "keyword_related_terms",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Suggested related keywords and variants from Majestic keyword APIs."
+  },
+  "169": {
+    "name": "domain_backlink_segment_profiles",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Aggregated backlink counts segmented by TLD category (gov/mil/edu/org/com/etc)."
+  },
+  "170": {
+    "name": "username_osint_accounts",
+    "group": 6,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Accounts/usernames discovered via OSINT username sweep (platform, URL, status)."
+  },
+  "171": {
+    "name": "username_email_hits",
+    "group": 6,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Emails inferred from username investigations (e.g., contact forms, OSINT industries)."
+  },
+  "172": {
+    "name": "username_breach_exposures",
+    "group": 6,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Breach records tied to the username (breach source, password hash/plain, timestamps)."
+  },
+  "173": {
+    "name": "username_related_entities",
+    "group": 6,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "People/companies/domains discovered via username OSINT."
+  },
+  "174": {
+    "name": "username_geo_signals",
+    "group": 6,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Location indicators (IP geolocation, claimed cities) gathered during username sweeps."
+  },
+  "175": {
+    "name": "phone_osint_profiles",
+    "group": 6,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Profiles/platform hits discovered during phone OSINT (source, URL, status, notes)."
+  },
+  "176": {
+    "name": "phone_breach_records",
+    "group": 6,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Breach entries tied to the phone number (source, password hash/plain, timestamp)."
+  },
+  "177": {
+    "name": "phone_related_entities",
+    "group": 6,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "People/companies/domains linked to the phone number from EyeD search."
+  },
+  "178": {
+    "name": "phone_geo_signals",
+    "group": 6,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Carrier/location/line-type metadata from phone OSINT (EyeD & third-party APIs)."
+  },
+  "179": {
+    "name": "phone_osint_summary",
+    "group": 6,
+    "role": "output",
+    "datatype": "text",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Diagnostic summary of phone OSINT (sources hit, counts, confidence)."
+  },
+  "180": {
+    "name": "registry_search_urls",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Country-specific corporate/court/regulator search URL templates (domain\u2192URL with {query})."
+  },
+  "181": {
+    "name": "national_id_decoded_info",
+    "group": 1,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": true,
+    "description": "Structured breakdown of national/company ID numbers (country, components, validity) via wikiman_id_decoder."
+  },
+  "182": {
+    "name": "domain_geo_summary",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Per-domain aggregate geodata (countries, cities, tz, bbox) from BBT geo ingestion."
+  },
+  "183": {
+    "name": "breach_raw_dataset_ref",
+    "group": 6,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "References to raidforums_master datasets (dataset name, files, preview samples)."
+  },
+  "184": {
+    "name": "tr_commoncrawl_domain_attrs",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Turkish CommonCrawl per-domain language stats (domain_attrs table)."
+  },
+  "185": {
+    "name": "uk_land_registry_records",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Filtered rows from CCOD UK Land Registry CSV (title/address/owner/postcode/tenure)."
+  },
+  "186": {
+    "name": "openownership_results",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Records from OpenOwnership index (ownership statements, percentage shares, control types)."
+  },
+  "187": {
+    "name": "person_email_breaches",
+    "group": 4,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "188": {
+    "name": "person_social_profiles",
+    "group": 4,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "189": {
+    "name": "person_phone_records",
+    "group": 4,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "190": {
+    "name": "person_identity_graph",
+    "group": 4,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "191": {
+    "name": "domain_backlinks",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "192": {
+    "name": "domain_wayback_snapshots",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "193": {
+    "name": "domain_dns_records",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "195": {
+    "name": "domain_whois_history",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "196": {
+    "name": "domain_ssl_certificates",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "197": {
+    "name": "domain_url_timelines",
+    "group": 13,
+    "role": "output",
+    "datatype": "url",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "198": {
+    "name": "domain_keyword_hits",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "200": {
+    "name": "domain_subdomains",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "201": {
+    "name": "domain_whois_history",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "202": {
+    "name": "domain_ssl_certificates",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "203": {
+    "name": "domain_outlinks",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "204": {
+    "name": "domain_ga_codes",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "205": {
+    "name": "domain_age",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "206": {
+    "name": "page_age",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "207": {
+    "name": "referring_pages",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "208": {
+    "name": "linked_pages",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "209": {
+    "name": "historic_link_data",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "211": {
+    "name": "search_engine_hits",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "212": {
+    "name": "similar_sites",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "213": {
+    "name": "sitemap_urls",
+    "group": 13,
+    "role": "output",
+    "datatype": "url",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "214": {
+    "name": "domain_archives",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "215": {
+    "name": "cc_graph_nodes",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "CC web graph nodes with hop distance from seed domain (Linklater multi-hop traversal)."
+  },
+  "216": {
+    "name": "cc_graph_edges",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "CC web graph edges showing source\u2192target link relationships with metadata."
+  },
+  "217": {
+    "name": "backlink_domains",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Domains linking TO target domain (CC Graph + GlobalLinks hybrid query)."
+  },
+  "218": {
+    "name": "backlink_urls",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Full page URLs linking TO target domain (URL-level backlink records)."
+  },
+  "219": {
+    "name": "outlink_domains",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Domains that target domain links TO (outbound link destinations)."
+  },
+  "220": {
+    "name": "outlink_urls",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Full page URLs that target domain links TO (outbound link pages)."
+  },
+  "221": {
+    "name": "link_velocity",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Link acquisition rate metrics (new links per day/week trend analysis)."
+  },
+  "222": {
+    "name": "link_timeline",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "First/last seen dates for links (when did X start linking to Y?)."
+  },
+  "223": {
+    "name": "shared_link_targets",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Domains linked by multiple source domains (network analysis - common link targets)."
+  },
+  "224": {
+    "name": "link_anchor_clusters",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Anchor text clustering analysis across link network."
+  },
+  "225": {
+    "name": "archive_snapshots",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Wayback/CC snapshot URLs with timestamps for historical page versions."
+  },
+  "226": {
+    "name": "archive_freshness",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Archive coverage freshness status (determine if URL needs fresh crawl)."
+  },
+  "227": {
+    "name": "archive_changes",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Content change detection events (digest-based change detection without full fetch)."
+  },
+  "228": {
+    "name": "archive_diff",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Deep snapshot comparison showing content differences between archive versions."
+  },
+  "229": {
+    "name": "entity_timeline",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Entity first/last appearance dates on domain (when did entity first appear on domain?)."
+  },
+  "230": {
+    "name": "ga_tracking_codes",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "GA/GTM tracking codes found on domain (current + historical via Wayback)."
+  },
+  "231": {
+    "name": "ga_related_domains",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Domains sharing GA tracking codes (network association via shared analytics)."
+  },
+  "232": {
+    "name": "subdomain_list",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Discovered subdomains (crt.sh + WhoisXML + passive DNS enumeration)."
+  },
+  "233": {
+    "name": "whois_cluster",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Domains sharing registrant/nameserver infrastructure (infrastructure clustering)."
+  },
+  "234": {
+    "name": "reverse_whois_domains",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Domains discovered by registrant name/email lookup (reverse WHOIS)."
+  },
+  "235": {
+    "name": "news_mentions",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "News articles mentioning query (NewsAPI + DuckDuckGo News + targeted site search)."
+  },
+  "236": {
+    "name": "gdelt_articles",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "GDELT news database results (300M+ articles, no rate limit)."
+  },
+  "237": {
+    "name": "bang_search_results",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Multi-bang search results from targeted search operators."
+  },
+  "238": {
+    "name": "keyword_variations",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Keyword variant search results for comprehensive coverage."
+  },
+  "239": {
+    "name": "category_search_results",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Category-filtered search results from definitional search."
+  },
+  "240": {
+    "name": "extracted_persons",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Person entities extracted from crawled URLs (Jester/Cortex NER pipeline)."
+  },
+  "241": {
+    "name": "extracted_companies",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Company entities extracted from crawled URLs (Jester/Cortex NER pipeline)."
+  },
+  "242": {
+    "name": "extracted_emails",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Email entities extracted from crawled URLs (regex + context validation)."
+  },
+  "243": {
+    "name": "extracted_phones",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Phone entities extracted from crawled URLs (international format parsing)."
+  },
+  "244": {
+    "name": "extracted_addresses",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Address entities extracted from crawled URLs (structured address parsing)."
+  },
+  "245": {
+    "name": "extracted_all_entities",
+    "group": 13,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "All entity types combined from crawled URLs (full extraction pipeline output)."
+  },
+  "250": {
+    "name": "onion_pages",
+    "group": 14,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Crawled dark web pages from Tor network (SerDavos). Contains url, title, content, domain, crawl_date."
+  },
+  "251": {
+    "name": "onion_domains",
+    "group": 14,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Discovered .onion domain addresses from dark web search engines."
+  },
+  "252": {
+    "name": "onion_graph_nodes",
+    "group": 14,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Discovery graph nodes representing onion domains and search queries."
+  },
+  "253": {
+    "name": "onion_graph_edges",
+    "group": 14,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Discovery graph edges representing search_results and outlink relationships."
+  },
+  "254": {
+    "name": "onion_screenshots",
+    "group": 14,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "File paths to screenshots captured from dark web pages (keyword-triggered)."
+  },
+  "255": {
+    "name": "onion_search_results",
+    "group": 14,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Raw search results from onion search engines (Tor66, Ahmia, GDark, etc.)."
+  },
+  "256": {
+    "name": "onion_crawl_status",
+    "group": 14,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Crawler job status including pages_crawled, screenshots_taken, errors."
+  },
+  "257": {
+    "name": "onion_content",
+    "group": 14,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Extracted text content from dark web pages."
+  },
+  "258": {
+    "name": "onion_entities",
+    "group": 14,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Entities extracted from dark web pages (emails, crypto addresses, usernames)."
+  },
+  "259": {
+    "name": "onion_bridges",
+    "group": 14,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Tor-to-clearnet bridge URLs detected during crawling."
+  },
+  "260": {
+    "name": "event_name",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "261": {
+    "name": "event_date",
+    "group": 17,
+    "role": "output",
+    "datatype": "date",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "262": {
+    "name": "event_entities",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "263": {
+    "name": "topic_canonical",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "264": {
+    "name": "topic_spatial_context",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "265": {
+    "name": "theme_id",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "266": {
+    "name": "theme_keywords",
+    "group": 17,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "267": {
+    "name": "extracted_events",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "268": {
+    "name": "extracted_topics",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "269": {
+    "name": "extracted_themes",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "270": {
+    "name": "event_timeline",
+    "group": 17,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "271": {
+    "name": "topic_entity_map",
+    "group": 17,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "272": {
+    "name": "causal_chain",
+    "group": 13,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "273": {
+    "name": "event_coordinate",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "274": {
+    "name": "topic_coordinate",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "275": {
+    "name": "narrative_events",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "276": {
+    "name": "narrative_topics",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "277": {
+    "name": "watcher_events",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "278": {
+    "name": "watcher_topics",
+    "group": 17,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "279": {
+    "name": "event_profile",
+    "group": 17,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "280": {
+    "name": "topic_profile",
+    "group": 17,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Auto-added during V2 build to cover missing field_meta entries."
+  },
+  "breach_source_url": {
+    "name": "breach_source_url",
+    "group": 4,
+    "role": "output",
+    "datatype": "url",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Source URL of breach data (often archived)"
+  },
+  "breach_thread_name": {
+    "name": "breach_thread_name",
+    "group": 4,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Name/title of breach thread or discussion"
+  },
+  "breach_date": {
+    "name": "breach_date",
+    "group": 4,
+    "role": "output",
+    "datatype": "datetime",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Date of breach occurrence or disclosure"
+  },
+  "breach_status": {
+    "name": "breach_status",
+    "group": 4,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "HTTP status or availability status of breach source"
+  },
+  "breach_comment": {
+    "name": "breach_comment",
+    "group": 4,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Commentary or description of breach context"
+  },
+  "breach_country": {
+    "name": "breach_country",
+    "group": 4,
+    "role": "input|output",
+    "datatype": "string",
+    "cardinality": "single",
+    "pii": false,
+    "description": "Country/jurisdiction associated with breach"
+  },
+  "516": {
+    "name": "person_associated_persons",
+    "group": 4,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": true,
+    "description": "Associated persons linked to this person."
+  },
+  "517": {
+    "name": "person_associated_companies",
+    "group": 4,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Associated companies linked to this person."
+  },
+  "518": {
+    "name": "person_domains",
+    "group": 4,
+    "role": "output",
+    "datatype": "domain",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Domains or websites linked to this person."
+  },
+  "519": {
+    "name": "person_documents",
+    "group": 4,
+    "role": "output",
+    "datatype": "string",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Documents or files that reference this person."
+  },
+  "520": {
+    "name": "person_assets",
+    "group": 4,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Assets linked to this person (property, vehicles, holdings)."
+  },
+  "521": {
+    "name": "person_pep_status",
+    "group": 4,
+    "role": "output",
+    "datatype": "json",
+    "cardinality": "array",
+    "pii": false,
+    "description": "Politically exposed person status and positions."
+  }
+}

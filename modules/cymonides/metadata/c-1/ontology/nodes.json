@@ -1,0 +1,247 @@
+{
+  "meta": {
+    "version": "1.1.3",
+    "last_updated": "2025-12-31",
+    "description": "Canonical node kinds and subkinds for CYMONIDES-1 (grid/graph).",
+    "sources": [
+      "shared/classConfig.ts",
+      "client/src/components/FilteredNodesBar.tsx",
+      "client/src/components/HorizontalClassPanels.tsx",
+      "BACKEND/modules/CYMONIDES/metadata/c-1/ontology/relationships.json",
+      "server/services/cymonides/scenarios.json"
+    ],
+    "notes": [
+      "Classes are NARRATIVE, SUBJECT, NEXUS, LOCATION (no class aliases).",
+      "NEXUS relationships are defined in relationships.json; this file defines node kinds/subkinds only."
+    ]
+  },
+  "type_aliases": {
+    "organization": "company",
+    "webdomain": "domain",
+    "ip": "ip_address",
+    "aircraft": "plane",
+    "plane": "vehicle",
+    "vessel": "vehicle",
+    "wallet": "crypto_wallet",
+    "document": "file",
+    "source": "file",
+    "dataset": "file"
+  },
+  "classes": {
+    "NARRATIVE": {
+      "description": "Project and user-authored narrative context.",
+      "types": {
+        "project": {
+          "description": "Project node; represents the cymonides-1-{projectId} index."
+        },
+        "note": {
+          "description": "Narrative note node.",
+          "subtypes": [
+            "template"
+          ]
+        },
+        "watcher": {
+          "description": "Watcher node created from narrative note headers."
+        },
+        "track": {
+          "description": "Narrative track node (goal -> track -> path topology)."
+        },
+        "tag": {
+          "description": "Tag node for grouping and filters."
+        }
+      }
+    },
+    "SUBJECT": {
+      "description": "Subjects under investigation: entities and concepts.",
+      "types": {
+        "entity": {
+          "description": "Canonical entity types.",
+          "subtypes": [
+            "person",
+            "company",
+            "vehicle",
+            "email",
+            "phone",
+            "ip_address",
+            "crypto_wallet"
+          ],
+          "notes": [
+            "Vehicle subtypes include plane and vessel."
+          ]
+        },
+        "concept": {
+          "description": "Conceptual subjects tied to themes and phenomena.",
+          "subtypes": [
+            "phenomenon",
+            "theme"
+          ]
+        }
+      }
+    },
+    "NEXUS": {
+      "description": "Query logic, operators, and relationship intersections.",
+      "types": {
+        "logic": {
+          "description": "Logical operators and comparison frames.",
+          "subtypes": [
+            "and",
+            "or",
+            "group",
+            "compare",
+            "contrast"
+          ],
+          "notes": [
+            "group represents parentheses ().",
+            "compare corresponds to =? across dimensions."
+          ],
+          "relationships_source": "BACKEND/modules/CYMONIDES/metadata/c-1/ontology/relationships.json"
+        },
+        "query": {
+          "description": "Query nodes (primary intent).",
+          "subtypes": [
+            "keyword",
+            "semantic",
+            "exact_phrase",
+            "variations",
+            "question",
+            "definitional"
+          ]
+        },
+        "query_primary": {
+          "description": "Primary query intent.",
+          "subtypes": [
+            "keyword",
+            "semantic",
+            "exact_phrase",
+            "variations",
+            "question",
+            "definitional"
+          ]
+        },
+        "query_scope": {
+          "description": "Query scope and destination.",
+          "subtypes": [
+            "on_dom",
+            "on_page",
+            "openweb",
+            "filter",
+            "corporella",
+            "eye-d",
+            "historic"
+          ]
+        },
+        "query_mode": {
+          "description": "Execution mode.",
+          "subtypes": [
+            "brute",
+            "targeted"
+          ]
+        },
+        "selector": {
+          "description": "Selector operators embedded in queries.",
+          "subtypes": [
+            "intitle",
+            "inurl",
+            "indom",
+            "inanchor",
+            "site"
+          ]
+        }
+      }
+    },
+    "LOCATION": {
+      "description": "Coordinates, jurisdictions, and virtual anchors.",
+      "types": {
+        "geo": {
+          "description": "Physical geography and jurisdiction.",
+          "subtypes": [
+            "jurisdiction",
+            "country",
+            "region",
+            "municipality",
+            "address"
+          ]
+        },
+        "linguistic": {
+          "description": "Language and linguistic signals.",
+          "subtypes": [
+            "language"
+          ]
+        },
+        "virtual": {
+          "description": "Virtual coordinates (domain, URL, file) plus format/filetype facets.",
+          "subtypes": [
+            "domain",
+            "url",
+            "file"
+          ],
+          "format_categories": [
+            "document",
+            "image",
+            "video",
+            "audio",
+            "website"
+          ],
+          "filetypes": {
+            "document": [
+              "pdf",
+              "doc",
+              "docx",
+              "xls",
+              "xlsx",
+              "csv",
+              "ppt",
+              "pptx",
+              "txt",
+              "json",
+              "xml",
+              "rtf",
+              "odt",
+              "html",
+              "htm",
+              "zip",
+              "rar",
+              "7z",
+              "tar",
+              "gz"
+            ],
+            "image": [
+              "jpg",
+              "jpeg",
+              "png",
+              "gif",
+              "svg",
+              "webp"
+            ],
+            "video": [
+              "mp4",
+              "webm",
+              "mov",
+              "avi"
+            ],
+            "audio": [
+              "mp3",
+              "wav",
+              "m4a",
+              "flac",
+              "ogg"
+            ]
+          }
+        },
+        "temporal": {
+          "description": "Temporal coordinates.",
+          "subtypes": [
+            "year",
+            "month",
+            "day"
+          ],
+          "formats": [
+            "YYYY",
+            "MM YYYY",
+            "DD MM YYYY"
+          ]
+        }
+      }
+    }
+  }
+}

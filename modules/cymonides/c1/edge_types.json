@@ -1,0 +1,3023 @@
+{
+  "company": {
+    "node_type": "company",
+    "description": "Valid edge types for company entities",
+    "version": "1.0",
+    "last_updated": "2025-10-27",
+    "edge_types": [
+      {
+        "relationship_type": "officer_of",
+        "direction": "incoming",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "company"
+        ],
+        "category": "corporate_structure",
+        "description": "Person serves as an officer of the company",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "position",
+            "start_date",
+            "end_date",
+            "source_system",
+            "collection_id"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": "Directorship"
+      },
+      {
+        "relationship_type": "beneficial_owner_of",
+        "direction": "incoming",
+        "source_types": [
+          "person",
+          "company"
+        ],
+        "target_types": [
+          "company"
+        ],
+        "category": "ownership",
+        "description": "Entity is a beneficial owner of the company",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "share_pct",
+            "voting_pct",
+            "natures_of_control",
+            "source_system",
+            "collection_id"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": "Ownership"
+      },
+      {
+        "relationship_type": "owner_of",
+        "direction": "incoming",
+        "source_types": [
+          "person",
+          "company"
+        ],
+        "target_types": [
+          "company",
+          "asset"
+        ],
+        "category": "ownership",
+        "description": "Entity is an owner of a company or asset",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "share_pct",
+            "voting_pct",
+            "natures_of_control",
+            "source_system",
+            "collection_id"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": "Ownership"
+      },
+      {
+        "relationship_type": "subsidiary_of",
+        "direction": "incoming",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "company"
+        ],
+        "category": "ownership",
+        "description": "Company is a subsidiary of another company",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "share_pct",
+            "source_system",
+            "collection_id"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": "Ownership"
+      },
+      {
+        "relationship_type": "legal_parent_of",
+        "direction": "incoming",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "company"
+        ],
+        "category": "ownership",
+        "description": "Company is the legal parent of another company",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "share_pct",
+            "source_system",
+            "collection_id"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": "Ownership"
+      },
+      {
+        "relationship_type": "shareholder_of",
+        "direction": "incoming",
+        "source_types": [
+          "person",
+          "company"
+        ],
+        "target_types": [
+          "company"
+        ],
+        "category": "ownership",
+        "description": "Entity is a shareholder of the company",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "share_pct",
+            "control_type",
+            "source_system",
+            "collection_id"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": "Ownership"
+      },
+      {
+        "relationship_type": "has_phone",
+        "direction": "outgoing",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "phone"
+        ],
+        "category": "contact_info",
+        "description": "Company has a phone number",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "phone_type",
+            "source_system",
+            "collection_id"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "FTM stores phone as LegalEntity property, not relationship"
+      },
+      {
+        "relationship_type": "has_email",
+        "direction": "outgoing",
+        "source_types": [
+          "company",
+          "person",
+          "organization"
+        ],
+        "target_types": [
+          "email"
+        ],
+        "category": "contact_info",
+        "description": "Company has an email address",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "email_type",
+            "source_system",
+            "collection_id"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "FTM stores email as LegalEntity property, not relationship"
+      },
+      {
+        "relationship_type": "has_address",
+        "direction": "outgoing",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "address"
+        ],
+        "category": "contact_info",
+        "description": "Company has a physical address",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [
+            "address_type"
+          ],
+          "optional": [
+            "verified",
+            "when",
+            "where"
+          ],
+          "custom_fields": {
+            "address_type": {
+              "type": "enum",
+              "values": [
+                "headquarters",
+                "branch",
+                "office",
+                "warehouse",
+                "retail"
+              ],
+              "required": true
+            },
+            "verified": {
+              "type": "boolean"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "FTM stores address as LegalEntity property or uses Address entity"
+      },
+      {
+        "relationship_type": "employs",
+        "direction": "outgoing",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "person"
+        ],
+        "category": "employment",
+        "description": "Company employs person",
+        "inverse": "employed_by",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "position_title",
+            "department",
+            "hire_date",
+            "when"
+          ],
+          "custom_fields": {
+            "position_title": {
+              "type": "string"
+            },
+            "department": {
+              "type": "string"
+            },
+            "hire_date": {
+              "type": "ISO8601"
+            },
+            "employment_type": {
+              "type": "enum",
+              "values": [
+                "full_time",
+                "part_time",
+                "contract",
+                "consultant"
+              ]
+            }
+          }
+        },
+        "ftm_relation": "Employment"
+      },
+      {
+        "relationship_type": "owns",
+        "direction": "outgoing",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "company",
+          "intellectual_property",
+          "vehicle"
+        ],
+        "category": "ownership",
+        "description": "Company owns another company or asset",
+        "inverse": "owned_by",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [
+            "ownership_type"
+          ],
+          "optional": [
+            "ownership_percentage",
+            "acquisition_date",
+            "when",
+            "where"
+          ],
+          "custom_fields": {
+            "ownership_type": {
+              "type": "enum",
+              "values": [
+                "full",
+                "majority",
+                "minority",
+                "subsidiary"
+              ],
+              "required": true
+            },
+            "ownership_percentage": {
+              "type": "float",
+              "min": 0,
+              "max": 100
+            },
+            "acquisition_date": {
+              "type": "ISO8601"
+            }
+          }
+        },
+        "ftm_relation": "Ownership"
+      },
+      {
+        "relationship_type": "subsidiary_of",
+        "direction": "outgoing",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "company"
+        ],
+        "category": "ownership",
+        "description": "Company is a subsidiary of parent company",
+        "inverse": "parent_of",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "ownership_percentage",
+            "when"
+          ],
+          "custom_fields": {
+            "ownership_percentage": {
+              "type": "float",
+              "min": 0,
+              "max": 100
+            }
+          }
+        },
+        "ftm_relation": "Ownership"
+      },
+      {
+        "relationship_type": "flagged_with",
+        "direction": "outgoing",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "red_flag"
+        ],
+        "category": "compliance",
+        "description": "Company flagged with compliance/risk indicator",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [
+            "flag_severity"
+          ],
+          "optional": [
+            "source_id",
+            "keywords",
+            "when",
+            "where"
+          ],
+          "custom_fields": {
+            "flag_severity": {
+              "type": "enum",
+              "values": [
+                "low",
+                "medium",
+                "high",
+                "critical"
+              ],
+              "required": true
+            },
+            "involvement_type": {
+              "type": "string",
+              "examples": [
+                "regulatory_investigation",
+                "sanctions",
+                "litigation",
+                "adverse_media"
+              ]
+            },
+            "case_number": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": "Sanction",
+        "ftm_divergence": "Maps to Sanction if sanction-related, else custom"
+      },
+      {
+        "relationship_type": "headquartered_at",
+        "direction": "outgoing",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "address",
+          "municipality",
+          "region",
+          "country"
+        ],
+        "category": "location",
+        "description": "Company headquarters location",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "when",
+            "where"
+          ],
+          "custom_fields": {
+            "verified": {
+              "type": "boolean"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use Address entity with LegalEntity.address property"
+      },
+      {
+        "relationship_type": "registered_in",
+        "direction": "outgoing",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "country",
+          "region"
+        ],
+        "category": "location",
+        "description": "Company registered/incorporated in jurisdiction",
+        "confidence_default": 0.98,
+        "metadata_schema": {
+          "required": [
+            "registration_number"
+          ],
+          "optional": [
+            "registration_date",
+            "when"
+          ],
+          "custom_fields": {
+            "registration_number": {
+              "type": "string",
+              "required": true
+            },
+            "registration_date": {
+              "type": "ISO8601"
+            },
+            "company_type": {
+              "type": "string",
+              "examples": [
+                "LLC",
+                "Inc",
+                "Ltd",
+                "GmbH",
+                "Pte Ltd"
+              ]
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use jurisdiction property on LegalEntity"
+      },
+      {
+        "relationship_type": "has_website",
+        "direction": "outgoing",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "url"
+        ],
+        "category": "online_presence",
+        "description": "Company has official website",
+        "confidence_default": 1,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "verified",
+            "when"
+          ],
+          "custom_fields": {
+            "site_type": {
+              "type": "enum",
+              "values": [
+                "corporate",
+                "product",
+                "support",
+                "blog"
+              ]
+            },
+            "verified": {
+              "type": "boolean"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "FTM stores website as LegalEntity property"
+      },
+      {
+        "relationship_type": "has_linkedin",
+        "direction": "outgoing",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "url"
+        ],
+        "category": "social_media",
+        "description": "Company has LinkedIn page",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [
+            "platform"
+          ],
+          "optional": [
+            "verified",
+            "followers_count",
+            "when"
+          ],
+          "custom_fields": {
+            "platform": {
+              "type": "string",
+              "const": "linkedin",
+              "required": true
+            },
+            "verified": {
+              "type": "boolean"
+            },
+            "followers_count": {
+              "type": "integer"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "FTM stores social links as LegalEntity property"
+      },
+      {
+        "relationship_type": "mentioned_in",
+        "direction": "outgoing",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "url"
+        ],
+        "category": "mention",
+        "description": "Company mentioned in news/article/database",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "mention_type",
+            "relevance",
+            "when"
+          ],
+          "custom_fields": {
+            "mention_type": {
+              "type": "enum",
+              "values": [
+                "news_article",
+                "press_release",
+                "regulatory_filing",
+                "database_entry"
+              ]
+            },
+            "relevance": {
+              "type": "enum",
+              "values": [
+                "high",
+                "medium",
+                "low"
+              ]
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use Document.mentionedEntity or custom"
+      },
+      {
+        "relationship_type": "involved_in_litigation",
+        "direction": "outgoing",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "url"
+        ],
+        "category": "compliance",
+        "description": "Company involved in legal case",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [
+            "case_role"
+          ],
+          "optional": [
+            "case_number",
+            "court",
+            "when",
+            "where"
+          ],
+          "custom_fields": {
+            "case_role": {
+              "type": "enum",
+              "values": [
+                "plaintiff",
+                "defendant",
+                "respondent",
+                "appellant"
+              ],
+              "required": true
+            },
+            "case_number": {
+              "type": "string"
+            },
+            "court": {
+              "type": "string"
+            },
+            "case_status": {
+              "type": "enum",
+              "values": [
+                "ongoing",
+                "settled",
+                "dismissed",
+                "ruled"
+              ]
+            }
+          }
+        },
+        "ftm_relation": "CourtCase",
+        "ftm_divergence": "Maps to CourtCase/CourtCaseParty"
+      },
+      {
+        "relationship_type": "partner_of",
+        "direction": "bidirectional",
+        "source_types": [
+          "company"
+        ],
+        "target_types": [
+          "company"
+        ],
+        "category": "association",
+        "description": "Business partnership between companies",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [
+            "partnership_type"
+          ],
+          "optional": [
+            "when"
+          ],
+          "custom_fields": {
+            "partnership_type": {
+              "type": "enum",
+              "values": [
+                "strategic",
+                "reseller",
+                "technology",
+                "distribution",
+                "joint_venture"
+              ],
+              "required": true
+            },
+            "partnership_date": {
+              "type": "ISO8601"
+            }
+          }
+        },
+        "ftm_relation": "Associate"
+      }
+    ]
+  },
+  "person": {
+    "node_type": "person",
+    "description": "Valid edge types for person entities",
+    "version": "1.0",
+    "last_updated": "2025-10-27",
+    "edge_types": [
+      {
+        "relationship_type": "has_phone",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "phone"
+        ],
+        "category": "contact_info",
+        "description": "Person has a phone number (mobile, work, home, etc.)",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [
+            "phone_type",
+            "verified"
+          ],
+          "optional": [
+            "country_code",
+            "primary",
+            "when",
+            "where"
+          ],
+          "custom_fields": {
+            "phone_type": {
+              "type": "enum",
+              "values": [
+                "mobile",
+                "work",
+                "home",
+                "fax",
+                "voip"
+              ],
+              "required": true
+            },
+            "verified": {
+              "type": "boolean",
+              "required": true
+            },
+            "primary": {
+              "type": "boolean",
+              "description": "Is this the primary phone number"
+            },
+            "country_code": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "FTM stores phone as LegalEntity property, not relationship"
+      },
+      {
+        "relationship_type": "has_email",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "email"
+        ],
+        "category": "contact_info",
+        "description": "Person has an email address",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [
+            "email_type",
+            "verified"
+          ],
+          "optional": [
+            "primary",
+            "when"
+          ],
+          "custom_fields": {
+            "email_type": {
+              "type": "enum",
+              "values": [
+                "personal",
+                "work",
+                "business",
+                "other"
+              ],
+              "required": true
+            },
+            "verified": {
+              "type": "boolean",
+              "required": true
+            },
+            "primary": {
+              "type": "boolean"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "FTM stores email as LegalEntity property, not relationship"
+      },
+      {
+        "relationship_type": "has_address",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "address"
+        ],
+        "category": "contact_info",
+        "description": "Person has a physical address",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [
+            "address_type"
+          ],
+          "optional": [
+            "verified",
+            "current",
+            "when",
+            "where"
+          ],
+          "custom_fields": {
+            "address_type": {
+              "type": "enum",
+              "values": [
+                "home",
+                "work",
+                "business",
+                "previous"
+              ],
+              "required": true
+            },
+            "current": {
+              "type": "boolean"
+            },
+            "verified": {
+              "type": "boolean"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "FTM stores address as LegalEntity property or uses Address entity"
+      },
+      {
+        "relationship_type": "employed_by",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "company",
+          "organization"
+        ],
+        "category": "employment",
+        "description": "Person is employed by company/organization",
+        "inverse": "employs",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [
+            "employment_type"
+          ],
+          "optional": [
+            "position_title",
+            "department",
+            "salary",
+            "when"
+          ],
+          "custom_fields": {
+            "employment_type": {
+              "type": "enum",
+              "values": [
+                "full_time",
+                "part_time",
+                "contract",
+                "consultant",
+                "intern",
+                "volunteer"
+              ],
+              "required": true
+            },
+            "position_title": {
+              "type": "string",
+              "examples": [
+                "CEO",
+                "Senior Software Engineer",
+                "Director of Marketing"
+              ]
+            },
+            "department": {
+              "type": "string"
+            },
+            "salary": {
+              "type": "number",
+              "description": "Annual salary"
+            }
+          }
+        },
+        "ftm_relation": "Employment"
+      },
+      {
+        "relationship_type": "director_of",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "company",
+          "organization"
+        ],
+        "category": "employment",
+        "description": "Person serves as director/board member",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [
+            "role_type"
+          ],
+          "optional": [
+            "appointment_date",
+            "when"
+          ],
+          "custom_fields": {
+            "role_type": {
+              "type": "enum",
+              "values": [
+                "executive_director",
+                "non_executive",
+                "chairman",
+                "board_member"
+              ],
+              "required": true
+            },
+            "appointment_date": {
+              "type": "ISO8601"
+            }
+          }
+        },
+        "ftm_relation": "Directorship"
+      },
+      {
+        "relationship_type": "owns",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "company",
+          "vehicle",
+          "intellectual_property",
+          "art"
+        ],
+        "category": "ownership",
+        "description": "Person owns asset or company",
+        "inverse": "owned_by",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [
+            "ownership_type"
+          ],
+          "optional": [
+            "ownership_percentage",
+            "acquisition_date",
+            "when",
+            "where"
+          ],
+          "custom_fields": {
+            "ownership_type": {
+              "type": "enum",
+              "values": [
+                "full",
+                "majority",
+                "minority",
+                "beneficial",
+                "legal"
+              ],
+              "required": true
+            },
+            "ownership_percentage": {
+              "type": "float",
+              "min": 0,
+              "max": 100
+            },
+            "acquisition_date": {
+              "type": "ISO8601"
+            }
+          }
+        },
+        "ftm_relation": "Ownership"
+      },
+      {
+        "relationship_type": "married_to",
+        "direction": "bidirectional",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "person"
+        ],
+        "category": "family",
+        "description": "Marriage relationship between two people",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [
+            "marriage_status"
+          ],
+          "optional": [
+            "marriage_date",
+            "divorce_date",
+            "when",
+            "where"
+          ],
+          "custom_fields": {
+            "marriage_status": {
+              "type": "enum",
+              "values": [
+                "married",
+                "divorced",
+                "widowed",
+                "separated"
+              ],
+              "required": true
+            },
+            "marriage_date": {
+              "type": "ISO8601"
+            },
+            "divorce_date": {
+              "type": "ISO8601"
+            }
+          }
+        },
+        "ftm_relation": "Family"
+      },
+      {
+        "relationship_type": "child_of",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "person"
+        ],
+        "category": "family",
+        "description": "Person is child of another person",
+        "inverse": "parent_of",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [
+            "relationship_detail"
+          ],
+          "optional": [
+            "when"
+          ],
+          "custom_fields": {
+            "relationship_detail": {
+              "type": "enum",
+              "values": [
+                "biological",
+                "adopted",
+                "step"
+              ],
+              "required": true
+            }
+          }
+        },
+        "ftm_relation": "Family"
+      },
+      {
+        "relationship_type": "sibling_of",
+        "direction": "bidirectional",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "person"
+        ],
+        "category": "family",
+        "description": "Sibling relationship",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [
+            "sibling_type"
+          ],
+          "optional": [],
+          "custom_fields": {
+            "sibling_type": {
+              "type": "enum",
+              "values": [
+                "full",
+                "half",
+                "step"
+              ],
+              "required": true
+            }
+          }
+        },
+        "ftm_relation": "Family"
+      },
+      {
+        "relationship_type": "flagged_with",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "red_flag"
+        ],
+        "category": "compliance",
+        "description": "Person flagged with compliance/risk indicator",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [
+            "flag_severity",
+            "source"
+          ],
+          "optional": [
+            "keywords",
+            "source_id",
+            "involvement_type",
+            "when",
+            "where"
+          ],
+          "custom_fields": {
+            "flag_severity": {
+              "type": "enum",
+              "values": [
+                "low",
+                "medium",
+                "high",
+                "critical"
+              ],
+              "required": true
+            },
+            "involvement_type": {
+              "type": "string",
+              "examples": [
+                "primary_target",
+                "associate",
+                "indirect_link",
+                "government_advisor"
+              ]
+            },
+            "keywords": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "keyword": "string",
+                  "keyword_type": "string",
+                  "source_name": "string"
+                }
+              }
+            },
+            "status": {
+              "type": "enum",
+              "values": [
+                "Active",
+                "Inactive",
+                "Unknown",
+                "Resolved"
+              ]
+            },
+            "further_info": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": "Sanction",
+        "ftm_divergence": "Maps to Sanction if sanction-related, else custom"
+      },
+      {
+        "relationship_type": "resides_at",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "address"
+        ],
+        "category": "location",
+        "description": "Person resides at address",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "residence_type",
+            "current",
+            "when",
+            "where"
+          ],
+          "custom_fields": {
+            "residence_type": {
+              "type": "enum",
+              "values": [
+                "primary",
+                "secondary",
+                "vacation",
+                "previous"
+              ]
+            },
+            "current": {
+              "type": "boolean"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use Address entity with Person.address property"
+      },
+      {
+        "relationship_type": "has_linkedin",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "url"
+        ],
+        "category": "social_media",
+        "description": "Person has LinkedIn profile",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [
+            "platform"
+          ],
+          "optional": [
+            "verified",
+            "followers_count",
+            "when"
+          ],
+          "custom_fields": {
+            "platform": {
+              "type": "string",
+              "const": "linkedin",
+              "required": true
+            },
+            "verified": {
+              "type": "boolean"
+            },
+            "followers_count": {
+              "type": "integer"
+            },
+            "handle": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "FTM stores social links as LegalEntity property"
+      },
+      {
+        "relationship_type": "has_twitter",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "url"
+        ],
+        "category": "social_media",
+        "description": "Person has Twitter/X profile",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [
+            "platform",
+            "handle"
+          ],
+          "optional": [
+            "verified",
+            "followers_count",
+            "when"
+          ],
+          "custom_fields": {
+            "platform": {
+              "type": "string",
+              "const": "twitter",
+              "required": true
+            },
+            "handle": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "FTM stores social links as LegalEntity property"
+      },
+      {
+        "relationship_type": "mentioned_in",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "url"
+        ],
+        "category": "mention",
+        "description": "Person mentioned in external source/article",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "mention_type",
+            "relevance",
+            "when"
+          ],
+          "custom_fields": {
+            "mention_type": {
+              "type": "enum",
+              "values": [
+                "news_article",
+                "blog_post",
+                "press_release",
+                "database_entry",
+                "social_media"
+              ]
+            },
+            "relevance": {
+              "type": "enum",
+              "values": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "context_snippet": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use Document.mentionedEntity or custom"
+      },
+      {
+        "relationship_type": "educated_at",
+        "direction": "outgoing",
+        "source_types": [
+          "person"
+        ],
+        "target_types": [
+          "organization"
+        ],
+        "category": "education",
+        "description": "Person received education at institution",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "degree",
+            "field_of_study",
+            "graduation_year",
+            "when"
+          ],
+          "custom_fields": {
+            "degree": {
+              "type": "string",
+              "examples": [
+                "MBA",
+                "BS Computer Science",
+                "PhD Physics"
+              ]
+            },
+            "field_of_study": {
+              "type": "string"
+            },
+            "graduation_year": {
+              "type": "integer"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "FTM stores education as Person property"
+      }
+    ]
+  },
+  "document": {
+    "node_type": "document",
+    "description": "Valid edge types for documents and filings",
+    "version": "1.0",
+    "last_updated": "2025-11-16",
+    "edge_types": [
+      {
+        "relationship_type": "filed_with",
+        "direction": "outgoing",
+        "source_types": [
+          "document"
+        ],
+        "target_types": [
+          "agency"
+        ],
+        "category": "regulatory",
+        "description": "Document or filing submitted to an agency",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [
+            "form_type"
+          ],
+          "optional": [
+            "filed_at",
+            "verified",
+            "source"
+          ],
+          "custom_fields": {
+            "form_type": {
+              "type": "string",
+              "required": true
+            },
+            "filed_at": {
+              "type": "ISO8601"
+            },
+            "verified": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Custom, document filing relationship"
+      },
+      {
+        "relationship_type": "associated_with",
+        "direction": "outgoing",
+        "source_types": [
+          "document"
+        ],
+        "target_types": [
+          "company",
+          "person",
+          "organization"
+        ],
+        "category": "evidence",
+        "description": "Document references or involves this entity",
+        "confidence_default": 0.75,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "context",
+            "reference",
+            "verified"
+          ],
+          "custom_fields": {
+            "context": {
+              "type": "string"
+            },
+            "reference": {
+              "type": "string"
+            },
+            "verified": {
+              "type": "boolean"
+            }
+          }
+        },
+        "ftm_relation": "UnknownLink"
+      }
+    ]
+  },
+  "entity": {
+    "node_type": "entity",
+    "description": "Generic relationships for entity-driven enrichment",
+    "version": "1.0",
+    "last_updated": "2025-11-16",
+    "edge_types": [
+      {
+        "relationship_type": "related_to",
+        "direction": "bidirectional",
+        "source_types": [
+          "entity",
+          "person",
+          "company",
+          "email",
+          "phone",
+          "domain",
+          "ip_address",
+          "username"
+        ],
+        "target_types": [
+          "entity",
+          "person",
+          "company",
+          "email",
+          "phone",
+          "domain",
+          "ip_address",
+          "username"
+        ],
+        "category": "association",
+        "description": "Generic association between entities discovered via OSINT",
+        "confidence_default": 0.6,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "confidence",
+            "source"
+          ],
+          "custom_fields": {
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "source": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": "UnknownLink"
+      },
+      {
+        "relationship_type": "linked_to",
+        "direction": "bidirectional",
+        "source_types": [
+          "entity",
+          "email",
+          "username",
+          "phone"
+        ],
+        "target_types": [
+          "entity",
+          "email",
+          "username",
+          "phone"
+        ],
+        "category": "association",
+        "description": "Strong link between two identifiers",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "source",
+            "confidence"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": "UnknownLink"
+      },
+      {
+        "relationship_type": "has_profile",
+        "direction": "outgoing",
+        "source_types": [
+          "entity",
+          "person",
+          "company",
+          "email",
+          "username"
+        ],
+        "target_types": [
+          "url",
+          "source"
+        ],
+        "category": "social_media",
+        "description": "Entity has a profile at a specific URL",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "platform",
+            "handle"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "documented_by",
+        "direction": "outgoing",
+        "source_types": [
+          "entity",
+          "person",
+          "company",
+          "address",
+          "asset"
+        ],
+        "target_types": [
+          "source",
+          "document"
+        ],
+        "category": "evidence",
+        "description": "Entity is documented by a specific source URL/document",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "url_field",
+            "source_system",
+            "collection_id"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Custom, document references entity"
+      }
+    ]
+  },
+  "vessel": {
+    "node_type": "vessel",
+    "description": "Valid edge types for vessel/ship entities",
+    "version": "1.0",
+    "last_updated": "2025-11-23",
+    "edge_types": [
+      {
+        "relationship_type": "owned_by",
+        "direction": "outgoing",
+        "source_types": [
+          "vessel"
+        ],
+        "target_types": [
+          "person",
+          "company",
+          "organization"
+        ],
+        "category": "ownership",
+        "description": "Vessel is owned by entity",
+        "inverse": "owns",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [
+            "ownership_type"
+          ],
+          "optional": [
+            "ownership_percentage",
+            "registration_date",
+            "when"
+          ],
+          "custom_fields": {
+            "ownership_type": {
+              "type": "enum",
+              "values": [
+                "full",
+                "partial",
+                "beneficial",
+                "registered"
+              ],
+              "required": true
+            },
+            "ownership_percentage": {
+              "type": "float",
+              "min": 0,
+              "max": 100
+            }
+          }
+        },
+        "ftm_relation": "Ownership"
+      },
+      {
+        "relationship_type": "registered_in",
+        "direction": "outgoing",
+        "source_types": [
+          "vessel"
+        ],
+        "target_types": [
+          "country",
+          "region"
+        ],
+        "category": "location",
+        "description": "Vessel registered under jurisdiction/flag",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [
+            "flag_country"
+          ],
+          "optional": [
+            "registration_number",
+            "port_of_registry",
+            "when"
+          ],
+          "custom_fields": {
+            "flag_country": {
+              "type": "string",
+              "required": true
+            },
+            "registration_number": {
+              "type": "string"
+            },
+            "port_of_registry": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use jurisdiction property on LegalEntity"
+      },
+      {
+        "relationship_type": "operated_by",
+        "direction": "outgoing",
+        "source_types": [
+          "vessel"
+        ],
+        "target_types": [
+          "company",
+          "organization"
+        ],
+        "category": "operations",
+        "description": "Vessel operated by company/organization",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "operator_type",
+            "when"
+          ],
+          "custom_fields": {
+            "operator_type": {
+              "type": "enum",
+              "values": [
+                "owner-operator",
+                "charter",
+                "lease",
+                "management"
+              ]
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use Asset.owner or custom"
+      },
+      {
+        "relationship_type": "flagged_with",
+        "direction": "outgoing",
+        "source_types": [
+          "vessel"
+        ],
+        "target_types": [
+          "red_flag"
+        ],
+        "category": "compliance",
+        "description": "Vessel flagged for sanctions/violations",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [
+            "flag_severity"
+          ],
+          "optional": [
+            "violation_type",
+            "when",
+            "where"
+          ],
+          "custom_fields": {
+            "flag_severity": {
+              "type": "enum",
+              "values": [
+                "low",
+                "medium",
+                "high",
+                "critical"
+              ],
+              "required": true
+            },
+            "violation_type": {
+              "type": "string",
+              "examples": [
+                "sanctions",
+                "pollution",
+                "trafficking",
+                "illegal_fishing"
+              ]
+            }
+          }
+        },
+        "ftm_relation": "Sanction",
+        "ftm_divergence": "Maps to Sanction if sanction-related, else custom"
+      }
+    ]
+  },
+  "plane": {
+    "node_type": "plane",
+    "description": "Valid edge types for aircraft/airplane entities",
+    "version": "1.0",
+    "last_updated": "2025-11-23",
+    "edge_types": [
+      {
+        "relationship_type": "owned_by",
+        "direction": "outgoing",
+        "source_types": [
+          "plane"
+        ],
+        "target_types": [
+          "person",
+          "company",
+          "organization"
+        ],
+        "category": "ownership",
+        "description": "Aircraft is owned by entity",
+        "inverse": "owns",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [
+            "ownership_type"
+          ],
+          "optional": [
+            "ownership_percentage",
+            "registration_date",
+            "when"
+          ],
+          "custom_fields": {
+            "ownership_type": {
+              "type": "enum",
+              "values": [
+                "full",
+                "partial",
+                "beneficial",
+                "leased"
+              ],
+              "required": true
+            }
+          }
+        },
+        "ftm_relation": "Ownership"
+      },
+      {
+        "relationship_type": "registered_in",
+        "direction": "outgoing",
+        "source_types": [
+          "plane"
+        ],
+        "target_types": [
+          "country",
+          "region"
+        ],
+        "category": "location",
+        "description": "Aircraft registered under jurisdiction",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [
+            "registration_country"
+          ],
+          "optional": [
+            "registration_number",
+            "tail_number",
+            "when"
+          ],
+          "custom_fields": {
+            "registration_country": {
+              "type": "string",
+              "required": true
+            },
+            "registration_number": {
+              "type": "string"
+            },
+            "tail_number": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use jurisdiction property on LegalEntity"
+      },
+      {
+        "relationship_type": "operated_by",
+        "direction": "outgoing",
+        "source_types": [
+          "plane"
+        ],
+        "target_types": [
+          "company",
+          "organization",
+          "person"
+        ],
+        "category": "operations",
+        "description": "Aircraft operated by entity",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "operator_type",
+            "when"
+          ],
+          "custom_fields": {
+            "operator_type": {
+              "type": "enum",
+              "values": [
+                "owner-operator",
+                "charter",
+                "lease",
+                "private"
+              ]
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use Asset.owner or custom"
+      }
+    ]
+  },
+  "vehicle": {
+    "node_type": "vehicle",
+    "description": "Valid edge types for vehicle entities (cars, trucks, motorcycles)",
+    "version": "1.0",
+    "last_updated": "2025-11-23",
+    "edge_types": [
+      {
+        "relationship_type": "owned_by",
+        "direction": "outgoing",
+        "source_types": [
+          "vehicle"
+        ],
+        "target_types": [
+          "person",
+          "company",
+          "organization"
+        ],
+        "category": "ownership",
+        "description": "Vehicle is owned by entity",
+        "inverse": "owns",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [
+            "ownership_type"
+          ],
+          "optional": [
+            "purchase_date",
+            "when"
+          ],
+          "custom_fields": {
+            "ownership_type": {
+              "type": "enum",
+              "values": [
+                "full",
+                "leased",
+                "financed"
+              ],
+              "required": true
+            }
+          }
+        },
+        "ftm_relation": "Ownership"
+      },
+      {
+        "relationship_type": "registered_to",
+        "direction": "outgoing",
+        "source_types": [
+          "vehicle"
+        ],
+        "target_types": [
+          "person",
+          "company",
+          "address"
+        ],
+        "category": "registration",
+        "description": "Vehicle registered to entity/address",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [
+            "registration_number"
+          ],
+          "optional": [
+            "registration_date",
+            "state",
+            "country",
+            "when"
+          ],
+          "custom_fields": {
+            "registration_number": {
+              "type": "string",
+              "required": true
+            },
+            "state": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use Asset.owner property"
+      }
+    ]
+  },
+  "asset": {
+    "node_type": "asset",
+    "description": "Valid edge types for generic asset entities (property, intellectual property, etc.)",
+    "version": "1.0",
+    "last_updated": "2025-11-23",
+    "edge_types": [
+      {
+        "relationship_type": "owned_by",
+        "direction": "outgoing",
+        "source_types": [
+          "asset"
+        ],
+        "target_types": [
+          "person",
+          "company",
+          "organization"
+        ],
+        "category": "ownership",
+        "description": "Asset is owned by entity",
+        "inverse": "owns",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [
+            "ownership_type"
+          ],
+          "optional": [
+            "ownership_percentage",
+            "acquisition_date",
+            "when"
+          ],
+          "custom_fields": {
+            "ownership_type": {
+              "type": "enum",
+              "values": [
+                "full",
+                "partial",
+                "beneficial",
+                "legal"
+              ],
+              "required": true
+            },
+            "ownership_percentage": {
+              "type": "float",
+              "min": 0,
+              "max": 100
+            }
+          }
+        },
+        "ftm_relation": "Ownership"
+      },
+      {
+        "relationship_type": "located_at",
+        "direction": "outgoing",
+        "source_types": [
+          "asset"
+        ],
+        "target_types": [
+          "address",
+          "country",
+          "region"
+        ],
+        "category": "location",
+        "description": "Asset is located at address/jurisdiction",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "when"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use address property on entity"
+      },
+      {
+        "relationship_type": "registered_in",
+        "direction": "outgoing",
+        "source_types": [
+          "asset"
+        ],
+        "target_types": [
+          "country",
+          "region"
+        ],
+        "category": "registration",
+        "description": "Asset registered in jurisdiction",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "registration_number",
+            "registration_date",
+            "when"
+          ],
+          "custom_fields": {
+            "registration_number": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use jurisdiction property on LegalEntity"
+      }
+    ]
+  },
+  "organization": {
+    "node_type": "organization",
+    "description": "Valid edge types for organization entities (non-profits, NGOs, agencies)",
+    "version": "1.0",
+    "last_updated": "2025-11-23",
+    "edge_types": [
+      {
+        "relationship_type": "has_member",
+        "direction": "outgoing",
+        "source_types": [
+          "organization"
+        ],
+        "target_types": [
+          "person"
+        ],
+        "category": "membership",
+        "description": "Organization has member",
+        "inverse": "member_of",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [
+            "member_type"
+          ],
+          "optional": [
+            "join_date",
+            "role",
+            "when"
+          ],
+          "custom_fields": {
+            "member_type": {
+              "type": "enum",
+              "values": [
+                "board",
+                "staff",
+                "volunteer",
+                "advisor",
+                "patron"
+              ],
+              "required": true
+            },
+            "role": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": "Membership"
+      },
+      {
+        "relationship_type": "affiliated_with",
+        "direction": "bidirectional",
+        "source_types": [
+          "organization"
+        ],
+        "target_types": [
+          "organization",
+          "company"
+        ],
+        "category": "association",
+        "description": "Organization affiliated with another entity",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "affiliation_type",
+            "when"
+          ],
+          "custom_fields": {
+            "affiliation_type": {
+              "type": "enum",
+              "values": [
+                "partner",
+                "sponsor",
+                "coalition",
+                "umbrella"
+              ]
+            }
+          }
+        },
+        "ftm_relation": "Associate"
+      },
+      {
+        "relationship_type": "located_at",
+        "direction": "outgoing",
+        "source_types": [
+          "organization"
+        ],
+        "target_types": [
+          "address",
+          "country",
+          "region"
+        ],
+        "category": "location",
+        "description": "Organization located at address",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "location_type",
+            "when"
+          ],
+          "custom_fields": {
+            "location_type": {
+              "type": "enum",
+              "values": [
+                "headquarters",
+                "office",
+                "branch"
+              ]
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use address property on entity"
+      },
+      {
+        "relationship_type": "funded_by",
+        "direction": "outgoing",
+        "source_types": [
+          "organization"
+        ],
+        "target_types": [
+          "person",
+          "company",
+          "organization"
+        ],
+        "category": "financial",
+        "description": "Organization receives funding from entity",
+        "inverse": "funds",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "amount",
+            "funding_type",
+            "when"
+          ],
+          "custom_fields": {
+            "funding_type": {
+              "type": "enum",
+              "values": [
+                "grant",
+                "donation",
+                "sponsorship",
+                "contract"
+              ]
+            },
+            "amount": {
+              "type": "number"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Custom relationship, no direct FTM equivalent"
+      }
+    ]
+  },
+  "address": {
+    "node_type": "address",
+    "description": "Valid edge types for address/location entities",
+    "version": "1.0",
+    "last_updated": "2025-11-23",
+    "edge_types": [
+      {
+        "relationship_type": "occupied_by",
+        "direction": "outgoing",
+        "source_types": [
+          "address"
+        ],
+        "target_types": [
+          "person",
+          "company",
+          "organization"
+        ],
+        "category": "occupancy",
+        "description": "Address is occupied/used by entity",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [
+            "occupancy_type"
+          ],
+          "optional": [
+            "start_date",
+            "end_date",
+            "when"
+          ],
+          "custom_fields": {
+            "occupancy_type": {
+              "type": "enum",
+              "values": [
+                "residential",
+                "business",
+                "registered_office",
+                "previous"
+              ],
+              "required": true
+            },
+            "start_date": {
+              "type": "ISO8601"
+            },
+            "end_date": {
+              "type": "ISO8601"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Reverse of has_address, use address lookup"
+      },
+      {
+        "relationship_type": "located_in",
+        "direction": "outgoing",
+        "source_types": [
+          "address"
+        ],
+        "target_types": [
+          "municipality",
+          "region",
+          "country"
+        ],
+        "category": "location",
+        "description": "Address is located in jurisdiction",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "postal_code",
+            "when"
+          ],
+          "custom_fields": {
+            "postal_code": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Use country/jurisdiction property on entity"
+      },
+      {
+        "relationship_type": "owned_by",
+        "direction": "outgoing",
+        "source_types": [
+          "address"
+        ],
+        "target_types": [
+          "person",
+          "company",
+          "organization"
+        ],
+        "category": "ownership",
+        "description": "Property/address is owned by entity",
+        "inverse": "owns",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "ownership_type",
+            "purchase_date",
+            "when"
+          ],
+          "custom_fields": {
+            "ownership_type": {
+              "type": "enum",
+              "values": [
+                "freehold",
+                "leasehold",
+                "beneficial"
+              ]
+            }
+          }
+        },
+        "ftm_relation": "Ownership"
+      }
+    ]
+  },
+  "watcher": {
+    "node_type": "watcher",
+    "description": "Valid edge types for watcher entities",
+    "version": "1.0",
+    "last_updated": "2025-12-10",
+    "edge_types": [
+      {
+        "relationship_type": "has_context",
+        "direction": "outgoing",
+        "source_types": [
+          "watcher"
+        ],
+        "target_types": [
+          "entity",
+          "person",
+          "company",
+          "document",
+          "source",
+          "narrative"
+        ],
+        "category": "context",
+        "description": "Watcher execution is guided by context from this node",
+        "confidence_default": 1,
+        "metadata_schema": {
+          "required": [],
+          "optional": [],
+          "custom_fields": {}
+        },
+        "ftm_relation": null
+      }
+    ]
+  },
+  "domain": {
+    "node_type": "domain",
+    "description": "Valid edge types for domain/website entities",
+    "version": "1.0",
+    "last_updated": "2025-12-11",
+    "edge_types": [
+      {
+        "relationship_type": "links_to",
+        "direction": "outgoing",
+        "source_types": [
+          "domain",
+          "url"
+        ],
+        "target_types": [
+          "domain",
+          "url"
+        ],
+        "category": "link_intelligence",
+        "description": "Domain/URL links to another domain/URL (backlink when reversed)",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "anchor_text",
+            "trust_flow",
+            "citation_flow",
+            "link_count",
+            "provider",
+            "source_system"
+          ],
+          "custom_fields": {
+            "anchor_text": {
+              "type": "string",
+              "description": "Text used in the hyperlink"
+            },
+            "trust_flow": {
+              "type": "integer",
+              "min": 0,
+              "max": 100,
+              "description": "Majestic Trust Flow metric"
+            },
+            "citation_flow": {
+              "type": "integer",
+              "min": 0,
+              "max": 100,
+              "description": "Majestic Citation Flow metric"
+            },
+            "link_count": {
+              "type": "integer",
+              "description": "Number of links from source to target"
+            },
+            "provider": {
+              "type": "string",
+              "description": "Data source (majestic, cc_web_graph, host_graph, etc.)"
+            }
+          }
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Custom link intelligence relationship"
+      },
+      {
+        "relationship_type": "subdomain_of",
+        "direction": "outgoing",
+        "source_types": [
+          "domain"
+        ],
+        "target_types": [
+          "domain"
+        ],
+        "category": "link_intelligence",
+        "description": "Domain is a subdomain of parent domain",
+        "confidence_default": 1,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "source_system"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "shares_tracker",
+        "direction": "bidirectional",
+        "source_types": [
+          "domain"
+        ],
+        "target_types": [
+          "domain"
+        ],
+        "category": "link_intelligence",
+        "description": "Domains share the same tracking code (GA, GTM, etc.)",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [
+            "tracker_type",
+            "tracker_id"
+          ],
+          "optional": [
+            "source_system"
+          ],
+          "custom_fields": {
+            "tracker_type": {
+              "type": "enum",
+              "values": [
+                "google_analytics",
+                "google_tag_manager",
+                "facebook_pixel",
+                "other"
+              ],
+              "required": true
+            },
+            "tracker_id": {
+              "type": "string",
+              "required": true
+            }
+          }
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "registrant_of",
+        "direction": "incoming",
+        "source_types": [
+          "person",
+          "company"
+        ],
+        "target_types": [
+          "domain"
+        ],
+        "category": "ownership",
+        "description": "Entity is the registrant of the domain (from WHOIS)",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "source_system",
+            "registration_date",
+            "expiry_date"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null,
+        "ftm_divergence": "Custom domain ownership relationship"
+      },
+      {
+        "relationship_type": "owns_domain",
+        "direction": "incoming",
+        "source_types": [
+          "company",
+          "person"
+        ],
+        "target_types": [
+          "domain"
+        ],
+        "category": "ownership",
+        "description": "Entity owns/operates the domain",
+        "confidence_default": 0.85,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "source_system",
+            "ownership_type"
+          ],
+          "custom_fields": {
+            "ownership_type": {
+              "type": "enum",
+              "values": [
+                "registrant",
+                "administrative",
+                "beneficial",
+                "inferred"
+              ]
+            }
+          }
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "has_email",
+        "direction": "outgoing",
+        "source_types": [
+          "domain"
+        ],
+        "target_types": [
+          "email"
+        ],
+        "category": "contact_info",
+        "description": "Domain has associated email address",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "email_type",
+            "source_system"
+          ],
+          "custom_fields": {
+            "email_type": {
+              "type": "enum",
+              "values": [
+                "registrant",
+                "admin",
+                "tech",
+                "abuse",
+                "contact",
+                "breach"
+              ]
+            }
+          }
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "hosted_at",
+        "direction": "outgoing",
+        "source_types": [
+          "domain"
+        ],
+        "target_types": [
+          "ip_address"
+        ],
+        "category": "infrastructure",
+        "description": "Domain is hosted at IP address",
+        "confidence_default": 0.95,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "record_type",
+            "source_system"
+          ],
+          "custom_fields": {
+            "record_type": {
+              "type": "enum",
+              "values": [
+                "A",
+                "AAAA",
+                "CNAME"
+              ]
+            }
+          }
+        },
+        "ftm_relation": null
+      }
+    ]
+  },
+  "et3": {
+    "node_type": "et3",
+    "description": "Narrative ET3 relationships (Event/Topic/Theme + Coordinates)",
+    "version": "1.0",
+    "last_updated": "2025-12-14",
+    "edge_types": [
+      {
+        "relationship_type": "instance_of",
+        "direction": "outgoing",
+        "source_types": [
+          "event",
+          "topic"
+        ],
+        "target_types": [
+          "event",
+          "topic"
+        ],
+        "category": "et3_core",
+        "description": "Specific event/topic is an instance of a generic registry node",
+        "confidence_default": 1,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "created_at",
+            "source_system"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "involves_entity",
+        "direction": "outgoing",
+        "source_types": [
+          "event",
+          "topic"
+        ],
+        "target_types": [
+          "entity",
+          "person",
+          "company",
+          "organization",
+          "address",
+          "asset",
+          "domain",
+          "email",
+          "phone",
+          "username"
+        ],
+        "category": "et3_core",
+        "description": "Event/topic involves an entity (actor/participant)",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "created_at",
+            "role",
+            "confidence",
+            "source_system"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "anchored_to",
+        "direction": "outgoing",
+        "source_types": [
+          "event",
+          "topic"
+        ],
+        "target_types": [
+          "temporal",
+          "physical",
+          "virtual",
+          "meta"
+        ],
+        "category": "et3_core",
+        "description": "Event/topic is anchored to a coordinate node (temporal/physical/virtual/meta)",
+        "confidence_default": 1,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "created_at",
+            "confidence",
+            "source_system"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "mentions",
+        "direction": "outgoing",
+        "source_types": [
+          "source",
+          "document",
+          "url",
+          "domain"
+        ],
+        "target_types": [
+          "entity",
+          "person",
+          "company",
+          "organization",
+          "event",
+          "topic",
+          "theme",
+          "address",
+          "asset",
+          "domain",
+          "email",
+          "phone",
+          "username",
+          "temporal",
+          "physical",
+          "virtual",
+          "meta"
+        ],
+        "category": "discovery",
+        "description": "Source mentions a subject/entity/coordinate",
+        "confidence_default": 0.7,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "created_at",
+            "context",
+            "snippet",
+            "confidence",
+            "source_system"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "extracted_from",
+        "direction": "outgoing",
+        "source_types": [
+          "entity",
+          "person",
+          "company",
+          "organization",
+          "event",
+          "topic",
+          "theme",
+          "temporal",
+          "physical",
+          "virtual",
+          "meta"
+        ],
+        "target_types": [
+          "source",
+          "document",
+          "url",
+          "domain"
+        ],
+        "category": "provenance",
+        "description": "Subject/entity/coordinate was extracted from a source",
+        "confidence_default": 0.9,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "created_at",
+            "extractor",
+            "confidence",
+            "source_system"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "escalated_to",
+        "direction": "outgoing",
+        "source_types": [
+          "topic"
+        ],
+        "target_types": [
+          "event"
+        ],
+        "category": "et3_causal",
+        "description": "Topic escalated into an event (pressure → explosion)",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "created_at",
+            "confidence",
+            "source_system"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "resulted_in",
+        "direction": "outgoing",
+        "source_types": [
+          "event"
+        ],
+        "target_types": [
+          "topic"
+        ],
+        "category": "et3_causal",
+        "description": "Event resulted in a topic (explosion → fallout)",
+        "confidence_default": 0.8,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "created_at",
+            "confidence",
+            "source_system"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "preceded_by",
+        "direction": "outgoing",
+        "source_types": [
+          "event"
+        ],
+        "target_types": [
+          "event"
+        ],
+        "category": "timeline",
+        "description": "Event is preceded by another event (timeline ordering)",
+        "confidence_default": 1,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "created_at",
+            "confidence",
+            "source_system"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null,
+        "inverse": "followed_by"
+      },
+      {
+        "relationship_type": "followed_by",
+        "direction": "outgoing",
+        "source_types": [
+          "event"
+        ],
+        "target_types": [
+          "event"
+        ],
+        "category": "timeline",
+        "description": "Event is followed by another event (timeline ordering)",
+        "confidence_default": 1,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "created_at",
+            "confidence",
+            "source_system"
+          ],
+          "custom_fields": {}
+        },
+        "ftm_relation": null,
+        "inverse": "preceded_by"
+      }
+    ]
+  },
+  "project": {
+    "node_type": "project",
+    "description": "Valid edge types for project/narrative container nodes",
+    "version": "1.0",
+    "last_updated": "2025-12-14",
+    "edge_types": [
+      {
+        "relationship_type": "belongs_to_project",
+        "direction": "outgoing",
+        "source_types": [
+          "project"
+        ],
+        "target_types": [
+          "entity",
+          "person",
+          "company",
+          "organization",
+          "document",
+          "source",
+          "query",
+          "domain",
+          "url",
+          "ip_address",
+          "email",
+          "phone",
+          "username",
+          "address",
+          "location",
+          "event",
+          "topic",
+          "theme",
+          "watcher",
+          "tag",
+          "narrative",
+          "physical",
+          "virtual",
+          "temporal",
+          "selector",
+          "format",
+          "linguistic",
+          "meta"
+        ],
+        "category": "project_membership",
+        "description": "Node is a member of this project graph",
+        "confidence_default": 1,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "autoLinked",
+            "source",
+            "createdBy"
+          ],
+          "custom_fields": {
+            "autoLinked": {
+              "type": "boolean"
+            },
+            "source": {
+              "type": "string"
+            },
+            "createdBy": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": null
+      },
+      {
+        "relationship_type": "has_evidence",
+        "direction": "outgoing",
+        "source_types": [
+          "project"
+        ],
+        "target_types": [
+          "entity",
+          "person",
+          "company",
+          "organization",
+          "document",
+          "source",
+          "query",
+          "domain",
+          "url",
+          "ip_address",
+          "email",
+          "phone",
+          "username",
+          "address",
+          "location",
+          "event",
+          "topic",
+          "theme",
+          "watcher",
+          "tag",
+          "narrative",
+          "physical",
+          "virtual",
+          "temporal",
+          "selector",
+          "format",
+          "linguistic",
+          "meta"
+        ],
+        "category": "evidence",
+        "description": "Project has collected this node as evidence",
+        "confidence_default": 1,
+        "metadata_schema": {
+          "required": [],
+          "optional": [
+            "source",
+            "createdBy",
+            "note"
+          ],
+          "custom_fields": {
+            "source": {
+              "type": "string"
+            },
+            "createdBy": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            }
+          }
+        },
+        "ftm_relation": null
+      }
+    ]
+  }
+}

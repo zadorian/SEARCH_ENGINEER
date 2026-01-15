@@ -1,0 +1,346 @@
+#!/usr/bin/env python3
+"""
+Industry Matcher - Semantic matching for LinkedIn industry categories
+
+Uses vector embeddings (all-MiniLM-L6-v2) to match ANY user input to canonical
+LinkedIn industry values. User can use their own words.
+
+Examples:
+    "tech startups" → "Computer Software"
+    "doctors" → "Medical Practice"
+    "money management" → "Investment Management"
+    "selling stuff online" → "Retail"
+
+Usage:
+    from industry_matcher import resolve_industry, resolve_size
+
+    industry = resolve_industry("fintech")  # Returns "Financial Services"
+    size_range = resolve_size("large")      # Returns {"min": 201, "max": 500}
+"""
+
+import json
+import os
+import re
+import logging
+import numpy as np
+from pathlib import Path
+from typing import Dict, List, Optional, Any, Tuple
+
+logger = logging.getLogger(__name__)
+
+# Paths
+MODULE_DIR = Path(__file__).parent
+EMBEDDINGS_FILE = MODULE_DIR / "industry_embeddings.json"
+SYNONYMS_FILE = MODULE_DIR / "industry_synonyms.json"
+
+# Cache
+_embeddings_data: Optional[Dict] = None
+_model = None
+
+
+def _load_embeddings() -> Dict:
+    """Load industry embeddings data."""
+    global _embeddings_data
+    if _embeddings_data is None:
+        if EMBEDDINGS_FILE.exists():
+            with open(EMBEDDINGS_FILE) as f:
+                _embeddings_data = json.load(f)
+        elif SYNONYMS_FILE.exists():
+            # Fallback to aliases-only
+            with open(SYNONYMS_FILE) as f:
+                data = json.load(f)
+                _embeddings_data = {
+                    "industries": [{"industry": i, "embedding": []} for i in data.get("industries", [])],
+                    "aliases": data.get("aliases", {}),
+                    "sizeRanges": data.get("sizeRanges", {})
+                }
+        else:
+            _embeddings_data = {"industries": [], "aliases": {}, "sizeRanges": {}}
+    return _embeddings_data
+
+
+def _get_model():
+    """Lazy load the embedding model."""
+    global _model
+    if _model is None:
+        try:
+            from sentence_transformers import SentenceTransformer
+            _model = SentenceTransformer('all-MiniLM-L6-v2')
+        except ImportError:
+            logger.warning("sentence-transformers not installed, falling back to alias matching")
+            _model = False  # Mark as unavailable
+    return _model
+
+
+def _cosine_similarity(a: List[float], b: List[float]) -> float:
+    """Compute cosine similarity between two vectors."""
+    a = np.array(a)
+    b = np.array(b)
+    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-9))
+
+
+def resolve_industry(user_input: str, threshold: float = 0.4) -> Optional[str]:
+    """Resolve user input to a canonical LinkedIn industry value using semantic search.
+
+    Args:
+        user_input: User's industry search term (ANY words - "tech", "selling cars", etc.)
+        threshold: Minimum similarity score (0-1) to accept a match
+
+    Returns:
+        Canonical industry name from companies_unified, or None if no match
+    """
+    if not user_input:
+        return None
+
+    data = _load_embeddings()
+    aliases = data.get("aliases", {})
+    industries = data.get("industries", [])
+
+    query = user_input.lower().strip()
+
+    # 1. Exact alias match (fastest)
+    if query in aliases:
+        return aliases[query]
+
+    # 2. Exact industry match (case-insensitive)
+    for ind_data in industries:
+        if ind_data["industry"].lower() == query:
+            return ind_data["industry"]
+
+    # 3. Vector similarity search
+    model = _get_model()
+    if model and model is not False:
+        try:
+            query_embedding = model.encode(query).tolist()
+
+            best_match = None
+            best_score = threshold
+
+            for ind_data in industries:
+                if ind_data.get("embedding"):
+                    score = _cosine_similarity(query_embedding, ind_data["embedding"])
+                    if score > best_score:
+                        best_score = score
+                        best_match = ind_data["industry"]
+
+            if best_match:
+                logger.debug(f"Semantic match: '{query}' → '{best_match}' (score: {best_score:.3f})")
+                return best_match
+        except Exception as e:
+            logger.warning(f"Embedding search failed: {e}")
+
+    # 4. Fallback: substring match
+    for ind_data in industries:
+        ind_name = ind_data["industry"]
+        if query in ind_name.lower() or ind_name.lower() in query:
+            return ind_name
+
+    return None
+
+
+def resolve_industries(user_input: str, top_k: int = 5, threshold: float = 0.3) -> List[Tuple[str, float]]:
+    """Resolve user input to multiple possible industry matches with scores.
+
+    Args:
+        user_input: User's industry search term
+        top_k: Maximum number of matches to return
+        threshold: Minimum similarity score
+
+    Returns:
+        List of (industry_name, score) tuples, sorted by score descending
+    """
+    if not user_input:
+        return []
+
+    data = _load_embeddings()
+    industries = data.get("industries", [])
+
+    query = user_input.lower().strip()
+    model = _get_model()
+
+    if model and model is not False:
+        try:
+            query_embedding = model.encode(query).tolist()
+
+            scores = []
+            for ind_data in industries:
+                if ind_data.get("embedding"):
+                    score = _cosine_similarity(query_embedding, ind_data["embedding"])
+                    if score >= threshold:
+                        scores.append((ind_data["industry"], score))
+
+            # Sort by score descending
+            scores.sort(key=lambda x: x[1], reverse=True)
+            return scores[:top_k]
+        except Exception as e:
+            logger.warning(f"Embedding search failed: {e}")
+
+    # Fallback: single match
+    primary = resolve_industry(user_input)
+    return [(primary, 1.0)] if primary else []
+
+
+def resolve_size(user_input: str) -> Optional[Dict[str, Any]]:
+    """Resolve size/employee count input to a range.
+
+    Args:
+        user_input: Size term (e.g., "large", "500", "1000+", "51-200")
+
+    Returns:
+        Dict with 'min' and 'max' keys, or None if no match
+    """
+    if not user_input:
+        return None
+
+    data = _load_embeddings()
+    size_ranges = data.get("sizeRanges", {})
+
+    query = user_input.lower().strip()
+
+    # Check named ranges
+    for range_name, range_data in size_ranges.items():
+        if query == range_name:
+            return {"min": range_data["min"], "max": range_data["max"]}
+
+        # Check aliases
+        aliases = range_data.get("aliases", [])
+        for alias in aliases:
+            if query == alias.lower():
+                return {"min": range_data["min"], "max": range_data["max"]}
+
+    # Try to parse numeric range
+    range_match = re.match(r'^(\d+)\s*[-to]+\s*(\d+)$', query)
+    if range_match:
+        return {"min": int(range_match.group(1)), "max": int(range_match.group(2))}
+
+    plus_match = re.match(r'^(\d+)\+?$', query)
+    if plus_match:
+        return {"min": int(plus_match.group(1)), "max": None}
+
+    gt_match = re.match(r'^[>≥]\s*(\d+)$', query)
+    if gt_match:
+        return {"min": int(gt_match.group(1)), "max": None}
+
+    lt_match = re.match(r'^[<≤]\s*(\d+)$', query)
+    if lt_match:
+        return {"min": None, "max": int(lt_match.group(1))}
+
+    return None
+
+
+def get_all_industries() -> List[str]:
+    """Get all canonical industry names."""
+    data = _load_embeddings()
+    return [i["industry"] for i in data.get("industries", [])]
+
+
+def parse_industry_operator(query: str) -> Tuple[Optional[str], str]:
+    """Parse industry: or sector: operator from query."""
+    pattern = r'(?:industry|sector):(["\']?)([^"\'\s]+(?:\s+[^"\'\s]+)*?)\1(?:\s|$)'
+    match = re.search(pattern, query, re.IGNORECASE)
+
+    if match:
+        industry_term = match.group(2)
+        resolved = resolve_industry(industry_term)
+        remaining = query[:match.start()] + query[match.end():]
+        return resolved, remaining.strip()
+
+    return None, query
+
+
+def parse_size_operator(query: str) -> Tuple[Optional[Dict], str]:
+    """Parse size: or employees: operator from query."""
+    pattern = r'(?:size|employees):(["\']?)([^"\'\s]+(?:\s+[^"\'\s]+)*?)\1(?:\s|$)'
+    match = re.search(pattern, query, re.IGNORECASE)
+
+    if match:
+        size_term = match.group(2)
+        resolved = resolve_size(size_term)
+        remaining = query[:match.start()] + query[match.end():]
+        return resolved, remaining.strip()
+
+    return None, query
+
+
+def parse_all_operators(query: str) -> Dict[str, Any]:
+    """Parse all company filter operators from a query string.
+
+    Supports:
+        - industry:X or sector:X (semantic matching)
+        - size:X or employees:X
+        - country:X
+        - municipality:X or city:X
+    """
+    filters = {}
+    remaining = query
+
+    # Industry/sector
+    industry, remaining = parse_industry_operator(remaining)
+    if industry:
+        filters['industry'] = industry
+
+    # Size/employees
+    size_range, remaining = parse_size_operator(remaining)
+    if size_range:
+        filters['employee_count'] = size_range
+
+    # Country
+    country_match = re.search(r'country:(["\']?)([^"\'\s]+)\1(?:\s|$)', remaining, re.IGNORECASE)
+    if country_match:
+        filters['country'] = country_match.group(2)
+        remaining = remaining[:country_match.start()] + remaining[country_match.end():]
+        remaining = remaining.strip()
+
+    # Municipality/city
+    city_match = re.search(r'(?:municipality|city):(["\']?)([^"\'\s]+(?:\s+[^"\'\s]+)*?)\1(?:\s|$)', remaining, re.IGNORECASE)
+    if city_match:
+        filters['municipality'] = city_match.group(2)
+        remaining = remaining[:city_match.start()] + remaining[city_match.end():]
+        remaining = remaining.strip()
+
+    return {
+        'filters': filters,
+        'remaining_query': remaining,
+        'has_filters': len(filters) > 0
+    }
+
+
+if __name__ == "__main__":
+    print("=== Semantic Industry Matcher Tests ===\n")
+
+    # Test semantic matching
+    test_terms = [
+        "tech",
+        "software companies",
+        "doctors",
+        "selling cars",
+        "money management",
+        "building houses",
+        "lawyers",
+        "restaurants",
+        "online shopping",
+        "renewable energy",
+        "artificial intelligence",
+        "social media marketing",
+    ]
+
+    print("Semantic matches:")
+    for term in test_terms:
+        matches = resolve_industries(term, top_k=3)
+        if matches:
+            top = matches[0]
+            print(f"  '{term}' → '{top[0]}' (score: {top[1]:.3f})")
+        else:
+            print(f"  '{term}' → No match")
+
+    print("\n=== Operator Parsing ===")
+    queries = [
+        "Apple industry:software companies",
+        "sector:healthcare London",
+        "industry:selling stuff online country:US",
+    ]
+    for q in queries:
+        result = parse_all_operators(q)
+        print(f"  '{q}'")
+        print(f"    → filters: {result['filters']}")
+        print(f"    → remaining: '{result['remaining_query']}'")

@@ -1,0 +1,33 @@
+"""
+SOCIALITE MCP Server - Social Network Analysis & Graphing.
+"""
+import sys
+import asyncio
+from pathlib import Path
+
+# Add repo root to path
+_repo_root = Path(__file__).resolve().parents[2]
+if str(_repo_root) not in sys.path:
+    sys.path.insert(0, str(_repo_root))
+
+from mcp.server.fastmcp import FastMCP
+
+mcp = FastMCP("socialite")
+
+@mcp.tool()
+async def map_social_network(username: str, depth: int = 1) -> str:
+    """
+    Map the social network of a username.
+    Returns a graph of connections (friends, followers, interactions).
+    """
+    return f"Mapping social network for {username} at depth {depth} (Stub)"
+
+@mcp.tool()
+async def analyze_influence(username: str, platform: str) -> str:
+    """
+    Analyze influence score and reach.
+    """
+    return f"Influence analysis for {username} on {platform} (Stub)"
+
+if __name__ == "__main__":
+    mcp.run()

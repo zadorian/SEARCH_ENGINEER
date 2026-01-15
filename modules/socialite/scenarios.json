@@ -1,0 +1,361 @@
+{
+  "module": "SOCIALITE",
+  "description": "Social media search and analysis scenarios with C1 edge definitions",
+  "version": "1.0.0",
+  
+  "node_types": {
+    "username": {
+      "_code": 3,
+      "node_class": "SUBJECT",
+      "description": "Social media username/handle"
+    },
+    "person": {
+      "_code": 7,
+      "node_class": "SUBJECT",
+      "description": "Person entity"
+    },
+    "company": {
+      "_code": 8,
+      "node_class": "SUBJECT",
+      "description": "Company/organization entity"
+    },
+    "profile": {
+      "_code": 188,
+      "node_class": "SUBJECT",
+      "description": "Social media profile"
+    },
+    "platform": {
+      "_code": 100,
+      "node_class": "LOCATION",
+      "description": "Social media platform (Facebook, Instagram, etc.)"
+    },
+    "facebook_url": {
+      "_code": 101,
+      "node_class": "LOCATION",
+      "description": "Facebook profile/page URL"
+    },
+    "instagram_url": {
+      "_code": 102,
+      "node_class": "LOCATION",
+      "description": "Instagram profile URL"
+    },
+    "twitter_url": {
+      "_code": 103,
+      "node_class": "LOCATION",
+      "description": "Twitter/X profile URL"
+    },
+    "threads_url": {
+      "_code": 104,
+      "node_class": "LOCATION",
+      "description": "Threads profile URL"
+    },
+    "linkedin_url": {
+      "_code": 105,
+      "node_class": "LOCATION",
+      "description": "LinkedIn profile/company URL"
+    },
+    "tiktok_url": {
+      "_code": 106,
+      "node_class": "LOCATION",
+      "description": "TikTok profile URL"
+    },
+    "post": {
+      "_code": 200,
+      "node_class": "NARRATIVE",
+      "description": "Social media post"
+    },
+    "comment": {
+      "_code": 201,
+      "node_class": "NARRATIVE",
+      "description": "Comment on a post"
+    },
+    "social_profile_data": {
+      "_code": 188,
+      "node_class": "NARRATIVE",
+      "description": "Aggregated profile data from API"
+    }
+  },
+  
+  "scenarios": [
+    {
+      "id": "username_finds_profile",
+      "input_type": "username",
+      "output_type": "profile",
+      "edge": {
+        "relation": "finds",
+        "direction": "outbound",
+        "verification_status": "VERIFIED",
+        "connection_reason": "direct_match"
+      },
+      "description": "Username search finds matching profile on a platform",
+      "example": {
+        "input": "johndoe",
+        "output": "facebook.com/johndoe",
+        "edge_created": "username:johndoe --finds--> profile:facebook:johndoe"
+      }
+    },
+    {
+      "id": "username_has_account_on",
+      "input_type": "username",
+      "output_type": "platform",
+      "edge": {
+        "relation": "has_account_on",
+        "direction": "outbound",
+        "verification_status": "VERIFIED",
+        "connection_reason": "platform_association"
+      },
+      "description": "Username confirmed to exist on platform",
+      "example": {
+        "input": "johndoe",
+        "output": "facebook",
+        "edge_created": "username:johndoe --has_account_on--> platform:facebook"
+      }
+    },
+    {
+      "id": "person_name_has_profile",
+      "input_type": "person",
+      "output_type": "profile",
+      "edge": {
+        "relation": "has_profile",
+        "direction": "outbound",
+        "verification_status": "UNVERIFIED",
+        "connection_reason": "name_match"
+      },
+      "description": "Person name search finds potential profile matches",
+      "example": {
+        "input": "John Doe",
+        "output": "linkedin.com/in/john-doe-123",
+        "edge_created": "person:john doe --has_profile--> linkedin_url:john-doe-123"
+      },
+      "notes": "UNVERIFIED because name matches are not definitive - many people share names"
+    },
+    {
+      "id": "person_connected_to_person",
+      "input_type": "person",
+      "output_type": "person",
+      "edge": {
+        "relation": "connected_to",
+        "direction": "bidirectional",
+        "verification_status": "VERIFIED",
+        "connection_reason": "social_connection"
+      },
+      "description": "Two people are connected on a social network (LinkedIn connections, Facebook friends)",
+      "example": {
+        "input": "John Doe",
+        "output": "Jane Smith",
+        "edge_created": "person:john doe --connected_to--> person:jane smith"
+      }
+    },
+    {
+      "id": "company_has_employee",
+      "input_type": "company",
+      "output_type": "person",
+      "edge": {
+        "relation": "has_employee",
+        "direction": "outbound",
+        "verification_status": "VERIFIED",
+        "connection_reason": "employment_record"
+      },
+      "description": "Company employs a person (from LinkedIn company page)",
+      "example": {
+        "input": "Acme Corp",
+        "output": "John Doe",
+        "edge_created": "company:acme corp --has_employee--> person:john doe"
+      }
+    },
+    {
+      "id": "person_works_at_company",
+      "input_type": "person",
+      "output_type": "company",
+      "edge": {
+        "relation": "works_at",
+        "direction": "outbound",
+        "verification_status": "VERIFIED",
+        "connection_reason": "employment_record"
+      },
+      "description": "Person works at company (from profile employment section)",
+      "example": {
+        "input": "John Doe",
+        "output": "Acme Corp",
+        "edge_created": "person:john doe --works_at--> company:acme corp"
+      }
+    },
+    {
+      "id": "profile_follows_profile",
+      "input_type": "profile",
+      "output_type": "profile",
+      "edge": {
+        "relation": "follows",
+        "direction": "outbound",
+        "verification_status": "VERIFIED",
+        "connection_reason": "social_connection"
+      },
+      "description": "Profile follows another profile (Instagram, Twitter)",
+      "example": {
+        "input": "instagram:johndoe",
+        "output": "instagram:janedoe",
+        "edge_created": "profile:instagram:johndoe --follows--> profile:instagram:janedoe"
+      }
+    },
+    {
+      "id": "profile_followed_by_profile",
+      "input_type": "profile",
+      "output_type": "profile",
+      "edge": {
+        "relation": "followed_by",
+        "direction": "inbound",
+        "verification_status": "VERIFIED",
+        "connection_reason": "social_connection"
+      },
+      "description": "Profile is followed by another profile",
+      "example": {
+        "input": "instagram:johndoe",
+        "output": "instagram:janedoe",
+        "edge_created": "profile:instagram:janedoe --followed_by--> profile:instagram:johndoe"
+      }
+    },
+    {
+      "id": "profile_posted",
+      "input_type": "profile",
+      "output_type": "post",
+      "edge": {
+        "relation": "posted",
+        "direction": "outbound",
+        "verification_status": "VERIFIED",
+        "connection_reason": "content_authorship"
+      },
+      "description": "Profile authored a post",
+      "example": {
+        "input": "facebook:johndoe",
+        "output": "post:12345",
+        "edge_created": "profile:facebook:johndoe --posted--> post:12345"
+      }
+    },
+    {
+      "id": "profile_commented_on_post",
+      "input_type": "profile",
+      "output_type": "post",
+      "edge": {
+        "relation": "commented_on",
+        "direction": "outbound",
+        "verification_status": "VERIFIED",
+        "connection_reason": "content_interaction"
+      },
+      "description": "Profile commented on a post",
+      "example": {
+        "input": "facebook:johndoe",
+        "output": "post:12345",
+        "edge_created": "profile:facebook:johndoe --commented_on--> post:12345"
+      }
+    },
+    {
+      "id": "profile_same_as_profile",
+      "input_type": "profile",
+      "output_type": "profile",
+      "edge": {
+        "relation": "same_as",
+        "direction": "bidirectional",
+        "verification_status": "UNVERIFIED",
+        "connection_reason": "cross_platform_match"
+      },
+      "description": "Two profiles appear to be the same person on different platforms",
+      "example": {
+        "input": "facebook:johndoe",
+        "output": "instagram:john_doe",
+        "edge_created": "profile:facebook:johndoe --same_as--> profile:instagram:john_doe"
+      },
+      "notes": "UNVERIFIED until confirmed by shared identifiers (email, phone, bio match)"
+    },
+    {
+      "id": "input_of_aggregator",
+      "input_type": "*",
+      "output_type": "social_profile_data",
+      "edge": {
+        "relation": "input_of",
+        "direction": "outbound",
+        "verification_status": "VERIFIED",
+        "connection_reason": "aggregator_link"
+      },
+      "description": "Entity was the input to a SOCIALITE search",
+      "example": {
+        "input": "username:johndoe",
+        "output": "social_profile_data:abc123",
+        "edge_created": "username:johndoe --input_of--> social_profile_data:abc123"
+      }
+    },
+    {
+      "id": "output_of_aggregator",
+      "input_type": "social_profile_data",
+      "output_type": "*",
+      "edge": {
+        "relation": "output_of",
+        "direction": "inbound",
+        "verification_status": "UNVERIFIED",
+        "connection_reason": "aggregator_link"
+      },
+      "description": "Entity was discovered as output from a SOCIALITE search",
+      "example": {
+        "input": "social_profile_data:abc123",
+        "output": "profile:facebook:johndoe",
+        "edge_created": "profile:facebook:johndoe --output_of--> social_profile_data:abc123"
+      },
+      "notes": "UNVERIFIED until entity appears with VERIFIED context"
+    }
+  ],
+  
+  "verification_upgrade_rules": [
+    {
+      "rule_id": "profile_url_confirms_username",
+      "trigger": "Profile URL directly contains username",
+      "upgrade_from": "UNVERIFIED",
+      "upgrade_to": "VERIFIED",
+      "reason": "profile_url_match"
+    },
+    {
+      "rule_id": "cross_platform_email_match",
+      "trigger": "Same email found on profiles across multiple platforms",
+      "upgrade_from": "UNVERIFIED",
+      "upgrade_to": "VERIFIED",
+      "reason": "cross_platform_email_confirmation"
+    },
+    {
+      "rule_id": "mutual_connection",
+      "trigger": "Two users are mutually connected (both follow each other)",
+      "upgrade_from": "UNVERIFIED",
+      "upgrade_to": "VERIFIED",
+      "reason": "mutual_connection_confirmation"
+    },
+    {
+      "rule_id": "company_employee_confirmation",
+      "trigger": "Company page lists person as employee AND person profile lists company as employer",
+      "upgrade_from": "UNVERIFIED",
+      "upgrade_to": "VERIFIED",
+      "reason": "bidirectional_employment_confirmation"
+    },
+    {
+      "rule_id": "verified_cooccurrence",
+      "trigger": "Entity appears in same API response as VERIFIED entities",
+      "upgrade_from": "UNVERIFIED",
+      "upgrade_to": "VERIFIED",
+      "reason": "found_with_verified_entities"
+    }
+  ],
+  
+  "connection_reasons": [
+    "direct_match",
+    "platform_association",
+    "name_match",
+    "social_connection",
+    "employment_record",
+    "content_authorship",
+    "content_interaction",
+    "cross_platform_match",
+    "aggregator_link",
+    "search_result",
+    "api_response",
+    "profile_url_match",
+    "email_match",
+    "phone_match",
+    "bio_match"
+  ]
+}

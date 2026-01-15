@@ -1,0 +1,13 @@
+{
+  "completed_sources": [],
+  "last_doc_id": {
+    "openownership": "entity:1405970593947451020"
+  },
+  "stats": {
+    "openownership": {
+      "indexed": 7400000,
+      "failed": 0,
+      "skipped": 0
+    }
+  }
+}

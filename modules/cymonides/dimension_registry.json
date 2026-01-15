@@ -1,0 +1,622 @@
+{
+  "_meta": {
+    "description": "Formal prefix contract for dimension_keys generation across ALL indices. Single canonical source of truth.",
+    "version": "2.0.0",
+    "last_updated": "2025-12-31",
+    "usage": "Used by extractors, query resolver, and UI for consistent dimension key generation."
+  },
+  "dimensions": {
+    "theme": {
+      "prefix": "theme",
+      "source_fields": ["subject.themes", "concepts.themes"],
+      "description": "Investigation themes from subject taxonomy",
+      "example": "theme:inv_ownership_analysis",
+      "normalization": "default",
+      "indices": ["cymonides-2", "linklater_corpus"]
+    },
+    "phenomenon": {
+      "prefix": "phenomenon",
+      "source_fields": ["subject.phenomena", "concepts.phenomena"],
+      "description": "Detected phenomena indicating risk or structure patterns",
+      "example": "phenomenon:shell_company",
+      "normalization": "default",
+      "indices": ["cymonides-2", "linklater_corpus"]
+    },
+    "red_flag": {
+      "prefix": "red_flag",
+      "source_fields": ["subject.red_flag_themes", "concepts.red_flag_themes"],
+      "description": "Red flag indicators from taxonomy",
+      "example": "red_flag:rf_sanctions",
+      "normalization": "default",
+      "indices": ["cymonides-2", "linklater_corpus", "tripwire"]
+    },
+    "method": {
+      "prefix": "method",
+      "source_fields": ["subject.methodologies", "concepts.methodologies"],
+      "description": "Research methodologies used or recommended",
+      "example": "method:regulatory_filing_search",
+      "normalization": "default",
+      "indices": ["cymonides-2", "linklater_corpus", "tripwire"]
+    },
+    "sector": {
+      "prefix": "sector",
+      "source_fields": ["sector_tags", "industry", "linkedin_industry"],
+      "description": "Industry sector classification",
+      "example": "sector:financial_services",
+      "normalization": "default",
+      "indices": ["cymonides-2", "linkedin_unified", "companies_unified"]
+    },
+    "sector_red_flag": {
+      "prefix": "sector_red_flag",
+      "source_fields": ["detected_red_flags", "sector_signals.red_flags"],
+      "description": "Sector-specific red flags",
+      "example": "sector_red_flag:high_risk_jurisdiction",
+      "normalization": "default",
+      "indices": ["cymonides-2"]
+    },
+    "jurisdiction": {
+      "prefix": "jur",
+      "source_fields": ["metadata.jurisdiction", "spatial.primary_jurisdiction", "extracted_jurisdiction", "country", "jurisdiction_code"],
+      "description": "ISO 3166-1 alpha-2 jurisdiction codes",
+      "example": "jur:uk",
+      "normalization": "iso_code",
+      "user_facing_overrides": {
+        "gb": "uk",
+        "GB": "uk"
+      },
+      "_note": "CRITICAL: User-facing operators use 'uk' not 'gb'. Internal storage may use ISO 'GB' but normalizer MUST map to 'uk' for dimension_keys.",
+      "indices": ["cymonides-2", "openownership", "entity_links", "phones_unified", "uk_ccod", "uk_ocod", "uk_addresses", "uk_leases"]
+    },
+    "year": {
+      "prefix": "year",
+      "source_fields": ["temporal.content_years", "temporal.year", "published_year", "filing_year"],
+      "description": "Content year (4-digit)",
+      "example": "year:2024",
+      "normalization": "numeric_only",
+      "indices": ["cymonides-2", "linklater_corpus"]
+    },
+    "month": {
+      "prefix": "month",
+      "source_fields": ["temporal.month"],
+      "description": "Month (1-12)",
+      "example": "month:06",
+      "normalization": "numeric_only",
+      "indices": ["cymonides-2", "linklater_corpus"]
+    },
+    "yearmonth": {
+      "prefix": "ym",
+      "source_fields": ["temporal.yearmonth"],
+      "description": "Year-month combo (YYYY-MM)",
+      "example": "ym:2024-06",
+      "normalization": "preserve_hyphens",
+      "indices": ["cymonides-2", "linklater_corpus", "openownership"]
+    },
+    "decade": {
+      "prefix": "decade",
+      "source_fields": ["temporal.decade"],
+      "description": "Decade bucket (1990s, 2000s, 2010s, 2020s)",
+      "example": "decade:2020s",
+      "normalization": "default",
+      "derived": true,
+      "derivation_rule": "floor(year/10)*10 + 's'",
+      "indices": ["cymonides-2", "linklater_corpus"]
+    },
+    "era": {
+      "prefix": "era",
+      "source_fields": ["temporal.era", "temporal.temporal_focus"],
+      "description": "Named historical period",
+      "example": "era:post_soviet",
+      "normalization": "default",
+      "canonical_values": ["cold_war", "post_soviet", "pre_2008", "post_2008", "covid_era", "post_covid"],
+      "indices": ["cymonides-2", "linklater_corpus"]
+    },
+    "temporal_precision": {
+      "prefix": "tprec",
+      "source_fields": ["temporal.precision"],
+      "description": "How precise is the temporal data (day, month, year, decade, unknown)",
+      "example": "tprec:day",
+      "normalization": "lowercase_only",
+      "derived": true,
+      "indices": ["cymonides-2", "linklater_corpus"]
+    },
+    "lang": {
+      "prefix": "lang",
+      "source_fields": ["language", "detected_language"],
+      "description": "ISO 639-1 language codes",
+      "example": "lang:en",
+      "normalization": "iso_code",
+      "indices": ["cymonides-2", "linklater_corpus", "atlas"]
+    },
+    "source": {
+      "prefix": "source",
+      "source_fields": ["source_type", "data_source"],
+      "description": "Data source identifier",
+      "example": "source:cc-pdf-2025",
+      "normalization": "preserve_hyphens",
+      "indices": ["cymonides-2", "linklater_corpus"]
+    },
+    "domain": {
+      "prefix": "domain",
+      "source_fields": ["domain", "website_domain", "company_domain", "publisher_domain"],
+      "description": "Domain name (normalized)",
+      "example": "domain:example.com",
+      "normalization": "domain",
+      "indices": ["atlas", "cymonides_cc_domain_vertices", "companies_unified", "linkedin_unified"]
+    },
+    "tld": {
+      "prefix": "tld",
+      "source_fields": ["tld", "top_level_domain"],
+      "description": "Top-level domain",
+      "example": "tld:com",
+      "normalization": "lowercase_only",
+      "indices": ["atlas", "cymonides_cc_domain_vertices"]
+    },
+    "domain_category": {
+      "prefix": "domcat",
+      "source_fields": ["primary_category", "categories", "curlie_top_categories"],
+      "description": "Domain category from DMOZ/Curlie taxonomy",
+      "example": "domcat:business_finance",
+      "normalization": "default",
+      "indices": ["atlas", "cymonides_cc_domain_vertices"]
+    },
+    "authority_tier": {
+      "prefix": "auth",
+      "source_fields": ["authority_tier"],
+      "description": "Domain authority tier derived from rank (top1k, top10k, top100k, top1m, long_tail)",
+      "example": "auth:top10k",
+      "normalization": "lowercase_only",
+      "derived": true,
+      "derivation_rule": "rank < 1000 -> top1k; rank < 10000 -> top10k; rank < 100000 -> top100k; rank < 1000000 -> top1m; else long_tail",
+      "indices": ["atlas"]
+    },
+    "entity_type": {
+      "prefix": "ent",
+      "source_fields": ["entity_type", "entity_types", "type"],
+      "description": "Entity type classification (person, company, etc.)",
+      "example": "ent:company",
+      "normalization": "default",
+      "indices": ["openownership", "companies_unified", "persons_unified", "wdc-organization-entities", "wdc-person-entities", "wdc-localbusiness-entities"]
+    },
+    "schema_type": {
+      "prefix": "schema",
+      "source_fields": ["type", "schema_type", "@type"],
+      "description": "Schema.org type from WDC entities",
+      "example": "schema:organization",
+      "normalization": "default",
+      "indices": ["wdc-organization-entities", "wdc-localbusiness-entities", "wdc-person-entities", "wdc-product-entities"]
+    },
+    "product_category": {
+      "prefix": "prodcat",
+      "source_fields": ["category", "product_category"],
+      "description": "Product category from WDC product entities",
+      "example": "prodcat:electronics",
+      "normalization": "default",
+      "indices": ["wdc-product-entities"]
+    },
+    "email_domain": {
+      "prefix": "emaildom",
+      "source_fields": ["email_domain", "domain"],
+      "description": "Email domain for breach/comms filtering",
+      "example": "emaildom:gmail.com",
+      "normalization": "domain",
+      "indices": ["breach_records", "kazaword_emails", "emails_unified"]
+    },
+    "security_tier": {
+      "prefix": "sectier",
+      "source_fields": ["security_tier"],
+      "description": "Security tier derived from hash_type (plaintext, weak, moderate, strong)",
+      "example": "sectier:weak",
+      "normalization": "lowercase_only",
+      "derived": true,
+      "derivation_rule": "plaintext/none -> plaintext; md5/sha1 -> weak; sha256/bcrypt -> moderate; argon2/scrypt -> strong",
+      "indices": ["breach_records"]
+    },
+    "breach_severity": {
+      "prefix": "breachsev",
+      "source_fields": ["breach_severity"],
+      "description": "Breach severity (critical, high, medium, low)",
+      "example": "breachsev:high",
+      "normalization": "lowercase_only",
+      "derived": true,
+      "indices": ["breach_records"]
+    },
+    "ownership_strength": {
+      "prefix": "ownstr",
+      "source_fields": ["ownership_strength", "ownership_pct"],
+      "description": "Ownership strength tier (majority >50%, significant 25-50%, minority 10-25%, trace <10%)",
+      "example": "ownstr:majority",
+      "normalization": "lowercase_only",
+      "derived": true,
+      "derivation_rule": "pct > 50 -> majority; pct > 25 -> significant; pct > 10 -> minority; else trace",
+      "indices": ["entity_links", "openownership"]
+    },
+    "ownership_recency": {
+      "prefix": "ownrec",
+      "source_fields": ["ownership_recency", "last_verified"],
+      "description": "Ownership recency tier (current, recent, stale, historic)",
+      "example": "ownrec:current",
+      "normalization": "lowercase_only",
+      "derived": true,
+      "derivation_rule": "last_verified < 90d -> current; < 1y -> recent; < 3y -> stale; else historic",
+      "indices": ["entity_links"]
+    },
+    "control_type": {
+      "prefix": "ctrl",
+      "source_fields": ["control_types", "control_type"],
+      "description": "Control type from entity relationships",
+      "example": "ctrl:voting_rights",
+      "normalization": "default",
+      "indices": ["entity_links", "openownership"]
+    },
+    "region": {
+      "prefix": "region",
+      "source_fields": ["region", "county", "state_province", "geographic_region"],
+      "description": "Sub-national region (UK county, US state, etc.)",
+      "example": "region:uk_london",
+      "normalization": "default",
+      "indices": ["uk_ccod", "uk_ocod", "uk_addresses", "uk_leases", "linkedin_unified"]
+    },
+    "district": {
+      "prefix": "district",
+      "source_fields": ["district", "local_authority"],
+      "description": "UK local authority district",
+      "example": "district:westminster",
+      "normalization": "default",
+      "indices": ["uk_ccod", "uk_ocod", "uk_addresses", "uk_leases"]
+    },
+    "postcode_area": {
+      "prefix": "postcode",
+      "source_fields": ["postcode_area", "postcode"],
+      "description": "UK postcode area (first 2-4 chars)",
+      "example": "postcode:sw1",
+      "normalization": "uppercase_only",
+      "indices": ["uk_ccod", "uk_ocod", "uk_addresses", "uk_leases"]
+    },
+    "industry": {
+      "prefix": "industry",
+      "source_fields": ["industry", "linkedin_industry", "company_industry"],
+      "description": "LinkedIn/standard industry classification",
+      "example": "industry:financial_services",
+      "normalization": "default",
+      "indices": ["linkedin_unified", "companies_unified"]
+    },
+    "credibility_tier": {
+      "prefix": "cred",
+      "source_fields": ["credibility_tier", "source_quality"],
+      "description": "Source credibility tier (authoritative, reliable, uncertain, low)",
+      "example": "cred:authoritative",
+      "normalization": "lowercase_only",
+      "derived": true,
+      "derivation_rule": "Based on publisher domain classification",
+      "indices": ["cymonides-2", "wdc-organization-entities", "wdc-localbusiness-entities"]
+    },
+    "doc_type": {
+      "prefix": "doctype",
+      "source_fields": ["document_type", "filing_type", "content_type"],
+      "description": "Document type classification",
+      "example": "doctype:annual_report",
+      "normalization": "default",
+      "indices": ["cymonides-2", "linklater_corpus"]
+    },
+    "relationship_type": {
+      "prefix": "reltype",
+      "source_fields": ["rel", "relationship_type", "edge_type"],
+      "description": "Web graph relationship type",
+      "example": "reltype:backlink",
+      "normalization": "default",
+      "indices": ["cymonides_cc_domain_edges", "cc_web_graph_edges", "cc_web_graph_host_edges"]
+    },
+    "link_intent": {
+      "prefix": "linkint",
+      "source_fields": ["link_intent", "anchor_classification"],
+      "description": "Classified intent of link (navigational, informational, transactional)",
+      "example": "linkint:informational",
+      "normalization": "default",
+      "derived": true,
+      "indices": ["cymonides_cc_domain_edges", "cc_web_graph_edges"]
+    },
+    "area_code": {
+      "prefix": "areacode",
+      "source_fields": ["area_code", "phone_prefix"],
+      "description": "Phone area code",
+      "example": "areacode:020",
+      "normalization": "numeric_only",
+      "indices": ["phones_unified"]
+    }
+  },
+  "normalization_rules": {
+    "default": {
+      "case": "lowercase",
+      "replace_pattern": "[^a-z0-9]",
+      "replace_with": "_",
+      "trim_edges": true
+    },
+    "preserve_hyphens": {
+      "case": "lowercase",
+      "replace_pattern": "[^a-z0-9-]",
+      "replace_with": "_",
+      "trim_edges": true
+    },
+    "numeric_only": {
+      "pattern": "^[0-9]+$",
+      "description": "Only numeric values allowed"
+    },
+    "iso_code": {
+      "case": "lowercase",
+      "pattern": "^[a-z]{2,3}$",
+      "description": "2-3 letter ISO codes only"
+    },
+    "lowercase_only": {
+      "case": "lowercase",
+      "replace_pattern": "[^a-z]",
+      "replace_with": "",
+      "trim_edges": true
+    },
+    "uppercase_only": {
+      "case": "uppercase",
+      "replace_pattern": "[^A-Z0-9]",
+      "replace_with": "",
+      "trim_edges": true
+    },
+    "domain": {
+      "case": "lowercase",
+      "replace_pattern": "[^a-z0-9.-]",
+      "replace_with": "",
+      "trim_edges": true
+    }
+  },
+  "generation_priority": [
+    "theme",
+    "phenomenon",
+    "red_flag",
+    "method",
+    "sector",
+    "jurisdiction",
+    "year",
+    "lang",
+    "source",
+    "entity_type",
+    "domain",
+    "tld",
+    "industry",
+    "region"
+  ],
+  "index_configurations": {
+    "cymonides-2": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": true,
+      "dimensions": ["theme", "phenomenon", "red_flag", "method", "sector", "sector_red_flag", "jurisdiction", "year", "lang", "source", "credibility_tier", "doc_type"]
+    },
+    "linklater_corpus": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": true,
+      "dimensions": ["theme", "phenomenon", "red_flag", "method", "jurisdiction", "year", "lang", "source", "doc_type"]
+    },
+    "atlas": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "note": "Pure merge index now; dimension_keys added in Phase 2",
+      "dimensions": ["domain", "tld", "domain_category", "lang", "jurisdiction", "authority_tier", "entity_type"]
+    },
+    "search_nodes": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": true,
+      "phase": 2,
+      "dimensions": ["entity_type", "jurisdiction", "sector", "industry", "schema_type", "ownership_strength", "credibility_tier", "security_tier"]
+    },
+    "comms_unified": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": true,
+      "phase": 3,
+      "dimensions": ["email_domain", "security_tier", "year", "source"]
+    },
+    "uk_property_unified": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": true,
+      "phase": 4,
+      "dimensions": ["postcode_area", "region", "jurisdiction", "year", "property_type", "tenure"]
+    },
+    "cymonides_cc_domain_vertices": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["domain", "tld", "domain_category"]
+    },
+    "cymonides_cc_domain_edges": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 5,
+      "dimensions": ["relationship_type", "link_intent"]
+    },
+    "openownership": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["entity_type", "jurisdiction", "ownership_strength", "control_type"]
+    },
+    "entity_links": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["ownership_strength", "ownership_recency", "control_type"]
+    },
+    "companies_unified": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["domain", "entity_type", "sector", "industry"]
+    },
+    "linkedin_unified": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["industry", "domain", "region"]
+    },
+    "breach_records": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["email_domain", "security_tier", "breach_severity"]
+    },
+    "kazaword_emails": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["email_domain"]
+    },
+    "emails_unified": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["email_domain"]
+    },
+    "phones_unified": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["jurisdiction", "area_code"]
+    },
+    "uk_ccod": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["jurisdiction", "region", "district", "postcode_area"]
+    },
+    "uk_ocod": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["jurisdiction", "region", "district", "postcode_area"]
+    },
+    "uk_addresses": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["jurisdiction", "region", "district", "postcode_area"]
+    },
+    "uk_leases": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["jurisdiction", "region", "district"]
+    },
+    "wdc-organization-entities": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["schema_type", "entity_type", "credibility_tier"]
+    },
+    "wdc-localbusiness-entities": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["schema_type", "entity_type", "credibility_tier"]
+    },
+    "wdc-person-entities": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["schema_type", "entity_type"]
+    },
+    "wdc-product-entities": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 2,
+      "dimensions": ["schema_type", "product_category"]
+    },
+    "cc_web_graph_edges": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 5,
+      "dimensions": ["relationship_type", "link_intent"],
+      "note": "May be alias of cymonides_cc_domain_edges - verify"
+    },
+    "cc_web_graph_host_edges": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 5,
+      "dimensions": ["relationship_type"]
+    },
+    "tripwire": {
+      "dimension_keys_field": "dimension_keys",
+      "enabled": false,
+      "phase": 4,
+      "dimensions": ["red_flag", "method", "theme"]
+    }
+  },
+  "derived_dimensions": {
+    "authority_tier": {
+      "source": "rank",
+      "buckets": [
+        {"max": 1000, "value": "top1k"},
+        {"max": 10000, "value": "top10k"},
+        {"max": 100000, "value": "top100k"},
+        {"max": 1000000, "value": "top1m"},
+        {"max": null, "value": "long_tail"}
+      ]
+    },
+    "ownership_strength": {
+      "source": "ownership_pct",
+      "buckets": [
+        {"min": 50, "value": "majority"},
+        {"min": 25, "value": "significant"},
+        {"min": 10, "value": "minority"},
+        {"min": 0, "value": "trace"}
+      ]
+    },
+    "security_tier": {
+      "source": "hash_type",
+      "mapping": {
+        "plaintext": "plaintext",
+        "none": "plaintext",
+        "md5": "weak",
+        "sha1": "weak",
+        "sha256": "moderate",
+        "bcrypt": "moderate",
+        "argon2": "strong",
+        "scrypt": "strong"
+      }
+    },
+    "ownership_recency": {
+      "source": "last_verified",
+      "buckets": [
+        {"max_days": 90, "value": "current"},
+        {"max_days": 365, "value": "recent"},
+        {"max_days": 1095, "value": "stale"},
+        {"max_days": null, "value": "historic"}
+      ]
+    },
+    "credibility_tier": {
+      "source": "publisher_domain",
+      "classification": "Use domain_category_embeddings to classify publisher reliability"
+    }
+  },
+  "outstanding_questions": {
+    "q1_atlas_dimension_keys": {
+      "question": "Should atlas store dimension_keys immediately?",
+      "answer": "No - pure merge index for Phase 1. Enable in Phase 2.",
+      "status": "answered"
+    },
+    "q2_edge_indices": {
+      "question": "Are cymonides_cc_domain_edges and cc_web_graph_edges the same?",
+      "answer": "NO - They are DIFFERENT indices. cymonides_cc_domain_edges (435.7M, 16.5GB) = domain-to-domain. cc_web_graph_edges (14.9M, 787MB) = page-level. cc_web_graph_host_edges (421.2M, 28.6GB) = host-level aggregated.",
+      "status": "answered"
+    },
+    "q3_canonical_prefixes": {
+      "question": "Single canonical prefix map or per-index variants?",
+      "answer": "Single canonical map in this file. Indices select which dimensions apply.",
+      "status": "answered"
+    },
+    "q4_id_vs_label": {
+      "question": "Standardize on subject IDs or keep label-based keys?",
+      "answer": "Prefer subject IDs. Fall back to concepts labels when IDs missing.",
+      "status": "answered"
+    },
+    "q5_finepdfs_restart": {
+      "question": "Restart FINEPDFS or let it finish?",
+      "answer": "Let current run finish, then backfill with mapping updates.",
+      "status": "answered"
+    }
+  }
+}

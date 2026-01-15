@@ -1,0 +1,758 @@
+{
+  "$schema": "index_registry_v1",
+  "$description": "Master registry of all Elasticsearch indices in the Drill Search / CYMONIDES ecosystem",
+  "$last_updated": "2025-12-24",
+
+  "indices": {
+    "cymonides_cc_domain_edges": {
+      "alias": "cc_domain_edges",
+      "tier": "web_graph",
+      "description": "Common Crawl domain-to-domain hyperlink edges (outlinks/backlinks)",
+      "doc_count": 435770000,
+      "size_gb": 16.5,
+      "key_fields": {
+        "from_domain": {"type": "keyword", "description": "Source domain"},
+        "to_domain": {"type": "keyword", "description": "Target domain"},
+        "from_url": {"type": "keyword", "description": "Source URL"},
+        "to_url": {"type": "keyword", "description": "Target URL"},
+        "anchor_text": {"type": "text", "description": "Link anchor text"},
+        "crawl_date": {"type": "date", "description": "Common Crawl date"}
+      },
+      "integration": ["cymonides_search", "linklater"],
+      "source_module": "LINKLATER/linkgraph"
+    },
+
+    "cc_web_graph_host_edges": {
+      "alias": "cc_host_edges",
+      "tier": "web_graph",
+      "description": "Common Crawl host-level edge graph (aggregated by host)",
+      "doc_count": 421203112,
+      "size_gb": 28.6,
+      "key_fields": {
+        "from_host": {"type": "keyword", "description": "Source host"},
+        "to_host": {"type": "keyword", "description": "Target host"},
+        "edge_count": {"type": "integer", "description": "Number of links between hosts"}
+      },
+      "integration": ["linklater"],
+      "source_module": "LINKLATER/linkgraph"
+    },
+
+    "cc_host_vertices": {
+      "alias": "cc_hosts",
+      "tier": "web_graph",
+      "description": "Common Crawl host vertices with metrics",
+      "doc_count": 235648112,
+      "size_gb": 12.7,
+      "key_fields": {
+        "host": {"type": "keyword", "description": "Hostname"},
+        "page_count": {"type": "integer", "description": "Pages crawled"},
+        "inlink_count": {"type": "integer", "description": "Incoming links"},
+        "outlink_count": {"type": "integer", "description": "Outgoing links"}
+      },
+      "integration": ["linklater"],
+      "source_module": "LINKLATER/linkgraph"
+    },
+
+    "domains_unified": {
+      "alias": "domains",
+      "tier": "domain",
+      "description": "Unified domain profiles from multiple sources",
+      "doc_count": 178672958,
+      "size_gb": 17.0,
+      "key_fields": {
+        "domain": {"type": "keyword", "description": "Domain name"},
+        "tld": {"type": "keyword", "description": "Top-level domain"},
+        "registrar": {"type": "text", "description": "Domain registrar"},
+        "creation_date": {"type": "date", "description": "Domain registration date"},
+        "expiry_date": {"type": "date", "description": "Domain expiry date"}
+      },
+      "integration": ["cymonides_search", "io_cli"],
+      "source_module": "ATLAS/domain"
+    },
+
+    "breach_records": {
+      "alias": "breaches",
+      "tier": "breach",
+      "description": "Consolidated breach records (email/password/hash combos)",
+      "doc_count": 119895236,
+      "size_gb": 28.3,
+      "key_fields": {
+        "email": {"type": "keyword", "description": "Email address"},
+        "email_domain": {"type": "keyword", "description": "Email domain portion"},
+        "username": {"type": "keyword", "description": "Username"},
+        "password": {"type": "keyword", "description": "Password (plaintext if cracked)"},
+        "hash": {"type": "keyword", "description": "Password hash"},
+        "hash_type": {"type": "keyword", "description": "Hash algorithm (MD5, SHA1, etc)"},
+        "breach_name": {"type": "keyword", "description": "Source breach name"},
+        "breach_date": {"type": "date", "description": "Breach date"},
+        "ip": {"type": "ip", "description": "IP address if available"},
+        "phone": {"type": "keyword", "description": "Phone number if available"},
+        "name": {"type": "text", "description": "Full name if available"}
+      },
+      "integration": ["cymonides_search", "io_cli", "main_app"],
+      "source_module": "ATLAS/loaders/breach_ingester"
+    },
+
+    "cymonides_cc_domain_vertices": {
+      "alias": "cc_domains",
+      "tier": "web_graph",
+      "description": "Common Crawl domain vertices with metrics",
+      "doc_count": 100662487,
+      "size_gb": 7.5,
+      "key_fields": {
+        "domain": {"type": "keyword", "description": "Domain name"},
+        "page_count": {"type": "integer", "description": "Pages crawled"},
+        "inlink_domains": {"type": "integer", "description": "Unique referring domains"},
+        "outlink_domains": {"type": "integer", "description": "Unique linked domains"}
+      },
+      "integration": ["cymonides_search", "linklater"],
+      "source_module": "LINKLATER/linkgraph"
+    },
+
+    "wdc-product-entities": {
+      "alias": "wdc_products",
+      "tier": "wdc",
+      "description": "Web Data Commons product entities (schema.org/Product)",
+      "doc_count": 20379243,
+      "size_gb": 30.0,
+      "key_fields": {
+        "name": {"type": "text", "description": "Product name"},
+        "brand": {"type": "keyword", "description": "Brand name"},
+        "url": {"type": "keyword", "description": "Source URL"},
+        "price": {"type": "float", "description": "Price"},
+        "currency": {"type": "keyword", "description": "Currency code"}
+      },
+      "integration": ["main_app"],
+      "source_module": "WDC/loaders"
+    },
+
+    "cc_web_graph_edges": {
+      "alias": "cc_edges_sample",
+      "tier": "web_graph",
+      "description": "Sampled Common Crawl web graph edges",
+      "doc_count": 14965000,
+      "size_gb": 0.79,
+      "key_fields": {
+        "from_url": {"type": "keyword"},
+        "to_url": {"type": "keyword"}
+      },
+      "integration": ["linklater"],
+      "source_module": "LINKLATER/linkgraph"
+    },
+
+    "cymonides-2": {
+      "alias": "corpus",
+      "tier": "core",
+      "description": "Main document corpus (PDFs, web pages, reports)",
+      "doc_count": 13117394,
+      "size_gb": 13.9,
+      "key_fields": {
+        "url": {"type": "keyword", "description": "Source URL"},
+        "domain": {"type": "keyword", "description": "Source domain"},
+        "title": {"type": "text", "description": "Document title"},
+        "content": {"type": "text", "description": "Full text content"},
+        "content_type": {"type": "keyword", "description": "MIME type"},
+        "language": {"type": "keyword", "description": "Detected language"},
+        "crawl_date": {"type": "date", "description": "Crawl date"},
+        "entities": {"type": "nested", "description": "Extracted entities"}
+      },
+      "integration": ["cymonides_search", "main_app", "linklater"],
+      "source_module": "CYMONIDES/indexer"
+    },
+
+    "wdc-organization-entities": {
+      "alias": "wdc_orgs",
+      "tier": "wdc",
+      "description": "Web Data Commons organization entities (schema.org/Organization)",
+      "doc_count": 9618873,
+      "size_gb": 14.9,
+      "key_fields": {
+        "name": {"type": "text", "description": "Organization name"},
+        "url": {"type": "keyword", "description": "Website URL"},
+        "address": {"type": "text", "description": "Address"},
+        "telephone": {"type": "keyword", "description": "Phone number"},
+        "email": {"type": "keyword", "description": "Email address"}
+      },
+      "integration": ["main_app", "io_cli"],
+      "source_module": "WDC/loaders"
+    },
+
+    "top_domains": {
+      "alias": "top_domains",
+      "tier": "domain",
+      "description": "Top-ranked domains with traffic/authority metrics",
+      "doc_count": 8671244,
+      "size_gb": 1.5,
+      "key_fields": {
+        "domain": {"type": "keyword"},
+        "rank": {"type": "integer"},
+        "category": {"type": "keyword"}
+      },
+      "integration": ["cymonides_search"],
+      "source_module": "ATLAS/domain"
+    },
+
+    "atlas_unified_domains": {
+      "alias": "atlas_domains",
+      "tier": "domain",
+      "description": "ATLAS unified domain intelligence",
+      "doc_count": 8474522,
+      "size_gb": 1.3,
+      "key_fields": {
+        "domain": {"type": "keyword"},
+        "whois": {"type": "object"},
+        "dns": {"type": "object"}
+      },
+      "integration": ["main_app"],
+      "source_module": "ATLAS/domain"
+    },
+
+    "wdc-person-entities": {
+      "alias": "wdc_persons",
+      "tier": "wdc",
+      "description": "Web Data Commons person entities (schema.org/Person)",
+      "doc_count": 6842260,
+      "size_gb": 13.8,
+      "key_fields": {
+        "name": {"type": "text", "description": "Full name"},
+        "givenName": {"type": "text", "description": "First name"},
+        "familyName": {"type": "text", "description": "Last name"},
+        "jobTitle": {"type": "text", "description": "Job title"},
+        "worksFor": {"type": "text", "description": "Employer"},
+        "email": {"type": "keyword", "description": "Email"},
+        "url": {"type": "keyword", "description": "Profile URL"}
+      },
+      "integration": ["main_app", "io_cli"],
+      "source_module": "WDC/loaders"
+    },
+
+    "persons_unified": {
+      "alias": "persons",
+      "tier": "entity",
+      "description": "Unified person entity profiles",
+      "doc_count": 6386096,
+      "size_gb": 2.7,
+      "key_fields": {
+        "name": {"type": "text"},
+        "name_normalized": {"type": "keyword"},
+        "email": {"type": "keyword"},
+        "phone": {"type": "keyword"},
+        "company": {"type": "text"},
+        "title": {"type": "text"}
+      },
+      "integration": ["main_app", "io_cli"],
+      "source_module": "ATLAS/entity"
+    },
+
+    "unified_domain_profiles": {
+      "alias": "domain_profiles",
+      "tier": "domain",
+      "description": "Rich domain profiles with enrichment data",
+      "doc_count": 5851357,
+      "size_gb": 0.89,
+      "key_fields": {
+        "domain": {"type": "keyword"},
+        "technologies": {"type": "keyword"},
+        "company_name": {"type": "text"},
+        "industry": {"type": "keyword"}
+      },
+      "integration": ["cymonides_search", "main_app"],
+      "source_module": "ATLAS/domain"
+    },
+
+    "uk_addresses": {
+      "alias": "uk_addr",
+      "tier": "country",
+      "description": "UK address database (Royal Mail PAF derivative)",
+      "doc_count": 4275000,
+      "size_gb": 1.4,
+      "key_fields": {
+        "postcode": {"type": "keyword"},
+        "address_line_1": {"type": "text"},
+        "town": {"type": "keyword"},
+        "county": {"type": "keyword"}
+      },
+      "integration": ["main_app"],
+      "source_module": "country_engines/UK"
+    },
+
+    "companies_unified": {
+      "alias": "companies",
+      "tier": "corporate",
+      "description": "Unified company profiles from multiple registries",
+      "doc_count": 3193309,
+      "size_gb": 1.1,
+      "key_fields": {
+        "name": {"type": "text", "description": "Company name"},
+        "name_normalized": {"type": "keyword", "description": "Normalized name"},
+        "company_number": {"type": "keyword", "description": "Registration number"},
+        "jurisdiction": {"type": "keyword", "description": "Country/jurisdiction"},
+        "status": {"type": "keyword", "description": "Active/Dissolved/etc"},
+        "incorporation_date": {"type": "date"},
+        "address": {"type": "text"},
+        "officers": {"type": "nested"}
+      },
+      "integration": ["main_app", "io_cli", "corporella"],
+      "source_module": "CORPORELLA"
+    },
+
+    "linkedin_unified": {
+      "alias": "linkedin",
+      "tier": "social",
+      "description": "LinkedIn profile data (persons and companies)",
+      "doc_count": 2884999,
+      "size_gb": 0.93,
+      "key_fields": {
+        "linkedin_url": {"type": "keyword"},
+        "name": {"type": "text"},
+        "headline": {"type": "text"},
+        "location": {"type": "text"},
+        "company": {"type": "text"}
+      },
+      "integration": ["main_app", "io_cli"],
+      "source_module": "ATLAS/social"
+    },
+
+    "affiliate_linkedin_companies": {
+      "alias": "linkedin_companies",
+      "tier": "corporate",
+      "description": "LinkedIn company pages with employee/follower counts",
+      "doc_count": 2851571,
+      "size_gb": 0.71,
+      "key_fields": {
+        "name": {"type": "text"},
+        "linkedin_url": {"type": "keyword"},
+        "industry": {"type": "keyword"},
+        "employee_count": {"type": "integer"},
+        "follower_count": {"type": "integer"},
+        "headquarters": {"type": "text"}
+      },
+      "integration": ["main_app", "io_cli"],
+      "source_module": "ATLAS/social"
+    },
+
+    "search_edges": {
+      "alias": "graph_edges",
+      "tier": "graph",
+      "description": "Entity-to-entity relationship edges in the investigation graph",
+      "doc_count": 2181328,
+      "size_gb": 0.44,
+      "key_fields": {
+        "from_id": {"type": "keyword"},
+        "to_id": {"type": "keyword"},
+        "edge_type": {"type": "keyword"},
+        "weight": {"type": "float"},
+        "evidence": {"type": "text"}
+      },
+      "integration": ["main_app"],
+      "source_module": "server/graphStorage"
+    },
+
+    "search_nodes_v3": {
+      "alias": "graph_nodes",
+      "tier": "graph",
+      "description": "Investigation graph nodes (entities, documents, queries)",
+      "doc_count": 1950406,
+      "size_gb": 2.5,
+      "key_fields": {
+        "id": {"type": "keyword"},
+        "type": {"type": "keyword"},
+        "label": {"type": "text"},
+        "data": {"type": "object"}
+      },
+      "integration": ["main_app"],
+      "source_module": "server/graphStorage"
+    },
+
+    "openownership": {
+      "alias": "beneficial_owners",
+      "tier": "corporate",
+      "description": "Open Ownership Register (beneficial ownership statements)",
+      "doc_count": 1457000,
+      "size_gb": 0.58,
+      "status": "indexing_in_progress",
+      "target_doc_count": 21376364,
+      "key_fields": {
+        "name": {"type": "text", "description": "Entity/person name"},
+        "name_normalized": {"type": "keyword", "description": "Normalized name for matching"},
+        "entity_type": {"type": "keyword", "description": "registeredEntity or person"},
+        "statement_type": {"type": "keyword", "description": "entityStatement, personStatement, ownershipOrControlStatement"},
+        "company_number": {"type": "keyword", "description": "Company registration number"},
+        "jurisdiction": {"type": "keyword", "description": "Jurisdiction code"},
+        "country": {"type": "keyword", "description": "Country name"},
+        "address": {"type": "text", "description": "Registered address"},
+        "incorporation_date": {"type": "date"},
+        "dissolution_date": {"type": "date"},
+        "source_url": {"type": "keyword", "description": "Data source URL"}
+      },
+      "integration": ["main_app", "io_cli", "corporella"],
+      "source_module": "scripts/index_openownership"
+    },
+
+    "wdc-localbusiness-entities": {
+      "alias": "wdc_local",
+      "tier": "wdc",
+      "description": "Web Data Commons local business entities",
+      "doc_count": 478341,
+      "size_gb": 0.78,
+      "key_fields": {
+        "name": {"type": "text"},
+        "address": {"type": "text"},
+        "telephone": {"type": "keyword"},
+        "geo": {"type": "geo_point"}
+      },
+      "integration": ["main_app"],
+      "source_module": "WDC/loaders"
+    },
+
+    "onion-graph-edges": {
+      "alias": "onion_edges",
+      "tier": "darkweb",
+      "description": "Tor onion service link graph edges",
+      "doc_count": 267760,
+      "size_gb": 0.04,
+      "key_fields": {
+        "from_url": {"type": "keyword"},
+        "to_url": {"type": "keyword"}
+      },
+      "integration": ["main_app"],
+      "source_module": "ATLAS/onion"
+    },
+
+    "et3-entity-edges": {
+      "alias": "et3_entities",
+      "tier": "et3",
+      "description": "ET3 (Event-Topic-Theme) entity relationship edges",
+      "doc_count": 266571,
+      "size_gb": 0.01,
+      "key_fields": {
+        "entity_id": {"type": "keyword"},
+        "topic_id": {"type": "keyword"},
+        "relation": {"type": "keyword"}
+      },
+      "integration": ["main_app"],
+      "source_module": "ET3"
+    },
+
+    "et3-url-edges": {
+      "alias": "et3_urls",
+      "tier": "et3",
+      "description": "ET3 URL-to-topic/entity edges",
+      "doc_count": 261763,
+      "size_gb": 0.02,
+      "key_fields": {
+        "url": {"type": "keyword"},
+        "entity_id": {"type": "keyword"}
+      },
+      "integration": ["main_app"],
+      "source_module": "ET3"
+    },
+
+    "wdc-domain-profiles": {
+      "alias": "wdc_domains",
+      "tier": "wdc",
+      "description": "Web Data Commons domain profiles",
+      "doc_count": 246998,
+      "size_gb": 0.04,
+      "key_fields": {
+        "domain": {"type": "keyword"},
+        "entity_count": {"type": "integer"}
+      },
+      "integration": ["main_app"],
+      "source_module": "WDC/loaders"
+    },
+
+    "nexus_breach_records": {
+      "alias": "nexus_breaches",
+      "tier": "breach",
+      "description": "Nexus breach database records",
+      "doc_count": 197668,
+      "size_gb": 0.09,
+      "key_fields": {
+        "email": {"type": "keyword"},
+        "username": {"type": "keyword"},
+        "password": {"type": "keyword"},
+        "source": {"type": "keyword"}
+      },
+      "integration": ["main_app"],
+      "source_module": "ATLAS/breach"
+    },
+
+    "kazaword_emails": {
+      "alias": "kazaword",
+      "tier": "country",
+      "description": "Kazakhstan email/credential database",
+      "doc_count": 92416,
+      "size_gb": 0.23,
+      "key_fields": {
+        "email": {"type": "keyword"},
+        "password": {"type": "keyword"},
+        "source": {"type": "keyword"}
+      },
+      "integration": ["cymonides_search", "io_cli"],
+      "source_module": "country_engines/KZ"
+    },
+
+    "et3-jurisdiction-edges": {
+      "alias": "et3_jurisdictions",
+      "tier": "et3",
+      "description": "ET3 jurisdiction relationship edges",
+      "doc_count": 51644,
+      "size_gb": 0.003,
+      "key_fields": {
+        "entity_id": {"type": "keyword"},
+        "jurisdiction": {"type": "keyword"}
+      },
+      "integration": ["main_app"],
+      "source_module": "ET3"
+    },
+
+    "phones_unified": {
+      "alias": "phones",
+      "tier": "entity",
+      "description": "Unified phone number records",
+      "doc_count": 49524,
+      "size_gb": 0.09,
+      "key_fields": {
+        "phone": {"type": "keyword"},
+        "phone_normalized": {"type": "keyword"},
+        "country_code": {"type": "keyword"},
+        "carrier": {"type": "keyword"},
+        "owner_name": {"type": "text"}
+      },
+      "integration": ["main_app", "io_cli"],
+      "source_module": "ATLAS/phone"
+    },
+
+    "et3-nodes": {
+      "alias": "et3_nodes",
+      "tier": "et3",
+      "description": "ET3 entity/topic/theme nodes",
+      "doc_count": 28640,
+      "size_gb": 0.23,
+      "key_fields": {
+        "id": {"type": "keyword"},
+        "type": {"type": "keyword"},
+        "label": {"type": "text"}
+      },
+      "integration": ["main_app"],
+      "source_module": "ET3"
+    },
+
+    "wdc-governmentorganization-entities": {
+      "alias": "wdc_gov",
+      "tier": "wdc",
+      "description": "Web Data Commons government organization entities",
+      "doc_count": 25229,
+      "size_gb": 0.14,
+      "key_fields": {
+        "name": {"type": "text"},
+        "jurisdiction": {"type": "keyword"},
+        "url": {"type": "keyword"}
+      },
+      "integration": ["main_app"],
+      "source_module": "WDC/loaders"
+    },
+
+    "cymonides_bangs": {
+      "alias": "bangs",
+      "tier": "utility",
+      "description": "DuckDuckGo-style bang shortcuts for quick navigation",
+      "doc_count": 20389,
+      "size_gb": 0.005,
+      "key_fields": {
+        "bang": {"type": "keyword", "description": "Bang trigger (e.g., !g, !w)"},
+        "name": {"type": "text", "description": "Service name"},
+        "url_template": {"type": "keyword", "description": "URL with {{{s}}} placeholder"},
+        "category": {"type": "keyword"}
+      },
+      "integration": ["cymonides_search"],
+      "source_module": "CYMONIDES/bangs"
+    },
+
+    "template_engines": {
+      "alias": "engines",
+      "tier": "utility",
+      "description": "Search engine templates and configurations",
+      "doc_count": 20389,
+      "size_gb": 0.008,
+      "key_fields": {
+        "engine_id": {"type": "keyword"},
+        "name": {"type": "text"},
+        "url_template": {"type": "keyword"},
+        "category": {"type": "keyword"}
+      },
+      "integration": ["cymonides_search", "main_app"],
+      "source_module": "CYMONIDES/engines"
+    },
+
+    "matrix_contrastive_routes": {
+      "alias": "io_contrastive",
+      "tier": "matrix",
+      "description": "IO Matrix contrastive learning route embeddings",
+      "doc_count": 11835,
+      "size_gb": 0.09,
+      "key_fields": {
+        "route_id": {"type": "keyword"},
+        "embedding": {"type": "dense_vector"}
+      },
+      "integration": ["io_cli"],
+      "source_module": "input_output/matrix"
+    },
+
+    "matrix_route_edges": {
+      "alias": "io_edges",
+      "tier": "matrix",
+      "description": "IO Matrix route-to-route edges",
+      "doc_count": 11214,
+      "size_gb": 0.002,
+      "key_fields": {
+        "from_route": {"type": "keyword"},
+        "to_route": {"type": "keyword"},
+        "transition_type": {"type": "keyword"}
+      },
+      "integration": ["io_cli"],
+      "source_module": "input_output/matrix"
+    },
+
+    "matrix_graph_routes": {
+      "alias": "io_graph",
+      "tier": "matrix",
+      "description": "IO Matrix route graph nodes",
+      "doc_count": 7471,
+      "size_gb": 0.07,
+      "key_fields": {
+        "route_id": {"type": "keyword"},
+        "input_type": {"type": "keyword"},
+        "output_type": {"type": "keyword"}
+      },
+      "integration": ["io_cli"],
+      "source_module": "input_output/matrix"
+    },
+
+    "input_output_wiki_matrix": {
+      "alias": "io_wiki",
+      "tier": "matrix",
+      "description": "IO Matrix wiki/documentation entries",
+      "doc_count": 5009,
+      "size_gb": 0.002,
+      "key_fields": {
+        "title": {"type": "text"},
+        "content": {"type": "text"},
+        "category": {"type": "keyword"}
+      },
+      "integration": ["io_cli", "main_app"],
+      "source_module": "input_output/matrix"
+    },
+
+    "emails_unified": {
+      "alias": "emails",
+      "tier": "entity",
+      "description": "Unified email address records with metadata",
+      "doc_count": 5000,
+      "size_gb": 0.01,
+      "key_fields": {
+        "email": {"type": "keyword"},
+        "domain": {"type": "keyword"},
+        "owner_name": {"type": "text"},
+        "verified": {"type": "boolean"}
+      },
+      "integration": ["main_app", "io_cli"],
+      "source_module": "ATLAS/email"
+    },
+
+    "linklater_corpus": {
+      "alias": "linklater",
+      "tier": "core",
+      "description": "LINKLATER discovery corpus (archived web pages)",
+      "doc_count": 296,
+      "size_gb": 0.001,
+      "key_fields": {
+        "url": {"type": "keyword"},
+        "content": {"type": "text"},
+        "crawl_date": {"type": "date"}
+      },
+      "integration": ["linklater", "main_app"],
+      "source_module": "LINKLATER"
+    },
+
+    "company_profiles": {
+      "alias": "company_profiles_legacy",
+      "tier": "corporate",
+      "description": "Legacy company profile collection",
+      "doc_count": 496,
+      "size_gb": 0.0003,
+      "key_fields": {
+        "name": {"type": "text"},
+        "jurisdiction": {"type": "keyword"}
+      },
+      "integration": ["main_app"],
+      "source_module": "CORPORELLA"
+    }
+  },
+
+  "tiers": {
+    "core": {
+      "description": "Primary document and entity indices",
+      "indices": ["cymonides-2", "linklater_corpus"]
+    },
+    "web_graph": {
+      "description": "Common Crawl web graph (domains, edges, hosts)",
+      "indices": ["cymonides_cc_domain_edges", "cc_web_graph_host_edges", "cc_host_vertices", "cymonides_cc_domain_vertices", "cc_web_graph_edges"]
+    },
+    "breach": {
+      "description": "Breach data and credentials",
+      "indices": ["breach_records", "nexus_breach_records", "kazaword_emails"]
+    },
+    "corporate": {
+      "description": "Company registries and beneficial ownership",
+      "indices": ["companies_unified", "affiliate_linkedin_companies", "openownership", "company_profiles"]
+    },
+    "domain": {
+      "description": "Domain intelligence and profiles",
+      "indices": ["domains_unified", "top_domains", "atlas_unified_domains", "unified_domain_profiles"]
+    },
+    "entity": {
+      "description": "Unified entity profiles (persons, phones, emails)",
+      "indices": ["persons_unified", "phones_unified", "emails_unified"]
+    },
+    "social": {
+      "description": "Social media data",
+      "indices": ["linkedin_unified"]
+    },
+    "wdc": {
+      "description": "Web Data Commons structured data",
+      "indices": ["wdc-product-entities", "wdc-organization-entities", "wdc-person-entities", "wdc-localbusiness-entities", "wdc-domain-profiles", "wdc-governmentorganization-entities"]
+    },
+    "graph": {
+      "description": "Investigation graph storage",
+      "indices": ["search_edges", "search_nodes_v3"]
+    },
+    "et3": {
+      "description": "Event-Topic-Theme extraction",
+      "indices": ["et3-entity-edges", "et3-url-edges", "et3-jurisdiction-edges", "et3-nodes", "et3-language-edges", "et3-date-edges", "et3-source-edges"]
+    },
+    "darkweb": {
+      "description": "Tor/onion service data",
+      "indices": ["onion-graph-edges", "onion-graph-nodes", "onion-pages"]
+    },
+    "matrix": {
+      "description": "IO Matrix routing and embeddings",
+      "indices": ["matrix_contrastive_routes", "matrix_route_edges", "matrix_graph_routes", "input_output_wiki_matrix", "io_routes"]
+    },
+    "country": {
+      "description": "Country-specific data sources",
+      "indices": ["uk_addresses", "kazaword_emails"]
+    },
+    "utility": {
+      "description": "System utilities (bangs, engines, templates)",
+      "indices": ["cymonides_bangs", "template_engines"]
+    }
+  },
+
+  "stats": {
+    "total_indices": 45,
+    "total_docs_estimate": 1600000000,
+    "total_size_gb_estimate": 200
+  }
+}

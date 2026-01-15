@@ -1,0 +1,409 @@
+{
+  "meta": {
+    "version": "4.0",
+    "description": "Unified Module Registry v4 - Consolidates module specs with input/output routing.",
+    "purpose": "Defines which modules handle which entity types and what they can discover"
+  },
+  "modules": {
+    "corporella": {
+      "display_name": "Corporella - Company Intelligence",
+      "location": "python-backend/modules/corporella/",
+      "main_file": "module.py",
+      "suite": "corporella",
+      "friction": "Open/Paywalled",
+      "description": "Company registry data, officers, beneficial owners, shareholders, and corporate structure.",
+      "inputs": {
+        "primary": [
+          {
+            "code": 13,
+            "name": "company_name",
+            "type": "company",
+            "required": true
+          },
+          {
+            "code": 14,
+            "name": "company_reg_id",
+            "type": "company",
+            "required": false
+          },
+          {
+            "code": 15,
+            "name": "company_vat_id",
+            "type": "company",
+            "required": false
+          },
+          {
+            "code": 16,
+            "name": "company_previous_name",
+            "type": "company",
+            "required": false
+          }
+        ]
+      },
+      "outputs": [
+        {
+          "codes": [42, 43, 44, 45, 46, 47, 48, 49, 50],
+          "node_types": ["company"],
+          "description": "Complete company profile with registration details"
+        },
+        {
+          "codes": [51, 52, 53, 54, 55, 56, 57, 58],
+          "node_types": ["person"],
+          "edge_types": ["officer_of", "director_of", "shareholder_of"],
+          "description": "Company officers, directors, and shareholders"
+        },
+        {
+          "codes": [59, 60, 61, 62, 63],
+          "node_types": ["person"],
+          "edge_types": ["beneficial_owner_of"],
+          "description": "Beneficial owners and UBO data"
+        }
+      ],
+      "data_sources": [
+        {
+          "name": "OpenCorporates",
+          "type": "api",
+          "coverage": "global",
+          "friction": "freemium"
+        },
+        {
+          "name": "Companies House (UK)",
+          "type": "api",
+          "coverage": "GB",
+          "friction": "open"
+        },
+        {
+          "name": "Aleph Collections",
+          "type": "dataset",
+          "coverage": "multi-country",
+          "friction": "open"
+        },
+        {
+          "name": "OpenOwnership",
+          "type": "api",
+          "coverage": "global",
+          "friction": "open"
+        }
+      ],
+      "resource_files": [
+        "resources/opencorporates.py",
+        "resources/companies_house.py",
+        "resources/aleph.py",
+        "resources/open_ownership.py"
+      ]
+    },
+    "eyed": {
+      "display_name": "EYE-D - OSINT Intelligence Platform",
+      "location": "python-backend/modules/eyed/",
+      "main_file": "module.py",
+      "suite": "eyed",
+      "friction": "Paywalled",
+      "description": "Breach data, social profiles, contact discovery, domain WHOIS, and identity graph building.",
+      "inputs": {
+        "primary": [
+          {
+            "code": 1,
+            "name": "email",
+            "type": "email",
+            "required": false
+          },
+          {
+            "code": 6,
+            "name": "domain_url",
+            "type": "webdomain",
+            "required": false
+          }
+        ],
+        "secondary": [
+          {
+            "code": 2,
+            "name": "phone",
+            "type": "phone",
+            "required": false
+          },
+          {
+            "code": 7,
+            "name": "person_name",
+            "type": "person",
+            "required": false
+          },
+          {
+            "code": 13,
+            "name": "company_name",
+            "type": "company",
+            "required": false
+          }
+        ]
+      },
+      "outputs": [
+        {
+          "codes": [187],
+          "node_types": ["dataset"],
+          "edge_types": ["has_breach_record"],
+          "description": "Breach exposure data (passwords, hashes, IPs)"
+        },
+        {
+          "codes": [188, 189],
+          "node_types": ["username", "url"],
+          "edge_types": ["has_social_profile"],
+          "description": "Social media profiles and usernames"
+        },
+        {
+          "codes": [190],
+          "node_types": ["person", "email", "phone"],
+          "edge_types": ["has_email", "has_phone"],
+          "description": "Contact discovery and enrichment"
+        },
+        {
+          "codes": [191, 192, 193],
+          "node_types": ["webdomain", "email", "person"],
+          "edge_types": ["registered_by", "has_registrant"],
+          "description": "WHOIS history and domain ownership"
+        },
+        {
+          "codes": [195],
+          "node_types": ["person"],
+          "edge_types": ["associate_of", "family_of"],
+          "description": "Identity graph and relationship mapping"
+        }
+      ],
+      "data_sources": [
+        {
+          "name": "DeHashed",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "OSINT Industries",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "RocketReach",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "ContactOut",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "Kaspr",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "WhoisXML",
+          "type": "api",
+          "coverage": "global",
+          "friction": "freemium"
+        },
+        {
+          "name": "Archive.org",
+          "type": "api",
+          "coverage": "global",
+          "friction": "open"
+        }
+      ],
+      "resource_files": [
+        "resources/dehashed.py",
+        "resources/osint_industries.py",
+        "resources/rocketreach.py",
+        "resources/contactout.py",
+        "resources/kaspr.py",
+        "resources/whoisxml.py",
+        "resources/archive_org.py"
+      ]
+    },
+    "alldom": {
+      "display_name": "ALLDOM - Domain Mapper",
+      "location": "python-backend/modules/alldom/",
+      "main_file": "module.py",
+      "suite": "alldom",
+      "friction": "Open/Paywalled",
+      "description": "Comprehensive domain mapping, subdomain discovery, backlinks, GA codes, and infrastructure analysis.",
+      "inputs": {
+        "primary": [
+          {
+            "code": 6,
+            "name": "domain_url",
+            "type": "webdomain",
+            "required": true
+          }
+        ]
+      },
+      "outputs": [
+        {
+          "codes": [191],
+          "node_types": ["webdomain"],
+          "edge_types": ["linked_from", "links_to"],
+          "description": "Backlink profiles and outbound links"
+        },
+        {
+          "codes": [200, 201, 202],
+          "node_types": ["webdomain", "ip_address"],
+          "edge_types": ["hosted_on", "resolves_to"],
+          "description": "DNS records, IP resolution, hosting infrastructure"
+        },
+        {
+          "codes": [203, 204],
+          "node_types": ["webdomain"],
+          "edge_types": ["shares_ga_with", "shares_adsense_with"],
+          "description": "Google Analytics and AdSense code sharing"
+        },
+        {
+          "codes": [205, 206],
+          "node_types": ["webdomain"],
+          "edge_types": ["subdomain_of"],
+          "description": "Subdomain enumeration"
+        },
+        {
+          "codes": [209, 211, 212],
+          "node_types": ["webdomain", "document"],
+          "edge_types": ["has_document"],
+          "description": "Sitemaps, robots.txt, site structure"
+        },
+        {
+          "codes": [213, 214],
+          "node_types": ["webdomain"],
+          "edge_types": ["similar_to"],
+          "description": "Similar domains and alternatives"
+        }
+      ],
+      "data_sources": [
+        {
+          "name": "Firecrawl",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "Majestic",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        },
+        {
+          "name": "Common Crawl",
+          "type": "dataset",
+          "coverage": "global",
+          "friction": "open"
+        },
+        {
+          "name": "BuiltWith",
+          "type": "api",
+          "coverage": "global",
+          "friction": "freemium"
+        },
+        {
+          "name": "Wayback Machine",
+          "type": "api",
+          "coverage": "global",
+          "friction": "open"
+        }
+      ],
+      "resource_files": [
+        "resources/firecrawl.py",
+        "resources/majestic.py",
+        "resources/outlinks.py",
+        "resources/ga_analysis.py",
+        "resources/age.py",
+        "resources/search_engines.py",
+        "resources/similar.py",
+        "resources/sitemaps.py",
+        "resources/subdomains.py",
+        "resources/wayback.py"
+      ]
+    },
+    "factassembler": {
+      "display_name": "FactAssembler - Document Intelligence",
+      "location": "python-backend/modules/fact_assembler/",
+      "main_file": "mukodik_enhanced_final.py",
+      "suite": "factassembler",
+      "friction": "Hybrid",
+      "description": "Multi-phase document assembly pipeline for research compilation and gap filling.",
+      "inputs": {
+        "primary": [
+          {
+            "code": null,
+            "name": "query",
+            "type": "text",
+            "required": true
+          },
+          {
+            "code": null,
+            "name": "context",
+            "type": "text",
+            "required": false
+          }
+        ]
+      },
+      "outputs": [
+        {
+          "codes": [],
+          "node_types": ["document", "note"],
+          "edge_types": ["compiled_from"],
+          "description": "Compiled research documents with footnotes and sources"
+        }
+      ],
+      "phases": [
+        {
+          "phase": 0,
+          "name": "Search & Discovery",
+          "description": "Brave Search + Firecrawl parallel scraping"
+        },
+        {
+          "phase": 1,
+          "name": "Extraction",
+          "description": "GPT-5.1 parallel fact extraction"
+        },
+        {
+          "phase": 2,
+          "name": "Verification",
+          "description": "GPT-5-nano verification"
+        },
+        {
+          "phase": 3,
+          "name": "Merging",
+          "description": "Claude Sonnet 4.5 intelligent merging"
+        },
+        {
+          "phase": 4,
+          "name": "Rewrite",
+          "description": "Claude Sonnet 4.5 coherent rewrite"
+        },
+        {
+          "phase": 5,
+          "name": "Final Verification",
+          "description": "Gemini 2.5 Pro final check"
+        }
+      ],
+      "data_sources": [
+        {
+          "name": "Brave Search",
+          "type": "api",
+          "coverage": "global",
+          "friction": "freemium"
+        },
+        {
+          "name": "Firecrawl",
+          "type": "api",
+          "coverage": "global",
+          "friction": "paid"
+        }
+      ],
+      "resource_files": [
+        "cli_wrapper.py",
+        "mukodik.py",
+        "mukodik_enhanced_final.py",
+        "brave_search_service.py"
+      ]
+    }
+  }
+}

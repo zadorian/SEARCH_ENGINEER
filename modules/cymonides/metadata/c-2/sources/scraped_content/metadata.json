@@ -1,0 +1,13 @@
+{
+  "source_name": "Scraped Web Content",
+  "source_type": "scraped",
+  "document_count": 0,
+  "status": "pending",
+  "description": "Future: Web pages crawled from any project go here",
+  "query": {
+    "term": {
+      "source_type": "scraped"
+    }
+  },
+  "note": "Not yet merged - placeholder for future crawled content"
+}

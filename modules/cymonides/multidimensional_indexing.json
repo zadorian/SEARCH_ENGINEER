@@ -1,0 +1,284 @@
+{
+  "_meta": {
+    "generated": "2025-12-30",
+    "purpose": "Multi-dimensional indexing and filtering opportunities",
+    "philosophy": "Combine categorical dimensions for compound filters: entity_type + location + ownership% + time"
+  },
+
+  "DIMENSION_TYPES": {
+    "categorical": "Discrete values (industry, entity_type, jurisdiction)",
+    "ordinal": "Ordered categories (ownership bands, credibility tiers, severity levels)",
+    "temporal": "Time-based (first_seen, last_verified, breach_year)",
+    "hierarchical": "Nested categories (geographic regions, industry sectors)",
+    "semantic": "Embedded for similarity (job titles, descriptions, concepts)"
+  },
+
+  "EXISTING_DIMENSIONS": {
+    "entity_type": {
+      "source": "entity_links.source_type, entity_links.target_type, openownership.entity_type",
+      "values": ["company", "person", "registeredEntity", "knownPerson"],
+      "indexed": true
+    },
+    "jurisdiction": {
+      "source": "openownership.jurisdiction_code, uk_ccod.county",
+      "values": "ISO country codes + UK regions",
+      "indexed": true
+    },
+    "industry": {
+      "source": "linkedin_unified.industry",
+      "values": "~150 LinkedIn industries",
+      "indexed": true,
+      "embedded": true
+    },
+    "domain_category": {
+      "source": "domains_unified.categories",
+      "values": "~5K DMOZ categories",
+      "indexed": true,
+      "embedded": true
+    }
+  },
+
+  "NEW_DIMENSION_OPPORTUNITIES": {
+
+    "1_OWNERSHIP_CONTROL_SPECTRUM": {
+      "source_field": "entity_links.edge_properties.control_types",
+      "current_values": ["shareholding", "voting-rights", "appointment-of-board", "other-influence-or-control"],
+      "proposed_dimensions": {
+        "control_strength": {
+          "type": "ordinal",
+          "values": ["passive_investor", "minority_shareholder", "significant_influence", "board_control", "full_control"],
+          "derivation": "Combine ownership_pct + control_types array"
+        },
+        "control_type_semantic": {
+          "type": "semantic",
+          "embed": true,
+          "purpose": "User searches 'board control' or 'voting power' → matches relevant control types"
+        }
+      },
+      "compound_filter_example": "UK companies + person control + >50% ownership + acquired after 2020",
+      "doc_count": "4.7M entity_links"
+    },
+
+    "2_BREACH_SECURITY_POSTURE": {
+      "source_fields": ["breach_records.hash_type", "breach_records.breach_name"],
+      "current_values": {
+        "hash_type": ["plaintext", "sha1", "3des", "bcrypt"],
+        "breach_name": ["Adobe", "MySpace", "LinkedIn", "Dropbox", "000Webhost"]
+      },
+      "proposed_dimensions": {
+        "security_tier": {
+          "type": "ordinal",
+          "values": {
+            "critical": "plaintext passwords (14M records)",
+            "poor": "sha1/md5 - easily cracked",
+            "moderate": "3des/aes - outdated but encrypted",
+            "good": "bcrypt/argon2 - modern hashing"
+          }
+        },
+        "breach_severity": {
+          "type": "ordinal",
+          "values": {
+            "catastrophic": ["Adobe", "LinkedIn", "MySpace"],
+            "major": ["Dropbox", "000Webhost"],
+            "scrape": ["intelx_paste"]
+          }
+        }
+      },
+      "compound_filter_example": "Emails from @company.com + plaintext breach + 2015-2020",
+      "doc_count": "189M breach_records"
+    },
+
+    "3_PUBLISHER_CREDIBILITY": {
+      "source_field": "wdc-person-entities.publisher, wdc-organization-entities.publisher",
+      "current_cardinality": "~10K unique publishers",
+      "proposed_dimensions": {
+        "credibility_tier": {
+          "type": "ordinal",
+          "values": {
+            "official": "Government, regulatory, court records",
+            "institutional": "Universities, research institutions",
+            "mainstream_media": "Major news outlets",
+            "trade_press": "Industry publications",
+            "user_generated": "Social media, forums",
+            "unknown": "Unclassified sources"
+          }
+        },
+        "domain_embedding": {
+          "type": "semantic",
+          "approach": "Embed publisher domain + description for semantic source filtering"
+        }
+      },
+      "compound_filter_example": "Person mentions from official/institutional sources only",
+      "doc_count": "6.8M wdc-person-entities + 9.6M wdc-organization-entities"
+    },
+
+    "4_TEMPORAL_RECENCY": {
+      "source_fields": ["entity_links.first_seen", "entity_links.last_verified", "breach_records.breach_year"],
+      "proposed_dimensions": {
+        "ownership_recency": {
+          "type": "ordinal",
+          "values": {
+            "new_2024_2025": "Recently established ownership",
+            "stable_3_5y": "Established 2020-2022",
+            "legacy_5_10y": "Established 2015-2019",
+            "historic": "Before 2015"
+          }
+        },
+        "change_velocity": {
+          "type": "derived",
+          "calculation": "Count of ownership changes in last 2 years",
+          "purpose": "Flag frequently restructured entities"
+        }
+      },
+      "compound_filter_example": "Companies with ownership changes in last 6 months + UK + property holdings"
+    },
+
+    "5_GEOGRAPHIC_HIERARCHY": {
+      "source_fields": ["uk_ccod.county", "uk_ccod.district", "uk_addresses.postcode"],
+      "proposed_dimensions": {
+        "uk_region": {
+          "type": "hierarchical",
+          "levels": ["country", "region", "county", "district", "postcode_area"],
+          "mappings": {
+            "North West": ["GREATER MANCHESTER", "MERSEYSIDE", "LANCASHIRE", "CHESHIRE"],
+            "Yorkshire": ["WEST YORKSHIRE", "SOUTH YORKSHIRE", "NORTH YORKSHIRE"],
+            "South East": ["KENT", "SURREY", "ESSEX", "HAMPSHIRE"],
+            "London": ["GREATER LONDON"]
+          }
+        },
+        "postcode_semantic": {
+          "type": "semantic",
+          "embed": true,
+          "purpose": "User searches 'properties near Manchester' → expands to relevant postcodes"
+        }
+      },
+      "compound_filter_example": "Freehold properties + North West + price > 500K + corporate owner",
+      "doc_count": "4.3M uk_ccod + 4.3M uk_addresses"
+    },
+
+    "6_PRODUCT_TAXONOMY": {
+      "source_field": "wdc-product-entities.category",
+      "current_values": ["T-Shirt", "Accessories", "Book", "Shoes", "Jewelry", "Home Decor"],
+      "proposed_dimensions": {
+        "product_hierarchy": {
+          "type": "hierarchical",
+          "levels": ["department", "category", "subcategory"],
+          "example": "Apparel > Tops > T-Shirts"
+        },
+        "product_semantic": {
+          "type": "semantic",
+          "embed": true,
+          "purpose": "User searches 'fashion accessories' → matches Jewelry, Accessories, Shoes"
+        }
+      },
+      "doc_count": "20M wdc-product-entities"
+    },
+
+    "7_LINK_RELATIONSHIP_TYPE": {
+      "source_fields": ["cc_web_graph_edges.rel", "onion-graph-edges.type"],
+      "current_values": {
+        "onion": ["outlink"],
+        "web": ["rel attribute if present"]
+      },
+      "proposed_dimensions": {
+        "link_intent": {
+          "type": "categorical",
+          "values": ["navigation", "reference", "advertisement", "social", "affiliate"],
+          "derivation": "Classify based on rel attribute + anchor text + URL patterns"
+        },
+        "anchor_semantic": {
+          "type": "semantic",
+          "source": "cc_web_graph_edges.anchor_text",
+          "embed": true,
+          "purpose": "Find links by semantic context ('buy now', 'learn more', 'contact us')"
+        }
+      },
+      "compound_filter_example": "Outlinks from .onion sites + anchor contains 'marketplace'",
+      "doc_count": "14M cc_web_graph_edges + 267K onion-graph-edges"
+    },
+
+    "8_SCHEMA_TYPE_SEMANTICS": {
+      "source_fields": ["wdc-organization-entities.type", "wdc-localbusiness-entities.type"],
+      "current_values": ["LocalBusiness", "Organization", "Store", "Restaurant", "Product"],
+      "proposed_dimensions": {
+        "business_category_semantic": {
+          "type": "semantic",
+          "embed": true,
+          "mapping": {
+            "MedicalBusiness": ["hospital", "clinic", "doctor", "dentist", "pharmacy"],
+            "LegalService": ["law firm", "attorney", "solicitor", "legal aid"],
+            "FinancialService": ["bank", "insurance", "investment", "accounting"],
+            "FoodEstablishment": ["restaurant", "cafe", "bar", "takeaway"]
+          }
+        }
+      },
+      "compound_filter_example": "MedicalBusiness entities + UK domain + founded 2020+",
+      "doc_count": "10M WDC entities"
+    }
+  },
+
+  "COMPOUND_FILTER_PATTERNS": {
+    "investigation_filters": [
+      "Person + UK + >25% ownership + acquired 2020-2024 + in breach records",
+      "Company + offshore jurisdiction + multiple ownership layers + property assets",
+      "Domain + corporate registry + .ru TLD + links to UK companies",
+      "Email + plaintext breach + same domain as company officer"
+    ],
+    "enrichment_filters": [
+      "LinkedIn profiles + industry:Legal + location:London + headline contains 'Partner'",
+      "WDC entities + type:Organization + domain has WHOIS info + founded date available",
+      "Breach records + email domain matches company domain + hash_type:plaintext"
+    ],
+    "red_flag_filters": [
+      "Ownership chains > 3 layers + offshore + recent changes",
+      "Same person + multiple companies + different jurisdictions + rapid turnover",
+      "Domain + high-risk category + breach exposure + PEP connections"
+    ]
+  },
+
+  "IMPLEMENTATION_APPROACH": {
+    "phase_1_derive_ordinals": {
+      "description": "Add derived ordinal fields to existing indices",
+      "fields": ["security_tier", "credibility_tier", "ownership_strength", "region_code"],
+      "method": "ES ingest pipelines or offline batch processing"
+    },
+    "phase_2_embed_semantics": {
+      "description": "Create embedding indices for semantic dimensions",
+      "targets": ["job_titles", "anchor_texts", "product_categories", "control_types"],
+      "model": "all-MiniLM-L6-v2 for consistency"
+    },
+    "phase_3_composite_vectors": {
+      "description": "Create multi-field composite embeddings",
+      "example": "embed(entity_type + industry + jurisdiction) as single 384-dim vector",
+      "purpose": "Enable semantic similarity across multiple dimensions simultaneously"
+    }
+  },
+
+  "ELASTICSEARCH_PATTERNS": {
+    "multi_dimension_filter": {
+      "description": "Combine bool must clauses across dimensions",
+      "example": {
+        "bool": {
+          "must": [
+            {"term": {"entity_type": "company"}},
+            {"term": {"jurisdiction": "UK"}},
+            {"range": {"ownership_pct": {"gte": 25}}},
+            {"range": {"first_seen": {"gte": "2020-01-01"}}}
+          ]
+        }
+      }
+    },
+    "faceted_aggregation": {
+      "description": "Multi-bucket aggregation for dimension exploration",
+      "example": {
+        "aggs": {
+          "by_jurisdiction": {"terms": {"field": "jurisdiction"}},
+          "by_ownership_band": {"range": {"field": "ownership_pct", "ranges": [
+            {"to": 25}, {"from": 25, "to": 50}, {"from": 50}
+          ]}},
+          "by_year": {"date_histogram": {"field": "first_seen", "calendar_interval": "year"}}
+        }
+      }
+    }
+  }
+}

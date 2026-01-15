@@ -1,0 +1,384 @@
+{
+  "meta": {
+    "version": "4.0",
+    "description": "Unified Source Registry v4 - Consolidates flows.json with structured country-specific data sources.",
+    "purpose": "Defines all external data sources, their input/output schemas, and routing logic",
+    "breaking_changes": [
+      "Restructured from flat arrays to hierarchical country -> source -> flow mapping",
+      "Added explicit input/output code mappings (not just string names)",
+      "Integrated with modules.json to show which module handles each source"
+    ]
+  },
+  "countries": {
+    "AZ": {
+      "name": "Azerbaijan",
+      "sources": [
+        {
+          "source_id": "776",
+          "source_label": "Azerbaijan Commercial Taxpayers [ALEPH]",
+          "kind": "registry",
+          "publisher": "Aleph",
+          "handled_by": "corporella",
+          "file": "AZ.csv",
+          "flows": [
+            {
+              "input": {
+                "code": 13,
+                "name": "company_name",
+                "type": "company"
+              },
+              "output": {
+                "schema": "Company",
+                "node_type": "company",
+                "properties": [
+                  { "code": 42, "name": "company_name" },
+                  { "code": 43, "name": "company_id" },
+                  { "code": 47, "name": "company_address" },
+                  { "code": 48, "name": "company_country" },
+                  { "code": null, "name": "company_jurisdiction" },
+                  { "code": 49, "name": "company_status" },
+                  { "code": 50, "name": "company_incorporation_date" },
+                  { "code": null, "name": "company_dissolution_date" },
+                  { "code": 46, "name": "company_website" }
+                ],
+                "edges": [
+                  {
+                    "relation": "owner_of",
+                    "target_type": "person",
+                    "property": "company_owner_person"
+                  },
+                  {
+                    "relation": "parent_of",
+                    "target_type": "company",
+                    "property": "company_owner_company"
+                  }
+                ]
+              }
+            },
+            {
+              "input": {
+                "code": 14,
+                "name": "company_id",
+                "type": "company"
+              },
+              "output": {
+                "schema": "Company",
+                "node_type": "company",
+                "properties": [
+                  { "code": 42, "name": "company_name" },
+                  { "code": 43, "name": "company_id" },
+                  { "code": 47, "name": "company_address" },
+                  { "code": 48, "name": "company_country" },
+                  { "code": null, "name": "company_jurisdiction" },
+                  { "code": 49, "name": "company_status" },
+                  { "code": 50, "name": "company_incorporation_date" },
+                  { "code": null, "name": "company_dissolution_date" },
+                  { "code": 46, "name": "company_website" }
+                ],
+                "edges": [
+                  {
+                    "relation": "owner_of",
+                    "target_type": "person",
+                    "property": "company_owner_person"
+                  },
+                  {
+                    "relation": "parent_of",
+                    "target_type": "company",
+                    "property": "company_owner_company"
+                  }
+                ]
+              }
+            },
+            {
+              "input": {
+                "code": 7,
+                "name": "person_name",
+                "type": "person"
+              },
+              "output": {
+                "schema": "Person",
+                "node_type": "person",
+                "properties": [
+                  { "code": 7, "name": "person_name" },
+                  { "code": null, "name": "person_id" },
+                  { "code": 12, "name": "person_dob" },
+                  { "code": 9, "name": "person_nationality" },
+                  { "code": null, "name": "person_address" },
+                  { "code": 10, "name": "person_country" },
+                  { "code": null, "name": "person_website" }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "GB": {
+      "name": "United Kingdom",
+      "sources": [
+        {
+          "source_id": "companies_house_api",
+          "source_label": "Companies House API",
+          "kind": "api",
+          "publisher": "Companies House (UK Government)",
+          "handled_by": "corporella",
+          "flows": [
+            {
+              "input": {
+                "code": 13,
+                "name": "company_name",
+                "type": "company"
+              },
+              "output": {
+                "schema": "Company",
+                "node_type": "company",
+                "properties": [
+                  { "code": 42, "name": "company_name" },
+                  { "code": 43, "name": "company_number" },
+                  { "code": 47, "name": "registered_office_address" },
+                  { "code": 48, "name": "country" },
+                  { "code": 49, "name": "company_status" },
+                  { "code": 50, "name": "date_of_creation" },
+                  { "code": null, "name": "date_of_cessation" },
+                  { "code": null, "name": "company_type" },
+                  { "code": null, "name": "sic_codes" }
+                ],
+                "edges": [
+                  {
+                    "relation": "officer_of",
+                    "target_type": "person",
+                    "endpoint": "/company/{company_number}/officers"
+                  },
+                  {
+                    "relation": "shareholder_of",
+                    "target_type": "person",
+                    "endpoint": "/company/{company_number}/persons-with-significant-control"
+                  }
+                ]
+              }
+            },
+            {
+              "input": {
+                "code": 14,
+                "name": "company_number",
+                "type": "company"
+              },
+              "output": {
+                "schema": "Company",
+                "node_type": "company",
+                "properties": [
+                  { "code": 42, "name": "company_name" },
+                  { "code": 43, "name": "company_number" },
+                  { "code": 47, "name": "registered_office_address" },
+                  { "code": 48, "name": "country" },
+                  { "code": 49, "name": "company_status" },
+                  { "code": 50, "name": "date_of_creation" }
+                ],
+                "edges": [
+                  {
+                    "relation": "officer_of",
+                    "target_type": "person",
+                    "endpoint": "/company/{company_number}/officers"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "GLOBAL": {
+      "name": "Global Multi-Jurisdiction",
+      "sources": [
+        {
+          "source_id": "opencorporates",
+          "source_label": "OpenCorporates Global",
+          "kind": "api",
+          "publisher": "OpenCorporates",
+          "handled_by": "corporella",
+          "coverage": ["worldwide", "200+ jurisdictions"],
+          "flows": [
+            {
+              "input": {
+                "code": 13,
+                "name": "company_name",
+                "type": "company"
+              },
+              "output": {
+                "schema": "Company",
+                "node_type": "company",
+                "properties": [
+                  { "code": 42, "name": "name" },
+                  { "code": 43, "name": "company_number" },
+                  { "code": 48, "name": "jurisdiction_code" },
+                  { "code": 50, "name": "incorporation_date" },
+                  { "code": null, "name": "dissolution_date" },
+                  { "code": 49, "name": "current_status" },
+                  { "code": 47, "name": "registered_address" },
+                  { "code": null, "name": "industry_codes" }
+                ],
+                "edges": [
+                  {
+                    "relation": "officer_of",
+                    "target_type": "person",
+                    "endpoint": "/companies/{jurisdiction_code}/{company_number}/officers"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "dehashed",
+          "source_label": "DeHashed Breach Database",
+          "kind": "api",
+          "publisher": "DeHashed",
+          "handled_by": "eyed",
+          "coverage": ["global"],
+          "flows": [
+            {
+              "input": {
+                "code": 1,
+                "name": "email",
+                "type": "email"
+              },
+              "output": {
+                "schema": "Breach",
+                "node_type": "dataset",
+                "properties": [
+                  { "code": 187, "name": "breach_name" },
+                  { "code": 187, "name": "breach_date" },
+                  { "code": 187, "name": "password" },
+                  { "code": 187, "name": "hashed_password" },
+                  { "code": 187, "name": "username" },
+                  { "code": 187, "name": "ip_address" },
+                  { "code": 187, "name": "database_name" }
+                ]
+              }
+            },
+            {
+              "input": {
+                "code": 3,
+                "name": "username",
+                "type": "username"
+              },
+              "output": {
+                "schema": "Breach",
+                "node_type": "dataset",
+                "properties": [
+                  { "code": 187, "name": "breach_name" },
+                  { "code": 1, "name": "email" },
+                  { "code": 187, "name": "password" }
+                ]
+              }
+            },
+            {
+              "input": {
+                "code": 6,
+                "name": "domain",
+                "type": "webdomain"
+              },
+              "output": {
+                "schema": "Breach",
+                "node_type": "dataset",
+                "properties": [
+                  { "code": 187, "name": "breach_name" },
+                  { "code": 1, "name": "email_addresses" },
+                  { "code": 187, "name": "total_records" }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "whoisxml",
+          "source_label": "WhoisXML API",
+          "kind": "api",
+          "publisher": "WhoisXML API",
+          "handled_by": "eyed",
+          "coverage": ["global"],
+          "flows": [
+            {
+              "input": {
+                "code": 6,
+                "name": "domain",
+                "type": "webdomain"
+              },
+              "output": {
+                "schema": "Whois",
+                "node_type": "webdomain",
+                "properties": [
+                  { "code": 191, "name": "registrant_name" },
+                  { "code": 191, "name": "registrant_email" },
+                  { "code": 191, "name": "registrant_organization" },
+                  { "code": 191, "name": "creation_date" },
+                  { "code": 191, "name": "expiration_date" },
+                  { "code": 191, "name": "registrar" }
+                ],
+                "edges": [
+                  {
+                    "relation": "registered_by",
+                    "target_type": "person",
+                    "property": "registrant_name"
+                  },
+                  {
+                    "relation": "has_registrant",
+                    "target_type": "email",
+                    "property": "registrant_email"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "source_id": "majestic",
+          "source_label": "Majestic Backlink Database",
+          "kind": "api",
+          "publisher": "Majestic",
+          "handled_by": "alldom",
+          "coverage": ["global"],
+          "flows": [
+            {
+              "input": {
+                "code": 6,
+                "name": "domain",
+                "type": "webdomain"
+              },
+              "output": {
+                "schema": "Backlinks",
+                "node_type": "webdomain",
+                "properties": [
+                  { "code": 191, "name": "backlink_count" },
+                  { "code": 191, "name": "referring_domains" },
+                  { "code": 191, "name": "trust_flow" },
+                  { "code": 191, "name": "citation_flow" }
+                ],
+                "edges": [
+                  {
+                    "relation": "linked_from",
+                    "target_type": "webdomain",
+                    "property": "referring_domain"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "routing_notes": {
+    "description": "How cymonidesRouter.ts should consume this file",
+    "steps": [
+      "1. User provides input (e.g., company_name='Acme Corp', country='GB')",
+      "2. Router looks up country in sources.json",
+      "3. For each source, checks flows where input.code matches user's data type",
+      "4. Identifies which module handles this source (handled_by field)",
+      "5. Generates dynamic UI button: 'Search {source_label}' -> calls {handled_by} module",
+      "6. Module returns output matching output.properties schema",
+      "7. System creates nodes/edges in Elasticsearch based on output schema"
+    ],
+    "example": "User has company_name (code 13) + country GB -> Router finds Companies House -> handled_by=corporella -> Calls corporella.search_companies_house(name) -> Returns company node + officer edges"
+  }
+}

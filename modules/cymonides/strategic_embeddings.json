@@ -1,0 +1,328 @@
+{
+  "_meta": {
+    "generated": "2025-12-30",
+    "purpose": "Strategic embedding opportunities - small vector indices with outsized filtering power",
+    "philosophy": "Embed the metadata, not the content. 1K embeddings can filter 100M records."
+  },
+
+  "EXISTING_VECTOR_DATABASES": {
+    "_note": "All existing vector indices and embeddings in the system",
+
+    "elasticsearch_indices": {
+      "matrix_type_embeddings": {
+        "doc_count": 2461,
+        "model": "all-MiniLM-L6-v2",
+        "dims": 384,
+        "purpose": "IO Matrix field types for semantic query routing",
+        "fields": ["embedding", "type_name", "synonyms", "description"]
+      },
+      "domain_category_embeddings": {
+        "doc_count": "~100 (needs rebuild check)",
+        "model": "all-MiniLM-L6-v2",
+        "dims": 384,
+        "purpose": "DMOZ/Curlie category semantic search",
+        "module": "BACKEND/modules/DEFINITIONAL/unified_categories/embeddings.py"
+      },
+      "cymonides-2": {
+        "doc_count": "13M+",
+        "model": "text-embedding-3-large",
+        "dims": 3072,
+        "purpose": "Domain content chunks for RAG questioning",
+        "module": "BACKEND/modules/LINKLATER/domain_embedder.py",
+        "field": "embedded_edges"
+      }
+    },
+
+    "json_files": {
+      "industry_embeddings": {
+        "path": "BACKEND/modules/CYMONIDES/industry_embeddings.json",
+        "size": "1.8MB",
+        "model": "all-MiniLM-L6-v2",
+        "dims": 384,
+        "purpose": "LinkedIn industry semantic matching",
+        "matcher": "BACKEND/modules/CYMONIDES/industry_matcher.py"
+      },
+      "concept_embeddings": {
+        "path": "BACKEND/modules/LINKLATER/.cache/concept_embeddings.json",
+        "size": "3.5MB",
+        "model": "text-embedding-3-large",
+        "dims": 3072,
+        "purpose": "LINKLATER content concept classifiers (ownership, sanctions, etc.)"
+      }
+    },
+
+    "external": {
+      "supabase_vectors": {
+        "module": "server/modules/engines/supabase_vector_manager_v2.py",
+        "model": "OpenAI embeddings",
+        "purpose": "External vector storage for larger datasets"
+      }
+    }
+  },
+
+  "ALREADY_IMPLEMENTED": {
+    "domain_categories": {
+      "description": "DMOZ/Curlie hierarchical categories embedded for semantic domain filtering",
+      "es_index": "domain_category_embeddings",
+      "module": "BACKEND/modules/DEFINITIONAL/unified_categories/embeddings.py",
+      "vector_size": "~5K categories → 384-dim embeddings",
+      "filters": "178M domains_unified records",
+      "multiplier": "35,600x leverage",
+      "example_queries": [
+        "law firms in europe → /en/Regional/Europe/.../Legal/...",
+        "cryptocurrency exchanges → /en/Business/Financial_Services/..."
+      ]
+    },
+    "linkedin_industries": {
+      "status": "DONE",
+      "description": "LinkedIn industry categories with semantic matching",
+      "module": "BACKEND/modules/CYMONIDES/industry_matcher.py",
+      "embeddings_file": "BACKEND/modules/CYMONIDES/industry_embeddings.json",
+      "vector_size": "~150 industries → 384-dim embeddings (1.8MB)",
+      "model": "all-MiniLM-L6-v2",
+      "filters": "2.9M linkedin_unified records",
+      "example_queries": [
+        "tech startups → Computer Software",
+        "doctors → Medical Practice",
+        "fintech → Financial Services"
+      ]
+    },
+    "io_matrix_types": {
+      "status": "DONE",
+      "description": "Field types for IO Matrix semantic routing",
+      "es_index": "matrix_type_embeddings",
+      "doc_count": 2461,
+      "model": "all-MiniLM-L6-v2",
+      "dims": 384,
+      "purpose": "User can describe what they're looking for, system finds matching field types"
+    },
+    "linklater_concepts": {
+      "status": "DONE",
+      "description": "Content concept classifiers for automatic tagging",
+      "embeddings_file": "BACKEND/modules/LINKLATER/.cache/concept_embeddings.json",
+      "model": "text-embedding-3-large",
+      "dims": 3072,
+      "concepts": ["beneficial_ownership", "sanctions", "litigation", "corporate_structure", "etc."]
+    }
+  },
+
+  "HIGH_PRIORITY_OPPORTUNITIES": {
+    "1_job_titles_roles": {
+      "field": "linkedin_unified.headline OR job_title",
+      "estimated_cardinality": "~50K unique titles",
+      "doc_count": "2.9M profiles",
+      "multiplier": "58x leverage",
+      "embedding_strategy": {
+        "cluster_first": "Group titles into ~500 semantic clusters before embedding",
+        "canonical_clusters": {
+          "executive": ["CEO", "Chief Executive", "Managing Director", "President", "Chairman"],
+          "finance_leadership": ["CFO", "Chief Financial Officer", "Finance Director", "VP Finance", "Treasurer"],
+          "tech_leadership": ["CTO", "CIO", "VP Engineering", "Head of Technology", "Chief Architect"],
+          "legal_counsel": ["General Counsel", "Legal Director", "Head of Legal", "Chief Legal Officer", "CLO"],
+          "sales_leadership": ["VP Sales", "Chief Revenue Officer", "Head of Sales", "Commercial Director"]
+        },
+        "approach": "Embed role clusters, not individual titles. User searches 'executives' → matches CEO, MD, President, Chairman"
+      },
+      "use_case": "Find all 'senior finance people' regardless of exact title variant"
+    },
+
+    "2_geographic_regions": {
+      "source_fields": ["uk_ccod.county", "uk_ccod.district", "linkedin_unified.location"],
+      "cardinality": {
+        "uk_ccod.county": "~60 counties",
+        "uk_ccod.district": "~400 districts"
+      },
+      "doc_count": "4.3M UK property records + 2.9M LinkedIn profiles",
+      "multiplier": "12,000x leverage",
+      "embedding_strategy": {
+        "hierarchical": "Embed at multiple granularities",
+        "region_mappings": {
+          "North West England": ["GREATER MANCHESTER", "MERSEYSIDE", "LANCASHIRE", "CHESHIRE"],
+          "Yorkshire": ["WEST YORKSHIRE", "SOUTH YORKSHIRE", "NORTH YORKSHIRE"],
+          "Greater London": ["GREATER LONDON"],
+          "West Midlands": ["WEST MIDLANDS", "STAFFORDSHIRE", "WARWICKSHIRE"]
+        },
+        "approach": "User searches 'properties in Northern England' → expands to all northern counties"
+      },
+      "use_case": "Semantic geographic filtering without requiring exact county names"
+    },
+
+    "3_schema_org_types": {
+      "source_fields": ["wdc-organization-entities.type", "wdc-localbusiness-entities.type"],
+      "cardinality": "~200 Schema.org types",
+      "doc_count": "9.6M organization entities + 478K local business entities",
+      "multiplier": "50,000x leverage",
+      "embedding_strategy": {
+        "canonical_types": ["LocalBusiness", "Organization", "Store", "Restaurant", "MedicalBusiness", "LegalService", "FinancialService", "RealEstateAgent"],
+        "synonyms": {
+          "MedicalBusiness": ["hospital", "clinic", "doctor", "healthcare provider", "medical practice"],
+          "LegalService": ["law firm", "attorney", "legal practice", "solicitor", "barrister"],
+          "FinancialService": ["bank", "investment firm", "accounting", "insurance company"]
+        },
+        "approach": "Embed Schema.org type with human-readable synonyms"
+      },
+      "use_case": "Search 'banks' → matches FinancialService, Bank, CreditUnion types"
+    },
+
+    "4_source_type_credibility": {
+      "field": "cymonides-2.source_type",
+      "cardinality": "4 types (wdc_entity, youtube, report, webpage)",
+      "doc_count": "13M documents",
+      "embedding_strategy": {
+        "not_similarity_based": "This is a CLASSIFICATION task, not semantic search",
+        "credibility_tiers": {
+          "tier_1_official": ["report", "government", "regulatory_filing"],
+          "tier_2_primary": ["webpage", "company_website"],
+          "tier_3_secondary": ["youtube", "social_media"],
+          "tier_4_extracted": ["wdc_entity"]
+        },
+        "approach": "Use for quality gating, not search. Filter by tier before running queries."
+      },
+      "use_case": "Prioritize 'report' sources over 'youtube' for credibility"
+    }
+  },
+
+  "MEDIUM_PRIORITY_OPPORTUNITIES": {
+    "6_legal_entity_designators": {
+      "derived_from": ["uk_ccod.proprietor_name_1", "openownership.subject_name"],
+      "pattern_extraction": "Extract LTD, LIMITED, PLC, LLP, LLC, INC, CORP, AG, GMBH from company names",
+      "cardinality": "~50 designators",
+      "filters": "4.3M UK property + 36M ownership records",
+      "embedding_strategy": {
+        "jurisdiction_aware": {
+          "UK_private": ["LTD", "LIMITED"],
+          "UK_public": ["PLC"],
+          "UK_partnership": ["LLP"],
+          "DE_private": ["GMBH", "UG"],
+          "DE_public": ["AG"],
+          "US_private": ["LLC", "INC", "CORP"]
+        },
+        "approach": "Search 'public companies' → matches PLC, AG, public listings"
+      },
+      "use_case": "Filter by company type regardless of jurisdiction-specific designator"
+    },
+
+    "7_email_provider_categories": {
+      "derived_from": "breach_records.email_domain",
+      "cardinality": "~20 provider categories",
+      "filters": "189M breach records",
+      "embedding_strategy": {
+        "provider_types": {
+          "personal_free": ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com"],
+          "personal_secure": ["protonmail.com", "tutanota.com"],
+          "corporate_generic": ["corporate domain pattern"],
+          "government": ["*.gov", "*.gov.uk"],
+          "education": ["*.edu", "*.ac.uk"]
+        },
+        "approach": "Classify email domain into provider type before search"
+      },
+      "use_case": "Find all 'government emails' without listing every TLD"
+    },
+
+    "8_language_codes": {
+      "field": "cymonides-2.language",
+      "cardinality": "~25 languages",
+      "doc_count": "13M documents",
+      "embedding_strategy": {
+        "language_families": {
+          "germanic": ["en", "de", "nl"],
+          "romance": ["fr", "es", "it"],
+          "slavic": ["ru", "pl", "cs"],
+          "asian": ["zh", "ja", "ko"]
+        },
+        "approach": "Search 'European languages' → matches all EU language codes"
+      },
+      "use_case": "Filter by language family semantically"
+    }
+  },
+
+  "ADVANCED_OPPORTUNITIES": {
+    "9_breach_timeline_semantics": {
+      "derived_from": "breach_records.breach_date (if exists) OR breach_year",
+      "embedding_strategy": {
+        "temporal_buckets": {
+          "recent": "2022-2024",
+          "covid_era": "2020-2021",
+          "pre_gdpr": "before 2018",
+          "legacy": "before 2015"
+        },
+        "approach": "Search 'recent breaches' → filters to 2022+"
+      },
+      "use_case": "Semantic time filtering without exact date queries"
+    },
+
+    "10_company_name_variations": {
+      "NOT_embedding_but_related": true,
+      "description": "Pre-compute company name variants for fuzzy matching",
+      "strategy": {
+        "normalize": "Remove LTD, THE, punctuation",
+        "acronymize": "BRITISH AIRWAYS → BA",
+        "phonetic": "Apply metaphone/soundex",
+        "abbreviate": "INTERNATIONAL → INT'L, INTL"
+      },
+      "store_as": "Separate lookup table with canonical_id links",
+      "use_case": "Search 'BA' → matches 'BRITISH AIRWAYS LIMITED'"
+    },
+
+    "11_red_flag_terms": {
+      "description": "Embed investigation red flag terminology",
+      "cardinality": "~200 terms",
+      "terms_by_category": {
+        "sanctions_related": ["sanctioned", "SDN", "OFAC", "blacklisted", "designated"],
+        "fraud_indicators": ["ponzi", "pyramid scheme", "fraud", "embezzlement", "money laundering"],
+        "political_exposure": ["PEP", "politically exposed", "government official", "minister"],
+        "corporate_distress": ["liquidation", "insolvency", "administration", "winding up", "dissolved"]
+      },
+      "embedding_strategy": "Embed these terms, then score documents by proximity to red flag clusters",
+      "use_case": "User wants 'suspicious companies' → ranks by red flag term density"
+    }
+  },
+
+  "IMPLEMENTATION_PRIORITY": [
+    {
+      "rank": 1,
+      "opportunity": "schema_org_types",
+      "effort": "LOW (200 embeddings)",
+      "impact": "HIGH (10M entities filterable by business type)"
+    },
+    {
+      "rank": 2,
+      "opportunity": "geographic_regions",
+      "effort": "MEDIUM (hierarchical regions)",
+      "impact": "HIGH (4.3M UK properties + more)"
+    },
+    {
+      "rank": 3,
+      "opportunity": "job_titles_roles",
+      "effort": "MEDIUM (need clustering first)",
+      "impact": "HIGH (find executives by function)"
+    },
+    {
+      "rank": 4,
+      "opportunity": "legal_entity_designators",
+      "effort": "LOW (50 embeddings)",
+      "impact": "MEDIUM (filter by company type)"
+    },
+    {
+      "rank": 5,
+      "opportunity": "red_flag_terms",
+      "effort": "LOW (200 embeddings)",
+      "impact": "HIGH (investigation-specific, unique value)"
+    }
+  ],
+
+  "ARCHITECTURE_NOTES": {
+    "vector_index_naming": "{semantic_type}_embeddings",
+    "embedding_model": "all-MiniLM-L6-v2 (384-dim) - same as categories",
+    "storage": "Elasticsearch dense_vector field OR separate FAISS/Pinecone",
+    "query_flow": {
+      "1": "User inputs semantic query ('law firms in northern england')",
+      "2": "Embed query with same model",
+      "3": "Search relevant embedding indices (industries, regions)",
+      "4": "Get matching canonical terms",
+      "5": "Expand to ES term filters",
+      "6": "Run filtered search on main indices"
+    },
+    "caching": "Cache expanded term lists for common queries"
+  }
+}

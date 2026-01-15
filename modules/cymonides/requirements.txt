@@ -1,0 +1,29 @@
+# CYMONIDES Agent - Dependencies
+# Install with: pip install -r requirements.txt
+
+# Claude Agent SDK
+claude-agent-sdk>=0.1.0        # Official Claude Agent SDK
+
+# Core dependencies
+anthropic>=0.40.0              # Claude API (underlying)
+elasticsearch>=8.0.0           # Elasticsearch client
+python-dotenv>=1.0.0           # Environment variables
+aiohttp>=3.9.0                 # Async HTTP client
+
+# Data processing
+pandas>=2.0.0                  # CSV/DataFrame handling
+orjson>=3.9.0                  # Fast JSON parsing
+python-dateutil>=2.8.0         # Date parsing
+
+# Utilities
+hashlib                        # Built-in (ID generation)
+pathlib                        # Built-in (path handling)
+typing                         # Built-in (type hints)
+
+# Development (optional)
+pytest>=7.4.0                  # Testing
+pytest-asyncio>=0.21.0         # Async testing
+black>=23.0.0                  # Code formatting
+
+# Note: claude-agent-sdk may not be on PyPI yet
+# Install from: pip install git+https://github.com/anthropics/claude-agent-sdk.git

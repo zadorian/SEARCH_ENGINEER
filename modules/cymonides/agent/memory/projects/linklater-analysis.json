@@ -1,0 +1,35 @@
+{
+  "project_id": "linklater-analysis",
+  "created_at": "2026-01-12T13:38:04.853436",
+  "updated_at": "2026-01-12T13:38:36.146571",
+  "c1_bridge_tasks": [
+    {
+      "task_id": "c1-bridge-linklater-20260112133836",
+      "module_name": "linklater",
+      "module_path": "/data/SEARCH_ENGINEER/BACKEND/modules/linklater",
+      "output_types": [
+        "address",
+        "company",
+        "domain",
+        "email",
+        "ip",
+        "keyword",
+        "person",
+        "phone",
+        "text",
+        "username"
+      ],
+      "status": "pending",
+      "bridge_file": null,
+      "node_mappings": [],
+      "edge_mappings": [],
+      "validation_passed": false,
+      "validation_errors": [],
+      "created_at": "2026-01-12T13:38:36.146534",
+      "completed_at": null
+    }
+  ],
+  "indexing_tasks": [],
+  "index_status": {},
+  "settings": {}
+}

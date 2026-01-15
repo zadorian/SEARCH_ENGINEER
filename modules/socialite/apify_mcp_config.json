@@ -1,0 +1,133 @@
+{
+  "name": "Apify MCP Server",
+  "description": "Official Apify MCP server with 75+ pre-configured actors for social media, search, and data extraction.",
+  "documentation": "https://github.com/apify/apify-mcp-server",
+
+  "mcp_url": "https://mcp.apify.com/?tools=actors,docs,agentx/subreddit-post-scraper,compass/crawler-google-places,apify/instagram-scraper,compass/google-maps-extractor,apify/instagram-reel-scraper,apify/google-search-scraper,apify/instagram-post-scraper,apify/instagram-profile-scraper,apify/facebook-posts-scraper,apimaestro/linkedin-profile-posts,curious_coder/linkedin-jobs-scraper,dev_fusion/Linkedin-Company-Scraper,apify/instagram-hashtag-scraper,apify/facebook-pages-scraper,pintostudio/youtube-transcript-scraper,apify/facebook-comments-scraper,clockworks/tiktok-comments-scraper,apify/instagram-comment-scraper,apify/facebook-groups-scraper,streamers/youtube-comments-scraper,apimaestro/linkedin-posts-search-scraper-no-cookies,tri_angle/social-media-finder,apify/facebook-search-scraper,scraperlink/google-search-results-serp-scraper,apimaestro/linkedin-batch-profile-posts-scraper,anchor/linkedin-profile-enrichment,curious_coder/facebook-marketplace,daniil.poletaev/backlink-building-agent,apify/facebook-page-contact-information,apify/facebook-reviews-scraper,build_matrix/company-employees-scraper,radeance/ahrefs-scraper,inutil_labs/wscrp-free,apify/facebook-reels-scraper,apify/instagram-hashtag-stats,muhammetakkurtt/truth-social-scraper,apify/facebook-photos-scraper,danielmilevski9/telegram-channel-scraper,jiri.spilka/openai-vector-store-integration,coderx/instagram-followers-list-scraper,practicaltools/apify-reddit-api,johnvc/startup-investors-data-scraper,bytepulselabs/reddit-video-downloader,apidojo/google-search-scraper,parseforge/pitchbook-scraper-fund-data,webfinity/telegram-channel-content-media-scraper-v2,akula.marketing/Telegram-Get-Phone-Info,tri_angle/bing-search-scraper,agents/google-maps-business,advisable_shampoo/youtube-email-finder,arachnetix/tg-post-stats,m_mamaev/yandex-maps-places-scraper,pratikdani/crunchbase-companies-bulk-scraper-no-cookies,apify/facebook-video-search-scraper,thenetaji/website-email-scraper,scrapesmith/youtube-free-channel-scraper,powerful_bachelor/instagram-posts-scraper-pay-per-result,quaking_pail/linkedin-job-scraping,muhammetakkurtt/truthsocial-hashtag-scraper,crawlerbros/reddit-scraper,johnvc/DuckDuckGoSEOScraper,onescales/website-screenshot-pro,ondrejklinovsky/torrent-scraper,akula.marketing/Telegram-Get-Username-Info,akula.marketing/Telegram-Get-Recommended-Channels,hamzasaleem/linkedin-profile-data-extractor,johnvc/yandex-scrape-yandex-search-results-at-scale---per-result,ecomdate/similarweb-scraper,apidojo/instagram-location-scraper-api,jupri/vkontakte,tri_angle/snapchat-spotlight-scraper,datadoping/linkedin-company-scraper,radeance/handelsregister-api,memo23/apify-indeed-reviews-ppr",
+
+  "claude_code_config": {
+    "mcpServers": {
+      "apify": {
+        "url": "https://mcp.apify.com/?tools=actors,docs,agentx/subreddit-post-scraper,compass/crawler-google-places,apify/instagram-scraper,compass/google-maps-extractor,apify/instagram-reel-scraper,apify/google-search-scraper,apify/instagram-post-scraper,apify/instagram-profile-scraper,apify/facebook-posts-scraper,apimaestro/linkedin-profile-posts,curious_coder/linkedin-jobs-scraper,dev_fusion/Linkedin-Company-Scraper,apify/instagram-hashtag-scraper,apify/facebook-pages-scraper,pintostudio/youtube-transcript-scraper,apify/facebook-comments-scraper,clockworks/tiktok-comments-scraper,apify/instagram-comment-scraper,apify/facebook-groups-scraper,streamers/youtube-comments-scraper,apimaestro/linkedin-posts-search-scraper-no-cookies,tri_angle/social-media-finder,apify/facebook-search-scraper,scraperlink/google-search-results-serp-scraper,apimaestro/linkedin-batch-profile-posts-scraper,anchor/linkedin-profile-enrichment,curious_coder/facebook-marketplace,daniil.poletaev/backlink-building-agent,apify/facebook-page-contact-information,apify/facebook-reviews-scraper,build_matrix/company-employees-scraper,radeance/ahrefs-scraper,inutil_labs/wscrp-free,apify/facebook-reels-scraper,apify/instagram-hashtag-stats,muhammetakkurtt/truth-social-scraper,apify/facebook-photos-scraper,danielmilevski9/telegram-channel-scraper,jiri.spilka/openai-vector-store-integration,coderx/instagram-followers-list-scraper,practicaltools/apify-reddit-api,johnvc/startup-investors-data-scraper,bytepulselabs/reddit-video-downloader,apidojo/google-search-scraper,parseforge/pitchbook-scraper-fund-data,webfinity/telegram-channel-content-media-scraper-v2,akula.marketing/Telegram-Get-Phone-Info,tri_angle/bing-search-scraper,agents/google-maps-business,advisable_shampoo/youtube-email-finder,arachnetix/tg-post-stats,m_mamaev/yandex-maps-places-scraper,pratikdani/crunchbase-companies-bulk-scraper-no-cookies,apify/facebook-video-search-scraper,thenetaji/website-email-scraper,scrapesmith/youtube-free-channel-scraper,powerful_bachelor/instagram-posts-scraper-pay-per-result,quaking_pail/linkedin-job-scraping,muhammetakkurtt/truthsocial-hashtag-scraper,crawlerbros/reddit-scraper,johnvc/DuckDuckGoSEOScraper,onescales/website-screenshot-pro,ondrejklinovsky/torrent-scraper,akula.marketing/Telegram-Get-Username-Info,akula.marketing/Telegram-Get-Recommended-Channels,hamzasaleem/linkedin-profile-data-extractor,johnvc/yandex-scrape-yandex-search-results-at-scale---per-result,ecomdate/similarweb-scraper,apidojo/instagram-location-scraper-api,jupri/vkontakte,tri_angle/snapchat-spotlight-scraper,datadoping/linkedin-company-scraper,radeance/handelsregister-api,memo23/apify-indeed-reviews-ppr",
+        "headers": {
+          "Authorization": "Bearer ${APIFY_TOKEN}"
+        }
+      }
+    }
+  },
+
+  "actors_by_category": {
+    "instagram": [
+      "apify/instagram-scraper",
+      "apify/instagram-reel-scraper",
+      "apify/instagram-post-scraper",
+      "apify/instagram-profile-scraper",
+      "apify/instagram-hashtag-scraper",
+      "apify/instagram-comment-scraper",
+      "apify/instagram-hashtag-stats",
+      "coderx/instagram-followers-list-scraper",
+      "powerful_bachelor/instagram-posts-scraper-pay-per-result",
+      "apidojo/instagram-location-scraper-api"
+    ],
+    "facebook": [
+      "apify/facebook-posts-scraper",
+      "apify/facebook-pages-scraper",
+      "apify/facebook-comments-scraper",
+      "apify/facebook-groups-scraper",
+      "apify/facebook-search-scraper",
+      "apify/facebook-page-contact-information",
+      "apify/facebook-reviews-scraper",
+      "apify/facebook-reels-scraper",
+      "apify/facebook-photos-scraper",
+      "apify/facebook-video-search-scraper",
+      "curious_coder/facebook-marketplace"
+    ],
+    "linkedin": [
+      "apimaestro/linkedin-profile-posts",
+      "curious_coder/linkedin-jobs-scraper",
+      "dev_fusion/Linkedin-Company-Scraper",
+      "apimaestro/linkedin-posts-search-scraper-no-cookies",
+      "apimaestro/linkedin-batch-profile-posts-scraper",
+      "anchor/linkedin-profile-enrichment",
+      "quaking_pail/linkedin-job-scraping",
+      "hamzasaleem/linkedin-profile-data-extractor",
+      "datadoping/linkedin-company-scraper"
+    ],
+    "youtube": [
+      "pintostudio/youtube-transcript-scraper",
+      "streamers/youtube-comments-scraper",
+      "advisable_shampoo/youtube-email-finder",
+      "scrapesmith/youtube-free-channel-scraper"
+    ],
+    "tiktok": [
+      "clockworks/tiktok-comments-scraper"
+    ],
+    "telegram": [
+      "danielmilevski9/telegram-channel-scraper",
+      "webfinity/telegram-channel-content-media-scraper-v2",
+      "akula.marketing/Telegram-Get-Phone-Info",
+      "akula.marketing/Telegram-Get-Username-Info",
+      "akula.marketing/Telegram-Get-Recommended-Channels",
+      "arachnetix/tg-post-stats"
+    ],
+    "reddit": [
+      "agentx/subreddit-post-scraper",
+      "practicaltools/apify-reddit-api",
+      "bytepulselabs/reddit-video-downloader",
+      "crawlerbros/reddit-scraper"
+    ],
+    "google_maps": [
+      "compass/crawler-google-places",
+      "compass/google-maps-extractor",
+      "agents/google-maps-business",
+      "m_mamaev/yandex-maps-places-scraper"
+    ],
+    "search_engines": [
+      "apify/google-search-scraper",
+      "scraperlink/google-search-results-serp-scraper",
+      "apidojo/google-search-scraper",
+      "tri_angle/bing-search-scraper",
+      "johnvc/DuckDuckGoSEOScraper",
+      "johnvc/yandex-scrape-yandex-search-results-at-scale---per-result"
+    ],
+    "business_intel": [
+      "build_matrix/company-employees-scraper",
+      "radeance/ahrefs-scraper",
+      "johnvc/startup-investors-data-scraper",
+      "parseforge/pitchbook-scraper-fund-data",
+      "pratikdani/crunchbase-companies-bulk-scraper-no-cookies",
+      "ecomdate/similarweb-scraper",
+      "radeance/handelsregister-api"
+    ],
+    "jobs": [
+      "curious_coder/linkedin-jobs-scraper",
+      "quaking_pail/linkedin-job-scraping",
+      "memo23/apify-indeed-reviews-ppr"
+    ],
+    "other_social": [
+      "muhammetakkurtt/truth-social-scraper",
+      "muhammetakkurtt/truthsocial-hashtag-scraper",
+      "jupri/vkontakte",
+      "tri_angle/snapchat-spotlight-scraper"
+    ],
+    "utilities": [
+      "tri_angle/social-media-finder",
+      "daniil.poletaev/backlink-building-agent",
+      "inutil_labs/wscrp-free",
+      "jiri.spilka/openai-vector-store-integration",
+      "thenetaji/website-email-scraper",
+      "onescales/website-screenshot-pro",
+      "ondrejklinovsky/torrent-scraper"
+    ]
+  },
+
+  "total_actors": 75,
+
+  "core_tools": ["actors", "docs"],
+
+  "notes": {
+    "authentication": "Requires APIFY_TOKEN environment variable",
+    "usage": "Add to Claude's MCP settings using claude_code_config above",
+    "cost": "Most actors use pay-per-result pricing, check individual actor pages"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "project_id": "link_analysis",
+  "created_at": "2026-01-12T13:32:47.400617",
+  "updated_at": "2026-01-12T13:33:22.356485",
+  "c1_bridge_tasks": [
+    {
+      "task_id": "c1-bridge-jester-20260112133247",
+      "module_name": "jester",
+      "module_path": "/data/SEARCH_ENGINEER/BACKEND/modules/jester",
+      "output_types": [
+        "address",
+        "company",
+        "domain",
+        "email",
+        "ip",
+        "keyword",
+        "person",
+        "phone",
+        "username"
+      ],
+      "status": "pending",
+      "bridge_file": null,
+      "node_mappings": [],
+      "edge_mappings": [],
+      "validation_passed": false,
+      "validation_errors": [],
+      "created_at": "2026-01-12T13:32:47.646570",
+      "completed_at": null
+    },
+    {
+      "task_id": "c1-bridge-linklater-20260112133322",
+      "module_name": "linklater",
+      "module_path": "/data/SEARCH_ENGINEER/BACKEND/modules/linklater",
+      "output_types": [
+        "address",
+        "company",
+        "domain",
+        "email",
+        "ip",
+        "keyword",
+        "person",
+        "phone",
+        "text",
+        "username"
+      ],
+      "status": "pending",
+      "bridge_file": null,
+      "node_mappings": [],
+      "edge_mappings": [],
+      "validation_passed": false,
+      "validation_errors": [],
+      "created_at": "2026-01-12T13:33:22.356448",
+      "completed_at": null
+    }
+  ],
+  "indexing_tasks": [],
+  "index_status": {},
+  "settings": {}
+}

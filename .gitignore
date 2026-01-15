@@ -24,3 +24,20 @@ batch_jobs/
 **/linkedin_urls*.txt
 **/*_OLD.json
 **/_archive/
+
+# Additional exclusions
+*.rup
+**/*.rup
+**/data/
+**/results/
+**/*.pkl
+**/*.pickle
+**/*.parquet
+**/*.csv
+**/tmp/
+**/.DS_Store
+**/*.egg-info/
+**/dist/
+**/build/
+**/*.so
+**/*.whl

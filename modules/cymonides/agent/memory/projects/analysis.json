@@ -1,0 +1,83 @@
+{
+  "project_id": "analysis",
+  "created_at": "2026-01-12T13:28:37.785665",
+  "updated_at": "2026-01-12T13:29:40.422611",
+  "c1_bridge_tasks": [
+    {
+      "task_id": "c1-bridge-jester-20260112132838",
+      "module_name": "jester",
+      "module_path": "/data/SEARCH_ENGINEER/BACKEND/modules/jester",
+      "output_types": [
+        "address",
+        "company",
+        "domain",
+        "email",
+        "ip",
+        "keyword",
+        "person",
+        "phone",
+        "username"
+      ],
+      "status": "pending",
+      "bridge_file": null,
+      "node_mappings": [],
+      "edge_mappings": [],
+      "validation_passed": false,
+      "validation_errors": [],
+      "created_at": "2026-01-12T13:28:38.155787",
+      "completed_at": null
+    },
+    {
+      "task_id": "c1-bridge-linklater-20260112132918",
+      "module_name": "linklater",
+      "module_path": "/data/SEARCH_ENGINEER/BACKEND/modules/linklater",
+      "output_types": [
+        "address",
+        "company",
+        "domain",
+        "email",
+        "ip",
+        "keyword",
+        "person",
+        "phone",
+        "text",
+        "username"
+      ],
+      "status": "pending",
+      "bridge_file": null,
+      "node_mappings": [],
+      "edge_mappings": [],
+      "validation_passed": false,
+      "validation_errors": [],
+      "created_at": "2026-01-12T13:29:18.692784",
+      "completed_at": null
+    },
+    {
+      "task_id": "c1-bridge-jester-20260112132940",
+      "module_name": "jester",
+      "module_path": "/data/SEARCH_ENGINEER/BACKEND/modules/jester",
+      "output_types": [
+        "address",
+        "company",
+        "domain",
+        "email",
+        "ip",
+        "keyword",
+        "person",
+        "phone",
+        "username"
+      ],
+      "status": "pending",
+      "bridge_file": null,
+      "node_mappings": [],
+      "edge_mappings": [],
+      "validation_passed": false,
+      "validation_errors": [],
+      "created_at": "2026-01-12T13:29:40.422580",
+      "completed_at": null
+    }
+  ],
+  "indexing_tasks": [],
+  "index_status": {},
+  "settings": {}
+}

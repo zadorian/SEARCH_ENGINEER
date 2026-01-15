@@ -1,0 +1,921 @@
+{
+  "$schema": "./discovery_routing_matrix_schema.json",
+  "version": "1.0.0",
+  "last_updated": "2026-01-01",
+  "description": "Routes unknown nodes [U] to concrete discovery/enrichment actions based on CLASS, type, and known context (KU matrix)",
+
+  "classes": {
+    "SUBJECT": {
+      "nature": "DYNAMIC",
+      "role": "ANCHOR",
+      "description": "What we seek - entities with agency and fuzzy borders",
+      "types": ["person", "company", "email", "phone", "username", "theme", "phenomenon"]
+    },
+    "LOCATION": {
+      "nature": "STATIC",
+      "role": "VENUE",
+      "description": "Where we look - fixed borders, defined spaces",
+      "types": ["jurisdiction", "address", "region", "domain", "url", "filetype", "year", "daterange", "language"]
+    },
+    "NEXUS": {
+      "nature": "CONNECTING",
+      "role": "RELATIONSHIP",
+      "description": "How things connect - reified edges",
+      "types": ["query", "source", "officer_of", "director_of", "shareholder_of", "beneficial_owner_of", "registered_in", "party_to", "co_occurrence"]
+    },
+    "NARRATIVE": {
+      "nature": "DIRECTING",
+      "role": "ORCHESTRATOR",
+      "description": "The brain - questions, templates, watchers",
+      "types": ["project", "note", "watcher", "template", "tag", "event", "timeline"]
+    }
+  },
+
+  "ku_matrix": {
+    "description": "KU Matrix (2×2) applies to ALL node classes. Each node has 4 possible states.",
+    "dimensions": {
+      "first_letter": "TYPE knowledge: K=known type, U=unknown type",
+      "second_letter": "VALUE knowledge: K=known value, U=unknown value"
+    },
+    "states": {
+      "KK": "Known Type, Known Value (specific entity/relationship we have)",
+      "KU": "Known Type, Unknown Value (seeking instances of known type)",
+      "UK": "Unknown Type, Known Value (have identifier, need to classify)",
+      "UU": "Unknown Type, Unknown Value (net discovery, anything)"
+    },
+    "applies_to": ["SUBJECT (S)", "LOCATION (L)", "NEXUS (X)", "NARRATIVE (N)"],
+    "triad_model": {
+      "structure": "[NODE:KU] - [X:KU] - [NODE:KU]",
+      "description": "Triad connects two nodes (S, L, or N) via a relationship (X). Each position has CLASS and KU state.",
+      "node_classes": "S (SUBJECT), L (LOCATION), N (NARRATIVE)",
+      "nexus_types": "S-X-S (person-officer_of-company), S-X-L (company-registered_in-jurisdiction), L-X-L (domain-links_to-domain)",
+      "combinations": "3 classes × 4 KU states × 4 KU states × 3 classes × 4 KU states = 576 theoretical patterns"
+    },
+    "examples": {
+      "S_KK": "John Smith (known person, known who)",
+      "S_KU": "p? (known type=person, seeking which one)",
+      "S_UK": "ID#12345 (have value, what type is it?)",
+      "S_UU": "ent? (any entity type, any instance)",
+      "X_KK": "director_of(John, Acme) - specific relationship instance",
+      "X_KU": "officer_of? - known type, seeking instances",
+      "X_UK": "John x Acme - connected somehow, unknown type",
+      "X_UU": "? - find any relationships",
+      "L_KK": "domain.com (known type=domain, known value)",
+      "L_KU": ":UK (known type=jurisdiction, seeking which registries)",
+      "L_UK": "raw_target (have it, what kind of location?)",
+      "L_UU": ":? (search anywhere)"
+    },
+    "query_examples": {
+      "[S:KU]-[X:UU]-[L:KK]": "p? :!domain.com — seeking persons, any connection, from known domain",
+      "[S:KK]-[X:UK]-[S:KK]": "John x Acme — known entities, what relationship?",
+      "[L:KU]-[X:KU]-[L:KK]": "bl? :!domain.com — seeking domains, via backlinks, to known domain",
+      "[S:KU]-[X:KU]-[L:KK]": "officer_of? :UK — seeking persons, via officer relationships, in UK registry"
+    }
+  },
+
+  "intents": {
+    "DISCOVER": {
+      "symbol": "[U] → [KK]",
+      "description": "Bring unknown into existence",
+      "subtypes": {
+        "TRACE": {
+          "anchor": "known",
+          "venue": "unknown",
+          "description": "Find where known subject appears"
+        },
+        "EXTRACT": {
+          "anchor": "unknown",
+          "venue": "known",
+          "description": "Find what subjects exist in known venue"
+        },
+        "NET": {
+          "anchor": "unknown",
+          "venue": "unknown",
+          "description": "Cast wide, discover both"
+        }
+      }
+    },
+    "ENRICH": {
+      "symbol": "[KK] → [KK+slots]",
+      "description": "Learn more about known entity",
+      "subtypes": {
+        "FILL": {
+          "description": "Populate empty slots on known node"
+        },
+        "VERIFY": {
+          "description": "Confirm existing slot values"
+        }
+      }
+    }
+  },
+
+  "routing_rules": {
+    "subject_discovery": {
+      "description": "Rules for discovering SUBJECT entities",
+      "rules": [
+        {
+          "id": "person_in_jurisdiction",
+          "unknown": {"class": "SUBJECT", "type": "person"},
+          "known": {"class": "LOCATION", "type": "jurisdiction"},
+          "intent": "EXTRACT",
+          "routes": [
+            {
+              "jurisdiction": "UK",
+              "engine": "companies_house_api",
+              "syntax": "puk: :#anchor",
+              "fallback": "reguk: :#anchor => @p?",
+              "extractor": "ner_person"
+            },
+            {
+              "jurisdiction": "DE",
+              "engine": "handelsregister",
+              "syntax": "pde: :#anchor",
+              "fallback": "regde: :#anchor => @p?",
+              "extractor": "ner_person"
+            },
+            {
+              "jurisdiction": "CY",
+              "engine": "drcor_api",
+              "syntax": "pcy: :#anchor",
+              "fallback": "regcy: :#anchor => @p?",
+              "extractor": "ner_person"
+            },
+            {
+              "jurisdiction": "HR",
+              "engine": "sudski_registar",
+              "syntax": "phr: :#anchor",
+              "fallback": "reghr: :#anchor => @p?",
+              "extractor": "ner_person"
+            },
+            {
+              "jurisdiction": "HU",
+              "engine": "e_cegjegyzek",
+              "syntax": "phu: :#anchor",
+              "fallback": "reghu: :#anchor => @p?",
+              "extractor": "ner_person"
+            },
+            {
+              "jurisdiction": "*",
+              "engine": "country_engine_generic",
+              "syntax": "p{cc}: :#anchor",
+              "fallback": "reg{cc}: :#anchor => @p?",
+              "extractor": "ner_person"
+            }
+          ]
+        },
+        {
+          "id": "person_in_domain",
+          "unknown": {"class": "SUBJECT", "type": "person"},
+          "known": {"class": "LOCATION", "type": "domain"},
+          "intent": "EXTRACT",
+          "routes": [
+            {
+              "engine": "firecrawl",
+              "syntax": "p!:?:#domain",
+              "method": "scrape_and_extract",
+              "extractor": "ner_person"
+            }
+          ]
+        },
+        {
+          "id": "person_in_url",
+          "unknown": {"class": "SUBJECT", "type": "person"},
+          "known": {"class": "LOCATION", "type": "url"},
+          "intent": "EXTRACT",
+          "routes": [
+            {
+              "engine": "firecrawl",
+              "syntax": "p!::#url",
+              "method": "scrape_page",
+              "extractor": "ner_person"
+            }
+          ]
+        },
+        {
+          "id": "person_in_document",
+          "unknown": {"class": "SUBJECT", "type": "person"},
+          "known": {"class": "NARRATIVE", "type": "document"},
+          "intent": "EXTRACT",
+          "routes": [
+            {
+              "engine": "local_ner",
+              "syntax": "@p? :#document",
+              "method": "extract_from_text",
+              "extractor": "ner_person"
+            }
+          ]
+        },
+        {
+          "id": "person_in_timerange",
+          "unknown": {"class": "SUBJECT", "type": "person"},
+          "known": {"class": "LOCATION", "type": "daterange"},
+          "intent": "EXTRACT",
+          "routes": [
+            {
+              "engine": "archive_search",
+              "syntax": "@p? :#corpus ::#daterange",
+              "method": "archive_ner",
+              "extractor": "ner_person"
+            }
+          ]
+        },
+        {
+          "id": "person_nowhere",
+          "unknown": {"class": "SUBJECT", "type": "person"},
+          "known": null,
+          "intent": "NET",
+          "routes": [
+            {
+              "engine": "brute_search",
+              "syntax": "/brute :#person_name",
+              "method": "multi_engine_search",
+              "extractor": "ner_person",
+              "engine_count": 40
+            }
+          ]
+        },
+        {
+          "id": "company_in_jurisdiction",
+          "unknown": {"class": "SUBJECT", "type": "company"},
+          "known": {"class": "LOCATION", "type": "jurisdiction"},
+          "intent": "EXTRACT",
+          "routes": [
+            {
+              "jurisdiction": "UK",
+              "engine": "companies_house_api",
+              "syntax": "cuk: :#anchor",
+              "fallback": "reguk: :#anchor",
+              "extractor": "registry_company"
+            },
+            {
+              "jurisdiction": "DE",
+              "engine": "handelsregister",
+              "syntax": "cde: :#anchor",
+              "fallback": "regde: :#anchor",
+              "extractor": "registry_company"
+            },
+            {
+              "jurisdiction": "CY",
+              "engine": "drcor_api",
+              "syntax": "ccy: :#anchor",
+              "fallback": "regcy: :#anchor",
+              "extractor": "registry_company"
+            },
+            {
+              "jurisdiction": "*",
+              "engine": "country_engine_generic",
+              "syntax": "c{cc}: :#anchor",
+              "fallback": "reg{cc}: :#anchor",
+              "extractor": "registry_company"
+            }
+          ]
+        },
+        {
+          "id": "company_in_domain",
+          "unknown": {"class": "SUBJECT", "type": "company"},
+          "known": {"class": "LOCATION", "type": "domain"},
+          "intent": "EXTRACT",
+          "routes": [
+            {
+              "engine": "firecrawl",
+              "syntax": "c!:?:#domain",
+              "method": "scrape_and_extract",
+              "extractor": "ner_org"
+            },
+            {
+              "engine": "whois_reverse",
+              "syntax": "whois!::#domain => @c?",
+              "method": "whois_to_company",
+              "extractor": "whois_registrant"
+            }
+          ]
+        },
+        {
+          "id": "company_nowhere",
+          "unknown": {"class": "SUBJECT", "type": "company"},
+          "known": null,
+          "intent": "NET",
+          "routes": [
+            {
+              "engine": "brute_search",
+              "syntax": "/brute :#company_name",
+              "method": "multi_engine_search",
+              "extractor": "ner_org"
+            },
+            {
+              "engine": "registry_scan",
+              "syntax": "reg?: :#company_name",
+              "method": "multi_registry_search",
+              "extractor": "registry_company"
+            }
+          ]
+        },
+        {
+          "id": "email_in_domain",
+          "unknown": {"class": "SUBJECT", "type": "email"},
+          "known": {"class": "LOCATION", "type": "domain"},
+          "intent": "EXTRACT",
+          "routes": [
+            {
+              "engine": "firecrawl",
+              "syntax": "e!:?:#domain",
+              "method": "scrape_and_extract",
+              "extractor": "regex_email"
+            }
+          ]
+        },
+        {
+          "id": "email_from_person_company",
+          "unknown": {"class": "SUBJECT", "type": "email"},
+          "known": [
+            {"class": "SUBJECT", "type": "person"},
+            {"class": "SUBJECT", "type": "company"}
+          ],
+          "intent": "DISCOVER",
+          "routes": [
+            {
+              "engine": "email_pattern",
+              "syntax": "/derive_email :#person :#company",
+              "method": "pattern_generation",
+              "patterns": [
+                "{first}.{last}@{domain}",
+                "{first}{last}@{domain}",
+                "{f}{last}@{domain}",
+                "{first}@{domain}"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "email_nowhere",
+          "unknown": {"class": "SUBJECT", "type": "email"},
+          "known": null,
+          "intent": "NET",
+          "routes": [
+            {
+              "engine": "breach_search",
+              "syntax": "email? :#email",
+              "method": "breach_lookup"
+            }
+          ]
+        },
+        {
+          "id": "phone_nowhere",
+          "unknown": {"class": "SUBJECT", "type": "phone"},
+          "known": null,
+          "intent": "NET",
+          "routes": [
+            {
+              "engine": "osint_phone",
+              "syntax": "+:#phone?",
+              "method": "phone_osint_lookup"
+            }
+          ]
+        },
+        {
+          "id": "username_on_platform",
+          "unknown": {"class": "SUBJECT", "type": "username"},
+          "known": {"class": "LOCATION", "type": "domain"},
+          "intent": "EXTRACT",
+          "routes": [
+            {
+              "engine": "platform_search",
+              "syntax": ":#username? ::#platform",
+              "method": "platform_profile_lookup"
+            }
+          ]
+        },
+        {
+          "id": "username_nowhere",
+          "unknown": {"class": "SUBJECT", "type": "username"},
+          "known": null,
+          "intent": "NET",
+          "routes": [
+            {
+              "engine": "breach_search",
+              "syntax": ":#username?",
+              "method": "breach_username_lookup"
+            },
+            {
+              "engine": "social_scan",
+              "syntax": "/social :#username",
+              "method": "multi_platform_scan"
+            }
+          ]
+        }
+      ]
+    },
+
+    "location_discovery": {
+      "description": "Rules for discovering LOCATION nodes",
+      "rules": [
+        {
+          "id": "jurisdiction_of_company",
+          "unknown": {"class": "LOCATION", "type": "jurisdiction"},
+          "known": {"class": "SUBJECT", "type": "company"},
+          "intent": "TRACE",
+          "routes": [
+            {
+              "engine": "registry_scan",
+              "syntax": "reg?: :#company",
+              "method": "find_registration_jurisdiction",
+              "extractor": "jurisdiction_from_registry"
+            }
+          ]
+        },
+        {
+          "id": "domain_of_company",
+          "unknown": {"class": "LOCATION", "type": "domain"},
+          "known": {"class": "SUBJECT", "type": "company"},
+          "intent": "TRACE",
+          "routes": [
+            {
+              "engine": "brute_search",
+              "syntax": "/brute :#company site:*.com",
+              "method": "find_company_domains",
+              "extractor": "domain_from_results"
+            },
+            {
+              "engine": "whois_forward",
+              "syntax": "whois?: :#company",
+              "method": "registrant_search"
+            }
+          ]
+        },
+        {
+          "id": "domain_of_person",
+          "unknown": {"class": "LOCATION", "type": "domain"},
+          "known": {"class": "SUBJECT", "type": "person"},
+          "intent": "TRACE",
+          "routes": [
+            {
+              "engine": "brute_search",
+              "syntax": "/brute \":#person\"",
+              "method": "find_person_domains",
+              "extractor": "domain_from_results"
+            }
+          ]
+        },
+        {
+          "id": "address_of_subject",
+          "unknown": {"class": "LOCATION", "type": "address"},
+          "known": {"class": "SUBJECT", "type": ["person", "company"]},
+          "intent": "TRACE",
+          "routes": [
+            {
+              "engine": "registry_lookup",
+              "syntax": "reg{cc}: :#subject => @a?",
+              "method": "extract_address_from_registry",
+              "extractor": "ner_address"
+            },
+            {
+              "engine": "property_registry",
+              "syntax": "prop{cc}: :#subject",
+              "method": "property_lookup"
+            }
+          ]
+        },
+        {
+          "id": "year_of_event",
+          "unknown": {"class": "LOCATION", "type": "year"},
+          "known": {"class": "NARRATIVE", "type": "event"},
+          "intent": "TRACE",
+          "routes": [
+            {
+              "engine": "archive_search",
+              "syntax": ":#event_description ::#year_range",
+              "method": "temporal_search"
+            }
+          ]
+        }
+      ]
+    },
+
+    "nexus_discovery": {
+      "description": "Rules for discovering NEXUS (relationship) nodes",
+      "rules": [
+        {
+          "id": "relationship_between_known",
+          "unknown": {"class": "NEXUS", "type": "*"},
+          "known": [
+            {"class": "SUBJECT", "role": "A"},
+            {"class": "SUBJECT", "role": "B"}
+          ],
+          "intent": "DISCOVER",
+          "routes": [
+            {
+              "engine": "graph_traverse",
+              "syntax": ":#A x :#B",
+              "method": "find_path"
+            },
+            {
+              "engine": "co_occurrence",
+              "syntax": "/clink :#A :#B",
+              "method": "document_co_occurrence"
+            }
+          ]
+        },
+        {
+          "id": "officers_of_company",
+          "unknown": {"class": "NEXUS", "type": "officer_of"},
+          "known": {"class": "SUBJECT", "type": "company"},
+          "intent": "EXTRACT",
+          "routes": [
+            {
+              "jurisdiction": "UK",
+              "engine": "companies_house_api",
+              "syntax": "reguk: :#company /officers",
+              "method": "get_officers",
+              "creates_unknowns": [{"class": "SUBJECT", "type": "person", "tag": "#officer"}]
+            },
+            {
+              "jurisdiction": "*",
+              "engine": "country_engine",
+              "syntax": "reg{cc}: :#company => @p? #officer",
+              "method": "extract_officers"
+            }
+          ]
+        },
+        {
+          "id": "shareholders_of_company",
+          "unknown": {"class": "NEXUS", "type": "shareholder_of"},
+          "known": {"class": "SUBJECT", "type": "company"},
+          "intent": "EXTRACT",
+          "routes": [
+            {
+              "jurisdiction": "UK",
+              "engine": "companies_house_api",
+              "syntax": "reguk: :#company /shareholders",
+              "method": "get_shareholders",
+              "creates_unknowns": [
+                {"class": "SUBJECT", "type": "person", "tag": "#shareholder"},
+                {"class": "SUBJECT", "type": "company", "tag": "#shareholder"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ubo_of_company",
+          "unknown": {"class": "NEXUS", "type": "beneficial_owner_of"},
+          "known": {"class": "SUBJECT", "type": "company"},
+          "intent": "EXTRACT",
+          "routes": [
+            {
+              "jurisdiction": "UK",
+              "engine": "companies_house_psc",
+              "syntax": "reguk: :#company /psc",
+              "method": "get_psc",
+              "creates_unknowns": [{"class": "SUBJECT", "type": "person", "tag": "#ubo"}]
+            },
+            {
+              "jurisdiction": "*",
+              "engine": "ubo_chain",
+              "syntax": "/ubo_trace :#company",
+              "method": "recursive_ownership_trace",
+              "max_depth": 10
+            }
+          ]
+        },
+        {
+          "id": "connections_of_person",
+          "unknown": {"class": "NEXUS", "type": "*"},
+          "known": {"class": "SUBJECT", "type": "person"},
+          "intent": "TRACE",
+          "routes": [
+            {
+              "engine": "multi_registry",
+              "syntax": "reg?: :#person",
+              "method": "find_all_positions",
+              "creates_nexus": ["officer_of", "director_of", "shareholder_of"]
+            }
+          ]
+        },
+        {
+          "id": "provenance_of_node",
+          "unknown": {"class": "NEXUS", "type": "source"},
+          "known": {"class": "*", "type": "*"},
+          "intent": "TRACE",
+          "routes": [
+            {
+              "engine": "provenance_tracker",
+              "syntax": "src?: :#node",
+              "method": "get_provenance_chain"
+            }
+          ]
+        }
+      ]
+    },
+
+    "enrichment": {
+      "description": "Rules for enriching known nodes with additional slots",
+      "rules": [
+        {
+          "id": "enrich_person",
+          "known": {"class": "SUBJECT", "type": "person"},
+          "slots_to_fill": ["dob", "nationality", "address", "occupation", "sanctions_status", "pep_status"],
+          "routes": [
+            {
+              "slot": "dob",
+              "engine": "registry_lookup",
+              "syntax": "reg{cc}: :#person => dob",
+              "fallback": "breach_search"
+            },
+            {
+              "slot": "nationality",
+              "engine": "registry_lookup",
+              "syntax": "reg{cc}: :#person => nationality"
+            },
+            {
+              "slot": "address",
+              "engine": "registry_lookup",
+              "syntax": "reg{cc}: :#person => @a?"
+            },
+            {
+              "slot": "sanctions_status",
+              "engine": "sanctions_check",
+              "syntax": "sanctions? :#person",
+              "void_is_finding": true
+            },
+            {
+              "slot": "pep_status",
+              "engine": "pep_check",
+              "syntax": "pep? :#person",
+              "void_is_finding": true
+            }
+          ]
+        },
+        {
+          "id": "enrich_company",
+          "known": {"class": "SUBJECT", "type": "company"},
+          "slots_to_fill": ["registration_number", "status", "incorporation_date", "address", "officers", "shareholders", "ubo"],
+          "routes": [
+            {
+              "slot": "registration_number",
+              "engine": "registry_lookup",
+              "syntax": "reg{cc}: :#company => reg_number"
+            },
+            {
+              "slot": "status",
+              "engine": "registry_lookup",
+              "syntax": "reg{cc}: :#company => status"
+            },
+            {
+              "slot": "incorporation_date",
+              "engine": "registry_lookup",
+              "syntax": "reg{cc}: :#company => inc_date"
+            },
+            {
+              "slot": "address",
+              "engine": "registry_lookup",
+              "syntax": "reg{cc}: :#company => @a?"
+            },
+            {
+              "slot": "officers",
+              "engine": "registry_lookup",
+              "syntax": "reg{cc}: :#company => @p? #officer",
+              "creates_unknowns": true
+            },
+            {
+              "slot": "shareholders",
+              "engine": "registry_lookup",
+              "syntax": "reg{cc}: :#company /shareholders",
+              "creates_unknowns": true
+            },
+            {
+              "slot": "ubo",
+              "engine": "ubo_trace",
+              "syntax": "/ubo_trace :#company",
+              "creates_unknowns": true
+            }
+          ]
+        },
+        {
+          "id": "enrich_domain",
+          "known": {"class": "LOCATION", "type": "domain"},
+          "slots_to_fill": ["registrant", "creation_date", "expiry_date", "nameservers", "hosting"],
+          "routes": [
+            {
+              "slot": "*",
+              "engine": "whois_lookup",
+              "syntax": "whois!::#domain"
+            }
+          ]
+        },
+        {
+          "id": "enrich_email",
+          "known": {"class": "SUBJECT", "type": "email"},
+          "slots_to_fill": ["breach_history", "associated_names", "social_profiles"],
+          "routes": [
+            {
+              "slot": "breach_history",
+              "engine": "breach_search",
+              "syntax": ":#email?"
+            },
+            {
+              "slot": "associated_names",
+              "engine": "osint_industries",
+              "syntax": "osint: :#email"
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  "triad_patterns": {
+    "description": "Standard [A]-[R]-[B] patterns. Full KU matrix = 4³ = 64 patterns. These 8 patterns use K=*K (value known) and U=*U (value unknown) shorthand",
+    "patterns": [
+      {
+        "pattern": "[K:Subject] - [U] - [U]",
+        "name": "TRACE_ALL",
+        "description": "Find all connections of known subject",
+        "intent": "DISCOVER",
+        "subtype": "TRACE",
+        "action": "Multi-registry search for subject positions"
+      },
+      {
+        "pattern": "[U] - [U] - [K:Location]",
+        "name": "EXTRACT_ALL",
+        "description": "Extract all subjects from known venue",
+        "intent": "DISCOVER",
+        "subtype": "EXTRACT",
+        "action": "Scrape and NER extract from location"
+      },
+      {
+        "pattern": "[K:Subject] - [U] - [K:Location]",
+        "name": "TRACE_IN_VENUE",
+        "description": "Find subject's presence in specific venue",
+        "intent": "DISCOVER",
+        "subtype": "TRACE",
+        "action": "Search jurisdiction-specific registry for subject"
+      },
+      {
+        "pattern": "[K:Subject] - [K:Relationship] - [U]",
+        "name": "FOLLOW_EDGE",
+        "description": "Follow known relationship type to unknown endpoint",
+        "intent": "DISCOVER",
+        "subtype": "EXTRACT",
+        "action": "Query for specific relationship endpoints"
+      },
+      {
+        "pattern": "[U] - [K:Relationship] - [K:Subject]",
+        "name": "REVERSE_EDGE",
+        "description": "Find who has relationship to known subject",
+        "intent": "DISCOVER",
+        "subtype": "EXTRACT",
+        "action": "Reverse query relationship"
+      },
+      {
+        "pattern": "[K:Subject] - [U] - [K:Subject]",
+        "name": "FIND_LINK",
+        "description": "Find how two known subjects are connected",
+        "intent": "DISCOVER",
+        "subtype": "TRACE",
+        "action": "Graph traversal or co-occurrence analysis"
+      },
+      {
+        "pattern": "[K] - [K] - [K]",
+        "name": "VERIFY",
+        "description": "All known - verify the relationship",
+        "intent": "ENRICH",
+        "subtype": "VERIFY",
+        "action": "Cross-reference sources for confirmation"
+      },
+      {
+        "pattern": "[U] - [U] - [U]",
+        "name": "NET",
+        "description": "Nothing known - cast wide",
+        "intent": "DISCOVER",
+        "subtype": "NET",
+        "action": "Brute search across all engines"
+      }
+    ]
+  },
+
+  "unknown_node_schema": {
+    "description": "Schema for typed [U] placeholders (Known-Unknown nodes)",
+    "structure": {
+      "class": "SUBJECT | LOCATION | NEXUS | NARRATIVE",
+      "type": "person | company | jurisdiction | domain | ...",
+      "constraints": {
+        "jurisdiction": "ISO country code",
+        "year_range": "YYYY-YYYY",
+        "tags": ["#officer", "#ubo", "#sanctioned"],
+        "confidence_min": 0.0
+      },
+      "expected_slots": "Derived from type schema",
+      "state": "SOUGHT | SPECULATED"
+    },
+    "examples": [
+      {
+        "notation": "[U:Person #officer]",
+        "parsed": {
+          "class": "SUBJECT",
+          "type": "person",
+          "constraints": {"tags": ["#officer"]},
+          "expected_slots": ["name", "dob", "nationality", "address"],
+          "ku": "KU"
+        }
+      },
+      {
+        "notation": "[U:Company #CY #PA]",
+        "parsed": {
+          "class": "SUBJECT",
+          "type": "company",
+          "constraints": {"jurisdiction": ["CY", "PA"]},
+          "expected_slots": ["name", "registration_number", "status", "address"],
+          "ku": "KU"
+        }
+      },
+      {
+        "notation": "[U:Jurisdiction]",
+        "parsed": {
+          "class": "LOCATION",
+          "type": "jurisdiction",
+          "constraints": {},
+          "expected_slots": ["country_code", "registry_url"],
+          "ku": "KU"
+        }
+      }
+    ]
+  },
+
+  "void_handling": {
+    "description": "How to handle confirmed absence (VOID)",
+    "rules": [
+      {
+        "check": "sanctions?",
+        "void_result": "NOT_SANCTIONED",
+        "is_finding": true,
+        "confidence": 0.95,
+        "note": "Absence from sanctions list is a positive finding"
+      },
+      {
+        "check": "pep?",
+        "void_result": "NOT_PEP",
+        "is_finding": true,
+        "confidence": 0.90
+      },
+      {
+        "check": "reg{cc}:",
+        "void_result": "NOT_REGISTERED",
+        "is_finding": true,
+        "confidence": 0.99,
+        "note": "Registry absence confirms no registration in that jurisdiction"
+      },
+      {
+        "check": "breach?",
+        "void_result": "NO_BREACH_FOUND",
+        "is_finding": false,
+        "confidence": 0.70,
+        "note": "Breach absence is not definitive - may just be unreported"
+      }
+    ]
+  },
+
+  "path_illumination": {
+    "description": "Track which paths have been explored",
+    "states": {
+      "ILLUMINATED": {
+        "description": "Path has been searched",
+        "substates": {
+          "HIT": "Found results",
+          "VOID": "Confirmed empty (finding)",
+          "ERROR": "Search failed (retry)"
+        }
+      },
+      "DARK": {
+        "description": "Path exists but not yet searched",
+        "substates": {
+          "QUEUED": "Scheduled for search",
+          "SUSPECTED": "Likely fruitful based on patterns",
+          "DEFERRED": "Low priority"
+        }
+      }
+    }
+  },
+
+  "fractal_levels": {
+    "description": "K-U applies at multiple levels",
+    "levels": {
+      "L1_MACRO": {
+        "question": "Does entity exist?",
+        "unknown": "[U:Entity]",
+        "known": "[K:Entity]",
+        "intent": "DISCOVER"
+      },
+      "L2_MICRO": {
+        "question": "Is slot filled?",
+        "unknown": "entity.slot = [U]",
+        "known": "entity.slot = [K]",
+        "intent": "ENRICH (fill)"
+      },
+      "L3_NANO": {
+        "question": "Is value verified?",
+        "unknown": "entity.slot = [K:unverified]",
+        "known": "entity.slot = [K:verified]",
+        "intent": "ENRICH (verify)"
+      }
+    }
+  }
+}
