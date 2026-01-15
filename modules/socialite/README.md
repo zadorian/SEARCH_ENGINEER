@@ -242,3 +242,25 @@ Total: 14 files created/modified
 ---
 
 **SOCIALITE is ready for BIOGRAPHER integration! 🎉**
+
+## Twitter Data via Grok
+
+Since Apify's Twitter scraper was discontinued, use **Grok** for Twitter/X data extraction:
+
+```python
+# Use brain.py to call Grok for Twitter queries
+from modules.ai_qa.brain import brain_query
+
+# Example: Search Twitter for user info
+result = brain_query(
+    f"Search Twitter/X for information about @{username}",
+    model="grok-4",
+    search_enabled=True  # Grok has native X/Twitter search
+)
+```
+
+Grok has direct access to Twitter/X data and is the preferred method for:
+- Profile lookups
+- Tweet searches
+- User timeline analysis
+- Engagement metrics
