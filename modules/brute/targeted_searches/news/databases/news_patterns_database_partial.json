@@ -1,0 +1,3154 @@
+{
+  "patterns": {
+    "www.24matins.fr": {
+      "search_url": "https://www.24matins.fr/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 50,
+        "requires_links": false
+      }
+    },
+    "www.actionnewsjax.com": {
+      "search_url": "https://www.actionnewsjax.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "14-tage-wettervorhersage.de": {
+      "search_url": "https://14-tage-wettervorhersage.de/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 91,
+        "requires_links": false
+      }
+    },
+    "www.15min.lt": {
+      "search_url": "https://www.15min.lt/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 750,
+        "requires_links": false
+      }
+    },
+    "www.aljazeera.com": {
+      "search_url": "https://www.aljazeera.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.auto-medienportal.net": {
+      "search_url": "https://www.auto-medienportal.net/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.20minutes.fr": {
+      "search_url": "https://www.20minutes.fr/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "aucun r\u00e9sultat"
+      ],
+      "success_indicators": {
+        "min_words": 618,
+        "requires_links": false
+      }
+    },
+    "abcnews.go.com": {
+      "search_url": "https://abcnews.go.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "events.ccc.de": {
+      "search_url": "https://events.ccc.de/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "aktueladam.com": {
+      "search_url": "https://aktueladam.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.aktualne.cz": {
+      "search_url": "https://www.aktualne.cz/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.accuweather.com": {
+      "search_url": "https://www.accuweather.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "aidenpromotions.com": {
+      "search_url": "https://aidenpromotions.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "ap.org": {
+      "search_url": "https://ap.org/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 96,
+        "requires_links": false
+      }
+    },
+    "www.trojmiasto.pl": {
+      "search_url": "https://www.trojmiasto.pl/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "english.aljazeera.net": {
+      "search_url": "https://english.aljazeera.net/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "onepeterfive.com": {
+      "search_url": "https://onepeterfive.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 146,
+        "requires_links": false
+      }
+    },
+    "www.aktuality.sk": {
+      "search_url": "https://www.aktuality.sk/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 113,
+        "requires_links": false
+      }
+    },
+    "duckduckgo.com": {
+      "search_url": "https://duckduckgo.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 1013,
+        "requires_links": false
+      }
+    },
+    "www.47news.jp": {
+      "search_url": "https://www.47news.jp/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "boards.4chan.org": {
+      "search_url": "https://boards.4chan.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.altroconsumo.it": {
+      "search_url": "https://www.altroconsumo.it/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.aemet.es": {
+      "search_url": "https://www.aemet.es/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 86,
+        "requires_links": false
+      }
+    },
+    "www.animenewsnetwork.com": {
+      "search_url": "https://www.animenewsnetwork.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.alternet.org": {
+      "search_url": "https://www.alternet.org/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 79,
+        "requires_links": false
+      }
+    },
+    "www.3bmeteo.com": {
+      "search_url": "https://www.3bmeteo.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.2nn.jp": {
+      "search_url": "https://www.2nn.jp/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.androidpolice.com": {
+      "search_url": "https://www.androidpolice.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "journals.aps.org": {
+      "search_url": "https://journals.aps.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "no matches",
+        "0 results"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "search.abc.net.au": {
+      "search_url": "https://search.abc.net.au/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 78,
+        "requires_links": false
+      }
+    },
+    "www.actuly.fr": {
+      "search_url": "https://www.actuly.fr/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "aqicn.org": {
+      "search_url": "https://aqicn.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "anilist.co": {
+      "search_url": "https://anilist.co/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "america.aljazeera.com": {
+      "search_url": "https://america.aljazeera.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.ampparit.com": {
+      "search_url": "https://www.ampparit.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 232,
+        "requires_links": false
+      }
+    },
+    "tw.appledaily.com": {
+      "search_url": "https://tw.appledaily.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "news.antiwar.com": {
+      "search_url": "https://news.antiwar.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 237,
+        "requires_links": false
+      }
+    },
+    "www.allposters.com": {
+      "search_url": "https://www.allposters.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.april.org": {
+      "search_url": "https://www.april.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "adaderana.lk": {
+      "search_url": "https://adaderana.lk/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.ansa.it": {
+      "search_url": "https://www.ansa.it/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.archdaily.com": {
+      "search_url": "https://www.archdaily.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "appledaily.com": {
+      "search_url": "https://appledaily.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.ara.cat": {
+      "search_url": "https://www.ara.cat/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "antyweb.pl": {
+      "search_url": "https://antyweb.pl/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.arabnews.com": {
+      "search_url": "https://www.arabnews.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "auspost.com.au": {
+      "search_url": "https://auspost.com.au/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 389,
+        "requires_links": false
+      }
+    },
+    "www.allsides.com": {
+      "search_url": "https://www.allsides.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "archive.org": {
+      "search_url": "https://archive.org/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "your search did not match"
+      ],
+      "success_indicators": {
+        "min_words": 1711,
+        "requires_links": false
+      }
+    },
+    "sitesearch.asahi.com": {
+      "search_url": "https://sitesearch.asahi.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "ca.askmen.com": {
+      "search_url": "https://ca.askmen.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "success_indicators": {
+        "min_words": 245,
+        "requires_links": false
+      }
+    },
+    "www.atmatix.pl": {
+      "search_url": "https://www.atmatix.pl/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.aparatorul.md": {
+      "search_url": "https://www.aparatorul.md/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 161,
+        "requires_links": false
+      }
+    },
+    "arstechnica.com": {
+      "search_url": "https://arstechnica.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "no results",
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.bing.com": {
+      "search_url": "https://www.bing.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "search.bangkokpost.com": {
+      "search_url": "https://search.bangkokpost.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.bbc.co.uk": {
+      "search_url": "https://www.bbc.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "success_indicators": {
+        "min_words": 145,
+        "requires_links": false
+      }
+    },
+    "www.breitbart.com": {
+      "search_url": "https://www.breitbart.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "azspot.net": {
+      "search_url": "https://azspot.net/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 337,
+        "requires_links": false
+      }
+    },
+    "www.avanza.se": {
+      "search_url": "https://www.avanza.se/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "allthingsd.com": {
+      "search_url": "https://allthingsd.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 50,
+        "requires_links": false
+      }
+    },
+    "banned.video": {
+      "search_url": "https://banned.video/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 566,
+        "requires_links": false
+      }
+    },
+    "www.bona.co.za": {
+      "search_url": "https://www.bona.co.za/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.theaustralian.com.au": {
+      "search_url": "https://www.theaustralian.com.au/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.br.de": {
+      "search_url": "https://www.br.de/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 735,
+        "requires_links": false
+      }
+    },
+    "azol.de": {
+      "search_url": "https://azol.de/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.birikimdergisi.com": {
+      "search_url": "https://www.birikimdergisi.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 2024,
+        "requires_links": false
+      }
+    },
+    "www.autocosmos.com.mx": {
+      "search_url": "https://www.autocosmos.com.mx/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 51,
+        "requires_links": false
+      }
+    },
+    "www.bournemouthecho.co.uk": {
+      "search_url": "https://www.bournemouthecho.co.uk/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 498,
+        "requires_links": false
+      }
+    },
+    "www.basketusa.com": {
+      "search_url": "https://www.basketusa.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "beebom.com": {
+      "search_url": "https://beebom.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 124,
+        "requires_links": false
+      }
+    },
+    "www.begeek.fr": {
+      "search_url": "https://www.begeek.fr/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "kgov.com": {
+      "search_url": "https://kgov.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "b.dk": {
+      "search_url": "https://b.dk/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.bfm.my": {
+      "search_url": "https://www.bfm.my/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 812,
+        "requires_links": false
+      }
+    },
+    "www.bergfex.at": {
+      "search_url": "https://www.bergfex.at/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 50,
+        "requires_links": false
+      }
+    },
+    "www.blickamabend.ch": {
+      "search_url": "https://www.blickamabend.ch/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "bloganchoi.com": {
+      "search_url": "https://bloganchoi.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 1945,
+        "requires_links": false
+      }
+    },
+    "www.bostonglobe.com": {
+      "search_url": "https://www.bostonglobe.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.bloombergquint.com": {
+      "search_url": "https://www.bloombergquint.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 791,
+        "requires_links": false
+      }
+    },
+    "www.theblaze.com": {
+      "search_url": "https://www.theblaze.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.bjp.org": {
+      "search_url": "https://www.bjp.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.boerse-online.de": {
+      "search_url": "https://www.boerse-online.de/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.bloomberg.com": {
+      "search_url": "https://www.bloomberg.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 204,
+        "requires_links": false
+      }
+    },
+    "buprimo.hosted.exlibrisgroup.com": {
+      "search_url": "https://buprimo.hosted.exlibrisgroup.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "track.bpost.be": {
+      "search_url": "https://track.bpost.be/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.businessinsider.com": {
+      "search_url": "https://www.businessinsider.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "brakdag.nl": {
+      "search_url": "https://brakdag.nl/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "bustimes.org": {
+      "search_url": "https://bustimes.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.buienalarm.nl": {
+      "search_url": "https://www.buienalarm.nl/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "coinmarketcap.com": {
+      "search_url": "https://coinmarketcap.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.canadapost.ca": {
+      "search_url": "https://www.canadapost.ca/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 50,
+        "requires_links": false
+      }
+    },
+    "cottrillcompass.com": {
+      "search_url": "https://cottrillcompass.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.cronista.com": {
+      "search_url": "https://www.cronista.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "casinonews.today": {
+      "search_url": "https://casinonews.today/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.capital.bg": {
+      "search_url": "https://www.capital.bg/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.byte-post.com": {
+      "search_url": "https://www.byte-post.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "search.cnbc.com": {
+      "search_url": "https://search.cnbc.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "contamet.wordpress.com": {
+      "search_url": "https://contamet.wordpress.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.courrierinternational.com": {
+      "search_url": "https://www.courrierinternational.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "search.cbsnews.com": {
+      "search_url": "https://search.cbsnews.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.climatempo.com.br": {
+      "search_url": "https://www.climatempo.com.br/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.chicagotribune.com": {
+      "search_url": "https://www.chicagotribune.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "choualbox.com": {
+      "search_url": "https://choualbox.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "crickhero.blogspot.com": {
+      "search_url": "https://crickhero.blogspot.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.counterpunch.org": {
+      "search_url": "https://www.counterpunch.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.cryptoanalyst.co": {
+      "search_url": "https://www.cryptoanalyst.co/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.courant.com": {
+      "search_url": "https://www.courant.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 150,
+        "requires_links": false
+      }
+    },
+    "www.cosmoty.de": {
+      "search_url": "https://www.cosmoty.de/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.clicrbs.com.br": {
+      "search_url": "https://www.clicrbs.com.br/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 52,
+        "requires_links": false
+      }
+    },
+    "www.elconfidencial.com": {
+      "search_url": "https://www.elconfidencial.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "sitesearch.corriere.it": {
+      "search_url": "https://sitesearch.corriere.it/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.rollcall.com": {
+      "search_url": "https://www.rollcall.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.cbc.ca": {
+      "search_url": "https://www.cbc.ca/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "success_indicators": {
+        "min_words": 318,
+        "requires_links": false
+      }
+    },
+    "www.postaonline.cz": {
+      "search_url": "https://www.postaonline.cz/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 50,
+        "requires_links": false
+      }
+    },
+    "clark.com": {
+      "search_url": "https://clark.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "success_indicators": {
+        "min_words": 253,
+        "requires_links": false
+      }
+    },
+    "canadiancouchpotato.com": {
+      "search_url": "https://canadiancouchpotato.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.lachainemeteo.com": {
+      "search_url": "https://www.lachainemeteo.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.clarin.com": {
+      "search_url": "https://www.clarin.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.crol.hr": {
+      "search_url": "https://www.crol.hr/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "theconversation.com": {
+      "search_url": "https://theconversation.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.chronopost.fr": {
+      "search_url": "https://www.chronopost.fr/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 50,
+        "requires_links": false
+      }
+    },
+    "cryptocoinspy.com": {
+      "search_url": "https://cryptocoinspy.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 161,
+        "requires_links": false
+      }
+    },
+    "www.chosun.com": {
+      "search_url": "https://www.chosun.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.centredaily.com": {
+      "search_url": "https://www.centredaily.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.cdm.me": {
+      "search_url": "https://www.cdm.me/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "conjour.world": {
+      "search_url": "https://conjour.world/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "so.cntv.cn": {
+      "search_url": "https://so.cntv.cn/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.chilango.com": {
+      "search_url": "https://www.chilango.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 207,
+        "requires_links": false
+      }
+    },
+    "www.churchofsatan.com": {
+      "search_url": "https://www.churchofsatan.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "cnnespanol.cnn.com": {
+      "search_url": "https://www.cnn.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "cheddar.com": {
+      "search_url": "https://cheddar.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "0 results"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "stadt-bremerhaven.de": {
+      "search_url": "https://stadt-bremerhaven.de/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 329,
+        "requires_links": false
+      }
+    },
+    "celebrity.tn": {
+      "search_url": "https://celebrity.tn/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.conservativehome.com": {
+      "search_url": "https://www.conservativehome.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.channel4.com": {
+      "search_url": "https://www.channel4.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.channel5.com": {
+      "search_url": "https://www.channel5.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.cnn.com": {
+      "search_url": "https://www.cnn.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.ctvnews.ca": {
+      "search_url": "https://www.ctvnews.ca/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "noname.c64.org": {
+      "search_url": "https://noname.c64.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.csmonitor.com": {
+      "search_url": "https://www.csmonitor.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 120,
+        "requires_links": false
+      }
+    },
+    "cvmweb.cvm.gov.br": {
+      "search_url": "https://cvmweb.cvm.gov.br/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 93,
+        "requires_links": false
+      }
+    },
+    "www.c-span.org": {
+      "search_url": "https://www.c-span.org/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 551,
+        "requires_links": false
+      }
+    },
+    "www.cubanet.org": {
+      "search_url": "https://www.cubanet.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.dallasnews.com": {
+      "search_url": "https://www.dallasnews.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.cyberscoop.com": {
+      "search_url": "https://www.cyberscoop.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.delcotimes.com": {
+      "search_url": "https://www.delcotimes.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.collegiatetimes.com": {
+      "search_url": "https://www.collegiatetimes.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results",
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 164,
+        "requires_links": false
+      }
+    },
+    "www.dailymotion.com": {
+      "search_url": "https://www.dailymotion.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.dailymail.co.uk": {
+      "search_url": "https://www.dailymail.co.uk/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 1382,
+        "requires_links": false
+      }
+    },
+    "dailymed.nlm.nih.gov": {
+      "search_url": "https://dailymed.nlm.nih.gov/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 82,
+        "requires_links": false
+      }
+    },
+    "www.collegian.psu.edu": {
+      "search_url": "https://www.collegian.psu.edu/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results",
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 163,
+        "requires_links": false
+      }
+    },
+    "www.cyclingweekly.com": {
+      "search_url": "https://www.cyclingweekly.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.dagen.se": {
+      "search_url": "https://www.dagen.se/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 210,
+        "requires_links": false
+      }
+    },
+    "deadline.com": {
+      "search_url": "https://deadline.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 162,
+        "requires_links": false
+      }
+    },
+    "www.dailywritingtips.com": {
+      "search_url": "https://www.dailywritingtips.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "diepresse.com": {
+      "search_url": "https://diepresse.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.derstandard.at": {
+      "search_url": "https://www.derstandard.at/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.dexigner.com": {
+      "search_url": "https://www.dexigner.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "your search did not match"
+      ],
+      "success_indicators": {
+        "min_words": 105,
+        "requires_links": false
+      }
+    },
+    "deredactie.be": {
+      "search_url": "https://deredactie.be/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.darknetmarkets.net": {
+      "search_url": "https://www.darknetmarkets.net/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.daytondailynews.com": {
+      "search_url": "https://www.daytondailynews.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 187,
+        "requires_links": false
+      }
+    },
+    "digg.com": {
+      "search_url": "https://digg.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.d-archive.org": {
+      "search_url": "https://www.d-archive.org/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 56,
+        "requires_links": false
+      }
+    },
+    "decoracion2.com": {
+      "search_url": "https://decoracion2.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 50,
+        "requires_links": false
+      }
+    },
+    "www.digi.no": {
+      "search_url": "https://www.digi.no/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.delfi.lt": {
+      "search_url": "https://www.delfi.lt/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "dealnews.com": {
+      "search_url": "https://dealnews.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.digibron.nl": {
+      "search_url": "https://www.digibron.nl/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 75,
+        "requires_links": false
+      }
+    },
+    "www.digi24.ro": {
+      "search_url": "https://www.digi24.ro/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.dcrainmaker.com": {
+      "search_url": "https://www.dcrainmaker.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 1009,
+        "requires_links": false
+      }
+    },
+    "otsing.delfi.ee": {
+      "search_url": "https://otsing.delfi.ee/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.dmi.dk": {
+      "search_url": "https://www.dmi.dk/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "index.hu": {
+      "search_url": "https://index.hu/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.dhnet.be": {
+      "search_url": "https://www.dhnet.be/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "dealbook.nytimes.com": {
+      "search_url": "https://www.nytimes.com/search?query=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.disclose.tv": {
+      "search_url": "https://www.disclose.tv/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 163,
+        "requires_links": false
+      }
+    },
+    "www.democracynow.org": {
+      "search_url": "https://www.democracynow.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.monde-diplomatique.fr": {
+      "search_url": "https://www.monde-diplomatique.fr/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 722,
+        "requires_links": false
+      }
+    },
+    "www.deutschlandfunk.de": {
+      "search_url": "https://www.deutschlandfunk.de/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.detik.com": {
+      "search_url": "https://www.detik.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.delijn.be": {
+      "search_url": "https://www.delijn.be/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.dpreview.com": {
+      "search_url": "https://www.dpreview.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 499,
+        "requires_links": false
+      }
+    },
+    "www.dn.se": {
+      "search_url": "https://www.dn.se/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.doaj.org": {
+      "search_url": "https://www.doaj.org/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 471,
+        "requires_links": false
+      }
+    },
+    "www.dogpile.com": {
+      "search_url": "https://www.dogpile.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 128,
+        "requires_links": false
+      }
+    },
+    "www.dnt.no": {
+      "search_url": "https://www.dnt.no/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.dw.com": {
+      "search_url": "https://www.dw.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 350,
+        "requires_links": false
+      }
+    },
+    "www.economist.com": {
+      "search_url": "https://www.economist.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "success_indicators": {
+        "min_words": 239,
+        "requires_links": false
+      }
+    },
+    "www.ecuavisa.com": {
+      "search_url": "https://www.ecuavisa.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 88,
+        "requires_links": false
+      }
+    },
+    "www.dr.dk": {
+      "search_url": "https://www.dr.dk/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 192,
+        "requires_links": false
+      }
+    },
+    "dark-world.ru": {
+      "search_url": "https://dark-world.ru/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.dnevnik.bg": {
+      "search_url": "https://www.dnevnik.bg/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 367,
+        "requires_links": false
+      }
+    },
+    "eldigitalpanama.com": {
+      "search_url": "https://eldigitalpanama.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 144,
+        "requires_links": false
+      }
+    },
+    "www.edweek.org": {
+      "search_url": "https://www.edweek.org/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "0 results",
+        "couldn't find"
+      ],
+      "success_indicators": {
+        "min_words": 708,
+        "requires_links": false
+      }
+    },
+    "www.dwd.de": {
+      "search_url": "https://www.dwd.de/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "ebukaokorie.blogspot.com": {
+      "search_url": "https://ebukaokorie.blogspot.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "everydayfeminism.com": {
+      "search_url": "https://everydayfeminism.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "econjwatch.org": {
+      "search_url": "https://econjwatch.org/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "success_indicators": {
+        "min_words": 166,
+        "requires_links": false
+      }
+    },
+    "www.e1.ru": {
+      "search_url": "https://www.e1.ru/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 141,
+        "requires_links": false
+      }
+    },
+    "busca.estadao.com.br": {
+      "search_url": "https://busca.estadao.com.br/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.diarioregistrado.com": {
+      "search_url": "https://www.diarioregistrado.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 330,
+        "requires_links": false
+      }
+    },
+    "www.deutschlandradio.de": {
+      "search_url": "https://www.deutschlandradio.de/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.elobservador.com.uy": {
+      "search_url": "https://www.elobservador.com.uy/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 567,
+        "requires_links": false
+      }
+    },
+    "eic.rsc.org": {
+      "search_url": "https://eic.rsc.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.eluniverso.com": {
+      "search_url": "https://www.eluniverso.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.euronews.com": {
+      "search_url": "https://www.euronews.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "edmofy.com": {
+      "search_url": "https://edmofy.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 82,
+        "requires_links": false
+      }
+    },
+    "www.standaard.be": {
+      "search_url": "https://www.standaard.be/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 293,
+        "requires_links": false
+      }
+    },
+    "www.dwdl.de": {
+      "search_url": "https://www.dwdl.de/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.el19digital.com": {
+      "search_url": "https://www.el19digital.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.edmsauce.com": {
+      "search_url": "https://www.edmsauce.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 61,
+        "requires_links": false
+      }
+    },
+    "elcomercio.pe": {
+      "search_url": "https://elcomercio.pe/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "london.eater.com": {
+      "search_url": "https://london.eater.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "success_indicators": {
+        "min_words": 218,
+        "requires_links": false
+      }
+    },
+    "www.google.com": {
+      "search_url": "https://www.google.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "0 results",
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "en.wikinews.org": {
+      "search_url": "https://en.wikinews.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "expresso.pt": {
+      "search_url": "https://expresso.pt/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "ekspress.delfi.ee": {
+      "search_url": "https://ekspress.delfi.ee/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 367,
+        "requires_links": false
+      }
+    },
+    "etnet.com.hk": {
+      "search_url": "https://etnet.com.hk/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "elpais.com": {
+      "search_url": "https://elpais.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.eltiempo.es": {
+      "search_url": "https://www.eltiempo.es/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 89,
+        "requires_links": false
+      }
+    },
+    "eksisozluk.com": {
+      "search_url": "https://eksisozluk.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 82,
+        "requires_links": false
+      }
+    },
+    "www.elsalvador.com": {
+      "search_url": "https://www.elsalvador.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "economictimes.indiatimes.com": {
+      "search_url": "https://economictimes.indiatimes.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.epw.in": {
+      "search_url": "https://www.epw.in/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 50,
+        "requires_links": false
+      }
+    },
+    "www.drudgereportarchives.com": {
+      "search_url": "https://www.drudgereportarchives.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "search.theregister.co.uk": {
+      "search_url": "https://search.theregister.co.uk/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "ariadna.elmundo.es": {
+      "search_url": "https://ariadna.elmundo.es/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.eternitynews.com.au": {
+      "search_url": "https://www.eternitynews.com.au/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "kagi.com": {
+      "search_url": "https://kagi.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.eldestapeweb.com": {
+      "search_url": "https://www.eldestapeweb.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "cse.google.com": {
+      "search_url": "https://cse.google.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.standard.co.uk": {
+      "search_url": "https://www.standard.co.uk/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.f1zone.net": {
+      "search_url": "https://www.f1zone.net/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.fark.com": {
+      "search_url": "https://www.fark.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 240,
+        "requires_links": false
+      }
+    },
+    "www.franceinter.fr": {
+      "search_url": "https://www.franceinter.fr/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "finviz.com": {
+      "search_url": "https://finviz.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "fair.org": {
+      "search_url": "https://fair.org/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 73,
+        "requires_links": false
+      }
+    },
+    "www.weltexporte.de": {
+      "search_url": "https://www.weltexporte.de/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "nichts gefunden"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.france3.fr": {
+      "search_url": "https://www.france3.fr/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 2060,
+        "requires_links": false
+      }
+    },
+    "www.faillissementen.com": {
+      "search_url": "https://www.faillissementen.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "feedly.com": {
+      "search_url": "https://feedly.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 60,
+        "requires_links": false
+      }
+    },
+    "www.farmfor.com.br": {
+      "search_url": "https://www.farmfor.com.br/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 62,
+        "requires_links": false
+      }
+    },
+    "www.faz.net": {
+      "search_url": "https://www.faz.net/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 309,
+        "requires_links": false
+      }
+    },
+    "www.frontlinedefenders.org": {
+      "search_url": "https://www.frontlinedefenders.org/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 158,
+        "requires_links": false
+      }
+    },
+    "www.francetvinfo.fr": {
+      "search_url": "https://www.francetvinfo.fr/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 66,
+        "requires_links": false
+      }
+    },
+    "gayburg.blogspot.com": {
+      "search_url": "https://gayburg.blogspot.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 169,
+        "requires_links": false
+      }
+    },
+    "thefederalist.com": {
+      "search_url": "https://thefederalist.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 487,
+        "requires_links": false
+      }
+    },
+    "factly.in": {
+      "search_url": "https://factly.in/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.finanzen.net": {
+      "search_url": "https://www.finanzen.net/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.firstpost.com": {
+      "search_url": "https://www.firstpost.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.foxnews.com": {
+      "search_url": "https://www.foxnews.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "0 results"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.google.at": {
+      "search_url": "https://www.google.at/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "0 results",
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "ffbbunt.wordpress.com": {
+      "search_url": "https://ffbbunt.wordpress.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.freitag.de": {
+      "search_url": "https://www.freitag.de/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.lesfrontaliers.lu": {
+      "search_url": "https://www.lesfrontaliers.lu/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.gmanetwork.com": {
+      "search_url": "https://www.gmanetwork.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 50,
+        "requires_links": false
+      }
+    },
+    "search.folha.com.br": {
+      "search_url": "https://search.folha.com.br/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 524,
+        "requires_links": false
+      }
+    },
+    "ilmatieteenlaitos.fi": {
+      "search_url": "https://ilmatieteenlaitos.fi/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.forbes.com": {
+      "search_url": "https://www.forbes.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 344,
+        "requires_links": false
+      }
+    },
+    "factualsearch.news": {
+      "search_url": "https://factualsearch.news/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 143,
+        "requires_links": false
+      }
+    },
+    "www.foromedios.com": {
+      "search_url": "https://www.foromedios.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "news.google.com": {
+      "search_url": "https://news.google.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "no items"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.globalresearch.ca": {
+      "search_url": "https://www.globalresearch.ca/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "freedom.press": {
+      "search_url": "https://freedom.press/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.gurufocus.com": {
+      "search_url": "https://www.gurufocus.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "futurism.com": {
+      "search_url": "https://futurism.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 169,
+        "requires_links": false
+      }
+    },
+    "www.freerepublic.com": {
+      "search_url": "https://www.freerepublic.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "ghananews.xyz": {
+      "search_url": "https://ghananews.xyz/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.theglobeandmail.com": {
+      "search_url": "https://www.theglobeandmail.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.ft.com": {
+      "search_url": "https://www.ft.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.gazetadopovo.com.br": {
+      "search_url": "https://www.gazetadopovo.com.br/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "ggr-law.com": {
+      "search_url": "https://ggr-law.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "globalnewlightofmyanmar.com": {
+      "search_url": "https://globalnewlightofmyanmar.com/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 144,
+        "requires_links": false
+      }
+    },
+    "www.guardiana.net": {
+      "search_url": "https://www.theguardian.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.google.es": {
+      "search_url": "https://www.google.es/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "0 results",
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.google.fr": {
+      "search_url": "https://www.google.fr/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "0 results",
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "guardianproject.info": {
+      "search_url": "https://www.theguardian.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.google.co.uk": {
+      "search_url": "https://www.google.co.uk/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "0 results",
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.greenpeace.org": {
+      "search_url": "https://www.greenpeace.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "google.com": {
+      "search_url": "https://google.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "0 results",
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "suche.golem.de": {
+      "search_url": "https://suche.golem.de/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 52,
+        "requires_links": false
+      }
+    },
+    "www.google.ru": {
+      "search_url": "https://www.google.ru/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "0 results",
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "app.handelsblatt.com": {
+      "search_url": "https://app.handelsblatt.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 114,
+        "requires_links": false
+      }
+    },
+    "www.goettingen.de": {
+      "search_url": "https://www.goettingen.de/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.google.it": {
+      "search_url": "https://www.google.it/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "0 results",
+        "try again"
+      ],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "gpodder.net": {
+      "search_url": "https://gpodder.net/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "nothing found"
+      ],
+      "success_indicators": {
+        "min_words": 51,
+        "requires_links": false
+      }
+    },
+    "www.hardocp.com": {
+      "search_url": "https://www.hardocp.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.gq.com": {
+      "search_url": "https://www.gq.com/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 151,
+        "requires_links": false
+      }
+    },
+    "hi-news.ru": {
+      "search_url": "https://hi-news.ru/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.greentech-news.org": {
+      "search_url": "https://www.greentech-news.org/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.greenpeace.org.uk": {
+      "search_url": "https://www.greenpeace.org.uk/search?q=%7Bquery%7D",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 108,
+        "requires_links": false
+      }
+    },
+    "guideforlm.com": {
+      "search_url": "https://guideforlm.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "de.gegenstandpunkt.com": {
+      "search_url": "https://de.gegenstandpunkt.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "geektimes.ru": {
+      "search_url": "https://geektimes.ru/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 539,
+        "requires_links": false
+      }
+    },
+    "www.haaretz.co.il": {
+      "search_url": "https://www.haaretz.co.il/search?q=%7Bquery%7D",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 50,
+        "requires_links": false
+      }
+    },
+    "hn.algolia.com": {
+      "search_url": "https://hn.algolia.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.hdblog.it": {
+      "search_url": "https://www.hdblog.it/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.hbl.fi": {
+      "search_url": "https://www.hbl.fi/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.heraldsun.com.au": {
+      "search_url": "https://www.heraldsun.com.au/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.geekzone.fr": {
+      "search_url": "https://www.geekzone.fr/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.theguardian.com": {
+      "search_url": "https://www.theguardian.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.zdf.de": {
+      "search_url": "https://www.zdf.de/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "hs.fi": {
+      "search_url": "https://hs.fi/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    },
+    "www.thehindu.com": {
+      "search_url": "https://www.thehindu.com/search?q=%7Bquery%7D",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "success_indicators": {
+        "min_words": 100,
+        "requires_links": false
+      }
+    }
+  },
+  "metadata": {
+    "total_tested": 311,
+    "reliable": 41,
+    "broken": 207,
+    "no_search": 63,
+    "test_date": "2025-09-14T23:15:22.975804"
+  }
+}

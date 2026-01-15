@@ -1,0 +1,18 @@
+# Optional dependencies for binary file text extraction
+# Install with: pip install -r requirements-binary-extraction.txt
+
+# PDF extraction (choose one or both)
+pypdf>=4.0.0          # Faster, basic PDF text extraction
+pdfplumber>=0.11.0    # Better quality extraction, handles tables
+
+# Word documents (.docx)
+python-docx>=1.1.0
+
+# Excel spreadsheets (.xlsx)
+openpyxl>=3.1.0
+
+# PowerPoint presentations (.pptx)
+python-pptx>=0.6.23
+
+# Note: Legacy formats (.doc, .xls, .ppt) not yet supported
+# Archive formats (.zip, .tar, .gz) use built-in libraries

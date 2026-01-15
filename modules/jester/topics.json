@@ -1,0 +1,4 @@
+{
+  "Explicit Test": "Any mention of the word 'Test' or 'Testing'",
+  "Implicit Context": "Any mention of specific entities like 'John Smith' even if referred to by pronoun"
+}

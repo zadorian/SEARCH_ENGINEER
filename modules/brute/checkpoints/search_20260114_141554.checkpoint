@@ -1,0 +1,355 @@
+{
+  "search_id": "search_20260114_141554",
+  "created_at": "2026-01-14T13:15:54.164545",
+  "updated_at": "2026-01-14T13:16:06.286412",
+  "query": "Abramovich Chelsea",
+  "engines": [
+    "GO",
+    "FC",
+    "BI",
+    "BR",
+    "DD",
+    "YA",
+    "YO",
+    "GR",
+    "NA",
+    "GD",
+    "OA",
+    "CR",
+    "SE",
+    "WP",
+    "AP",
+    "EX",
+    "HF",
+    "AL",
+    "PW",
+    "BO",
+    "W",
+    "QW",
+    "BA",
+    "BK",
+    "OL",
+    "PM",
+    "AX",
+    "GU",
+    "SB",
+    "GI",
+    "AR",
+    "YE",
+    "NT",
+    "JS",
+    "MU",
+    "SG",
+    "AA",
+    "LG"
+  ],
+  "completed_engines": [
+    "GO",
+    "FC",
+    "BI",
+    "BR",
+    "DD",
+    "YA",
+    "YO",
+    "GR",
+    "NA",
+    "OA",
+    "GD",
+    "WP",
+    "AP",
+    "HF",
+    "EX",
+    "AL",
+    "BK",
+    "PW",
+    "OL",
+    "W",
+    "QW",
+    "PM",
+    "BA",
+    "AR",
+    "AX",
+    "CR",
+    "YE",
+    "GU",
+    "SG",
+    "AA",
+    "LG",
+    "SB",
+    "JS",
+    "NT",
+    "MU",
+    "SE"
+  ],
+  "failed_engines": [],
+  "results_count": 0,
+  "unique_urls": 0,
+  "engine_progress": {
+    "GO": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:54.184408"
+    },
+    "FC": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:54.383172"
+    },
+    "BI": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:54.665347"
+    },
+    "BR": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:54.784657"
+    },
+    "DD": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:54.984815"
+    },
+    "YA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:55.203532"
+    },
+    "YO": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:55.388431"
+    },
+    "GR": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:55.690675"
+    },
+    "NA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:55.941160"
+    },
+    "GD": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:56.218776"
+    },
+    "OA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:56.126766"
+    },
+    "CR": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:57.990785"
+    },
+    "SE": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:16:06.229675"
+    },
+    "WP": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:56.220493"
+    },
+    "AP": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:56.394118"
+    },
+    "EX": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:56.612158"
+    },
+    "HF": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:56.441848"
+    },
+    "AL": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:56.702000"
+    },
+    "PW": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:56.941105"
+    },
+    "BO": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0
+    },
+    "W": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:57.195842"
+    },
+    "QW": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:57.470997"
+    },
+    "BA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:57.691718"
+    },
+    "BK": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:56.789596"
+    },
+    "OL": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:56.989851"
+    },
+    "PM": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:57.677366"
+    },
+    "AX": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:57.959423"
+    },
+    "GU": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:59.213655"
+    },
+    "SB": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:16:00.743038"
+    },
+    "GI": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0
+    },
+    "AR": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:57.692906"
+    },
+    "YE": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:58.205815"
+    },
+    "NT": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:16:05.324473"
+    },
+    "JS": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:16:05.276705"
+    },
+    "MU": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:16:05.785344"
+    },
+    "SG": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:59.215465"
+    },
+    "AA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:59.441799"
+    },
+    "LG": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T13:15:59.711387"
+    }
+  },
+  "partial_results": [],
+  "metadata": {}
+}

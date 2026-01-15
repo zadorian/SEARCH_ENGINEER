@@ -1,0 +1,395 @@
+{
+  "search_id": "search_20260114_034253",
+  "created_at": "2026-01-14T02:42:53.333486",
+  "updated_at": "2026-01-14T02:54:39.934826",
+  "query": "\"backward spyglass\"",
+  "engines": [
+    "SB",
+    "FC",
+    "GO",
+    "BI",
+    "YA",
+    "DD",
+    "BR",
+    "YE",
+    "QW",
+    "AR",
+    "AP",
+    "GI",
+    "EX",
+    "GD",
+    "GR",
+    "NA",
+    "PW",
+    "SS",
+    "BO",
+    "AL",
+    "HF",
+    "W",
+    "OA",
+    "GU",
+    "CR",
+    "OL",
+    "PM",
+    "AX",
+    "SE",
+    "WP",
+    "NT",
+    "JS",
+    "MU",
+    "SG",
+    "BK",
+    "AA",
+    "LG",
+    "BA",
+    "YO",
+    "BS",
+    "SP",
+    "CY"
+  ],
+  "completed_engines": [
+    "EX",
+    "OL",
+    "NA",
+    "YE",
+    "YO",
+    "WP",
+    "OA",
+    "GR",
+    "AX",
+    "SG",
+    "BA",
+    "HF",
+    "PM",
+    "W",
+    "AA",
+    "QW",
+    "CY",
+    "AP",
+    "LG",
+    "GU",
+    "PW",
+    "FC",
+    "SE",
+    "SB",
+    "CR",
+    "DD",
+    "BR",
+    "GD",
+    "NT",
+    "AL",
+    "AR",
+    "JS",
+    "MU",
+    "BK",
+    "GO",
+    "YA",
+    "BI"
+  ],
+  "failed_engines": [
+    "PW",
+    "AR",
+    "AL"
+  ],
+  "results_count": 0,
+  "unique_urls": 0,
+  "engine_progress": {
+    "SB": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:11.307315"
+    },
+    "FC": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:11.198585"
+    },
+    "GO": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:44:00.554087"
+    },
+    "BI": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:54:39.834632"
+    },
+    "YA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:44:31.783242"
+    },
+    "DD": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:14.209093"
+    },
+    "BR": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:15.693916"
+    },
+    "YE": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:42:59.662710"
+    },
+    "QW": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:02.624025"
+    },
+    "AR": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "error": "ExactPhraseRecallRunnerArchiveOrg.__init__() got an unexpected keyword argument 'phrase'",
+      "failed_at": "2026-01-14T02:43:01.582493",
+      "completed_at": "2026-01-14T02:43:21.799386"
+    },
+    "AP": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:03.287638"
+    },
+    "GI": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0
+    },
+    "EX": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:42:56.611540"
+    },
+    "GD": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:18.023810"
+    },
+    "GR": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:00.917924"
+    },
+    "NA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:42:59.338007"
+    },
+    "PW": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "error": "PublicWWWAPIEngine() takes no arguments",
+      "failed_at": "2026-01-14T02:42:59.320882",
+      "completed_at": "2026-01-14T02:43:10.114457"
+    },
+    "SS": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0
+    },
+    "BO": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0
+    },
+    "AL": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "error": "403 Client Error: Forbidden for url: https://aleph.occrp.org/api/2/statistics",
+      "failed_at": "2026-01-14T02:43:04.229279",
+      "completed_at": "2026-01-14T02:43:21.793418"
+    },
+    "HF": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:01.393116"
+    },
+    "W": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:02.605553"
+    },
+    "OA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:00.668789"
+    },
+    "GU": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:05.034296"
+    },
+    "CR": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:11.347082"
+    },
+    "OL": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:42:57.873035"
+    },
+    "PM": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:02.072105"
+    },
+    "AX": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:00.984527"
+    },
+    "SE": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:11.199618"
+    },
+    "WP": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:00.402119"
+    },
+    "NT": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:21.139343"
+    },
+    "JS": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:22.380301"
+    },
+    "MU": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:22.517388"
+    },
+    "SG": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:01.206192"
+    },
+    "BK": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:47.308348"
+    },
+    "AA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:02.614584"
+    },
+    "LG": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:04.235865"
+    },
+    "BA": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:01.319804"
+    },
+    "YO": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:00.224584"
+    },
+    "BS": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0
+    },
+    "SP": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0
+    },
+    "CY": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-14T02:43:03.285231"
+    }
+  },
+  "partial_results": [],
+  "metadata": {}
+}

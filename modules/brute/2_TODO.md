@@ -1,0 +1,12 @@
+- [ ] Validate news global/national modes via CLI and /api/core_routes (NewsSearcher + Torpedo).
+  - Priority: High
+  - Added: 2025-12-30 by GPT-5
+  - Notes: National mode uses Torpedo + `BACKEND/domain_sources/bangs/categories/news_bangs.json`.
+- [ ] Decide whether to wire `targeted_searches/taxonomy.py` into router/operator mapping for UI-driven filtering.
+  - Priority: Medium
+  - Added: 2025-12-30 by GPT-5
+  - Notes: Taxonomy now maps search types to Location/Subject/Nexus dimensions.
+- [ ] Verify definitional parsing output in domain_filters/unified_search (subject_link_ops, loci_link) after consolidation.
+  - Priority: Medium
+  - Added: 2025-12-30 by GPT-5
+  - Notes: Parser now exposes subject_link_ops to avoid attribute errors.

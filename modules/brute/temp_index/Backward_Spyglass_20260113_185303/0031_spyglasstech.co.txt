@@ -1,0 +1,6 @@
+Title: Spyglass Technologies - Vision AI for Field Teams
+URL: spyglasstech.co
+Engines: BI
+
+Snippet:
+Mobile ALPR that works on both sides of the street, underground, and in hard-to-reach spaces. Spyglass connects directly to your apps, portals, and PCN backends. From patrol to stakeout, …

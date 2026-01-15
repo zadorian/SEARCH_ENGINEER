@@ -1,0 +1,35 @@
+{
+  "search_id": "search_20260113_192907",
+  "created_at": "2026-01-13T18:29:07.392890",
+  "updated_at": "2026-01-13T18:29:08.898712",
+  "query": "\"Backward Spyglass\"",
+  "engines": [
+    "GO",
+    "BI"
+  ],
+  "completed_engines": [
+    "GO",
+    "BI"
+  ],
+  "failed_engines": [],
+  "results_count": 0,
+  "unique_urls": 0,
+  "engine_progress": {
+    "GO": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-13T18:29:07.697792"
+    },
+    "BI": {
+      "completed_queries": [],
+      "pending_queries": [],
+      "total_queries": 0,
+      "results_found": 0,
+      "completed_at": "2026-01-13T18:29:08.798532"
+    }
+  },
+  "partial_results": [],
+  "metadata": {}
+}

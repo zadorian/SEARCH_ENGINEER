@@ -1,0 +1,9 @@
+#!/bin/bash
+# Inspector - Forensic Document Analyzer with Knowledge Graph
+# Usage: inspector [document_path]
+
+INSPECTOR_DIR="/Users/attic/DRILL_SEARCH/drill-search-app/python-backend/modules/brute/engines/inspector"
+VENV_PYTHON="/Users/attic/DRILL_SEARCH/drill-search-app/venv/bin/python3.13"
+
+cd "$INSPECTOR_DIR"
+exec "$VENV_PYTHON" "$INSPECTOR_DIR/forensic_document_analyzer.py" "$@"

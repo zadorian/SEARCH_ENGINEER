@@ -1,0 +1,173 @@
+[
+  {
+    "id": "opencorporates",
+    "name": "OpenCorporates",
+    "url": "https://opencorporates.com",
+    "provider": "OpenCorporates",
+    "category": "corporate_registry",
+    "supports": {
+      "filters": ["country", "jurisdiction", "date"],
+      "operators": ["c:", "cXX:", "site", "lang", "yyyy!"]
+    },
+    "routing": {
+      "segment": "LOC",
+      "strict_LOC": ["site", "lang", "yyyy!"],
+      "stream": false
+    },
+    "allows": ["company_profile", "officers", "filings"],
+    "facets": {
+      "country": ["US", "UK", "DE", "FR"],
+      "language": ["en", "de", "fr"]
+    }
+  },
+  {
+    "id": "companies_house_uk",
+    "name": "UK Companies House",
+    "url": "https://find-and-update.company-information.service.gov.uk/",
+    "provider": "Companies House",
+    "category": "corporate_registry",
+    "supports": {
+      "filters": ["country", "date"],
+      "operators": ["c:", "cXX:", "site", "yyyy!"]
+    },
+    "routing": {
+      "segment": "LOC",
+      "strict_LOC": ["site", "yyyy!"],
+      "stream": false
+    },
+    "allows": ["company_profile", "officers", "filings"],
+    "facets": { "country": ["UK"], "language": ["en"] }
+  },
+  {
+    "id": "wayback",
+    "name": "Wayback Machine",
+    "url": "https://web.archive.org/",
+    "provider": "Internet Archive",
+    "category": "archive",
+    "supports": {
+      "filters": ["date", "url_pattern"],
+      "operators": ["yyyy!", "archived yyyy!:domain", "ol!", "site"]
+    },
+    "routing": {
+      "segment": "LOC",
+      "strict_LOC": ["yyyy!", "site"],
+      "stream": false
+    },
+    "allows": ["archived_snapshots", "historic_outlinks"],
+    "facets": {}
+  },
+  {
+    "id": "iana_whois",
+    "name": "IANA WHOIS",
+    "url": "https://www.iana.org/whois",
+    "provider": "IANA",
+    "category": "directory",
+    "supports": {
+      "filters": ["url_pattern"],
+      "operators": ["site", "indom", "alldom"]
+    },
+    "routing": { "segment": "LOC", "strict_LOC": ["site"], "stream": false },
+    "allows": ["domain_metadata"],
+    "facets": {}
+  },
+  {
+    "id": "openalex",
+    "name": "OpenAlex",
+    "url": "https://openalex.org",
+    "provider": "OpenAlex",
+    "category": "academic",
+    "supports": {
+      "filters": ["language", "date"],
+      "operators": ["academic!", "author:", "yyyy!", "lang"]
+    },
+    "routing": {
+      "segment": "OBJ",
+      "strict_LOC": ["lang", "yyyy!"],
+      "stream": false
+    },
+    "allows": ["academic_papers"],
+    "facets": { "language": ["en", "de", "fr"] }
+  },
+  {
+    "id": "crossref",
+    "name": "Crossref",
+    "url": "https://api.crossref.org",
+    "provider": "Crossref",
+    "category": "academic",
+    "supports": {
+      "filters": ["date"],
+      "operators": ["academic!", "author:", "yyyy!"]
+    },
+    "routing": { "segment": "OBJ", "strict_LOC": ["yyyy!"], "stream": false },
+    "allows": ["academic_papers"],
+    "facets": {}
+  },
+  {
+    "id": "pubmed",
+    "name": "PubMed",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/",
+    "provider": "NCBI",
+    "category": "academic",
+    "supports": {
+      "filters": ["date", "language"],
+      "operators": ["medical", "author:", "yyyy!", "lang"]
+    },
+    "routing": {
+      "segment": "OBJ",
+      "strict_LOC": ["lang", "yyyy!"],
+      "stream": false
+    },
+    "allows": ["biomedical_papers"],
+    "facets": { "language": ["en"] }
+  },
+  {
+    "id": "pacer",
+    "name": "PACER",
+    "url": "https://pacer.uscourts.gov/",
+    "provider": "US Courts",
+    "category": "court",
+    "supports": {
+      "filters": ["jurisdiction", "date"],
+      "operators": ["yyyy!", "site"]
+    },
+    "routing": {
+      "segment": "LOC",
+      "strict_LOC": ["site", "yyyy!"],
+      "stream": false
+    },
+    "allows": ["court_records"],
+    "facets": { "country": ["US"] }
+  },
+  {
+    "id": "geonames",
+    "name": "GeoNames",
+    "url": "https://www.geonames.org/",
+    "provider": "GeoNames",
+    "category": "gazetteer",
+    "supports": {
+      "filters": ["country", "language"],
+      "operators": ["loc:", "near:", "lang"]
+    },
+    "routing": { "segment": "LOC", "strict_LOC": ["lang"], "stream": false },
+    "allows": ["place_lookup"],
+    "facets": { "country": ["US", "UK", "DE", "FR", "ES", "IT"] }
+  },
+  {
+    "id": "gdelt",
+    "name": "GDELT",
+    "url": "https://www.gdeltproject.org/",
+    "provider": "GDELT",
+    "category": "news",
+    "supports": {
+      "filters": ["language", "date"],
+      "operators": ["news", "yyyy!", "lang"]
+    },
+    "routing": {
+      "segment": "OBJ",
+      "strict_LOC": ["lang", "yyyy!"],
+      "stream": true
+    },
+    "allows": ["news_events"],
+    "facets": { "language": ["en", "fr", "de"] }
+  }
+]

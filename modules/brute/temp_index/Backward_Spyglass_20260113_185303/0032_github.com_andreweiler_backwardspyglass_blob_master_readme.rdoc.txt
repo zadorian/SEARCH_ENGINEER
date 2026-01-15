@@ -1,0 +1,6 @@
+Title: backwardspyglass/README.rdoc at master - GitHub
+URL: github.com/andreweiler/backwardspyglass/blob/master/readme.rdoc
+Engines: BI
+
+Snippet:
+Contribute to andreweiler/backwardspyglass development by creating an account on GitHub.

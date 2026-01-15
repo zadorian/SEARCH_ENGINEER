@@ -1,0 +1,1159 @@
+{
+  "patterns": {
+    "www.allposters.com": {
+      "bang": "allposters",
+      "search_url": null,
+      "pattern": null,
+      "reliability": 0,
+      "no_results_indicators": []
+    },
+    "auspost.com.au": {
+      "bang": "auspost",
+      "search_url": null,
+      "pattern": null,
+      "reliability": 0,
+      "no_results_indicators": []
+    },
+    "journals.aps.org": {
+      "bang": "aps",
+      "search_url": null,
+      "pattern": null,
+      "reliability": 0,
+      "no_results_indicators": []
+    },
+    "www.androidpolice.com": {
+      "bang": "andpol",
+      "search_url": "https://www.androidpolice.com/search/?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 379
+    },
+    "www.aljazeera.com": {
+      "bang": "aje",
+      "search_url": "https://www.aljazeera.com/Services/Search/?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "boards.4chan.org": {
+      "bang": "4chnews",
+      "search_url": "https://boards.4chan.org/news/catalog#s={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "nothing found"
+      ],
+      "min_words": 931
+    },
+    "www.20minutes.fr": {
+      "bang": "20m",
+      "search_url": "https://www.20minutes.fr/search?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "aucun r\u00e9sultat"
+      ],
+      "min_words": 618
+    },
+    "duckduckgo.com": {
+      "bang": "aamulehti",
+      "search_url": "https://duckduckgo.com/?q={{{s}}}&iar=news&ia=news&kl=fr-fr",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 568
+    },
+    "onepeterfive.com": {
+      "bang": "1p5",
+      "search_url": "https://onepeterfive.com/?s={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 127
+    },
+    "www.24matins.fr": {
+      "bang": "24matins",
+      "search_url": "https://www.24matins.fr/?s={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 320
+    },
+    "www.actionnewsjax.com": {
+      "bang": "anj",
+      "search_url": "https://www.actionnewsjax.com/?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 441
+    },
+    "www.3bmeteo.com": {
+      "bang": "3bm",
+      "search_url": "https://www.3bmeteo.com/meteo/{{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "anilist.co": {
+      "bang": "an",
+      "search_url": "https://anilist.co/search?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 119
+    },
+    "ap.org": {
+      "bang": "ap",
+      "search_url": "https://ap.org/Search/SearchResults?searchkeywords={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 95
+    },
+    "www.ansa.it": {
+      "bang": "ansa",
+      "search_url": "https://www.ansa.it/ricerca/ansait/search.shtml?any={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 567
+    },
+    "america.aljazeera.com": {
+      "bang": "aja",
+      "search_url": "https://america.aljazeera.com/search.html?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 298
+    },
+    "www.aktuality.sk": {
+      "bang": "aktuality",
+      "search_url": "https://www.aktuality.sk/vyhladavanie/?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 120
+    },
+    "www.arabnews.com": {
+      "bang": "arabnews",
+      "search_url": "http://www.arabnews.com/search/google/{{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 805
+    },
+    "14-tage-wettervorhersage.de": {
+      "bang": "14",
+      "search_url": "https://14-tage-wettervorhersage.de/suche/?q={{{s}}}&lg=de",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 110
+    },
+    "www.allsides.com": {
+      "bang": "allsides",
+      "search_url": "https://www.allsides.com/allsides-search-results?search_api_views_fulltext={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.47news.jp": {
+      "bang": "47",
+      "search_url": "https://www.47news.jp/search?phrase={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.ampparit.com": {
+      "bang": "ampparit",
+      "search_url": "https://www.ampparit.com/haku?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 546
+    },
+    "antyweb.pl": {
+      "bang": "antyweb",
+      "search_url": "https://antyweb.pl/?s={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 491
+    },
+    "www.15min.lt": {
+      "bang": "15min",
+      "search_url": "https://www.15min.lt/paieska?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 199
+    },
+    "www.april.org": {
+      "bang": "april",
+      "search_url": "https://www.april.org/search/node/{{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "aucun r\u00e9sultat"
+      ],
+      "min_words": 267
+    },
+    "news.antiwar.com": {
+      "bang": "antiwar",
+      "search_url": "https://news.antiwar.com/?s={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 120
+    },
+    "www.altroconsumo.it": {
+      "bang": "altro",
+      "search_url": "https://www.altroconsumo.it/Serp/ShowResults?keyword={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 95
+    },
+    "www.auto-medienportal.net": {
+      "bang": "ampnet",
+      "search_url": "https://www.auto-medienportal.net/artikel/quicksearch/?searchterm={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 2209
+    },
+    "www.archdaily.com": {
+      "bang": "archdaily",
+      "search_url": "https://www.archdaily.com/search/all?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 209
+    },
+    "www.animenewsnetwork.com": {
+      "bang": "anne",
+      "search_url": "https://www.animenewsnetwork.com/search?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": []
+    },
+    "www.aemet.es": {
+      "bang": "aemet",
+      "search_url": "https://www.aemet.es/es/buscador?modo=and&orden=n&tipo=sta&str={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 329
+    },
+    "aktueladam.com": {
+      "bang": "a.a",
+      "search_url": "https://aktueladam.com/?s={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "events.ccc.de": {
+      "bang": "35c3",
+      "search_url": "https://events.ccc.de/congress/2018/wiki/index.php?search={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.aktualne.cz": {
+      "bang": "aktualne",
+      "search_url": "https://www.aktualne.cz/hledani/?query={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 452
+    },
+    "www.accuweather.com": {
+      "bang": "accuweather",
+      "search_url": "http://www.accuweather.com/us-city-list.asp?zipcode={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 198
+    },
+    "www.ara.cat": {
+      "bang": "ara",
+      "search_url": "https://www.ara.cat/cercador/?text={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 367
+    },
+    "aqicn.org": {
+      "bang": "aqicn",
+      "search_url": "https://aqicn.org/city/{{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 411
+    },
+    "tw.appledaily.com": {
+      "bang": "appledailytw",
+      "search_url": "https://tw.appledaily.com/search/result?querystrS={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 259
+    },
+    "www.alternet.org": {
+      "bang": "alternet",
+      "search_url": "https://www.alternet.org/search/site/{{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 82
+    },
+    "abcnews.go.com": {
+      "bang": "abcnews",
+      "search_url": "https://abcnews.go.com/search?searchtext={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 131
+    },
+    "www.2nn.jp": {
+      "bang": "2nn",
+      "search_url": "https://www.2nn.jp/word/{{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 163
+    },
+    "aidenpromotions.com": {
+      "bang": "aiden",
+      "search_url": "https://aidenpromotions.com/blog/?s=phones{{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "adaderana.lk": {
+      "bang": "adaderana",
+      "search_url": "https://adaderana.lk/search_results.php?mode=1&show=1&query={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 12712
+    },
+    "www.actuly.fr": {
+      "bang": "actuly",
+      "search_url": "https://www.actuly.fr/?s={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 201
+    },
+    "www.trojmiasto.pl": {
+      "bang": "3m",
+      "search_url": "https://www.trojmiasto.pl/s/{{{s}}}/",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 181
+    },
+    "search.abc.net.au": {
+      "bang": "abcau",
+      "search_url": "https://search.abc.net.au/s/search.html?query={{{s}}}&collection=abcall_meta&form=simple",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "english.aljazeera.net": {
+      "bang": "aljazeera",
+      "search_url": "https://english.aljazeera.net/Services/Search/?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 402
+    },
+    "appledaily.com": {
+      "bang": "appledaily",
+      "search_url": "https://appledaily.com/?s={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 153
+    },
+    "bustimes.org": {
+      "bang": "bustimes",
+      "search_url": null,
+      "pattern": null,
+      "reliability": 0,
+      "no_results_indicators": []
+    },
+    "track.bpost.be": {
+      "bang": "bpost",
+      "search_url": null,
+      "pattern": null,
+      "reliability": 0,
+      "no_results_indicators": []
+    },
+    "buprimo.hosted.exlibrisgroup.com": {
+      "bang": "buej",
+      "search_url": null,
+      "pattern": null,
+      "reliability": 0,
+      "no_results_indicators": []
+    },
+    "www.bbc.co.uk": {
+      "bang": "bbc",
+      "search_url": "https://www.bbc.co.uk/iplayer/search?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "archive.org": {
+      "bang": "archivetv",
+      "search_url": "https://archive.org/details/tv?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 5122
+    },
+    "ca.askmen.com": {
+      "bang": "askmen",
+      "search_url": "https://ca.askmen.com/search?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 245
+    },
+    "www.theblaze.com": {
+      "bang": "blaze",
+      "search_url": "https://www.theblaze.com/search/?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "arstechnica.com": {
+      "bang": "arstechnica",
+      "search_url": "https://arstechnica.com/search/?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 483
+    },
+    "www.br.de": {
+      "bang": "brde",
+      "search_url": "https://www.br.de/service/suche/index.html?query={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 96
+    },
+    "www.bournemouthecho.co.uk": {
+      "bang": "becho",
+      "search_url": "https://www.bournemouthecho.co.uk/search/?search={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "0 results"
+      ],
+      "min_words": 468
+    },
+    "www.bostonglobe.com": {
+      "bang": "bostonglobe",
+      "search_url": "https://www.bostonglobe.com/queryResult/search?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "beebom.com": {
+      "bang": "beebom",
+      "search_url": "https://beebom.com/?s={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 315
+    },
+    "kgov.com": {
+      "bang": "bel",
+      "search_url": "https://kgov.com/search?query={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 222
+    },
+    "www.avanza.se": {
+      "bang": "avanza",
+      "search_url": "https://www.avanza.se/sok.html?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 108
+    },
+    "allthingsd.com": {
+      "bang": "atd",
+      "search_url": "http://allthingsd.com/?s={{{s}}}:",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 616
+    },
+    "www.boerse-online.de": {
+      "bang": "bo",
+      "search_url": "https://www.boerse-online.de/suchergebnisse?_search={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.businessinsider.com": {
+      "bang": "bsi",
+      "search_url": "https://www.businessinsider.com/s?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 857
+    },
+    "azspot.net": {
+      "bang": "azs",
+      "search_url": "https://azspot.net/search/{{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 337
+    },
+    "sitesearch.asahi.com": {
+      "bang": "asahi",
+      "search_url": "https://sitesearch.asahi.com/.cgi/sitesearch/sitesearch.pl?Keywords={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 258
+    },
+    "www.bing.com": {
+      "bang": "bnews",
+      "search_url": "https://www.bing.com/weather/forecast?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 304
+    },
+    "www.breitbart.com": {
+      "bang": "bbart",
+      "search_url": "https://www.breitbart.com/search/?s={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 424
+    },
+    "www.begeek.fr": {
+      "bang": "begeek",
+      "search_url": "https://www.begeek.fr/?s={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "azol.de": {
+      "bang": "azol",
+      "search_url": "https://azol.de/suche/?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.atmatix.pl": {
+      "bang": "atmatix",
+      "search_url": "https://www.atmatix.pl/patterns/all?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 58
+    },
+    "www.buienalarm.nl": {
+      "bang": "buien",
+      "search_url": "https://www.buienalarm.nl/location/{{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.bfm.my": {
+      "bang": "bfm899",
+      "search_url": "https://www.bfm.my/podcast.html?qseaid={{{s}}}&pseaid=latest&iseaid=all&dsseaid=&deseaid=&tag=&prg=",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.theaustralian.com.au": {
+      "bang": "australian",
+      "search_url": "https://www.theaustralian.com.au/search-results?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results",
+        "0 results"
+      ],
+      "min_words": 290
+    },
+    "search.bangkokpost.com": {
+      "bang": "bkkpost",
+      "search_url": "https://search.bangkokpost.com/search/result_advanced?category=all&xChannel=&q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 862
+    },
+    "b.dk": {
+      "bang": "berlingske",
+      "search_url": "https://b.dk/search/{{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.autocosmos.com.mx": {
+      "bang": "autos",
+      "search_url": "https://www.autocosmos.com.mx/search?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 51
+    },
+    "www.bergfex.at": {
+      "bang": "bfx",
+      "search_url": "https://www.bergfex.at/suchen/?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "keine ergebnisse"
+      ],
+      "min_words": 199
+    },
+    "www.birikimdergisi.com": {
+      "bang": "birikim",
+      "search_url": "https://www.birikimdergisi.com/arama/{{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 2024
+    },
+    "www.blickamabend.ch": {
+      "bang": "blickaa",
+      "search_url": "http://www.blickamabend.ch/suche/?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.bloombergquint.com": {
+      "bang": "bq",
+      "search_url": "https://www.bloombergquint.com/search?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 791
+    },
+    "www.bloomberg.com": {
+      "bang": "blmb",
+      "search_url": "https://www.bloomberg.com/search?query={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "0 results"
+      ],
+      "min_words": 221
+    },
+    "www.bjp.org": {
+      "bang": "bjp",
+      "search_url": "https://www.bjp.org/search/content?keys={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 479
+    },
+    "banned.video": {
+      "bang": "banned",
+      "search_url": "https://banned.video/?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 2906
+    },
+    "www.aparatorul.md": {
+      "bang": "art",
+      "search_url": "https://www.aparatorul.md/?s={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 249
+    },
+    "www.bona.co.za": {
+      "bang": "bona",
+      "search_url": "https://www.bona.co.za/?s={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "0 results"
+      ],
+      "min_words": 85
+    },
+    "bloganchoi.com": {
+      "bang": "bloganchoi",
+      "search_url": "http://bloganchoi.com/?s={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": []
+    },
+    "www.basketusa.com": {
+      "bang": "busa",
+      "search_url": "https://www.basketusa.com/?s={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": []
+    },
+    "brakdag.nl": {
+      "bang": "brakdag",
+      "search_url": "https://brakdag.nl/?s={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.chronopost.fr": {
+      "bang": "chronopost",
+      "search_url": null,
+      "pattern": null,
+      "reliability": 0,
+      "no_results_indicators": []
+    },
+    "www.postaonline.cz": {
+      "bang": "cpost",
+      "search_url": null,
+      "pattern": null,
+      "reliability": 0,
+      "no_results_indicators": []
+    },
+    "www.canadapost.ca": {
+      "bang": "canadapost",
+      "search_url": null,
+      "pattern": null,
+      "reliability": 0,
+      "no_results_indicators": []
+    },
+    "www.byte-post.com": {
+      "bang": "byte",
+      "search_url": null,
+      "pattern": null,
+      "reliability": 0,
+      "no_results_indicators": []
+    },
+    "www.cbc.ca": {
+      "bang": "cbc",
+      "search_url": "https://www.cbc.ca/search?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 318
+    },
+    "www.capital.bg": {
+      "bang": "capital",
+      "search_url": "https://www.capital.bg/search.php?stext={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "so.cntv.cn": {
+      "bang": "cctv",
+      "search_url": "https://so.cntv.cn/language/english/?qtext={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 85
+    },
+    "www.channel5.com": {
+      "bang": "channel5",
+      "search_url": "https://www.channel5.com/search?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.chicagotribune.com": {
+      "bang": "chicagotribune",
+      "search_url": "https://www.chicagotribune.com/?s={{{s}}}&orderby=date",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 330
+    },
+    "www.clarin.com": {
+      "bang": "clarin",
+      "search_url": "https://www.clarin.com/buscador/?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 255
+    },
+    "www.elconfidencial.com": {
+      "bang": "confi",
+      "search_url": "https://www.elconfidencial.com/buscar/2-6-1-3/0/1/10/desc/{{{s}}}/",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 350
+    },
+    "choualbox.com": {
+      "bang": "choualbox",
+      "search_url": "https://choualbox.com/recherche?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 754
+    },
+    "www.lachainemeteo.com": {
+      "bang": "chm",
+      "search_url": "https://www.lachainemeteo.com/synthese-previsions-meteo-{{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "aucun r\u00e9sultat"
+      ],
+      "min_words": 83
+    },
+    "www.courant.com": {
+      "bang": "courant",
+      "search_url": "https://www.courant.com/search/dispatcher.front?target=article&sortby=display_time++descending&Query={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.chosun.com": {
+      "bang": "chosun",
+      "search_url": "https://www.chosun.com/nsearch/?query={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 223
+    },
+    "www.courrierinternational.com": {
+      "bang": "courrierint",
+      "search_url": "https://www.courrierinternational.com/search/result/{{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.cdm.me": {
+      "bang": "cdm",
+      "search_url": "https://www.cdm.me/pretraga/{{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 266
+    },
+    "www.clicrbs.com.br": {
+      "bang": "clicrbs",
+      "search_url": "https://www.clicrbs.com.br/busca/rs/?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "contamet.wordpress.com": {
+      "bang": "contamet",
+      "search_url": "https://contamet.wordpress.com/?s={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "conjour.world": {
+      "bang": "cj",
+      "search_url": "https://conjour.world/?s={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 74
+    },
+    "celebrity.tn": {
+      "bang": "celebrity",
+      "search_url": "https://celebrity.tn/?s={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 292
+    },
+    "theconversation.com": {
+      "bang": "conv",
+      "search_url": "https://theconversation.com/global/search?utf8=%E2%9C%93&q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 94
+    },
+    "www.centredaily.com": {
+      "bang": "centredailytimes",
+      "search_url": "http://www.centredaily.com/search/?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 144
+    },
+    "www.cryptoanalyst.co": {
+      "bang": "cryptoanalyst",
+      "search_url": "https://www.cryptoanalyst.co/?s={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "coinmarketcap.com": {
+      "bang": "cap",
+      "search_url": "https://coinmarketcap.com/currencies/search/?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 1100
+    },
+    "cryptocoinspy.com": {
+      "bang": "cryptocoinspy",
+      "search_url": "https://cryptocoinspy.com/?s={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 220
+    },
+    "cheddar.com": {
+      "bang": "cheddar",
+      "search_url": "https://cheddar.com/search?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [
+        "0 results"
+      ],
+      "min_words": 50
+    },
+    "www.channel4.com": {
+      "bang": "channel4",
+      "search_url": "https://www.channel4.com/search/?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.cronista.com": {
+      "bang": "cronista",
+      "search_url": "https://www.cronista.com/buscar/{{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 333
+    },
+    "www.cnn.com": {
+      "bang": "cnn",
+      "search_url": "https://www.cnn.com/search/?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 180
+    },
+    "www.churchofsatan.com": {
+      "bang": "churchofsatan",
+      "search_url": "https://www.churchofsatan.com/search-results.php?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.chilango.com": {
+      "bang": "chilango",
+      "search_url": "https://www.chilango.com/?s={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 794
+    },
+    "clark.com": {
+      "bang": "clark",
+      "search_url": "https://clark.com/search/?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 253
+    },
+    "cnnespanol.cnn.com": {
+      "bang": "cnne",
+      "search_url": "https://cnnespanol.cnn.com/?s={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 1324
+    },
+    "search.cbsnews.com": {
+      "bang": "cbsnews",
+      "search_url": "https://search.cbsnews.com/?source=cbs&q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": []
+    },
+    "sitesearch.corriere.it": {
+      "bang": "corriere",
+      "search_url": "https://sitesearch.corriere.it/forward.jsp?q={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "www.counterpunch.org": {
+      "bang": "cntrp",
+      "search_url": "https://www.counterpunch.org/search-results/?q={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "no results"
+      ],
+      "min_words": 401
+    },
+    "www.cosmoty.de": {
+      "bang": "cosmoty",
+      "search_url": "https://www.cosmoty.de/suche/{{{s}}}/",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "casinonews.today": {
+      "bang": "cnt",
+      "search_url": "https://casinonews.today/?s={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "stadt-bremerhaven.de": {
+      "bang": "caschy",
+      "search_url": "https://stadt-bremerhaven.de/?s={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "keine ergebnisse"
+      ],
+      "min_words": 350
+    },
+    "search.cnbc.com": {
+      "bang": "cnbc",
+      "search_url": "http://search.cnbc.com/main.do?target=all&keywords={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 50
+    },
+    "cottrillcompass.com": {
+      "bang": "cottrillcompassblog",
+      "search_url": "https://cottrillcompass.com/blog/?s={{{s}}}",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [
+        "nothing found"
+      ],
+      "min_words": 102
+    },
+    "www.rollcall.com": {
+      "bang": "cqrq",
+      "search_url": "https://www.rollcall.com/page/search?keyword={{{s}}}&advanced=false&sort=relevance",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 247
+    },
+    "www.crol.hr": {
+      "bang": "crol",
+      "search_url": "https://www.crol.hr/index.php/search?searchword={{{s}}}&searchphrase=all",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 311
+    },
+    "canadiancouchpotato.com": {
+      "bang": "ccp",
+      "search_url": "https://canadiancouchpotato.com/?s={{{s}}}&submit=Search",
+      "pattern": "reliable",
+      "reliability": 0.95,
+      "no_results_indicators": [],
+      "min_words": 220
+    },
+    "www.climatempo.com.br": {
+      "bang": "climatempo",
+      "search_url": "https://www.climatempo.com.br/?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 571
+    },
+    "crickhero.blogspot.com": {
+      "bang": "crickhero",
+      "search_url": "https://crickhero.blogspot.com/search/?q={{{s}}}",
+      "pattern": "no_search",
+      "reliability": 0.3,
+      "no_results_indicators": [],
+      "min_words": 69
+    },
+    "www.conservativehome.com": {
+      "bang": "cnh",
+      "search_url": "https://www.conservativehome.com/?s={{{s}}}",
+      "pattern": "broken",
+      "reliability": 0.1,
+      "no_results_indicators": [],
+      "min_words": 342
+    }
+  },
+  "metadata": {
+    "total_tested": 150,
+    "reliable": 46,
+    "broken": 41,
+    "no_search": 51,
+    "errors": 0,
+    "test_date": "2025-09-14T23:32:29.553061"
+  }
+}
